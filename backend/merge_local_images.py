@@ -9,35 +9,33 @@ Run after fetch_gallery_data.py:
 from __future__ import annotations
 
 import json
-import re
 import shutil
 from pathlib import Path
+
+from title_utils import apply_item_titles, extract_slug
 
 ROOT = Path(__file__).resolve().parent.parent
 USED_PICS = Path(r"C:\Users\ericm\OneDrive\Documents\dacat\Top and Used Pics\Used Pics")
 DATA_PATH = ROOT / "web" / "data" / "gallery_data.json"
 NFT_ASSETS = ROOT / "web" / "assets" / "nfts"
 
-
-def extract_slug(description: str) -> str | None:
-    if not description:
-        return None
-    first = description.strip().split("\n")[0].strip().lower()
-    if first.startswith("dacat.") and re.match(r"^dacat\.[a-z0-9_-]+$", first):
-        return first
-    return None
+IMAGE_EXTS = {".png", ".jpg", ".jpeg", ".gif", ".webp"}
+VIDEO_EXTS = {".mp4", ".mov", ".webm"}
 
 
 def find_local_file(slug: str) -> Path | None:
     if not USED_PICS.exists():
         return None
-    for ext in (".png", ".jpg", ".jpeg", ".gif", ".webp", ".PNG", ".JPG"):
-        p = USED_PICS / f"{slug}{ext}"
+    base = slug.replace(".", ".")  # dacat.thrash
+    for ext in list(IMAGE_EXTS) + list(VIDEO_EXTS):
+        p = USED_PICS / f"{base}{ext}"
         if p.exists():
             return p
-    # subfolders (9 Block etc.)
-    for p in USED_PICS.rglob(f"{slug}.*"):
-        if p.suffix.lower() in {".png", ".jpg", ".jpeg", ".gif", ".webp"}:
+        p = USED_PICS / f"{base}{ext.upper()}"
+        if p.exists():
+            return p
+    for p in USED_PICS.rglob(f"{base}.*"):
+        if p.suffix.lower() in IMAGE_EXTS | VIDEO_EXTS:
             return p
     return None
 
@@ -51,7 +49,8 @@ def main() -> None:
 
     matched = 0
     for item in data.get("items", []):
-        slug = extract_slug(item.get("description", ""))
+        apply_item_titles(item)
+        slug = extract_slug(item.get("description", ""), item.get("name"))
         if not slug:
             continue
         src = find_local_file(slug)
@@ -66,6 +65,8 @@ def main() -> None:
         item["local_slug"] = slug
         item["image_url"] = f"assets/nfts/{dest_name}"
         item["image_source"] = "local_used_pics"
+        item["media_type"] = "video" if src.suffix.lower() in VIDEO_EXTS else "image"
+        apply_item_titles(item)
         matched += 1
 
     data["local_images_merged"] = matched

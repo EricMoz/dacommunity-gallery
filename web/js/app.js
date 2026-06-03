@@ -5,9 +5,11 @@ const $ = (sel, root = document) => root.querySelector(sel);
 
 let galleryData = null;
 let walletIndex = null;
+let collectorsList = [];
 let itemsById = new Map();
 let activeFilter = "all";
 let searchQuery = "";
+let activeCollectorAddress = null;
 
 function isFileProtocol() {
   return window.location.protocol === "file:";
@@ -45,13 +47,29 @@ async function loadData() {
     try {
       const w = await fetchJson(WALLET_URL, 90000);
       walletIndex = w.holders_index || null;
+      collectorsList = walletIndex?.collectors || buildCollectorsFromIndex(walletIndex);
     } catch (e) {
       console.warn("Wallet index load failed:", e);
       walletIndex = galleryData.holders_index || null;
+      collectorsList = walletIndex?.collectors || buildCollectorsFromIndex(walletIndex);
     }
   } else {
     walletIndex = galleryData.holders_index || null;
+    collectorsList = walletIndex?.collectors || buildCollectorsFromIndex(walletIndex);
   }
+}
+
+function buildCollectorsFromIndex(idx) {
+  if (!idx?.by_address) return [];
+  return Object.values(idx.by_address)
+    .map((e) => ({
+      address: e.address,
+      ens_name: e.ens_name,
+      username: e.username,
+      unique_pieces: e.unique_pieces ?? e.holdings?.length ?? 0,
+      collection_quantity: e.collection_quantity ?? 0,
+    }))
+    .sort((a, b) => b.unique_pieces - a.unique_pieces);
 }
 
 function formatEth(n) {
@@ -68,6 +86,16 @@ function escapeHtml(str) {
   return d.innerHTML;
 }
 
+function itemTitle(item) {
+  return item.display_name || item.local_slug || item.name || `Token #${item.token_id}`;
+}
+
+function isVideoItem(item) {
+  if (item.media_type === "video") return true;
+  const src = item.image_url || "";
+  return /\.(mp4|mov|webm)(\?|$)/i.test(src);
+}
+
 function imgSrc(item) {
   return item.image_url || item.opensea_image_url || "";
 }
@@ -75,6 +103,12 @@ function imgSrc(item) {
 function shortenAddress(addr) {
   if (!addr || addr.length < 12) return addr;
   return `${addr.slice(0, 6)}…${addr.slice(-4)}`;
+}
+
+function holderLabel(address) {
+  const entry = walletIndex?.by_address?.[address?.toLowerCase()];
+  if (!entry) return shortenAddress(address);
+  return entry.ens_name || entry.username || shortenAddress(address);
 }
 
 function isEthAddress(v) {
@@ -121,6 +155,29 @@ function lookupWallet(identifier) {
   return { entry };
 }
 
+function renderHoldingsChips(holdings, container, { highlightTokenId } = {}) {
+  container.innerHTML = "";
+  const chips = holdings
+    .map((h) => {
+      const item = itemsById.get(String(h.token_id));
+      const src = item ? imgSrc(item) : "";
+      const name = h.display_name || h.name || itemTitle(item || {}) || `#${h.token_id}`;
+      const hi = highlightTokenId && String(h.token_id) === String(highlightTokenId) ? " holding-chip-current" : "";
+      return `<button type="button" class="holding-chip${hi}" data-token="${h.token_id}">
+        ${src && !isVideoItem(item || {}) ? `<img src="${escapeHtml(src)}" alt="" loading="lazy" />` : ""}
+        <span>${escapeHtml(name)}</span>
+      </button>`;
+    })
+    .join("");
+  container.innerHTML = chips || "<span class='empty'>No pieces indexed.</span>";
+  container.querySelectorAll(".holding-chip").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const item = itemsById.get(String(btn.dataset.token));
+      if (item) openDetail(item);
+    });
+  });
+}
+
 async function renderWalletLookup(identifier) {
   const resultEl = $("#wallet-result");
   resultEl.hidden = false;
@@ -145,35 +202,103 @@ async function renderWalletLookup(identifier) {
 
   const { entry } = lookup;
   const label = entry.ens_name || shortenAddress(entry.address);
-  const holdings = entry.holdings || [];
-
-  const chips = holdings
-    .map((h) => {
-      const item = itemsById.get(String(h.token_id));
-      const src = item ? imgSrc(item) : "";
-      const name = h.name || item?.name || `#${h.token_id}`;
-      return `<button type="button" class="holding-chip" data-token="${h.token_id}">
-        ${src ? `<img src="${escapeHtml(src)}" alt="" loading="lazy" />` : ""}
-        <span>${escapeHtml(name)}</span>
-      </button>`;
-    })
-    .join("");
 
   resultEl.innerHTML = `
     <div class="wallet-profile">
       <strong>${escapeHtml(label)}</strong>
       <span>${escapeHtml(entry.address)}</span>
-      <span>${entry.unique_pieces ?? holdings.length} unique pieces · ${entry.collection_quantity ?? "—"} total copies</span>
+      <span>${entry.unique_pieces ?? entry.holdings?.length ?? 0} unique pieces · ${entry.collection_quantity ?? "—"} total copies</span>
     </div>
-    <div class="wallet-holdings">${chips || "<span class='empty'>No pieces indexed.</span>"}</div>
+    <div class="wallet-holdings" id="wallet-holdings-slot"></div>
   `;
+  renderHoldingsChips(entry.holdings || [], $("#wallet-holdings-slot"));
+}
 
-  resultEl.querySelectorAll(".holding-chip").forEach((btn) => {
+function exploreCollector(address, highlightTokenId) {
+  const entry = walletIndex?.by_address?.[address?.toLowerCase()];
+  const explore = $("#collector-explore");
+  if (!entry) {
+    explore.hidden = true;
+    return;
+  }
+  activeCollectorAddress = address.toLowerCase();
+  $("#collector-explore-title").textContent = `Also held by ${holderLabel(address)}`;
+  renderHoldingsChips(entry.holdings || [], $("#collector-explore-holdings"), { highlightTokenId });
+  explore.hidden = false;
+  document.querySelectorAll(".owner-chip").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.address === activeCollectorAddress);
+  });
+}
+
+function renderCollectors(filter = "") {
+  const panel = $("#collectors-panel");
+  const list = $("#collectors-list");
+  if (!collectorsList.length) {
+    panel.hidden = true;
+    return;
+  }
+  panel.hidden = false;
+  const q = filter.trim().toLowerCase();
+  let rows = collectorsList;
+  if (q) {
+    rows = rows.filter(
+      (c) =>
+        (c.ens_name || "").toLowerCase().includes(q) ||
+        (c.username || "").toLowerCase().includes(q) ||
+        c.address.toLowerCase().includes(q)
+    );
+  }
+  list.innerHTML = rows
+    .map((c) => {
+      const label = c.ens_name || c.username || shortenAddress(c.address);
+      return `<button type="button" class="collector-row" data-address="${escapeHtml(c.address)}">
+        <div>
+          <strong>${escapeHtml(label)}</strong>
+          <span class="meta">${escapeHtml(c.address)}</span>
+        </div>
+        <span class="count">${c.unique_pieces} piece${c.unique_pieces === 1 ? "" : "s"}</span>
+      </button>`;
+    })
+    .join("");
+  list.querySelectorAll(".collector-row").forEach((btn) => {
     btn.addEventListener("click", () => {
-      const item = itemsById.get(String(btn.dataset.token));
-      if (item) openDetail(item);
+      const addr = btn.dataset.address;
+      $("#wallet-input").value = addr;
+      renderWalletLookup(addr);
+      $("#wallet-panel").scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
+}
+
+function fillMediaSlot(slot, item, { autoplay = false } = {}) {
+  slot.innerHTML = "";
+  const src = imgSrc(item);
+  if (!src) return;
+  if (isVideoItem(item)) {
+    const v = document.createElement("video");
+    v.src = src;
+    v.muted = true;
+    v.loop = true;
+    v.playsInline = true;
+    v.controls = true;
+    if (autoplay) v.autoplay = true;
+    v.setAttribute("aria-label", itemTitle(item));
+    slot.appendChild(v);
+  } else {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = itemTitle(item);
+    if (item.opensea_image_url && item.image_url !== item.opensea_image_url) {
+      img.addEventListener(
+        "error",
+        () => {
+          img.src = item.opensea_image_url;
+        },
+        { once: true }
+      );
+    }
+    slot.appendChild(img);
+  }
 }
 
 function renderStats(collection) {
@@ -181,7 +306,7 @@ function renderStats(collection) {
   strip.innerHTML = "";
   [
     { label: "Pieces", value: collection.piece_count ?? "—" },
-    { label: "Collectors", value: collection.num_owners ?? "—" },
+    { label: "Collectors", value: collection.num_owners ?? collectorsList.length || "—" },
     { label: "Floor", value: `${formatEth(collection.floor_eth)} ${collection.floor_symbol || "ETH"}` },
     { label: "Listed", value: collection.listed_count ?? "—" },
   ].forEach((s) => {
@@ -206,7 +331,7 @@ function getFilteredItems() {
     const q = searchQuery.toLowerCase();
     items = items.filter(
       (i) =>
-        (i.name || "").toLowerCase().includes(q) ||
+        itemTitle(i).toLowerCase().includes(q) ||
         (i.description || "").toLowerCase().includes(q) ||
         (i.local_slug || "").toLowerCase().includes(q) ||
         String(i.token_id).includes(q)
@@ -229,7 +354,12 @@ function renderFeatured(allItems) {
     const btn = document.createElement("button");
     btn.className = "rail-card";
     btn.type = "button";
-    btn.innerHTML = `<img src="${escapeHtml(imgSrc(item))}" alt="" loading="lazy" onerror="this.style.opacity=0.3" /><span>${escapeHtml(item.name)}</span>`;
+    const slot = document.createElement("div");
+    fillMediaSlot(slot, item);
+    btn.appendChild(slot);
+    const cap = document.createElement("span");
+    cap.textContent = itemTitle(item);
+    btn.appendChild(cap);
     btn.addEventListener("click", () => openDetail(item));
     track.appendChild(btn);
   }
@@ -243,16 +373,19 @@ function renderGallery(items) {
     row.className = "gallery-row";
     row.type = "button";
     row.style.animationDelay = `${Math.min(idx * 0.025, 0.75)}s`;
+    const title = itemTitle(item);
     const listedBadge = item.listed
       ? `<span class="badge-listed">${item.listing ? formatEth(item.listing.amount_eth) + " ETH" : "Listed"}</span>`
       : "";
     const slug = item.local_slug ? `<span class="slug-pill">${escapeHtml(item.local_slug)}</span>` : "";
+    const videoBadge = isVideoItem(item) ? `<span class="thumb-video-badge">▶</span>` : "";
     row.innerHTML = `
       <div class="gallery-thumb-wrap">
-        <img class="gallery-thumb" src="${escapeHtml(imgSrc(item))}" alt="" loading="lazy" />
+        <div class="gallery-thumb-slot"></div>
+        ${videoBadge}
       </div>
       <div class="gallery-meta">
-        <h3>${escapeHtml(item.name)}</h3>
+        <h3>${escapeHtml(title)}</h3>
         <p>${escapeHtml(item.excerpt || "")}</p>
         ${slug}
       </div>
@@ -261,10 +394,11 @@ function renderGallery(items) {
         ${listedBadge}
       </div>
     `;
-    const img = row.querySelector(".gallery-thumb");
-    if (item.opensea_image_url && item.image_url !== item.opensea_image_url) {
-      img.addEventListener("error", () => {
-        img.src = item.opensea_image_url;
+    fillMediaSlot(row.querySelector(".gallery-thumb-slot"), item);
+    const thumb = row.querySelector(".gallery-thumb-slot img, .gallery-thumb-slot video");
+    if (thumb?.tagName === "IMG" && item.opensea_image_url && item.image_url !== item.opensea_image_url) {
+      thumb.addEventListener("error", () => {
+        thumb.src = item.opensea_image_url;
       }, { once: true });
     }
     row.addEventListener("click", () => openDetail(item));
@@ -272,18 +406,40 @@ function renderGallery(items) {
   });
 }
 
+function renderDetailOwners(item) {
+  const ownersBlock = $("#detail-owners");
+  const chipsEl = $("#detail-owner-chips");
+  const explore = $("#collector-explore");
+  explore.hidden = true;
+  activeCollectorAddress = null;
+
+  const holders = item.owners?.top_holders || [];
+  if (!holders.length) {
+    ownersBlock.hidden = true;
+    return;
+  }
+  ownersBlock.hidden = false;
+  chipsEl.innerHTML = holders
+    .map(
+      (h) =>
+        `<button type="button" class="owner-chip" data-address="${escapeHtml(h.address)}">
+          ${escapeHtml(holderLabel(h.address))} · ${h.quantity}
+        </button>`
+    )
+    .join("");
+  chipsEl.querySelectorAll(".owner-chip").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      exploreCollector(btn.dataset.address, item.token_id);
+    });
+  });
+}
+
 function openDetail(item) {
   const panel = $("#detail-panel");
-  const img = $("#detail-image");
-  img.src = imgSrc(item);
-  if (item.opensea_image_url) {
-    img.onerror = () => {
-      img.src = item.opensea_image_url;
-      img.onerror = null;
-    };
-  }
-  img.alt = item.name || "";
-  $("#detail-title").textContent = item.name || "";
+  fillMediaSlot($("#detail-media-slot"), item, { autoplay: true });
+
+  $("#detail-title").textContent = itemTitle(item);
   $("#detail-token").textContent = `Token #${item.token_id}${item.local_slug ? " · " + item.local_slug : ""} · Base`;
   $("#detail-description").textContent = item.description || "No description.";
   $("#detail-opensea").href = item.opensea_url || "#";
@@ -309,6 +465,8 @@ function openDetail(item) {
   }
   stats.innerHTML = chips.join("") || `<span class="chip">Community piece</span>`;
 
+  renderDetailOwners(item);
+
   panel.classList.add("open");
   panel.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
@@ -319,6 +477,7 @@ function closeDetail() {
   panel.classList.remove("open");
   panel.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
+  $("#collector-explore").hidden = true;
 }
 
 function refreshView() {
@@ -343,6 +502,10 @@ function bindUi() {
   $("#search").addEventListener("input", (e) => {
     searchQuery = e.target.value.trim();
     refreshView();
+  });
+
+  $("#collectors-search")?.addEventListener("input", (e) => {
+    renderCollectors(e.target.value);
   });
 
   $("#wallet-form").addEventListener("submit", (e) => {
@@ -371,8 +534,14 @@ async function init() {
   try {
     await loadData();
     galleryData.items.forEach((i) => {
+      if (!i.display_name) {
+        i.display_name = i.local_slug || (i.name?.toLowerCase().startsWith("dacat.") ? i.name : null);
+      }
       if (!i.opensea_image_url && i.image_url?.startsWith("http")) {
         i.opensea_image_url = i.image_url;
+      }
+      if (/\.(mov|mp4|webm)(\?|$)/i.test(i.image_url || "") && !i.media_type) {
+        i.media_type = "video";
       }
       itemsById.set(String(i.token_id), i);
     });
@@ -380,6 +549,7 @@ async function init() {
     $("#load-state").hidden = true;
     renderStats(galleryData.collection);
     $("#footer-updated").textContent = new Date(galleryData.generated_at).toLocaleString();
+    renderCollectors();
     bindUi();
     refreshView();
 

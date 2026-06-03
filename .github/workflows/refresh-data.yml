@@ -1,8 +1,9 @@
-name: Refresh gallery data (weekly)
+name: Refresh gallery data (daily)
 
 on:
   schedule:
-    - cron: "0 12 * * 0"
+    # 08:00 UTC daily — ownership, listings, stats stay current after transfers
+    - cron: "0 8 * * *"
   workflow_dispatch:
 
 permissions:
@@ -13,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          lfs: true
 
       - uses: actions/setup-python@v5
         with:
@@ -26,10 +29,10 @@ jobs:
           cd backend
           python fetch_gallery_data.py
 
-      - name: Commit updated JSON
+      - name: Commit updated data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add web/data/gallery_data.json
-          git diff --staged --quiet || git commit -m "chore: refresh gallery data from OpenSea"
+          git add web/data/gallery_data.json web/data/wallet_index.json
+          git diff --staged --quiet || git commit -m "chore: daily refresh from OpenSea (owners, listings, stats)"
           git push

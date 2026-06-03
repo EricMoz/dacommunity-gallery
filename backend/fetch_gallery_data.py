@@ -29,6 +29,7 @@ from config import (
     OPENSEA_COLLECTION_URL,
 )
 from opensea_client import OpenSeaClient
+from title_utils import apply_item_titles, display_title, extract_slug
 
 ROOT = Path(__file__).resolve().parent.parent
 ENV_PATH = Path(__file__).resolve().parent / ".env"
@@ -108,12 +109,21 @@ def build_item(nft: dict, listing: dict | None, owners: list[dict] | None) -> di
     listing_info = parse_listing_price(listing) if listing else None
     owner_stats = summarize_owners(owners) if owners is not None else None
 
-    return {
+    raw_name = nft.get("name") or f"daCommunity #{token_id}"
+    slug = extract_slug(description, raw_name)
+    display = display_title(slug, raw_name, token_id)
+    image_url = nft.get("display_image_url") or nft.get("image_url") or ""
+    media_type = "video" if re.search(r"\.(mov|mp4|webm)(\?|$)", image_url, re.I) else "image"
+
+    item = {
         "token_id": token_id,
-        "name": nft.get("name") or f"daCommunity #{token_id}",
+        "name": display,
+        "display_name": display,
+        "local_slug": slug,
         "description": description,
         "excerpt": excerpt(description),
-        "image_url": nft.get("display_image_url") or nft.get("image_url"),
+        "image_url": image_url,
+        "media_type": media_type,
         "opensea_url": nft.get("opensea_url"),
         "metadata_url": nft.get("metadata_url"),
         "updated_at": nft.get("updated_at"),
@@ -122,6 +132,9 @@ def build_item(nft: dict, listing: dict | None, owners: list[dict] | None) -> di
         "listing": listing_info,
         "owners": owner_stats,
     }
+    if raw_name != display:
+        item["opensea_name"] = raw_name
+    return item
 
 
 def build_holders_index(
@@ -157,15 +170,17 @@ def build_holders_index(
             account_nfts = client.get_account_collection_nfts(holder["address"])
             for nft in account_nfts:
                 tid = str(nft.get("identifier", ""))
+                ref = items_by_id.get(tid, {})
                 holdings.append(
                     {
                         "token_id": tid,
-                        "name": nft.get("name") or items_by_id.get(tid, {}).get("name"),
+                        "name": ref.get("display_name")
+                        or ref.get("name")
+                        or nft.get("name"),
                         "image_url": nft.get("display_image_url")
                         or nft.get("image_url")
-                        or items_by_id.get(tid, {}).get("image_url"),
-                        "opensea_url": nft.get("opensea_url")
-                        or items_by_id.get(tid, {}).get("opensea_url"),
+                        or ref.get("image_url"),
+                        "opensea_url": nft.get("opensea_url") or ref.get("opensea_url"),
                     }
                 )
         except requests.HTTPError:
@@ -266,10 +281,31 @@ def main() -> int:
                 "collection_quantity": entry.get("collection_quantity"),
                 "unique_pieces": entry.get("unique_pieces"),
                 "holdings": [
-                    {"token_id": h["token_id"], "name": h.get("name")}
+                    {
+                        "token_id": h["token_id"],
+                        "name": h.get("name"),
+                        "display_name": items_by_id.get(str(h["token_id"]), {}).get(
+                            "display_name"
+                        )
+                        or h.get("name"),
+                    }
                     for h in entry.get("holdings", [])
                 ],
             }
+        collectors = sorted(
+            [
+                {
+                    "address": e["address"],
+                    "ens_name": e.get("ens_name"),
+                    "username": e.get("username"),
+                    "unique_pieces": e.get("unique_pieces") or 0,
+                    "collection_quantity": e.get("collection_quantity") or 0,
+                }
+                for e in slim["by_address"].values()
+            ],
+            key=lambda c: (-c["unique_pieces"], -c["collection_quantity"]),
+        )
+        slim["collectors"] = collectors
         WALLET_INDEX_PATH.write_text(
             json.dumps(
                 {
@@ -308,6 +344,8 @@ def main() -> int:
         "items": items,
         "wallet_index_file": "wallet_index.json" if holders_index else None,
     }
+    for item in payload["items"]:
+        apply_item_titles(item)
 
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_PATH.write_text(

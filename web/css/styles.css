@@ -408,11 +408,18 @@ a:hover { color: var(--blue-accent); }
   box-shadow: 6px 6px 0 var(--black);
 }
 
-.rail-card img {
+.rail-card img,
+.rail-card video,
+.rail-card > div:first-child img,
+.rail-card > div:first-child video {
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
   display: block;
+}
+
+.holding-chip-current {
+  outline: 3px solid var(--blue-accent);
 }
 
 .rail-card span {
@@ -591,11 +598,146 @@ a:hover { color: var(--blue-accent); }
   position: relative;
 }
 
-.detail-media img {
+.detail-media img,
+.detail-media video {
   width: 100%;
   max-height: 50vh;
   object-fit: contain;
   display: block;
+}
+
+.gallery-thumb-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumb-video-badge {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  background: var(--black);
+  color: var(--yellow);
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+}
+
+.gallery-thumb-wrap { position: relative; }
+
+/* Collectors directory */
+.collectors-panel {
+  padding: 1.2rem 1.35rem;
+}
+
+.collectors-panel-head h2 {
+  font-family: var(--font-display);
+  margin: 0 0 0.2rem;
+  font-size: 1.1rem;
+}
+
+.collectors-panel-head p {
+  margin: 0 0 0.85rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+#collectors-search {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  border: 2px solid var(--black);
+  border-radius: 8px;
+  font: inherit;
+  margin-bottom: 0.85rem;
+}
+
+.collectors-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.collector-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.55rem 0.65rem;
+  border: 2px solid var(--black);
+  border-radius: 8px;
+  background: #fffef5;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  width: 100%;
+  transition: transform 0.12s;
+}
+
+.collector-row:hover {
+  transform: translateX(2px);
+  background: var(--yellow);
+}
+
+.collector-row strong { font-size: 0.92rem; }
+
+.collector-row span.meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.collector-row .count {
+  font-weight: 800;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+/* Detail owners */
+.detail-owners {
+  margin: 1rem 0;
+  padding-top: 0.75rem;
+  border-top: 2px dashed #ccc;
+}
+
+.detail-subhead {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.owner-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.owner-chip {
+  padding: 0.35rem 0.65rem;
+  border: 2px solid var(--black);
+  border-radius: 999px;
+  background: var(--yellow);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.12s;
+}
+
+.owner-chip:hover,
+.owner-chip.active {
+  transform: scale(1.04);
+  box-shadow: 3px 3px 0 var(--black);
+  background: var(--black);
+  color: var(--yellow);
+}
+
+.collector-explore h4 {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
 }
 
 .detail-badge {

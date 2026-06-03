@@ -21,6 +21,7 @@
       </a>
       <nav class="header-nav">
         <a class="nav-btn" href="https://www.dacat.fun/dacat-universe" target="_blank" rel="noopener">Universe</a>
+        <a class="nav-btn" href="https://www.dacatworld.com/" target="_blank" rel="noopener">daCAT World</a>
         <a class="nav-btn nav-btn-accent" href="https://opensea.io/collection/rodeo-posts-12142" target="_blank" rel="noopener">OpenSea</a>
         <a class="nav-btn" href="https://t.me/daCat_token" target="_blank" rel="noopener">TG</a>
       </nav>
@@ -43,6 +44,15 @@
         <div class="stat skeleton"></div>
         <div class="stat skeleton"></div>
       </div>
+    </section>
+
+    <section class="panel collectors-panel" id="collectors-panel" hidden>
+      <div class="collectors-panel-head">
+        <h2>Collectors</h2>
+        <p>Everyone holding daCommunity pieces — names from ENS when known. Data refreshes daily from OpenSea.</p>
+      </div>
+      <input type="search" id="collectors-search" placeholder="Filter by name or 0x…" autocomplete="off" aria-label="Search collectors" />
+      <div class="collectors-list" id="collectors-list" aria-live="polite"></div>
     </section>
 
     <section class="panel wallet-panel" id="wallet-panel">
@@ -86,13 +96,21 @@
       <button class="detail-close" id="detail-close" aria-label="Close">×</button>
       <div class="detail-scroll">
         <div class="detail-media">
-          <img id="detail-image" alt="" />
+          <div id="detail-media-slot"></div>
           <span class="detail-badge" id="detail-badge" hidden>For sale</span>
         </div>
         <div class="detail-body">
           <p class="detail-token" id="detail-token"></p>
           <h2 id="detail-title"></h2>
           <div class="detail-stats" id="detail-stats"></div>
+          <div class="detail-owners" id="detail-owners" hidden>
+            <h3 class="detail-subhead">Who holds this piece</h3>
+            <div class="owner-chips" id="detail-owner-chips"></div>
+            <div class="collector-explore" id="collector-explore" hidden>
+              <h4 id="collector-explore-title"></h4>
+              <div class="wallet-holdings" id="collector-explore-holdings"></div>
+            </div>
+          </div>
           <div class="detail-description" id="detail-description"></div>
           <a class="btn btn-accent" id="detail-opensea" href="#" target="_blank" rel="noopener">View on OpenSea</a>
         </div>
@@ -101,7 +119,7 @@
   </aside>
 
   <footer class="site-footer">
-    <p>OpenSea data · Updated <span id="footer-updated">—</span></p>
+    <p>OpenSea ownership &amp; listings · Refreshed daily · Updated <span id="footer-updated">—</span></p>
     <p><a href="https://www.dacat.fun/">dacat.fun</a> · <a href="https://www.dacatworld.com/">dacatworld</a></p>
   </footer>
 
