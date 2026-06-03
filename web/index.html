@@ -46,19 +46,17 @@
       </div>
     </section>
 
-    <section class="panel collectors-panel" id="collectors-panel" hidden>
-      <div class="collectors-panel-head">
-        <h2>Collectors</h2>
-        <p>Everyone holding daCommunity pieces — names from ENS when known. Data refreshes daily from OpenSea.</p>
-      </div>
-      <input type="search" id="collectors-search" placeholder="Filter by name or 0x…" autocomplete="off" aria-label="Search collectors" />
-      <div class="collectors-list" id="collectors-list" aria-live="polite"></div>
-    </section>
-
     <section class="panel wallet-panel" id="wallet-panel">
       <div class="wallet-panel-head">
-        <h2>Collector lookup</h2>
-        <p>ENS or <code>0x</code> address — no wallet connect.</p>
+        <div class="wallet-panel-title-row">
+          <div>
+            <h2>Collector lookup</h2>
+            <p>ENS or <code>0x</code> address — no wallet connect.</p>
+          </div>
+          <button type="button" class="btn btn-outline" id="view-collectors-btn" hidden>
+            View collectors
+          </button>
+        </div>
       </div>
       <form class="wallet-form" id="wallet-form">
         <input type="text" id="wallet-input" placeholder="mozvane.eth or 0x…" autocomplete="off" spellcheck="false" />
@@ -117,6 +115,17 @@
       </div>
     </article>
   </aside>
+
+  <div class="collectors-modal" id="collectors-modal" aria-hidden="true">
+    <div class="collectors-modal-backdrop" id="collectors-modal-backdrop"></div>
+    <div class="collectors-modal-card" role="dialog" aria-modal="true" aria-labelledby="collectors-modal-title">
+      <button type="button" class="collectors-modal-close" id="collectors-modal-close" aria-label="Close">×</button>
+      <h2 id="collectors-modal-title">daCommunity collectors</h2>
+      <p class="collectors-modal-lead">Tap a name to look up their holdings. Updated daily from OpenSea.</p>
+      <input type="search" id="collectors-search" placeholder="Filter by name or 0x…" autocomplete="off" aria-label="Search collectors" />
+      <div class="collectors-list" id="collectors-list" aria-live="polite"></div>
+    </div>
+  </div>
 
   <footer class="site-footer">
     <p>OpenSea ownership &amp; listings · Refreshed daily · Updated <span id="footer-updated">—</span></p>

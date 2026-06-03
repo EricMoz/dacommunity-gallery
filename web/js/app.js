@@ -281,10 +281,39 @@ async function renderWalletLookup(identifier) {
   var qty = nvl(entry.collection_quantity, "—");
 
   resultEl.innerHTML =
-    '<div class="wallet-profile"><strong>' + escapeHtml(label) + "</strong><span>" +
-    escapeHtml(entry.address) + "</span><span>" + uq + " unique pieces · " + qty + " total copies</span></div>" +
+    '<div class="wallet-profile">' +
+    '<p class="wallet-profile-name"><strong>' + escapeHtml(label) + "</strong></p>" +
+    '<p class="wallet-profile-address">' + escapeHtml(entry.address) + "</p>" +
+    '<p class="wallet-profile-stats">' + uq + " unique pieces · " + qty + " total copies</p>" +
+    "</div>" +
     '<div class="wallet-holdings" id="wallet-holdings-slot"></div>';
   renderHoldingsChips(holdings, $("#wallet-holdings-slot"));
+}
+
+function updateCollectorsButton() {
+  var btn = $("#view-collectors-btn");
+  if (!btn) return;
+  btn.hidden = !collectorsList.length;
+}
+
+function openCollectorsModal() {
+  if (!collectorsList.length) return;
+  var modal = $("#collectors-modal");
+  renderCollectors($("#collectors-search") ? $("#collectors-search").value : "");
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  var search = $("#collectors-search");
+  if (search) setTimeout(function () { search.focus(); }, 200);
+}
+
+function closeCollectorsModal() {
+  var modal = $("#collectors-modal");
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden", "true");
+  if (!$("#detail-panel").classList.contains("open")) {
+    document.body.style.overflow = "";
+  }
 }
 
 function exploreCollector(address, highlightTokenId) {
@@ -304,13 +333,12 @@ function exploreCollector(address, highlightTokenId) {
 }
 
 function renderCollectors(filter) {
-  var panel = $("#collectors-panel");
   var list = $("#collectors-list");
+  if (!list) return;
   if (!collectorsList.length) {
-    panel.hidden = true;
+    list.innerHTML = "<p class='wallet-result empty'>No collectors indexed yet.</p>";
     return;
   }
-  panel.hidden = false;
   var q = (filter || "").trim().toLowerCase();
   var rows = collectorsList;
   if (q) {
@@ -328,16 +356,17 @@ function renderCollectors(filter) {
       var suffix = c.unique_pieces === 1 ? "" : "s";
       return (
         '<button type="button" class="collector-row" data-address="' + escapeHtml(c.address) + '">' +
-        "<div><strong>" + escapeHtml(label) + '</strong><span class="meta">' + escapeHtml(c.address) + "</span></div>" +
+        '<div class="collector-info"><strong>' + escapeHtml(label) + '</strong><span class="meta">' + escapeHtml(c.address) + "</span></div>" +
         '<span class="count">' + c.unique_pieces + " piece" + suffix + "</span></button>"
       );
     })
     .join("");
   list.querySelectorAll(".collector-row").forEach(function (btn) {
     btn.addEventListener("click", function () {
+      closeCollectorsModal();
       $("#wallet-input").value = btn.dataset.address;
       renderWalletLookup(btn.dataset.address);
-      $("#wallet-panel").scrollIntoView({ behavior: "smooth", block: "start" });
+      $("#wallet-result").scrollIntoView({ behavior: "smooth", block: "nearest" });
     });
   });
 }
@@ -349,18 +378,23 @@ function fillMediaSlot(slot, item, opts) {
   if (!src) return;
   if (isVideoItem(item)) {
     var v = document.createElement("video");
+    v.className = "thumb-media";
     v.src = src;
     v.muted = true;
     v.loop = true;
     v.playsInline = true;
-    v.controls = true;
     if (opts.autoplay) v.autoplay = true;
+    if (opts.controls !== false && opts.autoplay) v.controls = true;
+    else if (opts.controls) v.controls = true;
     v.setAttribute("aria-label", itemTitle(item));
     slot.appendChild(v);
   } else {
     var img = document.createElement("img");
+    img.className = "thumb-media";
     img.src = src;
     img.alt = itemTitle(item);
+    img.loading = "lazy";
+    img.decoding = "async";
     if (item.opensea_image_url && item.image_url !== item.opensea_image_url) {
       img.addEventListener("error", function () { img.src = item.opensea_image_url; }, { once: true });
     }
@@ -458,7 +492,7 @@ function renderGallery(items) {
       '<div class="gallery-thumb-wrap"><div class="gallery-thumb-slot"></div>' + videoBadge + "</div>" +
       '<div class="gallery-meta"><h3>' + escapeHtml(title) + "</h3><p>" + escapeHtml(item.excerpt || "") + "</p>" + slug + "</div>" +
       '<div class="gallery-side"><span class="token-pill">#' + item.token_id + "</span>" + listedBadge + "</div>";
-    fillMediaSlot(row.querySelector(".gallery-thumb-slot"), item);
+    fillMediaSlot(row.querySelector(".gallery-thumb-slot"), item, { controls: false });
     var thumb = row.querySelector(".gallery-thumb-slot img, .gallery-thumb-slot video");
     if (thumb && thumb.tagName === "IMG" && item.opensea_image_url && item.image_url !== item.opensea_image_url) {
       thumb.addEventListener("error", function () { thumb.src = item.opensea_image_url; }, { once: true });
@@ -497,8 +531,9 @@ function renderDetailOwners(item) {
 }
 
 function openDetail(item) {
+  closeCollectorsModal();
   var panel = $("#detail-panel");
-  fillMediaSlot($("#detail-media-slot"), item, { autoplay: true });
+  fillMediaSlot($("#detail-media-slot"), item, { autoplay: true, controls: true });
   $("#detail-title").textContent = itemTitle(item);
   $("#detail-token").textContent =
     "Token #" + item.token_id + (item.local_slug ? " · " + item.local_slug : "") + " · Base";
@@ -533,7 +568,9 @@ function closeDetail() {
   var panel = $("#detail-panel");
   panel.classList.remove("open");
   panel.setAttribute("aria-hidden", "true");
-  document.body.style.overflow = "";
+  if (!$("#collectors-modal").classList.contains("open")) {
+    document.body.style.overflow = "";
+  }
   $("#collector-explore").hidden = true;
 }
 
@@ -561,6 +598,10 @@ function bindUi() {
   });
   var cs = $("#collectors-search");
   if (cs) cs.addEventListener("input", function (e) { renderCollectors(e.target.value); });
+  var viewBtn = $("#view-collectors-btn");
+  if (viewBtn) viewBtn.addEventListener("click", openCollectorsModal);
+  $("#collectors-modal-close").addEventListener("click", closeCollectorsModal);
+  $("#collectors-modal-backdrop").addEventListener("click", closeCollectorsModal);
   $("#wallet-form").addEventListener("submit", function (e) {
     e.preventDefault();
     var v = $("#wallet-input").value.trim();
@@ -569,7 +610,12 @@ function bindUi() {
   $("#detail-close").addEventListener("click", closeDetail);
   $("#detail-backdrop").addEventListener("click", closeDetail);
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") closeDetail();
+    if (e.key !== "Escape") return;
+    if ($("#collectors-modal").classList.contains("open")) {
+      closeCollectorsModal();
+      return;
+    }
+    closeDetail();
   });
 }
 
@@ -605,7 +651,7 @@ async function init() {
 
     loadWalletIndex().then(function () {
       renderStats(galleryData.collection);
-      renderCollectors();
+      updateCollectorsButton();
     });
   } catch (err) {
     console.error(err);
