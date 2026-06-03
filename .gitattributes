@@ -1,0 +1,6 @@
+web/assets/nfts/*.png filter=lfs diff=lfs merge=lfs -text
+web/assets/nfts/*.jpg filter=lfs diff=lfs merge=lfs -text
+web/assets/nfts/*.jpeg filter=lfs diff=lfs merge=lfs -text
+web/assets/nfts/*.gif filter=lfs diff=lfs merge=lfs -text
+web/assets/nfts/*.webp filter=lfs diff=lfs merge=lfs -text
+web/assets/brand/* filter=lfs diff=lfs merge=lfs -text
