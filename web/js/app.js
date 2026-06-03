@@ -1,17 +1,57 @@
 const DATA_URL = "data/gallery_data.json";
+const WALLET_URL = "data/wallet_index.json";
 
 const $ = (sel, root = document) => root.querySelector(sel);
-const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
 let galleryData = null;
+let walletIndex = null;
 let itemsById = new Map();
 let activeFilter = "all";
 let searchQuery = "";
 
+function isFileProtocol() {
+  return window.location.protocol === "file:";
+}
+
+function showFatalError(title, detail, cmd) {
+  $("#load-state").hidden = true;
+  const err = $("#load-error");
+  err.hidden = false;
+  err.innerHTML = `
+    <p><strong>${title}</strong></p>
+    <p>${detail}</p>
+    ${cmd ? `<code>${cmd}</code>` : ""}
+  `;
+}
+
+async function fetchJson(url, timeoutMs = 60000) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+  try {
+    const res = await fetch(url, { signal: ctrl.signal, cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
+    return await res.json();
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 async function loadData() {
-  const res = await fetch(DATA_URL);
-  if (!res.ok) throw new Error(`Failed to load ${DATA_URL}`);
-  return res.json();
+  if (isFileProtocol()) {
+    throw new Error("FILE_PROTOCOL");
+  }
+  galleryData = await fetchJson(DATA_URL);
+  if (galleryData.wallet_index_file) {
+    try {
+      const w = await fetchJson(WALLET_URL, 90000);
+      walletIndex = w.holders_index || null;
+    } catch (e) {
+      console.warn("Wallet index load failed:", e);
+      walletIndex = galleryData.holders_index || null;
+    }
+  } else {
+    walletIndex = galleryData.holders_index || null;
+  }
 }
 
 function formatEth(n) {
@@ -26,6 +66,10 @@ function escapeHtml(str) {
   const d = document.createElement("div");
   d.textContent = str ?? "";
   return d.innerHTML;
+}
+
+function imgSrc(item) {
+  return item.image_url || item.opensea_image_url || "";
 }
 
 function shortenAddress(addr) {
@@ -52,31 +96,25 @@ async function resolveEnsToAddress(name) {
   return addr.toLowerCase();
 }
 
-function normalizeAddress(addr) {
-  return addr.trim().toLowerCase();
-}
-
 function lookupWallet(identifier) {
-  const index = galleryData?.holders_index;
-  if (!index?.by_address) {
-    return { error: "Wallet index not loaded. Run a full data refresh (without --quick)." };
+  if (!walletIndex?.by_address) {
+    return { error: "Wallet index not loaded. Run: cd backend && python fetch_gallery_data.py" };
   }
-
   const raw = identifier.trim();
   let address = raw.toLowerCase();
 
   if (isEnsName(raw)) {
-    const alias = index.ens_aliases?.[raw.toLowerCase()];
-    if (alias) address = alias;
+    const alias = walletIndex.ens_aliases?.[raw.toLowerCase()];
+    if (alias) address = alias.toLowerCase();
     else return { needsResolve: true, ens: raw };
   } else if (!isEthAddress(raw)) {
     return { error: "Enter a valid ENS name (.eth) or 0x address." };
   }
 
-  const entry = index.by_address[address];
+  const entry = walletIndex.by_address[address];
   if (!entry) {
     return {
-      error: "No holdings in this collection for that address (or not in the last index build).",
+      error: "No daCommunity holdings found for that address in our index.",
       address,
     };
   }
@@ -86,7 +124,7 @@ function lookupWallet(identifier) {
 async function renderWalletLookup(identifier) {
   const resultEl = $("#wallet-result");
   resultEl.hidden = false;
-  resultEl.innerHTML = `<p class="wallet-result loading">Looking up…</p>`;
+  resultEl.innerHTML = `<p class="wallet-result empty">Looking up…</p>`;
 
   let lookup = lookupWallet(identifier);
 
@@ -111,11 +149,11 @@ async function renderWalletLookup(identifier) {
 
   const chips = holdings
     .map((h) => {
-      const item = itemsById.get(h.token_id);
-      const img = h.image_url || item?.image_url || "";
+      const item = itemsById.get(String(h.token_id));
+      const src = item ? imgSrc(item) : "";
       const name = h.name || item?.name || `#${h.token_id}`;
       return `<button type="button" class="holding-chip" data-token="${h.token_id}">
-        <img src="${escapeHtml(img)}" alt="" loading="lazy" />
+        ${src ? `<img src="${escapeHtml(src)}" alt="" loading="lazy" />` : ""}
         <span>${escapeHtml(name)}</span>
       </button>`;
     })
@@ -125,14 +163,14 @@ async function renderWalletLookup(identifier) {
     <div class="wallet-profile">
       <strong>${escapeHtml(label)}</strong>
       <span>${escapeHtml(entry.address)}</span>
-      <span>${entry.unique_pieces ?? holdings.length} pieces · ${entry.collection_quantity ?? "—"} copies in collection</span>
+      <span>${entry.unique_pieces ?? holdings.length} unique pieces · ${entry.collection_quantity ?? "—"} total copies</span>
     </div>
     <div class="wallet-holdings">${chips || "<span class='empty'>No pieces indexed.</span>"}</div>
   `;
 
   resultEl.querySelectorAll(".holding-chip").forEach((btn) => {
     btn.addEventListener("click", () => {
-      const item = itemsById.get(btn.dataset.token);
+      const item = itemsById.get(String(btn.dataset.token));
       if (item) openDetail(item);
     });
   });
@@ -141,18 +179,17 @@ async function renderWalletLookup(identifier) {
 function renderStats(collection) {
   const strip = $("#stats-strip");
   strip.innerHTML = "";
-  const stats = [
+  [
     { label: "Pieces", value: collection.piece_count ?? "—" },
     { label: "Collectors", value: collection.num_owners ?? "—" },
     { label: "Floor", value: `${formatEth(collection.floor_eth)} ${collection.floor_symbol || "ETH"}` },
     { label: "Listed", value: collection.listed_count ?? "—" },
-  ];
-  for (const s of stats) {
+  ].forEach((s) => {
     const el = document.createElement("div");
     el.className = "stat";
     el.innerHTML = `<span class="stat-value">${s.value}</span><span class="stat-label">${s.label}</span>`;
     strip.appendChild(el);
-  }
+  });
 
   const note = $("#hero-note");
   if (collection.note) {
@@ -164,15 +201,14 @@ function renderStats(collection) {
 function getFilteredItems() {
   let items = [...galleryData.items];
   if (activeFilter === "listed") items = items.filter((i) => i.listed);
-  if (activeFilter === "recent") {
-    items.sort((a, b) => Number(b.token_id) - Number(a.token_id));
-  }
+  if (activeFilter === "recent") items.sort((a, b) => Number(b.token_id) - Number(a.token_id));
   if (searchQuery) {
     const q = searchQuery.toLowerCase();
     items = items.filter(
       (i) =>
         (i.name || "").toLowerCase().includes(q) ||
         (i.description || "").toLowerCase().includes(q) ||
+        (i.local_slug || "").toLowerCase().includes(q) ||
         String(i.token_id).includes(q)
     );
   }
@@ -193,7 +229,7 @@ function renderFeatured(allItems) {
     const btn = document.createElement("button");
     btn.className = "rail-card";
     btn.type = "button";
-    btn.innerHTML = `<img src="${item.image_url}" alt="" loading="lazy" /><span>${escapeHtml(item.name)}</span>`;
+    btn.innerHTML = `<img src="${escapeHtml(imgSrc(item))}" alt="" loading="lazy" onerror="this.style.opacity=0.3" /><span>${escapeHtml(item.name)}</span>`;
     btn.addEventListener("click", () => openDetail(item));
     track.appendChild(btn);
   }
@@ -210,19 +246,27 @@ function renderGallery(items) {
     const listedBadge = item.listed
       ? `<span class="badge-listed">${item.listing ? formatEth(item.listing.amount_eth) + " ETH" : "Listed"}</span>`
       : "";
+    const slug = item.local_slug ? `<span class="slug-pill">${escapeHtml(item.local_slug)}</span>` : "";
     row.innerHTML = `
       <div class="gallery-thumb-wrap">
-        <img class="gallery-thumb" src="${item.image_url}" alt="" loading="lazy" />
+        <img class="gallery-thumb" src="${escapeHtml(imgSrc(item))}" alt="" loading="lazy" />
       </div>
       <div class="gallery-meta">
         <h3>${escapeHtml(item.name)}</h3>
         <p>${escapeHtml(item.excerpt || "")}</p>
+        ${slug}
       </div>
       <div class="gallery-side">
         <span class="token-pill">#${item.token_id}</span>
         ${listedBadge}
       </div>
     `;
+    const img = row.querySelector(".gallery-thumb");
+    if (item.opensea_image_url && item.image_url !== item.opensea_image_url) {
+      img.addEventListener("error", () => {
+        img.src = item.opensea_image_url;
+      }, { once: true });
+    }
     row.addEventListener("click", () => openDetail(item));
     list.appendChild(row);
   });
@@ -230,10 +274,17 @@ function renderGallery(items) {
 
 function openDetail(item) {
   const panel = $("#detail-panel");
-  $("#detail-image").src = item.image_url || "";
-  $("#detail-image").alt = item.name || "";
+  const img = $("#detail-image");
+  img.src = imgSrc(item);
+  if (item.opensea_image_url) {
+    img.onerror = () => {
+      img.src = item.opensea_image_url;
+      img.onerror = null;
+    };
+  }
+  img.alt = item.name || "";
   $("#detail-title").textContent = item.name || "";
-  $("#detail-token").textContent = `Token #${item.token_id} · ERC-1155 · Base`;
+  $("#detail-token").textContent = `Token #${item.token_id}${item.local_slug ? " · " + item.local_slug : ""} · Base`;
   $("#detail-description").textContent = item.description || "No description.";
   $("#detail-opensea").href = item.opensea_url || "#";
 
@@ -256,7 +307,7 @@ function openDetail(item) {
   if (item.listed && item.listing) {
     chips.push(`<span class="chip">List <strong>${formatEth(item.listing.amount_eth)} ETH</strong></span>`);
   }
-  stats.innerHTML = chips.join("") || `<span class="chip">OpenSea metadata</span>`;
+  stats.innerHTML = chips.join("") || `<span class="chip">Community piece</span>`;
 
   panel.classList.add("open");
   panel.setAttribute("aria-hidden", "false");
@@ -271,15 +322,14 @@ function closeDetail() {
 }
 
 function refreshView() {
-  const items = getFilteredItems();
   renderFeatured(galleryData.items);
-  renderGallery(items);
+  renderGallery(getFilteredItems());
 }
 
 function bindUi() {
-  $$(".filter").forEach((btn) => {
+  document.querySelectorAll(".filter").forEach((btn) => {
     btn.addEventListener("click", () => {
-      $$(".filter").forEach((b) => {
+      document.querySelectorAll(".filter").forEach((b) => {
         b.classList.remove("active");
         b.setAttribute("aria-selected", "false");
       });
@@ -309,25 +359,46 @@ function bindUi() {
 }
 
 async function init() {
+  if (isFileProtocol()) {
+    showFatalError(
+      "Open the gallery through the local server",
+      "Double-clicking index.html blocks data loading (browser security). Use the starter script instead.",
+      "Double-click start-gallery.bat  →  open http://localhost:8080"
+    );
+    return;
+  }
+
   try {
-    galleryData = await loadData();
-    galleryData.items.forEach((i) => itemsById.set(i.token_id, i));
+    await loadData();
+    galleryData.items.forEach((i) => {
+      if (!i.opensea_image_url && i.image_url?.startsWith("http")) {
+        i.opensea_image_url = i.image_url;
+      }
+      itemsById.set(String(i.token_id), i);
+    });
+
     $("#load-state").hidden = true;
     renderStats(galleryData.collection);
     $("#footer-updated").textContent = new Date(galleryData.generated_at).toLocaleString();
     bindUi();
     refreshView();
 
-    if (!galleryData.holders_index) {
-      $("#wallet-panel").insertAdjacentHTML(
-        "beforeend",
-        `<p class="hero-note" style="margin-top:0.75rem">Wallet index missing — run <code>python fetch_gallery_data.py</code> (full refresh) for collector lookup.</p>`
-      );
+    if (!walletIndex) {
+      const panel = $("#wallet-panel");
+      const warn = document.createElement("p");
+      warn.className = "hero-note";
+      warn.textContent =
+        "Wallet lookup needs a full refresh: cd backend → python fetch_gallery_data.py";
+      panel.appendChild(warn);
     }
   } catch (err) {
     console.error(err);
-    $("#load-state").hidden = true;
-    $("#load-error").hidden = false;
+    if (err.message === "FILE_PROTOCOL") return;
+    showFatalError(
+      "Could not load gallery data",
+      err.message || String(err),
+      "cd backend && python fetch_gallery_data.py && python merge_local_images.py"
+    );
   }
 }
 

@@ -33,6 +33,7 @@ from opensea_client import OpenSeaClient
 ROOT = Path(__file__).resolve().parent.parent
 ENV_PATH = Path(__file__).resolve().parent / ".env"
 OUTPUT_PATH = ROOT / "web" / "data" / "gallery_data.json"
+WALLET_INDEX_PATH = ROOT / "web" / "data" / "wallet_index.json"
 
 
 def load_api_key(create_if_missing: bool = True) -> str:
@@ -254,6 +255,34 @@ def main() -> int:
     if not args.quick and not args.skip_wallet_index:
         holders_index = build_holders_index(client, items_by_id)
 
+    # Slim holdings in wallet index (no duplicate image URLs)
+    if holders_index:
+        slim = {"ens_aliases": holders_index.get("ens_aliases", {}), "by_address": {}}
+        for addr, entry in holders_index.get("by_address", {}).items():
+            slim["by_address"][addr] = {
+                "address": entry["address"],
+                "ens_name": entry.get("ens_name"),
+                "username": entry.get("username"),
+                "collection_quantity": entry.get("collection_quantity"),
+                "unique_pieces": entry.get("unique_pieces"),
+                "holdings": [
+                    {"token_id": h["token_id"], "name": h.get("name")}
+                    for h in entry.get("holdings", [])
+                ],
+            }
+        WALLET_INDEX_PATH.write_text(
+            json.dumps(
+                {
+                    "generated_at": datetime.now(timezone.utc).isoformat(),
+                    "holders_index": slim,
+                },
+                indent=2,
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+        print(f"Wrote {WALLET_INDEX_PATH}")
+
     payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "source": "opensea_api_v2",
@@ -277,7 +306,7 @@ def main() -> int:
             "listed_count": listed_count,
         },
         "items": items,
-        "holders_index": holders_index,
+        "wallet_index_file": "wallet_index.json" if holders_index else None,
     }
 
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)

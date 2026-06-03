@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-03T01:52:42.496526+00:00",
+  "generated_at": "2026-06-03T02:07:04.781475+00:00",
   "source": "opensea_api_v2",
   "collection": {
     "slug": "rodeo-posts-12142",
@@ -8,13 +8,17 @@
     "contract": "0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1",
     "chain": "base",
     "opensea_url": "https://opensea.io/collection/rodeo-posts-12142",
+    "note": "Originally minted on Rodeo. Contract unchanged after platform migration; collection stewarded via dacatdreams.eth.",
+    "creator_ens": "dacatdreams.eth",
+    "creator_wallet": null,
+    "contract_name": "Rodeo posts",
     "floor_eth": 0.003,
     "floor_symbol": "ETH",
     "num_owners": 56,
     "total_sales": 0,
     "total_volume": 0.0,
     "piece_count": 65,
-    "listed_count": 0
+    "listed_count": 2
   },
   "items": [
     {
@@ -22,10 +26,10 @@
       "name": "Rodeo post #65",
       "description": "dacat.2years\n\nPages of an old explorer’s journal flip open and there, on the giant glowing 2, a ringmaster daCAT stands tall, grin wide, surrounded by the whole clowder losing their minds in celebration. Two full years since the token launch. The real genesis block birthday. The ride’s only getting wilder. Happy 2nd, daCAT fam.\n\n\"Happy 2nd Birthday daCAT\" -  https://suno.com/s/vD9WzOVLaNTOosZy",
       "excerpt": "dacat.2years Pages of an old explorer’s journal flip open and there, on the giant glowing 2, a ringmaster daCAT stands tall, grin wide, surrounded by the whole…",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/31b818ba8a8dd6584f57fd41d16ccb/b531b818ba8a8dd6584f57fd41d16ccb.png",
+      "image_url": "assets/nfts/dacat_2years.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/65",
       "metadata_url": "ipfs://QmRRSQxYbJr6m7pfuu5f7Jo9gQ2zRvtZoAw9i6hFs7gFTu/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006358",
+      "updated_at": "2026-06-03T02:02:49.032831",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -42,17 +46,41 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 4,
+        "circulating_copies": 25,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 11
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 10
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 3
+          },
+          {
+            "address": "0x011dddd5b5470d2818bffb400b4e38949fe21ac3",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/31b818ba8a8dd6584f57fd41d16ccb/b531b818ba8a8dd6584f57fd41d16ccb.png",
+      "local_slug": "dacat.2years",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "64",
       "name": "Rodeo post #64",
       "description": "dacat.2years\n\nPages of an old explorer’s journal flip open and there, on the giant glowing 2, a ringmaster daCAT stands tall, grin wide, surrounded by the whole clowder losing their minds in celebration. Two full years since the token launch. The real genesis block birthday. The ride’s only getting wilder. Happy 2nd, daCAT fam.",
       "excerpt": "dacat.2years Pages of an old explorer’s journal flip open and there, on the giant glowing 2, a ringmaster daCAT stands tall, grin wide, surrounded by the whole…",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/31b818ba8a8dd6584f57fd41d16ccb/b531b818ba8a8dd6584f57fd41d16ccb.png",
+      "image_url": "assets/nfts/dacat_2years.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/64",
       "metadata_url": "ipfs://QmYqd2qfHWenNHEHqgFnMoXM1hSnoKAaAVoE2U581RrwWX/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006373",
+      "updated_at": "2026-06-03T02:02:49.032845",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -69,17 +97,29 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 4,
+        "top_holders": [
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 4
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/31b818ba8a8dd6584f57fd41d16ccb/b531b818ba8a8dd6584f57fd41d16ccb.png",
+      "local_slug": "dacat.2years",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "63",
       "name": "Rodeo post #63",
       "description": "dacat.heritage\n\nIn the museum's hushed halls, young daCATs gaze at golden portraits of the trio who ruled with... particular style. Each frame whispers dramatic decrees and unity born from shared eye-rolls. As paws trace the lineage, the past whispers: we’ve come far from throne room drama. Our legacy isn't just history, it's the foundation of everything to come. Every story has roots... and ours is only getting started",
       "excerpt": "dacat.heritage In the museum's hushed halls, young daCATs gaze at golden portraits of the trio who ruled with... particular style. Each frame whispers dramatic…",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/cd0fc2f796279f94b90ac4a6a79593/0dcd0fc2f796279f94b90ac4a6a79593.png",
+      "image_url": "assets/nfts/dacat_heritage.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/63",
       "metadata_url": "ipfs://QmVYMY5QdJYrb9aApvc2eVyRzNXHUsBHbuPii2Z9yATeAg/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006383",
+      "updated_at": "2026-06-03T02:02:49.032855",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -96,17 +136,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 5,
+        "circulating_copies": 23,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 12
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 6
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 3
+          },
+          {
+            "address": "0xe008e382ed7a97ca9621597a0c37aacbea1bc105",
+            "quantity": 1
+          },
+          {
+            "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/cd0fc2f796279f94b90ac4a6a79593/0dcd0fc2f796279f94b90ac4a6a79593.png",
+      "local_slug": "dacat.heritage",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "62",
       "name": "Rodeo post #62",
       "description": "dacat.soar\n\nAbove a sea of clouds, a daCAT pilot commands the skies, shades on, grin wide, ready to joyride through endless horizons. This playful ascent captures the thrill of freedom and the shared adventure that fuels the daCommunity culture.",
       "excerpt": "dacat.soar Above a sea of clouds, a daCAT pilot commands the skies, shades on, grin wide, ready to joyride through endless horizons. This playful ascent captur…",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/7589e7db82ad7e4788d293ab292ed9/c87589e7db82ad7e4788d293ab292ed9.png",
+      "image_url": "assets/nfts/dacat_soar.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/62",
       "metadata_url": "ipfs://QmNNnA66RKZxiJRruhmrJXnk8fh3cHG94xH4YYEbZN9K2q/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006391",
+      "updated_at": "2026-06-03T02:02:49.032864",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -123,17 +191,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 5,
+        "circulating_copies": 15,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 6
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 3
+          },
+          {
+            "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
+            "quantity": 3
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 2
+          },
+          {
+            "address": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/7589e7db82ad7e4788d293ab292ed9/c87589e7db82ad7e4788d293ab292ed9.png",
+      "local_slug": "dacat.soar",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "61",
       "name": "Rodeo post #61",
       "description": "dacat.gaze\n\nFrom the heart of darkness, two piercing yellow eyes lock onto you, a silent challenge that mirrors the daCommunity’s unyielding focus. This minimalist art piece distills the daCAT’s essence into pure, unyielding resolve, a pharos for those who dare to meet its stare and embody the relentless drive shaping our lore.",
       "excerpt": "dacat.gaze From the heart of darkness, two piercing yellow eyes lock onto you, a silent challenge that mirrors the daCommunity’s unyielding focus. This minimal…",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/92b05e32607dd7b7cc7e5f647d3ed1/2692b05e32607dd7b7cc7e5f647d3ed1.png",
+      "image_url": "assets/nfts/dacat_gaze.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/61",
       "metadata_url": "ipfs://QmPmpjytDgg2jnuFb7shBsKSsgRsiLxDnq1VW5X5fb2V7Z/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006400",
+      "updated_at": "2026-06-03T02:02:49.032873",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -150,17 +246,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 8,
+        "circulating_copies": 31,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 12
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 10
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 3
+          },
+          {
+            "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
+            "quantity": 2
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/92b05e32607dd7b7cc7e5f647d3ed1/2692b05e32607dd7b7cc7e5f647d3ed1.png",
+      "local_slug": "dacat.gaze",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "60",
       "name": "Rodeo post #60",
       "description": "dacat.relic\n\nDrawn from a tattered explorer’s journal, a daCAT pauses deep in the emerald hush of an ancient jungle, whip coiled, ears pricked to the heartbeat of lost temples. Moonlight spills over forgotten stone faces, and the air hums with secrets older than time. One curious explorer, one daring stride into legend, where every shadow hides treasure and every whisper promises glory.",
       "excerpt": "dacat.relic Drawn from a tattered explorer’s journal, a daCAT pauses deep in the emerald hush of an ancient jungle, whip coiled, ears pricked to the heartbeat…",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/781fd9da02c5ec4de85d6cf86ef553/a1781fd9da02c5ec4de85d6cf86ef553.png",
+      "image_url": "assets/nfts/dacat_relic.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/60",
       "metadata_url": "ipfs://QmWhv3ddmxjQNq2d5fEEKGNgrNrpKnbNsypqVM27UEhwBz/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006409",
+      "updated_at": "2026-06-03T02:02:49.032882",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -177,17 +301,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 5,
+        "circulating_copies": 37,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 21
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 9
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 3
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 2
+          },
+          {
+            "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
+            "quantity": 2
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/781fd9da02c5ec4de85d6cf86ef553/a1781fd9da02c5ec4de85d6cf86ef553.png",
+      "local_slug": "dacat.relic",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "59",
       "name": "Rodeo post #59",
       "description": "dacat.feast\n\nBy candlelight in the royal hall, the crowned daCAT savors his finest delicacy: one perfectly roasted frog leg. No mercy, no hop, just the sweet victory on a silver platter. Long live the king.",
       "excerpt": "dacat.feast By candlelight in the royal hall, the crowned daCAT savors his finest delicacy: one perfectly roasted frog leg. No mercy, no hop, just the sweet vi…",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/7ad6f4ab1e00845c5c5719587b4f94/947ad6f4ab1e00845c5c5719587b4f94.png",
+      "image_url": "assets/nfts/dacat_feast.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/59",
       "metadata_url": "ipfs://QmTTrvxM8ZPPJXcyicueZer5dYoCyPD1BA4ySEfP5pymW2/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006417",
+      "updated_at": "2026-06-03T02:02:49.032891",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -204,17 +356,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 6,
+        "circulating_copies": 24,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 10
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 8
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 3
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/7ad6f4ab1e00845c5c5719587b4f94/947ad6f4ab1e00845c5c5719587b4f94.png",
+      "local_slug": "dacat.feast",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "58",
       "name": "Rodeo post #58",
       "description": "dacat.rock\n\nIn a thunderous 80s metal roar, a daCAT electrifies the stage, its riff a surge of wild energy that amps the daCommunity’s beat, turning every riff into an unstoppable power play.",
       "excerpt": "dacat.rock In a thunderous 80s metal roar, a daCAT electrifies the stage, its riff a surge of wild energy that amps the daCommunity’s beat, turning every riff…",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/62749917a270307c4f8650c3e428f1/db62749917a270307c4f8650c3e428f1.png",
+      "image_url": "assets/nfts/dacat_rock.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/58",
       "metadata_url": "ipfs://QmSEAvEDnLjsUNmr1D5Wt2CAzc2ht6Mu5HGP7HJGsG166K/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006426",
+      "updated_at": "2026-06-03T02:02:49.032901",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -231,17 +411,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 8,
+        "circulating_copies": 29,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 10
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 10
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 3
+          },
+          {
+            "address": "0x5469f22fc52ad7a5e1f430a75b1cbd542393dfb0",
+            "quantity": 2
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/62749917a270307c4f8650c3e428f1/db62749917a270307c4f8650c3e428f1.png",
+      "local_slug": "dacat.rock",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "57",
       "name": "Rodeo post #57",
       "description": "dacat.flux\n\nIn a cosmic rift, the daCAT duo ventures through shimmering realms, each pulse a gateway to wild textures and vibrant color domains; ethereal swirls, fiery veils, and starry voids that bend reality itself. For daCommunity collectors, this animated odyssey is a portal to endless adventure, a slice of the multiverse's feline fury.",
       "excerpt": "dacat.flux In a cosmic rift, the daCAT duo ventures through shimmering realms, each pulse a gateway to wild textures and vibrant color domains; ethereal swirls…",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/e3e853f69a1574c4fec62ac1a734dd/bde3e853f69a1574c4fec62ac1a734dd.gif",
+      "image_url": "assets/nfts/dacat_flux.gif",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/57",
       "metadata_url": "ipfs://QmQJ3T6Po3vs4raNz4nqK2f9HbUzKf8Tnb2Gg6UTYft6p3/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006435",
+      "updated_at": "2026-06-03T02:02:49.032912",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -258,17 +466,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 5,
+        "circulating_copies": 34,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 20
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 10
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 2
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          },
+          {
+            "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/e3e853f69a1574c4fec62ac1a734dd/bde3e853f69a1574c4fec62ac1a734dd.gif",
+      "local_slug": "dacat.flux",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "56",
       "name": "Rodeo post #56",
       "description": "dacat.claw\n\nIn a moonlit nightmare, a daCAT Freddy unleashes its razor grin, claws ready for Halloween tricks, guarding spooky secrets with a razor-sharp twist.",
       "excerpt": "dacat.claw In a moonlit nightmare, a daCAT Freddy unleashes its razor grin, claws ready for Halloween tricks, guarding spooky secrets with a razor-sharp twist.",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/e56c65148638083c4b3d3016dbcead/72e56c65148638083c4b3d3016dbcead.png",
+      "image_url": "assets/nfts/dacat_claw.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/56",
       "metadata_url": "ipfs://QmUekPR1JT6jZvm41e7mCALXALnQQQ66FpKEPko3xVYseN/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006444",
+      "updated_at": "2026-06-03T02:02:49.032921",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -285,17 +521,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 8,
+        "circulating_copies": 29,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 10
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 10
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 2
+          },
+          {
+            "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
+            "quantity": 2
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 2
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/e56c65148638083c4b3d3016dbcead/72e56c65148638083c4b3d3016dbcead.png",
+      "local_slug": "dacat.claw",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "55",
       "name": "Rodeo post #55",
       "description": "dacat.bond\n\nTwo daCATs emerge from the moonlit mist, their shared gaze turning night’s whispers into a shield of shadows, fortifying the daCommunity with unyielding harmony.",
       "excerpt": "dacat.bond Two daCATs emerge from the moonlit mist, their shared gaze turning night’s whispers into a shield of shadows, fortifying the daCommunity with unyiel…",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/6d62b4e4f524890a4e8d953d9e459f/3b6d62b4e4f524890a4e8d953d9e459f.png",
+      "image_url": "assets/nfts/dacat_bond.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/55",
       "metadata_url": "ipfs://QmdE3Fkr5tjvMkoYAXGTWuQGqyjwevjAvvGDzKSaMgTipn/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006453",
+      "updated_at": "2026-06-03T02:02:49.032930",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -312,17 +576,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 7,
+        "circulating_copies": 28,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 12
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 10
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 2
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/6d62b4e4f524890a4e8d953d9e459f/3b6d62b4e4f524890a4e8d953d9e459f.png",
+      "local_slug": "dacat.bond",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "54",
       "name": "Rodeo post #54",
       "description": "dacat.throne\n\nOn a golden throne, a daCAT reigns, its grin a legacy beacon, ready to blast through the gateway, reshaping the daCommunity’s path with royal energy.",
       "excerpt": "dacat.throne On a golden throne, a daCAT reigns, its grin a legacy beacon, ready to blast through the gateway, reshaping the daCommunity’s path with royal ener…",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/2620d77c0aa099b8f9dd92ca57b501/482620d77c0aa099b8f9dd92ca57b501.png",
+      "image_url": "assets/nfts/dacat_throne.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/54",
       "metadata_url": "ipfs://QmZMG94JF5czpv2BAhYTq2Z9v8tpmG9f2x5ayW2oRdhw9u/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006461",
+      "updated_at": "2026-06-03T02:02:49.032939",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -339,17 +631,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 11,
+        "circulating_copies": 28,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 10
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 7
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 3
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/2620d77c0aa099b8f9dd92ca57b501/482620d77c0aa099b8f9dd92ca57b501.png",
+      "local_slug": "dacat.throne",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "53",
       "name": "Rodeo post #53",
       "description": "dacat.fortress\n\nAmid the inferno, a daCAT stands as a fortress, its resolve unyielding, forged through deliberate moves and powerful alliances, ready to safeguard the daCommunity’s future with unwavering strength.",
       "excerpt": "dacat.fortress Amid the inferno, a daCAT stands as a fortress, its resolve unyielding, forged through deliberate moves and powerful alliances, ready to safegua…",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/d6b9ce2255c488d9d3ef9d0ac77674/86d6b9ce2255c488d9d3ef9d0ac77674.png",
+      "image_url": "assets/nfts/dacat_fortress.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/53",
       "metadata_url": "ipfs://QmVhgcjPwNkuZ2nH6daHCdYXogDvXSWgRfXnoJmZEypzcs/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006469",
+      "updated_at": "2026-06-03T02:02:49.032947",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -366,17 +686,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 5,
+        "circulating_copies": 26,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 10
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 10
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 4
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          },
+          {
+            "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/d6b9ce2255c488d9d3ef9d0ac77674/86d6b9ce2255c488d9d3ef9d0ac77674.png",
+      "local_slug": "dacat.fortress",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "52",
       "name": "Rodeo post #52",
       "description": "dacat.hero\n\nAmid a cosmic dawn, a daCAT hero stands ready, its armor glowing with the promise of new adventures, echoing the funky feline spirit of the daCAT Chronicles. Watch the trailer at https://youtu.be/Q2JTIuDR_sQ?si=SFxgJeYrP4EMZEnE",
       "excerpt": "dacat.hero Amid a cosmic dawn, a daCAT hero stands ready, its armor glowing with the promise of new adventures, echoing the funky feline spirit of the daCAT Ch…",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/27387abc71ee1fad3e910f98f33194/1b27387abc71ee1fad3e910f98f33194.png",
+      "image_url": "assets/nfts/dacat_hero.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/52",
       "metadata_url": "ipfs://QmY3jEkrBkoL5xSawfT5E8wb1jnJbVKfeuZ4GejYyvpLVy/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006478",
+      "updated_at": "2026-06-03T02:02:49.032956",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -393,17 +741,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 6,
+        "circulating_copies": 22,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 10
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 7
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 2
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/27387abc71ee1fad3e910f98f33194/1b27387abc71ee1fad3e910f98f33194.png",
+      "local_slug": "dacat.hero",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "51",
       "name": "Rodeo post #51",
       "description": "dacat.storm\n\nAbove a city’s chaos, a daCAT storm brews, its presence a harbinger of change, ready to unleash a wave that reshapes the daCommunity’s path with electrifying force.",
       "excerpt": "dacat.storm Above a city’s chaos, a daCAT storm brews, its presence a harbinger of change, ready to unleash a wave that reshapes the daCommunity’s path with el…",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/08ff99ce3a08d90f42f5107c9dd3ea/8d08ff99ce3a08d90f42f5107c9dd3ea.png",
+      "image_url": "assets/nfts/dacat_storm.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/51",
       "metadata_url": "ipfs://QmedBb1dN97vjt1VN9Qxo3ToJZMAqhYzkHpSsB3ovMuWZ8/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006487",
+      "updated_at": "2026-06-03T02:02:49.032965",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -420,17 +796,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 7,
+        "circulating_copies": 19,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 7
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 5
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 3
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/08ff99ce3a08d90f42f5107c9dd3ea/8d08ff99ce3a08d90f42f5107c9dd3ea.png",
+      "local_slug": "dacat.storm",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "50",
       "name": "Rodeo post #50",
       "description": "dacat.impact\n\nIn a burst of cosmic energy, a daCAT unleashes a force that shifts the tides, its power a beacon of change, ready to reshape the next turn with unstoppable momentum.",
       "excerpt": "dacat.impact In a burst of cosmic energy, a daCAT unleashes a force that shifts the tides, its power a beacon of change, ready to reshape the next turn with un…",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/314e4eca12ed60b58584c9306ee90f/60314e4eca12ed60b58584c9306ee90f.png",
+      "image_url": "assets/nfts/dacat_impact.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/50",
       "metadata_url": "ipfs://QmaNJmQkhoNFh1zijJgxRTZoEvpJPeHdgdyJhU5FAiSC9d/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006495",
+      "updated_at": "2026-06-03T02:02:49.032974",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -447,17 +851,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 12,
+        "circulating_copies": 29,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 10
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 5
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 3
+          },
+          {
+            "address": "0x67f3c18339ac0da29be9573d559a1291100b7c7b",
+            "quantity": 2
+          },
+          {
+            "address": "0x011dddd5b5470d2818bffb400b4e38949fe21ac3",
+            "quantity": 2
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/314e4eca12ed60b58584c9306ee90f/60314e4eca12ed60b58584c9306ee90f.png",
+      "local_slug": "dacat.impact",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "49",
       "name": "Rodeo post #49",
       "description": "dacat.gateway\n\nBeneath a galaxy’s spiral, a daCAT guards the gateway to a verdant valley, the Ethereum symbol below whispering of untold futures, ready to unlock the daCommunity’s boundless potential.",
       "excerpt": "dacat.gateway Beneath a galaxy’s spiral, a daCAT guards the gateway to a verdant valley, the Ethereum symbol below whispering of untold futures, ready to unloc…",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/92de2d445e23e2bf4e2db26b0290e6/4d92de2d445e23e2bf4e2db26b0290e6.jpeg",
+      "image_url": "assets/nfts/dacat_gateway.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/49",
       "metadata_url": "ipfs://QmXqiN7oZxt796j5fZJmvLfh98cB6iDfg7DSY7uHkL8ekc/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006504",
+      "updated_at": "2026-06-03T02:02:49.032984",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -474,17 +906,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 11,
+        "circulating_copies": 36,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 21
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 5
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 2
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/92de2d445e23e2bf4e2db26b0290e6/4d92de2d445e23e2bf4e2db26b0290e6.jpeg",
+      "local_slug": "dacat.gateway",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "48",
       "name": "Rodeo post #48",
       "description": "dacat.serenity\n\nOn a sunlit bench, a daCAT in a red cap ponders the last weeks of summer, its peaceful gaze ready for a season of new joys and adventures.",
       "excerpt": "dacat.serenity On a sunlit bench, a daCAT in a red cap ponders the last weeks of summer, its peaceful gaze ready for a season of new joys and adventures.",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/0b0b539580abece409b7fe461663a4/7b0b0b539580abece409b7fe461663a4.png",
+      "image_url": "assets/nfts/dacat_serenity.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/48",
       "metadata_url": "ipfs://QmXUyEMGrHeQp31iPBFbVA3jTd3pJPZ2s6E5AGVbtUy3ng/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006514",
+      "updated_at": "2026-06-03T02:02:49.032993",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -501,17 +961,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 7,
+        "circulating_copies": 18,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 5
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 5
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 2
+          },
+          {
+            "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
+            "quantity": 2
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 2
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/0b0b539580abece409b7fe461663a4/7b0b0b539580abece409b7fe461663a4.png",
+      "local_slug": "dacat.serenity",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "47",
       "name": "Rodeo post #47",
       "description": "dacat.vision\n\nUnder a full moon’s glow, a daCAT surveys the city of doubters, its unyielding belief a beacon, ready to illuminate the inevitable success for all to see.",
       "excerpt": "dacat.vision Under a full moon’s glow, a daCAT surveys the city of doubters, its unyielding belief a beacon, ready to illuminate the inevitable success for all…",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/64190f4d5e3fcb41c5d7cef89f2c34/2464190f4d5e3fcb41c5d7cef89f2c34.png",
+      "image_url": "assets/nfts/dacat_vision.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/47",
       "metadata_url": "ipfs://QmfFQkQ9v12ov5CriyycTkgdZ51RyQpPtHyfgG485yMJcP/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006522",
+      "updated_at": "2026-06-03T02:02:49.033002",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -528,17 +1016,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 17,
+        "circulating_copies": 33,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 10
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 4
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 2
+          },
+          {
+            "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
+            "quantity": 2
+          },
+          {
+            "address": "0x67f3c18339ac0da29be9573d559a1291100b7c7b",
+            "quantity": 2
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/64190f4d5e3fcb41c5d7cef89f2c34/2464190f4d5e3fcb41c5d7cef89f2c34.png",
+      "local_slug": "dacat.vision",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "46",
       "name": "Rodeo post #46",
       "description": "dacat.blast\n\nA daCAT crew blasts off on a rocket of highs, stars exploding as the daCommunity surges into price discovery’s thrilling void.",
       "excerpt": "dacat.blast A daCAT crew blasts off on a rocket of highs, stars exploding as the daCommunity surges into price discovery’s thrilling void.",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/91e739862afcc3f886b30132b040c0/1c91e739862afcc3f886b30132b040c0.png",
+      "image_url": "assets/nfts/dacat_blast.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/46",
       "metadata_url": "ipfs://QmcJhVqCdntMbn7wZELgdcbeWzDdzRng2XCZDE3azkrCRF/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006530",
+      "updated_at": "2026-06-03T02:02:49.033010",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -555,17 +1071,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 9,
+        "circulating_copies": 22,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 6
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 5
+          },
+          {
+            "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
+            "quantity": 3
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 2
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 2
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/91e739862afcc3f886b30132b040c0/1c91e739862afcc3f886b30132b040c0.png",
+      "local_slug": "dacat.blast",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "45",
       "name": "Rodeo post #45",
       "description": "dacat.blaze\n\nAmid a blazing triumph, a daCAT flips an Ace with bold conviction, stacking chips as the daCommunity’s bets pay off big, leaving doubters in stunned silence.",
       "excerpt": "dacat.blaze Amid a blazing triumph, a daCAT flips an Ace with bold conviction, stacking chips as the daCommunity’s bets pay off big, leaving doubters in stunne…",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/73d0e162b3bbbab2f19222662de439/4f73d0e162b3bbbab2f19222662de439.png",
+      "image_url": "assets/nfts/dacat_blaze.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/45",
       "metadata_url": "ipfs://QmasE8v9tHfkAXgzVXD6PSXNnVjkJZ7qZschSxfL6ZUfQd/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006541",
+      "updated_at": "2026-06-03T02:02:49.033019",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -580,19 +1124,51 @@
           "value": "No"
         }
       ],
-      "listed": false,
-      "listing": null,
-      "owners": null
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.003,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 14,
+        "circulating_copies": 33,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 11
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 5
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 3
+          },
+          {
+            "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
+            "quantity": 2
+          },
+          {
+            "address": "0x67f3c18339ac0da29be9573d559a1291100b7c7b",
+            "quantity": 2
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/73d0e162b3bbbab2f19222662de439/4f73d0e162b3bbbab2f19222662de439.png",
+      "local_slug": "dacat.blaze",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "44",
       "name": "Rodeo post #44",
       "description": "dacat.drive\n\ndaCAT cruises toward a neon-lit cosmic city, convertible top down, the night's adventure accelerating under a green moon’s glow.",
       "excerpt": "dacat.drive daCAT cruises toward a neon-lit cosmic city, convertible top down, the night's adventure accelerating under a green moon’s glow.",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/b35a4097ed8673b416f5abdf963654/e7b35a4097ed8673b416f5abdf963654.jpeg",
+      "image_url": "assets/nfts/dacat_drive.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/44",
       "metadata_url": "ipfs://QmQFXxKZZAXuJQp18yJkrAcpepBCDWJ5Z399gFoYKx164u/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006550",
+      "updated_at": "2026-06-03T02:02:49.033028",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -609,17 +1185,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 16,
+        "circulating_copies": 67,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 40
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 5
+          },
+          {
+            "address": "0x67f3c18339ac0da29be9573d559a1291100b7c7b",
+            "quantity": 5
+          },
+          {
+            "address": "0x7bad2d296612ed6bc5d3ac3d9c09fce181434da1",
+            "quantity": 3
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 2
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/b35a4097ed8673b416f5abdf963654/e7b35a4097ed8673b416f5abdf963654.jpeg",
+      "local_slug": "dacat.drive",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "43",
       "name": "Rodeo post #43",
       "description": "dacat.velocity\n\nOn a Tron-lit trail of 0s and 1s, a daCAT races with blinding speed, its matrix shield weaving triumph, outpacing the shadows to claim new frontiers.",
       "excerpt": "dacat.velocity On a Tron-lit trail of 0s and 1s, a daCAT races with blinding speed, its matrix shield weaving triumph, outpacing the shadows to claim new front…",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/85bc9b517d1b33368605ada154224d/5a85bc9b517d1b33368605ada154224d.png",
+      "image_url": "assets/nfts/dacat_velocity.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/43",
       "metadata_url": "ipfs://QmWLdcnupJ1R14JWzVDNNSw4McMhqv129um36NmaawxALw/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006558",
+      "updated_at": "2026-06-03T02:02:49.033037",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -636,17 +1240,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 12,
+        "circulating_copies": 22,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 5
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 5
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 2
+          },
+          {
+            "address": "0x011dddd5b5470d2818bffb400b4e38949fe21ac3",
+            "quantity": 2
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/85bc9b517d1b33368605ada154224d/5a85bc9b517d1b33368605ada154224d.png",
+      "local_slug": "dacat.velocity",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "42",
       "name": "Rodeo post #42",
       "description": "dacat.bastion\n\nA daCAT knight grips poison with resolve, its lowered shield a silent ward, forging a path of strength for the daCommunity’s unwavering spirit.",
       "excerpt": "dacat.bastion A daCAT knight grips poison with resolve, its lowered shield a silent ward, forging a path of strength for the daCommunity’s unwavering spirit.",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/b1297933cc035e50886485f908f309/c6b1297933cc035e50886485f908f309.jpeg",
+      "image_url": "assets/nfts/dacat_bastion.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/42",
       "metadata_url": "ipfs://QmSHU7QV7a6eohwHBMekVsreVYVirNnKXEpkrhBCnaQS9U/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006568",
+      "updated_at": "2026-06-03T02:02:49.033045",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -663,17 +1295,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 10,
+        "circulating_copies": 20,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 5
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 3
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 2
+          },
+          {
+            "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
+            "quantity": 2
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 2
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/b1297933cc035e50886485f908f309/c6b1297933cc035e50886485f908f309.jpeg",
+      "local_slug": "dacat.bastion",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "41",
       "name": "Rodeo post #41",
       "description": "dacat.adventure\n\nYellow buses burst through a cloudy night, daCATs at the helm, their laughter echoing as they chase greatness, shadows and all.",
       "excerpt": "dacat.adventure Yellow buses burst through a cloudy night, daCATs at the helm, their laughter echoing as they chase greatness, shadows and all.",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/1867b8c64dedd6cb652421bd9ccfc0/ac1867b8c64dedd6cb652421bd9ccfc0.jpeg",
+      "image_url": "assets/nfts/dacat_adventure.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/41",
       "metadata_url": "ipfs://QmSgrJPmBcj2GsnicvZt9cVLyeTewjHuG4Ze5kucfBuYpy/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006577",
+      "updated_at": "2026-06-03T02:02:49.033064",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -690,7 +1350,35 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 8,
+        "circulating_copies": 18,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 5
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 5
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 3
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          },
+          {
+            "address": "0xd60d9625cbb8ad201839223e2f3898e10b3d3b23",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/1867b8c64dedd6cb652421bd9ccfc0/ac1867b8c64dedd6cb652421bd9ccfc0.jpeg",
+      "local_slug": "dacat.adventure",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "40",
@@ -700,7 +1388,7 @@
       "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/870d6f915d9420d17e8c383e33b88f/b2870d6f915d9420d17e8c383e33b88f.jpeg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/40",
       "metadata_url": "ipfs://QmQ6PPewZGU3a94rz4F87FDGWprXeNoXzBymqW2BWnUkFM/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006586",
+      "updated_at": "2026-06-03T02:02:49.033072",
       "traits": [
         {
           "trait_type": "category",
@@ -723,7 +1411,32 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 7,
+        "circulating_copies": 16,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 5
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 3
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 3
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 2
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          }
+        ]
+      }
     },
     {
       "token_id": "39",
@@ -733,7 +1446,7 @@
       "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/e4b141756726d258f14635e59e00c9/1ae4b141756726d258f14635e59e00c9.jpeg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/39",
       "metadata_url": "ipfs://QmYT9WzwA3yugoYkALr1LemGdJzLyeyza6XqS56p2PoC3v/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006595",
+      "updated_at": "2026-06-03T02:02:49.033079",
       "traits": [
         {
           "trait_type": "category",
@@ -756,7 +1469,32 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 7,
+        "circulating_copies": 13,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 6
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 2
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          },
+          {
+            "address": "0xe008e382ed7a97ca9621597a0c37aacbea1bc105",
+            "quantity": 1
+          }
+        ]
+      }
     },
     {
       "token_id": "38",
@@ -766,7 +1504,7 @@
       "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/72ba0d5d99111e6bd7eb375c1b87e5/9a72ba0d5d99111e6bd7eb375c1b87e5.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/38",
       "metadata_url": "ipfs://QmS5oWm1E7dvn6zj8Us7SpamGp3aB9trjyVbkPZy2LvA5k/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006603",
+      "updated_at": "2026-06-03T02:02:49.033085",
       "traits": [
         {
           "trait_type": "tool",
@@ -795,7 +1533,32 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 7,
+        "circulating_copies": 13,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 5
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 3
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          },
+          {
+            "address": "0xe008e382ed7a97ca9621597a0c37aacbea1bc105",
+            "quantity": 1
+          }
+        ]
+      }
     },
     {
       "token_id": "37",
@@ -805,7 +1568,7 @@
       "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/207c4152e8b24fb28de268dad04b23/36207c4152e8b24fb28de268dad04b23.jpeg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/37",
       "metadata_url": "ipfs://QmfBHa5jqzNEivjYseajMxdK9QCPh3aAHwLRd3DcmJN25Z/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006612",
+      "updated_at": "2026-06-03T02:02:49.033092",
       "traits": [
         {
           "trait_type": "category",
@@ -828,7 +1591,32 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 7,
+        "circulating_copies": 14,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 5
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 3
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 2
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          }
+        ]
+      }
     },
     {
       "token_id": "36",
@@ -838,7 +1626,7 @@
       "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/f40666f244c53e436cb2529e483a7c/4df40666f244c53e436cb2529e483a7c.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/36",
       "metadata_url": "ipfs://QmUvbte92wsUitDsPg98W1uxifhiq59zrp8fmi5vFizfbY/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006621",
+      "updated_at": "2026-06-03T02:02:49.033098",
       "traits": [
         {
           "trait_type": "tool",
@@ -867,17 +1655,42 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 7,
+        "circulating_copies": 14,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 5
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 4
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          },
+          {
+            "address": "0xe008e382ed7a97ca9621597a0c37aacbea1bc105",
+            "quantity": 1
+          }
+        ]
+      }
     },
     {
       "token_id": "35",
       "name": "Rodeo post #35",
       "description": "dacat.math\n\nA Dacat wrestles with mind-bending equations, guarding the daCommunity’s wisdom through a chalk-dusted challenge.",
       "excerpt": "dacat.math A Dacat wrestles with mind-bending equations, guarding the daCommunity’s wisdom through a chalk-dusted challenge.",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/5620b9d97c78f2c8e092f5bf117bc1/e85620b9d97c78f2c8e092f5bf117bc1.jpeg",
+      "image_url": "assets/nfts/dacat_math.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/35",
       "metadata_url": "ipfs://QmUfRHXL646qC3snLNunLPiYfaYXcL6KY5rQkSW5CAZBS4/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006630",
+      "updated_at": "2026-06-03T02:02:49.033104",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -894,17 +1707,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 5,
+        "circulating_copies": 7,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 3
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xebbac832fa12e8e1adaa4b08ee85c94e1011e7de",
+            "quantity": 1
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/5620b9d97c78f2c8e092f5bf117bc1/e85620b9d97c78f2c8e092f5bf117bc1.jpeg",
+      "local_slug": "dacat.math",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "34",
       "name": "Rodeo post #34",
       "description": "dacat.sentry\n\nBeneath the crimson arch, a Dacat stands as a sentinel, eyes fixed on the shadowed enticement, shielding the daCommunity from the market’s turbulent shadows.",
       "excerpt": "dacat.sentry Beneath the crimson arch, a Dacat stands as a sentinel, eyes fixed on the shadowed enticement, shielding the daCommunity from the market’s turbule…",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/fbfa6780034a26e684ecd78b04955f/5efbfa6780034a26e684ecd78b04955f.jpeg",
+      "image_url": "assets/nfts/dacat_sentry.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/34",
       "metadata_url": "ipfs://QmdscJboNcv6zNe7cuPwPrDNWdcJP9z2VxuCrxBqjj6d5b/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006639",
+      "updated_at": "2026-06-03T02:02:49.033110",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -921,17 +1762,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 7,
+        "circulating_copies": 10,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 3
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 2
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          },
+          {
+            "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/fbfa6780034a26e684ecd78b04955f/5efbfa6780034a26e684ecd78b04955f.jpeg",
+      "local_slug": "dacat.sentry",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "33",
       "name": "Rodeo post #33",
       "description": "dacat.spectrum\n\nA Dacat shines in a burst of pixel colors, sparking joy across the daCommunity’s bright new chapter!",
       "excerpt": "dacat.spectrum A Dacat shines in a burst of pixel colors, sparking joy across the daCommunity’s bright new chapter!",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/7a592192461ad1052beb1996468413/1c7a592192461ad1052beb1996468413.png",
+      "image_url": "assets/nfts/dacat_spectrum.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/33",
       "metadata_url": "ipfs://QmbZYJncvPUGcHjfZHuCBt5E9kLzmNP6HVwebkhzpwjrDn/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006648",
+      "updated_at": "2026-06-03T02:02:49.033117",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -948,7 +1817,35 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 8,
+        "circulating_copies": 10,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 2
+          },
+          {
+            "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
+            "quantity": 2
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          },
+          {
+            "address": "0xe008e382ed7a97ca9621597a0c37aacbea1bc105",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/7a592192461ad1052beb1996468413/1c7a592192461ad1052beb1996468413.png",
+      "local_slug": "dacat.spectrum",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "32",
@@ -958,7 +1855,7 @@
       "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/95d27bec6663ed95c2f8e11c86e809/c995d27bec6663ed95c2f8e11c86e809.jpeg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/32",
       "metadata_url": "ipfs://QmYLQAU5W2mMmwDrpurE5r1Q22kCgdzdqcF7pYnSvF6AXg/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006656",
+      "updated_at": "2026-06-03T02:02:49.033123",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -975,17 +1872,42 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 9,
+        "circulating_copies": 15,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 5
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 3
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          },
+          {
+            "address": "0xe008e382ed7a97ca9621597a0c37aacbea1bc105",
+            "quantity": 1
+          }
+        ]
+      }
     },
     {
       "token_id": "31",
       "name": "Rodeo post #31",
       "description": "dacat.groove\n\nDacat drops the beat! Turning up the vibe in the club where everyone’s dancing to the same rhythm ~",
       "excerpt": "dacat.groove Dacat drops the beat! Turning up the vibe in the club where everyone’s dancing to the same rhythm ~",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/19e1079c0992f5729c56eae0cb653e/a019e1079c0992f5729c56eae0cb653e.jpeg",
+      "image_url": "assets/nfts/dacat_groove.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/31",
       "metadata_url": "ipfs://QmXUSxL2mwkySZbMX54zZaag2SAcq8ihkUPeVoPm8RuZnA/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006664",
+      "updated_at": "2026-06-03T02:02:49.033129",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1002,17 +1924,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 10,
+        "circulating_copies": 22,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 9
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 5
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          },
+          {
+            "address": "0xe008e382ed7a97ca9621597a0c37aacbea1bc105",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/19e1079c0992f5729c56eae0cb653e/a019e1079c0992f5729c56eae0cb653e.jpeg",
+      "local_slug": "dacat.groove",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "30",
       "name": "Rodeo post #30",
       "description": "dacat.stargaze\n\nA Dacat perches on the edge of infinity, stargazing as the constellation’s cosmic weaving unfolds.",
       "excerpt": "dacat.stargaze A Dacat perches on the edge of infinity, stargazing as the constellation’s cosmic weaving unfolds.",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/9fe7b13e8401d78012ba02550861f5/b79fe7b13e8401d78012ba02550861f5.png",
+      "image_url": "assets/nfts/dacat_stargaze.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/30",
       "metadata_url": "ipfs://QmTe2S68UPYyNpfgNHteQ1tYqWUSUfQxfa4wBCtSBf7p9W/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006672",
+      "updated_at": "2026-06-03T02:02:49.033135",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1029,17 +1979,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 9,
+        "circulating_copies": 13,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 3
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 3
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xe008e382ed7a97ca9621597a0c37aacbea1bc105",
+            "quantity": 1
+          },
+          {
+            "address": "0xaf3634c6720c2547bb0e59b040eeb2c9dbc49457",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/9fe7b13e8401d78012ba02550861f5/b79fe7b13e8401d78012ba02550861f5.png",
+      "local_slug": "dacat.stargaze",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "29",
       "name": "Rodeo post #29",
       "description": "dacat.thread\n\nA Dacat sparks a colorful contest ~ Design a tee to stitch our story by June’s end!",
       "excerpt": "dacat.thread A Dacat sparks a colorful contest ~ Design a tee to stitch our story by June’s end!",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/83fc98632d120839db01dcc3655728/4383fc98632d120839db01dcc3655728.jpeg",
+      "image_url": "assets/nfts/dacat_thread.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/29",
       "metadata_url": "ipfs://QmUTtPZhQXCyMvRS7tDdWnNQ8GSD4gjVuUWDM2aQf4nPpj/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006681",
+      "updated_at": "2026-06-03T02:02:49.033141",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1056,17 +2034,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 8,
+        "circulating_copies": 11,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 3
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 2
+          },
+          {
+            "address": "0xe008e382ed7a97ca9621597a0c37aacbea1bc105",
+            "quantity": 1
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          },
+          {
+            "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/83fc98632d120839db01dcc3655728/4383fc98632d120839db01dcc3655728.jpeg",
+      "local_slug": "dacat.thread",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "28",
       "name": "Rodeo post #28",
       "description": "dacat.titan\n\nA Dacat titan shelters a torn wanderer, its shadow blocking the mythic chase of greed.",
       "excerpt": "dacat.titan A Dacat titan shelters a torn wanderer, its shadow blocking the mythic chase of greed.",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/7440f2b6a0c5c6899deaa1f7dbf14c/367440f2b6a0c5c6899deaa1f7dbf14c.jpeg",
+      "image_url": "assets/nfts/dacat_titan.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/28",
       "metadata_url": "ipfs://QmVYiS79tE12FNLWDVsw1JTAJZLzH5j8SmkW25u5Ft98Sy/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006690",
+      "updated_at": "2026-06-03T02:02:49.033147",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1083,17 +2089,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 6,
+        "circulating_copies": 15,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 5
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 3
+          },
+          {
+            "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
+            "quantity": 3
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 2
+          },
+          {
+            "address": "0xe008e382ed7a97ca9621597a0c37aacbea1bc105",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/7440f2b6a0c5c6899deaa1f7dbf14c/367440f2b6a0c5c6899deaa1f7dbf14c.jpeg",
+      "local_slug": "dacat.titan",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "27",
       "name": "Rodeo post #27",
       "description": "dacat.surge\n\nA Dacat rockets on Ethereum’s surge, stars blazing as the clowder’s rise begins.",
       "excerpt": "dacat.surge A Dacat rockets on Ethereum’s surge, stars blazing as the clowder’s rise begins.",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/3c4feda782fe550de9c3e6e9c96c8b/603c4feda782fe550de9c3e6e9c96c8b.jpeg",
+      "image_url": "assets/nfts/dacat_surge.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/27",
       "metadata_url": "ipfs://QmZEwE2dxEUaaBLbgAnoThgXoqZCjvbm4mo7YUu6f3jKCe/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006698",
+      "updated_at": "2026-06-03T02:02:49.033152",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1108,19 +2142,51 @@
           "value": "No"
         }
       ],
-      "listed": false,
-      "listing": null,
-      "owners": null
+      "listed": true,
+      "listing": {
+        "amount_eth": 5.0,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 6,
+        "circulating_copies": 17,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 10
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 3
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xe008e382ed7a97ca9621597a0c37aacbea1bc105",
+            "quantity": 1
+          },
+          {
+            "address": "0x67f3c18339ac0da29be9573d559a1291100b7c7b",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/3c4feda782fe550de9c3e6e9c96c8b/603c4feda782fe550de9c3e6e9c96c8b.jpeg",
+      "local_slug": "dacat.surge",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "26",
       "name": "Rodeo post #26",
       "description": "dacat.nest\n\nA Dacat momma guards her kits, raising them fierce in the sunlit warmth of love.",
       "excerpt": "dacat.nest A Dacat momma guards her kits, raising them fierce in the sunlit warmth of love.",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/19ac00e17201a483f43ac47e7c383c/b019ac00e17201a483f43ac47e7c383c.jpeg",
+      "image_url": "assets/nfts/dacat_nest.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/26",
       "metadata_url": "ipfs://QmWfXnqtaykHwedisyhwLjHZdEruDwSPTQTZCkjbTQdRRd/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006707",
+      "updated_at": "2026-06-03T02:02:49.033158",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1137,17 +2203,41 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 4,
+        "circulating_copies": 6,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 2
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 2
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/19ac00e17201a483f43ac47e7c383c/b019ac00e17201a483f43ac47e7c383c.jpeg",
+      "local_slug": "dacat.nest",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "25",
       "name": "Rodeo post #25",
       "description": "dacat.grow\n\nA Dacat rises with bamboo roots, sprouting fast after years of unseen grit.",
       "excerpt": "dacat.grow A Dacat rises with bamboo roots, sprouting fast after years of unseen grit.",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/d2228a1fd8209263ab1c5da7e4003b/b5d2228a1fd8209263ab1c5da7e4003b.png",
+      "image_url": "assets/nfts/dacat_grow.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/25",
       "metadata_url": "ipfs://Qmccrw7jbxAT7oF2LFrQH2inXVwHwLsqPAnvB5EW8ope6Z/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006715",
+      "updated_at": "2026-06-03T02:02:49.033164",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1164,17 +2254,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 7,
+        "circulating_copies": 8,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 2
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          },
+          {
+            "address": "0xe008e382ed7a97ca9621597a0c37aacbea1bc105",
+            "quantity": 1
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/d2228a1fd8209263ab1c5da7e4003b/b5d2228a1fd8209263ab1c5da7e4003b.png",
+      "local_slug": "dacat.grow",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "24",
       "name": "Rodeo post #24",
       "description": "dacat.fiesta\n\nA Dacat strums a Cinco beat, sombrero swaying as maracas spark the street.",
       "excerpt": "dacat.fiesta A Dacat strums a Cinco beat, sombrero swaying as maracas spark the street.",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/0720ba7b0a3394b5920b3ae225462d/c10720ba7b0a3394b5920b3ae225462d.jpeg",
+      "image_url": "assets/nfts/dacat_fiesta.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/24",
       "metadata_url": "ipfs://QmVV17F1RWwattCYzsoZk52f6MZkM6ecVUyNZqfSvEkZdJ/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006724",
+      "updated_at": "2026-06-03T02:02:49.033170",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1191,17 +2309,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 5,
+        "circulating_copies": 6,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 2
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          },
+          {
+            "address": "0xe008e382ed7a97ca9621597a0c37aacbea1bc105",
+            "quantity": 1
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/0720ba7b0a3394b5920b3ae225462d/c10720ba7b0a3394b5920b3ae225462d.jpeg",
+      "local_slug": "dacat.fiesta",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "23",
       "name": "Rodeo post #23",
       "description": "dacat.glow\n\nA Dacat whispers memories, blue breath rising as butterflies carry a spirit skyward.",
       "excerpt": "dacat.glow A Dacat whispers memories, blue breath rising as butterflies carry a spirit skyward.",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/db4bdb59b8161b66e608392d182f47/1ddb4bdb59b8161b66e608392d182f47.jpeg",
+      "image_url": "assets/nfts/dacat_glow.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/23",
       "metadata_url": "ipfs://QmUDjLPUbZK2PRrCSMwCxWTnDWMd9BdexZHkyDKkdrdLHZ/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006733",
+      "updated_at": "2026-06-03T02:02:49.033176",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1218,17 +2364,45 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 6,
+        "circulating_copies": 7,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 2
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          },
+          {
+            "address": "0xe008e382ed7a97ca9621597a0c37aacbea1bc105",
+            "quantity": 1
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          },
+          {
+            "address": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/db4bdb59b8161b66e608392d182f47/1ddb4bdb59b8161b66e608392d182f47.jpeg",
+      "local_slug": "dacat.glow",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "22",
       "name": "Rodeo post #22",
       "description": "dacat.legacy\n\nThe DaCat Community marks 2 years, a crypto decade, lighting up legacy with a May the Fourth bash!",
       "excerpt": "dacat.legacy The DaCat Community marks 2 years, a crypto decade, lighting up legacy with a May the Fourth bash!",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/d9e2a7e19a5ab26dff568b1b348e41/01d9e2a7e19a5ab26dff568b1b348e41.jpeg",
+      "image_url": "assets/nfts/dacat_legacy.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/22",
       "metadata_url": "ipfs://Qmce5v1jT7uiWSPXQUMk2L1kJg23A8aJfo8pb5WcSioehk/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006742",
+      "updated_at": "2026-06-03T02:02:49.033182",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1245,7 +2419,35 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 11,
+        "circulating_copies": 62,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 40
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 10
+          },
+          {
+            "address": "0xaf3634c6720c2547bb0e59b040eeb2c9dbc49457",
+            "quantity": 2
+          },
+          {
+            "address": "0x67f3c18339ac0da29be9573d559a1291100b7c7b",
+            "quantity": 2
+          },
+          {
+            "address": "0x06eca6ce5f135ed9917b00630c26167de7e6a673",
+            "quantity": 2
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/d9e2a7e19a5ab26dff568b1b348e41/01d9e2a7e19a5ab26dff568b1b348e41.jpeg",
+      "local_slug": "dacat.legacy",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "21",
@@ -1255,7 +2457,7 @@
       "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/9d8fc80f024b3ef77e1010b721580d/029d8fc80f024b3ef77e1010b721580d.jpeg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/21",
       "metadata_url": "ipfs://QmbsKJMFGKaASBSkjNCCMhX8YPEaajukWLUMPQxgpJBAtP/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006751",
+      "updated_at": "2026-06-03T02:02:49.033188",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -1266,17 +2468,34 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 3,
+        "circulating_copies": 3,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 1
+          }
+        ]
+      }
     },
     {
       "token_id": "20",
       "name": "Rodeo post #20",
       "description": "dacat.emperor\n\nA Dacat emperor’s legacy echoes through gilded halls, luring titans to the throne’s ancient call.",
       "excerpt": "dacat.emperor A Dacat emperor’s legacy echoes through gilded halls, luring titans to the throne’s ancient call.",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/7e5f7f8ff6a6da1ae5b96cec694420/0e7e5f7f8ff6a6da1ae5b96cec694420.jpeg",
+      "image_url": "assets/nfts/dacat_emperor.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/20",
       "metadata_url": "ipfs://QmRuNepgeLJWEUnorMErFQTG5MEG1AvqzWTFdEjPw8n15V/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006759",
+      "updated_at": "2026-06-03T02:02:49.033194",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1293,7 +2512,31 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 4,
+        "circulating_copies": 5,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 2
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          },
+          {
+            "address": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/7e5f7f8ff6a6da1ae5b96cec694420/0e7e5f7f8ff6a6da1ae5b96cec694420.jpeg",
+      "local_slug": "dacat.emperor",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "19",
@@ -1303,7 +2546,7 @@
       "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/fce8410e7bf9a74aff5745c2ccbd1d/18fce8410e7bf9a74aff5745c2ccbd1d.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/19",
       "metadata_url": "ipfs://QmTCTMPGEXMLqAcuBRAuDgix851a1WRUCXch6Qs7JYusee/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006768",
+      "updated_at": "2026-06-03T02:02:49.033200",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -1314,7 +2557,28 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 4,
+        "circulating_copies": 5,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 2
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 1
+          }
+        ]
+      }
     },
     {
       "token_id": "18",
@@ -1324,7 +2588,7 @@
       "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/98bff6de8528807c62c0f6848ecf38/4d98bff6de8528807c62c0f6848ecf38.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/18",
       "metadata_url": "ipfs://QmQik9HJ1MKbv3SNKWfYqhDZhRNibsrihDYe8sjzXaHPHE/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006776",
+      "updated_at": "2026-06-03T02:02:49.033206",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1341,17 +2605,34 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 3,
+        "circulating_copies": 5,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 3
+          },
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          }
+        ]
+      }
     },
     {
       "token_id": "17",
       "name": "Rodeo post #17",
       "description": "dacat.white\n\nA Dacat folds white cranes at dawn, steady paws crafting hope in the stillness [8/9]",
       "excerpt": "dacat.white A Dacat folds white cranes at dawn, steady paws crafting hope in the stillness [8/9]",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/dcb71b63e9b8b40d093cb0d50e8957/cbdcb71b63e9b8b40d093cb0d50e8957.png",
+      "image_url": "assets/nfts/dacat_white.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/17",
       "metadata_url": "ipfs://QmRxxxLKBaxo1VktshfeKVSXbSrGC2v9B6GJA2xTSLMsj7/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006785",
+      "updated_at": "2026-06-03T02:02:49.033212",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1368,17 +2649,37 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 3,
+        "circulating_copies": 5,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 2
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 2
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/dcb71b63e9b8b40d093cb0d50e8957/cbdcb71b63e9b8b40d093cb0d50e8957.png",
+      "local_slug": "dacat.white",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "16",
       "name": "Rodeo post #16",
       "description": "dacat.red\n\nA Dacat shreds through the night alley, red fur blazing, chasing adventure past graffiti walls. [7/9]",
       "excerpt": "dacat.red A Dacat shreds through the night alley, red fur blazing, chasing adventure past graffiti walls. [7/9]",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/09c4f05351ffba3de83560c8a6c0ab/0309c4f05351ffba3de83560c8a6c0ab.jpeg",
+      "image_url": "assets/nfts/dacat_red.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/16",
       "metadata_url": "ipfs://QmPVA3F9GtzzvrByuZKvxTaaQEVbDWDbNgdfxa734Ubx4F/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006793",
+      "updated_at": "2026-06-03T02:02:49.033218",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1395,17 +2696,37 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 3,
+        "circulating_copies": 5,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 2
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 2
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/09c4f05351ffba3de83560c8a6c0ab/0309c4f05351ffba3de83560c8a6c0ab.jpeg",
+      "local_slug": "dacat.red",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "15",
       "name": "Rodeo post #15",
       "description": "dacat.orange\n\nA Dacat lights up the arcade, orange streaks glowing as they dance to viral beats. [6/9]",
       "excerpt": "dacat.orange A Dacat lights up the arcade, orange streaks glowing as they dance to viral beats. [6/9]",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/d590026eb851127415701750768e53/9dd590026eb851127415701750768e53.png",
+      "image_url": "assets/nfts/dacat_orange.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/15",
       "metadata_url": "ipfs://QmQ22LvopgXUucY5TtugEDUwFdcSrYzGVyKQHeKnEB1fRb/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006803",
+      "updated_at": "2026-06-03T02:02:49.033224",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1422,17 +2743,37 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 3,
+        "circulating_copies": 4,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 2
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/d590026eb851127415701750768e53/9dd590026eb851127415701750768e53.png",
+      "local_slug": "dacat.orange",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "14",
       "name": "Rodeo post #14",
       "description": "dacat.yellow\n\nA Dacat cheers in yellow, sparking joy with pom-poms under stadium lights. [5/9]",
       "excerpt": "dacat.yellow A Dacat cheers in yellow, sparking joy with pom-poms under stadium lights. [5/9]",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/469fac9976af57c6d6d9434d57d989/0a469fac9976af57c6d6d9434d57d989.png",
+      "image_url": "assets/nfts/dacat_yellow.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/14",
       "metadata_url": "ipfs://QmWN2LAL1eNKPQ6KuvipBDU7TFeQQ2KGAHsXqzCVbvGKG2/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006811",
+      "updated_at": "2026-06-03T02:02:49.033230",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1449,17 +2790,33 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 2,
+        "top_holders": [
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/469fac9976af57c6d6d9434d57d989/0a469fac9976af57c6d6d9434d57d989.png",
+      "local_slug": "dacat.yellow",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "13",
       "name": "Rodeo post #13",
       "description": "dacat.green\n\nA Dacat sprays green rebellion, tagging boards with a skater’s edge. [4/9]",
       "excerpt": "dacat.green A Dacat sprays green rebellion, tagging boards with a skater’s edge. [4/9]",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/6430d42a69019c7149135a6ec7dc50/a16430d42a69019c7149135a6ec7dc50.jpeg",
+      "image_url": "assets/nfts/dacat_green.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/13",
       "metadata_url": "ipfs://QmcTz7bksVrkek7zsGHE5Zx9SYP2gWCpmXDVoNkZTay5Dq/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006819",
+      "updated_at": "2026-06-03T02:02:49.033236",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1476,17 +2833,33 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 2,
+        "top_holders": [
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/6430d42a69019c7149135a6ec7dc50/a16430d42a69019c7149135a6ec7dc50.jpeg",
+      "local_slug": "dacat.green",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "12",
       "name": "Rodeo post #12",
       "description": "dacat.blue\n\nA Dacat dreams in blue, snapping twilight waves with a vintage lens. [3/9]",
       "excerpt": "dacat.blue A Dacat dreams in blue, snapping twilight waves with a vintage lens. [3/9]",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/8c7247bff356d594a3706b4cbe6cc1/f58c7247bff356d594a3706b4cbe6cc1.png",
+      "image_url": "assets/nfts/dacat_blue.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/12",
       "metadata_url": "ipfs://QmYNrGWPSLaVWFm2dzYwLfVVpGqK1vSWxCt3QutA1fqK7i/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006827",
+      "updated_at": "2026-06-03T02:02:49.033242",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1503,17 +2876,33 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 2,
+        "top_holders": [
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/8c7247bff356d594a3706b4cbe6cc1/f58c7247bff356d594a3706b4cbe6cc1.png",
+      "local_slug": "dacat.blue",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "11",
       "name": "Rodeo post #11",
       "description": "dacat.purple\n\nA Dacat strums purple dreams, chords humming under coffee shop lights. [2/9]",
       "excerpt": "dacat.purple A Dacat strums purple dreams, chords humming under coffee shop lights. [2/9]",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/66a2096a0299e86020bda7524e907d/8c66a2096a0299e86020bda7524e907d.png",
+      "image_url": "assets/nfts/dacat_purple.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/11",
       "metadata_url": "ipfs://Qma45UubpZSMq2mxw9YBzbg4sm5goX2iJTPtXhhu7YyikZ/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006835",
+      "updated_at": "2026-06-03T02:02:49.033247",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1530,17 +2919,37 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 3,
+        "circulating_copies": 3,
+        "top_holders": [
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/66a2096a0299e86020bda7524e907d/8c66a2096a0299e86020bda7524e907d.png",
+      "local_slug": "dacat.purple",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "10",
       "name": "Rodeo post #10",
       "description": "dacat.black\n\nA Dacat rules the dark, gold chain flashing, eyes locked on the next move. [1/9]",
       "excerpt": "dacat.black A Dacat rules the dark, gold chain flashing, eyes locked on the next move. [1/9]",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/1a38987d9e887150e4583e3751f5dd/ac1a38987d9e887150e4583e3751f5dd.jpeg",
+      "image_url": "assets/nfts/dacat_black.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/10",
       "metadata_url": "ipfs://QmSBErnZD5eGW3f7RfzbnjDPv1oqNkrwNSvqeU6iXrjX2z/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006844",
+      "updated_at": "2026-06-03T02:02:49.033253",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1557,7 +2966,27 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 3,
+        "circulating_copies": 6,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 4
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/1a38987d9e887150e4583e3751f5dd/ac1a38987d9e887150e4583e3751f5dd.jpeg",
+      "local_slug": "dacat.black",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "9",
@@ -1567,7 +2996,7 @@
       "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/30c62161f6094227ef89173fffed1f/6f30c62161f6094227ef89173fffed1f.png",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/9",
       "metadata_url": "ipfs://Qme1uts6Cx4J36yG5x8GW3vbiSpM1mpxpaRw6AbP9BMWF4/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006852",
+      "updated_at": "2026-06-03T02:02:49.033259",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -1578,7 +3007,24 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 3,
+        "circulating_copies": 4,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 2
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          },
+          {
+            "address": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
+            "quantity": 1
+          }
+        ]
+      }
     },
     {
       "token_id": "8",
@@ -1588,7 +3034,7 @@
       "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/59aea3165410c402ed95b77144a743/6e59aea3165410c402ed95b77144a743.jpeg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/8",
       "metadata_url": "ipfs://QmZUogiUSUG7US5hubT8T8NMQ8VL7ibJL7Hmq2nXXEa2KS/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006861",
+      "updated_at": "2026-06-03T02:02:49.033265",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -1599,17 +3045,30 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 2,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          }
+        ]
+      }
     },
     {
       "token_id": "7",
       "name": "Rodeo post #7",
       "description": "dacat.mate\n\ndacat locks eyes over the board, her neon gaze plotting a purrfect checkmate.",
       "excerpt": "dacat.mate dacat locks eyes over the board, her neon gaze plotting a purrfect checkmate.",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/3e4446b81f7e105b1c2e98985ca4eb/ee3e4446b81f7e105b1c2e98985ca4eb.jpeg",
+      "image_url": "assets/nfts/dacat_mate.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/7",
       "metadata_url": "ipfs://Qmd2epV4ft3tGm98cJsJnNampawbQ5jKiAfZQ7UYfyUePP/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006869",
+      "updated_at": "2026-06-03T02:02:49.033271",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1626,7 +3085,27 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 3,
+        "circulating_copies": 4,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 2
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/3e4446b81f7e105b1c2e98985ca4eb/ee3e4446b81f7e105b1c2e98985ca4eb.jpeg",
+      "local_slug": "dacat.mate",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "6",
@@ -1636,7 +3115,7 @@
       "image_url": "https://raw2.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/20707acd1a0a796efa1e64044d00ed/4f20707acd1a0a796efa1e64044d00ed.mov",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/6",
       "metadata_url": "ipfs://Qmb6feYrsRFcgTVyw6VCF8kPsmhbSzqW51jwtvwKLaynUP/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006888",
+      "updated_at": "2026-06-03T02:02:49.033283",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -1647,7 +3126,20 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 3,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 2
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ]
+      }
     },
     {
       "token_id": "5",
@@ -1657,7 +3149,7 @@
       "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/d8608e0c4bcccf9854d24cfbb34983/a1d8608e0c4bcccf9854d24cfbb34983.jpeg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/5",
       "metadata_url": "ipfs://QmNv4DJzmz1rys96zqCEsgK6UWWhDeKvgaGiT19zwv1GmQ/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006896",
+      "updated_at": "2026-06-03T02:02:49.033289",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -1668,7 +3160,32 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 5,
+        "circulating_copies": 14,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 5
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 5
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 2
+          },
+          {
+            "address": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
+            "quantity": 1
+          },
+          {
+            "address": "0x67f3c18339ac0da29be9573d559a1291100b7c7b",
+            "quantity": 1
+          }
+        ]
+      }
     },
     {
       "token_id": "4",
@@ -1678,7 +3195,7 @@
       "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/1749f0aa1313fa646a691800221d8f/871749f0aa1313fa646a691800221d8f.jpeg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/4",
       "metadata_url": "ipfs://QmRnp1ZioSxSWB86XGUJSdonjJvXHULSJE539S9arMbnyz/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006905",
+      "updated_at": "2026-06-03T02:02:49.033295",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -1689,17 +3206,30 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 6,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 5
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ]
+      }
     },
     {
       "token_id": "3",
       "name": "Rodeo post #3",
       "description": "dacat.pixeldrift\n\nSamuel’s bold junk-raft surges forth, a testament to relentless grinding, while Dacat’s pixel-sharp claws shred waste’s legacy; forging a fierce, feline-fueled vision for tomorrow’s cleaner seas.",
       "excerpt": "dacat.pixeldrift Samuel’s bold junk-raft surges forth, a testament to relentless grinding, while Dacat’s pixel-sharp claws shred waste’s legacy; forging a fier…",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/1066015be93c2d7b932dcb11dd9aa5/8a1066015be93c2d7b932dcb11dd9aa5.jpeg",
+      "image_url": "assets/nfts/dacat_pixeldrift.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/3",
       "metadata_url": "ipfs://QmaoezqDJgyEhxLv99ESCYLjkqGf8h5o96MvHzDxKqw7Nx/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006914",
+      "updated_at": "2026-06-03T02:02:49.033301",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1716,7 +3246,31 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 4,
+        "circulating_copies": 7,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 4
+          },
+          {
+            "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+            "quantity": 1
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/1066015be93c2d7b932dcb11dd9aa5/8a1066015be93c2d7b932dcb11dd9aa5.jpeg",
+      "local_slug": "dacat.pixeldrift",
+      "image_source": "local_used_pics"
     },
     {
       "token_id": "2",
@@ -1726,7 +3280,7 @@
       "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/4155451dfa73da255a1986be1c60b4/454155451dfa73da255a1986be1c60b4.jpeg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/2",
       "metadata_url": "ipfs://QmNPxZpX93esGmaSQA1gjQz8cZjqGcXVro8uLCpLVuZjHi/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006923",
+      "updated_at": "2026-06-03T02:02:49.033307",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -1737,17 +3291,38 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 4,
+        "circulating_copies": 4,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          },
+          {
+            "address": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
+            "quantity": 1
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 1
+          }
+        ]
+      }
     },
     {
       "token_id": "1",
       "name": "Rodeo post #1",
       "description": "dacat.ghibli\n\nOur first ghibli-style Dacat blooms with the spring vibes.",
       "excerpt": "dacat.ghibli Our first ghibli-style Dacat blooms with the spring vibes.",
-      "image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/a1719f2ff2fa4f5e440ea5e744e29a/54a1719f2ff2fa4f5e440ea5e744e29a.jpeg",
+      "image_url": "assets/nfts/dacat_ghibli.jpg",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/1",
       "metadata_url": "ipfs://QmUKis6srrQ7dHa5WaWtSwQ2qTXjadtEogEgDxpM3sbaBB/metadata.json",
-      "updated_at": "2026-06-03T01:52:42.006931",
+      "updated_at": "2026-06-03T02:02:49.033312",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1764,7 +3339,37 @@
       ],
       "listed": false,
       "listing": null,
-      "owners": null
+      "owners": {
+        "holder_count": 5,
+        "circulating_copies": 5,
+        "top_holders": [
+          {
+            "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+            "quantity": 1
+          },
+          {
+            "address": "0xe80e11c9f76e6f9c03fb13528877676f79431870",
+            "quantity": 1
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          },
+          {
+            "address": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
+            "quantity": 1
+          }
+        ]
+      },
+      "opensea_image_url": "https://i2c.seadn.io/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/a1719f2ff2fa4f5e440ea5e744e29a/54a1719f2ff2fa4f5e440ea5e744e29a.jpeg",
+      "local_slug": "dacat.ghibli",
+      "image_source": "local_used_pics"
     }
-  ]
+  ],
+  "wallet_index_file": "wallet_index.json",
+  "local_images_merged": 50
 }
