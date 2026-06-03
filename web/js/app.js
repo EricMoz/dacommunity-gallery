@@ -38,24 +38,27 @@ async function fetchJson(url, timeoutMs = 60000) {
   }
 }
 
-async function loadData() {
+async function loadGalleryData() {
   if (isFileProtocol()) {
     throw new Error("FILE_PROTOCOL");
   }
-  galleryData = await fetchJson(DATA_URL);
-  if (galleryData.wallet_index_file) {
-    try {
-      const w = await fetchJson(WALLET_URL, 90000);
-      walletIndex = w.holders_index || null;
-      collectorsList = walletIndex?.collectors || buildCollectorsFromIndex(walletIndex);
-    } catch (e) {
-      console.warn("Wallet index load failed:", e);
-      walletIndex = galleryData.holders_index || null;
-      collectorsList = walletIndex?.collectors || buildCollectorsFromIndex(walletIndex);
-    }
-  } else {
-    walletIndex = galleryData.holders_index || null;
+  galleryData = await fetchJson(DATA_URL, 45000);
+}
+
+async function loadWalletIndex() {
+  if (!galleryData?.wallet_index_file) {
+    walletIndex = galleryData?.holders_index || null;
+    collectorsList = buildCollectorsFromIndex(walletIndex);
+    return;
+  }
+  try {
+    const w = await fetchJson(WALLET_URL, 60000);
+    walletIndex = w.holders_index || null;
     collectorsList = walletIndex?.collectors || buildCollectorsFromIndex(walletIndex);
+  } catch (e) {
+    console.warn("Wallet index load failed:", e);
+    walletIndex = null;
+    collectorsList = [];
   }
 }
 
@@ -306,7 +309,7 @@ function renderStats(collection) {
   strip.innerHTML = "";
   [
     { label: "Pieces", value: collection.piece_count ?? "—" },
-    { label: "Collectors", value: collection.num_owners ?? collectorsList.length || "—" },
+    { label: "Collectors", value: collection.num_owners ?? (collectorsList.length || "—") },
     { label: "Floor", value: `${formatEth(collection.floor_eth)} ${collection.floor_symbol || "ETH"}` },
     { label: "Listed", value: collection.listed_count ?? "—" },
   ].forEach((s) => {
@@ -532,7 +535,7 @@ async function init() {
   }
 
   try {
-    await loadData();
+    await loadGalleryData();
     galleryData.items.forEach((i) => {
       if (!i.display_name) {
         i.display_name = i.local_slug || (i.name?.toLowerCase().startsWith("dacat.") ? i.name : null);
@@ -549,18 +552,23 @@ async function init() {
     $("#load-state").hidden = true;
     renderStats(galleryData.collection);
     $("#footer-updated").textContent = new Date(galleryData.generated_at).toLocaleString();
-    renderCollectors();
     bindUi();
     refreshView();
 
-    if (!walletIndex) {
-      const panel = $("#wallet-panel");
-      const warn = document.createElement("p");
-      warn.className = "hero-note";
-      warn.textContent =
-        "Wallet lookup needs a full refresh: cd backend → python fetch_gallery_data.py";
-      panel.appendChild(warn);
-    }
+    loadWalletIndex().then(() => {
+      renderStats(galleryData.collection);
+      renderCollectors();
+      if (!walletIndex) {
+        const panel = $("#wallet-panel");
+        if (!panel.querySelector(".wallet-index-warn")) {
+          const warn = document.createElement("p");
+          warn.className = "hero-note wallet-index-warn";
+          warn.textContent =
+            "Collector lookup is loading or unavailable — gallery still works.";
+          panel.appendChild(warn);
+        }
+      }
+    });
   } catch (err) {
     console.error(err);
     if (err.message === "FILE_PROTOCOL") return;

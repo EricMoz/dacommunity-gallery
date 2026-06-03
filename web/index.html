@@ -123,6 +123,16 @@
     <p><a href="https://www.dacat.fun/">dacat.fun</a> · <a href="https://www.dacatworld.com/">dacatworld</a></p>
   </footer>
 
+  <script>
+    window.addEventListener("error", (e) => {
+      const el = document.getElementById("load-error");
+      const st = document.getElementById("load-state");
+      if (!el || !st) return;
+      st.hidden = true;
+      el.hidden = false;
+      el.innerHTML = "<p><strong>Gallery failed to start</strong></p><p>" + (e.message || "Unknown error") + "</p>";
+    });
+  </script>
   <script src="js/app.js" type="module"></script>
 </body>
 </html>
