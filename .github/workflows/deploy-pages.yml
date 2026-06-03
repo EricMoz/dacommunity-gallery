@@ -23,23 +23,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Refresh gallery data
-        env:
-          OPENSEA_API_KEY: ${{ secrets.OPENSEA_API_KEY }}
+      - name: Verify site files
         run: |
-          pip install -r backend/requirements.txt
-          cd backend
-          if [ -z "$OPENSEA_API_KEY" ]; then
-            echo "OPENSEA_API_KEY secret not set — using existing gallery_data.json if present"
-            test -f ../web/data/gallery_data.json || exit 1
-          else
-            python fetch_gallery_data.py --skip-wallet-index
-          fi
+          test -f web/index.html || (echo "Missing web/index.html" && exit 1)
+          test -f web/data/gallery_data.json || (echo "Missing gallery_data.json — run fetch locally first" && exit 1)
+          echo "Site files OK"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
