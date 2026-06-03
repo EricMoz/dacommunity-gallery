@@ -28,11 +28,12 @@ jobs:
           pip install -r backend/requirements.txt
           cd backend
           python fetch_gallery_data.py
+          python build_catalog.py
 
       - name: Commit updated data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add web/data/gallery_data.json web/data/wallet_index.json
+          git add web/data/gallery_data.json web/data/gallery_catalog.json web/data/wallet_index.json
           git diff --staged --quiet || git commit -m "chore: daily refresh from OpenSea (owners, listings, stats)"
           git push

@@ -1,4 +1,7 @@
-const DATA_URL = "data/gallery_data.json";
+/* daCommunity Gallery — ES5-safe operators (no ??), hybrid catalog + background refresh */
+
+const CATALOG_URL = "data/gallery_catalog.json";
+const FULL_DATA_URL = "data/gallery_data.json";
 const WALLET_URL = "data/wallet_index.json";
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -9,52 +12,119 @@ let collectorsList = [];
 let itemsById = new Map();
 let activeFilter = "all";
 let searchQuery = "";
+let dataSource = "catalog";
 let activeCollectorAddress = null;
 
 function isFileProtocol() {
   return window.location.protocol === "file:";
 }
 
+function nvl(value, fallback) {
+  return value !== undefined && value !== null ? value : fallback;
+}
+
 function showFatalError(title, detail, cmd) {
   $("#load-state").hidden = true;
   const err = $("#load-error");
   err.hidden = false;
-  err.innerHTML = `
-    <p><strong>${title}</strong></p>
-    <p>${detail}</p>
-    ${cmd ? `<code>${cmd}</code>` : ""}
-  `;
+  err.innerHTML =
+    "<p><strong>" + escapeHtml(title) + "</strong></p><p>" + escapeHtml(detail) + "</p>" +
+    (cmd ? "<code>" + escapeHtml(cmd) + "</code>" : "");
 }
 
-async function fetchJson(url, timeoutMs = 60000) {
+function showStaleBanner() {
+  let el = $("#data-stale-banner");
+  if (!el) {
+    el = document.createElement("p");
+    el.id = "data-stale-banner";
+    el.className = "hero-note";
+    const hero = document.querySelector(".hero-inner");
+    if (hero) hero.appendChild(el);
+  }
+  el.textContent = "Showing saved gallery snapshot. Live data refresh in background…";
+  el.hidden = false;
+}
+
+async function fetchJson(url, timeoutMs) {
   const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+  const timer = setTimeout(function () { ctrl.abort(); }, timeoutMs);
   try {
-    const res = await fetch(url, { signal: ctrl.signal, cache: "no-store" });
-    if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
+    const res = await fetch(url, { signal: ctrl.signal, cache: "default" });
+    if (!res.ok) throw new Error("HTTP " + res.status + " for " + url);
     return await res.json();
   } finally {
     clearTimeout(timer);
   }
 }
 
-async function loadGalleryData() {
-  if (isFileProtocol()) {
-    throw new Error("FILE_PROTOCOL");
+function indexItems(data) {
+  itemsById.clear();
+  (data.items || []).forEach(function (i) {
+    if (!i.display_name) {
+      i.display_name = i.local_slug || (i.name && i.name.toLowerCase().indexOf("dacat.") === 0 ? i.name : null);
+    }
+    if (!i.opensea_image_url && i.image_url && i.image_url.indexOf("http") === 0) {
+      i.opensea_image_url = i.image_url;
+    }
+    if (/\.(mov|mp4|webm)(\?|$)/i.test(i.image_url || "") && !i.media_type) {
+      i.media_type = "video";
+    }
+    itemsById.set(String(i.token_id), i);
+  });
+}
+
+function mergeFullDescriptions(full) {
+  if (!full || !full.items) return;
+  full.items.forEach(function (fullItem) {
+    const cur = itemsById.get(String(fullItem.token_id));
+    if (!cur) return;
+    if (fullItem.description) cur.description = fullItem.description;
+    if (fullItem.excerpt) cur.excerpt = fullItem.excerpt;
+    if (fullItem.owners) cur.owners = fullItem.owners;
+    if (fullItem.listed !== undefined) cur.listed = fullItem.listed;
+    if (fullItem.listing) cur.listing = fullItem.listing;
+    if (fullItem.generated_at) galleryData.generated_at = full.generated_at;
+  });
+  dataSource = "live";
+  const banner = $("#data-stale-banner");
+  if (banner) banner.hidden = true;
+  $("#footer-updated").textContent = new Date(galleryData.generated_at).toLocaleString();
+  renderStats(galleryData.collection);
+  refreshView();
+}
+
+async function loadCatalogFirst() {
+  if (isFileProtocol()) throw new Error("FILE_PROTOCOL");
+  try {
+    return await fetchJson(CATALOG_URL, 12000);
+  } catch (e1) {
+    console.warn("Catalog fetch failed, trying full data:", e1);
+    return await fetchJson(FULL_DATA_URL, 20000);
   }
-  galleryData = await fetchJson(DATA_URL, 45000);
+}
+
+async function refreshFullDataInBackground() {
+  try {
+    const full = await fetchJson(FULL_DATA_URL, 25000);
+    mergeFullDescriptions(full);
+    galleryData.generated_at = full.generated_at;
+    galleryData.collection = full.collection;
+  } catch (e) {
+    console.warn("Background full data refresh failed:", e);
+  }
 }
 
 async function loadWalletIndex() {
-  if (!galleryData?.wallet_index_file) {
-    walletIndex = galleryData?.holders_index || null;
+  if (!galleryData || !galleryData.wallet_index_file) {
+    walletIndex = (galleryData && galleryData.holders_index) || null;
     collectorsList = buildCollectorsFromIndex(walletIndex);
     return;
   }
   try {
-    const w = await fetchJson(WALLET_URL, 60000);
+    const w = await fetchJson(WALLET_URL, 20000);
     walletIndex = w.holders_index || null;
-    collectorsList = walletIndex?.collectors || buildCollectorsFromIndex(walletIndex);
+    collectorsList =
+      (walletIndex && walletIndex.collectors) || buildCollectorsFromIndex(walletIndex);
   } catch (e) {
     console.warn("Wallet index load failed:", e);
     walletIndex = null;
@@ -63,40 +133,44 @@ async function loadWalletIndex() {
 }
 
 function buildCollectorsFromIndex(idx) {
-  if (!idx?.by_address) return [];
+  if (!idx || !idx.by_address) return [];
   return Object.values(idx.by_address)
-    .map((e) => ({
-      address: e.address,
-      ens_name: e.ens_name,
-      username: e.username,
-      unique_pieces: e.unique_pieces ?? e.holdings?.length ?? 0,
-      collection_quantity: e.collection_quantity ?? 0,
-    }))
-    .sort((a, b) => b.unique_pieces - a.unique_pieces);
+    .map(function (e) {
+      var holdings = e.holdings || [];
+      return {
+        address: e.address,
+        ens_name: e.ens_name,
+        username: e.username,
+        unique_pieces: nvl(e.unique_pieces, holdings.length),
+        collection_quantity: nvl(e.collection_quantity, 0),
+      };
+    })
+    .sort(function (a, b) {
+      return b.unique_pieces - a.unique_pieces;
+    });
 }
 
 function formatEth(n) {
-  if (n == null || Number.isNaN(n)) return "—";
-  const v = Number(n);
+  if (n == null || isNaN(n)) return "—";
+  var v = Number(n);
   if (v === 0) return "0";
   if (v < 0.01) return v.toFixed(4);
   return v.toFixed(3);
 }
 
 function escapeHtml(str) {
-  const d = document.createElement("div");
-  d.textContent = str ?? "";
+  var d = document.createElement("div");
+  d.textContent = str == null ? "" : str;
   return d.innerHTML;
 }
 
 function itemTitle(item) {
-  return item.display_name || item.local_slug || item.name || `Token #${item.token_id}`;
+  return item.display_name || item.local_slug || item.name || "Token #" + item.token_id;
 }
 
 function isVideoItem(item) {
   if (item.media_type === "video") return true;
-  const src = item.image_url || "";
-  return /\.(mp4|mov|webm)(\?|$)/i.test(src);
+  return /\.(mp4|mov|webm)(\?|$)/i.test(item.image_url || "");
 }
 
 function imgSrc(item) {
@@ -105,11 +179,11 @@ function imgSrc(item) {
 
 function shortenAddress(addr) {
   if (!addr || addr.length < 12) return addr;
-  return `${addr.slice(0, 6)}…${addr.slice(-4)}`;
+  return addr.slice(0, 6) + "…" + addr.slice(-4);
 }
 
 function holderLabel(address) {
-  const entry = walletIndex?.by_address?.[address?.toLowerCase()];
+  var entry = walletIndex && walletIndex.by_address && walletIndex.by_address[address.toLowerCase()];
   if (!entry) return shortenAddress(address);
   return entry.ens_name || entry.username || shortenAddress(address);
 }
@@ -119,207 +193,203 @@ function isEthAddress(v) {
 }
 
 function isEnsName(v) {
-  const s = v.trim().toLowerCase();
+  var s = v.trim().toLowerCase();
   return s.endsWith(".eth") && s.length > 4;
 }
 
 async function resolveEnsToAddress(name) {
-  const url = `https://ensdata.net/${encodeURIComponent(name.trim())}`;
-  const res = await fetch(url);
+  var url = "https://ensdata.net/" + encodeURIComponent(name.trim());
+  var res = await fetch(url);
   if (!res.ok) throw new Error("ENS name could not be resolved.");
-  const data = await res.json();
-  const addr = data.address || data.wallets?.eth;
+  var data = await res.json();
+  var addr = data.address || (data.wallets && data.wallets.eth);
   if (!addr) throw new Error("No address found for this ENS name.");
   return addr.toLowerCase();
 }
 
 function lookupWallet(identifier) {
-  if (!walletIndex?.by_address) {
-    return { error: "Wallet index not loaded. Run: cd backend && python fetch_gallery_data.py" };
+  if (!walletIndex || !walletIndex.by_address) {
+    return { error: "Collector index still loading — try again in a moment." };
   }
-  const raw = identifier.trim();
-  let address = raw.toLowerCase();
+  var raw = identifier.trim();
+  var address = raw.toLowerCase();
 
   if (isEnsName(raw)) {
-    const alias = walletIndex.ens_aliases?.[raw.toLowerCase()];
+    var alias = walletIndex.ens_aliases && walletIndex.ens_aliases[raw.toLowerCase()];
     if (alias) address = alias.toLowerCase();
     else return { needsResolve: true, ens: raw };
   } else if (!isEthAddress(raw)) {
     return { error: "Enter a valid ENS name (.eth) or 0x address." };
   }
 
-  const entry = walletIndex.by_address[address];
+  var entry = walletIndex.by_address[address];
   if (!entry) {
-    return {
-      error: "No daCommunity holdings found for that address in our index.",
-      address,
-    };
+    return { error: "No daCommunity holdings found for that address in our index.", address: address };
   }
-  return { entry };
+  return { entry: entry };
 }
 
-function renderHoldingsChips(holdings, container, { highlightTokenId } = {}) {
+function renderHoldingsChips(holdings, container, opts) {
+  opts = opts || {};
+  var highlightTokenId = opts.highlightTokenId;
   container.innerHTML = "";
-  const chips = holdings
-    .map((h) => {
-      const item = itemsById.get(String(h.token_id));
-      const src = item ? imgSrc(item) : "";
-      const name = h.display_name || h.name || itemTitle(item || {}) || `#${h.token_id}`;
-      const hi = highlightTokenId && String(h.token_id) === String(highlightTokenId) ? " holding-chip-current" : "";
-      return `<button type="button" class="holding-chip${hi}" data-token="${h.token_id}">
-        ${src && !isVideoItem(item || {}) ? `<img src="${escapeHtml(src)}" alt="" loading="lazy" />` : ""}
-        <span>${escapeHtml(name)}</span>
-      </button>`;
+  var html = holdings
+    .map(function (h) {
+      var item = itemsById.get(String(h.token_id));
+      var src = item ? imgSrc(item) : "";
+      var name = h.display_name || h.name || (item ? itemTitle(item) : "#" + h.token_id);
+      var hi = highlightTokenId && String(h.token_id) === String(highlightTokenId) ? " holding-chip-current" : "";
+      var img = src && !(item && isVideoItem(item)) ? '<img src="' + escapeHtml(src) + '" alt="" loading="lazy" />' : "";
+      return '<button type="button" class="holding-chip' + hi + '" data-token="' + h.token_id + '">' + img + "<span>" + escapeHtml(name) + "</span></button>";
     })
     .join("");
-  container.innerHTML = chips || "<span class='empty'>No pieces indexed.</span>";
-  container.querySelectorAll(".holding-chip").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const item = itemsById.get(String(btn.dataset.token));
+  container.innerHTML = html || "<span class='empty'>No pieces indexed.</span>";
+  container.querySelectorAll(".holding-chip").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var item = itemsById.get(String(btn.dataset.token));
       if (item) openDetail(item);
     });
   });
 }
 
 async function renderWalletLookup(identifier) {
-  const resultEl = $("#wallet-result");
+  var resultEl = $("#wallet-result");
   resultEl.hidden = false;
-  resultEl.innerHTML = `<p class="wallet-result empty">Looking up…</p>`;
+  resultEl.innerHTML = '<p class="wallet-result empty">Looking up…</p>';
 
-  let lookup = lookupWallet(identifier);
+  var lookup = lookupWallet(identifier);
 
   if (lookup.needsResolve) {
     try {
-      const addr = await resolveEnsToAddress(lookup.ens);
+      var addr = await resolveEnsToAddress(lookup.ens);
       lookup = lookupWallet(addr);
     } catch (e) {
-      resultEl.innerHTML = `<p class="wallet-result empty">${escapeHtml(e.message)}</p>`;
+      resultEl.innerHTML = '<p class="wallet-result empty">' + escapeHtml(e.message) + "</p>";
       return;
     }
   }
 
   if (lookup.error) {
-    resultEl.innerHTML = `<p class="wallet-result empty">${escapeHtml(lookup.error)}</p>`;
+    resultEl.innerHTML = '<p class="wallet-result empty">' + escapeHtml(lookup.error) + "</p>";
     return;
   }
 
-  const { entry } = lookup;
-  const label = entry.ens_name || shortenAddress(entry.address);
+  var entry = lookup.entry;
+  var label = entry.ens_name || shortenAddress(entry.address);
+  var holdings = entry.holdings || [];
+  var uq = nvl(entry.unique_pieces, holdings.length);
+  var qty = nvl(entry.collection_quantity, "—");
 
-  resultEl.innerHTML = `
-    <div class="wallet-profile">
-      <strong>${escapeHtml(label)}</strong>
-      <span>${escapeHtml(entry.address)}</span>
-      <span>${entry.unique_pieces ?? entry.holdings?.length ?? 0} unique pieces · ${entry.collection_quantity ?? "—"} total copies</span>
-    </div>
-    <div class="wallet-holdings" id="wallet-holdings-slot"></div>
-  `;
-  renderHoldingsChips(entry.holdings || [], $("#wallet-holdings-slot"));
+  resultEl.innerHTML =
+    '<div class="wallet-profile"><strong>' + escapeHtml(label) + "</strong><span>" +
+    escapeHtml(entry.address) + "</span><span>" + uq + " unique pieces · " + qty + " total copies</span></div>" +
+    '<div class="wallet-holdings" id="wallet-holdings-slot"></div>';
+  renderHoldingsChips(holdings, $("#wallet-holdings-slot"));
 }
 
 function exploreCollector(address, highlightTokenId) {
-  const entry = walletIndex?.by_address?.[address?.toLowerCase()];
-  const explore = $("#collector-explore");
+  var entry = walletIndex && walletIndex.by_address && walletIndex.by_address[address.toLowerCase()];
+  var explore = $("#collector-explore");
   if (!entry) {
     explore.hidden = true;
     return;
   }
   activeCollectorAddress = address.toLowerCase();
-  $("#collector-explore-title").textContent = `Also held by ${holderLabel(address)}`;
-  renderHoldingsChips(entry.holdings || [], $("#collector-explore-holdings"), { highlightTokenId });
+  $("#collector-explore-title").textContent = "Also held by " + holderLabel(address);
+  renderHoldingsChips(entry.holdings || [], $("#collector-explore-holdings"), { highlightTokenId: highlightTokenId });
   explore.hidden = false;
-  document.querySelectorAll(".owner-chip").forEach((btn) => {
+  document.querySelectorAll(".owner-chip").forEach(function (btn) {
     btn.classList.toggle("active", btn.dataset.address === activeCollectorAddress);
   });
 }
 
-function renderCollectors(filter = "") {
-  const panel = $("#collectors-panel");
-  const list = $("#collectors-list");
+function renderCollectors(filter) {
+  var panel = $("#collectors-panel");
+  var list = $("#collectors-list");
   if (!collectorsList.length) {
     panel.hidden = true;
     return;
   }
   panel.hidden = false;
-  const q = filter.trim().toLowerCase();
-  let rows = collectorsList;
+  var q = (filter || "").trim().toLowerCase();
+  var rows = collectorsList;
   if (q) {
-    rows = rows.filter(
-      (c) =>
-        (c.ens_name || "").toLowerCase().includes(q) ||
-        (c.username || "").toLowerCase().includes(q) ||
-        c.address.toLowerCase().includes(q)
-    );
+    rows = rows.filter(function (c) {
+      return (
+        (c.ens_name || "").toLowerCase().indexOf(q) >= 0 ||
+        (c.username || "").toLowerCase().indexOf(q) >= 0 ||
+        c.address.toLowerCase().indexOf(q) >= 0
+      );
+    });
   }
   list.innerHTML = rows
-    .map((c) => {
-      const label = c.ens_name || c.username || shortenAddress(c.address);
-      return `<button type="button" class="collector-row" data-address="${escapeHtml(c.address)}">
-        <div>
-          <strong>${escapeHtml(label)}</strong>
-          <span class="meta">${escapeHtml(c.address)}</span>
-        </div>
-        <span class="count">${c.unique_pieces} piece${c.unique_pieces === 1 ? "" : "s"}</span>
-      </button>`;
+    .map(function (c) {
+      var label = c.ens_name || c.username || shortenAddress(c.address);
+      var suffix = c.unique_pieces === 1 ? "" : "s";
+      return (
+        '<button type="button" class="collector-row" data-address="' + escapeHtml(c.address) + '">' +
+        "<div><strong>" + escapeHtml(label) + '</strong><span class="meta">' + escapeHtml(c.address) + "</span></div>" +
+        '<span class="count">' + c.unique_pieces + " piece" + suffix + "</span></button>"
+      );
     })
     .join("");
-  list.querySelectorAll(".collector-row").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const addr = btn.dataset.address;
-      $("#wallet-input").value = addr;
-      renderWalletLookup(addr);
+  list.querySelectorAll(".collector-row").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      $("#wallet-input").value = btn.dataset.address;
+      renderWalletLookup(btn.dataset.address);
       $("#wallet-panel").scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
 }
 
-function fillMediaSlot(slot, item, { autoplay = false } = {}) {
+function fillMediaSlot(slot, item, opts) {
+  opts = opts || {};
   slot.innerHTML = "";
-  const src = imgSrc(item);
+  var src = imgSrc(item);
   if (!src) return;
   if (isVideoItem(item)) {
-    const v = document.createElement("video");
+    var v = document.createElement("video");
     v.src = src;
     v.muted = true;
     v.loop = true;
     v.playsInline = true;
     v.controls = true;
-    if (autoplay) v.autoplay = true;
+    if (opts.autoplay) v.autoplay = true;
     v.setAttribute("aria-label", itemTitle(item));
     slot.appendChild(v);
   } else {
-    const img = document.createElement("img");
+    var img = document.createElement("img");
     img.src = src;
     img.alt = itemTitle(item);
     if (item.opensea_image_url && item.image_url !== item.opensea_image_url) {
-      img.addEventListener(
-        "error",
-        () => {
-          img.src = item.opensea_image_url;
-        },
-        { once: true }
-      );
+      img.addEventListener("error", function () { img.src = item.opensea_image_url; }, { once: true });
     }
     slot.appendChild(img);
   }
 }
 
+function statCollectorsValue(collection) {
+  if (collection.num_owners != null) return collection.num_owners;
+  if (collectorsList.length) return collectorsList.length;
+  return "—";
+}
+
 function renderStats(collection) {
-  const strip = $("#stats-strip");
+  var strip = $("#stats-strip");
   strip.innerHTML = "";
-  [
-    { label: "Pieces", value: collection.piece_count ?? "—" },
-    { label: "Collectors", value: collection.num_owners ?? (collectorsList.length || "—") },
-    { label: "Floor", value: `${formatEth(collection.floor_eth)} ${collection.floor_symbol || "ETH"}` },
-    { label: "Listed", value: collection.listed_count ?? "—" },
-  ].forEach((s) => {
-    const el = document.createElement("div");
+  var stats = [
+    { label: "Pieces", value: nvl(collection.piece_count, "—") },
+    { label: "Collectors", value: statCollectorsValue(collection) },
+    { label: "Floor", value: formatEth(collection.floor_eth) + " " + (collection.floor_symbol || "ETH") },
+    { label: "Listed", value: nvl(collection.listed_count, "—") },
+  ];
+  stats.forEach(function (s) {
+    var el = document.createElement("div");
     el.className = "stat";
-    el.innerHTML = `<span class="stat-value">${s.value}</span><span class="stat-label">${s.label}</span>`;
+    el.innerHTML = '<span class="stat-value">' + s.value + '</span><span class="stat-label">' + s.label + "</span>";
     strip.appendChild(el);
   });
-
-  const note = $("#hero-note");
+  var note = $("#hero-note");
   if (collection.note) {
     note.textContent = collection.note;
     note.hidden = false;
@@ -327,111 +397,99 @@ function renderStats(collection) {
 }
 
 function getFilteredItems() {
-  let items = [...galleryData.items];
-  if (activeFilter === "listed") items = items.filter((i) => i.listed);
-  if (activeFilter === "recent") items.sort((a, b) => Number(b.token_id) - Number(a.token_id));
+  var items = galleryData.items.slice();
+  if (activeFilter === "listed") items = items.filter(function (i) { return i.listed; });
+  if (activeFilter === "recent") items.sort(function (a, b) { return Number(b.token_id) - Number(a.token_id); });
   if (searchQuery) {
-    const q = searchQuery.toLowerCase();
-    items = items.filter(
-      (i) =>
-        itemTitle(i).toLowerCase().includes(q) ||
-        (i.description || "").toLowerCase().includes(q) ||
-        (i.local_slug || "").toLowerCase().includes(q) ||
-        String(i.token_id).includes(q)
-    );
+    var q = searchQuery.toLowerCase();
+    items = items.filter(function (i) {
+      return (
+        itemTitle(i).toLowerCase().indexOf(q) >= 0 ||
+        (i.description || "").toLowerCase().indexOf(q) >= 0 ||
+        (i.excerpt || "").toLowerCase().indexOf(q) >= 0 ||
+        (i.local_slug || "").toLowerCase().indexOf(q) >= 0 ||
+        String(i.token_id).indexOf(q) >= 0
+      );
+    });
   }
   return items;
 }
 
 function renderFeatured(allItems) {
-  const rail = $("#featured-rail");
-  const track = $("#rail-track");
-  const featured = allItems.filter((i) => i.listed).slice(0, 10);
+  var rail = $("#featured-rail");
+  var track = $("#rail-track");
+  var featured = allItems.filter(function (i) { return i.listed; }).slice(0, 10);
   if (!featured.length) {
     rail.hidden = true;
     return;
   }
   rail.hidden = false;
   track.innerHTML = "";
-  for (const item of featured) {
-    const btn = document.createElement("button");
+  featured.forEach(function (item) {
+    var btn = document.createElement("button");
     btn.className = "rail-card";
     btn.type = "button";
-    const slot = document.createElement("div");
+    var slot = document.createElement("div");
     fillMediaSlot(slot, item);
     btn.appendChild(slot);
-    const cap = document.createElement("span");
+    var cap = document.createElement("span");
     cap.textContent = itemTitle(item);
     btn.appendChild(cap);
-    btn.addEventListener("click", () => openDetail(item));
+    btn.addEventListener("click", function () { openDetail(item); });
     track.appendChild(btn);
-  }
+  });
 }
 
 function renderGallery(items) {
-  const list = $("#gallery-list");
+  var list = $("#gallery-list");
   list.innerHTML = "";
-  items.forEach((item, idx) => {
-    const row = document.createElement("button");
+  items.forEach(function (item, idx) {
+    var row = document.createElement("button");
     row.className = "gallery-row";
     row.type = "button";
-    row.style.animationDelay = `${Math.min(idx * 0.025, 0.75)}s`;
-    const title = itemTitle(item);
-    const listedBadge = item.listed
-      ? `<span class="badge-listed">${item.listing ? formatEth(item.listing.amount_eth) + " ETH" : "Listed"}</span>`
+    row.style.animationDelay = Math.min(idx * 0.025, 0.75) + "s";
+    var title = itemTitle(item);
+    var listedBadge = item.listed
+      ? '<span class="badge-listed">' + (item.listing ? formatEth(item.listing.amount_eth) + " ETH" : "Listed") + "</span>"
       : "";
-    const slug = item.local_slug ? `<span class="slug-pill">${escapeHtml(item.local_slug)}</span>` : "";
-    const videoBadge = isVideoItem(item) ? `<span class="thumb-video-badge">▶</span>` : "";
-    row.innerHTML = `
-      <div class="gallery-thumb-wrap">
-        <div class="gallery-thumb-slot"></div>
-        ${videoBadge}
-      </div>
-      <div class="gallery-meta">
-        <h3>${escapeHtml(title)}</h3>
-        <p>${escapeHtml(item.excerpt || "")}</p>
-        ${slug}
-      </div>
-      <div class="gallery-side">
-        <span class="token-pill">#${item.token_id}</span>
-        ${listedBadge}
-      </div>
-    `;
+    var slug = item.local_slug ? '<span class="slug-pill">' + escapeHtml(item.local_slug) + "</span>" : "";
+    var videoBadge = isVideoItem(item) ? '<span class="thumb-video-badge">▶</span>' : "";
+    row.innerHTML =
+      '<div class="gallery-thumb-wrap"><div class="gallery-thumb-slot"></div>' + videoBadge + "</div>" +
+      '<div class="gallery-meta"><h3>' + escapeHtml(title) + "</h3><p>" + escapeHtml(item.excerpt || "") + "</p>" + slug + "</div>" +
+      '<div class="gallery-side"><span class="token-pill">#' + item.token_id + "</span>" + listedBadge + "</div>";
     fillMediaSlot(row.querySelector(".gallery-thumb-slot"), item);
-    const thumb = row.querySelector(".gallery-thumb-slot img, .gallery-thumb-slot video");
-    if (thumb?.tagName === "IMG" && item.opensea_image_url && item.image_url !== item.opensea_image_url) {
-      thumb.addEventListener("error", () => {
-        thumb.src = item.opensea_image_url;
-      }, { once: true });
+    var thumb = row.querySelector(".gallery-thumb-slot img, .gallery-thumb-slot video");
+    if (thumb && thumb.tagName === "IMG" && item.opensea_image_url && item.image_url !== item.opensea_image_url) {
+      thumb.addEventListener("error", function () { thumb.src = item.opensea_image_url; }, { once: true });
     }
-    row.addEventListener("click", () => openDetail(item));
+    row.addEventListener("click", function () { openDetail(item); });
     list.appendChild(row);
   });
 }
 
 function renderDetailOwners(item) {
-  const ownersBlock = $("#detail-owners");
-  const chipsEl = $("#detail-owner-chips");
-  const explore = $("#collector-explore");
+  var ownersBlock = $("#detail-owners");
+  var chipsEl = $("#detail-owner-chips");
+  var explore = $("#collector-explore");
   explore.hidden = true;
   activeCollectorAddress = null;
-
-  const holders = item.owners?.top_holders || [];
+  var holders = (item.owners && item.owners.top_holders) || [];
   if (!holders.length) {
     ownersBlock.hidden = true;
     return;
   }
   ownersBlock.hidden = false;
   chipsEl.innerHTML = holders
-    .map(
-      (h) =>
-        `<button type="button" class="owner-chip" data-address="${escapeHtml(h.address)}">
-          ${escapeHtml(holderLabel(h.address))} · ${h.quantity}
-        </button>`
-    )
+    .map(function (h) {
+      return (
+        '<button type="button" class="owner-chip" data-address="' + escapeHtml(h.address) + '">' +
+        escapeHtml(holderLabel(h.address)) + " · " + h.quantity + "</button>"
+      );
+    })
     .join("");
-  chipsEl.querySelectorAll(".owner-chip").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
+  chipsEl.querySelectorAll(".owner-chip").forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
       e.stopPropagation();
       exploreCollector(btn.dataset.address, item.token_id);
     });
@@ -439,44 +497,40 @@ function renderDetailOwners(item) {
 }
 
 function openDetail(item) {
-  const panel = $("#detail-panel");
+  var panel = $("#detail-panel");
   fillMediaSlot($("#detail-media-slot"), item, { autoplay: true });
-
   $("#detail-title").textContent = itemTitle(item);
-  $("#detail-token").textContent = `Token #${item.token_id}${item.local_slug ? " · " + item.local_slug : ""} · Base`;
-  $("#detail-description").textContent = item.description || "No description.";
+  $("#detail-token").textContent =
+    "Token #" + item.token_id + (item.local_slug ? " · " + item.local_slug : "") + " · Base";
+  $("#detail-description").textContent = item.description || item.excerpt || "No description.";
   $("#detail-opensea").href = item.opensea_url || "#";
 
-  const badge = $("#detail-badge");
+  var badge = $("#detail-badge");
   if (item.listed) {
     badge.hidden = false;
-    badge.textContent = item.listing
-      ? `For sale · ${formatEth(item.listing.amount_eth)} ETH`
-      : "For sale";
+    badge.textContent = item.listing ? "For sale · " + formatEth(item.listing.amount_eth) + " ETH" : "For sale";
   } else {
     badge.hidden = true;
   }
 
-  const stats = $("#detail-stats");
-  const chips = [];
+  var stats = $("#detail-stats");
+  var chips = [];
   if (item.owners) {
-    chips.push(`<span class="chip"><strong>${item.owners.holder_count}</strong> holders</span>`);
-    chips.push(`<span class="chip"><strong>${item.owners.circulating_copies}</strong> copies</span>`);
+    chips.push('<span class="chip"><strong>' + item.owners.holder_count + "</strong> holders</span>");
+    chips.push('<span class="chip"><strong>' + item.owners.circulating_copies + "</strong> copies</span>");
   }
   if (item.listed && item.listing) {
-    chips.push(`<span class="chip">List <strong>${formatEth(item.listing.amount_eth)} ETH</strong></span>`);
+    chips.push('<span class="chip">List <strong>' + formatEth(item.listing.amount_eth) + " ETH</strong></span>");
   }
-  stats.innerHTML = chips.join("") || `<span class="chip">Community piece</span>`;
-
+  stats.innerHTML = chips.length ? chips.join("") : '<span class="chip">Community piece</span>';
   renderDetailOwners(item);
-
   panel.classList.add("open");
   panel.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
 }
 
 function closeDetail() {
-  const panel = $("#detail-panel");
+  var panel = $("#detail-panel");
   panel.classList.remove("open");
   panel.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
@@ -489,9 +543,9 @@ function refreshView() {
 }
 
 function bindUi() {
-  document.querySelectorAll(".filter").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      document.querySelectorAll(".filter").forEach((b) => {
+  document.querySelectorAll(".filter").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      document.querySelectorAll(".filter").forEach(function (b) {
         b.classList.remove("active");
         b.setAttribute("aria-selected", "false");
       });
@@ -501,82 +555,62 @@ function bindUi() {
       refreshView();
     });
   });
-
-  $("#search").addEventListener("input", (e) => {
+  $("#search").addEventListener("input", function (e) {
     searchQuery = e.target.value.trim();
     refreshView();
   });
-
-  $("#collectors-search")?.addEventListener("input", (e) => {
-    renderCollectors(e.target.value);
-  });
-
-  $("#wallet-form").addEventListener("submit", (e) => {
+  var cs = $("#collectors-search");
+  if (cs) cs.addEventListener("input", function (e) { renderCollectors(e.target.value); });
+  $("#wallet-form").addEventListener("submit", function (e) {
     e.preventDefault();
-    const v = $("#wallet-input").value.trim();
+    var v = $("#wallet-input").value.trim();
     if (v) renderWalletLookup(v);
   });
-
   $("#detail-close").addEventListener("click", closeDetail);
   $("#detail-backdrop").addEventListener("click", closeDetail);
-  document.addEventListener("keydown", (e) => {
+  document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") closeDetail();
   });
+}
+
+function bootGallery(data) {
+  galleryData = data;
+  indexItems(galleryData);
+  $("#load-state").hidden = true;
+  renderStats(galleryData.collection);
+  $("#footer-updated").textContent = new Date(galleryData.generated_at).toLocaleString();
+  bindUi();
+  refreshView();
 }
 
 async function init() {
   if (isFileProtocol()) {
     showFatalError(
       "Open the gallery through the local server",
-      "Double-clicking index.html blocks data loading (browser security). Use the starter script instead.",
-      "Double-click start-gallery.bat  →  open http://localhost:8080"
+      "Double-clicking index.html blocks data loading. Use start-gallery.bat instead.",
+      "start-gallery.bat  →  http://localhost:8080"
     );
     return;
   }
 
   try {
-    await loadGalleryData();
-    galleryData.items.forEach((i) => {
-      if (!i.display_name) {
-        i.display_name = i.local_slug || (i.name?.toLowerCase().startsWith("dacat.") ? i.name : null);
-      }
-      if (!i.opensea_image_url && i.image_url?.startsWith("http")) {
-        i.opensea_image_url = i.image_url;
-      }
-      if (/\.(mov|mp4|webm)(\?|$)/i.test(i.image_url || "") && !i.media_type) {
-        i.media_type = "video";
-      }
-      itemsById.set(String(i.token_id), i);
-    });
+    galleryData = await loadCatalogFirst();
+    dataSource = galleryData.source === "gallery_catalog" ? "catalog" : "full";
+    bootGallery(galleryData);
 
-    $("#load-state").hidden = true;
-    renderStats(galleryData.collection);
-    $("#footer-updated").textContent = new Date(galleryData.generated_at).toLocaleString();
-    bindUi();
-    refreshView();
+    if (dataSource === "catalog") {
+      showStaleBanner();
+      refreshFullDataInBackground();
+    }
 
-    loadWalletIndex().then(() => {
+    loadWalletIndex().then(function () {
       renderStats(galleryData.collection);
       renderCollectors();
-      if (!walletIndex) {
-        const panel = $("#wallet-panel");
-        if (!panel.querySelector(".wallet-index-warn")) {
-          const warn = document.createElement("p");
-          warn.className = "hero-note wallet-index-warn";
-          warn.textContent =
-            "Collector lookup is loading or unavailable — gallery still works.";
-          panel.appendChild(warn);
-        }
-      }
     });
   } catch (err) {
     console.error(err);
     if (err.message === "FILE_PROTOCOL") return;
-    showFatalError(
-      "Could not load gallery data",
-      err.message || String(err),
-      "cd backend && python fetch_gallery_data.py && python merge_local_images.py"
-    );
+    showFatalError("Could not load gallery data", err.message || String(err), "Run: cd backend && python build_catalog.py");
   }
 }
 

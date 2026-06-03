@@ -87,6 +87,9 @@ def main() -> None:
     DATA_PATH.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"Patched titles on {len(data['items'])} items")
     patch_wallet_index(items_by_id)
+    import build_catalog
+
+    build_catalog.main()
 
 
 if __name__ == "__main__":

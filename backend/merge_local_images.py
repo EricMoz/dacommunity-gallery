@@ -72,6 +72,9 @@ def main() -> None:
     data["local_images_merged"] = matched
     DATA_PATH.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"Patched {matched}/{len(data.get('items', []))} items with local images from Used Pics")
+    import build_catalog
+
+    build_catalog.main()
 
 
 if __name__ == "__main__":

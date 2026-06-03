@@ -356,6 +356,9 @@ def main() -> int:
         f"{listed_count} listed, "
         f"{len((holders_index or {}).get('by_address', {}))} wallets indexed"
     )
+    import build_catalog
+
+    build_catalog.main()
     return 0
 
 

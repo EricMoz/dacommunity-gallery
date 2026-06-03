@@ -28,6 +28,7 @@ jobs:
       - name: Verify site files
         run: |
           test -f web/index.html || (echo "Missing web/index.html" && exit 1)
+          test -f web/data/gallery_catalog.json || (echo "Missing gallery_catalog.json — run: cd backend && python build_catalog.py" && exit 1)
           test -f web/data/gallery_data.json || (echo "Missing gallery_data.json — run fetch locally first" && exit 1)
           echo "Site files OK"
 
