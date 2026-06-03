@@ -190,6 +190,40 @@ function collectionStewardLabel() {
   return galleryData.collection.creator_ens || "dacatdreams.base.eth";
 }
 
+function cleanStoryText(item) {
+  var text = (item.description || item.excerpt || "").replace(/\r\n/g, "\n");
+  if (!text) return "";
+  var title = itemTitle(item).toLowerCase();
+  var slug = (item.local_slug || "").toLowerCase();
+  var lines = text.split("\n");
+  while (lines.length) {
+    var head = lines[0].trim().toLowerCase();
+    if (!head) {
+      lines.shift();
+      continue;
+    }
+    if (slug && head === slug) {
+      lines.shift();
+      continue;
+    }
+    if (title && head === title) {
+      lines.shift();
+      continue;
+    }
+    break;
+  }
+  while (lines.length && !lines[0].trim()) lines.shift();
+  return lines.join("\n").trim();
+}
+
+function displayExcerpt(item) {
+  var text = cleanStoryText(item);
+  if (!text) return "";
+  var flat = text.replace(/\s+/g, " ").trim();
+  if (flat.length <= 160) return flat;
+  return flat.slice(0, 159).trim() + "…";
+}
+
 function isVideoItem(item) {
   if (item.media_type === "video") return true;
   return /\.(mp4|mov|webm)(\?|$)/i.test(item.image_url || "");
@@ -509,7 +543,8 @@ function renderFeatured(allItems) {
     var slot = document.createElement("div");
     fillMediaSlot(slot, item);
     btn.appendChild(slot);
-    var cap = document.createElement("span");
+    var cap = document.createElement("div");
+    cap.className = "rail-card-caption";
     cap.innerHTML = formatPieceTitleHtml(itemTitle(item));
     btn.appendChild(cap);
     btn.addEventListener("click", function () { openDetail(item); });
@@ -532,7 +567,7 @@ function renderGallery(items) {
     var videoBadge = isVideoItem(item) ? '<span class="thumb-video-badge">▶</span>' : "";
     row.innerHTML =
       '<div class="gallery-thumb-wrap"><div class="gallery-thumb-slot"></div>' + videoBadge + "</div>" +
-      '<div class="gallery-meta"><h3>' + formatPieceTitleHtml(title) + "</h3><p>" + escapeHtml(item.excerpt || "") + "</p></div>" +
+      '<div class="gallery-meta"><h3>' + formatPieceTitleHtml(title) + "</h3><p>" + escapeHtml(displayExcerpt(item)) + "</p></div>" +
       '<div class="gallery-side"><span class="token-pill">#' + item.token_id + "</span>" + listedBadge + "</div>";
     fillMediaSlot(row.querySelector(".gallery-thumb-slot"), item, { controls: false });
     var thumb = row.querySelector(".gallery-thumb-slot img, .gallery-thumb-slot video");
@@ -579,7 +614,8 @@ function openDetail(item) {
   $("#detail-title").innerHTML = formatPieceTitleHtml(itemTitle(item));
   $("#detail-token").textContent =
     "Token #" + item.token_id + (item.local_slug ? " · " + item.local_slug : "") + " · Base";
-  $("#detail-description").textContent = item.description || item.excerpt || "No description.";
+  var story = cleanStoryText(item);
+  $("#detail-description").textContent = story || "No description.";
   $("#detail-opensea").href = item.opensea_url || "#";
 
   var badge = $("#detail-badge");
