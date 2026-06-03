@@ -168,6 +168,28 @@ function itemTitle(item) {
   return item.display_name || item.local_slug || item.name || "Token #" + item.token_id;
 }
 
+function formatPieceTitleHtml(title) {
+  var t = title || "";
+  if (t.toLowerCase().indexOf("dacat.") === 0) {
+    var dot = t.indexOf(".");
+    if (dot > 0) {
+      return (
+        '<span class="piece-title"><span class="piece-prefix">' +
+        escapeHtml(t.slice(0, dot + 1)) +
+        '</span><span class="piece-name">' +
+        escapeHtml(t.slice(dot + 1)) +
+        "</span></span>"
+      );
+    }
+  }
+  return escapeHtml(t);
+}
+
+function collectionStewardLabel() {
+  if (!galleryData || !galleryData.collection) return "dacatdreams.base.eth";
+  return galleryData.collection.creator_ens || "dacatdreams.base.eth";
+}
+
 function isVideoItem(item) {
   if (item.media_type === "video") return true;
   return /\.(mp4|mov|webm)(\?|$)/i.test(item.image_url || "");
@@ -194,7 +216,7 @@ function isEthAddress(v) {
 
 function isEnsName(v) {
   var s = v.trim().toLowerCase();
-  return s.endsWith(".eth") && s.length > 4;
+  return (s.endsWith(".eth") || s.endsWith(".base.eth")) && s.length > 4;
 }
 
 async function resolveEnsToAddress(name) {
@@ -292,8 +314,11 @@ async function renderWalletLookup(identifier) {
 
 function updateCollectorsButton() {
   var btn = $("#view-collectors-btn");
-  if (!btn) return;
-  btn.hidden = !collectorsList.length;
+  if (btn) btn.hidden = !collectorsList.length;
+  document.querySelectorAll(".stat-collectors").forEach(function (el) {
+    el.disabled = !collectorsList.length;
+    el.style.opacity = collectorsList.length ? "1" : "0.55";
+  });
 }
 
 function openCollectorsModal() {
@@ -408,26 +433,40 @@ function statCollectorsValue(collection) {
   return "—";
 }
 
+function renderHeroNote(collection) {
+  var note = $("#hero-note");
+  if (!note) return;
+  var steward = collection.creator_ens || "dacatdreams.base.eth";
+  note.innerHTML =
+    "Originally minted on Rodeo. Contract on Base — stewarded by " +
+    '<strong class="steward-name">' + escapeHtml(steward) + "</strong>.";
+  note.hidden = false;
+}
+
 function renderStats(collection) {
   var strip = $("#stats-strip");
   strip.innerHTML = "";
-  var stats = [
-    { label: "Pieces", value: nvl(collection.piece_count, "—") },
-    { label: "Collectors", value: statCollectorsValue(collection) },
-    { label: "Floor", value: formatEth(collection.floor_eth) + " " + (collection.floor_symbol || "ETH") },
-    { label: "Listed", value: nvl(collection.listed_count, "—") },
+  var defs = [
+    { label: "Pieces", value: nvl(collection.piece_count, "—"), clickable: false },
+    { label: "Collectors", value: statCollectorsValue(collection), clickable: true },
+    { label: "Floor", value: formatEth(collection.floor_eth) + " " + (collection.floor_symbol || "ETH"), clickable: false },
+    { label: "Listed", value: nvl(collection.listed_count, "—"), clickable: false },
   ];
-  stats.forEach(function (s) {
-    var el = document.createElement("div");
-    el.className = "stat";
+  defs.forEach(function (s) {
+    var el = document.createElement(s.clickable ? "button" : "div");
+    el.className = "stat" + (s.clickable ? " stat-collectors" : "");
     el.innerHTML = '<span class="stat-value">' + s.value + '</span><span class="stat-label">' + s.label + "</span>";
+    if (s.clickable) {
+      el.type = "button";
+      el.title = "View all collectors";
+      el.setAttribute("aria-label", "View collectors");
+      el.addEventListener("click", function () {
+        if (collectorsList.length) openCollectorsModal();
+      });
+    }
     strip.appendChild(el);
   });
-  var note = $("#hero-note");
-  if (collection.note) {
-    note.textContent = collection.note;
-    note.hidden = false;
-  }
+  renderHeroNote(collection);
 }
 
 function getFilteredItems() {
@@ -436,6 +475,10 @@ function getFilteredItems() {
   if (activeFilter === "recent") items.sort(function (a, b) { return Number(b.token_id) - Number(a.token_id); });
   if (searchQuery) {
     var q = searchQuery.toLowerCase();
+    var steward = collectionStewardLabel().toLowerCase();
+    if (q && steward.indexOf(q) >= 0) {
+      return items;
+    }
     items = items.filter(function (i) {
       return (
         itemTitle(i).toLowerCase().indexOf(q) >= 0 ||
@@ -467,7 +510,7 @@ function renderFeatured(allItems) {
     fillMediaSlot(slot, item);
     btn.appendChild(slot);
     var cap = document.createElement("span");
-    cap.textContent = itemTitle(item);
+    cap.innerHTML = formatPieceTitleHtml(itemTitle(item));
     btn.appendChild(cap);
     btn.addEventListener("click", function () { openDetail(item); });
     track.appendChild(btn);
@@ -486,11 +529,10 @@ function renderGallery(items) {
     var listedBadge = item.listed
       ? '<span class="badge-listed">' + (item.listing ? formatEth(item.listing.amount_eth) + " ETH" : "Listed") + "</span>"
       : "";
-    var slug = item.local_slug ? '<span class="slug-pill">' + escapeHtml(item.local_slug) + "</span>" : "";
     var videoBadge = isVideoItem(item) ? '<span class="thumb-video-badge">▶</span>' : "";
     row.innerHTML =
       '<div class="gallery-thumb-wrap"><div class="gallery-thumb-slot"></div>' + videoBadge + "</div>" +
-      '<div class="gallery-meta"><h3>' + escapeHtml(title) + "</h3><p>" + escapeHtml(item.excerpt || "") + "</p>" + slug + "</div>" +
+      '<div class="gallery-meta"><h3>' + formatPieceTitleHtml(title) + "</h3><p>" + escapeHtml(item.excerpt || "") + "</p></div>" +
       '<div class="gallery-side"><span class="token-pill">#' + item.token_id + "</span>" + listedBadge + "</div>";
     fillMediaSlot(row.querySelector(".gallery-thumb-slot"), item, { controls: false });
     var thumb = row.querySelector(".gallery-thumb-slot img, .gallery-thumb-slot video");
@@ -534,7 +576,7 @@ function openDetail(item) {
   closeCollectorsModal();
   var panel = $("#detail-panel");
   fillMediaSlot($("#detail-media-slot"), item, { autoplay: true, controls: true });
-  $("#detail-title").textContent = itemTitle(item);
+  $("#detail-title").innerHTML = formatPieceTitleHtml(itemTitle(item));
   $("#detail-token").textContent =
     "Token #" + item.token_id + (item.local_slug ? " · " + item.local_slug : "") + " · Base";
   $("#detail-description").textContent = item.description || item.excerpt || "No description.";

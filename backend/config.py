@@ -8,10 +8,10 @@ OPENSEA_COLLECTION_URL = "https://opensea.io/collection/rodeo-posts-12142"
 
 # Rodeo decommissioned; collection migrated — contract address unchanged on Base
 COLLECTION_NOTE = (
-    "Originally minted on Rodeo. Contract unchanged after platform migration; "
-    "collection stewarded via dacatdreams.eth."
+    "Originally minted on Rodeo. Contract unchanged on Base; "
+    "collection stewarded via dacatdreams.base.eth."
 )
-CREATOR_ENS = "dacatdreams.eth"
+CREATOR_ENS = "dacatdreams.base.eth"
 
 # Rate limit: free tier ~60 reads/min
 REQUEST_DELAY_SEC = 1.05
