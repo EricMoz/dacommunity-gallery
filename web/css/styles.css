@@ -1203,11 +1203,48 @@ button.stat:focus-visible {
   box-shadow: 3px 3px 0 var(--black);
 }
 
-.nav-btn-home.is-active {
+.nav-btn-home.is-active,
+.nav-btn-collections.is-active {
   background: var(--yellow);
   color: var(--black);
   border-color: var(--black);
   cursor: default;
+}
+
+.page-back {
+  display: inline-block;
+  margin-bottom: 0.65rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text-muted);
+}
+
+.page-back:hover {
+  color: var(--blue-accent);
+}
+
+.collections-main {
+  gap: 1.75rem;
+}
+
+.collections-intro-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4.5vw, 2.35rem);
+  margin: 0 0 0.45rem;
+  line-height: 1.1;
+}
+
+.collections-intro-lead {
+  margin: 0;
+  max-width: 32rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.hero-inner .page-back {
+  margin-bottom: 0.5rem;
 }
 
 /* Home page sections (Collections, Watch & track) */

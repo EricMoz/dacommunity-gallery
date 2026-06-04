@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<!-- Site home — entertainment hub. NFTs: #collections · film/analytics below. -->
+<!-- Site home — entertainment hub. NFTs → /collections/ · film & charts on page. -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>daCAT · Home</title>
-  <meta name="description" content="daCAT entertainment — daCommunity NFT gallery, films, Cat Coin charts, and Badges." />
+  <meta name="description" content="daCAT entertainment — collections, film, and Cat Coin charts." />
   <link rel="icon" href="assets/brand/dacat-icon-64.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,7 +21,7 @@
       </a>
       <nav class="header-nav" aria-label="Main">
         <span class="nav-btn nav-btn-home is-active" aria-current="page">Home</span>
-        <a class="nav-btn" href="dacommunity/">Gallery</a>
+        <a class="nav-btn nav-btn-collections" href="collections/">Collections</a>
         <a class="nav-btn nav-btn-film" href="film/">Film</a>
         <a class="nav-btn nav-btn-chart" href="analytics/">MC race</a>
         <a class="nav-btn" href="https://www.dacat.fun/dacat-universe" target="_blank" rel="noopener">Universe</a>
@@ -36,40 +36,25 @@
       <div class="home-hero-inner">
         <p class="eyebrow">Legendary crypto culture</p>
         <h1>daCAT <span class="accent">entertainment</span></h1>
-        <p class="home-lead">Gallery, film, and live charts — one home for the community&apos;s art, stories, and experiments.</p>
+        <p class="home-lead">Collections, film, and live charts — one home for the community&apos;s art, stories, and experiments.</p>
         <nav class="home-jump" aria-label="On this page">
-          <a href="#collections">Collections</a>
+          <a href="collections/">Collections</a>
           <a href="#explore">Film &amp; charts</a>
         </nav>
       </div>
     </section>
 
-    <section id="collections" class="home-section home-collections" aria-labelledby="collections-heading">
+    <section id="collections" class="home-section home-collections-teaser" aria-labelledby="collections-heading">
       <header class="home-section-head">
         <h2 id="collections-heading" class="home-section-title">Collections</h2>
-        <p class="home-section-lead">NFT archives — browse pieces, collectors, and listings on chain.</p>
+        <p class="home-section-lead">NFT archives on Base and Ethereum — daCommunity live, Badges on the way.</p>
       </header>
-      <div class="collection-grid">
-        <a class="collection-card collection-card-live" href="dacommunity/">
-          <span class="collection-card-status">Live</span>
-          <div class="collection-card-visual" aria-hidden="true">
-            <img src="assets/brand/dacat-mascot.png" alt="" width="88" height="88" />
-          </div>
-          <h3 class="collection-card-title">daCommunity NFT Archive</h3>
-          <p>ERC-1155 stories from Telegram — every <code>dacat.*</code> piece on Base.</p>
-          <span class="collection-card-cta">Open gallery →</span>
-        </a>
-
-        <a class="collection-card collection-card-soon" href="badges/">
-          <span class="collection-card-status collection-card-status-soon">Coming soon</span>
-          <div class="collection-card-visual collection-card-visual-badges" aria-hidden="true">
-            <span class="badge-glyph" aria-hidden="true">★</span>
-          </div>
-          <h3 class="collection-card-title">Badges</h3>
-          <p>1:1 community badges on Ethereum — crafted for long-term holders.</p>
-          <span class="collection-card-cta">Preview →</span>
-        </a>
-      </div>
+      <a class="home-teaser-card" href="collections/">
+        <span class="home-teaser-label">NFT collections</span>
+        <span class="home-teaser-title">daCommunity + Badges</span>
+        <span class="home-teaser-desc">Browse the gallery or preview the next drop.</span>
+        <span class="home-teaser-cta">Choose a collection →</span>
+      </a>
     </section>
 
     <section id="explore" class="home-section home-explore" aria-labelledby="explore-heading">

@@ -7,6 +7,7 @@ Static gallery for the [daCAT daCommunity](https://opensea.io/collection/rodeo-p
 | Route | Purpose |
 |-------|---------|
 | `/` | **Home** — entertainment hub (Collections, film, charts) |
+| `/collections/` | **Collections** — daCommunity + Badges picker (gallery vs coming soon) |
 | `/dacommunity/` | Full gallery, collector lookup, OpenSea data |
 | `/badges/` | Badges coming-soon placeholder |
 | `/analytics/` | Cat Coin market cap bar chart race (Flourish embed) |
@@ -45,7 +46,7 @@ cd web
 python -m http.server 8080
 ```
 
-Then open http://localhost:8080/ (home) or http://localhost:8080/dacommunity/ (gallery).
+Then open http://localhost:8080/ (home), http://localhost:8080/collections/ (pick a collection), or http://localhost:8080/dacommunity/ (gallery).
 
 On Windows, `start-gallery.bat` in the repo root is an optional shortcut that runs the same command.
 
@@ -75,6 +76,7 @@ Or: `.\scripts\refresh.ps1` (fetch + merge + local server).
 backend/          OpenSea fetch + title normalization + catalog build
 web/              Static site (HTML, CSS, JS, data, assets)
   index.html      Site home (Collections + Watch & track sections)
+  collections/    NFT collections landing (daCommunity + Badges cards)
   dacommunity/    daCommunity gallery (app.js expects ../data paths)
   badges/         Badges placeholder
   analytics/      Cat Coin MC race (Flourish)
