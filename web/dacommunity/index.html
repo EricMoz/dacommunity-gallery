@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/styles.css?v=20260604-8" />
+  <link rel="stylesheet" href="../css/styles.css?v=20260604-9" />
 </head>
 <body data-base="../">
   <header class="site-header">
@@ -105,27 +105,27 @@
           <p class="detail-mint" id="detail-mint" hidden></p>
           <h2 id="detail-title"></h2>
           <div class="detail-stats" id="detail-stats"></div>
-          <div class="detail-owners" id="detail-owners" hidden>
-            <h3 class="detail-subhead">Current holders</h3>
-            <p class="detail-owners-lead" id="detail-owners-lead" hidden></p>
-            <p class="detail-latest-change" id="detail-latest-change" hidden></p>
-            <div class="owner-pin" id="detail-owner-pin" hidden></div>
-            <p class="detail-holders-hint">All wallets with a copy — tap one to see their other pieces below.</p>
-            <div class="owner-chips" id="detail-owner-chips"></div>
-            <div class="collector-explore" id="collector-explore" hidden>
-              <h4 id="collector-explore-title"></h4>
-              <div class="wallet-holdings" id="collector-explore-holdings"></div>
-            </div>
-          </div>
           <div class="detail-activity" id="detail-activity" hidden>
             <button type="button" class="activity-disclosure-toggle" id="detail-activity-toggle" aria-expanded="false" aria-controls="detail-activity-panel">
-              <span class="activity-disclosure-label">Recent activity</span>
-              <span class="activity-disclosure-count" id="detail-activity-count"></span>
+              <span class="activity-disclosure-head">
+                <span class="activity-disclosure-label">Transfers &amp; activity</span>
+                <span class="activity-disclosure-count" id="detail-activity-count"></span>
+              </span>
+              <span class="activity-disclosure-preview" id="detail-activity-preview" hidden></span>
               <span class="activity-disclosure-chevron" aria-hidden="true"></span>
             </button>
             <div class="activity-disclosure-panel" id="detail-activity-panel" hidden>
               <ul class="activity-list" id="detail-activity-list"></ul>
               <a class="activity-opensea-link" id="detail-activity-opensea" href="#" target="_blank" rel="noopener">All activity on OpenSea →</a>
+            </div>
+          </div>
+          <div class="detail-owners" id="detail-owners" hidden>
+            <h3 class="detail-subhead">Current holders</h3>
+            <p class="detail-owners-lead" id="detail-owners-lead" hidden></p>
+            <div class="owner-chips" id="detail-owner-chips"></div>
+            <div class="collector-explore" id="collector-explore" hidden>
+              <h4 id="collector-explore-title"></h4>
+              <div class="wallet-holdings" id="collector-explore-holdings"></div>
             </div>
           </div>
           <div class="detail-description" id="detail-description"></div>
@@ -151,6 +151,6 @@
     <p><a href="https://www.dacat.fun/">dacat.fun</a> · <a href="https://www.dacatworld.com/">dacatworld</a></p>
   </footer>
 
-  <script src="../js/app.js?v=20260604-8" defer></script>
+  <script src="../js/app.js?v=20260604-9" defer></script>
 </body>
 </html>

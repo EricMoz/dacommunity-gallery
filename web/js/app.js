@@ -324,11 +324,14 @@ function addressDisplayMeta(address) {
 }
 
 function holderChipLabelHtml(meta) {
-  var html = escapeHtml(meta.display);
-  if (meta.showFullHex && meta.full) {
-    html += '<span class="owner-chip-full">' + escapeHtml(meta.full) + "</span>";
-  }
-  return html;
+  return escapeHtml(meta.display);
+}
+
+/** Prefer live holder list length when OpenSea holder_count lags a new wallet. */
+function effectiveHolderCount(item) {
+  var owners = item.owners || {};
+  var holders = resolveHoldersList(item);
+  return Math.max(owners.holder_count || 0, holders.length);
 }
 
 /**
@@ -884,42 +887,36 @@ function recentHolderHighlights(item) {
   return map;
 }
 
-function formatLatestChangeHtml(change) {
+function formatLatestChangePreview(change) {
   if (!change) return "";
   var qty = change.quantity > 1 ? " ×" + change.quantity : "";
   var when = formatMintDate(change.at);
-  if (change.type === "transfer") {
-    return (
-      "<strong>Latest transfer</strong>" +
-      (when ? " · " + escapeHtml(when) : "") +
-      " · " +
-      addressActionHtml(change.from || "") +
-      " → " +
-      addressActionHtml(change.to || "") +
-      qty
-    );
-  }
-  if (change.type === "sale") {
-    return (
-      "<strong>Latest sale</strong>" +
-      (when ? " · " + escapeHtml(when) : "") +
-      " · " +
-      addressActionHtml(change.from || "") +
-      " → " +
-      addressActionHtml(change.to || "") +
-      qty
-    );
-  }
+  var label =
+    change.type === "transfer"
+      ? "Latest transfer"
+      : change.type === "sale"
+        ? "Latest sale"
+        : change.type === "mint"
+          ? "Latest mint"
+          : activityTypeLabel(change.type);
   if (change.type === "mint") {
     return (
-      "<strong>Latest mint</strong>" +
-      (when ? " · " + escapeHtml(when) : "") +
+      label +
+      (when ? " · " + when : "") +
       " · to " +
-      addressActionHtml(change.to || "") +
+      shortenAddress(change.to || "") +
       qty
     );
   }
-  return escapeHtml(activityTypeLabel(change.type)) + (when ? " · " + escapeHtml(when) : "");
+  return (
+    label +
+    (when ? " · " + when : "") +
+    " · " +
+    shortenAddress(change.from || "") +
+    " → " +
+    shortenAddress(change.to || "") +
+    qty
+  );
 }
 
 function setActivityDisclosureOpen(open) {
@@ -950,6 +947,7 @@ function renderDetailActivity(item) {
   var list = $("#detail-activity-list");
   var osLink = $("#detail-activity-opensea");
   var countEl = $("#detail-activity-count");
+  var previewEl = $("#detail-activity-preview");
   var rows = dedupeActivityRows(item.recent_activity || []);
   if (!rows.length) {
     block.hidden = true;
@@ -959,6 +957,16 @@ function renderDetailActivity(item) {
   block.hidden = false;
   setActivityDisclosureOpen(false);
   if (countEl) countEl.textContent = "(" + rows.length + ")";
+  var preview = formatLatestChangePreview(getLatestChange(item));
+  if (previewEl) {
+    if (preview) {
+      previewEl.hidden = false;
+      previewEl.textContent = preview;
+    } else {
+      previewEl.hidden = true;
+      previewEl.textContent = "";
+    }
+  }
   list.innerHTML = rows
     .map(function (row) {
       return (
@@ -988,55 +996,10 @@ function renderDetailActivity(item) {
   }
 }
 
-function renderPinnedRecipient(item, change) {
-  var pinEl = $("#detail-owner-pin");
-  if (!pinEl) return;
-  if (!change || !change.to || change.type !== "transfer") {
-    pinEl.hidden = true;
-    pinEl.innerHTML = "";
-    return;
-  }
-  var row = holderRowForToken(item, change.to);
-  var meta = addressDisplayMeta(change.to);
-  var qty = row ? row.quantity : change.quantity || 1;
-  pinEl.hidden = false;
-  pinEl.innerHTML =
-    '<p class="owner-pin-label">New holder · latest transfer</p>' +
-    '<div class="owner-pin-card">' +
-    '<p class="owner-pin-name">' +
-    holderChipLabelHtml(meta) +
-    "</p>" +
-    '<p class="owner-pin-copies"><strong>' +
-    qty +
-    "</strong> " +
-    (qty === 1 ? "copy" : "copies") +
-    " of this piece</p>" +
-    '<div class="owner-pin-actions">' +
-    '<button type="button" class="btn btn-outline btn-sm owner-pin-view" data-address="' +
-    escapeHtml(meta.address) +
-    '">Show their pieces</button>' +
-    '<button type="button" class="addr-action-copy" data-copy="' +
-    escapeHtml(meta.address) +
-    '" title="Copy full address">Copy address</button></div></div>';
-  bindAddressActions(pinEl);
-  var viewBtn = pinEl.querySelector(".owner-pin-view");
-  if (viewBtn) {
-    viewBtn.addEventListener("click", function () {
-      exploreCollector(meta.address, item.token_id);
-      var chipsRoot = $("#detail-owner-chips");
-      if (chipsRoot) {
-        var chip = chipsRoot.querySelector('.owner-chip[data-address="' + meta.address + '"]');
-        if (chip) chip.classList.add("active");
-      }
-    });
-  }
-}
-
 function renderDetailOwners(item) {
   var ownersBlock = $("#detail-owners");
   var chipsEl = $("#detail-owner-chips");
   var leadEl = $("#detail-owners-lead");
-  var latestEl = $("#detail-latest-change");
   var explore = $("#collector-explore");
   explore.hidden = true;
   activeCollectorAddress = null;
@@ -1047,32 +1010,19 @@ function renderDetailOwners(item) {
     return;
   }
   ownersBlock.hidden = false;
-  var expected = owners.holder_count || holders.length;
+  var displayCount = effectiveHolderCount(item);
   if (leadEl) {
     leadEl.hidden = false;
     var incomplete =
-      expected > holders.length
+      displayCount > holders.length
         ? " · loading full holder list…"
         : "";
     leadEl.textContent =
-      "Live ownership from OpenSea · " +
-      expected +
+      displayCount +
       " holders · " +
       nvl(owners.circulating_copies, "—") +
       " copies" +
       incomplete;
-  }
-  var change = getLatestChange(item);
-  renderPinnedRecipient(item, change);
-  if (latestEl) {
-    if (change) {
-      latestEl.hidden = false;
-      latestEl.innerHTML = formatLatestChangeHtml(change);
-      bindAddressActions(latestEl);
-    } else {
-      latestEl.hidden = true;
-      latestEl.innerHTML = "";
-    }
   }
   var highlights = recentHolderHighlights(item);
   chipsEl.innerHTML = holders
@@ -1110,17 +1060,12 @@ function renderDetailOwners(item) {
     });
   });
   bindAddressActions(chipsEl);
-  if (change && change.to) {
-    var pinKey = change.to.toLowerCase();
-    var pinBtn = chipsEl.querySelector('.owner-chip[data-address="' + pinKey + '"]');
-    if (pinBtn) pinBtn.scrollIntoView({ block: "nearest", behavior: "smooth" });
-  }
 }
 
 function refreshDetailPanel(item) {
   if (!item) return;
-  renderDetailOwners(item);
   renderDetailActivity(item);
+  renderDetailOwners(item);
 }
 
 function openDetail(item) {
@@ -1154,15 +1099,15 @@ function openDetail(item) {
   var stats = $("#detail-stats");
   var chips = [];
   if (item.owners) {
-    chips.push('<span class="chip"><strong>' + item.owners.holder_count + "</strong> holders</span>");
+    chips.push('<span class="chip"><strong>' + effectiveHolderCount(item) + "</strong> holders</span>");
     chips.push('<span class="chip"><strong>' + item.owners.circulating_copies + "</strong> copies</span>");
   }
   if (item.listed && item.listing) {
     chips.push('<span class="chip">List <strong>' + formatEth(item.listing.amount_eth) + " ETH</strong></span>");
   }
   stats.innerHTML = chips.length ? chips.join("") : '<span class="chip">Community piece</span>';
-  renderDetailOwners(item);
   renderDetailActivity(item);
+  renderDetailOwners(item);
   panel.classList.add("open");
   panel.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
