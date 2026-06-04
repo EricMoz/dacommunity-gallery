@@ -45,7 +45,7 @@ cd web
 python -m http.server 8080
 ```
 
-Then open http://localhost:8080/ (picker) or http://localhost:8080/dacommunity/ (gallery).
+Then open http://localhost:8080/ (home) or http://localhost:8080/dacommunity/ (gallery).
 
 On Windows, `start-gallery.bat` in the repo root is an optional shortcut that runs the same command.
 
