@@ -64,6 +64,14 @@ Or: `.\scripts\refresh.ps1` (fetch + merge + local server).
 
 `--quick` skips listings, owners, and wallet index. Full run takes ~5–8 minutes.
 
+After a transfer, run a full fetch so `recent_activity` and holder lists update. QA one token:
+
+```powershell
+cd backend
+python fetch_gallery_data.py
+python ../scripts/verify_piece_activity.py --token 47 --expect-from mozvane.eth --expect-to 0x3e43287a26acf9e5206f4551ccda29c7d9bea93e
+```
+
 ## Security
 
 - **Never commit** `backend/.env` (gitignored). Use GitHub Actions secret `OPENSEA_API_KEY` for CI only.

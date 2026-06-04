@@ -3,7 +3,7 @@ OpenSea API v2 client with request throttling.
 
 Endpoints used by the gallery pipeline:
   - Collection NFTs, stats, holders
-  - Per-token owners and best listing
+  - Per-token owners, events (transfer/sale/mint), and best listing
   - Account resolve (ENS) and account NFTs by collection
 
 See: https://docs.opensea.io/reference
@@ -128,6 +128,22 @@ class OpenSeaClient:
     def resolve_account(self, identifier: str) -> dict[str, Any]:
         encoded = quote(identifier, safe="")
         return self._get(f"/accounts/resolve/{encoded}")
+
+    def get_nft_events(
+        self,
+        token_id: str,
+        event_types: list[str] | None = None,
+        limit: int = 50,
+    ) -> list[dict[str, Any]]:
+        """Recent activity for one token (transfers, sales, mints)."""
+        params: dict[str, Any] = {"limit": min(limit, 200)}
+        if event_types:
+            params["event_type"] = event_types
+        data = self._get(
+            f"/events/chain/{CHAIN}/contract/{CONTRACT_ADDRESS}/nfts/{token_id}",
+            params,
+        )
+        return list(data.get("asset_events") or [])
 
     def iter_collection_events(
         self,

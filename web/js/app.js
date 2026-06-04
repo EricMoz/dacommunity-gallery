@@ -111,6 +111,7 @@ function mergeFullDescriptions(full) {
     if (fullItem.description) cur.description = fullItem.description;
     if (fullItem.excerpt) cur.excerpt = fullItem.excerpt;
     if (fullItem.owners) cur.owners = fullItem.owners;
+    if (fullItem.recent_activity) cur.recent_activity = fullItem.recent_activity;
     if (fullItem.listed !== undefined) cur.listed = fullItem.listed;
     if (fullItem.listing) cur.listing = fullItem.listing;
     if (fullItem.minted_at) cur.minted_at = fullItem.minted_at;
@@ -625,26 +626,111 @@ function renderGallery(items) {
   });
 }
 
+function activityTypeLabel(type) {
+  if (type === "transfer") return "Transfer";
+  if (type === "sale") return "Sale";
+  if (type === "mint") return "Mint";
+  return type || "Activity";
+}
+
+function formatActivityLine(row) {
+  var qty = row.quantity > 1 ? " ×" + row.quantity : "";
+  if (row.type === "mint") {
+    return "Minted to " + escapeHtml(holderLabel(row.to || "")) + qty;
+  }
+  if (row.type === "transfer") {
+    return (
+      escapeHtml(holderLabel(row.from || "")) +
+      " → " +
+      escapeHtml(holderLabel(row.to || "")) +
+      qty
+    );
+  }
+  if (row.type === "sale") {
+    return (
+      "Sale · " +
+      escapeHtml(holderLabel(row.from || "")) +
+      " → " +
+      escapeHtml(holderLabel(row.to || "")) +
+      qty
+    );
+  }
+  return activityTypeLabel(row.type) + qty;
+}
+
+function renderDetailActivity(item) {
+  var block = $("#detail-activity");
+  var list = $("#detail-activity-list");
+  var osLink = $("#detail-activity-opensea");
+  var rows = item.recent_activity || [];
+  if (!rows.length) {
+    block.hidden = true;
+    return;
+  }
+  block.hidden = false;
+  list.innerHTML = rows
+    .map(function (row) {
+      return (
+        '<li class="activity-row activity-row-' +
+        escapeHtml(row.type || "other") +
+        '">' +
+        '<span class="activity-type">' +
+        escapeHtml(activityTypeLabel(row.type)) +
+        "</span>" +
+        '<span class="activity-when">' +
+        escapeHtml(formatMintDate(row.at)) +
+        "</span>" +
+        '<span class="activity-detail">' +
+        formatActivityLine(row) +
+        "</span></li>"
+      );
+    })
+    .join("");
+  if (item.opensea_url) {
+    var sep = item.opensea_url.indexOf("?") >= 0 ? "&" : "?";
+    osLink.href =
+      item.opensea_url + sep + "activityTypes=sale,mint,transfer";
+    osLink.hidden = false;
+  } else {
+    osLink.hidden = true;
+  }
+}
+
 function renderDetailOwners(item) {
   var ownersBlock = $("#detail-owners");
   var chipsEl = $("#detail-owner-chips");
   var explore = $("#collector-explore");
   explore.hidden = true;
   activeCollectorAddress = null;
-  var holders = (item.owners && item.owners.top_holders) || [];
+  var holders =
+    (item.owners && item.owners.holders) ||
+    (item.owners && item.owners.top_holders) ||
+    [];
   if (!holders.length) {
     ownersBlock.hidden = true;
     return;
   }
   ownersBlock.hidden = false;
-  chipsEl.innerHTML = holders
-    .map(function (h) {
-      return (
-        '<button type="button" class="owner-chip" data-address="' + escapeHtml(h.address) + '">' +
-        escapeHtml(holderLabel(h.address)) + " · " + h.quantity + "</button>"
-      );
-    })
-    .join("");
+  var maxChips = 14;
+  var shown = holders.slice(0, maxChips);
+  var extra = holders.length - shown.length;
+  chipsEl.innerHTML =
+    shown
+      .map(function (h) {
+        return (
+          '<button type="button" class="owner-chip" data-address="' +
+          escapeHtml(h.address) +
+          '">' +
+          escapeHtml(holderLabel(h.address)) +
+          " · " +
+          h.quantity +
+          "</button>"
+        );
+      })
+      .join("") +
+    (extra > 0
+      ? '<span class="owner-chip-more">+' + extra + " more holders</span>"
+      : "");
   chipsEl.querySelectorAll(".owner-chip").forEach(function (btn) {
     btn.addEventListener("click", function (e) {
       e.stopPropagation();
@@ -659,7 +745,7 @@ function openDetail(item) {
   fillMediaSlot($("#detail-media-slot"), item, { autoplay: true, controls: true });
   $("#detail-title").innerHTML = formatPieceTitleHtml(itemTitle(item));
   $("#detail-token").textContent =
-    "Token #" + item.token_id + (item.local_slug ? " · " + item.local_slug : "") + " · Base";
+    "Token #" + item.token_id + (item.local_slug ? " · " + item.local_slug : "");
   var mintEl = $("#detail-mint");
   if (item.minted_at) {
     mintEl.hidden = false;
@@ -690,6 +776,7 @@ function openDetail(item) {
     chips.push('<span class="chip">List <strong>' + formatEth(item.listing.amount_eth) + " ETH</strong></span>");
   }
   stats.innerHTML = chips.length ? chips.join("") : '<span class="chip">Community piece</span>';
+  renderDetailActivity(item);
   renderDetailOwners(item);
   panel.classList.add("open");
   panel.setAttribute("aria-hidden", "false");

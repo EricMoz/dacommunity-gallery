@@ -90,50 +90,130 @@ def excerpt(text: str, max_len: int = 160) -> str:
 
 
 def summarize_owners(owners: list[dict]) -> dict:
-    total_copies = sum(int(o.get("quantity", 0)) for o in owners)
+    sorted_owners = sorted(
+        owners, key=lambda x: int(x.get("quantity", 0)), reverse=True
+    )
+    total_copies = sum(int(o.get("quantity", 0)) for o in sorted_owners)
+    holder_rows = [
+        {
+            "address": o.get("address"),
+            "quantity": int(o.get("quantity", 0)),
+        }
+        for o in sorted_owners
+        if o.get("address")
+    ]
     return {
-        "holder_count": len(owners),
+        "holder_count": len(holder_rows),
         "circulating_copies": total_copies,
-        "top_holders": [
-            {
-                "address": o.get("address"),
-                "quantity": int(o.get("quantity", 0)),
-            }
-            for o in sorted(
-                owners, key=lambda x: int(x.get("quantity", 0)), reverse=True
-            )[:5]
-        ],
+        "top_holders": holder_rows[:5],
+        "holders": holder_rows,
     }
 
 
-def build_mint_date_index(client: OpenSeaClient) -> dict[str, str]:
-    """Earliest mint/transfer-to-zero-address timestamp per token (ISO UTC)."""
-    from datetime import datetime, timezone
+ZERO_ADDRESS = "0x0000000000000000000000000000000000000000"
 
+
+def parse_activity_event(event: dict) -> dict | None:
+    """Normalize mint / transfer / sale into a compact activity row."""
+    ts = event.get("event_timestamp")
+    if ts is None:
+        return None
+    at = datetime.fromtimestamp(int(ts), tz=timezone.utc).isoformat()
+    event_type = (event.get("event_type") or "").lower()
+    qty = int(event.get("quantity") or 1)
+
+    if event_type == "transfer":
+        transfer_type = (event.get("transfer_type") or "").lower()
+        from_addr = (event.get("from_address") or "").lower()
+        to_addr = event.get("to_address") or ""
+        if transfer_type in ("mint", "create") or from_addr in (ZERO_ADDRESS, ""):
+            kind = "mint"
+            from_addr = None
+        else:
+            kind = "transfer"
+        return {
+            "type": kind,
+            "at": at,
+            "from": event.get("from_address") if kind == "transfer" else None,
+            "to": to_addr or None,
+            "quantity": qty,
+        }
+
+    if event_type == "sale":
+        return {
+            "type": "sale",
+            "at": at,
+            "from": event.get("seller") or event.get("from_address"),
+            "to": event.get("buyer") or event.get("to_address"),
+            "quantity": qty,
+            "price_eth": None,
+        }
+
+    if event_type == "mint":
+        return {
+            "type": "mint",
+            "at": at,
+            "from": None,
+            "to": event.get("to_address") or event.get("buyer"),
+            "quantity": qty,
+        }
+
+    return None
+
+
+def process_collection_events(
+    client: OpenSeaClient,
+    *,
+    max_activity_per_token: int = 12,
+) -> tuple[dict[str, str], dict[str, list[dict]]]:
+    """One pass: earliest mint per token + recent activity (incl. transfers)."""
     earliest: dict[str, int] = {}
-    zero = "0x0000000000000000000000000000000000000000"
-    print("Fetching collection events for first-mint dates...")
-    for event in client.iter_collection_events(event_types=["mint", "transfer"]):
+    activity: dict[str, list[dict]] = {}
+
+    print("Fetching collection events (mints + transfers + sales)...")
+    for event in client.iter_collection_events(
+        event_types=["mint", "transfer", "sale"]
+    ):
         nft = event.get("nft") or event.get("asset") or {}
         token_id = str(nft.get("identifier", ""))
         ts = event.get("event_timestamp")
         if not token_id or ts is None:
             continue
         ts = int(ts)
+
         event_type = (event.get("event_type") or "").lower()
         if event_type == "transfer":
             transfer_type = (event.get("transfer_type") or "").lower()
             from_addr = (event.get("from_address") or "").lower()
-            if transfer_type not in ("mint", "create") and from_addr not in (zero, ""):
-                continue
-        prev = earliest.get(token_id)
-        if prev is None or ts < prev:
-            earliest[token_id] = ts
+            if transfer_type not in ("mint", "create") and from_addr not in (
+                ZERO_ADDRESS,
+                "",
+            ):
+                pass
+            else:
+                prev = earliest.get(token_id)
+                if prev is None or ts < prev:
+                    earliest[token_id] = ts
+        elif event_type == "mint":
+            prev = earliest.get(token_id)
+            if prev is None or ts < prev:
+                earliest[token_id] = ts
 
-    return {
+        row = parse_activity_event(event)
+        if row:
+            activity.setdefault(token_id, []).append(row)
+
+    mint_dates = {
         tid: datetime.fromtimestamp(ts, tz=timezone.utc).isoformat()
         for tid, ts in earliest.items()
     }
+    trimmed: dict[str, list[dict]] = {}
+    for tid, rows in activity.items():
+        rows.sort(key=lambda r: r["at"], reverse=True)
+        trimmed[tid] = rows[:max_activity_per_token]
+
+    print(f"  Activity rows for {len(trimmed)} tokens")
+    return mint_dates, trimmed
 
 
 def build_item(
@@ -142,6 +222,7 @@ def build_item(
     owners: list[dict] | None,
     *,
     minted_at: str | None = None,
+    recent_activity: list[dict] | None = None,
 ) -> dict:
     token_id = str(nft.get("identifier", ""))
     description = clean_description(nft.get("description"))
@@ -173,6 +254,8 @@ def build_item(
     }
     if minted_at:
         item["minted_at"] = minted_at
+    if recent_activity:
+        item["recent_activity"] = recent_activity
     if raw_name != display:
         item["opensea_name"] = raw_name
     return item
@@ -285,12 +368,13 @@ def main() -> int:
         nfts = nfts[: args.max_items]
 
     mint_dates: dict[str, str] = {}
+    activity_by_token: dict[str, list[dict]] = {}
     if not args.quick:
         try:
-            mint_dates = build_mint_date_index(client)
+            mint_dates, activity_by_token = process_collection_events(client)
             print(f"  Mint dates for {len(mint_dates)} tokens")
         except Exception as exc:
-            print(f"  Warning: could not load mint dates ({exc})")
+            print(f"  Warning: could not load collection events ({exc})")
 
     items = []
     items_by_id: dict[str, dict] = {}
@@ -317,6 +401,7 @@ def main() -> int:
             listing,
             owners,
             minted_at=mint_dates.get(token_id),
+            recent_activity=activity_by_token.get(token_id),
         )
         if item["listed"]:
             listed_count += 1

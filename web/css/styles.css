@@ -944,6 +944,76 @@ button.stat:focus-visible {
   flex-shrink: 0;
 }
 
+/* Detail activity (transfers, sales, mints) */
+.detail-activity {
+  margin: 1rem 0 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 2px dashed #ccc;
+}
+
+.activity-list {
+  list-style: none;
+  margin: 0 0 0.65rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.activity-row {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  grid-template-rows: auto auto;
+  gap: 0.1rem 0.65rem;
+  padding: 0.5rem 0.6rem;
+  background: #fffef5;
+  border: 1px solid rgba(10, 10, 10, 0.12);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.activity-row-transfer {
+  border-left: 3px solid var(--blue-accent);
+}
+
+.activity-type {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  align-self: center;
+}
+
+.activity-when {
+  grid-column: 2;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.activity-detail {
+  grid-column: 2;
+  font-weight: 600;
+  color: var(--black);
+  word-break: break-word;
+}
+
+.activity-opensea-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.owner-chip-more {
+  display: inline-block;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
 /* Detail owners */
 .detail-owners {
   margin: 1rem 0;
