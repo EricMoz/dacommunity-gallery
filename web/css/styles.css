@@ -1827,3 +1827,141 @@ body.film-page {
   background: #000;
   border-top: 1px solid #222;
 }
+
+.film-nav-links {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.film-nav-links .film-back {
+  display: inline;
+}
+
+/* Film hub landing (/film/) — tile grid for future titles */
+.film-hub-page .film-hub-main {
+  flex: 1;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.75rem 1.25rem 2.5rem;
+  width: 100%;
+}
+
+.film-hub-hero {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.film-hub-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 5vw, 2.4rem);
+  margin: 0.35rem 0 0.5rem;
+  line-height: 1.1;
+  color: #f5f5f5;
+}
+
+.film-hub-lead {
+  margin: 0 0 0.85rem;
+  font-size: 0.95rem;
+  color: #9a9a9a;
+  line-height: 1.5;
+}
+
+.film-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.15rem;
+}
+
+.film-tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.35rem 1.2rem 1.1rem;
+  text-decoration: none;
+  color: var(--white);
+  background: linear-gradient(160deg, #141414 0%, #252525 100%);
+  border: 2px solid rgba(255, 204, 0, 0.35);
+  border-radius: var(--radius);
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.9);
+  transition:
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+  min-height: 200px;
+}
+
+.film-tile:hover {
+  transform: translate(-3px, -3px);
+  border-color: var(--yellow);
+  box-shadow: 9px 9px 0 rgba(0, 0, 0, 0.85);
+  color: var(--white);
+  text-decoration: none;
+}
+
+.film-tile-play {
+  font-size: 1.5rem;
+  color: var(--yellow);
+  line-height: 1;
+}
+
+.film-tile-runtime {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  background: var(--yellow);
+  color: var(--black);
+  border: 2px solid var(--black);
+  border-radius: 4px;
+}
+
+.film-tile-runtime-soon {
+  background: #333;
+  color: #888;
+  border-color: #555;
+}
+
+.film-tile-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  margin: 0.15rem 0 0;
+  color: var(--yellow);
+  line-height: 1.15;
+}
+
+.film-tile-desc {
+  margin: 0;
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.45;
+  flex: 1;
+}
+
+.film-tile-cta {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--yellow);
+  margin-top: 0.15rem;
+  transition: transform 0.18s ease;
+}
+
+.film-tile:hover .film-tile-cta {
+  transform: translateX(4px);
+}
+
+.film-tile-soon {
+  pointer-events: none;
+  opacity: 0.55;
+  border-style: dashed;
+  border-color: #444;
+  box-shadow: none;
+}
+
+.film-hub-page .nav-btn-film.is-active {
+  cursor: default;
+}

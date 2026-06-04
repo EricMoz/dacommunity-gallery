@@ -10,7 +10,8 @@ Static gallery for the [daCAT daCommunity](https://opensea.io/collection/rodeo-p
 | `/dacommunity/` | Full gallery, collector lookup, OpenSea data |
 | `/badges/` | Badges coming-soon placeholder |
 | `/analytics/` | Cat Coin market cap bar chart race (Flourish embed) |
-| `/film/` | Mozvane ~5 min anime (YouTube — Sora-era community film) |
+| `/film/` | Films hub (tile picker) |
+| `/film/mozvane/` | Mozvane ~5 min anime (YouTube — Sora-era community film) |
 
 ## Architecture (for reviewers)
 
@@ -77,7 +78,7 @@ web/              Static site (HTML, CSS, JS, data, assets)
   dacommunity/    daCommunity gallery (app.js expects ../data paths)
   badges/         Badges placeholder
   analytics/      Cat Coin MC race (Flourish)
-  film/           Mozvane short film (YouTube embed)
+  film/           Films hub; film/mozvane/ etc. per title (YouTube embed)
 .github/workflows Deploy Pages + daily data refresh
 scripts/          PowerShell helpers
 ```

@@ -33,6 +33,7 @@ jobs:
           test -f web/badges/index.html || (echo "Missing web/badges/index.html" && exit 1)
           test -f web/analytics/index.html || (echo "Missing web/analytics/index.html" && exit 1)
           test -f web/film/index.html || (echo "Missing web/film/index.html" && exit 1)
+          test -f web/film/mozvane/index.html || (echo "Missing web/film/mozvane/index.html" && exit 1)
           test -f web/data/gallery_catalog.json || (echo "Missing gallery_catalog.json — run: cd backend && python build_catalog.py" && exit 1)
           test -f web/data/gallery_data.json || (echo "Missing gallery_data.json — run fetch locally first" && exit 1)
           echo "Site files OK"
