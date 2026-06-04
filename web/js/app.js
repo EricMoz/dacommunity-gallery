@@ -291,6 +291,113 @@ function holderLabel(address) {
   return entry.ens_name || entry.username || shortenAddress(address);
 }
 
+function addressDisplayMeta(address) {
+  if (!address) return { address: "", display: "", lookupValue: "" };
+  var key = address.toLowerCase();
+  var entry = walletIndex && walletIndex.by_address && walletIndex.by_address[key];
+  var lookupValue = (entry && entry.ens_name) || address;
+  return {
+    address: key,
+    display: entry ? entry.ens_name || entry.username || shortenAddress(address) : shortenAddress(address),
+    lookupValue: lookupValue,
+  };
+}
+
+function showCopyToast(message) {
+  var el = $("#copy-toast");
+  if (!el) {
+    el = document.createElement("p");
+    el.id = "copy-toast";
+    el.className = "copy-toast";
+    el.setAttribute("role", "status");
+    el.setAttribute("aria-live", "polite");
+    document.body.appendChild(el);
+  }
+  el.textContent = message;
+  el.classList.add("is-visible");
+  clearTimeout(showCopyToast._timer);
+  showCopyToast._timer = setTimeout(function () {
+    el.classList.remove("is-visible");
+  }, 2200);
+}
+
+function copyFullAddress(address) {
+  if (!address) return;
+  var full = address.toLowerCase();
+  function done(ok) {
+    showCopyToast(ok ? "Address copied" : "Copy failed — select and copy manually");
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(full).then(function () { done(true); }).catch(function () { done(false); });
+    return;
+  }
+  var ta = document.createElement("textarea");
+  ta.value = full;
+  ta.setAttribute("readonly", "");
+  ta.style.position = "fixed";
+  ta.style.left = "-9999px";
+  document.body.appendChild(ta);
+  ta.select();
+  try {
+    done(document.execCommand("copy"));
+  } catch (e) {
+    done(false);
+  }
+  document.body.removeChild(ta);
+}
+
+function runWalletLookupFromAddress(address, lookupValue) {
+  var input = $("#wallet-input");
+  if (!input) return;
+  var meta = addressDisplayMeta(address);
+  input.value = lookupValue || meta.lookupValue || meta.address;
+  closeDetail();
+  closeCollectorsModal();
+  renderWalletLookup(input.value);
+  $("#wallet-result").hidden = false;
+  var panel = $("#wallet-panel");
+  if (panel) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+  input.focus();
+}
+
+function addressActionHtml(address) {
+  if (!address || !/^0x[a-fA-F0-9]{40}$/i.test(address)) {
+    return escapeHtml(address || "");
+  }
+  var meta = addressDisplayMeta(address);
+  return (
+    '<span class="addr-action">' +
+    '<button type="button" class="addr-action-lookup" data-address="' +
+    escapeHtml(meta.address) +
+    '" data-lookup="' +
+    escapeHtml(meta.lookupValue) +
+    '" title="Look up in collector search">' +
+    escapeHtml(meta.display) +
+    "</button>" +
+    '<button type="button" class="addr-action-copy" data-copy="' +
+    escapeHtml(meta.address) +
+    '" title="Copy full address">Copy</button></span>"
+  );
+}
+
+function bindAddressActions(root) {
+  if (!root) return;
+  root.querySelectorAll(".addr-action-copy").forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      copyFullAddress(btn.getAttribute("data-copy"));
+    });
+  });
+  root.querySelectorAll(".addr-action-lookup").forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      runWalletLookupFromAddress(btn.getAttribute("data-address"), btn.getAttribute("data-lookup"));
+    });
+  });
+}
+
 function isEthAddress(v) {
   return /^0x[a-fA-F0-9]{40}$/.test(v.trim());
 }
@@ -636,24 +743,13 @@ function activityTypeLabel(type) {
 function formatActivityLine(row) {
   var qty = row.quantity > 1 ? " ×" + row.quantity : "";
   if (row.type === "mint") {
-    return "Minted to " + escapeHtml(holderLabel(row.to || "")) + qty;
+    return "Minted to " + addressActionHtml(row.to || "") + qty;
   }
   if (row.type === "transfer") {
-    return (
-      escapeHtml(holderLabel(row.from || "")) +
-      " → " +
-      escapeHtml(holderLabel(row.to || "")) +
-      qty
-    );
+    return addressActionHtml(row.from || "") + " → " + addressActionHtml(row.to || "") + qty;
   }
   if (row.type === "sale") {
-    return (
-      "Sale · " +
-      escapeHtml(holderLabel(row.from || "")) +
-      " → " +
-      escapeHtml(holderLabel(row.to || "")) +
-      qty
-    );
+    return "Sale · " + addressActionHtml(row.from || "") + " → " + addressActionHtml(row.to || "") + qty;
   }
   return activityTypeLabel(row.type) + qty;
 }
@@ -686,6 +782,7 @@ function renderDetailActivity(item) {
       );
     })
     .join("");
+  bindAddressActions(list);
   if (item.opensea_url) {
     var sep = item.opensea_url.indexOf("?") >= 0 ? "&" : "?";
     osLink.href =
@@ -717,14 +814,19 @@ function renderDetailOwners(item) {
   chipsEl.innerHTML =
     shown
       .map(function (h) {
+        var meta = addressDisplayMeta(h.address);
         return (
+          '<span class="owner-chip-wrap">' +
           '<button type="button" class="owner-chip" data-address="' +
-          escapeHtml(h.address) +
+          escapeHtml(meta.address) +
           '">' +
-          escapeHtml(holderLabel(h.address)) +
+          escapeHtml(meta.display) +
           " · " +
           h.quantity +
-          "</button>"
+          "</button>" +
+          '<button type="button" class="addr-action-copy owner-chip-copy" data-copy="' +
+          escapeHtml(meta.address) +
+          '" title="Copy full address">Copy</button></span>"
         );
       })
       .join("") +
@@ -737,6 +839,7 @@ function renderDetailOwners(item) {
       exploreCollector(btn.dataset.address, item.token_id);
     });
   });
+  bindAddressActions(chipsEl);
 }
 
 function openDetail(item) {
