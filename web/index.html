@@ -37,27 +37,37 @@
         <p class="eyebrow">Legendary crypto culture</p>
         <h1>daCAT <span class="accent">entertainment</span></h1>
         <p class="home-lead">Collections, film, and live charts — one home for the community&apos;s art, stories, and experiments.</p>
-        <nav class="home-jump" aria-label="On this page">
-          <a href="collections/">Collections</a>
-          <a href="#explore">Film &amp; charts</a>
-        </nav>
       </div>
     </section>
 
-    <section id="collections" class="home-section home-collections-teaser" aria-labelledby="collections-heading">
+    <section id="collections" class="home-section" aria-labelledby="collections-heading">
       <header class="home-section-head">
         <h2 id="collections-heading" class="home-section-title">Collections</h2>
         <p class="home-section-lead">NFT archives on Base and Ethereum — daCommunity live, Badges on the way.</p>
       </header>
-      <a class="home-teaser-card" href="collections/">
-        <span class="home-teaser-label">NFT collections</span>
-        <span class="home-teaser-title">daCommunity + Badges</span>
-        <span class="home-teaser-desc">Browse the gallery or preview the next drop.</span>
-        <span class="home-teaser-cta">Choose a collection →</span>
-      </a>
+      <div class="collection-grid" aria-label="NFT collections">
+        <a class="collection-card collection-card-live" href="dacommunity/">
+          <span class="collection-card-status">Live</span>
+          <div class="collection-card-visual" aria-hidden="true">
+            <img src="assets/brand/dacat-mascot.png" alt="" width="88" height="88" />
+          </div>
+          <h3 class="collection-card-title">daCommunity NFT Archive</h3>
+          <p>ERC-1155 stories from Telegram — every <code>dacat.*</code> piece on Base.</p>
+          <span class="collection-card-cta">Open gallery →</span>
+        </a>
+        <a class="collection-card collection-card-soon" href="badges/">
+          <span class="collection-card-status collection-card-status-soon">Coming soon</span>
+          <div class="collection-card-visual collection-card-visual-badges" aria-hidden="true">
+            <span class="badge-glyph" aria-hidden="true">★</span>
+          </div>
+          <h3 class="collection-card-title">Badges</h3>
+          <p>1:1 community badges on Ethereum — crafted for long-term holders.</p>
+          <span class="collection-card-cta">Preview →</span>
+        </a>
+      </div>
     </section>
 
-    <section id="explore" class="home-section home-explore" aria-labelledby="explore-heading">
+    <section id="watch" class="home-section home-explore" aria-labelledby="explore-heading">
       <header class="home-section-head">
         <h2 id="explore-heading" class="home-section-title">Watch &amp; track</h2>
         <p class="home-section-lead">Film and live data — same daCAT energy, different format.</p>

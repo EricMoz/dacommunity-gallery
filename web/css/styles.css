@@ -1107,13 +1107,14 @@ button.stat:focus-visible {
 @keyframes spin { to { transform: rotate(360deg); } }
 
 .site-footer {
-  max-width: 1140px;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
   padding: 1.5rem 1.25rem;
   text-align: center;
   font-size: 0.8rem;
   background: var(--black);
   color: var(--yellow);
+  border-top: 4px solid var(--yellow);
 }
 
 .site-footer a { color: var(--yellow); }
@@ -1176,33 +1177,6 @@ button.stat:focus-visible {
   line-height: 1.55;
 }
 
-.home-jump {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem 1rem;
-  margin-top: 1rem;
-  padding-top: 0.85rem;
-  border-top: 2px solid rgba(10, 10, 10, 0.1);
-}
-
-.home-jump a {
-  font-size: 0.82rem;
-  font-weight: 700;
-  text-decoration: none;
-  color: var(--black);
-  padding: 0.35rem 0.75rem;
-  border: 2px solid var(--black);
-  border-radius: 6px;
-  background: var(--yellow);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.home-jump a:hover {
-  transform: translateY(-1px);
-  box-shadow: 3px 3px 0 var(--black);
-}
-
 .nav-btn-home.is-active,
 .nav-btn-collections.is-active {
   background: var(--yellow);
@@ -1249,7 +1223,11 @@ button.stat:focus-visible {
 
 /* Home page sections (Collections, Watch & track) */
 .home-section {
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 5.5rem;
+}
+
+.home-section .collection-grid {
+  margin-top: 0.15rem;
 }
 
 .home-section-head {
