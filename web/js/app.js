@@ -47,6 +47,8 @@ let activeFilter = "all";
 let searchQuery = "";
 let dataSource = "catalog";
 let activeCollectorAddress = null;
+/** Token id when detail drawer is open — refresh holders/activity after background merge. */
+let activeDetailTokenId = null;
 
 function isFileProtocol() {
   return window.location.protocol === "file:";
@@ -128,6 +130,10 @@ function mergeFullDescriptions(full) {
   $("#footer-updated").textContent = new Date(galleryData.generated_at).toLocaleString();
   renderStats(galleryData.collection);
   refreshView();
+  if (activeDetailTokenId) {
+    var openItem = itemsById.get(String(activeDetailTokenId));
+    if (openItem) refreshDetailPanel(openItem);
+  }
 }
 
 // --- Data loading: catalog (fast) → full JSON (stories/activity) → wallet index ---
@@ -747,6 +753,92 @@ function activityTypeLabel(type) {
   return type || "Activity";
 }
 
+/** Drop duplicate ERC-1155 activity rows (same as backend dedupe_activity_rows). */
+function dedupeActivityRows(rows) {
+  if (!rows || !rows.length) return [];
+  var seen = {};
+  var out = [];
+  rows.forEach(function (row) {
+    var key =
+      (row.type || "") +
+      "|" +
+      (row.at || "") +
+      "|" +
+      (row.from || "").toLowerCase() +
+      "|" +
+      (row.to || "").toLowerCase() +
+      "|" +
+      (row.quantity || 1);
+    if (seen[key]) return;
+    seen[key] = true;
+    out.push(row);
+  });
+  return out;
+}
+
+/** Most recent mint/transfer/sale — from owners.latest_change or recent_activity. */
+function getLatestChange(item) {
+  if (item.owners && item.owners.latest_change) return item.owners.latest_change;
+  var rows = dedupeActivityRows(item.recent_activity || []);
+  return rows.length ? rows[0] : null;
+}
+
+/** Addresses to highlight in holder chips (recipient of latest change). */
+function recentHolderHighlights(item) {
+  var change = getLatestChange(item);
+  var map = {};
+  if (!change) return map;
+  if (change.to) map[String(change.to).toLowerCase()] = "received";
+  return map;
+}
+
+function formatLatestChangeHtml(change) {
+  if (!change) return "";
+  var qty = change.quantity > 1 ? " ×" + change.quantity : "";
+  var when = formatMintDate(change.at);
+  if (change.type === "transfer") {
+    return (
+      "<strong>Latest transfer</strong>" +
+      (when ? " · " + escapeHtml(when) : "") +
+      " · " +
+      addressActionHtml(change.from || "") +
+      " → " +
+      addressActionHtml(change.to || "") +
+      qty
+    );
+  }
+  if (change.type === "sale") {
+    return (
+      "<strong>Latest sale</strong>" +
+      (when ? " · " + escapeHtml(when) : "") +
+      " · " +
+      addressActionHtml(change.from || "") +
+      " → " +
+      addressActionHtml(change.to || "") +
+      qty
+    );
+  }
+  if (change.type === "mint") {
+    return (
+      "<strong>Latest mint</strong>" +
+      (when ? " · " + escapeHtml(when) : "") +
+      " · to " +
+      addressActionHtml(change.to || "") +
+      qty
+    );
+  }
+  return escapeHtml(activityTypeLabel(change.type)) + (when ? " · " + escapeHtml(when) : "");
+}
+
+function setActivityDisclosureOpen(open) {
+  var toggle = $("#detail-activity-toggle");
+  var panel = $("#detail-activity-panel");
+  if (!toggle || !panel) return;
+  toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  toggle.classList.toggle("is-open", open);
+  panel.hidden = !open;
+}
+
 function formatActivityLine(row) {
   var qty = row.quantity > 1 ? " ×" + row.quantity : "";
   if (row.type === "mint") {
@@ -765,12 +857,16 @@ function renderDetailActivity(item) {
   var block = $("#detail-activity");
   var list = $("#detail-activity-list");
   var osLink = $("#detail-activity-opensea");
-  var rows = item.recent_activity || [];
+  var countEl = $("#detail-activity-count");
+  var rows = dedupeActivityRows(item.recent_activity || []);
   if (!rows.length) {
     block.hidden = true;
+    setActivityDisclosureOpen(false);
     return;
   }
   block.hidden = false;
+  setActivityDisclosureOpen(false);
+  if (countEl) countEl.textContent = "(" + rows.length + ")";
   list.innerHTML = rows
     .map(function (row) {
       return (
@@ -803,30 +899,60 @@ function renderDetailActivity(item) {
 function renderDetailOwners(item) {
   var ownersBlock = $("#detail-owners");
   var chipsEl = $("#detail-owner-chips");
+  var leadEl = $("#detail-owners-lead");
+  var latestEl = $("#detail-latest-change");
   var explore = $("#collector-explore");
   explore.hidden = true;
   activeCollectorAddress = null;
-  var holders =
-    (item.owners && item.owners.holders) ||
-    (item.owners && item.owners.top_holders) ||
-    [];
+  var owners = item.owners || {};
+  var holders = owners.holders || owners.top_holders || [];
   if (!holders.length) {
     ownersBlock.hidden = true;
     return;
   }
   ownersBlock.hidden = false;
-  var maxChips = 14;
+  if (leadEl) {
+    leadEl.hidden = false;
+    leadEl.textContent =
+      "Live ownership from OpenSea · " +
+      nvl(owners.holder_count, holders.length) +
+      " holders · " +
+      nvl(owners.circulating_copies, "—") +
+      " copies in circulation";
+  }
+  var change = getLatestChange(item);
+  if (latestEl) {
+    if (change) {
+      latestEl.hidden = false;
+      latestEl.innerHTML = formatLatestChangeHtml(change);
+      bindAddressActions(latestEl);
+    } else {
+      latestEl.hidden = true;
+      latestEl.innerHTML = "";
+    }
+  }
+  var highlights = recentHolderHighlights(item);
+  var maxChips = 18;
   var shown = holders.slice(0, maxChips);
   var extra = holders.length - shown.length;
   chipsEl.innerHTML =
     shown
       .map(function (h) {
         var meta = addressDisplayMeta(h.address);
+        var hi =
+          highlights[meta.address] === "received" ? " owner-chip-received" : "";
+        var badge =
+          highlights[meta.address] === "received"
+            ? '<span class="owner-chip-tag">Current</span>'
+            : "";
         return (
           '<span class="owner-chip-wrap">' +
-          '<button type="button" class="owner-chip" data-address="' +
+          '<button type="button" class="owner-chip' +
+          hi +
+          '" data-address="' +
           escapeHtml(meta.address) +
           '">' +
+          badge +
           escapeHtml(meta.display) +
           " · " +
           h.quantity +
@@ -849,8 +975,15 @@ function renderDetailOwners(item) {
   bindAddressActions(chipsEl);
 }
 
+function refreshDetailPanel(item) {
+  if (!item) return;
+  renderDetailOwners(item);
+  renderDetailActivity(item);
+}
+
 function openDetail(item) {
   closeCollectorsModal();
+  activeDetailTokenId = item.token_id;
   var panel = $("#detail-panel");
   fillMediaSlot($("#detail-media-slot"), item, { autoplay: true, controls: true });
   $("#detail-title").innerHTML = formatPieceTitleHtml(itemTitle(item));
@@ -886,8 +1019,8 @@ function openDetail(item) {
     chips.push('<span class="chip">List <strong>' + formatEth(item.listing.amount_eth) + " ETH</strong></span>");
   }
   stats.innerHTML = chips.length ? chips.join("") : '<span class="chip">Community piece</span>';
-  renderDetailActivity(item);
   renderDetailOwners(item);
+  renderDetailActivity(item);
   panel.classList.add("open");
   panel.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
@@ -897,10 +1030,12 @@ function closeDetail() {
   var panel = $("#detail-panel");
   panel.classList.remove("open");
   panel.setAttribute("aria-hidden", "true");
+  activeDetailTokenId = null;
   if (!$("#collectors-modal").classList.contains("open")) {
     document.body.style.overflow = "";
   }
   $("#collector-explore").hidden = true;
+  setActivityDisclosureOpen(false);
 }
 
 function refreshView() {
@@ -938,6 +1073,14 @@ function bindUi() {
   });
   $("#detail-close").addEventListener("click", closeDetail);
   $("#detail-backdrop").addEventListener("click", closeDetail);
+  var activityToggle = $("#detail-activity-toggle");
+  if (activityToggle && !activityToggle.dataset.bound) {
+    activityToggle.dataset.bound = "1";
+    activityToggle.addEventListener("click", function () {
+      var open = activityToggle.getAttribute("aria-expanded") === "true";
+      setActivityDisclosureOpen(!open);
+    });
+  }
   document.addEventListener("keydown", function (e) {
     if (e.key !== "Escape") return;
     if ($("#collectors-modal").classList.contains("open")) {

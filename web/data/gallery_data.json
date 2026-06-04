@@ -87,7 +87,14 @@
             "address": "0x011dddd5b5470d2818bffb400b4e38949fe21ac3",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 11
+        }
       },
       "minted_at": "2026-01-24T00:27:49+00:00",
       "recent_activity": [
@@ -213,7 +220,14 @@
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
             "quantity": 4
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-01-23T22:47:11+00:00",
+          "from": null,
+          "to": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+          "quantity": 4
+        }
       },
       "minted_at": "2026-01-23T22:47:11+00:00",
       "recent_activity": [
@@ -308,7 +322,14 @@
             "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 6
+        }
       },
       "minted_at": "2026-01-10T00:57:37+00:00",
       "recent_activity": [
@@ -473,7 +494,14 @@
             "address": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-21T00:53:17+00:00",
+          "from": "0x7eefb260d5c0b6aeecf9e65354d4be7bb73583ef",
+          "to": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-12-20T17:13:31+00:00",
       "recent_activity": [
@@ -650,7 +678,14 @@
             "address": "0x93b34003169bd7cdb3e0710fedff4cb6795a32ef",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 10
+        }
       },
       "minted_at": "2025-12-13T02:29:13+00:00",
       "recent_activity": [
@@ -815,7 +850,14 @@
             "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
             "quantity": 2
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 21
+        }
       },
       "minted_at": "2025-12-06T03:05:05+00:00",
       "recent_activity": [
@@ -984,7 +1026,14 @@
             "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 10
+        }
       },
       "minted_at": "2025-11-21T23:58:03+00:00",
       "recent_activity": [
@@ -1161,7 +1210,14 @@
             "address": "0x4845b4ed2ae13dedace7da1616c3597a99c321a4",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 10
+        }
       },
       "minted_at": "2025-11-09T03:55:03+00:00",
       "recent_activity": [
@@ -1326,7 +1382,14 @@
             "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 10
+        }
       },
       "minted_at": "2025-11-01T18:02:43+00:00",
       "recent_activity": [
@@ -1503,7 +1566,14 @@
             "address": "0x2c64f2ccc998613a69b667623f65aeb75e157a24",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 10
+        }
       },
       "minted_at": "2025-10-26T19:29:09+00:00",
       "recent_activity": [
@@ -1676,7 +1746,14 @@
             "address": "0x6372d911ad7329509d683828be1bf5d4eb45bb42",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 10
+        }
       },
       "minted_at": "2025-10-17T00:30:23+00:00",
       "recent_activity": [
@@ -1865,7 +1942,14 @@
             "address": "0x13ff77c9315dde5ac9cfdb7258f99d7d70011803",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 10
+        }
       },
       "minted_at": "2025-10-14T00:58:01+00:00",
       "recent_activity": [
@@ -2030,7 +2114,14 @@
             "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 10
+        }
       },
       "minted_at": "2025-10-10T22:50:23+00:00",
       "recent_activity": [
@@ -2192,7 +2283,14 @@
             "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 10
+        }
       },
       "minted_at": "2025-10-03T22:40:21+00:00",
       "recent_activity": [
@@ -2365,7 +2463,14 @@
             "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 5
+        }
       },
       "minted_at": "2025-09-27T16:14:31+00:00",
       "recent_activity": [
@@ -2558,7 +2663,14 @@
             "address": "0x06eca6ce5f135ed9917b00630c26167de7e6a673",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-21T00:53:17+00:00",
+          "from": "0x7eefb260d5c0b6aeecf9e65354d4be7bb73583ef",
+          "to": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-09-22T00:09:01+00:00",
       "recent_activity": [
@@ -2747,7 +2859,14 @@
             "address": "0x06eca6ce5f135ed9917b00630c26167de7e6a673",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-03-09T17:43:39+00:00",
+          "from": "0x5b6725c9d9756895c9a61b023fc8285ebb6a3b61",
+          "to": "0x58e5c387c541ba7c4b04f126adb778fb02715afa",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-09-12T16:09:09+00:00",
       "recent_activity": [
@@ -2920,7 +3039,14 @@
             "address": "0xe56de42633384a3ec4535bddc08655af99b7180d",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 5
+        }
       },
       "minted_at": "2025-09-05T21:12:03+00:00",
       "recent_activity": [
@@ -3137,7 +3263,14 @@
             "address": "0x06eca6ce5f135ed9917b00630c26167de7e6a673",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-06-04T03:00:47+00:00",
+          "from": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "to": "0x3e43287a26acf9e5206f4551ccda29c7d9bea93e",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-09-01T19:48:55+00:00",
       "recent_activity": [
@@ -3318,7 +3451,14 @@
             "address": "0x1b0ca3b64719bddba0214814deb32d37634e418f",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 6
+        }
       },
       "minted_at": "2025-08-24T18:40:37+00:00",
       "recent_activity": [
@@ -3523,7 +3663,14 @@
             "address": "0x06eca6ce5f135ed9917b00630c26167de7e6a673",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-15T20:02:33+00:00",
+          "from": "0x3308ce801cc71d19769cc08b1a8d4abb24720e2c",
+          "to": "0x445a6fc0bf61535e7d2ef96258124fdb9a855fdc",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-08-22T19:13:53+00:00",
       "recent_activity": [
@@ -3732,7 +3879,14 @@
             "address": "0x06eca6ce5f135ed9917b00630c26167de7e6a673",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 40
+        }
       },
       "minted_at": "2025-08-16T20:04:43+00:00",
       "recent_activity": [
@@ -3925,7 +4079,14 @@
             "address": "0x06eca6ce5f135ed9917b00630c26167de7e6a673",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 5
+        }
       },
       "minted_at": "2025-08-09T18:23:51+00:00",
       "recent_activity": [
@@ -4110,7 +4271,14 @@
             "address": "0x4a35cee6c17fcb6bc9235521bd3b7feef6680232",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 5
+        }
       },
       "minted_at": "2025-08-02T23:22:15+00:00",
       "recent_activity": [
@@ -4287,7 +4455,14 @@
             "address": "0x68dc50641ceeada897519e20e8bd5282ec91c622",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-21T00:53:17+00:00",
+          "from": "0x7eefb260d5c0b6aeecf9e65354d4be7bb73583ef",
+          "to": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-07-26T00:58:51+00:00",
       "recent_activity": [
@@ -4466,7 +4641,14 @@
             "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 5
+        }
       },
       "minted_at": "2025-07-17T21:53:01+00:00",
       "recent_activity": [
@@ -4644,7 +4826,14 @@
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 6
+        }
       },
       "minted_at": "2025-07-15T00:02:53+00:00",
       "recent_activity": [
@@ -4828,7 +5017,14 @@
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 5
+        }
       },
       "minted_at": "2025-07-11T01:24:37+00:00",
       "recent_activity": [
@@ -5006,7 +5202,14 @@
             "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 3
+        }
       },
       "minted_at": "2025-06-27T18:58:31+00:00",
       "recent_activity": [
@@ -5190,7 +5393,14 @@
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 5
+        }
       },
       "minted_at": "2025-06-22T19:17:07+00:00",
       "recent_activity": [
@@ -5354,7 +5564,14 @@
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 3
+        }
       },
       "minted_at": "2025-06-19T01:41:05+00:00",
       "recent_activity": [
@@ -5527,7 +5744,14 @@
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-21T00:53:17+00:00",
+          "from": "0x7eefb260d5c0b6aeecf9e65354d4be7bb73583ef",
+          "to": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-06-13T05:08:59+00:00",
       "recent_activity": [
@@ -5704,7 +5928,14 @@
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-21T00:53:17+00:00",
+          "from": "0x7eefb260d5c0b6aeecf9e65354d4be7bb73583ef",
+          "to": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-06-08T14:37:13+00:00",
       "recent_activity": [
@@ -5885,7 +6116,14 @@
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-21T00:53:17+00:00",
+          "from": "0x7eefb260d5c0b6aeecf9e65354d4be7bb73583ef",
+          "to": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-05-31T13:31:09+00:00",
       "recent_activity": [
@@ -6070,7 +6308,14 @@
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-21T00:53:17+00:00",
+          "from": "0x7eefb260d5c0b6aeecf9e65354d4be7bb73583ef",
+          "to": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-05-24T16:50:17+00:00",
       "recent_activity": [
@@ -6251,7 +6496,14 @@
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-21T00:53:17+00:00",
+          "from": "0x7eefb260d5c0b6aeecf9e65354d4be7bb73583ef",
+          "to": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-05-22T23:01:11+00:00",
       "recent_activity": [
@@ -6428,7 +6680,14 @@
             "address": "0x06eca6ce5f135ed9917b00630c26167de7e6a673",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 3
+        }
       },
       "minted_at": "2025-05-19T22:20:09+00:00",
       "recent_activity": [
@@ -6597,7 +6856,14 @@
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 3
+        }
       },
       "minted_at": "2025-05-15T23:44:33+00:00",
       "recent_activity": [
@@ -6770,7 +7036,14 @@
             "address": "0x016622b2b9e2caca189f57efb38c527d8b12eafc",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-05-13T22:42:19+00:00",
       "recent_activity": [
@@ -6927,7 +7200,14 @@
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 2
+        }
       },
       "minted_at": "2025-05-11T01:30:45+00:00",
       "recent_activity": [
@@ -7100,7 +7380,14 @@
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-21T00:53:17+00:00",
+          "from": "0x7eefb260d5c0b6aeecf9e65354d4be7bb73583ef",
+          "to": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-05-09T22:16:25+00:00",
       "recent_activity": [
@@ -7265,7 +7552,14 @@
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-12T16:40:39+00:00",
+          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 2
+        }
       },
       "minted_at": "2025-05-05T23:32:25+00:00",
       "recent_activity": [
@@ -7434,7 +7728,14 @@
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-21T00:53:17+00:00",
+          "from": "0x7eefb260d5c0b6aeecf9e65354d4be7bb73583ef",
+          "to": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-05-05T23:27:07+00:00",
       "recent_activity": [
@@ -7623,7 +7924,14 @@
             "address": "0x1b0ca3b64719bddba0214814deb32d37634e418f",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-21T00:53:17+00:00",
+          "from": "0x7eefb260d5c0b6aeecf9e65354d4be7bb73583ef",
+          "to": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-05-03T18:20:03+00:00",
       "recent_activity": [
@@ -7766,7 +8074,14 @@
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2025-04-30T15:23:49+00:00",
+          "from": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-04-29T03:53:29+00:00",
       "recent_activity": [
@@ -7887,7 +8202,14 @@
             "address": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-21T00:53:17+00:00",
+          "from": "0x7eefb260d5c0b6aeecf9e65354d4be7bb73583ef",
+          "to": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-04-28T22:43:57+00:00",
       "recent_activity": [
@@ -8017,7 +8339,14 @@
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "mint",
+          "at": "2025-04-24T23:55:01+00:00",
+          "from": null,
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 2
+        }
       },
       "minted_at": "2025-04-24T23:38:11+00:00",
       "recent_activity": [
@@ -8137,7 +8466,14 @@
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "mint",
+          "at": "2025-04-23T02:25:55+00:00",
+          "from": null,
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-04-23T00:20:51+00:00",
       "recent_activity": [
@@ -8244,7 +8580,14 @@
             "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "mint",
+          "at": "2025-04-22T07:23:21+00:00",
+          "from": null,
+          "to": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-04-21T15:46:13+00:00",
       "recent_activity": [
@@ -8379,7 +8722,14 @@
             "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "mint",
+          "at": "2025-04-22T07:22:27+00:00",
+          "from": null,
+          "to": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-04-21T15:45:53+00:00",
       "recent_activity": [
@@ -8514,7 +8864,14 @@
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "mint",
+          "at": "2025-04-22T07:23:41+00:00",
+          "from": null,
+          "to": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-04-21T15:45:37+00:00",
       "recent_activity": [
@@ -8627,7 +8984,14 @@
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2025-04-22T13:04:35+00:00",
+          "from": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "to": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-04-20T20:27:23+00:00",
       "recent_activity": [
@@ -8719,7 +9083,14 @@
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2025-04-22T13:04:53+00:00",
+          "from": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "to": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-04-20T20:27:13+00:00",
       "recent_activity": [
@@ -8811,7 +9182,14 @@
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2025-04-22T13:05:27+00:00",
+          "from": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "to": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-04-20T20:27:05+00:00",
       "recent_activity": [
@@ -8911,7 +9289,14 @@
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2025-04-22T13:05:41+00:00",
+          "from": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "to": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-04-18T02:20:03+00:00",
       "recent_activity": [
@@ -9025,7 +9410,14 @@
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2025-04-22T13:05:15+00:00",
+          "from": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "to": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-04-18T02:19:49+00:00",
       "recent_activity": [
@@ -9133,7 +9525,14 @@
             "address": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-21T00:53:17+00:00",
+          "from": "0x7eefb260d5c0b6aeecf9e65354d4be7bb73583ef",
+          "to": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-04-12T11:17:19+00:00",
       "recent_activity": [
@@ -9246,7 +9645,14 @@
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "mint",
+          "at": "2025-04-12T11:00:31+00:00",
+          "from": null,
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-04-12T03:16:07+00:00",
       "recent_activity": [
@@ -9338,7 +9744,14 @@
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2025-04-22T13:04:07+00:00",
+          "from": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "to": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-04-08T01:49:15+00:00",
       "recent_activity": [
@@ -9452,7 +9865,14 @@
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "mint",
+          "at": "2025-04-06T06:35:15+00:00",
+          "from": null,
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-04-05T08:10:49+00:00",
       "recent_activity": [
@@ -9554,7 +9974,14 @@
             "address": "0x67f3c18339ac0da29be9573d559a1291100b7c7b",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-21T00:53:17+00:00",
+          "from": "0x7eefb260d5c0b6aeecf9e65354d4be7bb73583ef",
+          "to": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-04-05T07:48:03+00:00",
       "recent_activity": [
@@ -9688,7 +10115,14 @@
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "mint",
+          "at": "2025-04-02T17:18:51+00:00",
+          "from": null,
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 4
+        }
       },
       "minted_at": "2025-04-02T05:53:39+00:00",
       "recent_activity": [
@@ -9802,7 +10236,14 @@
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2025-04-22T07:42:05+00:00",
+          "from": "0x7eefb260d5c0b6aeecf9e65354d4be7bb73583ef",
+          "to": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-04-01T03:41:43+00:00",
       "recent_activity": [
@@ -9946,7 +10387,14 @@
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-21T00:53:17+00:00",
+          "from": "0x7eefb260d5c0b6aeecf9e65354d4be7bb73583ef",
+          "to": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-03-29T22:56:43+00:00",
       "recent_activity": [
@@ -10089,7 +10537,14 @@
             "address": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
             "quantity": 1
           }
-        ]
+        ],
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-02-21T00:53:17+00:00",
+          "from": "0x7eefb260d5c0b6aeecf9e65354d4be7bb73583ef",
+          "to": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
+          "quantity": 1
+        }
       },
       "minted_at": "2025-03-28T02:41:03+00:00",
       "recent_activity": [

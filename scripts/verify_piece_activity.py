@@ -51,11 +51,29 @@ def main() -> int:
         wi = json.loads(WALLET.read_text(encoding="utf-8"))
         aliases = (wi.get("holders_index") or {}).get("ens_aliases") or {}
 
+    owners = item.get("owners") or {}
+    latest = owners.get("latest_change")
+    if latest:
+        print(
+            f"  latest_change: {latest.get('type')} @ {latest.get('at')}: "
+            f"{latest.get('from')} → {latest.get('to')}"
+        )
+    else:
+        print("  WARNING: owners.latest_change missing — run: cd backend && python enrich_gallery_json.py")
+
     if activity:
         for row in activity[:5]:
             print(f"  {row.get('type')} @ {row.get('at')}: {row.get('from')} → {row.get('to')} (×{row.get('quantity', 1)})")
     else:
         print("  WARNING: no recent_activity on item — re-run full fetch")
+
+    holders = owners.get("holders") or []
+    if args.expect_to:
+        want = resolve_ens(args.expect_to.strip(), aliases) or args.expect_to.strip().lower()
+        if not any((h.get("address") or "").lower() == want for h in holders):
+            print(f"FAIL: {want!r} not in owners.holders ({len(holders)} wallets)")
+            return 1
+        print(f"OK: {want!r} listed as current holder")
 
     if args.expect_from or args.expect_to:
         if not transfers:

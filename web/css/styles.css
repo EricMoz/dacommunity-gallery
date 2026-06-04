@@ -948,11 +948,124 @@ button.stat:focus-visible {
   flex-shrink: 0;
 }
 
-/* Detail activity (transfers, sales, mints) */
-.detail-activity {
+/* Detail — current holders first, activity collapsed */
+.detail-owners {
   margin: 1rem 0 0.5rem;
   padding-top: 0.75rem;
   border-top: 2px dashed #ccc;
+}
+
+.detail-owners-lead {
+  margin: 0 0 0.5rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.detail-latest-change {
+  margin: 0 0 0.65rem;
+  padding: 0.55rem 0.65rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  background: #fffef5;
+  border: 2px solid var(--black);
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 rgba(10, 10, 10, 0.12);
+}
+
+.detail-latest-change strong {
+  font-weight: 800;
+}
+
+.owner-chip-received {
+  border-color: var(--blue-accent) !important;
+  background: rgba(42, 127, 212, 0.12) !important;
+}
+
+.owner-chip-tag {
+  display: inline-block;
+  margin-right: 0.35rem;
+  padding: 0.05rem 0.35rem;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: var(--blue-accent);
+  color: var(--white);
+  border-radius: 3px;
+  vertical-align: middle;
+}
+
+/* Detail activity (transfers, sales, mints) — disclosure */
+.detail-activity {
+  margin: 0.75rem 0 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 2px dashed #ccc;
+}
+
+.activity-disclosure-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.55rem 0.65rem;
+  border: 2px solid var(--black);
+  border-radius: 8px;
+  background: var(--white);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  text-align: left;
+  box-shadow: 3px 3px 0 var(--black);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.activity-disclosure-toggle:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--black);
+}
+
+.activity-disclosure-toggle.is-open {
+  background: #fffef5;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  box-shadow: none;
+  margin-bottom: 0;
+}
+
+.activity-disclosure-count {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.activity-disclosure-chevron {
+  margin-left: auto;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid var(--black);
+  border-bottom: 2px solid var(--black);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.activity-disclosure-toggle.is-open .activity-disclosure-chevron {
+  transform: rotate(-135deg);
+  margin-top: 0.2rem;
+}
+
+.activity-disclosure-panel {
+  padding: 0.65rem 0.5rem 0.25rem;
+  border: 2px solid var(--black);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  background: #fffef5;
 }
 
 .activity-list {
@@ -1099,13 +1212,6 @@ button.stat:focus-visible {
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--text-muted);
-}
-
-/* Detail owners */
-.detail-owners {
-  margin: 1rem 0;
-  padding-top: 0.75rem;
-  border-top: 2px dashed #ccc;
 }
 
 .detail-subhead {
