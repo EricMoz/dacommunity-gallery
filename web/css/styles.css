@@ -962,23 +962,16 @@ button.stat:focus-visible {
   line-height: 1.4;
 }
 
-.owner-chip-received {
-  border-color: var(--blue-accent) !important;
-  background: rgba(42, 127, 212, 0.12) !important;
+.owner-chip-current {
+  border-width: 2px;
+  box-shadow: 2px 2px 0 var(--black);
 }
 
-.owner-chip-tag {
-  display: inline-block;
-  margin-right: 0.35rem;
-  padding: 0.05rem 0.35rem;
-  font-size: 0.58rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  background: var(--blue-accent);
-  color: var(--white);
-  border-radius: 3px;
-  vertical-align: middle;
+.owner-chip-note {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: lowercase;
 }
 
 /* Detail activity (transfers, sales, mints) — disclosure */

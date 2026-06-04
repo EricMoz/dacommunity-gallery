@@ -371,7 +371,7 @@ function resolveHoldersList(item) {
 }
 
 function sortHoldersForDisplay(holders, item) {
-  var pinAddr = Object.keys(recentHolderHighlights(item))[0];
+  var pinAddr = currentOwnerAddress(item);
   return holders.sort(function (a, b) {
     var aa = a.address.toLowerCase();
     var ba = b.address.toLowerCase();
@@ -878,13 +878,14 @@ function getLatestChange(item) {
   return rows.length ? rows[0] : null;
 }
 
-/** Addresses to highlight in holder chips (recipient of latest change). */
-function recentHolderHighlights(item) {
+/** Wallet that received the latest mint or transfer (same treatment for both). */
+function currentOwnerAddress(item) {
   var change = getLatestChange(item);
-  var map = {};
-  if (!change) return map;
-  if (change.to) map[String(change.to).toLowerCase()] = "received";
-  return map;
+  if (!change || !change.to) return null;
+  if (change.type === "mint" || change.type === "transfer") {
+    return String(change.to).toLowerCase();
+  }
+  return null;
 }
 
 function formatLatestChangePreview(change) {
@@ -1024,28 +1025,23 @@ function renderDetailOwners(item) {
       " copies" +
       incomplete;
   }
-  var highlights = recentHolderHighlights(item);
+  var currentAddr = currentOwnerAddress(item);
   chipsEl.innerHTML = holders
     .map(function (h) {
       var meta = addressDisplayMeta(h.address);
-      var hi = highlights[meta.address] === "received" ? " owner-chip-received" : "";
-      var badge =
-        highlights[meta.address] === "received"
-          ? '<span class="owner-chip-tag">Latest</span>'
-          : "";
+      var isCurrent = currentAddr && meta.address === currentAddr;
+      var label = holderChipLabelHtml(meta) + " · " + h.quantity;
+      if (isCurrent) label += ' <span class="owner-chip-note">· current</span>';
       return (
         '<span class="owner-chip-wrap">' +
         '<button type="button" class="owner-chip' +
-        hi +
+        (isCurrent ? " owner-chip-current" : "") +
         '" data-address="' +
         escapeHtml(meta.address) +
         '" title="' +
         escapeHtml(meta.full || meta.address) +
         '">' +
-        badge +
-        holderChipLabelHtml(meta) +
-        " · " +
-        h.quantity +
+        label +
         "</button>" +
         '<button type="button" class="addr-action-copy owner-chip-copy" data-copy="' +
         escapeHtml(meta.address) +
