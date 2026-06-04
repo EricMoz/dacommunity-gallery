@@ -1,4 +1,5 @@
 @echo off
+REM Optional Windows shortcut — same as: cd web && python -m http.server 8080
 title daCommunity Gallery
 cd /d "%~dp0web"
 echo.

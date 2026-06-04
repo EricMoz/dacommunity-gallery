@@ -1,12 +1,18 @@
 # daCommunity Gallery
 
-Static gallery for the [daCAT daCommunity](https://opensea.io/collection/rodeo-posts-12142) ERC-1155 collection on Base.
+Static gallery for the [daCAT daCommunity](https://opensea.io/collection/rodeo-posts-12142) ERC-1155 collection on Base, plus a collections hub for upcoming **Badges** (Ethereum).
 
 **Live site:** https://ericmoz.github.io/dacommunity-gallery/
 
+| Route | Purpose |
+|-------|---------|
+| `/` | Collection picker (daCommunity + Badges) |
+| `/dacommunity/` | Full gallery, collector lookup, OpenSea data |
+| `/badges/` | Badges coming-soon placeholder |
+
 ## Architecture (for reviewers)
 
-This is a **static site** — no backend server in production. GitHub Pages serves `web/`; all chain/market data is **pre-fetched** into JSON.
+This is a **static site** — no backend server in production. GitHub Pages serves `web/`; chain/market data is **pre-fetched** into JSON.
 
 ```
 OpenSea API v2  ──►  Python (backend/)  ──►  web/data/*.json
@@ -21,23 +27,24 @@ OpenSea API v2  ──►  Python (backend/)  ──►  web/data/*.json
 | **`fetch_gallery_data.py`** | Full refresh → `gallery_data.json` + `wallet_index.json` |
 | **`build_catalog.py`** | Slim `gallery_catalog.json` for fast first paint (~85 KB) |
 | **`merge_local_images.py`** | Optional: copy local artwork into `web/assets/nfts/` |
-| **`app.js`** | Loads catalog first, merges full JSON in background, wallet index lazy |
+| **`app.js`** | Catalog first, full JSON merge in background; wallet index lazy; path-aware under `/dacommunity/` |
 
 **Contract:** `0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1` (Base) · Steward: `dacatdreams.base.eth`
 
-**CI:** Daily workflow refreshes JSON (needs repo secret `OPENSEA_API_KEY`). Pages deploy workflow publishes `web/` with Git LFS for images.
-
-Similar projects can reuse this pattern: rate-limited API client → static JSON → static frontend with optional ENS lookup ([ensdata.net](https://ensdata.net)) in the browser.
+**CI:** Daily workflow refreshes JSON (repo secret `OPENSEA_API_KEY`). Pages deploy publishes `web/` with Git LFS for images.
 
 ## Local preview
 
-Do **not** open `index.html` directly (browser blocks `fetch`). Use:
+Browsers block `fetch()` on `file://` URLs — run any static server from `web/`:
 
-```bat
-start-gallery.bat
+```powershell
+cd web
+python -m http.server 8080
 ```
 
-Then open http://localhost:8080 (collection picker) or http://localhost:8080/dacommunity/ for the gallery.
+Then open http://localhost:8080/ (picker) or http://localhost:8080/dacommunity/ (gallery).
+
+On Windows, `start-gallery.bat` in the repo root is an optional shortcut that runs the same command.
 
 ## Refresh data from OpenSea
 
@@ -64,6 +71,9 @@ Or: `.\scripts\refresh.ps1` (fetch + merge + local server).
 ```
 backend/          OpenSea fetch + title normalization + catalog build
 web/              Static site (HTML, CSS, JS, data, assets)
+  index.html      Collections hub
+  dacommunity/    daCommunity gallery (app.js expects ../data paths)
+  badges/         Badges placeholder
 .github/workflows Deploy Pages + daily data refresh
 scripts/          PowerShell helpers
 ```

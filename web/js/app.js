@@ -1,12 +1,17 @@
 /**
- * daCommunity Gallery — static frontend
+ * daCommunity Gallery — static frontend (served from /dacommunity/ on Pages).
  *
- * Load order: gallery_catalog.json (fast UI) → gallery_data.json (full stories)
- * → wallet_index.json (collector lookup, lazy).
+ * Data load order: gallery_catalog.json (fast UI) → gallery_data.json (full merge)
+ * → wallet_index.json (collectors + lookup, lazy).
+ *
+ * Path note: JSON and local assets live under web/data and web/assets at site root.
+ * When this page is in /dacommunity/, body[data-base="../"] and getDataPrefix() add
+ * the parent prefix so fetch() and image URLs resolve correctly on GitHub Pages.
+ *
  * No wallet connect; ENS resolve via ensdata.net when needed.
  */
 
-/** Prefix for web/data and web/assets when gallery is in /dacommunity/ subfolder. */
+/** Parent path prefix when gallery is not at site root (e.g. /dacommunity/). */
 function getDataPrefix() {
   var body = document.body;
   if (body) {
