@@ -10,7 +10,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from fetch_gallery_data import dedupe_activity_rows, enrich_owner_stats
+from owner_stats import enrich_owner_stats
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_PATH = ROOT / "web" / "data" / "gallery_data.json"
