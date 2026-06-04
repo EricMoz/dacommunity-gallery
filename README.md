@@ -1,49 +1,69 @@
 # daCommunity Gallery
 
-Browse **daCAT daCommunity** NFTs on Base — stories, OpenSea listings, and wallet lookup.
+Static gallery for the [daCAT daCommunity](https://opensea.io/collection/rodeo-posts-12142) ERC-1155 collection on Base.
 
-## How to view the site (important)
+**Live site:** https://ericmoz.github.io/dacommunity-gallery/
 
-**Do not double-click `index.html`.** Browsers block data loading that way (infinite spinner).
+## Architecture (for reviewers)
 
-**Do this instead:**
+This is a **static site** — no backend server in production. GitHub Pages serves `web/`; all chain/market data is **pre-fetched** into JSON.
 
-1. Double-click **`start-gallery.bat`** in this folder  
-2. Open **http://localhost:8080** in Chrome or Edge  
+```
+OpenSea API v2  ──►  Python (backend/)  ──►  web/data/*.json
+                                              │
+                                              ▼
+                                    GitHub Pages (web/)
+```
 
-## What “full refresh” means
+| Piece | Role |
+|-------|------|
+| **OpenSea API v2** | NFT metadata, per-token owners, listings, collection stats, holder list |
+| **`fetch_gallery_data.py`** | Full refresh → `gallery_data.json` + `wallet_index.json` |
+| **`build_catalog.py`** | Slim `gallery_catalog.json` for fast first paint (~85 KB) |
+| **`merge_local_images.py`** | Optional: copy local artwork into `web/assets/nfts/` |
+| **`app.js`** | Loads catalog first, merges full JSON in background, wallet index lazy |
 
-One command that updates everything from OpenSea:
+**Contract:** `0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1` (Base) · Steward: `dacatdreams.base.eth`
+
+**CI:** Daily workflow refreshes JSON (needs repo secret `OPENSEA_API_KEY`). Pages deploy workflow publishes `web/` with Git LFS for images.
+
+Similar projects can reuse this pattern: rate-limited API client → static JSON → static frontend with optional ENS lookup ([ensdata.net](https://ensdata.net)) in the browser.
+
+## Local preview
+
+Do **not** open `index.html` directly (browser blocks `fetch`). Use:
+
+```bat
+start-gallery.bat
+```
+
+Then open http://localhost:8080
+
+## Refresh data from OpenSea
 
 ```powershell
 cd backend
 pip install -r requirements.txt
+copy .env.example .env   # add OPENSEA_API_KEY from https://docs.opensea.io/reference/api-keys
 python fetch_gallery_data.py
-python merge_local_images.py
+python merge_local_images.py   # optional; needs local art folder
 ```
 
-| Step | What it does |
-|------|----------------|
-| `fetch_gallery_data.py` | Pulls all 65 NFTs, descriptions, listings, holder stats, wallet index (~5–8 min) |
-| `merge_local_images.py` | Copies your **Used Pics** artwork into the site (`dacat.2years.png` → token with that story) |
+Or: `.\scripts\refresh.ps1` (fetch + merge + local server).
 
-`--quick` skips listings and wallet index (faster, incomplete).
+`--quick` skips listings, owners, and wallet index. Full run takes ~5–8 minutes.
 
-## GitHub (public share link)
+## Security
 
-1. Install GitHub CLI: `winget install GitHub.cli`  
-2. Login: `gh auth login`  
-3. Run: `.\scripts\create-github-repo.ps1`  
-4. On GitHub: **Settings → Pages → Build: GitHub Actions**  
-5. Add secret **`OPENSEA_API_KEY`** (from `backend\.env`)  
+- **Never commit** `backend/.env` (gitignored). Use GitHub Actions secret `OPENSEA_API_KEY` for CI only.
+- API keys are not used in the browser; the public site only reads static JSON.
+- `fetch_gallery_data.py --create-key` can mint a dev key locally — do not use in shared/CI environments.
 
-Live URL: `https://ericmoz.github.io/dacommunity-gallery/`
+## Repo layout
 
-## Contract
-
-`0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1` on Base — same after Rodeo migration.  
-OpenSea: [rodeo-posts-12142](https://opensea.io/collection/rodeo-posts-12142)
-
-## Wallet lookup
-
-Try `mozvane.eth` after a full refresh. Uses pre-built index + [ensdata.net](https://ensdata.net) for other ENS names.
+```
+backend/          OpenSea fetch + title normalization + catalog build
+web/              Static site (HTML, CSS, JS, data, assets)
+.github/workflows Deploy Pages + daily data refresh
+scripts/          PowerShell helpers
+```

@@ -1,6 +1,20 @@
+# Secrets — never commit
 backend/.env
-fetch-log.txt
+.env
+.env.local
+*.env.local
+
+# Python
 backend/__pycache__/
+__pycache__/
 *.pyc
+.venv/
+venv/
+
+# Logs and local noise
+fetch-log.txt
+*.log
+
+# OS
 .DS_Store
 Thumbs.db

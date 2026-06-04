@@ -1,4 +1,9 @@
-"""Normalize daCommunity NFT titles to dacat.xxx (override Rodeo post names)."""
+"""
+Display title normalization for daCommunity NFTs.
+
+OpenSea often returns "Rodeo post #N"; we prefer dacat.xxx from the story
+description line or name field. Used by fetch, merge, patch, and catalog build.
+"""
 
 from __future__ import annotations
 

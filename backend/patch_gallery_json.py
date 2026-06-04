@@ -1,7 +1,7 @@
 """
-Patch existing gallery_data.json + wallet_index.json without re-fetching OpenSea.
+Patch existing JSON without re-fetching OpenSea (titles, thrash video, catalog).
 
-Usage: python patch_gallery_json.py
+Use after manual edits or when Used Pics assets change locally.
 """
 
 from __future__ import annotations

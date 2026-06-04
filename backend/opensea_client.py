@@ -1,4 +1,13 @@
-"""Thin OpenSea API v2 client."""
+"""
+OpenSea API v2 client with request throttling.
+
+Endpoints used by the gallery pipeline:
+  - Collection NFTs, stats, holders
+  - Per-token owners and best listing
+  - Account resolve (ENS) and account NFTs by collection
+
+See: https://docs.opensea.io/reference
+"""
 
 from __future__ import annotations
 

@@ -9,13 +9,18 @@ Run after fetch_gallery_data.py:
 from __future__ import annotations
 
 import json
+import os
 import shutil
 from pathlib import Path
 
 from title_utils import apply_item_titles, extract_slug
 
 ROOT = Path(__file__).resolve().parent.parent
-USED_PICS = Path(r"C:\Users\ericm\OneDrive\Documents\dacat\Top and Used Pics\Used Pics")
+# Override with DACAT_USED_PICS_DIR in .env for non-default machines
+_DEFAULT_USED_PICS = Path(
+    r"C:\Users\ericm\OneDrive\Documents\dacat\Top and Used Pics\Used Pics"
+)
+USED_PICS = Path(os.getenv("DACAT_USED_PICS_DIR", _DEFAULT_USED_PICS))
 DATA_PATH = ROOT / "web" / "data" / "gallery_data.json"
 NFT_ASSETS = ROOT / "web" / "assets" / "nfts"
 

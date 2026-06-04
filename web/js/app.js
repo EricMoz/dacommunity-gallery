@@ -1,4 +1,10 @@
-/* daCommunity Gallery — ES5-safe operators (no ??), hybrid catalog + background refresh */
+/**
+ * daCommunity Gallery — static frontend
+ *
+ * Load order: gallery_catalog.json (fast UI) → gallery_data.json (full stories)
+ * → wallet_index.json (collector lookup, lazy).
+ * No wallet connect; ENS resolve via ensdata.net when needed.
+ */
 
 const CATALOG_URL = "data/gallery_catalog.json";
 const FULL_DATA_URL = "data/gallery_data.json";
@@ -92,6 +98,8 @@ function mergeFullDescriptions(full) {
   renderStats(galleryData.collection);
   refreshView();
 }
+
+// --- Data loading (catalog → full merge → wallet index) ---
 
 async function loadCatalogFirst() {
   if (isFileProtocol()) throw new Error("FILE_PROTOCOL");

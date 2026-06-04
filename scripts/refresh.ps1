@@ -1,4 +1,4 @@
-# Refresh gallery JSON from OpenSea, then start local preview server.
+# Refresh gallery JSON from OpenSea (requires backend/.env), then start local preview server.
 param(
     [switch]$Quick,
     [int]$MaxItems = 0

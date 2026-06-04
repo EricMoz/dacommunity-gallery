@@ -37,13 +37,16 @@ OUTPUT_PATH = ROOT / "web" / "data" / "gallery_data.json"
 WALLET_INDEX_PATH = ROOT / "web" / "data" / "wallet_index.json"
 
 
-def load_api_key(create_if_missing: bool = True) -> str:
+def load_api_key(create_if_missing: bool = False) -> str:
+    """Load key from backend/.env. Auto-create only when create_if_missing=True (--create-key)."""
     load_dotenv(ENV_PATH)
     key = os.getenv("OPENSEA_API_KEY", "").strip()
     if key:
         return key
     if not create_if_missing:
-        raise ValueError("OPENSEA_API_KEY not set in backend/.env")
+        raise ValueError(
+            "OPENSEA_API_KEY not set. Copy backend/.env.example to .env or run with --create-key (local dev only)."
+        )
     print("No OpenSea key found — creating free instant key (expires ~30 days)...")
     client = OpenSeaClient(api_key="temp", delay=0)
     key = client.create_instant_api_key()
@@ -209,10 +212,14 @@ def main() -> int:
     parser.add_argument("--quick", action="store_true", help="Skip listings/owners/index")
     parser.add_argument("--skip-wallet-index", action="store_true", help="Skip holder index")
     parser.add_argument("--max-items", type=int, default=0, help="Limit NFT count (0=all)")
-    parser.add_argument("--no-create-key", action="store_true")
+    parser.add_argument(
+        "--create-key",
+        action="store_true",
+        help="Create OpenSea instant API key if missing (local dev only; never in CI)",
+    )
     args = parser.parse_args()
 
-    api_key = load_api_key(create_if_missing=not args.no_create_key)
+    api_key = load_api_key(create_if_missing=args.create_key)
     client = OpenSeaClient(api_key)
 
     print("Verifying contract on Base...")

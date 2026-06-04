@@ -1,3 +1,4 @@
+# Fetches OpenSea data and commits JSON. Requires repository secret OPENSEA_API_KEY.
 name: Refresh gallery data (daily)
 
 on:

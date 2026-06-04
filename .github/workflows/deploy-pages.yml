@@ -1,3 +1,4 @@
+# Publishes web/ to GitHub Pages. Requires LFS for NFT images in assets/.
 name: Deploy gallery to GitHub Pages
 
 on:

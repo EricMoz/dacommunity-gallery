@@ -1,4 +1,9 @@
-"""daCommunity gallery — collection constants."""
+"""
+Shared constants for the OpenSea fetch pipeline.
+
+Contract and collection slug are fixed for this gallery; change here if the
+collection migrates again (Rodeo → OpenSea kept the same contract on Base).
+"""
 
 COLLECTION_SLUG = "rodeo-posts-12142"
 CONTRACT_ADDRESS = "0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1"
