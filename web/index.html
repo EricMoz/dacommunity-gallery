@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<!-- Site home — entertainment hub. NFTs → /collections/ · film & charts on page. -->
+<!-- Site home — collections · film & comics · track (analytics). -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>daCAT · Home</title>
-  <meta name="description" content="daCAT entertainment — collections, film, and Cat Coin charts." />
+  <meta name="description" content="daCAT entertainment — NFT collections, film, daCAT Chronicles comic, and Cat Coin charts." />
   <link rel="icon" href="assets/brand/dacat-icon-64.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,7 +36,7 @@
       <div class="home-hero-inner">
         <p class="eyebrow">Legendary crypto culture</p>
         <h1>daCAT <span class="accent">entertainment</span></h1>
-        <p class="home-lead">Collections, film, and live charts — one home for the community&apos;s art, stories, and experiments.</p>
+        <p class="home-lead">Collections, film &amp; comics, and live charts — one home for the community&apos;s art, stories, and experiments.</p>
       </div>
     </section>
 
@@ -67,25 +67,46 @@
       </div>
     </section>
 
-    <section id="watch" class="home-section home-explore" aria-labelledby="explore-heading">
+    <section id="stories" class="home-section home-stories" aria-labelledby="stories-heading">
       <header class="home-section-head">
-        <h2 id="explore-heading" class="home-section-title">Watch &amp; track</h2>
-        <p class="home-section-lead">Film and live data — same daCAT energy, different format.</p>
+        <h2 id="stories-heading" class="home-section-title">Film &amp; comics</h2>
+        <p class="home-section-lead">Community cinema on-site — Chronicles and dacatworld carry the long-form story off-site.</p>
       </header>
-      <div class="hub-more-grid">
+      <div class="home-stories-layout">
         <a class="hub-more-card hub-more-card-film" href="film/">
           <span class="hub-more-kicker">Film</span>
           <h3 class="hub-more-card-title">daCAT cinema</h3>
           <p class="hub-more-card-desc">Mozvane and future cuts — ~5 min Sora-era anime with daBeezy.</p>
           <span class="hub-more-card-cta">Open films →</span>
         </a>
-        <a class="hub-more-card hub-more-card-chart" href="analytics/">
-          <span class="hub-more-kicker">Analytics</span>
-          <h3 class="hub-more-card-title">Market cap race</h3>
-          <p class="hub-more-card-desc">Watch tokens climb the leaderboard in a live bar chart race.</p>
-          <span class="hub-more-card-cta">View chart →</span>
-        </a>
+        <div class="hub-more-grid hub-more-grid-pair" aria-label="Comics and world">
+          <a class="hub-more-card hub-more-card-comic" href="https://www.dacat.fun/dacat-chronicles" target="_blank" rel="noopener noreferrer">
+            <span class="hub-more-kicker">Comic · coming soon</span>
+            <h3 class="hub-more-card-title">daCAT Chronicles</h3>
+            <p class="hub-more-card-desc">All real art and storytelling by <strong>Randy Chavez</strong> (writer) and <strong>DaKingsi</strong> (artist) — physical and digital editions. More details soon.</p>
+            <span class="hub-more-card-cta">Visit chronicles ↗</span>
+          </a>
+          <a class="hub-more-card hub-more-card-world" href="https://www.dacatworld.com/" target="_blank" rel="noopener noreferrer">
+            <span class="hub-more-kicker">World</span>
+            <h3 class="hub-more-card-title">dacatworld</h3>
+            <p class="hub-more-card-desc">The wider daCAT home on the web — lore, community, and everything orbiting the legend.</p>
+            <span class="hub-more-card-cta">Go to dacatworld ↗</span>
+          </a>
+        </div>
       </div>
+    </section>
+
+    <section id="track" class="home-section home-track" aria-labelledby="track-heading">
+      <header class="home-section-head">
+        <h2 id="track-heading" class="home-section-title">Track</h2>
+        <p class="home-section-lead">Live Cat Coin data — same daCAT energy, numbers in motion.</p>
+      </header>
+      <a class="hub-more-card hub-more-card-chart hub-more-card-solo" href="analytics/">
+        <span class="hub-more-kicker">Analytics</span>
+        <h3 class="hub-more-card-title">Market cap race</h3>
+        <p class="hub-more-card-desc">Watch tokens climb the leaderboard in a live bar chart race.</p>
+        <span class="hub-more-card-cta">View chart →</span>
+      </a>
     </section>
   </main>
 

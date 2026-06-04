@@ -1703,6 +1703,78 @@ button.stat:focus-visible {
   color: var(--black);
 }
 
+.home-stories-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hub-more-grid-pair {
+  margin-top: 0;
+}
+
+.hub-more-card-comic {
+  background: linear-gradient(160deg, #fff9e8 0%, #fff 55%);
+  color: var(--black);
+  box-shadow: 6px 6px 0 var(--black);
+  border-top: 5px solid var(--blue-accent);
+}
+
+.hub-more-card-comic:hover {
+  color: var(--black);
+  box-shadow: 9px 9px 0 var(--black);
+}
+
+.hub-more-card-comic .hub-more-kicker {
+  color: var(--blue-accent);
+}
+
+.hub-more-card-comic .hub-more-card-desc {
+  color: var(--text-muted);
+}
+
+.hub-more-card-comic .hub-more-card-desc strong {
+  color: var(--black);
+  font-weight: 700;
+}
+
+.hub-more-card-comic .hub-more-card-cta {
+  color: var(--blue-accent);
+}
+
+.hub-more-card-world {
+  background: var(--white);
+  color: var(--black);
+  box-shadow: 6px 6px 0 var(--black);
+  border-left: 5px solid var(--yellow);
+}
+
+.hub-more-card-world:hover {
+  color: var(--black);
+  box-shadow: 9px 9px 0 var(--black);
+}
+
+.hub-more-card-world .hub-more-kicker {
+  color: var(--black);
+  opacity: 0.55;
+}
+
+.hub-more-card-world .hub-more-card-desc {
+  color: var(--text-muted);
+}
+
+.hub-more-card-world .hub-more-card-cta {
+  color: var(--black);
+}
+
+.hub-more-card-solo {
+  max-width: 520px;
+}
+
+.home-track .hub-more-card-solo {
+  width: 100%;
+}
+
 /* Cat Coin analytics page (Flourish embed) */
 .analytics-main {
   flex: 1;
