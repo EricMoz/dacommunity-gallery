@@ -111,6 +111,26 @@ a:hover { color: var(--blue-accent); }
   border-color: var(--black);
 }
 
+/* Optional analytics — dashed nav, not primary CTA */
+.nav-btn-chart {
+  background: transparent;
+  color: var(--yellow);
+  border: 2px dashed rgba(255, 204, 0, 0.75);
+}
+
+.nav-btn-chart:hover {
+  background: rgba(255, 204, 0, 0.12);
+  color: var(--yellow);
+  border-color: var(--yellow);
+}
+
+.nav-btn-chart.is-active {
+  background: var(--yellow);
+  color: var(--black);
+  border-style: solid;
+  border-color: var(--black);
+}
+
 /* Main layout */
 #app {
   max-width: 1140px;
@@ -1456,4 +1476,139 @@ button.stat:focus-visible {
   background: #f8f6ee;
   border: 1px solid rgba(10, 10, 10, 0.12);
   border-radius: 6px;
+}
+
+/* Collections hub — optional analytics teaser (below main cards) */
+.hub-explore {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.25rem;
+  padding: 1rem 1.2rem;
+  background: rgba(255, 255, 255, 0.55);
+  border: 2px dashed var(--black);
+  border-radius: var(--radius);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hub-explore:hover {
+  background: var(--white);
+  box-shadow: 4px 4px 0 var(--black);
+}
+
+.hub-explore-label {
+  margin: 0 0 0.2rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.hub-explore-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  margin: 0 0 0.25rem;
+  line-height: 1.2;
+}
+
+.hub-explore-desc {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  max-width: 28rem;
+  line-height: 1.45;
+}
+
+.hub-explore-link {
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  color: var(--black);
+  padding: 0.55rem 1rem;
+  border: 2px solid var(--black);
+  border-radius: 8px;
+  background: var(--yellow);
+  box-shadow: 3px 3px 0 var(--black);
+  white-space: nowrap;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.hub-explore-link:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--black);
+  color: var(--black);
+  text-decoration: none;
+}
+
+/* Cat Coin analytics page (Flourish embed) */
+.analytics-main {
+  flex: 1;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 2.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.analytics-intro {
+  padding: 1.25rem 1.35rem;
+}
+
+.analytics-intro h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin: 0.3rem 0 0.55rem;
+  line-height: 1.12;
+}
+
+.analytics-lead {
+  margin: 0 0 0.75rem;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  max-width: 42rem;
+  line-height: 1.5;
+}
+
+.analytics-back {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--black);
+}
+
+.analytics-back:hover {
+  color: var(--blue-accent);
+}
+
+.analytics-chart {
+  padding: 1rem 1rem 0.75rem;
+  overflow: hidden;
+}
+
+.flourish-embed-wrap {
+  width: 100%;
+  min-height: min(72vh, 640px);
+  border-radius: 8px;
+  background: #fafafa;
+  border: 1px solid rgba(10, 10, 10, 0.08);
+}
+
+.flourish-embed-wrap .flourish-embed {
+  width: 100% !important;
+  max-width: 100%;
+}
+
+.analytics-credit {
+  margin: 0.65rem 0 0;
+  font-size: 0.78rem;
+  text-align: right;
+  color: var(--text-muted);
+}
+
+.analytics-credit a {
+  font-weight: 600;
 }
