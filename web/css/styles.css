@@ -977,6 +977,79 @@ button.stat:focus-visible {
   font-weight: 800;
 }
 
+.detail-holders-hint {
+  margin: 0 0 0.45rem;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+.owner-pin {
+  margin: 0 0 0.75rem;
+}
+
+.owner-pin-label {
+  margin: 0 0 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--blue-accent);
+}
+
+.owner-pin-card {
+  padding: 0.65rem 0.75rem;
+  border: 3px solid var(--blue-accent);
+  border-radius: 10px;
+  background: rgba(42, 127, 212, 0.08);
+  box-shadow: 4px 4px 0 var(--black);
+}
+
+.owner-pin-name {
+  margin: 0 0 0.25rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.owner-pin-name .owner-chip-full {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-family: ui-monospace, Consolas, monospace;
+  color: var(--text-muted);
+  word-break: break-all;
+}
+
+.owner-pin-copies {
+  margin: 0 0 0.5rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.owner-pin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.btn-sm {
+  padding: 0.3rem 0.55rem;
+  font-size: 0.72rem;
+}
+
+.owner-chip-full {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 500;
+  font-family: ui-monospace, Consolas, monospace;
+  color: var(--text-muted);
+  word-break: break-all;
+  margin-top: 0.1rem;
+}
+
 .owner-chip-received {
   border-color: var(--blue-accent) !important;
   background: rgba(42, 127, 212, 0.12) !important;
@@ -1226,9 +1299,17 @@ button.stat:focus-visible {
   flex-wrap: wrap;
   gap: 0.4rem;
   margin-bottom: 0.75rem;
+  max-height: 220px;
+  overflow-y: auto;
+  padding-right: 0.25rem;
 }
 
 .owner-chip {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  max-width: 100%;
   padding: 0.35rem 0.65rem;
   border: 2px solid var(--black);
   border-radius: 999px;

@@ -305,15 +305,88 @@ function holderLabel(address) {
 }
 
 function addressDisplayMeta(address) {
-  if (!address) return { address: "", display: "", lookupValue: "" };
+  if (!address) return { address: "", display: "", lookupValue: "", full: "" };
   var key = address.toLowerCase();
+  var full = address;
   var entry = walletIndex && walletIndex.by_address && walletIndex.by_address[key];
-  var lookupValue = (entry && entry.ens_name) || address;
+  var lookupValue = (entry && entry.ens_name) || full;
+  var display = entry
+    ? entry.ens_name || entry.username || shortenAddress(full)
+    : shortenAddress(full);
   return {
     address: key,
-    display: entry ? entry.ens_name || entry.username || shortenAddress(address) : shortenAddress(address),
+    display: display,
     lookupValue: lookupValue,
+    full: full,
+    /** Show full 0x under chip when label is ENS/username or shortened hex. */
+    showFullHex: display !== full,
   };
+}
+
+function holderChipLabelHtml(meta) {
+  var html = escapeHtml(meta.display);
+  if (meta.showFullHex && meta.full) {
+    html += '<span class="owner-chip-full">' + escapeHtml(meta.full) + "</span>";
+  }
+  return html;
+}
+
+/**
+ * Full holder list for this token. Prefer owners.holders from OpenSea; if JSON only
+ * has top_holders (5), backfill from wallet_index once it has loaded.
+ */
+function resolveHoldersList(item) {
+  var owners = item.owners || {};
+  var byAddr = {};
+  function add(h) {
+    if (!h || !h.address) return;
+    byAddr[h.address.toLowerCase()] = {
+      address: h.address.toLowerCase(),
+      quantity: intQty(h.quantity),
+    };
+  }
+  function intQty(n) {
+    var v = parseInt(n, 10);
+    return isNaN(v) ? 1 : v;
+  }
+  (owners.holders || []).forEach(add);
+  if (!owners.holders || !owners.holders.length) {
+    (owners.top_holders || []).forEach(add);
+  }
+  var expected = owners.holder_count || 0;
+  if (expected > Object.keys(byAddr).length && walletIndex && walletIndex.by_address) {
+    Object.values(walletIndex.by_address).forEach(function (entry) {
+      (entry.holdings || []).forEach(function (h) {
+        if (String(h.token_id) !== String(item.token_id)) return;
+        var k = (entry.address || "").toLowerCase();
+        if (!k || byAddr[k]) return;
+        byAddr[k] = { address: k, quantity: 1 };
+      });
+    });
+  }
+  return sortHoldersForDisplay(Object.values(byAddr), item);
+}
+
+function sortHoldersForDisplay(holders, item) {
+  var pinAddr = Object.keys(recentHolderHighlights(item))[0];
+  return holders.sort(function (a, b) {
+    var aa = a.address.toLowerCase();
+    var ba = b.address.toLowerCase();
+    if (pinAddr) {
+      if (aa === pinAddr && ba !== pinAddr) return -1;
+      if (ba === pinAddr && aa !== pinAddr) return 1;
+    }
+    return (b.quantity || 0) - (a.quantity || 0);
+  });
+}
+
+function holderRowForToken(item, address) {
+  var key = (address || "").toLowerCase();
+  var list = resolveHoldersList(item);
+  for (var i = 0; i < list.length; i++) {
+    if (list[i].address.toLowerCase() === key) return list[i];
+  }
+  return null;
 }
 
 function showCopyToast(message) {
@@ -543,15 +616,34 @@ function closeCollectorsModal() {
 }
 
 function exploreCollector(address, highlightTokenId) {
-  var entry = walletIndex && walletIndex.by_address && walletIndex.by_address[address.toLowerCase()];
+  var key = address.toLowerCase();
+  var entry = walletIndex && walletIndex.by_address && walletIndex.by_address[key];
   var explore = $("#collector-explore");
+  if (!entry && activeDetailTokenId) {
+    var piece = itemsById.get(String(activeDetailTokenId));
+    if (piece && holderRowForToken(piece, key)) {
+      entry = {
+        address: key,
+        holdings: [
+          {
+            token_id: piece.token_id,
+            name: itemTitle(piece),
+            display_name: piece.display_name,
+          },
+        ],
+      };
+    }
+  }
   if (!entry) {
     explore.hidden = true;
     return;
   }
-  activeCollectorAddress = address.toLowerCase();
-  $("#collector-explore-title").textContent = "Also held by " + holderLabel(address);
-  renderHoldingsChips(entry.holdings || [], $("#collector-explore-holdings"), { highlightTokenId: highlightTokenId });
+  activeCollectorAddress = key;
+  $("#collector-explore-title").textContent =
+    "Pieces held by " + holderLabel(address) + " (tap another holder above)";
+  renderHoldingsChips(entry.holdings || [], $("#collector-explore-holdings"), {
+    highlightTokenId: highlightTokenId,
+  });
   explore.hidden = false;
   document.querySelectorAll(".owner-chip").forEach(function (btn) {
     btn.classList.toggle("active", btn.dataset.address === activeCollectorAddress);
@@ -896,6 +988,50 @@ function renderDetailActivity(item) {
   }
 }
 
+function renderPinnedRecipient(item, change) {
+  var pinEl = $("#detail-owner-pin");
+  if (!pinEl) return;
+  if (!change || !change.to || change.type !== "transfer") {
+    pinEl.hidden = true;
+    pinEl.innerHTML = "";
+    return;
+  }
+  var row = holderRowForToken(item, change.to);
+  var meta = addressDisplayMeta(change.to);
+  var qty = row ? row.quantity : change.quantity || 1;
+  pinEl.hidden = false;
+  pinEl.innerHTML =
+    '<p class="owner-pin-label">New holder · latest transfer</p>' +
+    '<div class="owner-pin-card">' +
+    '<p class="owner-pin-name">' +
+    holderChipLabelHtml(meta) +
+    "</p>" +
+    '<p class="owner-pin-copies"><strong>' +
+    qty +
+    "</strong> " +
+    (qty === 1 ? "copy" : "copies") +
+    " of this piece</p>" +
+    '<div class="owner-pin-actions">' +
+    '<button type="button" class="btn btn-outline btn-sm owner-pin-view" data-address="' +
+    escapeHtml(meta.address) +
+    '">Show their pieces</button>' +
+    '<button type="button" class="addr-action-copy" data-copy="' +
+    escapeHtml(meta.address) +
+    '" title="Copy full address">Copy address</button></div></div>';
+  bindAddressActions(pinEl);
+  var viewBtn = pinEl.querySelector(".owner-pin-view");
+  if (viewBtn) {
+    viewBtn.addEventListener("click", function () {
+      exploreCollector(meta.address, item.token_id);
+      var chipsRoot = $("#detail-owner-chips");
+      if (chipsRoot) {
+        var chip = chipsRoot.querySelector('.owner-chip[data-address="' + meta.address + '"]');
+        if (chip) chip.classList.add("active");
+      }
+    });
+  }
+}
+
 function renderDetailOwners(item) {
   var ownersBlock = $("#detail-owners");
   var chipsEl = $("#detail-owner-chips");
@@ -905,22 +1041,29 @@ function renderDetailOwners(item) {
   explore.hidden = true;
   activeCollectorAddress = null;
   var owners = item.owners || {};
-  var holders = owners.holders || owners.top_holders || [];
+  var holders = resolveHoldersList(item);
   if (!holders.length) {
     ownersBlock.hidden = true;
     return;
   }
   ownersBlock.hidden = false;
+  var expected = owners.holder_count || holders.length;
   if (leadEl) {
     leadEl.hidden = false;
+    var incomplete =
+      expected > holders.length
+        ? " · loading full holder list…"
+        : "";
     leadEl.textContent =
       "Live ownership from OpenSea · " +
-      nvl(owners.holder_count, holders.length) +
+      expected +
       " holders · " +
       nvl(owners.circulating_copies, "—") +
-      " copies in circulation";
+      " copies" +
+      incomplete;
   }
   var change = getLatestChange(item);
+  renderPinnedRecipient(item, change);
   if (latestEl) {
     if (change) {
       latestEl.hidden = false;
@@ -932,40 +1075,34 @@ function renderDetailOwners(item) {
     }
   }
   var highlights = recentHolderHighlights(item);
-  var maxChips = 18;
-  var shown = holders.slice(0, maxChips);
-  var extra = holders.length - shown.length;
-  chipsEl.innerHTML =
-    shown
-      .map(function (h) {
-        var meta = addressDisplayMeta(h.address);
-        var hi =
-          highlights[meta.address] === "received" ? " owner-chip-received" : "";
-        var badge =
-          highlights[meta.address] === "received"
-            ? '<span class="owner-chip-tag">Current</span>'
-            : "";
-        return (
-          '<span class="owner-chip-wrap">' +
-          '<button type="button" class="owner-chip' +
-          hi +
-          '" data-address="' +
-          escapeHtml(meta.address) +
-          '">' +
-          badge +
-          escapeHtml(meta.display) +
-          " · " +
-          h.quantity +
-          "</button>" +
-          '<button type="button" class="addr-action-copy owner-chip-copy" data-copy="' +
-          escapeHtml(meta.address) +
-          '" title="Copy full address">Copy</button></span>'
-        );
-      })
-      .join("") +
-    (extra > 0
-      ? '<span class="owner-chip-more">+' + extra + " more holders</span>"
-      : "");
+  chipsEl.innerHTML = holders
+    .map(function (h) {
+      var meta = addressDisplayMeta(h.address);
+      var hi = highlights[meta.address] === "received" ? " owner-chip-received" : "";
+      var badge =
+        highlights[meta.address] === "received"
+          ? '<span class="owner-chip-tag">Latest</span>'
+          : "";
+      return (
+        '<span class="owner-chip-wrap">' +
+        '<button type="button" class="owner-chip' +
+        hi +
+        '" data-address="' +
+        escapeHtml(meta.address) +
+        '" title="' +
+        escapeHtml(meta.full || meta.address) +
+        '">' +
+        badge +
+        holderChipLabelHtml(meta) +
+        " · " +
+        h.quantity +
+        "</button>" +
+        '<button type="button" class="addr-action-copy owner-chip-copy" data-copy="' +
+        escapeHtml(meta.address) +
+        '" title="Copy full address">Copy</button></span>'
+      );
+    })
+    .join("");
   chipsEl.querySelectorAll(".owner-chip").forEach(function (btn) {
     btn.addEventListener("click", function (e) {
       e.stopPropagation();
@@ -973,6 +1110,11 @@ function renderDetailOwners(item) {
     });
   });
   bindAddressActions(chipsEl);
+  if (change && change.to) {
+    var pinKey = change.to.toLowerCase();
+    var pinBtn = chipsEl.querySelector('.owner-chip[data-address="' + pinKey + '"]');
+    if (pinBtn) pinBtn.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  }
 }
 
 function refreshDetailPanel(item) {
@@ -1131,6 +1273,10 @@ async function init() {
     loadWalletIndex().then(function () {
       renderStats(galleryData.collection);
       updateCollectorsButton();
+      if (activeDetailTokenId) {
+        var openItem = itemsById.get(String(activeDetailTokenId));
+        if (openItem) refreshDetailPanel(openItem);
+      }
     });
   } catch (err) {
     console.error(err);
