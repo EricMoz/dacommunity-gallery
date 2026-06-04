@@ -131,6 +131,26 @@ a:hover { color: var(--blue-accent); }
   border-color: var(--black);
 }
 
+/* Optional film — silver dashed nav (cinema extra) */
+.nav-btn-film {
+  background: transparent;
+  color: #e0e0e0;
+  border: 2px dashed rgba(255, 255, 255, 0.4);
+}
+
+.nav-btn-film:hover {
+  border-color: var(--yellow);
+  color: var(--yellow);
+  background: rgba(255, 204, 0, 0.08);
+}
+
+.nav-btn-film.is-active {
+  background: var(--yellow);
+  color: var(--black);
+  border-style: solid;
+  border-color: var(--black);
+}
+
 /* Main layout */
 #app {
   max-width: 1140px;
@@ -1478,68 +1498,130 @@ button.stat:focus-visible {
   border-radius: 6px;
 }
 
-/* Collections hub — optional analytics teaser (below main cards) */
-.hub-explore {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem 1.25rem;
-  padding: 1rem 1.2rem;
-  background: rgba(255, 255, 255, 0.55);
-  border: 2px dashed var(--black);
-  border-radius: var(--radius);
-  transition: background 0.2s ease, box-shadow 0.2s ease;
+/* Collections hub — community spotlight (film + chart extras) */
+.hub-spotlight {
+  margin-top: 0.25rem;
 }
 
-.hub-explore:hover {
-  background: var(--white);
+.hub-spotlight-heading {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0 0 0.25rem;
+  text-align: center;
+}
+
+.hub-spotlight-lead {
+  margin: 0 0 1rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.hub-spotlight-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .hub-spotlight-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hub-spotlight-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.1rem 1.15rem 1rem;
+  text-decoration: none;
+  color: var(--black);
+  border-radius: var(--radius);
+  border: 2px solid var(--black);
+  transition:
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.2s ease;
+}
+
+.hub-spotlight-card:hover {
+  transform: translate(-2px, -2px);
+  text-decoration: none;
+  color: var(--black);
+}
+
+.hub-spotlight-film {
+  background: linear-gradient(145deg, #1a1a1a 0%, #2a2a2a 100%);
+  color: var(--white);
+  box-shadow: 6px 6px 0 var(--black);
+}
+
+.hub-spotlight-film:hover {
+  color: var(--white);
+  box-shadow: 8px 8px 0 var(--black);
+}
+
+.hub-spotlight-film .hub-spotlight-label,
+.hub-spotlight-film .hub-spotlight-desc {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.hub-spotlight-film .hub-spotlight-title {
+  color: var(--yellow);
+}
+
+.hub-spotlight-film .hub-spotlight-cta {
+  color: var(--yellow);
+}
+
+.hub-spotlight-chart {
+  background: rgba(255, 255, 255, 0.65);
+  border-style: dashed;
   box-shadow: 4px 4px 0 var(--black);
 }
 
-.hub-explore-label {
-  margin: 0 0 0.2rem;
-  font-size: 0.68rem;
+.hub-spotlight-chart:hover {
+  background: var(--white);
+  box-shadow: 6px 6px 0 var(--black);
+}
+
+.hub-spotlight-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+  opacity: 0.9;
+}
+
+.hub-spotlight-icon-chart {
+  font-weight: 800;
+  color: var(--blue-accent);
+}
+
+.hub-spotlight-label {
+  font-size: 0.65rem;
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--text-muted);
 }
 
-.hub-explore-title {
+.hub-spotlight-title {
   font-family: var(--font-display);
-  font-size: 1.05rem;
-  margin: 0 0 0.25rem;
+  font-size: 1.02rem;
+  margin: 0;
   line-height: 1.2;
 }
 
-.hub-explore-desc {
+.hub-spotlight-desc {
   margin: 0;
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  max-width: 28rem;
+  font-size: 0.8rem;
   line-height: 1.45;
+  flex: 1;
 }
 
-.hub-explore-link {
+.hub-spotlight-cta {
   font-weight: 700;
-  font-size: 0.88rem;
-  text-decoration: none;
-  color: var(--black);
-  padding: 0.55rem 1rem;
-  border: 2px solid var(--black);
-  border-radius: 8px;
-  background: var(--yellow);
-  box-shadow: 3px 3px 0 var(--black);
-  white-space: nowrap;
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
-}
-
-.hub-explore-link:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 var(--black);
-  color: var(--black);
-  text-decoration: none;
+  font-size: 0.84rem;
+  margin-top: 0.2rem;
 }
 
 /* Cat Coin analytics page (Flourish embed) */
@@ -1611,4 +1693,137 @@ button.stat:focus-visible {
 
 .analytics-credit a {
   font-weight: 600;
+}
+
+/* Mozvane film page — black cinema theme (YouTube embed bHcbwUs2_ds) */
+body.film-page {
+  background: #050505;
+  color: #ececec;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.film-page .site-header {
+  border-bottom-color: var(--yellow);
+}
+
+.film-main {
+  flex: 1;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1.75rem 1.25rem 2.5rem;
+  width: 100%;
+}
+
+.film-intro {
+  text-align: center;
+  max-width: 40rem;
+  margin: 0 auto 1.5rem;
+}
+
+.film-eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--yellow);
+}
+
+.film-intro h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 8vw, 3.25rem);
+  margin: 0 0 0.5rem;
+  line-height: 1.05;
+}
+
+.film-hero-name {
+  color: var(--yellow);
+  text-shadow: 0 0 48px rgba(255, 204, 0, 0.25);
+}
+
+.film-tagline {
+  margin: 0 0 0.65rem;
+  font-size: 1rem;
+  color: #c8c8c8;
+  line-height: 1.5;
+}
+
+.film-meta {
+  margin: 0 0 1rem;
+  font-size: 0.86rem;
+  color: #888;
+  line-height: 1.55;
+}
+
+.film-meta strong {
+  color: #d4d4d4;
+  font-weight: 600;
+}
+
+.film-back {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--yellow);
+  text-decoration: none;
+}
+
+.film-back:hover {
+  text-decoration: underline;
+  color: #fff;
+}
+
+.film-stage {
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.film-player {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 204, 0, 0.35);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.8),
+    0 12px 48px rgba(0, 0, 0, 0.65),
+    0 0 80px rgba(255, 204, 0, 0.08);
+  background: #000;
+}
+
+.film-player iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.film-credit {
+  margin: 0.85rem 0 0;
+  font-size: 0.8rem;
+  text-align: center;
+  color: #666;
+}
+
+.film-credit a {
+  color: var(--yellow);
+  font-weight: 600;
+}
+
+.film-credit a:hover {
+  color: #fff;
+}
+
+.film-credit-sep {
+  margin: 0 0.4rem;
+  opacity: 0.5;
+}
+
+.film-footer {
+  margin-top: auto;
+  background: #000;
+  border-top: 1px solid #222;
 }
