@@ -37,7 +37,7 @@ Do **not** open `index.html` directly (browser blocks `fetch`). Use:
 start-gallery.bat
 ```
 
-Then open http://localhost:8080
+Then open http://localhost:8080 (collection picker) or http://localhost:8080/dacommunity/ for the gallery.
 
 ## Refresh data from OpenSea
 

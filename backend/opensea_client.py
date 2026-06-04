@@ -129,6 +129,26 @@ class OpenSeaClient:
         encoded = quote(identifier, safe="")
         return self._get(f"/accounts/resolve/{encoded}")
 
+    def iter_collection_events(
+        self,
+        event_types: list[str] | None = None,
+        limit: int = 200,
+    ):
+        """Yield asset events for the configured collection (paginated)."""
+        next_cursor: str | None = None
+        while True:
+            params: dict[str, Any] = {"limit": limit}
+            if event_types:
+                params["event_type"] = event_types
+            if next_cursor:
+                params["next"] = next_cursor
+            data = self._get(f"/events/collection/{COLLECTION_SLUG}", params)
+            for event in data.get("asset_events") or []:
+                yield event
+            next_cursor = data.get("next")
+            if not next_cursor:
+                break
+
     def get_account_collection_nfts(self, address: str) -> list[dict[str, Any]]:
         nfts: list[dict[str, Any]] = []
         next_cursor: str | None = None

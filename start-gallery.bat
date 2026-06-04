@@ -2,8 +2,9 @@
 title daCommunity Gallery
 cd /d "%~dp0web"
 echo.
-echo  daCommunity Gallery — local preview
-echo  Open in browser:  http://localhost:8080
+echo  daCAT Collections — local preview
+echo  Landing:          http://localhost:8080/
+echo  daCommunity:      http://localhost:8080/dacommunity/
 echo.
 echo  Do NOT double-click index.html — use this link instead.
 echo  Press Ctrl+C to stop.

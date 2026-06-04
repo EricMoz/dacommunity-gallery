@@ -6,9 +6,10 @@
  * No wallet connect; ENS resolve via ensdata.net when needed.
  */
 
-const CATALOG_URL = "data/gallery_catalog.json";
-const FULL_DATA_URL = "data/gallery_data.json";
-const WALLET_URL = "data/wallet_index.json";
+const DATA_BASE = document.body.dataset.base || "";
+const CATALOG_URL = DATA_BASE + "data/gallery_catalog.json";
+const FULL_DATA_URL = DATA_BASE + "data/gallery_data.json";
+const WALLET_URL = DATA_BASE + "data/wallet_index.json";
 
 const $ = (sel, root = document) => root.querySelector(sel);
 
@@ -89,6 +90,7 @@ function mergeFullDescriptions(full) {
     if (fullItem.owners) cur.owners = fullItem.owners;
     if (fullItem.listed !== undefined) cur.listed = fullItem.listed;
     if (fullItem.listing) cur.listing = fullItem.listing;
+    if (fullItem.minted_at) cur.minted_at = fullItem.minted_at;
     if (fullItem.generated_at) galleryData.generated_at = full.generated_at;
   });
   dataSource = "live";
@@ -156,6 +158,13 @@ function buildCollectorsFromIndex(idx) {
     .sort(function (a, b) {
       return b.unique_pieces - a.unique_pieces;
     });
+}
+
+function formatMintDate(iso) {
+  if (!iso) return "";
+  var d = new Date(iso);
+  if (isNaN(d.getTime())) return "";
+  return d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
 }
 
 function formatEth(n) {
@@ -622,6 +631,14 @@ function openDetail(item) {
   $("#detail-title").innerHTML = formatPieceTitleHtml(itemTitle(item));
   $("#detail-token").textContent =
     "Token #" + item.token_id + (item.local_slug ? " · " + item.local_slug : "") + " · Base";
+  var mintEl = $("#detail-mint");
+  if (item.minted_at) {
+    mintEl.hidden = false;
+    mintEl.textContent = "First minted · " + formatMintDate(item.minted_at);
+  } else {
+    mintEl.hidden = true;
+    mintEl.textContent = "";
+  }
   var story = cleanStoryText(item);
   $("#detail-description").textContent = story || "No description.";
   $("#detail-opensea").href = item.opensea_url || "#";

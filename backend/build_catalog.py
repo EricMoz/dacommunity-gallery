@@ -31,6 +31,7 @@ def slim_item(item: dict) -> dict:
         "listed": item.get("listed", False),
         "listing": item.get("listing"),
         "owners": item.get("owners"),
+        "minted_at": item.get("minted_at"),
     }
 
 

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>daCommunity Gallery · daCAT</title>
+  <meta name="description" content="Browse daCAT daCommunity NFTs on Base. Steward: dacatdreams.base.eth." />
+  <link rel="icon" href="../assets/brand/dacat-icon-64.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body data-base="../">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="https://www.dacat.fun/" target="_blank" rel="noopener">
+        <img class="brand-mascot" src="../assets/brand/dacat-mascot.png" alt="daCAT" width="56" height="56" />
+        <img class="brand-logo" src="../assets/brand/dacat-logo-text.webp" alt="daCAT" height="36" />
+        <span class="brand-tag">daCommunity Gallery</span>
+      </a>
+      <nav class="header-nav">
+        <a class="nav-btn" href="../">Collections</a>
+        <a class="nav-btn" href="https://www.dacat.fun/dacat-universe" target="_blank" rel="noopener">Universe</a>
+        <a class="nav-btn" href="https://www.dacatworld.com/" target="_blank" rel="noopener">daCAT World</a>
+        <a class="nav-btn nav-btn-accent" href="https://opensea.io/collection/rodeo-posts-12142" target="_blank" rel="noopener">OpenSea</a>
+        <a class="nav-btn" href="https://t.me/daCat_token" target="_blank" rel="noopener">TG</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="app">
+    <section class="hero-band">
+      <div class="hero-inner">
+        <p class="eyebrow">Legendary crypto culture</p>
+        <h1>daCommunity <span class="accent">NFT Archive</span></h1>
+        <p class="hero-lead">
+          Curated AI art from Telegram — each piece minted on Base. Browse stories, see listings, look up any collector wallet.
+        </p>
+        <p class="hero-note" id="hero-note" hidden></p>
+      </div>
+      <div class="stats-strip" id="stats-strip" aria-live="polite">
+        <div class="stat skeleton"></div>
+        <div class="stat skeleton"></div>
+        <div class="stat skeleton"></div>
+        <div class="stat skeleton"></div>
+      </div>
+    </section>
+
+    <section class="panel wallet-panel" id="wallet-panel">
+      <div class="wallet-panel-head">
+        <div class="wallet-panel-title-row">
+          <div>
+            <h2>Collector lookup</h2>
+            <p>ENS or <code>0x</code> address — no wallet connect.</p>
+          </div>
+          <button type="button" class="btn btn-outline" id="view-collectors-btn" hidden>
+            View collectors
+          </button>
+        </div>
+      </div>
+      <form class="wallet-form" id="wallet-form">
+        <input type="text" id="wallet-input" placeholder="mozvane.eth or 0x…" autocomplete="off" spellcheck="false" />
+        <button type="submit" class="btn btn-dark">Look up</button>
+      </form>
+      <div class="wallet-result" id="wallet-result" hidden></div>
+    </section>
+
+    <section class="controls panel">
+      <input type="search" id="search" placeholder="Search pieces, stories, dacat.slug, or dacatdreams.base.eth…" autocomplete="off" aria-label="Search gallery" />
+      <div class="filters" role="tablist">
+        <button class="filter active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="filter" data-filter="listed" role="tab">For sale</button>
+        <button class="filter" data-filter="recent" role="tab">Newest</button>
+      </div>
+    </section>
+
+    <section class="featured-rail panel" id="featured-rail" hidden>
+      <h2 class="section-label">Listed on OpenSea</h2>
+      <div class="rail-track" id="rail-track"></div>
+    </section>
+
+    <section class="gallery-list" id="gallery-list" aria-label="Gallery"></section>
+
+    <div class="load-state" id="load-state">
+      <div class="spinner"></div>
+      <p>Loading gallery…</p>
+    </div>
+    <div class="load-state error" id="load-error" hidden></div>
+  </main>
+
+  <aside class="detail-panel" id="detail-panel" aria-hidden="true">
+    <div class="detail-backdrop" id="detail-backdrop"></div>
+    <article class="detail-card" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+      <button class="detail-close" id="detail-close" aria-label="Close">×</button>
+      <div class="detail-scroll">
+        <div class="detail-media">
+          <div id="detail-media-slot"></div>
+          <span class="detail-badge" id="detail-badge" hidden>For sale</span>
+        </div>
+        <div class="detail-body">
+          <p class="detail-token" id="detail-token"></p>
+          <p class="detail-mint" id="detail-mint" hidden></p>
+          <h2 id="detail-title"></h2>
+          <div class="detail-stats" id="detail-stats"></div>
+          <div class="detail-owners" id="detail-owners" hidden>
+            <h3 class="detail-subhead">Who holds this piece</h3>
+            <div class="owner-chips" id="detail-owner-chips"></div>
+            <div class="collector-explore" id="collector-explore" hidden>
+              <h4 id="collector-explore-title"></h4>
+              <div class="wallet-holdings" id="collector-explore-holdings"></div>
+            </div>
+          </div>
+          <div class="detail-description" id="detail-description"></div>
+          <a class="btn btn-accent" id="detail-opensea" href="#" target="_blank" rel="noopener">View on OpenSea</a>
+        </div>
+      </div>
+    </article>
+  </aside>
+
+  <div class="collectors-modal" id="collectors-modal" aria-hidden="true">
+    <div class="collectors-modal-backdrop" id="collectors-modal-backdrop"></div>
+    <div class="collectors-modal-card" role="dialog" aria-modal="true" aria-labelledby="collectors-modal-title">
+      <button type="button" class="collectors-modal-close" id="collectors-modal-close" aria-label="Close">×</button>
+      <h2 id="collectors-modal-title">daCommunity collectors</h2>
+      <p class="collectors-modal-lead">Tap a name to look up their holdings. Updated daily from OpenSea.</p>
+      <input type="search" id="collectors-search" placeholder="Filter by name or 0x…" autocomplete="off" aria-label="Search collectors" />
+      <div class="collectors-list" id="collectors-list" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>OpenSea ownership &amp; listings · Refreshed daily · Updated <span id="footer-updated">—</span></p>
+    <p><a href="https://www.dacat.fun/">dacat.fun</a> · <a href="https://www.dacatworld.com/">dacatworld</a></p>
+  </footer>
+
+  <script src="../js/app.js" defer></script>
+</body>
+</html>

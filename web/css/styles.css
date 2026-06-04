@@ -1083,3 +1083,218 @@ button.stat:focus-visible {
 }
 
 .site-footer a { color: var(--yellow); }
+
+/* Collections hub (landing + badges preview) */
+.hub-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.collections-hub {
+  flex: 1;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+  width: 100%;
+}
+
+.hub-hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.hub-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 5vw, 2.6rem);
+  margin: 0.35rem 0 0.75rem;
+  line-height: 1.1;
+}
+
+.hub-lead {
+  max-width: 34rem;
+  margin: 0 auto;
+  font-size: 1.02rem;
+  color: var(--text-muted);
+}
+
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.collection-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1.35rem 1.25rem 1.15rem;
+  background: var(--white);
+  border: 3px solid var(--black);
+  border-radius: var(--radius);
+  box-shadow: 8px 8px 0 var(--black);
+  text-decoration: none;
+  color: var(--black);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  min-height: 280px;
+}
+
+.collection-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 10px 10px 0 var(--black);
+  text-decoration: none;
+  color: var(--black);
+}
+
+.collection-card h2 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.collection-card p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  flex: 1;
+  line-height: 1.45;
+}
+
+.collection-card p code {
+  font-size: 0.82em;
+  background: #fff8d6;
+  padding: 0.05rem 0.3rem;
+  border-radius: 4px;
+}
+
+.collection-card-cta {
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.collection-card-status {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  background: var(--listed);
+  color: var(--white);
+  border: 2px solid var(--black);
+  border-radius: 4px;
+}
+
+.collection-card-status-soon {
+  background: var(--black);
+  color: var(--yellow);
+}
+
+.collection-card-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  margin-bottom: 0.25rem;
+}
+
+.collection-card-visual img {
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+}
+
+.collection-card-visual-badges {
+  background: linear-gradient(145deg, #1a1a1a 0%, #333 100%);
+  border-radius: 10px;
+  border: 2px solid var(--black);
+}
+
+.badge-glyph {
+  font-size: 2.75rem;
+  color: var(--yellow);
+  line-height: 1;
+}
+
+.collection-card-soon {
+  background: linear-gradient(180deg, #fffef8 0%, #fff6c8 100%);
+}
+
+/* Badges coming soon page */
+.badges-soon {
+  flex: 1;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 3rem;
+  position: relative;
+}
+
+.badges-soon-card {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  box-shadow: 10px 10px 0 var(--black);
+}
+
+.badges-soon-card h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 5vw, 2.35rem);
+  margin: 0.35rem 0 0.85rem;
+}
+
+.badges-soon-lead {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin: 0 0 0.65rem;
+  line-height: 1.5;
+}
+
+.badges-soon-note {
+  font-size: 0.85rem;
+  margin: 0 0 1.35rem;
+  opacity: 0.85;
+}
+
+.badges-soon-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  justify-content: center;
+}
+
+.badges-soon-orbit {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.orbit-badge {
+  position: absolute;
+  font-size: 2rem;
+  color: rgba(10, 10, 10, 0.12);
+  animation: orbit-float 6s ease-in-out infinite;
+}
+
+.orbit-badge { top: 12%; left: 8%; }
+.orbit-badge-2 { top: 55%; right: 6%; animation-delay: -2s; font-size: 2.5rem; }
+.orbit-badge-3 { bottom: 18%; left: 42%; animation-delay: -4s; }
+
+@keyframes orbit-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(8deg); }
+}
+
+.detail-mint {
+  margin: 0 0 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}

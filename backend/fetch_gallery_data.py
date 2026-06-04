@@ -106,7 +106,43 @@ def summarize_owners(owners: list[dict]) -> dict:
     }
 
 
-def build_item(nft: dict, listing: dict | None, owners: list[dict] | None) -> dict:
+def build_mint_date_index(client: OpenSeaClient) -> dict[str, str]:
+    """Earliest mint/transfer-to-zero-address timestamp per token (ISO UTC)."""
+    from datetime import datetime, timezone
+
+    earliest: dict[str, int] = {}
+    zero = "0x0000000000000000000000000000000000000000"
+    print("Fetching collection events for first-mint dates...")
+    for event in client.iter_collection_events(event_types=["mint", "transfer"]):
+        nft = event.get("nft") or event.get("asset") or {}
+        token_id = str(nft.get("identifier", ""))
+        ts = event.get("event_timestamp")
+        if not token_id or ts is None:
+            continue
+        ts = int(ts)
+        event_type = (event.get("event_type") or "").lower()
+        if event_type == "transfer":
+            transfer_type = (event.get("transfer_type") or "").lower()
+            from_addr = (event.get("from_address") or "").lower()
+            if transfer_type not in ("mint", "create") and from_addr not in (zero, ""):
+                continue
+        prev = earliest.get(token_id)
+        if prev is None or ts < prev:
+            earliest[token_id] = ts
+
+    return {
+        tid: datetime.fromtimestamp(ts, tz=timezone.utc).isoformat()
+        for tid, ts in earliest.items()
+    }
+
+
+def build_item(
+    nft: dict,
+    listing: dict | None,
+    owners: list[dict] | None,
+    *,
+    minted_at: str | None = None,
+) -> dict:
     token_id = str(nft.get("identifier", ""))
     description = clean_description(nft.get("description"))
     listing_info = parse_listing_price(listing) if listing else None
@@ -135,6 +171,8 @@ def build_item(nft: dict, listing: dict | None, owners: list[dict] | None) -> di
         "listing": listing_info,
         "owners": owner_stats,
     }
+    if minted_at:
+        item["minted_at"] = minted_at
     if raw_name != display:
         item["opensea_name"] = raw_name
     return item
@@ -246,6 +284,14 @@ def main() -> int:
     if args.max_items > 0:
         nfts = nfts[: args.max_items]
 
+    mint_dates: dict[str, str] = {}
+    if not args.quick:
+        try:
+            mint_dates = build_mint_date_index(client)
+            print(f"  Mint dates for {len(mint_dates)} tokens")
+        except Exception as exc:
+            print(f"  Warning: could not load mint dates ({exc})")
+
     items = []
     items_by_id: dict[str, dict] = {}
     listed_count = 0
@@ -266,7 +312,12 @@ def main() -> int:
             except Exception:
                 owners = []
 
-        item = build_item(nft, listing, owners)
+        item = build_item(
+            nft,
+            listing,
+            owners,
+            minted_at=mint_dates.get(token_id),
+        )
         if item["listed"]:
             listed_count += 1
         items.append(item)
