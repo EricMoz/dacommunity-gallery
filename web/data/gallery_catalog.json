@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-04T01:20:46.606214+00:00",
+  "generated_at": "2026-06-04T03:25:32.799329+00:00",
   "source": "gallery_catalog",
   "collection": {
     "slug": "rodeo-posts-12142",
@@ -14,7 +14,7 @@
     "contract_name": "Rodeo posts",
     "floor_eth": 0.003,
     "floor_symbol": "ETH",
-    "num_owners": 56,
+    "num_owners": 57,
     "total_sales": 0,
     "total_volume": 0.0,
     "piece_count": 65,
@@ -735,7 +735,7 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 17,
+        "holder_count": 18,
         "circulating_copies": 33,
         "top_holders": [
           {
@@ -744,7 +744,7 @@
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 4
+            "quantity": 3
           },
           {
             "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-03T12:42:29.376380+00:00",
+  "generated_at": "2026-06-04T03:25:32.794810+00:00",
   "holders_index": {
     "ens_aliases": {
       "lostthegame.eth": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
@@ -350,7 +350,7 @@
         "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
         "ens_name": "mozvane.eth",
         "username": null,
-        "collection_quantity": 284,
+        "collection_quantity": 283,
         "unique_pieces": 60,
         "holdings": [
           {
@@ -2477,6 +2477,20 @@
           }
         ]
       },
+      "0x3e43287a26acf9e5206f4551ccda29c7d9bea93e": {
+        "address": "0x3e43287a26acf9e5206f4551ccda29c7d9bea93e",
+        "ens_name": null,
+        "username": null,
+        "collection_quantity": 1,
+        "unique_pieces": 1,
+        "holdings": [
+          {
+            "token_id": "47",
+            "name": "dacat.vision",
+            "display_name": "dacat.vision"
+          }
+        ]
+      },
       "0x356d8dac5f0da039dcc3e22c8b42fde00e79f7e6": {
         "address": "0x356d8dac5f0da039dcc3e22c8b42fde00e79f7e6",
         "ens_name": null,
@@ -2575,7 +2589,7 @@
         "ens_name": "mozvane.eth",
         "username": null,
         "unique_pieces": 60,
-        "collection_quantity": 284
+        "collection_quantity": 283
       },
       {
         "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
@@ -2910,6 +2924,13 @@
         "address": "0x445a6fc0bf61535e7d2ef96258124fdb9a855fdc",
         "ens_name": null,
         "username": "0x445a",
+        "unique_pieces": 1,
+        "collection_quantity": 1
+      },
+      {
+        "address": "0x3e43287a26acf9e5206f4551ccda29c7d9bea93e",
+        "ens_name": null,
+        "username": null,
         "unique_pieces": 1,
         "collection_quantity": 1
       },
