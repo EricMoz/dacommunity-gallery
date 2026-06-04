@@ -28,6 +28,7 @@ jobs:
 
       - name: Verify site files
         run: |
+          node --check web/js/app.js || (echo "app.js has a syntax error — gallery will never load" && exit 1)
           test -f web/index.html || (echo "Missing web/index.html" && exit 1)
           test -f web/dacommunity/index.html || (echo "Missing web/dacommunity/index.html" && exit 1)
           test -f web/badges/index.html || (echo "Missing web/badges/index.html" && exit 1)

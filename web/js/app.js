@@ -1,12 +1,15 @@
 /**
  * daCommunity Gallery — static frontend (served from /dacommunity/ on Pages).
  *
- * Data load order: gallery_catalog.json (fast UI) → gallery_data.json (full merge)
- * → wallet_index.json (collectors + lookup, lazy).
+ * BOOT FLOW (init → bootGallery):
+ *   1. initDataUrls() — resolve ../data/*.json from body[data-base] on subpages
+ *   2. loadCatalogFirst() — small gallery_catalog.json (~140KB) for first paint
+ *   3. bootGallery() — hide #load-state, fill #stats-strip, render grid, bindUi()
+ *   4. refreshFullDataInBackground() — merge descriptions + recent_activity from full JSON
+ *   5. loadWalletIndex() — ENS names for collector lookup (non-blocking)
  *
- * Path note: JSON and local assets live under web/data and web/assets at site root.
- * When this page is in /dacommunity/, body[data-base="../"] and getDataPrefix() add
- * the parent prefix so fetch() and image URLs resolve correctly on GitHub Pages.
+ * If app.js fails to parse, the page stays on static HTML loaders (#load-state spinner
+ * + four .stat.skeleton cards). CI runs `node --check` on this file before deploy.
  *
  * No wallet connect; ENS resolve via ensdata.net when needed.
  */
@@ -127,8 +130,9 @@ function mergeFullDescriptions(full) {
   refreshView();
 }
 
-// --- Data loading (catalog → full merge → wallet index) ---
+// --- Data loading: catalog (fast) → full JSON (stories/activity) → wallet index ---
 
+/** First paint: lean catalog built by backend/build_catalog.py (no recent_activity). */
 async function loadCatalogFirst() {
   if (isFileProtocol()) throw new Error("FILE_PROTOCOL");
   try {
@@ -139,6 +143,7 @@ async function loadCatalogFirst() {
   }
 }
 
+/** After grid is visible, enrich items with full descriptions and transfer history. */
 async function refreshFullDataInBackground() {
   try {
     const full = await fetchJson(FULL_DATA_URL, 45000);
@@ -378,7 +383,7 @@ function addressActionHtml(address) {
     "</button>" +
     '<button type="button" class="addr-action-copy" data-copy="' +
     escapeHtml(meta.address) +
-    '" title="Copy full address">Copy</button></span>"
+    '" title="Copy full address">Copy</button></span>'
   );
 }
 
@@ -828,7 +833,7 @@ function renderDetailOwners(item) {
           "</button>" +
           '<button type="button" class="addr-action-copy owner-chip-copy" data-copy="' +
           escapeHtml(meta.address) +
-          '" title="Copy full address">Copy</button></span>"
+          '" title="Copy full address">Copy</button></span>'
         );
       })
       .join("") +
@@ -943,12 +948,17 @@ function bindUi() {
   });
 }
 
+/** Turn loaded JSON into UI: clear loaders, stats, gallery rows, event handlers. */
 function bootGallery(data) {
   galleryData = data;
   indexItems(galleryData);
-  $("#load-state").hidden = true;
+  var loadEl = $("#load-state");
+  if (loadEl) loadEl.hidden = true;
   renderStats(galleryData.collection);
-  $("#footer-updated").textContent = new Date(galleryData.generated_at).toLocaleString();
+  var footer = $("#footer-updated");
+  if (footer && galleryData.generated_at) {
+    footer.textContent = new Date(galleryData.generated_at).toLocaleString();
+  }
   bindUi();
   refreshView();
 }
@@ -986,4 +996,5 @@ async function init() {
   }
 }
 
+// defer script in dacommunity/index.html — DOM is ready when this runs
 init();
