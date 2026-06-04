@@ -32,7 +32,6 @@ def slim_item(item: dict) -> dict:
         "listing": item.get("listing"),
         "owners": item.get("owners"),
         "minted_at": item.get("minted_at"),
-        "recent_activity": item.get("recent_activity"),
     }
 
 

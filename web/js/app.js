@@ -55,6 +55,8 @@ function nvl(value, fallback) {
 
 function showFatalError(title, detail, cmd) {
   $("#load-state").hidden = true;
+  var strip = $("#stats-strip");
+  if (strip) strip.innerHTML = "";
   const err = $("#load-error");
   err.hidden = false;
   err.innerHTML =
@@ -130,16 +132,16 @@ function mergeFullDescriptions(full) {
 async function loadCatalogFirst() {
   if (isFileProtocol()) throw new Error("FILE_PROTOCOL");
   try {
-    return await fetchJson(CATALOG_URL, 12000);
+    return await fetchJson(CATALOG_URL, 20000);
   } catch (e1) {
     console.warn("Catalog fetch failed, trying full data:", e1);
-    return await fetchJson(FULL_DATA_URL, 20000);
+    return await fetchJson(FULL_DATA_URL, 45000);
   }
 }
 
 async function refreshFullDataInBackground() {
   try {
-    const full = await fetchJson(FULL_DATA_URL, 25000);
+    const full = await fetchJson(FULL_DATA_URL, 45000);
     mergeFullDescriptions(full);
     galleryData.generated_at = full.generated_at;
     galleryData.collection = full.collection;
