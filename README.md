@@ -6,7 +6,7 @@ Static gallery for the [daCAT daCommunity](https://opensea.io/collection/rodeo-p
 
 | Route | Purpose |
 |-------|---------|
-| `/` | Collection picker (daCommunity + Badges) |
+| `/` | **Home** — entertainment hub (Collections, film, charts) |
 | `/dacommunity/` | Full gallery, collector lookup, OpenSea data |
 | `/badges/` | Badges coming-soon placeholder |
 | `/analytics/` | Cat Coin market cap bar chart race (Flourish embed) |
@@ -74,7 +74,7 @@ Or: `.\scripts\refresh.ps1` (fetch + merge + local server).
 ```
 backend/          OpenSea fetch + title normalization + catalog build
 web/              Static site (HTML, CSS, JS, data, assets)
-  index.html      Collections hub
+  index.html      Site home (Collections + Watch & track sections)
   dacommunity/    daCommunity gallery (app.js expects ../data paths)
   badges/         Badges placeholder
   analytics/      Cat Coin MC race (Flourish)

@@ -1,71 +1,82 @@
 <!DOCTYPE html>
-<!-- Site entry: collection picker. Extras: analytics/, film/ (hub → film/mozvane/, etc.). -->
+<!-- Site home — entertainment hub. NFTs: #collections · film/analytics below. -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>daCAT Collections</title>
-  <meta name="description" content="Explore daCAT community collections — daCommunity NFT archive and Badges." />
+  <title>daCAT · Home</title>
+  <meta name="description" content="daCAT entertainment — daCommunity NFT gallery, films, Cat Coin charts, and Badges." />
   <link rel="icon" href="assets/brand/dacat-icon-64.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body class="hub-page">
+<body class="home-page">
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="https://www.dacat.fun/" target="_blank" rel="noopener" aria-label="daCAT — Collections">
+      <a class="brand" href="./" aria-label="daCAT Home">
         <img class="brand-mascot" src="assets/brand/dacat-mascot.png" alt="" width="56" height="56" />
-        <span class="brand-tag">Collections</span>
+        <span class="brand-tag">Home</span>
       </a>
-      <nav class="header-nav">
-        <a class="nav-btn" href="https://www.dacat.fun/dacat-universe" target="_blank" rel="noopener">Universe</a>
-        <a class="nav-btn" href="https://www.dacatworld.com/" target="_blank" rel="noopener">daCAT World</a>
-        <a class="nav-btn nav-btn-chart" href="analytics/">MC race</a>
+      <nav class="header-nav" aria-label="Main">
+        <span class="nav-btn nav-btn-home is-active" aria-current="page">Home</span>
+        <a class="nav-btn" href="dacommunity/">Gallery</a>
         <a class="nav-btn nav-btn-film" href="film/">Film</a>
+        <a class="nav-btn nav-btn-chart" href="analytics/">MC race</a>
+        <a class="nav-btn" href="https://www.dacat.fun/dacat-universe" target="_blank" rel="noopener">Universe</a>
         <a class="nav-btn nav-btn-accent" href="https://opensea.io/collection/rodeo-posts-12142" target="_blank" rel="noopener">OpenSea</a>
         <a class="nav-btn" href="https://t.me/daCat_token" target="_blank" rel="noopener">TG</a>
       </nav>
     </div>
   </header>
 
-  <main class="collections-hub">
-    <section class="hub-hero">
-      <div class="hub-hero-inner">
+  <main class="site-home">
+    <section class="home-hero">
+      <div class="home-hero-inner">
         <p class="eyebrow">Legendary crypto culture</p>
-        <h1>Choose a <span class="accent">collection</span></h1>
-        <p class="hub-lead">Browse daCommunity on Base or preview Badges on Ethereum — film and charts linked below.</p>
+        <h1>daCAT <span class="accent">entertainment</span></h1>
+        <p class="home-lead">Gallery, film, and live charts — one home for the community&apos;s art, stories, and experiments.</p>
+        <nav class="home-jump" aria-label="On this page">
+          <a href="#collections">Collections</a>
+          <a href="#explore">Film &amp; charts</a>
+        </nav>
       </div>
     </section>
 
-    <section class="collection-grid" aria-label="Collections">
-      <a class="collection-card collection-card-live" href="dacommunity/">
-        <span class="collection-card-status">Live</span>
-        <div class="collection-card-visual" aria-hidden="true">
-          <img src="assets/brand/dacat-mascot.png" alt="" width="88" height="88" />
-        </div>
-        <h2>daCommunity NFT Archive</h2>
-        <p>ERC-1155 stories from Telegram — listings, collectors, and every <code>dacat.*</code> piece on Base.</p>
-        <span class="collection-card-cta">Open gallery →</span>
-      </a>
+    <section id="collections" class="home-section home-collections" aria-labelledby="collections-heading">
+      <header class="home-section-head">
+        <h2 id="collections-heading" class="home-section-title">Collections</h2>
+        <p class="home-section-lead">NFT archives — browse pieces, collectors, and listings on chain.</p>
+      </header>
+      <div class="collection-grid">
+        <a class="collection-card collection-card-live" href="dacommunity/">
+          <span class="collection-card-status">Live</span>
+          <div class="collection-card-visual" aria-hidden="true">
+            <img src="assets/brand/dacat-mascot.png" alt="" width="88" height="88" />
+          </div>
+          <h3 class="collection-card-title">daCommunity NFT Archive</h3>
+          <p>ERC-1155 stories from Telegram — every <code>dacat.*</code> piece on Base.</p>
+          <span class="collection-card-cta">Open gallery →</span>
+        </a>
 
-      <a class="collection-card collection-card-soon" href="badges/">
-        <span class="collection-card-status collection-card-status-soon">Coming soon</span>
-        <div class="collection-card-visual collection-card-visual-badges" aria-hidden="true">
-          <span class="badge-glyph" aria-hidden="true">★</span>
-        </div>
-        <h2>Badges</h2>
-        <p>1:1 community badges on Ethereum — crafted for long-term holders. Collection in the works.</p>
-        <span class="collection-card-cta">Preview →</span>
-      </a>
+        <a class="collection-card collection-card-soon" href="badges/">
+          <span class="collection-card-status collection-card-status-soon">Coming soon</span>
+          <div class="collection-card-visual collection-card-visual-badges" aria-hidden="true">
+            <span class="badge-glyph" aria-hidden="true">★</span>
+          </div>
+          <h3 class="collection-card-title">Badges</h3>
+          <p>1:1 community badges on Ethereum — crafted for long-term holders.</p>
+          <span class="collection-card-cta">Preview →</span>
+        </a>
+      </div>
     </section>
 
-    <section class="hub-more" aria-label="More to explore">
-      <div class="hub-more-header">
-        <h2 class="hub-more-title">More to explore</h2>
-        <p class="hub-more-lead">Community film and live Cat Coin charting — same world, different format.</p>
-      </div>
+    <section id="explore" class="home-section home-explore" aria-labelledby="explore-heading">
+      <header class="home-section-head">
+        <h2 id="explore-heading" class="home-section-title">Watch &amp; track</h2>
+        <p class="home-section-lead">Film and live data — same daCAT energy, different format.</p>
+      </header>
       <div class="hub-more-grid">
         <a class="hub-more-card hub-more-card-film" href="film/">
           <span class="hub-more-kicker">Film</span>
