@@ -6,10 +6,28 @@
  * No wallet connect; ENS resolve via ensdata.net when needed.
  */
 
-const DATA_BASE = document.body.dataset.base || "";
-const CATALOG_URL = DATA_BASE + "data/gallery_catalog.json";
-const FULL_DATA_URL = DATA_BASE + "data/gallery_data.json";
-const WALLET_URL = DATA_BASE + "data/wallet_index.json";
+/** Prefix for web/data and web/assets when gallery is in /dacommunity/ subfolder. */
+function getDataPrefix() {
+  var body = document.body;
+  if (body) {
+    var attr = body.getAttribute("data-base");
+    if (attr) return attr;
+  }
+  var path = window.location.pathname || "";
+  if (path.indexOf("/dacommunity") !== -1) return "../";
+  return "";
+}
+
+let CATALOG_URL = "";
+let FULL_DATA_URL = "";
+let WALLET_URL = "";
+
+function initDataUrls() {
+  var prefix = getDataPrefix();
+  CATALOG_URL = prefix + "data/gallery_catalog.json";
+  FULL_DATA_URL = prefix + "data/gallery_data.json";
+  WALLET_URL = prefix + "data/wallet_index.json";
+}
 
 const $ = (sel, root = document) => root.querySelector(sel);
 
@@ -246,8 +264,14 @@ function isVideoItem(item) {
   return /\.(mp4|mov|webm)(\?|$)/i.test(item.image_url || "");
 }
 
+function resolveMediaUrl(url) {
+  if (!url) return "";
+  if (/^https?:\/\//i.test(url)) return url;
+  return getDataPrefix() + String(url).replace(/^\//, "");
+}
+
 function imgSrc(item) {
-  return item.image_url || item.opensea_image_url || "";
+  return resolveMediaUrl(item.image_url || item.opensea_image_url || "");
 }
 
 function shortenAddress(addr) {
@@ -471,8 +495,8 @@ function fillMediaSlot(slot, item, opts) {
     img.alt = itemTitle(item);
     img.loading = "lazy";
     img.decoding = "async";
-    if (item.opensea_image_url && item.image_url !== item.opensea_image_url) {
-      img.addEventListener("error", function () { img.src = item.opensea_image_url; }, { once: true });
+    if (item.opensea_image_url && resolveMediaUrl(item.image_url) !== resolveMediaUrl(item.opensea_image_url)) {
+      img.addEventListener("error", function () { img.src = resolveMediaUrl(item.opensea_image_url); }, { once: true });
     }
     slot.appendChild(img);
   }
@@ -588,8 +612,8 @@ function renderGallery(items) {
       '<div class="gallery-side"><span class="token-pill">#' + item.token_id + "</span>" + listedBadge + "</div>";
     fillMediaSlot(row.querySelector(".gallery-thumb-slot"), item, { controls: false });
     var thumb = row.querySelector(".gallery-thumb-slot img, .gallery-thumb-slot video");
-    if (thumb && thumb.tagName === "IMG" && item.opensea_image_url && item.image_url !== item.opensea_image_url) {
-      thumb.addEventListener("error", function () { thumb.src = item.opensea_image_url; }, { once: true });
+    if (thumb && thumb.tagName === "IMG" && item.opensea_image_url && resolveMediaUrl(item.image_url) !== resolveMediaUrl(item.opensea_image_url)) {
+      thumb.addEventListener("error", function () { thumb.src = resolveMediaUrl(item.opensea_image_url); }, { once: true });
     }
     row.addEventListener("click", function () { openDetail(item); });
     list.appendChild(row);
@@ -733,6 +757,8 @@ function bootGallery(data) {
 }
 
 async function init() {
+  initDataUrls();
+
   if (isFileProtocol()) {
     showFatalError(
       "Open the gallery through the local server",
