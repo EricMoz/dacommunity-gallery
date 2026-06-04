@@ -1119,6 +1119,13 @@ button.stat:focus-visible {
 
 .site-footer a { color: var(--yellow); }
 
+.site-version {
+  margin: 0.5rem 0 0;
+  font-size: 0.65rem;
+  opacity: 0.45;
+  letter-spacing: 0.04em;
+}
+
 /* Site home + legacy hub-page (badges preview) */
 .home-page,
 .hub-page {

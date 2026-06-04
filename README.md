@@ -2,7 +2,7 @@
 
 Static gallery for the [daCAT daCommunity](https://opensea.io/collection/rodeo-posts-12142) ERC-1155 collection on Base, plus a collections hub for upcoming **Badges** (Ethereum).
 
-**Live site:** https://ericmoz.github.io/dacommunity-gallery/
+**Live site:** https://ericmoz.github.io/dacommunity-gallery/ (footer shows `Site build …` — hard-refresh if it looks old: Ctrl+Shift+R)
 
 | Route | Purpose |
 |-------|---------|
