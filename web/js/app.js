@@ -923,14 +923,14 @@ function walletShareUrl(address) {
   return url.toString();
 }
 
-/** Scroll to #wallet-panel after layout settles (hero unhidden on portfolio exit). */
+/** Scroll to #wallet-panel (sticky-header offset). Works even if hash is already set. */
 function scrollToCollectorHub(opts) {
   opts = opts || {};
   var panel = $("#wallet-panel");
   if (!panel) return;
 
   function runScroll() {
-    if (opts.updateHash !== false && location.hash !== "#wallet-panel") {
+    if (opts.updateHash !== false) {
       history.replaceState(
         null,
         "",
@@ -938,12 +938,51 @@ function scrollToCollectorHub(opts) {
       );
     }
     var behavior = opts.behavior === "instant" ? "auto" : opts.behavior || "smooth";
+    var top =
+      panel.getBoundingClientRect().top + window.pageYOffset - 88;
+    window.scrollTo({ top: Math.max(0, top), behavior: behavior });
     panel.scrollIntoView({ behavior: behavior, block: "start" });
     panel.focus({ preventScroll: true });
   }
 
   requestAnimationFrame(function () {
     requestAnimationFrame(runScroll);
+  });
+}
+
+/** Nav “My daCATs” / #wallet-panel — close overlays, exit portfolio grid, scroll to lookup. */
+function navigateToCollectorHub() {
+  closeDetail();
+  closeCollectorsModal();
+  if (galleryCollectorView) {
+    exitCollectorView({ scrollToHub: false });
+  }
+  scrollToCollectorHub({ updateHash: true });
+  var input = $("#wallet-input");
+  if (input) {
+    window.setTimeout(function () {
+      input.focus({ preventScroll: true });
+    }, 350);
+  }
+}
+
+function bindCollectorHubNav() {
+  if (bindCollectorHubNav._bound) return;
+  bindCollectorHubNav._bound = true;
+
+  document
+    .querySelectorAll('a[href="#wallet-panel"], a[href*="#wallet-panel"]')
+    .forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        if (!$("#wallet-panel")) return;
+        e.preventDefault();
+        navigateToCollectorHub();
+      });
+    });
+
+  window.addEventListener("hashchange", function () {
+    if (location.hash !== "#wallet-panel" || !$("#wallet-panel")) return;
+    navigateToCollectorHub();
   });
 }
 
@@ -2219,6 +2258,7 @@ function bindUi() {
   if (emptyReset) emptyReset.addEventListener("click", resetBrowseView);
   bindFreshnessToggle();
   bindCollectorExitUi();
+  bindCollectorHubNav();
   renderCollectorFocusUi();
   var cs = $("#collectors-search");
   if (cs) cs.addEventListener("input", function (e) { renderCollectors(e.target.value); });
