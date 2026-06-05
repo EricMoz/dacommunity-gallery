@@ -4,16 +4,26 @@
 (function () {
   "use strict";
 
-  const DATA_URL = "../data/videos.json";
+  const DATA_URL = new URL("../data/videos.json", window.location.href).href;
   const MOZVANE_SERIES = "Mozvane";
   const YT_ORIGIN = window.location.origin;
+  const SPOTLIGHT_IDS = [
+    "chronicles-trailer-1",
+    "podcast-ep1",
+    "dabeezy-rebirth",
+    "crossover-kizuna",
+  ];
 
   const els = {
     rows: document.getElementById("film-rows"),
+    spotlight: document.getElementById("film-spotlight"),
+    spotlightRow: document.getElementById("film-spotlight-row"),
     mozvaneSection: document.getElementById("film-mozvane-section"),
     mozvaneRow: document.getElementById("film-mozvane-row"),
     search: document.getElementById("film-search"),
     filters: document.getElementById("film-filters"),
+    stats: document.getElementById("film-stats"),
+    loading: document.getElementById("film-loading"),
     empty: document.getElementById("film-empty"),
     modal: document.getElementById("film-modal"),
     modalBackdrop: document.querySelector(".film-modal-backdrop"),
@@ -116,6 +126,7 @@
       <span class="film-vcard-thumb">
         <img src="${escapeHtml(video.thumbnail)}" alt="" loading="lazy" width="480" height="360" />
         <span class="film-vcard-play" aria-hidden="true"></span>
+        <span class="film-vcard-type">${escapeHtml(video.type)}</span>
         ${runtime}
       </span>
       <span class="film-vcard-body">
@@ -139,11 +150,41 @@
         <h2 class="film-series-title">${escapeHtml(seriesName)}</h2>
         <span class="film-series-count">${count} ${count === 1 ? "title" : "titles"}</span>
       </header>
-      <div class="film-row-scroll" role="list"></div>
+      <div class="film-row-wrap">
+        <div class="film-row-scroll" role="list"></div>
+      </div>
     `;
     const scroll = section.querySelector(".film-row-scroll");
     sortVideos(list).forEach((v) => scroll.appendChild(createCard(v)));
     target.appendChild(section);
+  }
+
+  function renderSpotlight(visible) {
+    if (!els.spotlight || !els.spotlightRow) return;
+    const show =
+      activeFilter === "all" &&
+      !searchQuery &&
+      visible.some((v) => SPOTLIGHT_IDS.includes(v.id));
+    els.spotlight.hidden = !show;
+    els.spotlightRow.innerHTML = "";
+    if (!show) return;
+    SPOTLIGHT_IDS.forEach((id) => {
+      const video = visible.find((v) => v.id === id);
+      if (video) els.spotlightRow.appendChild(createCard(video));
+    });
+  }
+
+  function updateStats() {
+    if (!els.stats || !videos.length) return;
+    const seriesCount = new Set(videos.map((v) => v.series)).size;
+    els.stats.textContent = `${videos.length} titles · ${seriesCount} series · tap any poster to play`;
+  }
+
+  function setLoading(on) {
+    if (els.loading) els.loading.hidden = !on;
+    if (els.rows && on) els.rows.hidden = true;
+    if (els.spotlight && on) els.spotlight.hidden = true;
+    if (els.mozvaneSection && on) els.mozvaneSection.hidden = true;
   }
 
   function render() {
@@ -156,10 +197,13 @@
 
     if (!catalog) return;
 
+    renderSpotlight(visible);
+
     if (activeFilter === "mozvane") {
       els.mozvaneSection.hidden = false;
       sortVideos(moz).forEach((v) => els.mozvaneRow.appendChild(createCard(v)));
       els.rows.hidden = true;
+      if (els.spotlight) els.spotlight.hidden = true;
     } else {
       els.rows.hidden = false;
       const order = catalog.seriesOrder || [];
@@ -288,6 +332,9 @@
     if (!video) return;
 
     fillModalDetails(video);
+    const url = new URL(window.location.href);
+    url.searchParams.set("v", videoId);
+    history.replaceState(null, "", url);
     els.modal.hidden = false;
     document.body.classList.add("film-modal-open");
     if (!autoplayNext) {
@@ -303,6 +350,9 @@
     els.modal.hidden = true;
     document.body.classList.remove("film-modal-open");
     els.modal.setAttribute("aria-hidden", "true");
+    const url = new URL(window.location.href);
+    url.searchParams.delete("v");
+    history.replaceState(null, "", url);
   }
 
   function renderFilters() {
@@ -349,18 +399,28 @@
     });
   }
 
+  function openFromQuery() {
+    const id = new URLSearchParams(window.location.search).get("v");
+    if (id && findVideo(id)) openModal(id);
+  }
+
   async function init() {
     loadYouTubeApi();
     bindEvents();
+    setLoading(true);
     try {
       const res = await fetch(DATA_URL, { cache: "no-store" });
       if (!res.ok) throw new Error(String(res.status));
       catalog = await res.json();
       videos = catalog.videos || [];
+      updateStats();
       renderFilters();
+      setLoading(false);
       render();
+      openFromQuery();
     } catch (err) {
       console.error("Film hub: failed to load videos.json", err);
+      setLoading(false);
       if (els.empty) {
         els.empty.hidden = false;
         els.empty.textContent =

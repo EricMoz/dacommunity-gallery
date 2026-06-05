@@ -36,8 +36,9 @@
       <p class="film-eyebrow">Community cinema</p>
       <h1>daCAT <span class="film-hero-name">films</span></h1>
       <p class="film-tagline film-hub-lead">
-        Trailers, podcasts, animated episodes, and crossover shorts from across the daCAT community — all in one place.
+        Trailers, podcasts, animated episodes, and crossover shorts from across the daCAT community — all in one place. Pick a row, tap a poster, and watch in the player.
       </p>
+      <p id="film-stats" class="film-stats" aria-live="polite"></p>
       <p class="film-nav-links">
         <a class="film-back" href="../dacommunity/">daCommunity archive</a>
         <span class="film-credit-sep" aria-hidden="true">·</span>
@@ -60,11 +61,24 @@
         />
       </label>
       <div id="film-filters" class="film-filters" role="group" aria-label="Filter by category"></div>
+      <p class="film-toolbar-hint">Scroll rows sideways on mobile · <kbd>Esc</kbd> closes the player</p>
+    </section>
+
+    <p id="film-loading" class="film-loading">Loading community catalog…</p>
+
+    <section id="film-spotlight" class="film-spotlight" hidden aria-labelledby="film-spotlight-heading">
+      <header class="film-series-head">
+        <h2 id="film-spotlight-heading" class="film-series-title">Start here</h2>
+        <span class="film-series-count">Community picks</span>
+      </header>
+      <div class="film-row-wrap">
+        <div id="film-spotlight-row" class="film-row-scroll film-row-spotlight"></div>
+      </div>
     </section>
 
     <div id="film-rows" class="film-rows" aria-live="polite"></div>
 
-    <section id="film-mozvane-section" class="film-series-section film-mozvane-section" aria-labelledby="film-mozvane-heading">
+    <section id="film-mozvane-section" class="film-series-section film-mozvane-section" hidden aria-labelledby="film-mozvane-heading">
       <header class="film-series-head film-mozvane-head">
         <h2 id="film-mozvane-heading" class="film-series-title">Mozvane</h2>
         <p class="film-mozvane-lead">Sora-era community anime — one series among many, preserved here for the archive.</p>
