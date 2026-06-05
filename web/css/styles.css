@@ -322,30 +322,129 @@ button.stat:focus-visible {
   opacity: 0.85;
 }
 
-/* Wallet */
+/* Collector hub (wallet lookup) */
+.collector-hub,
 .wallet-panel {
-  padding: 1.2rem 1.35rem;
+  padding: 1.35rem 1.4rem;
+  background: linear-gradient(165deg, #fffef8 0%, var(--white) 55%);
+  scroll-margin-top: 5.5rem;
 }
 
-.wallet-panel-title-row {
+.collector-hub.has-result {
+  outline: 3px solid var(--yellow);
+  outline-offset: -3px;
+}
+
+.collector-hub-head {
+  margin-bottom: 1rem;
+}
+
+.collector-hub-kicker {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--blue-accent);
+}
+
+.collector-hub-title-row {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
   gap: 0.75rem 1rem;
+}
+
+.collector-hub-title {
+  font-family: var(--font-display);
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.35rem, 4vw, 1.65rem);
+  line-height: 1.1;
+}
+
+.collector-hub-lead {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  max-width: 34rem;
+}
+
+.collector-lookup-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
   margin-bottom: 0.85rem;
 }
 
-.wallet-panel-title-row h2 {
-  font-family: var(--font-display);
-  margin: 0 0 0.2rem;
-  font-size: 1.1rem;
+.collector-lookup-input,
+.wallet-form input {
+  flex: 1;
+  min-width: min(100%, 220px);
+  min-height: 48px;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--black);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 1rem;
+  background: var(--white);
+  box-shadow: 4px 4px 0 var(--black);
 }
 
-.wallet-panel-title-row p {
-  margin: 0;
-  font-size: 0.85rem;
+.collector-lookup-input:focus {
+  outline: 3px solid var(--blue-accent);
+  outline-offset: 2px;
+}
+
+.collector-lookup-submit {
+  min-height: 48px;
+}
+
+.top-collectors {
+  margin-bottom: 0.85rem;
+  padding: 0.75rem 0;
+  border-top: 2px dashed #ddd;
+}
+
+.top-collectors-label {
+  margin: 0 0 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
   color: var(--text-muted);
+}
+
+.top-collectors-track {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.top-collector-pill {
+  border: 2px solid var(--black);
+  background: var(--yellow);
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--black);
+  transition: transform 0.12s ease;
+  min-height: 40px;
+}
+
+.top-collector-pill:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--black);
+}
+
+.top-collector-pill span.meta {
+  font-weight: 600;
+  opacity: 0.75;
+  margin-left: 0.25rem;
 }
 
 .btn-outline {
@@ -373,12 +472,266 @@ button.stat:focus-visible {
 }
 
 .wallet-result {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   padding-top: 1rem;
   border-top: 2px dashed #ccc;
 }
 
-.wallet-result.empty { color: var(--text-muted); font-size: 0.9rem; }
+.wallet-result.empty {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.wallet-state {
+  padding: 1.1rem 1rem;
+  border: 2px solid var(--black);
+  border-radius: var(--radius);
+  background: #fffef5;
+}
+
+.wallet-state-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.wallet-state-loading .spinner {
+  width: 28px;
+  height: 28px;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.wallet-state-title {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+}
+
+.wallet-state-lead {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.wallet-state-error {
+  border-color: #c45a00;
+  background: #fff8f0;
+}
+
+.collector-profile-card {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding: 1rem 1.1rem;
+  background: var(--yellow);
+  border: 3px solid var(--black);
+  border-radius: var(--radius);
+  box-shadow: 5px 5px 0 var(--black);
+}
+
+.collector-profile-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.collector-profile-name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  line-height: 1.15;
+}
+
+.collector-profile-ens {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--blue-accent);
+}
+
+.collector-profile-address {
+  margin: 0;
+  font-size: 0.76rem;
+  font-family: ui-monospace, monospace;
+  word-break: break-all;
+  color: var(--text-muted);
+}
+
+.collector-profile-stats {
+  margin: 0.35rem 0 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.collector-profile-badge {
+  display: inline-block;
+  margin-top: 0.35rem;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--black);
+  color: var(--yellow);
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.collector-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+}
+
+.holdings-heading {
+  margin: 0 0 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.holdings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.holding-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0;
+  border: 3px solid var(--black);
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: 4px 4px 0 var(--black);
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.holding-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--black);
+}
+
+.holding-card-media {
+  position: relative;
+  aspect-ratio: 1;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.holding-card-media .thumb-media {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.holding-card-body {
+  padding: 0.5rem 0.55rem 0.6rem;
+  background: var(--yellow);
+  border-top: 2px solid var(--black);
+}
+
+.holding-card-title {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  line-height: 1.2;
+  margin: 0 0 0.25rem;
+}
+
+.holding-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.holding-card .thumb-video-badge {
+  position: absolute;
+  bottom: 0.35rem;
+  right: 0.35rem;
+  font-size: 0.65rem;
+}
+
+/* Hub spotlight CTA */
+.home-collector-spotlight {
+  max-width: 1140px;
+  margin: 0 auto 1.5rem;
+  padding: 0 1.25rem;
+}
+
+.collector-spotlight-card {
+  display: block;
+  padding: 1.25rem 1.35rem;
+  background: var(--white);
+  border: 3px solid var(--black);
+  border-radius: var(--radius);
+  box-shadow: 6px 6px 0 var(--black);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.collector-spotlight-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 var(--black);
+  text-decoration: none;
+}
+
+.collector-spotlight-card-inline {
+  max-width: 1140px;
+  margin: 0 auto 1.25rem;
+  padding: 1rem 1.2rem;
+}
+
+.collections-main .collector-spotlight-card-inline {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+}
+
+.collector-spotlight-kicker {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--blue-accent);
+  margin-bottom: 0.3rem;
+}
+
+.collector-spotlight-title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  margin: 0 0 0.35rem;
+}
+
+.collector-spotlight-lead {
+  display: block;
+  margin: 0 0 0.5rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.collector-spotlight-cta {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
 
 .wallet-profile {
   display: flex;
@@ -2918,6 +3271,27 @@ body.film-page {
 
   .browse-row-sort {
     width: 100%;
+  }
+
+  .holdings-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.55rem;
+  }
+
+  .collector-actions .btn {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .top-collectors-track {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.2rem;
+  }
+
+  .top-collector-pill {
+    flex-shrink: 0;
   }
 
   .gallery-row {

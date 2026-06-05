@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/styles.css?v=20260605-2" />
+  <link rel="stylesheet" href="../css/styles.css?v=20260605-3" />
 </head>
 <body data-base="../">
   <header class="site-header">
@@ -28,6 +28,7 @@
         <a class="nav-btn nav-btn-collections" href="../collections/">Collections</a>
         <a class="nav-btn nav-btn-film" href="../film/">Film</a>
         <a class="nav-btn nav-btn-chart" href="../analytics/">MC race</a>
+        <a class="nav-btn" href="#wallet-panel">My daCATs</a>
         <a class="nav-btn nav-btn-accent" href="https://opensea.io/collection/rodeo-posts-12142" target="_blank" rel="noopener">OpenSea</a>
         <a class="nav-btn" href="https://t.me/daCat_token" target="_blank" rel="noopener">TG</a>
       </nav>
@@ -67,23 +68,38 @@
       </div>
     </section>
 
-    <section class="panel wallet-panel" id="wallet-panel">
-      <div class="wallet-panel-head">
-        <div class="wallet-panel-title-row">
+    <section class="panel collector-hub" id="wallet-panel" tabindex="-1">
+      <header class="collector-hub-head">
+        <p class="collector-hub-kicker">Community · ownership</p>
+        <div class="collector-hub-title-row">
           <div>
-            <h2>Collector lookup</h2>
-            <p>ENS or <code>0x</code> address — tap a name in activity to look up, or use Copy for the full address.</p>
+            <h2 class="collector-hub-title">Find your daCATs</h2>
+            <p class="collector-hub-lead">Look up any collector — see every piece they hold in the official archive. No wallet connect, just belonging.</p>
           </div>
-          <button type="button" class="btn btn-outline" id="view-collectors-btn" hidden>
-            View collectors
-          </button>
+          <button type="button" class="btn btn-outline" id="view-collectors-btn" hidden>All collectors</button>
         </div>
-      </div>
-      <form class="wallet-form" id="wallet-form">
-        <input type="text" id="wallet-input" placeholder="mozvane.eth or 0x…" autocomplete="off" spellcheck="false" />
-        <button type="submit" class="btn btn-dark">Look up</button>
+      </header>
+
+      <form class="collector-lookup-form" id="wallet-form">
+        <label class="visually-hidden" for="wallet-input">Wallet or ENS name</label>
+        <input
+          type="text"
+          id="wallet-input"
+          class="collector-lookup-input"
+          placeholder="mozvane.eth or 0x…"
+          autocomplete="off"
+          spellcheck="false"
+          enterkeyhint="search"
+        />
+        <button type="submit" class="btn btn-dark collector-lookup-submit">Look up</button>
       </form>
-      <div class="wallet-result" id="wallet-result" hidden></div>
+
+      <div class="top-collectors" id="top-collectors" hidden aria-label="Top collectors">
+        <p class="top-collectors-label">Heavy collectors in the archive</p>
+        <div class="top-collectors-track" id="top-collectors-track"></div>
+      </div>
+
+      <div class="wallet-result" id="wallet-result" hidden aria-live="polite"></div>
     </section>
 
     <section class="panel browse-controls" id="browse-controls" aria-label="Search and filter gallery">
@@ -223,6 +239,6 @@
   </footer>
 
   <script src="../js/pwa-register.js?v=20260605-1" defer></script>
-  <script src="../js/app.js?v=20260605-2" defer></script>
+  <script src="../js/app.js?v=20260605-3" defer></script>
 </body>
 </html>

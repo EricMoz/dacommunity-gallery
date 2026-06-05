@@ -12,6 +12,7 @@
  * + four .stat.skeleton cards). CI runs `node --check` on this file before deploy.
  *
  * No wallet connect; ENS resolve via ensdata.net when needed.
+ * Collector lookup: wallet_index.json, shareable ?wallet=0x… URLs, holdings grid.
  */
 
 /** Parent path prefix when gallery is not at site root (e.g. /dacommunity/). */
@@ -605,6 +606,35 @@ function copyFullAddress(address) {
   document.body.removeChild(ta);
 }
 
+// --- Collector lookup (wallet_index.json, shareable ?wallet= URLs) ---
+
+function parseWalletFromUrl() {
+  var params = new URLSearchParams(window.location.search);
+  return (params.get("wallet") || params.get("ens") || "").trim();
+}
+
+function syncWalletShareUrl(address, displayValue) {
+  if (!address || !/^0x[a-fA-F0-9]{40}$/i.test(address)) return;
+  var params = new URLSearchParams(window.location.search);
+  params.set("wallet", address.toLowerCase());
+  params.delete("ens");
+  var path = window.location.pathname + "?" + params.toString() + window.location.hash;
+  history.replaceState(null, "", path);
+}
+
+function walletShareUrl(address) {
+  var url = new URL(window.location.href);
+  url.searchParams.set("wallet", address.toLowerCase());
+  url.searchParams.delete("ens");
+  if (!url.hash) url.hash = "wallet-panel";
+  return url.toString();
+}
+
+function scrollToCollectorHub() {
+  var panel = $("#wallet-panel");
+  if (panel) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 function runWalletLookupFromAddress(address, lookupValue) {
   var input = $("#wallet-input");
   if (!input) return;
@@ -612,11 +642,243 @@ function runWalletLookupFromAddress(address, lookupValue) {
   input.value = lookupValue || meta.lookupValue || meta.address;
   closeDetail();
   closeCollectorsModal();
-  renderWalletLookup(input.value);
-  $("#wallet-result").hidden = false;
-  var panel = $("#wallet-panel");
-  if (panel) panel.scrollIntoView({ behavior: "smooth", block: "start" });
-  input.focus();
+  renderWalletLookup(input.value, { updateUrl: true, scroll: true });
+}
+
+async function applyWalletFromUrl() {
+  var q = parseWalletFromUrl();
+  if (!q) return;
+  var input = $("#wallet-input");
+  if (input) input.value = q;
+  await renderWalletLookup(q, { updateUrl: false, scroll: true });
+}
+
+function collectorRank(address) {
+  var key = (address || "").toLowerCase();
+  for (var i = 0; i < collectorsList.length; i++) {
+    if (collectorsList[i].address.toLowerCase() === key) return i + 1;
+  }
+  return null;
+}
+
+function renderTopCollectors() {
+  var wrap = $("#top-collectors");
+  var track = $("#top-collectors-track");
+  if (!wrap || !track) return;
+  if (!collectorsList.length) {
+    wrap.hidden = true;
+    return;
+  }
+  wrap.hidden = false;
+  var top = collectorsList.slice(0, 8);
+  track.innerHTML = top
+    .map(function (c) {
+      var label = c.ens_name || c.username || shortenAddress(c.address);
+      return (
+        '<button type="button" class="top-collector-pill" data-address="' +
+        escapeHtml(c.address) +
+        '" data-lookup="' +
+        escapeHtml(c.ens_name || c.address) +
+        '">' +
+        escapeHtml(label) +
+        '<span class="meta">' +
+        c.unique_pieces +
+        "</span></button>"
+      );
+    })
+    .join("");
+  track.querySelectorAll(".top-collector-pill").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      runWalletLookupFromAddress(btn.getAttribute("data-address"), btn.getAttribute("data-lookup"));
+    });
+  });
+}
+
+function createHoldingCard(item, holding) {
+  var btn = document.createElement("button");
+  btn.className = "holding-card";
+  btn.type = "button";
+  var title = item ? itemTitle(item) : holding.display_name || holding.name || "#" + holding.token_id;
+  var listedBadge =
+    item && item.listed
+      ? '<span class="badge-listed">' +
+        (item.listing ? formatEth(item.listing.amount_eth) + " ETH" : "Listed") +
+        "</span>"
+      : "";
+  var videoBadge = item && isVideoItem(item) ? '<span class="thumb-video-badge">▶</span>' : "";
+  btn.innerHTML =
+    '<div class="holding-card-media"><div class="holding-card-slot"></div>' +
+    videoBadge +
+    "</div>" +
+    '<div class="holding-card-body">' +
+    '<p class="holding-card-title">' +
+    (item ? formatPieceTitleHtml(title) : escapeHtml(title)) +
+    "</p>" +
+    '<div class="holding-card-meta"><span>#' +
+    escapeHtml(String(holding.token_id)) +
+    "</span>" +
+    listedBadge +
+    "</div></div>";
+  if (item) {
+    fillMediaSlot(btn.querySelector(".holding-card-slot"), item, { controls: false });
+    var thumb = btn.querySelector(".holding-card-slot img, .holding-card-slot video");
+    if (
+      thumb &&
+      thumb.tagName === "IMG" &&
+      item.opensea_image_url &&
+      resolveMediaUrl(item.image_url) !== resolveMediaUrl(item.opensea_image_url)
+    ) {
+      thumb.addEventListener(
+        "error",
+        function () {
+          thumb.src = resolveMediaUrl(item.opensea_image_url);
+        },
+        { once: true }
+      );
+    }
+    btn.addEventListener("click", function () {
+      openDetail(item);
+    });
+  }
+  return btn;
+}
+
+function renderHoldingsGrid(holdings, container) {
+  if (!container) return;
+  container.innerHTML = "";
+  var sorted = holdings.slice().sort(function (a, b) {
+    return Number(b.token_id) - Number(a.token_id);
+  });
+  sorted.forEach(function (h) {
+    var item = itemsById.get(String(h.token_id));
+    container.appendChild(createHoldingCard(item, h));
+  });
+  if (!sorted.length) {
+    container.innerHTML = '<p class="wallet-state-lead">No pieces indexed for this wallet.</p>';
+  }
+}
+
+function bindCollectorResultActions(entry) {
+  var shareBtn = $("#wallet-share-btn");
+  if (shareBtn) {
+    shareBtn.addEventListener("click", function () {
+      var url = walletShareUrl(entry.address);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(
+          function () {
+            showCopyToast("Share link copied — send your daCATs to the world");
+          },
+          function () {
+            showCopyToast("Copy this URL: " + url);
+          }
+        );
+      } else {
+        showCopyToast("Share URL: " + url);
+      }
+    });
+  }
+  var copyBtn = $("#wallet-copy-address");
+  if (copyBtn) {
+    copyBtn.addEventListener("click", function () {
+      copyFullAddress(entry.address);
+    });
+  }
+}
+
+function renderWalletState(kind, opts) {
+  opts = opts || {};
+  var resultEl = $("#wallet-result");
+  if (!resultEl) return;
+  resultEl.hidden = false;
+  if (kind === "loading") {
+    resultEl.innerHTML =
+      '<div class="wallet-state wallet-state-loading">' +
+      '<div class="spinner" aria-hidden="true"></div>' +
+      "<div><p class=\"wallet-state-title\">Tracing the archive…</p>" +
+      '<p class="wallet-state-lead">Checking our daily collector index.</p></div></div>';
+    return;
+  }
+  if (kind === "error") {
+    resultEl.innerHTML =
+      '<div class="wallet-state wallet-state-error">' +
+      '<p class="wallet-state-title">' +
+      escapeHtml(opts.title || "Could not find that collector") +
+      "</p>" +
+      '<p class="wallet-state-lead">' +
+      escapeHtml(opts.message || "") +
+      "</p>" +
+      (opts.hint
+        ? '<p class="wallet-state-lead">' + escapeHtml(opts.hint) + "</p>"
+        : "") +
+      '<button type="button" class="btn btn-dark" id="wallet-retry-btn">Try another address</button></div>';
+    var retry = $("#wallet-retry-btn");
+    if (retry) {
+      retry.addEventListener("click", function () {
+        var input = $("#wallet-input");
+        if (input) {
+          input.value = "";
+          input.focus();
+        }
+        resultEl.hidden = true;
+        resultEl.innerHTML = "";
+      });
+    }
+  }
+}
+
+function renderWalletSuccess(entry) {
+  var resultEl = $("#wallet-result");
+  if (!resultEl) return;
+  var label = entry.ens_name || entry.username || shortenAddress(entry.address);
+  var holdings = entry.holdings || [];
+  var uq = nvl(entry.unique_pieces, holdings.length);
+  var qty = nvl(entry.collection_quantity, "—");
+  var rank = collectorRank(entry.address);
+  var rankHtml =
+    rank && rank <= 10
+      ? '<span class="collector-profile-badge">#' + rank + " in the archive</span>"
+      : "";
+
+  resultEl.hidden = false;
+  resultEl.innerHTML =
+    '<div class="collector-profile-card">' +
+    '<div class="collector-profile-main">' +
+    '<p class="collector-profile-name">' +
+    escapeHtml(label) +
+    "</p>" +
+    (entry.ens_name && entry.username
+      ? '<p class="collector-profile-ens">' + escapeHtml(entry.username) + "</p>"
+      : "") +
+    '<p class="collector-profile-address">' +
+    escapeHtml(entry.address) +
+    "</p>" +
+    '<p class="collector-profile-stats">' +
+    uq +
+    " unique piece" +
+    (uq === 1 ? "" : "s") +
+    " · " +
+    qty +
+    " copies in collection</p>" +
+    rankHtml +
+    "</div></div>" +
+    '<div class="collector-actions">' +
+    '<button type="button" class="btn btn-accent" id="wallet-share-btn">Share this collection</button>' +
+    '<button type="button" class="btn btn-outline btn-sm" id="wallet-copy-address">Copy address</button>' +
+    "</div>" +
+    '<h3 class="holdings-heading">Pieces in the archive (' +
+    holdings.length +
+    ")</h3>" +
+    '<div class="holdings-grid" id="wallet-holdings-grid"></div>';
+
+  renderHoldingsGrid(holdings, $("#wallet-holdings-grid"));
+  bindCollectorResultActions(entry);
+  var hub = resultEl.closest && resultEl.closest(".collector-hub");
+  if (hub) hub.classList.add("has-result");
+}
+
+function clearWalletResultHighlight() {
+  var hub = document.querySelector(".collector-hub");
+  if (hub) hub.classList.remove("has-result");
 }
 
 function addressActionHtml(address) {
@@ -678,9 +940,18 @@ async function resolveEnsToAddress(name) {
 
 function lookupWallet(identifier) {
   if (!walletIndex || !walletIndex.by_address) {
-    return { error: "Collector index still loading — try again in a moment." };
+    return {
+      error: "Collector index still loading — try again in a moment.",
+      title: "Archive warming up",
+    };
   }
   var raw = identifier.trim();
+  if (!raw) {
+    return {
+      error: "Paste an ENS name or 0x address to see what's in the archive.",
+      title: "Need an address",
+    };
+  }
   var address = raw.toLowerCase();
 
   if (isEnsName(raw)) {
@@ -688,12 +959,21 @@ function lookupWallet(identifier) {
     if (alias) address = alias.toLowerCase();
     else return { needsResolve: true, ens: raw };
   } else if (!isEthAddress(raw)) {
-    return { error: "Enter a valid ENS name (.eth) or 0x address." };
+    return {
+      error: "That doesn't look like a valid ENS (.eth / .base.eth) or 0x address.",
+      title: "Check the format",
+      hint: "Example: mozvane.eth or 0xabc…1234",
+    };
   }
 
   var entry = walletIndex.by_address[address];
   if (!entry) {
-    return { error: "No daCommunity holdings found for that address in our index.", address: address };
+    return {
+      error: "This wallet isn't in our daCommunity index — no pieces held in the daily snapshot.",
+      title: "No daCATs here yet",
+      hint: "They may still collect elsewhere, or the next refresh may catch a new holder.",
+      address: address,
+    };
   }
   return { entry: entry };
 }
@@ -721,10 +1001,10 @@ function renderHoldingsChips(holdings, container, opts) {
   });
 }
 
-async function renderWalletLookup(identifier) {
-  var resultEl = $("#wallet-result");
-  resultEl.hidden = false;
-  resultEl.innerHTML = '<p class="wallet-result empty">Looking up…</p>';
+async function renderWalletLookup(identifier, opts) {
+  opts = opts || {};
+  clearWalletResultHighlight();
+  renderWalletState("loading");
 
   var lookup = lookupWallet(identifier);
 
@@ -733,30 +1013,28 @@ async function renderWalletLookup(identifier) {
       var addr = await resolveEnsToAddress(lookup.ens);
       lookup = lookupWallet(addr);
     } catch (e) {
-      resultEl.innerHTML = '<p class="wallet-result empty">' + escapeHtml(e.message) + "</p>";
+      renderWalletState("error", {
+        title: "ENS didn't resolve",
+        message: e.message || "Could not map that name to an address.",
+        hint: "Try the full 0x address instead.",
+      });
       return;
     }
   }
 
   if (lookup.error) {
-    resultEl.innerHTML = '<p class="wallet-result empty">' + escapeHtml(lookup.error) + "</p>";
+    renderWalletState("error", {
+      title: lookup.title,
+      message: lookup.error,
+      hint: lookup.hint,
+    });
     return;
   }
 
   var entry = lookup.entry;
-  var label = entry.ens_name || shortenAddress(entry.address);
-  var holdings = entry.holdings || [];
-  var uq = nvl(entry.unique_pieces, holdings.length);
-  var qty = nvl(entry.collection_quantity, "—");
-
-  resultEl.innerHTML =
-    '<div class="wallet-profile">' +
-    '<p class="wallet-profile-name"><strong>' + escapeHtml(label) + "</strong></p>" +
-    '<p class="wallet-profile-address">' + escapeHtml(entry.address) + "</p>" +
-    '<p class="wallet-profile-stats">' + uq + " unique pieces · " + qty + " total copies</p>" +
-    "</div>" +
-    '<div class="wallet-holdings" id="wallet-holdings-slot"></div>';
-  renderHoldingsChips(holdings, $("#wallet-holdings-slot"));
+  renderWalletSuccess(entry);
+  if (opts.updateUrl !== false) syncWalletShareUrl(entry.address);
+  if (opts.scroll) scrollToCollectorHub();
 }
 
 function updateCollectorsButton() {
@@ -766,6 +1044,7 @@ function updateCollectorsButton() {
     el.disabled = !collectorsList.length;
     el.style.opacity = collectorsList.length ? "1" : "0.55";
   });
+  renderTopCollectors();
 }
 
 function openCollectorsModal() {
@@ -855,9 +1134,7 @@ function renderCollectors(filter) {
   list.querySelectorAll(".collector-row").forEach(function (btn) {
     btn.addEventListener("click", function () {
       closeCollectorsModal();
-      $("#wallet-input").value = btn.dataset.address;
-      renderWalletLookup(btn.dataset.address);
-      $("#wallet-result").scrollIntoView({ behavior: "smooth", block: "nearest" });
+      runWalletLookupFromAddress(btn.dataset.address, btn.dataset.address);
     });
   });
 }
@@ -1534,7 +1811,7 @@ function bindUi() {
   $("#wallet-form").addEventListener("submit", function (e) {
     e.preventDefault();
     var v = $("#wallet-input").value.trim();
-    if (v) renderWalletLookup(v);
+    if (v) renderWalletLookup(v, { updateUrl: true, scroll: false });
   });
   $("#detail-close").addEventListener("click", closeDetail);
   $("#detail-backdrop").addEventListener("click", closeDetail);
@@ -1603,7 +1880,12 @@ async function init() {
         var openItem = itemsById.get(String(activeDetailTokenId));
         if (openItem) refreshDetailPanel(openItem);
       }
+      return applyWalletFromUrl();
     });
+
+    if (window.location.hash === "#wallet-panel") {
+      setTimeout(scrollToCollectorHub, 600);
+    }
   } catch (err) {
     console.error(err);
     if (err.message === "FILE_PROTOCOL") return;
