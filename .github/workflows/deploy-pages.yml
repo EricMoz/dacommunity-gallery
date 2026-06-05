@@ -41,6 +41,8 @@ jobs:
           node --check web/js/film.js || (echo "film.js has a syntax error" && exit 1)
           test -f web/data/videos.json || (echo "Missing web/data/videos.json" && exit 1)
           grep -q "film-hub-page" web/film/index.html || (echo "film/index.html missing film hub markup" && exit 1)
+          grep -q "film-featured" web/film/index.html || (echo "film/index.html missing Featured section" && exit 1)
+          grep -q '"featuredIds"' web/data/videos.json || (echo "videos.json missing featuredIds" && exit 1)
           test -f web/index.html || (echo "Missing web/index.html" && exit 1)
           test -f web/dacommunity/index.html || (echo "Missing web/dacommunity/index.html" && exit 1)
           test -f web/badges/index.html || (echo "Missing web/badges/index.html" && exit 1)

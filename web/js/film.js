@@ -1,25 +1,16 @@
 /**
- * daCAT Film hub — data-driven rows, filters, modal player, random-next-on-end.
+ * daCAT Film theater — catalog grid, filters, modal player, random-next-on-end.
  */
 (function () {
   "use strict";
 
   const DATA_URL = new URL("../data/videos.json", window.location.href).href;
-  const MOZVANE_SERIES = "Mozvane";
   const YT_ORIGIN = window.location.origin;
-  const SPOTLIGHT_IDS = [
-    "chronicles-trailer-1",
-    "podcast-ep1",
-    "dabeezy-rebirth",
-    "crossover-kizuna",
-  ];
 
   const els = {
     rows: document.getElementById("film-rows"),
-    spotlight: document.getElementById("film-spotlight"),
-    spotlightRow: document.getElementById("film-spotlight-row"),
-    mozvaneSection: document.getElementById("film-mozvane-section"),
-    mozvaneRow: document.getElementById("film-mozvane-row"),
+    featured: document.getElementById("film-featured"),
+    featuredGrid: document.getElementById("film-featured-grid"),
     search: document.getElementById("film-search"),
     filters: document.getElementById("film-filters"),
     stats: document.getElementById("film-stats"),
@@ -34,6 +25,7 @@
     modalSeries: document.getElementById("film-modal-series"),
     modalType: document.getElementById("film-modal-type"),
     modalCreator: document.getElementById("film-modal-creator"),
+    modalDuration: document.getElementById("film-modal-duration"),
     modalWhat: document.getElementById("film-modal-what"),
     modalRelease: document.getElementById("film-modal-release"),
     modalDesc: document.getElementById("film-modal-desc"),
@@ -81,6 +73,10 @@
     return (s || "").toLowerCase().trim();
   }
 
+  function getFilterDef(id) {
+    return (catalog.filters || []).find((f) => f.id === id);
+  }
+
   function matchesSearch(video) {
     if (!searchQuery) return true;
     const hay = [
@@ -90,6 +86,7 @@
       video.creator,
       video.description,
       video.whatItIs,
+      video.duration,
     ]
       .join(" ")
       .toLowerCase();
@@ -98,6 +95,8 @@
 
   function matchesFilter(video) {
     if (activeFilter === "all") return true;
+    const def = getFilterDef(activeFilter);
+    if (def && def.matchSeries) return video.series === def.matchSeries;
     return video.filterCategory === activeFilter;
   }
 
@@ -113,21 +112,19 @@
     });
   }
 
-  function createCard(video) {
+  function createCard(video, opts) {
+    const featured = opts && opts.featured;
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.className = "film-vcard";
+    btn.className = "film-vcard" + (featured ? " film-vcard--featured" : "");
     btn.dataset.videoId = video.id;
-    btn.setAttribute("aria-label", `Play ${video.title}`);
-    const runtime = video.runtime
-      ? `<span class="film-vcard-runtime">${escapeHtml(video.runtime)}</span>`
-      : "";
+    btn.setAttribute("aria-label", `Play ${video.title}, ${video.duration}`);
+    const duration = video.duration || "—";
     btn.innerHTML = `
       <span class="film-vcard-thumb">
         <img src="${escapeHtml(video.thumbnail)}" alt="" loading="lazy" width="480" height="360" />
         <span class="film-vcard-play" aria-hidden="true"></span>
-        <span class="film-vcard-type">${escapeHtml(video.type)}</span>
-        ${runtime}
+        <span class="film-vcard-duration">${escapeHtml(duration)}</span>
       </span>
       <span class="film-vcard-body">
         <span class="film-vcard-series">${escapeHtml(video.series)}</span>
@@ -139,7 +136,7 @@
     return btn;
   }
 
-  function renderRow(seriesName, list, target) {
+  function renderSection(seriesName, list, target) {
     if (!list.length) return;
     const section = document.createElement("section");
     section.className = "film-series-section";
@@ -150,88 +147,73 @@
         <h2 class="film-series-title">${escapeHtml(seriesName)}</h2>
         <span class="film-series-count">${count} ${count === 1 ? "title" : "titles"}</span>
       </header>
-      <div class="film-row-wrap">
-        <div class="film-row-scroll" role="list"></div>
-      </div>
+      <div class="film-vgrid" role="list"></div>
     `;
-    const scroll = section.querySelector(".film-row-scroll");
-    sortVideos(list).forEach((v) => scroll.appendChild(createCard(v)));
+    const grid = section.querySelector(".film-vgrid");
+    sortVideos(list).forEach((v) => grid.appendChild(createCard(v)));
     target.appendChild(section);
   }
 
-  function renderSpotlight(visible) {
-    if (!els.spotlight || !els.spotlightRow) return;
-    const show =
-      activeFilter === "all" &&
-      !searchQuery &&
-      visible.some((v) => SPOTLIGHT_IDS.includes(v.id));
-    els.spotlight.hidden = !show;
-    els.spotlightRow.innerHTML = "";
-    if (!show) return;
-    SPOTLIGHT_IDS.forEach((id) => {
-      const video = visible.find((v) => v.id === id);
-      if (video) els.spotlightRow.appendChild(createCard(video));
+  function renderFeatured(visible) {
+    if (!els.featured || !els.featuredGrid || !catalog) return;
+    const ids = catalog.featuredIds || [];
+    const show = activeFilter === "all" && !searchQuery;
+    const featuredVideos = ids
+      .map((id) => visible.find((v) => v.id === id))
+      .filter(Boolean);
+    els.featured.hidden = !show || !featuredVideos.length;
+    els.featuredGrid.innerHTML = "";
+    if (!show || !featuredVideos.length) return;
+    featuredVideos.forEach((v) => {
+      els.featuredGrid.appendChild(createCard(v, { featured: true }));
     });
   }
 
   function updateStats() {
     if (!els.stats || !videos.length) return;
     const seriesCount = new Set(videos.map((v) => v.series)).size;
-    els.stats.textContent = `${videos.length} titles · ${seriesCount} series · tap any poster to play`;
+    els.stats.textContent = `${videos.length} titles · ${seriesCount} series · tap a poster to watch`;
   }
 
   function setLoading(on) {
     if (els.loading) els.loading.hidden = !on;
     if (els.rows && on) els.rows.hidden = true;
-    if (els.spotlight && on) els.spotlight.hidden = true;
-    if (els.mozvaneSection && on) els.mozvaneSection.hidden = true;
+    if (els.featured && on) els.featured.hidden = true;
   }
 
   function render() {
     const visible = visibleVideos();
-    const main = visible.filter((v) => v.series !== MOZVANE_SERIES);
-    const moz = visible.filter((v) => v.series === MOZVANE_SERIES);
+    const featuredIds = new Set(catalog.featuredIds || []);
+    const catalogVideos = visible.filter((v) => !featuredIds.has(v.id) || activeFilter !== "all" || searchQuery);
 
     els.rows.innerHTML = "";
-    els.mozvaneRow.innerHTML = "";
-
     if (!catalog) return;
 
-    renderSpotlight(visible);
+    renderFeatured(visible);
 
-    if (activeFilter === "mozvane") {
-      els.mozvaneSection.hidden = false;
-      sortVideos(moz).forEach((v) => els.mozvaneRow.appendChild(createCard(v)));
-      els.rows.hidden = true;
-      if (els.spotlight) els.spotlight.hidden = true;
-    } else {
-      els.rows.hidden = false;
-      const order = catalog.seriesOrder || [];
-      const bySeries = new Map();
-      main.forEach((v) => {
-        if (!bySeries.has(v.series)) bySeries.set(v.series, []);
-        bySeries.get(v.series).push(v);
-      });
-      order.forEach((name) => {
-        if (bySeries.has(name)) renderRow(name, bySeries.get(name), els.rows);
-      });
-      bySeries.forEach((list, name) => {
-        if (!order.includes(name)) renderRow(name, list, els.rows);
-      });
+    const bySeries = new Map();
+    const order = catalog.seriesOrder || [];
+    const useList =
+      activeFilter === "all" && !searchQuery
+        ? visible.filter((v) => !featuredIds.has(v.id))
+        : visible;
 
-      if (moz.length && activeFilter === "all") {
-        els.mozvaneSection.hidden = false;
-        sortVideos(moz).forEach((v) => els.mozvaneRow.appendChild(createCard(v)));
-      } else if (moz.length && activeFilter !== "mozvane") {
-        els.mozvaneSection.hidden = true;
-      } else {
-        els.mozvaneSection.hidden = moz.length === 0;
-      }
-    }
+    useList.forEach((v) => {
+      if (!bySeries.has(v.series)) bySeries.set(v.series, []);
+      bySeries.get(v.series).push(v);
+    });
+
+    order.forEach((name) => {
+      if (bySeries.has(name)) renderSection(name, bySeries.get(name), els.rows);
+    });
+    bySeries.forEach((list, name) => {
+      if (!order.includes(name)) renderSection(name, list, els.rows);
+    });
 
     const anyVisible =
-      els.rows.children.length > 0 || els.mozvaneRow.children.length > 0;
+      (els.featured && !els.featured.hidden) || els.rows.children.length > 0;
     els.empty.hidden = anyVisible;
+    if (els.rows) els.rows.hidden = !els.rows.children.length;
   }
 
   function findVideo(id) {
@@ -315,6 +297,7 @@
     els.modalSeries.textContent = video.series;
     els.modalType.textContent = video.type;
     els.modalCreator.textContent = video.creator;
+    if (els.modalDuration) els.modalDuration.textContent = video.duration || "—";
     els.modalWhat.textContent = video.whatItIs || "";
     els.modalRelease.textContent = video.releaseDate || "";
     els.modalDesc.textContent = video.description || "";

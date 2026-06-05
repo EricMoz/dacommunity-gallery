@@ -1,6 +1,7 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "updated": "2026-06-05",
+  "featuredIds": ["mozvane-quick-stop"],
   "videos": [
     {
       "id": "chronicles-trailer-1",
@@ -14,7 +15,8 @@
       "whatItIs": "Official comic trailer for daCAT Chronicles.",
       "releaseDate": "Community 2025",
       "thumbnail": "https://i.ytimg.com/vi/CerrhmE6bLA/hqdefault.jpg",
-      "filterCategory": "trailers",
+      "duration": "1:24",
+      "filterCategory": "chronicles",
       "sortOrder": 1
     },
     {
@@ -25,11 +27,12 @@
       "type": "Trailer",
       "creator": "DACAT WORLD",
       "creatorChannel": "DacatWorld",
-      "description": "Premiere trailer for the DACAT Chronicles comic — VeVe, OMI, and AI animation tease for the wider daCAT story.",
+      "description": "Premiere trailer for the DACAT Chronicles comic — VeVe, OMI, and AI animation for the wider daCAT story.",
       "whatItIs": "Chronicles comic premiere trailer.",
       "releaseDate": "Community 2025",
       "thumbnail": "https://i.ytimg.com/vi/Q2JTIuDR_sQ/hqdefault.jpg",
-      "filterCategory": "trailers",
+      "duration": "2:08",
+      "filterCategory": "chronicles",
       "sortOrder": 2
     },
     {
@@ -40,11 +43,12 @@
       "type": "Episode",
       "creator": "DACAT WORLD",
       "creatorChannel": "DacatWorld",
-      "description": "DACAT WORLD web series episode — DaCAT takes on Paper-Hands in the community animated series.",
+      "description": "DACAT WORLD web series — DaCAT takes on Paper-Hands in this community animated episode.",
       "whatItIs": "DACAT WORLD web series episode.",
       "releaseDate": "Community 2025",
       "thumbnail": "https://i.ytimg.com/vi/3AMRcY-E7X4/hqdefault.jpg",
-      "filterCategory": "creative",
+      "duration": "3:42",
+      "filterCategory": "dacatworld",
       "sortOrder": 1
     },
     {
@@ -59,6 +63,7 @@
       "whatItIs": "DACAT WORLD podcast episode 1.",
       "releaseDate": "Community 2025",
       "thumbnail": "https://i.ytimg.com/vi/XcFX5NdVLhQ/hqdefault.jpg",
+      "duration": "18:05",
       "filterCategory": "podcasts",
       "sortOrder": 1
     },
@@ -74,6 +79,7 @@
       "whatItIs": "DACAT WORLD podcast episode 2.",
       "releaseDate": "Community 2025",
       "thumbnail": "https://i.ytimg.com/vi/Wvh4ukcLqqs/hqdefault.jpg",
+      "duration": "16:32",
       "filterCategory": "podcasts",
       "sortOrder": 2
     },
@@ -89,6 +95,7 @@
       "whatItIs": "DACAT WORLD podcast episode 3.",
       "releaseDate": "Community 2025",
       "thumbnail": "https://i.ytimg.com/vi/vbPSX2Oxdqw/hqdefault.jpg",
+      "duration": "22:14",
       "filterCategory": "podcasts",
       "sortOrder": 3
     },
@@ -104,6 +111,7 @@
       "whatItIs": "DACAT WORLD podcast episode 4.",
       "releaseDate": "Community 2025",
       "thumbnail": "https://i.ytimg.com/vi/1ik0q52VgZk/hqdefault.jpg",
+      "duration": "19:48",
       "filterCategory": "podcasts",
       "sortOrder": 4
     },
@@ -119,37 +127,40 @@
       "whatItIs": "daBeezy animated episode.",
       "releaseDate": "Community 2025",
       "thumbnail": "https://i.ytimg.com/vi/roepEUbqn6U/hqdefault.jpg",
+      "duration": "5:12",
       "filterCategory": "dabeezy",
       "sortOrder": 1
     },
     {
       "id": "shiro-fishing",
-      "title": "daCAT & Shiro Episode 1: Fishing Trip",
+      "title": "daCAT & Shiro Ep 1 — Fishing Trip",
       "youtubeId": "yIsz4sfHv10",
-      "series": "daCAT & Shiro",
-      "type": "Episode",
+      "series": "Crossovers",
+      "type": "Crossover",
       "creator": "daBeezy",
       "creatorChannel": "daBeezy1",
-      "description": "daCAT and Shiro head out on a fishing trip — slice-of-life adventure in the community anime style.",
-      "whatItIs": "daCAT & Shiro episode 1.",
+      "description": "daCAT and Shiro head out on a fishing trip — crossover slice-of-life adventure in the community anime style.",
+      "whatItIs": "daCAT × Shiro crossover episode 1.",
       "releaseDate": "Community 2025",
       "thumbnail": "https://i.ytimg.com/vi/yIsz4sfHv10/hqdefault.jpg",
-      "filterCategory": "shiro",
+      "duration": "4:36",
+      "filterCategory": "crossovers",
       "sortOrder": 1
     },
     {
       "id": "shiro-crypt",
-      "title": "daCAT & Shiro Episode 2: The Crypt",
+      "title": "daCAT & Shiro Ep 2 — The Crypt",
       "youtubeId": "KaXyS8oi4Y4",
-      "series": "daCAT & Shiro",
-      "type": "Episode",
+      "series": "Crossovers",
+      "type": "Crossover",
       "creator": "daBeezy",
       "creatorChannel": "daBeezy1",
-      "description": "The duo ventures into the crypt — episode two of the daCAT & Shiro series.",
-      "whatItIs": "daCAT & Shiro episode 2.",
+      "description": "The duo ventures into the crypt — daCAT × Shiro crossover episode two.",
+      "whatItIs": "daCAT × Shiro crossover episode 2.",
       "releaseDate": "Community 2025",
       "thumbnail": "https://i.ytimg.com/vi/KaXyS8oi4Y4/hqdefault.jpg",
-      "filterCategory": "shiro",
+      "duration": "5:04",
+      "filterCategory": "crossovers",
       "sortOrder": 2
     },
     {
@@ -164,8 +175,9 @@
       "whatItIs": "Crossover fight short.",
       "releaseDate": "Community 2025",
       "thumbnail": "https://i.ytimg.com/vi/6UmBra2TJCg/hqdefault.jpg",
+      "duration": "2:18",
       "filterCategory": "crossovers",
-      "sortOrder": 1
+      "sortOrder": 3
     },
     {
       "id": "mozvane-quick-stop",
@@ -175,13 +187,13 @@
       "type": "Episode",
       "creator": "daBeezy",
       "creatorChannel": "daBeezy1",
-      "description": "Sora-era daCAT anime (~5 min) starring Mozvane — an early community film with creative help from daBeezy. A character the community continues to shape.",
-      "whatItIs": "Mozvane anime film — preserved community classic.",
+      "description": "Sora-era daCAT anime starring Mozvane — the community’s most complete early film, with creative help from daBeezy.",
+      "whatItIs": "Mozvane anime film — community flagship.",
       "releaseDate": "Community 2025",
       "thumbnail": "https://i.ytimg.com/vi/bHcbwUs2_ds/hqdefault.jpg",
+      "duration": "5:01",
       "filterCategory": "mozvane",
       "sortOrder": 1,
-      "runtime": "~5 min",
       "dedicatedPage": "mozvane/"
     }
   ],
@@ -190,17 +202,16 @@
     "DACAT WORLD",
     "Podcast",
     "daBeezy",
-    "daCAT & Shiro",
-    "Crossovers"
+    "Crossovers",
+    "Mozvane"
   ],
   "filters": [
     { "id": "all", "label": "All" },
-    { "id": "trailers", "label": "Trailers" },
-    { "id": "podcasts", "label": "Podcasts" },
-    { "id": "creative", "label": "Creative Episodes" },
-    { "id": "dabeezy", "label": "daBeezy" },
-    { "id": "shiro", "label": "daCAT & Shiro" },
-    { "id": "crossovers", "label": "Crossovers" },
-    { "id": "mozvane", "label": "Mozvane" }
+    { "id": "chronicles", "label": "Chronicles", "matchSeries": "daCAT Chronicles" },
+    { "id": "dacatworld", "label": "DACAT WORLD", "matchSeries": "DACAT WORLD" },
+    { "id": "podcasts", "label": "Podcast", "matchSeries": "Podcast" },
+    { "id": "dabeezy", "label": "daBeezy", "matchSeries": "daBeezy" },
+    { "id": "crossovers", "label": "Crossovers", "matchSeries": "Crossovers" },
+    { "id": "mozvane", "label": "Mozvane", "matchSeries": "Mozvane" }
   ]
 }

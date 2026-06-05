@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<!-- Film hub — community video catalog (data/videos.json + js/film.js). -->
+<!-- Film theater — data/videos.json + js/film.js -->
 <html lang="en">
 <head>
   <meta name="site-build" content="20260605-9" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>daCAT Films · Community cinema</title>
-  <meta name="description" content="Browse daCAT community film — Chronicles trailers, DACAT WORLD, podcasts, daBeezy, daCAT &amp; Shiro, crossovers, and Mozvane." />
+  <title>daCAT Films · Community theater</title>
+  <meta name="description" content="Watch daCAT community film — Chronicles, DACAT WORLD, podcasts, daBeezy, crossovers, and Mozvane." />
   <link rel="icon" href="../assets/brand/dacat-icon-64.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/styles.css?v=20260605-9" />
 </head>
-<body class="film-page film-hub-page">
+<body class="film-page film-hub-page film-theater">
+  <div class="film-theater-vignette" aria-hidden="true"></div>
+
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="../" aria-label="daCAT Home">
@@ -33,10 +35,10 @@
 
   <main class="film-hub-main">
     <section class="film-intro film-hub-hero">
-      <p class="film-eyebrow">Community cinema</p>
+      <p class="film-eyebrow">Community theater</p>
       <h1>daCAT <span class="film-hero-name">films</span></h1>
       <p class="film-tagline film-hub-lead">
-        Trailers, podcasts, animated episodes, and crossover shorts from across the daCAT community — all in one place. Pick a row, tap a poster, and watch in the player.
+        Browse every community series in one place — trailers, podcasts, episodes, and crossovers. Tap any poster to watch.
       </p>
       <p id="film-stats" class="film-stats" aria-live="polite"></p>
       <p class="film-nav-links">
@@ -60,36 +62,26 @@
           enterkeyhint="search"
         />
       </label>
-      <div id="film-filters" class="film-filters" role="group" aria-label="Filter by category"></div>
-      <p class="film-toolbar-hint">Scroll rows sideways on mobile · <kbd>Esc</kbd> closes the player</p>
+      <div id="film-filters" class="film-filters" role="group" aria-label="Filter by series"></div>
+      <p class="film-toolbar-hint"><kbd>Esc</kbd> closes the player · Up next plays automatically when a video ends</p>
     </section>
 
-    <p id="film-loading" class="film-loading">Loading community catalog…</p>
+    <p id="film-loading" class="film-loading">Loading catalog…</p>
 
-    <section id="film-spotlight" class="film-spotlight" hidden aria-labelledby="film-spotlight-heading">
+    <section id="film-featured" class="film-series-section film-featured" hidden aria-labelledby="film-featured-heading">
       <header class="film-series-head">
-        <h2 id="film-spotlight-heading" class="film-series-title">Start here</h2>
-        <span class="film-series-count">Community picks</span>
+        <h2 id="film-featured-heading" class="film-series-title">Featured</h2>
+        <span class="film-series-count">Flagship pick</span>
       </header>
-      <div class="film-row-wrap">
-        <div id="film-spotlight-row" class="film-row-scroll film-row-spotlight"></div>
-      </div>
+      <div id="film-featured-grid" class="film-vgrid film-vgrid-featured"></div>
     </section>
 
-    <div id="film-rows" class="film-rows" aria-live="polite"></div>
-
-    <section id="film-mozvane-section" class="film-series-section film-mozvane-section" hidden aria-labelledby="film-mozvane-heading">
-      <header class="film-series-head film-mozvane-head">
-        <h2 id="film-mozvane-heading" class="film-series-title">Mozvane</h2>
-        <p class="film-mozvane-lead">Sora-era community anime — one series among many, preserved here for the archive.</p>
-      </header>
-      <div id="film-mozvane-row" class="film-row-scroll" role="list"></div>
-    </section>
+    <div id="film-rows" class="film-catalog" aria-live="polite"></div>
 
     <p id="film-empty" class="film-empty" hidden>No titles match your search or filter.</p>
   </main>
 
-  <div id="film-modal" class="film-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="film-modal-title">
+  <div id="film-modal" class="film-modal film-modal-theater" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="film-modal-title">
     <div class="film-modal-backdrop" tabindex="-1"></div>
     <div class="film-modal-panel">
       <button type="button" class="film-modal-close" aria-label="Close player">×</button>
@@ -109,6 +101,10 @@
             <div>
               <dt>Creator</dt>
               <dd id="film-modal-creator"></dd>
+            </div>
+            <div>
+              <dt>Duration</dt>
+              <dd id="film-modal-duration"></dd>
             </div>
             <div>
               <dt>What it is</dt>
