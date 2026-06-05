@@ -577,8 +577,32 @@ function resolveHoldersList(item) {
   return sortHoldersForDisplay(Object.values(byAddr), item);
 }
 
+/** Holder row to pin + badge: portfolio wallet when browsing a collection, else latest transfer. */
+function holderHighlightAddress(item) {
+  if (galleryCollectorView && galleryCollectorView.address) {
+    var viewing = galleryCollectorView.address.toLowerCase();
+    var holds = resolveHoldersList(item).some(function (h) {
+      return h.address.toLowerCase() === viewing;
+    });
+    if (holds) return viewing;
+  }
+  return currentOwnerAddress(item);
+}
+
+function holderHighlightNote(item, holderAddress) {
+  if (!holderAddress) return "";
+  if (
+    galleryCollectorView &&
+    galleryCollectorView.address &&
+    holderAddress === galleryCollectorView.address.toLowerCase()
+  ) {
+    return " · this portfolio";
+  }
+  return " · latest transfer";
+}
+
 function sortHoldersForDisplay(holders, item) {
-  var pinAddr = currentOwnerAddress(item);
+  var pinAddr = holderHighlightAddress(item);
   return holders.sort(function (a, b) {
     var aa = a.address.toLowerCase();
     var ba = b.address.toLowerCase();
@@ -1989,17 +2013,22 @@ function renderDetailOwners(item) {
       " copies" +
       incomplete;
   }
-  var currentAddr = currentOwnerAddress(item);
+  var highlightAddr = holderHighlightAddress(item);
   chipsEl.innerHTML = holders
     .map(function (h) {
       var meta = addressDisplayMeta(h.address);
-      var isCurrent = currentAddr && meta.address === currentAddr;
+      var isHighlighted = highlightAddr && meta.address === highlightAddr;
       var label = holderChipLabelHtml(meta) + " · " + h.quantity;
-      if (isCurrent) label += ' <span class="owner-chip-note">· current</span>';
+      if (isHighlighted) {
+        label +=
+          ' <span class="owner-chip-note">' +
+          escapeHtml(holderHighlightNote(item, highlightAddr)) +
+          "</span>";
+      }
       return (
         '<span class="owner-chip-wrap">' +
         '<button type="button" class="owner-chip' +
-        (isCurrent ? " owner-chip-current" : "") +
+        (isHighlighted ? " owner-chip-current" : "") +
         '" data-address="' +
         escapeHtml(meta.address) +
         '" title="View all pieces held by ' +
