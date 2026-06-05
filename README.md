@@ -75,8 +75,10 @@ python ../scripts/verify_piece_activity.py --token 47 --expect-from mozvane.eth 
 ## Security
 
 - **Never commit** `backend/.env` (gitignored). Use GitHub Actions secret `OPENSEA_API_KEY` for CI only.
+- **Daily refresh** needs that secret on the repo: [Settings → Secrets and variables → Actions](https://github.com/EricMoz/dacommunity-gallery/settings/secrets/actions) → **New repository secret** → name `OPENSEA_API_KEY`, value = your [OpenSea API key](https://docs.opensea.io/reference/api-keys). If the workflow email says “all jobs failed” in ~2 seconds, the secret is usually missing or expired (instant keys last ~30 days).
+- After a successful refresh commit, **Deploy gallery to GitHub Pages** runs automatically on `main`.
 - API keys are not used in the browser; the public site only reads static JSON.
-- `fetch_gallery_data.py --create-key` can mint a dev key locally — do not use in shared/CI environments.
+- `fetch_gallery_data.py --create-key` can mint a dev key locally — do not use in shared/CI environments; paste a long-lived key into the GitHub secret instead.
 
 ## Repo layout
 

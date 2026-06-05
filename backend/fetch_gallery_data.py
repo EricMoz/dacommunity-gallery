@@ -38,12 +38,20 @@ WALLET_INDEX_PATH = ROOT / "web" / "data" / "wallet_index.json"
 
 
 def load_api_key(create_if_missing: bool = False) -> str:
-    """Load key from backend/.env. Auto-create only when create_if_missing=True (--create-key)."""
+    """Load key from env (CI) or backend/.env. Auto-create only when create_if_missing=True (--create-key)."""
     load_dotenv(ENV_PATH)
     key = os.getenv("OPENSEA_API_KEY", "").strip()
     if key:
         return key
     if not create_if_missing:
+        if os.getenv("GITHUB_ACTIONS"):
+            raise ValueError(
+                "OPENSEA_API_KEY is not set for this workflow. "
+                "Add repository secret: GitHub repo → Settings → Secrets and variables → Actions → "
+                "New repository secret named OPENSEA_API_KEY. "
+                "Create a key at https://docs.opensea.io/reference/api-keys "
+                "(instant/dev keys expire ~30 days — renew the secret when refresh starts failing)."
+            )
         raise ValueError(
             "OPENSEA_API_KEY not set. Copy backend/.env.example to .env or run with --create-key (local dev only)."
         )
@@ -504,6 +512,9 @@ def main() -> int:
         f"{listed_count} listed, "
         f"{len((holders_index or {}).get('by_address', {}))} wallets indexed"
     )
+    import enrich_gallery_json
+
+    enrich_gallery_json.main()
     import build_catalog
 
     build_catalog.main()
@@ -515,6 +526,16 @@ if __name__ == "__main__":
         sys.exit(main())
     except KeyboardInterrupt:
         print("\nCancelled.")
+        sys.exit(1)
+    except requests.HTTPError as e:
+        status = e.response.status_code if e.response is not None else "?"
+        hint = ""
+        if status in (401, 403):
+            hint = (
+                " Check OPENSEA_API_KEY — expired or invalid keys must be replaced "
+                "in backend/.env (local) or the GitHub Actions secret (daily refresh)."
+            )
+        print(f"OpenSea HTTP {status}: {e}{hint}", file=sys.stderr)
         sys.exit(1)
     except Exception as e:
         print(f"Error: {e}", file=sys.stderr)
