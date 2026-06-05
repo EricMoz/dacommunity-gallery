@@ -577,14 +577,14 @@ function resolveHoldersList(item) {
   return sortHoldersForDisplay(Object.values(byAddr), item);
 }
 
-/** Holder row to pin + badge: portfolio wallet when browsing a collection, else latest transfer. */
+/** Wallet to pin/highlight in holder list (must not call resolveHoldersList — avoids recursion). */
 function holderHighlightAddress(item) {
   if (galleryCollectorView && galleryCollectorView.address) {
     var viewing = galleryCollectorView.address.toLowerCase();
-    var holds = resolveHoldersList(item).some(function (h) {
-      return h.address.toLowerCase() === viewing;
-    });
-    if (holds) return viewing;
+    if (galleryCollectorView.tokenIds[String(item.token_id)]) {
+      return viewing;
+    }
+    return null;
   }
   return currentOwnerAddress(item);
 }
@@ -931,11 +931,13 @@ function scrollToCollectorHub(opts) {
 
   function runScroll() {
     if (opts.updateHash !== false) {
+      bindCollectorHubNav._suppressHash = true;
       history.replaceState(
         null,
         "",
         window.location.pathname + window.location.search + "#wallet-panel"
       );
+      bindCollectorHubNav._suppressHash = false;
     }
     var behavior = opts.behavior === "instant" ? "auto" : opts.behavior || "smooth";
     var top =
@@ -982,7 +984,23 @@ function bindCollectorHubNav() {
 
   window.addEventListener("hashchange", function () {
     if (location.hash !== "#wallet-panel" || !$("#wallet-panel")) return;
+    if (bindCollectorHubNav._suppressHash) return;
     navigateToCollectorHub();
+  });
+}
+
+/** Clicks on grid cards (re-bound whenever renderGallery runs). */
+function bindGalleryListClicks() {
+  var list = $("#gallery-list");
+  if (!list || list.dataset.clickBound) return;
+  list.dataset.clickBound = "1";
+  list.addEventListener("click", function (e) {
+    var card = e.target.closest(".holding-card, .gallery-row");
+    if (!card || !list.contains(card)) return;
+    var tid = card.getAttribute("data-token-id");
+    if (!tid) return;
+    var item = itemsById.get(String(tid));
+    if (item) openDetail(item);
   });
 }
 
@@ -1071,6 +1089,7 @@ function createHoldingCard(item, holding) {
     listedBadge +
     "</div></div>";
   if (item) {
+    btn.setAttribute("data-token-id", String(item.token_id));
     fillMediaSlot(btn.querySelector(".holding-card-slot"), item, { controls: false });
     var thumb = btn.querySelector(".holding-card-slot img, .holding-card-slot video");
     if (
@@ -1087,9 +1106,6 @@ function createHoldingCard(item, holding) {
         { once: true }
       );
     }
-    btn.addEventListener("click", function () {
-      openDetail(item);
-    });
   }
   return btn;
 }
@@ -1832,6 +1848,7 @@ function renderGallery(items) {
       };
       var card = createHoldingCard(item, holding);
       card.classList.add("holding-card--cinema");
+      card.setAttribute("data-token-id", String(item.token_id));
       list.appendChild(card);
     });
     return;
@@ -1863,7 +1880,7 @@ function renderGallery(items) {
     if (thumb && thumb.tagName === "IMG" && item.opensea_image_url && resolveMediaUrl(item.image_url) !== resolveMediaUrl(item.opensea_image_url)) {
       thumb.addEventListener("error", function () { thumb.src = resolveMediaUrl(item.opensea_image_url); }, { once: true });
     }
-    row.addEventListener("click", function () { openDetail(item); });
+    row.setAttribute("data-token-id", String(item.token_id));
     list.appendChild(row);
   });
 }
@@ -2100,9 +2117,11 @@ function refreshDetailPanel(item) {
 }
 
 function openDetail(item) {
+  if (!item) return;
   closeCollectorsModal();
   activeDetailTokenId = item.token_id;
   var panel = $("#detail-panel");
+  if (!panel) return;
   fillMediaSlot($("#detail-media-slot"), item, { autoplay: true, controls: true });
   $("#detail-title").innerHTML = formatPieceTitleHtml(itemTitle(item));
   $("#detail-token").textContent =
@@ -2259,6 +2278,7 @@ function bindUi() {
   bindFreshnessToggle();
   bindCollectorExitUi();
   bindCollectorHubNav();
+  bindGalleryListClicks();
   renderCollectorFocusUi();
   var cs = $("#collectors-search");
   if (cs) cs.addEventListener("input", function (e) { renderCollectors(e.target.value); });

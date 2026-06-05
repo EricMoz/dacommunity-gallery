@@ -3462,6 +3462,7 @@ body.has-collector-view .gallery-focus-zone.is-collector-grid::before {
   border-radius: 0;
   background: none;
   opacity: 1;
+  pointer-events: none;
 }
 
 body.has-collector-view .gallery-list.holdings-grid {
