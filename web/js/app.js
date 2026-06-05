@@ -31,7 +31,9 @@ let CATALOG_URL = "";
 let FULL_DATA_URL = "";
 let WALLET_URL = "";
 let META_URL = "";
+let UNIVERSE_URL = "";
 let galleryMeta = null;
+let universeLore = null;
 
 function initDataUrls() {
   var prefix = getDataPrefix();
@@ -39,6 +41,7 @@ function initDataUrls() {
   FULL_DATA_URL = prefix + "data/gallery_data.json";
   WALLET_URL = prefix + "data/wallet_index.json";
   META_URL = prefix + "data/gallery_meta.json";
+  UNIVERSE_URL = prefix + "data/universe_lore.json";
 }
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -248,6 +251,208 @@ async function loadGalleryMeta() {
     updateFooterMaintenance(galleryMeta);
   } catch (e) {
     console.warn("gallery_meta.json not loaded:", e);
+  }
+}
+
+// --- Universe / lore (curated universe_lore.json) ---
+
+async function loadUniverseLore() {
+  if (isFileProtocol()) return;
+  try {
+    universeLore = await fetchJson(UNIVERSE_URL, 8000);
+    renderUniversePanel();
+  } catch (e) {
+    console.warn("universe_lore.json not loaded:", e);
+  }
+}
+
+function resolveUniverseHref(href) {
+  if (!href) return "#";
+  if (/^https?:\/\//i.test(href)) return href;
+  if (href.indexOf("?") === 0) return href;
+  return getDataPrefix() + String(href).replace(/^\//, "");
+}
+
+function pieceSlug(item) {
+  return (item.local_slug || item.name || "").toLowerCase();
+}
+
+function getPieceLore(item) {
+  if (!universeLore || !item) return null;
+  var slug = pieceSlug(item);
+  return (universeLore.piece_connections && universeLore.piece_connections[slug]) || null;
+}
+
+function getFilmBySlug(slug) {
+  if (!universeLore || !universeLore.films) return null;
+  for (var i = 0; i < universeLore.films.length; i++) {
+    if (universeLore.films[i].slug === slug) return universeLore.films[i];
+  }
+  return null;
+}
+
+function renderUniversePanel() {
+  if (!universeLore) return;
+  var tagline = $("#universe-panel-tagline");
+  if (tagline && universeLore.hub_tagline) tagline.textContent = universeLore.hub_tagline;
+
+  var notesEl = $("#universe-notes-list");
+  if (notesEl && universeLore.community_notes) {
+    notesEl.innerHTML = universeLore.community_notes
+      .map(function (n) {
+        return (
+          '<article class="universe-note">' +
+          "<h3>" +
+          escapeHtml(n.title) +
+          "</h3><p>" +
+          escapeHtml(n.body) +
+          "</p></article>"
+        );
+      })
+      .join("");
+  }
+
+  var hiWrap = $("#universe-holder-highlights");
+  var hiTrack = $("#universe-holder-track");
+  if (hiWrap && hiTrack && universeLore.holder_highlights && universeLore.holder_highlights.length) {
+    hiWrap.hidden = false;
+    hiTrack.innerHTML = universeLore.holder_highlights
+      .map(function (h) {
+        return (
+          '<button type="button" class="universe-holder-card" data-address="' +
+          escapeHtml(h.address) +
+          '" data-lookup="' +
+          escapeHtml(h.label || h.address) +
+          '"><strong>' +
+          escapeHtml(h.label || shortenAddress(h.address)) +
+          "</strong><span>" +
+          escapeHtml(h.note) +
+          "</span></button>"
+        );
+      })
+      .join("");
+    hiTrack.querySelectorAll(".universe-holder-card").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        applyCollectorView(btn.getAttribute("data-address"));
+      });
+    });
+  }
+
+  var threads = $("#universe-threads");
+  if (!threads) return;
+  var links = [];
+  if (universeLore.films) {
+    universeLore.films.forEach(function (f) {
+      links.push(
+        '<a class="universe-thread" href="' +
+          escapeHtml(resolveUniverseHref(f.path)) +
+          '"><span class="universe-thread-kicker">Film</span><span class="universe-thread-label">' +
+          escapeHtml(f.title) +
+          "</span></a>"
+      );
+    });
+  }
+  links.push(
+    '<a class="universe-thread" href="' +
+      escapeHtml(resolveUniverseHref("film/")) +
+      '"><span class="universe-thread-kicker">Watch</span><span class="universe-thread-label">All films</span></a>'
+  );
+  if (universeLore.external) {
+    universeLore.external.forEach(function (ex) {
+      links.push(
+        '<a class="universe-thread universe-thread-out" href="' +
+          escapeHtml(ex.href) +
+          '" target="_blank" rel="noopener"><span class="universe-thread-kicker">' +
+          escapeHtml(ex.kicker) +
+          '</span><span class="universe-thread-label">' +
+          escapeHtml(ex.label) +
+          " ↗</span></a>"
+      );
+    });
+  }
+  threads.innerHTML = links.join("");
+}
+
+function renderDetailLore(item) {
+  var el = $("#detail-lore");
+  if (!el) return;
+  var conn = getPieceLore(item);
+  if (!conn) {
+    el.hidden = true;
+    el.innerHTML = "";
+    return;
+  }
+  el.hidden = false;
+  var parts = [];
+  if (conn.theme) {
+    parts.push('<span class="detail-lore-tag">' + escapeHtml(conn.theme) + "</span>");
+  }
+  if (conn.lore_line) {
+    parts.push('<p class="detail-lore-line">' + escapeHtml(conn.lore_line) + "</p>");
+  }
+  var actions = [];
+  if (conn.film_slug) {
+    var film = getFilmBySlug(conn.film_slug);
+    if (film) {
+      actions.push(
+        '<a class="detail-lore-link" href="' +
+          escapeHtml(resolveUniverseHref(film.path)) +
+          '">Related film · ' +
+          escapeHtml(film.title) +
+          " →</a>"
+      );
+    }
+  }
+  if (conn.related_pieces && conn.related_pieces.length) {
+    var rel = conn.related_pieces
+      .filter(function (s) {
+        return s !== pieceSlug(item);
+      })
+      .map(function (s) {
+        return (
+          '<a class="detail-lore-piece" href="?piece=' +
+          encodeURIComponent(s) +
+          '">' +
+          escapeHtml(s) +
+          "</a>"
+        );
+      })
+      .join("");
+    if (rel) {
+      actions.push('<p class="detail-lore-related"><span>Threaded pieces:</span> ' + rel + "</p>");
+    }
+  }
+  el.innerHTML =
+    '<p class="detail-lore-kicker">Universe thread</p>' + parts.join("") + (actions.length ? '<div class="detail-lore-actions">' + actions.join("") + "</div>" : "");
+}
+
+function findItemBySlug(slug) {
+  if (!slug || !galleryData) return null;
+  var q = slug.trim().toLowerCase();
+  for (var i = 0; i < galleryData.items.length; i++) {
+    var it = galleryData.items[i];
+    if (pieceSlug(it) === q || String(it.token_id) === q) return it;
+  }
+  return null;
+}
+
+function parsePieceFromUrl() {
+  return (new URLSearchParams(window.location.search).get("piece") || "").trim();
+}
+
+function applyPieceFromUrl() {
+  var slug = parsePieceFromUrl();
+  if (!slug) return;
+  var item = findItemBySlug(slug);
+  if (item) {
+    openDetail(item);
+    return;
+  }
+  var search = $("#search");
+  if (search) {
+    search.value = slug;
+    searchQuery = slug;
+    refreshView();
   }
 }
 
@@ -1827,6 +2032,7 @@ function renderDetailOwners(item) {
 
 function refreshDetailPanel(item) {
   if (!item) return;
+  renderDetailLore(item);
   renderDetailActivity(item);
   renderDetailOwners(item);
 }
@@ -1869,6 +2075,7 @@ function openDetail(item) {
     chips.push('<span class="chip">List <strong>' + formatEth(item.listing.amount_eth) + " ETH</strong></span>");
   }
   stats.innerHTML = chips.length ? chips.join("") : '<span class="chip">Community piece</span>';
+  renderDetailLore(item);
   renderDetailActivity(item);
   renderDetailOwners(item);
   panel.classList.add("open");
@@ -2022,6 +2229,8 @@ async function init() {
       updateFooterMaintenance(galleryMeta);
     });
 
+    loadUniverseLore();
+
     loadWalletIndex().then(function () {
       renderStats(galleryData.collection);
       updateCollectorsButton();
@@ -2029,7 +2238,8 @@ async function init() {
         var openItem = itemsById.get(String(activeDetailTokenId));
         if (openItem) refreshDetailPanel(openItem);
       }
-      return applyWalletFromUrl();
+      applyWalletFromUrl();
+      applyPieceFromUrl();
     });
 
     if (window.location.hash === "#wallet-panel") {

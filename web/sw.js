@@ -14,6 +14,7 @@ const SHELL = [
   "./assets/brand/dacat-icon-64.png",
   "./assets/brand/dacat-mascot.png",
   "./data/gallery_catalog.json",
+  "./data/universe_lore.json",
 ];
 
 self.addEventListener("install", function (event) {

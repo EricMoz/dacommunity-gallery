@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/styles.css?v=20260605-4" />
+  <link rel="stylesheet" href="../css/styles.css?v=20260605-5" />
 </head>
 <body data-base="../">
   <header class="site-header">
@@ -102,6 +102,20 @@
       <div class="wallet-result" id="wallet-result" hidden aria-live="polite"></div>
     </section>
 
+    <section class="panel universe-panel" id="universe-panel" aria-labelledby="universe-panel-heading">
+      <header class="universe-panel-head">
+        <p class="universe-panel-kicker">daCAT universe</p>
+        <h2 class="universe-panel-title" id="universe-panel-heading">Notes from the clowder</h2>
+        <p class="universe-panel-lead" id="universe-panel-tagline"></p>
+      </header>
+      <div class="universe-notes" id="universe-notes-list" aria-label="Community notes"></div>
+      <div class="universe-holder-highlights" id="universe-holder-highlights" hidden>
+        <h3 class="universe-subhead">Collectors in the story</h3>
+        <div class="universe-holder-track" id="universe-holder-track"></div>
+      </div>
+      <nav class="universe-threads" id="universe-threads" aria-label="Explore the universe"></nav>
+    </section>
+
     <section class="panel browse-controls" id="browse-controls" aria-label="Search and filter gallery">
       <header class="browse-head">
         <div class="browse-head-row">
@@ -125,7 +139,7 @@
           type="search"
           id="search"
           class="browse-search-input"
-          placeholder="dacat.slug, story, #47…"
+          placeholder="dacat.blast, story, #47…"
           autocomplete="off"
           enterkeyhint="search"
         />
@@ -211,6 +225,7 @@
           <h2 id="detail-title"></h2>
           <div class="detail-stats" id="detail-stats"></div>
           <div class="detail-description" id="detail-description"></div>
+          <div class="detail-lore panel-inset" id="detail-lore" hidden aria-label="Universe connection"></div>
           <div class="detail-activity" id="detail-activity" hidden>
             <button type="button" class="activity-disclosure-toggle" id="detail-activity-toggle" aria-expanded="false" aria-controls="detail-activity-panel">
               <span class="activity-disclosure-head">
@@ -257,6 +272,6 @@
   </footer>
 
   <script src="../js/pwa-register.js?v=20260605-1" defer></script>
-  <script src="../js/app.js?v=20260605-4" defer></script>
+  <script src="../js/app.js?v=20260605-5" defer></script>
 </body>
 </html>
