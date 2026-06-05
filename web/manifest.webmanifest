@@ -1,0 +1,24 @@
+{
+  "name": "daCAT daCommunity Gallery",
+  "short_name": "daCommunity",
+  "description": "Browse daCAT daCommunity NFT stories, holders, and listings — daily OpenSea snapshot.",
+  "start_url": "./dacommunity/",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffcc00",
+  "theme_color": "#0a0a0a",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "assets/brand/dacat-icon-64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/brand/dacat-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

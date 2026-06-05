@@ -46,12 +46,32 @@ let galleryData = null;
 let walletIndex = null;
 let collectorsList = [];
 let itemsById = new Map();
+/** Browse view — single source of truth for search / filter / sort. */
 let activeFilter = "all";
 let searchQuery = "";
+let sortKey = "token_desc";
 let dataSource = "catalog";
+/** catalog | loading_full | live | error */
+let fullDataStatus = "catalog";
 let activeCollectorAddress = null;
 /** Token id when detail drawer is open — refresh holders/activity after background merge. */
 let activeDetailTokenId = null;
+
+var FILTER_LABELS = {
+  all: "All",
+  listed: "For sale",
+  not_listed: "Not listed",
+  activity: "Recent moves",
+};
+
+var SORT_LABELS = {
+  token_desc: "Newest token #",
+  token_asc: "Oldest token #",
+  price_asc: "Price · low first",
+  price_desc: "Price · high first",
+  transfer_desc: "Recently transferred",
+  name_asc: "Name A–Z",
+};
 
 function isFileProtocol() {
   return window.location.protocol === "file:";
@@ -96,6 +116,80 @@ function hoursSince(iso) {
   var t = Date.parse(iso);
   if (isNaN(t)) return null;
   return (Date.now() - t) / 3600000;
+}
+
+function dataTimestampIso() {
+  if (galleryMeta && galleryMeta.data_generated_at) return galleryMeta.data_generated_at;
+  if (galleryData && galleryData.generated_at) return galleryData.generated_at;
+  return null;
+}
+
+function formatDataUpdated(iso) {
+  if (!iso) return "—";
+  var d = new Date(iso);
+  if (isNaN(d.getTime())) return "—";
+  return d.toLocaleString(undefined, {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
+}
+
+function setFullDataStatus(status) {
+  fullDataStatus = status;
+  var mergeEl = $("#merge-status");
+  var freshness = $("#data-freshness");
+  var list = $("#gallery-list");
+  if (mergeEl) {
+    if (status === "loading_full") {
+      mergeEl.hidden = false;
+      mergeEl.classList.remove("is-done");
+      mergeEl.textContent = "Pulling full stories & transfer trails into the archive…";
+    } else if (status === "live") {
+      mergeEl.textContent = "Full archive loaded — stories and activity are current for this snapshot.";
+      mergeEl.classList.add("is-done");
+      setTimeout(function () {
+        if (fullDataStatus === "live") mergeEl.hidden = true;
+      }, 3200);
+    } else if (status === "error") {
+      mergeEl.hidden = false;
+      mergeEl.classList.remove("is-done");
+      mergeEl.textContent = "Could not load full details — excerpts still visible from catalog.";
+    } else {
+      mergeEl.hidden = true;
+    }
+  }
+  if (freshness) {
+    freshness.classList.toggle("is-loading", status === "loading_full");
+  }
+  if (list) list.setAttribute("aria-busy", status === "loading_full" ? "true" : "false");
+}
+
+function renderDataFreshness() {
+  var iso = dataTimestampIso();
+  var timeEl = $("#data-freshness-time");
+  var freshness = $("#data-freshness");
+  if (timeEl) {
+    timeEl.textContent = formatDataUpdated(iso);
+    timeEl.setAttribute("datetime", iso || "");
+  }
+  if (freshness && iso) {
+    var ageH = hoursSince(iso);
+    freshness.classList.toggle("is-stale", ageH !== null && ageH > 30);
+  }
+  var footer = $("#footer-updated");
+  if (footer && iso) footer.textContent = formatDataUpdated(iso);
+}
+
+function bindFreshnessToggle() {
+  var btn = $("#data-freshness-toggle");
+  var detail = $("#data-freshness-detail");
+  if (!btn || !detail || btn.dataset.bound) return;
+  btn.dataset.bound = "1";
+  btn.addEventListener("click", function () {
+    var open = btn.getAttribute("aria-expanded") === "true";
+    btn.setAttribute("aria-expanded", open ? "false" : "true");
+    detail.hidden = open;
+  });
 }
 
 function applyGalleryMeta(meta) {
@@ -197,12 +291,10 @@ function mergeFullDescriptions(full) {
     if (fullItem.generated_at) galleryData.generated_at = full.generated_at;
   });
   dataSource = "live";
-  if (galleryMeta && galleryMeta.refresh && galleryMeta.refresh.status === "ok") {
-    hideStaleBanner();
-  } else if (!galleryMeta) {
-    hideStaleBanner();
-  }
-  $("#footer-updated").textContent = new Date(galleryData.generated_at).toLocaleString();
+  setFullDataStatus("live");
+  hideStaleBanner();
+  renderDataFreshness();
+  if (galleryMeta) applyGalleryMeta(galleryMeta);
   renderStats(galleryData.collection);
   refreshView();
   if (activeDetailTokenId) {
@@ -226,13 +318,16 @@ async function loadCatalogFirst() {
 
 /** After grid is visible, enrich items with full descriptions and transfer history. */
 async function refreshFullDataInBackground() {
+  setFullDataStatus("loading_full");
   try {
     const full = await fetchJson(FULL_DATA_URL, 45000);
     mergeFullDescriptions(full);
     galleryData.generated_at = full.generated_at;
     galleryData.collection = full.collection;
+    renderDataFreshness();
   } catch (e) {
     console.warn("Background full data refresh failed:", e);
+    setFullDataStatus("error");
   }
 }
 
@@ -840,27 +935,187 @@ function renderStats(collection) {
   renderHeroNote(collection);
 }
 
+function itemLatestTransferAt(item) {
+  var owners = item.owners || {};
+  if (owners.latest_change && owners.latest_change.at) return owners.latest_change.at;
+  var rows = item.recent_activity || [];
+  if (rows.length && rows[0].at) return rows[0].at;
+  return null;
+}
+
+function hasRecentActivity(item, withinDays) {
+  withinDays = withinDays || 90;
+  var at = itemLatestTransferAt(item);
+  if (!at) return false;
+  var ageH = hoursSince(at);
+  return ageH !== null && ageH <= withinDays * 24;
+}
+
+function itemMatchesSearch(item, q) {
+  if (!q) return true;
+  var steward = collectionStewardLabel().toLowerCase();
+  if (steward.indexOf(q) >= 0) return true;
+  var holders = (item.owners && item.owners.holders) || [];
+  for (var i = 0; i < holders.length; i++) {
+    var addr = holders[i].address;
+    if (addr && addr.toLowerCase().indexOf(q) >= 0) return true;
+    if (walletIndex && walletIndex.by_address) {
+      var entry = walletIndex.by_address[addr.toLowerCase()];
+      if (entry) {
+        if ((entry.ens_name || "").toLowerCase().indexOf(q) >= 0) return true;
+        if ((entry.username || "").toLowerCase().indexOf(q) >= 0) return true;
+      }
+    }
+  }
+  return (
+    itemTitle(item).toLowerCase().indexOf(q) >= 0 ||
+    (item.name || "").toLowerCase().indexOf(q) >= 0 ||
+    (item.description || "").toLowerCase().indexOf(q) >= 0 ||
+    (item.excerpt || "").toLowerCase().indexOf(q) >= 0 ||
+    (item.local_slug || "").toLowerCase().indexOf(q) >= 0 ||
+    String(item.token_id).indexOf(q) >= 0
+  );
+}
+
+function compareItems(a, b) {
+  var key = sortKey || "token_desc";
+  if (key === "token_desc") return Number(b.token_id) - Number(a.token_id);
+  if (key === "token_asc") return Number(a.token_id) - Number(b.token_id);
+  if (key === "name_asc") {
+    return itemTitle(a).localeCompare(itemTitle(b), undefined, { sensitivity: "base" });
+  }
+  if (key === "price_asc" || key === "price_desc") {
+    var pa = a.listed && a.listing ? Number(a.listing.amount_eth) : null;
+    var pb = b.listed && b.listing ? Number(b.listing.amount_eth) : null;
+    if (pa == null && pb == null) return Number(b.token_id) - Number(a.token_id);
+    if (pa == null) return 1;
+    if (pb == null) return -1;
+    if (pa !== pb) return key === "price_asc" ? pa - pb : pb - pa;
+    return Number(b.token_id) - Number(a.token_id);
+  }
+  if (key === "transfer_desc") {
+    var ta = Date.parse(itemLatestTransferAt(a) || 0) || 0;
+    var tb = Date.parse(itemLatestTransferAt(b) || 0) || 0;
+    if (tb !== ta) return tb - ta;
+    return Number(b.token_id) - Number(a.token_id);
+  }
+  return Number(b.token_id) - Number(a.token_id);
+}
+
 function getFilteredItems() {
+  if (!galleryData || !galleryData.items) return [];
   var items = galleryData.items.slice();
   if (activeFilter === "listed") items = items.filter(function (i) { return i.listed; });
-  if (activeFilter === "recent") items.sort(function (a, b) { return Number(b.token_id) - Number(a.token_id); });
+  if (activeFilter === "not_listed") items = items.filter(function (i) { return !i.listed; });
+  if (activeFilter === "activity") items = items.filter(function (i) { return hasRecentActivity(i); });
   if (searchQuery) {
     var q = searchQuery.toLowerCase();
-    var steward = collectionStewardLabel().toLowerCase();
-    if (q && steward.indexOf(q) >= 0) {
-      return items;
-    }
-    items = items.filter(function (i) {
-      return (
-        itemTitle(i).toLowerCase().indexOf(q) >= 0 ||
-        (i.description || "").toLowerCase().indexOf(q) >= 0 ||
-        (i.excerpt || "").toLowerCase().indexOf(q) >= 0 ||
-        (i.local_slug || "").toLowerCase().indexOf(q) >= 0 ||
-        String(i.token_id).indexOf(q) >= 0
-      );
-    });
+    items = items.filter(function (i) { return itemMatchesSearch(i, q); });
   }
+  items.sort(compareItems);
   return items;
+}
+
+function resetBrowseView() {
+  activeFilter = "all";
+  searchQuery = "";
+  sortKey = "token_desc";
+  var search = $("#search");
+  var sort = $("#sort-select");
+  if (search) search.value = "";
+  if (sort) sort.value = "token_desc";
+  document.querySelectorAll(".filter").forEach(function (btn) {
+    var on = btn.dataset.filter === "all";
+    btn.classList.toggle("active", on);
+    btn.setAttribute("aria-selected", on ? "true" : "false");
+  });
+  refreshView();
+}
+
+function renderBrowseMeta(filtered, total) {
+  var countEl = $("#results-count");
+  var chips = $("#active-filters");
+  var clearBtn = $("#clear-filters");
+  if (countEl) {
+    if (filtered === total) {
+      countEl.textContent = total + " piece" + (total === 1 ? "" : "s") + " in the archive";
+    } else {
+      countEl.textContent =
+        "Showing " + filtered + " of " + total + " — the rest are hiding in the noise";
+    }
+  }
+  if (!chips || !clearBtn) return;
+  var parts = [];
+  if (searchQuery) {
+    parts.push({ key: "search", label: 'Search: "' + searchQuery + '"' });
+  }
+  if (activeFilter !== "all") {
+    parts.push({ key: "filter", label: FILTER_LABELS[activeFilter] || activeFilter });
+  }
+  if (sortKey !== "token_desc") {
+    parts.push({ key: "sort", label: SORT_LABELS[sortKey] || sortKey });
+  }
+  if (!parts.length) {
+    chips.hidden = true;
+    chips.innerHTML = "";
+    clearBtn.hidden = true;
+    return;
+  }
+  chips.hidden = false;
+  clearBtn.hidden = false;
+  chips.innerHTML = parts
+    .map(function (p) {
+      return (
+        '<span class="filter-chip">' +
+        escapeHtml(p.label) +
+        '<button type="button" data-clear="' +
+        escapeHtml(p.key) +
+        '" aria-label="Remove ' +
+        escapeHtml(p.label) +
+        '">×</button></span>'
+      );
+    })
+    .join("");
+  chips.querySelectorAll("button").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var k = btn.getAttribute("data-clear");
+      if (k === "search") {
+        searchQuery = "";
+        var inp = $("#search");
+        if (inp) inp.value = "";
+      } else if (k === "filter") {
+        activeFilter = "all";
+        document.querySelectorAll(".filter").forEach(function (b) {
+          var on = b.dataset.filter === "all";
+          b.classList.toggle("active", on);
+          b.setAttribute("aria-selected", on ? "true" : "false");
+        });
+      } else if (k === "sort") {
+        sortKey = "token_desc";
+        var sel = $("#sort-select");
+        if (sel) sel.value = "token_desc";
+      }
+      refreshView();
+    });
+  });
+}
+
+function renderGallerySkeletons(count) {
+  var list = $("#gallery-list");
+  var empty = $("#gallery-empty");
+  if (!list) return;
+  if (empty) empty.hidden = true;
+  list.innerHTML = "";
+  for (var i = 0; i < count; i++) {
+    var row = document.createElement("div");
+    row.className = "gallery-row is-skeleton";
+    row.setAttribute("aria-hidden", "true");
+    row.innerHTML =
+      '<div class="gallery-thumb-wrap"></div>' +
+      '<div class="gallery-meta"><h3>&nbsp;</h3><p>&nbsp;</p></div>' +
+      '<div class="gallery-side"><span class="token-pill">&nbsp;</span></div>';
+    list.appendChild(row);
+  }
 }
 
 function renderFeatured(allItems) {
@@ -891,10 +1146,20 @@ function renderFeatured(allItems) {
 
 function renderGallery(items) {
   var list = $("#gallery-list");
+  var empty = $("#gallery-empty");
+  if (!list) return;
   list.innerHTML = "";
+  if (!items.length) {
+    if (empty) empty.hidden = false;
+    return;
+  }
+  if (empty) empty.hidden = true;
   items.forEach(function (item, idx) {
     var row = document.createElement("button");
     row.className = "gallery-row";
+    if (fullDataStatus === "loading_full" && !item.description && !cleanStoryText(item)) {
+      row.classList.add("is-pending-story");
+    }
     row.type = "button";
     row.style.animationDelay = Math.min(idx * 0.025, 0.75) + "s";
     var title = itemTitle(item);
@@ -902,9 +1167,13 @@ function renderGallery(items) {
       ? '<span class="badge-listed">' + (item.listing ? formatEth(item.listing.amount_eth) + " ETH" : "Listed") + "</span>"
       : "";
     var videoBadge = isVideoItem(item) ? '<span class="thumb-video-badge">▶</span>' : "";
+    var excerpt = displayExcerpt(item);
+    if (!excerpt && fullDataStatus === "loading_full") {
+      excerpt = "Story loading from snapshot…";
+    }
     row.innerHTML =
       '<div class="gallery-thumb-wrap"><div class="gallery-thumb-slot"></div>' + videoBadge + "</div>" +
-      '<div class="gallery-meta"><h3>' + formatPieceTitleHtml(title) + "</h3><p>" + escapeHtml(displayExcerpt(item)) + "</p></div>" +
+      '<div class="gallery-meta"><h3>' + formatPieceTitleHtml(title) + "</h3><p>" + escapeHtml(excerpt || "No excerpt yet.") + "</p></div>" +
       '<div class="gallery-side"><span class="token-pill">#' + item.token_id + "</span>" + listedBadge + "</div>";
     fillMediaSlot(row.querySelector(".gallery-thumb-slot"), item, { controls: false });
     var thumb = row.querySelector(".gallery-thumb-slot img, .gallery-thumb-slot video");
@@ -1197,9 +1466,15 @@ function closeDetail() {
 }
 
 function refreshView() {
+  if (!galleryData) return;
+  var total = galleryData.items.length;
+  var filtered = getFilteredItems();
+  renderBrowseMeta(filtered.length, total);
   renderFeatured(galleryData.items);
-  renderGallery(getFilteredItems());
+  renderGallery(filtered);
 }
+
+var searchDebounceTimer = null;
 
 function bindUi() {
   document.querySelectorAll(".filter").forEach(function (btn) {
@@ -1214,10 +1489,38 @@ function bindUi() {
       refreshView();
     });
   });
-  $("#search").addEventListener("input", function (e) {
-    searchQuery = e.target.value.trim();
-    refreshView();
-  });
+  var searchInput = $("#search");
+  if (searchInput) {
+    searchInput.addEventListener("input", function (e) {
+      clearTimeout(searchDebounceTimer);
+      var val = e.target.value.trim();
+      searchDebounceTimer = setTimeout(function () {
+        searchQuery = val;
+        refreshView();
+      }, 120);
+    });
+    searchInput.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        searchInput.value = "";
+        searchQuery = "";
+        refreshView();
+        searchInput.blur();
+      }
+    });
+  }
+  var sortSelect = $("#sort-select");
+  if (sortSelect) {
+    sortSelect.value = sortKey;
+    sortSelect.addEventListener("change", function (e) {
+      sortKey = e.target.value;
+      refreshView();
+    });
+  }
+  var clearBtn = $("#clear-filters");
+  if (clearBtn) clearBtn.addEventListener("click", resetBrowseView);
+  var emptyReset = $("#gallery-empty-reset");
+  if (emptyReset) emptyReset.addEventListener("click", resetBrowseView);
+  bindFreshnessToggle();
   var cs = $("#collectors-search");
   if (cs) cs.addEventListener("input", function (e) { renderCollectors(e.target.value); });
   var viewBtn = $("#view-collectors-btn");
@@ -1256,10 +1559,7 @@ function bootGallery(data) {
   var loadEl = $("#load-state");
   if (loadEl) loadEl.hidden = true;
   renderStats(galleryData.collection);
-  var footer = $("#footer-updated");
-  if (footer && galleryData.generated_at) {
-    footer.textContent = new Date(galleryData.generated_at).toLocaleString();
-  }
+  renderDataFreshness();
   bindUi();
   refreshView();
 }
@@ -1282,11 +1582,15 @@ async function init() {
     bootGallery(galleryData);
 
     if (dataSource === "catalog") {
-      showStaleBanner("Loading full gallery details…", "");
       refreshFullDataInBackground();
+    } else {
+      setFullDataStatus("live");
     }
 
-    loadGalleryMeta();
+    loadGalleryMeta().then(function () {
+      renderDataFreshness();
+      updateFooterMaintenance(galleryMeta);
+    });
 
     loadWalletIndex().then(function () {
       renderStats(galleryData.collection);
