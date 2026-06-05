@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/styles.css?v=20260605-8" />
+  <link rel="stylesheet" href="../css/styles.css?v=20260605-9" />
 </head>
 <body data-base="../">
   <header class="site-header">
@@ -100,27 +100,21 @@
       </div>
 
       <div class="wallet-result" id="wallet-result" hidden aria-live="polite"></div>
-    </section>
 
-    <section class="panel browse-controls" id="browse-controls" aria-label="Search and filter gallery">
-      <div class="collector-view-banner" id="collector-view-banner" hidden role="region" aria-label="Collection view">
-        <div class="collector-view-banner-copy">
-          <p class="collector-view-kicker">Collector collection</p>
-          <p class="collector-view-title">
-            Viewing <strong id="collector-banner-name">—</strong>
-          </p>
-          <p class="collector-view-meta" id="collector-banner-meta"></p>
-        </div>
-        <div class="collector-view-banner-actions">
+      <footer class="collector-portfolio-exit" id="collector-view-banner" hidden aria-label="Exit collection view">
+        <p class="collector-portfolio-exit-meta" id="collector-banner-meta"></p>
+        <div class="collector-portfolio-exit-actions">
           <button type="button" class="collector-exit-chip" id="collector-exit-chip" aria-label="Exit collection view and return to full archive">
             <span class="collector-exit-chip-prefix">Collector</span>
             <span class="collector-exit-chip-label" id="collector-exit-chip-label">—</span>
             <span class="collector-exit-chip-x" aria-hidden="true">×</span>
           </button>
-          <button type="button" class="collector-exit-pill" id="collector-banner-exit">← Full archive</button>
+          <button type="button" class="collector-exit-pill collector-exit-pill-ghost" id="collector-banner-exit">← Full archive</button>
         </div>
-      </div>
+      </footer>
+    </section>
 
+    <section class="panel browse-controls" id="browse-controls" aria-label="Search and filter gallery">
       <header class="browse-head">
         <div class="browse-head-row">
           <div>
@@ -264,6 +258,6 @@
   </footer>
 
   <script src="../js/pwa-register.js?v=20260605-1" defer></script>
-  <script src="../js/app.js?v=20260605-8" defer></script>
+  <script src="../js/app.js?v=20260605-9" defer></script>
 </body>
 </html>

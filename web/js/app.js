@@ -721,9 +721,9 @@ function exitCollectorView(opts) {
 }
 
 function scrollToCollectorCollection() {
-  var banner = $("#collector-view-banner");
-  if (banner && !banner.hidden) {
-    banner.scrollIntoView({ behavior: "smooth", block: "start" });
+  var panel = $("#wallet-panel");
+  if (panel && galleryCollectorView) {
+    panel.scrollIntoView({ behavior: "smooth", block: "start" });
     return;
   }
   var list = $("#gallery-list");
@@ -748,13 +748,10 @@ function renderCollectorFocusUi() {
     var count = galleryCollectorView.pieceCount;
     var pieceWord = count === 1 ? "piece" : "pieces";
 
-    var bannerName = $("#collector-banner-name");
-    if (bannerName) bannerName.textContent = label;
-
     var bannerMeta = $("#collector-banner-meta");
     if (bannerMeta) {
       bannerMeta.textContent =
-        count + " " + pieceWord + " in this collection · grid below is filtered to their holdings";
+        "Viewing " + label + " · " + count + " " + pieceWord + " in the grid below";
     }
 
     var chipLabel = $("#collector-exit-chip-label");
