@@ -2751,6 +2751,7 @@ body.film-theater {
   margin: 0 auto;
   padding: 1.75rem 1.25rem 3rem;
   width: 100%;
+  overflow-anchor: none;
 }
 
 .film-hub-hero {
@@ -3020,39 +3021,59 @@ body.film-theater {
   letter-spacing: 0.02em;
 }
 
-.film-series-count {
+.film-series-count,
+.film-series-meta {
   font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   color: #666;
 }
 
+.film-series-count {
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
 .film-featured {
-  margin-bottom: 0.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.film-catalog {
+  width: 100%;
 }
 
 .film-vgrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
+  width: 100%;
+}
+
+.film-vgrid .film-vcard {
+  width: 100%;
+  min-width: 0;
 }
 
 .film-vgrid-featured {
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 0.85rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .film-vgrid-featured {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
 }
 
 .film-vcard--featured {
   border-color: rgba(255, 204, 0, 0.45);
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.9),
-    0 12px 40px rgba(0, 0, 0, 0.55),
-    0 0 48px rgba(255, 204, 0, 0.1);
-}
-
-.film-vcard--featured:first-child {
-  border-color: rgba(255, 204, 0, 0.55);
+    0 8px 28px rgba(0, 0, 0, 0.5),
+    0 0 32px rgba(255, 204, 0, 0.08);
 }
 
 .film-vcard {
@@ -4833,6 +4854,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   .film-vgrid-featured {
     display: flex;
     flex-wrap: nowrap;
+    grid-template-columns: unset;
     overflow-x: auto;
     gap: 0.75rem;
     padding-bottom: 0.35rem;
@@ -4843,6 +4865,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 
   .film-vgrid-featured .film-vcard {
     flex: 0 0 min(72vw, 240px);
+    width: auto;
     scroll-snap-align: start;
   }
 

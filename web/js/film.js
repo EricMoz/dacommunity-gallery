@@ -146,7 +146,7 @@
     section.innerHTML = `
       <header class="film-series-head">
         <h2 class="film-series-title">${escapeHtml(seriesName)}</h2>
-        <span class="film-series-count">${count} ${count === 1 ? "title" : "titles"}</span>
+        <span class="film-series-count">${count} ${count === 1 ? "video" : "videos"}</span>
       </header>
       <div class="film-vgrid" role="list"></div>
     `;
@@ -199,8 +199,6 @@
 
   function render() {
     const visible = visibleVideos();
-    const featuredIds = new Set(catalog ? resolveFeaturedIds() : []);
-    const catalogVideos = visible.filter((v) => !featuredIds.has(v.id) || activeFilter !== "all" || searchQuery);
 
     els.rows.innerHTML = "";
     if (!catalog) return;
@@ -209,12 +207,8 @@
 
     const bySeries = new Map();
     const order = catalog.seriesOrder || [];
-    const useList =
-      activeFilter === "all" && !searchQuery
-        ? visible.filter((v) => !featuredIds.has(v.id))
-        : visible;
 
-    useList.forEach((v) => {
+    visible.forEach((v) => {
       if (!bySeries.has(v.series)) bySeries.set(v.series, []);
       bySeries.get(v.series).push(v);
     });
@@ -340,7 +334,13 @@
       els.modal.setAttribute("aria-hidden", "false");
     }
     playInModal(videoId);
-    els.modalClose.focus();
+    if (els.modalClose && typeof els.modalClose.focus === "function") {
+      try {
+        els.modalClose.focus({ preventScroll: true });
+      } catch (_) {
+        els.modalClose.focus();
+      }
+    }
   }
 
   function closeModal() {
@@ -403,7 +403,18 @@
     if (id && findVideo(id)) openModal(id);
   }
 
+  function keepPageAtTopUnlessDeepLink() {
+    const hasVideo = new URLSearchParams(window.location.search).has("v");
+    if (hasVideo) return;
+    window.scrollTo(0, 0);
+  }
+
   async function init() {
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    keepPageAtTopUnlessDeepLink();
+
     loadYouTubeApi();
     bindEvents();
     setLoading(true);
@@ -416,6 +427,7 @@
       renderFilters();
       setLoading(false);
       render();
+      keepPageAtTopUnlessDeepLink();
       openFromQuery();
     } catch (err) {
       console.error("Film hub: failed to load videos.json", err);
