@@ -4,11 +4,13 @@ Static gallery for the [daCAT daCommunity](https://opensea.io/collection/rodeo-p
 
 **Live site:** https://ericmoz.github.io/dacommunity-gallery/
 
+Check the footer on any page for **Site build YYYYMMDD-N** (e.g. `20260605-8`). If yours is older after a deploy, hard-refresh (**Ctrl+Shift+R**) or try a private window.
+
 | Route | Purpose |
 |-------|---------|
 | `/` | **Home** — Collections, film, analytics |
 | `/collections/` | **Collections** — daCommunity + Badges picker |
-| `/dacommunity/` | Full gallery, search/filters, collector lookup, shareable `?wallet=` links |
+| `/dacommunity/` | Gallery, search/filters, collector lookup, shareable `?wallet=` links |
 | `/badges/` | Badges coming-soon placeholder |
 | `/analytics/` | Cat Coin market cap bar chart race (Flourish embed) |
 | `/film/` | Films hub |
@@ -17,13 +19,12 @@ Static gallery for the [daCAT daCommunity](https://opensea.io/collection/rodeo-p
 ## Features
 
 - **Browse archive** — Search by name, story, or token #; filter (all / for sale / not listed / recent moves); sort (token #, price, transfer date, name).
-- **Collector lookup** — Enter ENS or `0x` address (no wallet connect). Clear (×) on the lookup field if the UI gets stuck.
-- **Portfolio view** — Dark “cinema” grid for one collector’s holdings; compact filter/sort panel; exit chip returns to full archive.
-- **Shareable links** — `?wallet=0x…` opens a collector portfolio; `#wallet-panel` scrolls to lookup.
-- **Detail drawer** — Holders, transfers, OpenSea link; background merge fills activity after first paint.
-- **PWA shell** — Light offline cache for HTML/CSS/JS; gallery JSON is network-first.
-
-Footer on the home page shows **Site build YYYYMMDD-N**. If the live site looks stale, hard-refresh (Ctrl+Shift+R) or check that build id against the latest deploy.
+- **My daCATs** — Nav link on every page → `dacommunity/#wallet-panel` (collector lookup).
+- **Collector lookup** — ENS or `0x` address, no wallet connect. **×** clears the field and result card.
+- **Portfolio view** — Dark cinema grid for one wallet (`?wallet=0x…`); search/filter in compact panel; exit returns to lookup with field cleared.
+- **NFT detail drawer** — Readable dark theme in portfolio mode; holder badge **this portfolio** vs **latest transfer** in full archive.
+- **Shareable links** — `?wallet=0x…` opens a portfolio; `#wallet-panel` scrolls to lookup.
+- **PWA shell** — Offline-friendly shell; HTML/CSS/JS and `sw.js` cache names bump each deploy; gallery JSON is network-first.
 
 ## Architecture
 
@@ -41,19 +42,27 @@ OpenSea API v2  ──►  Python (backend/)  ──►  web/data/*.json
 | **`fetch_gallery_data.py`** | Full refresh → `gallery_data.json`, `wallet_index.json` |
 | **`build_catalog.py`** | Slim `gallery_catalog.json` for fast first paint |
 | **`gallery_meta.json`** | Refresh status / staleness banner |
-| **`app.js`** | Catalog → full merge → wallet index; browse state; collector view; dark mode via `body.has-collector-view` |
+| **`app.js`** | Catalog → full merge → wallet index; browse + portfolio + detail drawer |
 
 **Contract:** `0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1` (Base) · Steward: `dacatdreams.base.eth`
 
-### Frontend map (`web/`)
+### Frontend (`web/`)
 
 | File | Role |
 |------|------|
-| `dacommunity/index.html` | Gallery shell: hero, `#wallet-panel`, `#browse-controls`, grid, detail drawer |
-| `css/styles.css` | Layout, browse/search, collector portfolio (dark), modals |
-| `js/app.js` | Data load, search/filter/sort, wallet lookup, URL sync |
-| `js/pwa-register.js` | Service worker registration |
-| `sw.js` | Cache shell; `CACHE` name tied to deploy build id |
+| `dacommunity/index.html` | Gallery shell: hero, `#wallet-panel`, browse, grid, detail drawer |
+| `css/styles.css` | Layout; `body.has-collector-view` = dark portfolio + detail theme |
+| `js/app.js` | Data load, search/filter/sort, wallet URL sync, grid + detail UI |
+| `js/pwa-register.js` | Registers `sw.js` with `?v=` from `<meta name="site-build">` |
+| `sw.js` | Network-first for HTML/CSS/JS; `CACHE` bumped per deploy |
+
+### `app.js` flow (maintainers)
+
+1. `init()` → `loadCatalogFirst()` → `bootGallery()` → `bindUi()` (once).
+2. Background: `refreshFullDataInBackground()`, `loadWalletIndex()`, `applyWalletFromUrl()`.
+3. Portfolio: `setGalleryCollectorView()` sets `galleryCollectorView.tokenIds`; grid filters via `getFilteredItems()`.
+4. Clicks: delegated on `#gallery-list` (`data-token-id` → `openDetail()`).
+5. Holders in detail: `resolveHoldersList()` → `sortHoldersForDisplay()`; highlight via `holderHighlightAddress()` only (uses `tokenIds` in portfolio mode — do not call `resolveHoldersList` from there).
 
 ## Local preview
 
@@ -64,7 +73,7 @@ cd web
 python -m http.server 8080
 ```
 
-Open http://localhost:8080/dacommunity/ for the gallery. On Windows, `start-gallery.bat` at the repo root is a shortcut.
+Open http://localhost:8080/dacommunity/ for the gallery. `start-gallery.bat` at the repo root is a Windows shortcut.
 
 ## Refresh data from OpenSea
 
@@ -90,29 +99,31 @@ python ../scripts/verify_piece_activity.py --token 47 --expect-from mozvane.eth 
 
 ## Deploy & cache busting
 
-GitHub Pages and browsers can cache HTML/CSS/JS. Every **Deploy gallery to GitHub Pages** run executes `scripts/bump_deploy_version.py`, which:
+GitHub Pages and browsers can cache assets. Each push to `main` runs **Deploy gallery to GitHub Pages**, which executes `scripts/bump_deploy_version.py` before upload:
 
-1. Increments `web/VERSION.txt` (e.g. `20260604-3`)
-2. Writes `web/BUILD.json` with timestamp
-3. Updates `?v=` on CSS/JS in HTML pages
-4. Bumps `sw.js` `CACHE` name
-5. Updates **Site build …** in footers
+| Updated | Purpose |
+|---------|---------|
+| `web/VERSION.txt` | Canonical build id |
+| `web/BUILD.json` | Build id + UTC timestamp |
+| `?v=` on CSS/JS in HTML | Browser cache bust |
+| `sw.js` `CACHE` constant | Service worker invalidation |
+| `Site build …` + `<meta name="site-build">` | Visible version on all pages |
 
-**Manual bump before push (optional):**
+**Manual bump before push:**
 
 ```powershell
 .\scripts\bump-deploy.ps1
 git add web/
 git commit -m "chore: bump deploy build"
-git push
+git push origin main
 ```
 
-Push to `main` triggers deploy. **Actions** also runs a daily data refresh when `OPENSEA_API_KEY` is set.
+**If the site looks stale:** Compare footer build id to [latest commit](https://github.com/EricMoz/dacommunity-gallery). Hard-refresh, or DevTools → Application → clear site data once. CI may bump the id again on deploy (e.g. local `20260605-8` → live `20260605-9`); any id higher than yours is current.
 
 ## Security
 
 - **Never commit** `backend/.env` (gitignored). Use GitHub secret `OPENSEA_API_KEY` for CI.
-- [Repository secrets](https://github.com/EricMoz/dacommunity-gallery/settings/secrets/actions) — missing/expired keys fail refresh in ~2s; the site shows a staleness banner from `gallery_meta.json`.
+- [Repository secrets](https://github.com/EricMoz/dacommunity-gallery/settings/secrets/actions) — missing/expired keys fail refresh quickly; staleness shows in `gallery_meta.json` banner.
 - **New listing today?** `cd backend && python patch_listings.py` until the nightly job runs.
 - API keys are not used in the browser; the public site only reads static JSON.
 
@@ -122,7 +133,8 @@ Push to `main` triggers deploy. **Actions** also runs a daily data refresh when 
 backend/          OpenSea fetch, catalog build, enrich helpers
 web/              Static site (HTML, CSS, JS, data, assets)
   dacommunity/    Main gallery (app.js uses ../data paths)
-.github/workflows Deploy Pages + daily data refresh
+  VERSION.txt     Deploy build id (auto-bumped in CI)
+.github/workflows deploy-pages.yml, refresh-data.yml
 scripts/          bump_deploy_version.py, refresh.ps1, verify_piece_activity.py
 ```
 
@@ -130,7 +142,7 @@ scripts/          bump_deploy_version.py, refresh.ps1, verify_piece_activity.py
 
 | Workflow | Trigger | Purpose |
 |----------|---------|---------|
-| `deploy-pages.yml` | Push to `main`, manual | Bump build stamp, verify files, publish `web/` |
+| `deploy-pages.yml` | Push to `main`, manual | Bump build, `node --check` app.js, publish `web/` |
 | `refresh-data.yml` | Daily cron, manual | Fetch OpenSea → commit JSON |
 
 Requires Git LFS for NFT images under `web/assets/`.

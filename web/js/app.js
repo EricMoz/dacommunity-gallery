@@ -12,7 +12,11 @@
  * + four .stat.skeleton cards). CI runs `node --check` on this file before deploy.
  *
  * No wallet connect; ENS resolve via ensdata.net when needed.
- * Collector lookup: wallet_index.json, shareable ?wallet=0x… URLs, holdings grid.
+ *
+ * STATE: activeFilter, searchQuery, sortKey, galleryCollectorView (portfolio grid).
+ * WALLET: lookup form, ?wallet= URL, resetWalletLookupHub, exitCollectorView.
+ * BROWSE: getFilteredItems → renderGallery; delegated clicks on #gallery-list.
+ * DETAIL: openDetail drawer; holderHighlightAddress uses tokenIds (never resolveHoldersList).
  */
 
 /** Parent path prefix when gallery is not at site root (e.g. /dacommunity/). */
@@ -577,7 +581,10 @@ function resolveHoldersList(item) {
   return sortHoldersForDisplay(Object.values(byAddr), item);
 }
 
-/** Wallet to pin/highlight in holder list (must not call resolveHoldersList — avoids recursion). */
+/**
+ * Wallet to pin/highlight in the detail holder list.
+ * Portfolio mode: galleryCollectorView.tokenIds only (never resolveHoldersList — that would recurse).
+ */
 function holderHighlightAddress(item) {
   if (galleryCollectorView && galleryCollectorView.address) {
     var viewing = galleryCollectorView.address.toLowerCase();
@@ -761,7 +768,7 @@ function exitCollectorView(opts) {
     var input = $("#wallet-input");
     if (input) input.value = "";
   }
-  if (opts.scrollToHub !== false && opts.scrollGallery !== false) {
+  if (opts.scrollToHub !== false) {
     scrollToCollectorHub({
       behavior: opts.scrollBehavior || "smooth",
       updateHash: opts.updateHash !== false,
