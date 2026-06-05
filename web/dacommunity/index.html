@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/styles.css?v=20260605-7" />
+  <link rel="stylesheet" href="../css/styles.css?v=20260605-8" />
 </head>
 <body data-base="../">
   <header class="site-header">
@@ -69,19 +69,6 @@
     </section>
 
     <section class="panel collector-hub" id="wallet-panel" tabindex="-1">
-      <div class="collector-escape-bar" id="collector-escape-bar" hidden role="region" aria-label="Collection view controls">
-        <div class="collector-escape-copy">
-          <p class="collector-escape-kicker">Focused collection</p>
-          <p class="collector-escape-status">
-            Viewing <strong id="collector-escape-name">—</strong>
-          </p>
-        </div>
-        <div class="collector-escape-actions">
-          <button type="button" class="collector-exit-pill" id="collector-exit-pill">← Back to full archive</button>
-          <button type="button" class="collector-escape-close" id="collector-escape-close" aria-label="Close collection view and return to full archive">×</button>
-        </div>
-      </div>
-
       <header class="collector-hub-head">
         <p class="collector-hub-kicker">Community · ownership</p>
         <div class="collector-hub-title-row">
@@ -116,6 +103,24 @@
     </section>
 
     <section class="panel browse-controls" id="browse-controls" aria-label="Search and filter gallery">
+      <div class="collector-view-banner" id="collector-view-banner" hidden role="region" aria-label="Collection view">
+        <div class="collector-view-banner-copy">
+          <p class="collector-view-kicker">Collector collection</p>
+          <p class="collector-view-title">
+            Viewing <strong id="collector-banner-name">—</strong>
+          </p>
+          <p class="collector-view-meta" id="collector-banner-meta"></p>
+        </div>
+        <div class="collector-view-banner-actions">
+          <button type="button" class="collector-exit-chip" id="collector-exit-chip" aria-label="Exit collection view and return to full archive">
+            <span class="collector-exit-chip-prefix">Collector</span>
+            <span class="collector-exit-chip-label" id="collector-exit-chip-label">—</span>
+            <span class="collector-exit-chip-x" aria-hidden="true">×</span>
+          </button>
+          <button type="button" class="collector-exit-pill" id="collector-banner-exit">← Full archive</button>
+        </div>
+      </div>
+
       <header class="browse-head">
         <div class="browse-head-row">
           <div>
@@ -177,30 +182,7 @@
       <p class="merge-status" id="merge-status" role="status" aria-live="polite" hidden></p>
     </section>
 
-    <div class="collector-context-bar" id="collector-context-bar" hidden role="status" aria-live="polite">
-      <div class="collector-context-inner">
-        <p class="collector-context-text">
-          <span class="collector-context-kicker">Filtered grid</span>
-          Viewing <strong id="collector-context-name"></strong>
-          <span class="collector-context-meta" id="collector-context-meta"></span>
-        </p>
-        <div class="collector-context-actions">
-          <button type="button" class="collector-exit-pill collector-exit-pill-sm" id="collector-context-clear">← Full archive</button>
-          <a class="btn btn-outline btn-sm collector-context-link" href="#wallet-panel" id="collector-context-hub">Wallet panel</a>
-        </div>
-      </div>
-    </div>
-
     <div class="gallery-focus-zone" id="gallery-focus-zone">
-      <button
-        type="button"
-        class="collector-gallery-scrim"
-        id="collector-gallery-scrim"
-        hidden
-        tabindex="-1"
-        aria-label="Back to full archive — click dimmed area"
-      ></button>
-
       <section class="featured-rail panel" id="featured-rail" hidden>
         <h2 class="section-label">Listed on OpenSea</h2>
         <div class="rail-track" id="rail-track"></div>
@@ -282,6 +264,6 @@
   </footer>
 
   <script src="../js/pwa-register.js?v=20260605-1" defer></script>
-  <script src="../js/app.js?v=20260605-7" defer></script>
+  <script src="../js/app.js?v=20260605-8" defer></script>
 </body>
 </html>
