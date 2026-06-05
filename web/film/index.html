@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<!-- Film hub — tile grid; add folders under film/<slug>/ for more titles. -->
+<!-- Film hub — Mozvane (~5 min); add film/<slug>/ for more titles when ready. -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>daCAT Films</title>
-  <meta name="description" content="Community films and experiments — starting with Mozvane." />
+  <meta name="description" content="Community films — Mozvane, the ~5 minute daCAT anime cut." />
   <link rel="icon" href="../assets/brand/dacat-icon-64.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/styles.css?v=20260605-5" />
+  <link rel="stylesheet" href="../css/styles.css?v=20260605-6" />
 </head>
-<body class="film-page film-hub-page">
+<body class="film-page">
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="../" aria-label="daCAT Home">
@@ -29,43 +29,45 @@
     </div>
   </header>
 
-  <main class="film-hub-main">
-    <section class="film-hub-hero">
-      <p class="film-eyebrow">Watch &amp; track</p>
+  <main class="film-main">
+    <section class="film-intro">
+      <p class="film-eyebrow">Community cinema</p>
       <h1>daCAT <span class="film-hero-name">films</span></h1>
-      <p class="film-hub-lead">Community shorts and experiments — the same cosmic, resilient energy as the daCommunity archive on Base.</p>
+      <p class="film-tagline">Real community cuts — starting with Mozvane, the ~5 minute anime piece made with Sora and daBeezy.</p>
       <p class="film-nav-links">
+        <a class="film-back" href="../dacommunity/">daCommunity archive</a>
+        <span class="film-credit-sep" aria-hidden="true">·</span>
         <a class="film-back" href="../collections/">Collections</a>
         <span class="film-credit-sep" aria-hidden="true">·</span>
         <a class="film-back" href="../">Home</a>
       </p>
     </section>
 
-    <section class="panel universe-film-bridge" aria-labelledby="film-bridge-heading">
-      <p class="universe-panel-kicker">Universe thread</p>
-      <h2 class="universe-panel-title" id="film-bridge-heading">Film &amp; the archive</h2>
-      <p class="universe-film-bridge-lead">Mozvane was an early community cut — pieces like <a href="../dacommunity/?piece=dacat.bridge">dacat.bridge</a>, <a href="../dacommunity/?piece=dacat.hero">dacat.hero</a>, and <a href="../dacommunity/?piece=dacat.blast">dacat.blast</a> carry the same mythic, playful tone in still form.</p>
-      <p class="universe-film-bridge-links">
-        <a class="btn btn-outline btn-sm" href="../dacommunity/">daCommunity gallery</a>
-        <a class="btn btn-outline btn-sm" href="https://www.dacatworld.com/" target="_blank" rel="noopener">dacatworld ↗</a>
+    <section class="film-stage" aria-labelledby="mozvane-heading">
+      <h2 class="visually-hidden" id="mozvane-heading">Mozvane</h2>
+      <p class="film-eyebrow film-stage-kicker">Now playing · ~5 min</p>
+      <div class="film-player">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/bHcbwUs2_ds?rel=0"
+          title="Mozvane — daCAT anime film on YouTube"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+        ></iframe>
+      </div>
+      <p class="film-credit">
+        <strong>Mozvane</strong> — Sora-era anime with help from daBeezy.
+        <span class="film-credit-sep">·</span>
+        <a href="https://www.youtube.com/watch?v=bHcbwUs2_ds" target="_blank" rel="noopener">Watch on YouTube</a>
+        <span class="film-credit-sep">·</span>
+        <a class="film-back" href="mozvane/">Dedicated watch page</a>
       </p>
     </section>
 
-    <section class="film-grid" aria-label="Available films">
-      <a class="film-tile" href="mozvane/">
-        <span class="film-tile-play" aria-hidden="true">▶</span>
-        <span class="film-tile-runtime">~5 min</span>
-        <h2 class="film-tile-title">Mozvane</h2>
-        <p class="film-tile-desc">Sora-era anime with daBeezy — a community character in the making.</p>
-        <span class="film-tile-cta">Watch →</span>
-      </a>
-
-      <!-- Future: duplicate .film-tile → film/<slug>/index.html -->
-      <div class="film-tile film-tile-soon" aria-disabled="true">
-        <span class="film-tile-runtime film-tile-runtime-soon">Soon</span>
-        <h2 class="film-tile-title">More on the way</h2>
-        <p class="film-tile-desc">Room for the next community cut when it&apos;s ready.</p>
-      </div>
+    <section class="film-coming panel-inset-film" aria-label="More films">
+      <h2 class="film-coming-title">More community cuts coming</h2>
+      <p class="film-coming-lead">When the next film is ready, it will land here — no placeholders, just honest room for what&apos;s actually in the pipeline.</p>
     </section>
   </main>
 
