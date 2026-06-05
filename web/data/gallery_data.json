@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-04T04:20:12.460984+00:00",
+  "generated_at": "2026-06-05T01:37:52.181693+00:00",
   "source": "opensea_api_v2",
   "collection": {
     "slug": "rodeo-posts-12142",
@@ -18,7 +18,7 @@
     "total_sales": 0,
     "total_volume": 0.0,
     "piece_count": 65,
-    "listed_count": 2
+    "listed_count": 3
   },
   "items": [
     {
@@ -1506,8 +1506,12 @@
           "value": "No"
         }
       ],
-      "listed": false,
-      "listing": null,
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.0005,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
       "owners": {
         "holder_count": 8,
         "circulating_copies": 29,

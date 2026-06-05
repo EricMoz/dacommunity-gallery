@@ -34,6 +34,7 @@ jobs:
           cache-dependency-path: backend/requirements.txt
 
       - name: Verify OpenSea API key secret
+        id: verify_secret
         env:
           OPENSEA_API_KEY: ${{ secrets.OPENSEA_API_KEY }}
         run: |
@@ -45,6 +46,7 @@ jobs:
           echo "OpenSea API key is configured."
 
       - name: Fetch from OpenSea
+        id: fetch
         env:
           OPENSEA_API_KEY: ${{ secrets.OPENSEA_API_KEY }}
         run: |
@@ -53,12 +55,31 @@ jobs:
           cd backend
           python fetch_gallery_data.py
 
+      - name: Record refresh failure
+        if: failure()
+        run: |
+          pip install -r backend/requirements.txt
+          CODE="fetch_failed"
+          ERROR="Refresh job failed — see the log for the failing step."
+          if [ "${{ steps.verify_secret.outcome }}" = "failure" ]; then
+            CODE="missing_secret"
+            ERROR="Repository secret OPENSEA_API_KEY is not set."
+          fi
+          python backend/gallery_meta.py --record-failure --error "$ERROR" --error-code "$CODE"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add web/data/gallery_meta.json
+          git diff --staged --quiet || git commit -m "chore: record failed gallery refresh"
+          git pull --rebase origin main || true
+          git push origin main || true
+
       - name: Commit updated data
+        if: success()
         run: |
           set -e
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add web/data/gallery_data.json web/data/gallery_catalog.json web/data/wallet_index.json
+          git add web/data/gallery_data.json web/data/gallery_catalog.json web/data/wallet_index.json web/data/gallery_meta.json
           if git diff --staged --quiet; then
             echo "No JSON changes — OpenSea data already up to date."
             exit 0

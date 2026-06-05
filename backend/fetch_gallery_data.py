@@ -67,6 +67,30 @@ def wei_to_eth(value: str, decimals: int = 18) -> float:
     return int(value) / (10**decimals)
 
 
+def token_id_from_listing(listing: dict) -> str | None:
+    """Extract ERC-1155 token id from a best-listing payload."""
+    asset = listing.get("asset") or {}
+    if asset.get("identifier") is not None:
+        return str(asset["identifier"])
+    params = (listing.get("protocol_data") or {}).get("parameters") or {}
+    offer = params.get("offer") or []
+    if offer and offer[0].get("identifierOrCriteria") is not None:
+        return str(offer[0]["identifierOrCriteria"])
+    return None
+
+
+def build_active_listings_map(client: OpenSeaClient) -> dict[str, dict]:
+    """Token id → raw ACTIVE listing from collection /best (all current listings)."""
+    out: dict[str, dict] = {}
+    for row in client.iter_collection_best_listings():
+        if (row.get("status") or "").upper() != "ACTIVE":
+            continue
+        token_id = token_id_from_listing(row)
+        if token_id:
+            out[token_id] = row
+    return out
+
+
 def parse_listing_price(listing: dict) -> dict | None:
     price = listing.get("price") or {}
     current = price.get("current") or {}
@@ -392,6 +416,14 @@ def main() -> int:
     items = []
     items_by_id: dict[str, dict] = {}
     listed_count = 0
+    listings_by_token: dict[str, dict] = {}
+    if not args.quick:
+        print("Fetching active listings (collection best)…")
+        try:
+            listings_by_token = build_active_listings_map(client)
+            print(f"  {len(listings_by_token)} pieces listed on OpenSea")
+        except Exception as exc:
+            print(f"  Warning: could not load collection listings ({exc})")
 
     for i, nft in enumerate(nfts, 1):
         token_id = str(nft.get("identifier"))
@@ -400,10 +432,12 @@ def main() -> int:
         listing = None
         owners = None
         if not args.quick:
-            try:
-                listing = client.get_best_listing(token_id)
-            except requests.HTTPError:
-                listing = None
+            listing = listings_by_token.get(token_id)
+            if listing is None:
+                try:
+                    listing = client.get_best_listing(token_id)
+                except requests.HTTPError:
+                    listing = None
             try:
                 owners = client.get_nft_owners(token_id)
             except Exception:
@@ -518,6 +552,13 @@ def main() -> int:
     import build_catalog
 
     build_catalog.main()
+    import gallery_meta
+
+    gallery_meta.record_success(
+        listed_count=listed_count,
+        piece_count=len(items),
+        source="github_actions" if os.getenv("GITHUB_ACTIONS") else "local",
+    )
     return 0
 
 
@@ -530,13 +571,37 @@ if __name__ == "__main__":
     except requests.HTTPError as e:
         status = e.response.status_code if e.response is not None else "?"
         hint = ""
+        code = "fetch_failed"
         if status in (401, 403):
+            code = "opensea_unauthorized"
             hint = (
                 " Check OPENSEA_API_KEY — expired or invalid keys must be replaced "
                 "in backend/.env (local) or the GitHub Actions secret (daily refresh)."
             )
+        try:
+            import gallery_meta
+
+            gallery_meta.record_failure(f"OpenSea HTTP {status}: {e}{hint}", error_code=code)
+        except Exception:
+            pass
         print(f"OpenSea HTTP {status}: {e}{hint}", file=sys.stderr)
         sys.exit(1)
+    except ValueError as e:
+        code = "missing_secret" if "OPENSEA_API_KEY" in str(e) else "fetch_failed"
+        try:
+            import gallery_meta
+
+            gallery_meta.record_failure(str(e), error_code=code)
+        except Exception:
+            pass
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
     except Exception as e:
+        try:
+            import gallery_meta
+
+            gallery_meta.record_failure(str(e), error_code="fetch_failed")
+        except Exception:
+            pass
         print(f"Error: {e}", file=sys.stderr)
         sys.exit(1)

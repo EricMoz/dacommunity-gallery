@@ -29,12 +29,15 @@ function getDataPrefix() {
 let CATALOG_URL = "";
 let FULL_DATA_URL = "";
 let WALLET_URL = "";
+let META_URL = "";
+let galleryMeta = null;
 
 function initDataUrls() {
   var prefix = getDataPrefix();
   CATALOG_URL = prefix + "data/gallery_catalog.json";
   FULL_DATA_URL = prefix + "data/gallery_data.json";
   WALLET_URL = prefix + "data/wallet_index.json";
+  META_URL = prefix + "data/gallery_meta.json";
 }
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -69,7 +72,7 @@ function showFatalError(title, detail, cmd) {
     (cmd ? "<code>" + escapeHtml(cmd) + "</code>" : "");
 }
 
-function showStaleBanner() {
+function showStaleBanner(message, level) {
   let el = $("#data-stale-banner");
   if (!el) {
     el = document.createElement("p");
@@ -78,8 +81,77 @@ function showStaleBanner() {
     const hero = document.querySelector(".hero-inner");
     if (hero) hero.appendChild(el);
   }
-  el.textContent = "Showing saved gallery snapshot. Live data refresh in background…";
+  el.textContent = message;
+  el.className = "hero-note" + (level === "error" ? " hero-note-error" : level === "warn" ? " hero-note-warn" : "");
   el.hidden = false;
+}
+
+function hideStaleBanner() {
+  const banner = $("#data-stale-banner");
+  if (banner) banner.hidden = true;
+}
+
+function hoursSince(iso) {
+  if (!iso) return null;
+  var t = Date.parse(iso);
+  if (isNaN(t)) return null;
+  return (Date.now() - t) / 3600000;
+}
+
+function applyGalleryMeta(meta) {
+  galleryMeta = meta;
+  if (!meta) return;
+  var refresh = meta.refresh || {};
+  var key = meta.opensea_key || {};
+  var dataAt = meta.data_generated_at || galleryData.generated_at;
+  var ageH = hoursSince(dataAt);
+
+  if (refresh.status === "failed") {
+    var hint = (key.hint || refresh.error || "Daily OpenSea refresh failed.").trim();
+    showStaleBanner(hint, "error");
+    return;
+  }
+  if (key.status === "expired_or_invalid") {
+    showStaleBanner(key.hint || "OpenSea API key needs renewal.", "error");
+    return;
+  }
+  if (ageH !== null && ageH > 30) {
+    showStaleBanner(
+      "Gallery data is about " +
+        Math.round(ageH) +
+        " hours old. Listings and transfers may be outdated until the daily refresh succeeds (check GitHub Actions and OPENSEA_API_KEY).",
+      "warn"
+    );
+  }
+}
+
+function updateFooterMaintenance(meta) {
+  var footer = document.querySelector(".site-footer p");
+  if (!footer || !meta) return;
+  var base = "OpenSea ownership & listings · Refreshed daily · Updated ";
+  var span = $("#footer-updated");
+  var updated = span && span.textContent !== "—" ? span.textContent : "—";
+  var extra = "";
+  if (meta.refresh && meta.refresh.status === "failed") {
+    extra = " · ⚠ refresh failed — renew OPENSEA_API_KEY secret";
+  } else if (meta.opensea_key && meta.opensea_key.rotation_reminder_days) {
+    extra =
+      " · renew API key secret about every " +
+      meta.opensea_key.rotation_reminder_days +
+      " days";
+  }
+  footer.innerHTML = base + '<span id="footer-updated">' + escapeHtml(updated) + "</span>" + escapeHtml(extra);
+}
+
+async function loadGalleryMeta() {
+  if (isFileProtocol()) return;
+  try {
+    galleryMeta = await fetchJson(META_URL, 8000);
+    applyGalleryMeta(galleryMeta);
+    updateFooterMaintenance(galleryMeta);
+  } catch (e) {
+    console.warn("gallery_meta.json not loaded:", e);
+  }
 }
 
 async function fetchJson(url, timeoutMs) {
@@ -125,8 +197,11 @@ function mergeFullDescriptions(full) {
     if (fullItem.generated_at) galleryData.generated_at = full.generated_at;
   });
   dataSource = "live";
-  const banner = $("#data-stale-banner");
-  if (banner) banner.hidden = true;
+  if (galleryMeta && galleryMeta.refresh && galleryMeta.refresh.status === "ok") {
+    hideStaleBanner();
+  } else if (!galleryMeta) {
+    hideStaleBanner();
+  }
   $("#footer-updated").textContent = new Date(galleryData.generated_at).toLocaleString();
   renderStats(galleryData.collection);
   refreshView();
@@ -1207,9 +1282,11 @@ async function init() {
     bootGallery(galleryData);
 
     if (dataSource === "catalog") {
-      showStaleBanner();
+      showStaleBanner("Loading full gallery details…", "");
       refreshFullDataInBackground();
     }
+
+    loadGalleryMeta();
 
     loadWalletIndex().then(function () {
       renderStats(galleryData.collection);

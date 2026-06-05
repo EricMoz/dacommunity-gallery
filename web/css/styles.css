@@ -232,6 +232,17 @@ a:hover { color: var(--blue-accent); }
   color: var(--black);
 }
 
+.hero-note-warn {
+  background: #fff3cd;
+  border-left-color: #c9a000;
+}
+
+.hero-note-error {
+  background: #ffe8e8;
+  border-left-color: #c62828;
+  color: #5c1010;
+}
+
 button.stat:disabled {
   cursor: default;
   opacity: 0.55;

@@ -94,6 +94,24 @@ class OpenSeaClient:
             return None
         return data
 
+    def iter_collection_best_listings(self, limit: int = 100) -> list[dict[str, Any]]:
+        """All active best listings for the collection (paginated)."""
+        listings: list[dict[str, Any]] = []
+        next_cursor: str | None = None
+        while True:
+            params: dict[str, Any] = {"limit": limit}
+            if next_cursor:
+                params["next"] = next_cursor
+            data = self._get(
+                f"/listings/collection/{COLLECTION_SLUG}/best", params
+            )
+            batch = data.get("listings") or []
+            listings.extend(batch)
+            next_cursor = data.get("next")
+            if not next_cursor:
+                break
+        return listings
+
     def get_nft_owners(self, token_id: str) -> list[dict[str, Any]]:
         owners: list[dict[str, Any]] = []
         next_cursor: str | None = None
