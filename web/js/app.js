@@ -668,6 +668,26 @@ function clearWalletShareUrl() {
   history.replaceState(null, "", path);
 }
 
+/** Empty lookup field, hide result card, drop ?wallet= from URL. */
+function resetWalletLookupHub() {
+  var input = $("#wallet-input");
+  if (input) input.value = "";
+  var clearBtn = $("#wallet-clear");
+  if (clearBtn) clearBtn.hidden = true;
+  var resultEl = $("#wallet-result");
+  if (resultEl) {
+    resultEl.hidden = true;
+    resultEl.innerHTML = "";
+  }
+  clearWalletResultHighlight();
+  clearWalletShareUrl();
+  var panel = $("#wallet-panel");
+  if (panel) {
+    panel.classList.remove("has-result");
+    panel.classList.remove("is-collector-compact");
+  }
+}
+
 function collectorTokenIdSet(entry) {
   var ids = {};
   (entry.holdings || []).forEach(function (h) {
@@ -705,16 +725,18 @@ function clearGalleryCollectorView(opts) {
   refreshView();
 }
 
-/** Leave focused wallet grid — optional full reset of lookup UI. */
+/** Leave focused wallet grid; by default clears lookup field + result card. */
 function exitCollectorView(opts) {
   opts = opts || {};
   if (!galleryCollectorView) return;
-  if (opts.clearInput) {
+  var keepLookup = opts.keepLookup === true;
+  clearGalleryCollectorView({ clearResult: keepLookup ? false : true });
+  if (!keepLookup) {
+    resetWalletLookupHub();
+  } else if (opts.clearInput) {
     var input = $("#wallet-input");
     if (input) input.value = "";
   }
-  clearGalleryCollectorView({ clearResult: opts.clearResult !== false });
-  /* Default: return to collector hub (not the grid — avoids landing mid-page). */
   if (opts.scrollToHub !== false && opts.scrollGallery !== false) {
     scrollToCollectorHub({
       behavior: opts.scrollBehavior || "smooth",
@@ -802,7 +824,7 @@ function renderCollectorFocusUi() {
 function bindCollectorExitUi() {
   function onExitClick(e) {
     if (e) e.preventDefault();
-    exitCollectorView({ clearResult: false, scrollGallery: true });
+    exitCollectorView();
   }
 
   [$("#collector-banner-exit"), $("#collector-exit-chip")].forEach(function (el) {
@@ -822,7 +844,12 @@ function handleEscapeKey() {
     return;
   }
   if (galleryCollectorView) {
-    exitCollectorView({ clearResult: false });
+    exitCollectorView();
+    return;
+  }
+  var walletInp = $("#wallet-input");
+  if (walletInp && walletInp.value.trim()) {
+    resetWalletLookupHub();
     return;
   }
   if (searchQuery) {
@@ -1641,7 +1668,7 @@ function renderBrowseMeta(filtered, total) {
     btn.addEventListener("click", function () {
       var k = btn.getAttribute("data-clear");
       if (k === "collector") {
-        exitCollectorView({ clearResult: false });
+        exitCollectorView();
       } else if (k === "search") {
         searchQuery = "";
         var inp = $("#search");
@@ -2133,14 +2160,11 @@ function bindUi() {
   }
   var walletInput = $("#wallet-input");
   bindClearableField(walletInput, $("#wallet-clear"), function () {
-    var resultEl = $("#wallet-result");
-    if (resultEl) {
-      resultEl.hidden = true;
-      resultEl.innerHTML = "";
+    if (galleryCollectorView) {
+      clearGalleryCollectorView({ clearResult: true });
     }
-    clearWalletResultHighlight();
-    var panel = $("#wallet-panel");
-    if (panel) panel.classList.remove("has-result");
+    resetWalletLookupHub();
+    refreshView();
   });
   var browseToggle = $("#browse-advanced-toggle");
   if (browseToggle && !browseToggle.dataset.bound) {
