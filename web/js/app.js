@@ -1036,6 +1036,7 @@ function renderBrowseMeta(filtered, total) {
   var countEl = $("#results-count");
   var chips = $("#active-filters");
   var clearBtn = $("#clear-filters");
+  var panel = $("#browse-controls");
   if (countEl) {
     if (filtered === total) {
       countEl.textContent = total + " piece" + (total === 1 ? "" : "s") + " in the archive";
@@ -1044,7 +1045,6 @@ function renderBrowseMeta(filtered, total) {
         "Showing " + filtered + " of " + total + " — the rest are hiding in the noise";
     }
   }
-  if (!chips || !clearBtn) return;
   var parts = [];
   if (searchQuery) {
     parts.push({ key: "search", label: 'Search: "' + searchQuery + '"' });
@@ -1055,6 +1055,10 @@ function renderBrowseMeta(filtered, total) {
   if (sortKey !== "token_desc") {
     parts.push({ key: "sort", label: SORT_LABELS[sortKey] || sortKey });
   }
+  if (panel) {
+    panel.classList.toggle("is-filtered", parts.length > 0);
+  }
+  if (!chips || !clearBtn) return;
   if (!parts.length) {
     chips.hidden = true;
     chips.innerHTML = "";

@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/styles.css?v=20260605-1" />
+  <link rel="stylesheet" href="../css/styles.css?v=20260605-2" />
 </head>
 <body data-base="../">
   <header class="site-header">
@@ -86,21 +86,43 @@
       <div class="wallet-result" id="wallet-result" hidden></div>
     </section>
 
-    <section class="controls panel browse-controls" aria-label="Search and filter gallery">
-      <div class="browse-search-wrap">
-        <label class="browse-search-label" for="search">Search the archive</label>
-        <input type="search" id="search" class="browse-search-input" placeholder="Name, story, token #, dacat.slug…" autocomplete="off" enterkeyhint="search" />
+    <section class="panel browse-controls" id="browse-controls" aria-label="Search and filter gallery">
+      <header class="browse-head">
+        <h2 class="browse-title">Search the archive</h2>
+        <p class="browse-lead">Name, story, token #, or holder — find a piece in the static snapshot.</p>
+      </header>
+
+      <div class="search-field">
+        <label class="visually-hidden" for="search">Search gallery pieces</label>
+        <span class="search-field-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2.25"/>
+            <path d="M16 16L20 20" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <input
+          type="search"
+          id="search"
+          class="browse-search-input"
+          placeholder="dacat.slug, story, #47…"
+          autocomplete="off"
+          enterkeyhint="search"
+        />
       </div>
-      <div class="browse-toolbar">
-        <div class="filters" role="tablist" aria-label="Filter pieces">
-          <button class="filter active" data-filter="all" role="tab" aria-selected="true">All</button>
-          <button class="filter" data-filter="listed" role="tab">For sale</button>
-          <button class="filter" data-filter="not_listed" role="tab">Not listed</button>
-          <button class="filter" data-filter="activity" role="tab">Recent moves</button>
+
+      <div class="browse-rows">
+        <div class="browse-row">
+          <span class="browse-row-label" id="filter-label">Filter</span>
+          <div class="filters filters-scroll" role="tablist" aria-labelledby="filter-label">
+            <button class="filter active" data-filter="all" role="tab" aria-selected="true">All</button>
+            <button class="filter" data-filter="listed" role="tab" aria-selected="false">For sale</button>
+            <button class="filter" data-filter="not_listed" role="tab" aria-selected="false">Not listed</button>
+            <button class="filter" data-filter="activity" role="tab" aria-selected="false">Recent moves</button>
+          </div>
         </div>
-        <div class="browse-sort">
-          <label class="browse-sort-label" for="sort-select">Sort</label>
-          <select id="sort-select" class="browse-sort-select" aria-label="Sort gallery">
+        <div class="browse-row browse-row-sort">
+          <label class="browse-row-label" for="sort-select">Sort</label>
+          <select id="sort-select" class="browse-sort-select">
             <option value="token_desc">Newest token #</option>
             <option value="token_asc">Oldest token #</option>
             <option value="price_asc">Price · low first</option>
@@ -110,11 +132,14 @@
           </select>
         </div>
       </div>
-      <div class="browse-meta" id="browse-meta">
+
+      <footer class="browse-foot" id="browse-meta">
         <p class="results-count" id="results-count" aria-live="polite">—</p>
-        <div class="active-filters" id="active-filters" hidden></div>
-        <button type="button" class="btn btn-outline btn-sm" id="clear-filters" hidden>Clear filters</button>
-      </div>
+        <div class="browse-foot-actions">
+          <div class="active-filters" id="active-filters" hidden></div>
+          <button type="button" class="btn btn-outline btn-sm" id="clear-filters" hidden>Clear all</button>
+        </div>
+      </footer>
       <p class="merge-status" id="merge-status" role="status" aria-live="polite" hidden></p>
     </section>
 
@@ -198,6 +223,6 @@
   </footer>
 
   <script src="../js/pwa-register.js?v=20260605-1" defer></script>
-  <script src="../js/app.js?v=20260605-1" defer></script>
+  <script src="../js/app.js?v=20260605-2" defer></script>
 </body>
 </html>
