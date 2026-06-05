@@ -2709,6 +2709,41 @@ body.film-theater {
   display: inline;
 }
 
+/* Compact quick links — film + subpages (mobile-friendly chips) */
+.page-quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem;
+  margin: 0 0 0.85rem;
+  padding: 0;
+}
+
+.page-quick-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--yellow);
+  text-decoration: none;
+  background: rgba(255, 204, 0, 0.08);
+  border: 2px solid rgba(255, 204, 0, 0.35);
+  border-radius: 999px;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.page-quick-link:hover {
+  color: #fff;
+  background: rgba(255, 204, 0, 0.18);
+  border-color: var(--yellow);
+  text-decoration: none;
+}
+
 /* Film hub landing (/film/) */
 .film-hub-page .film-hub-main {
   flex: 1;
@@ -2880,7 +2915,7 @@ body.film-theater {
 
 .film-hub-toolbar {
   position: sticky;
-  top: 0;
+  top: 4.25rem;
   z-index: 20;
   margin: 0 0 1.5rem;
   padding: 0.85rem 0 1rem;
@@ -3004,8 +3039,8 @@ body.film-theater {
 }
 
 .film-vgrid-featured {
-  grid-template-columns: minmax(260px, 420px);
-  justify-content: start;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.85rem;
 }
 
 .film-vcard--featured {
@@ -3014,6 +3049,10 @@ body.film-theater {
     0 0 0 1px rgba(0, 0, 0, 0.9),
     0 12px 40px rgba(0, 0, 0, 0.55),
     0 0 48px rgba(255, 204, 0, 0.1);
+}
+
+.film-vcard--featured:first-child {
+  border-color: rgba(255, 204, 0, 0.55);
 }
 
 .film-vcard {
@@ -4598,15 +4637,37 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 @media (max-width: 640px) {
   .header-inner {
     padding: 0.55rem 0.85rem;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .brand {
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+
+  .brand-mascot {
+    width: 44px;
+    height: 44px;
+  }
+
+  .brand-tag {
+    max-width: 5.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .header-nav {
-    width: 100%;
+    flex: 1 1 auto;
+    min-width: 0;
+    width: auto;
+    justify-content: flex-end;
     overflow-x: auto;
     flex-wrap: nowrap;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    padding-bottom: 0.15rem;
+    padding-bottom: 0.1rem;
   }
 
   .header-nav::-webkit-scrollbar {
@@ -4615,7 +4676,9 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 
   .nav-btn {
     flex-shrink: 0;
-    min-height: 44px;
+    min-height: 40px;
+    padding: 0.4rem 0.65rem;
+    font-size: 0.76rem;
     display: inline-flex;
     align-items: center;
   }
@@ -4724,6 +4787,81 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 
   .home-stories-layout {
     grid-template-columns: 1fr;
+  }
+
+  .page-quick-links {
+    justify-content: center;
+    margin-bottom: 0.65rem;
+  }
+
+  .film-hub-page .film-hub-main {
+    padding: 1rem 0.85rem 2.5rem;
+  }
+
+  .film-hub-page .film-hub-hero {
+    margin-bottom: 0.85rem;
+  }
+
+  .film-hub-page .film-hub-hero h1 {
+    font-size: clamp(1.85rem, 9vw, 2.5rem);
+  }
+
+  .film-hub-lead {
+    font-size: 0.88rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .film-stats {
+    margin-bottom: 0.5rem;
+  }
+
+  .film-hub-toolbar {
+    top: 6.5rem;
+    margin-bottom: 1rem;
+    padding-top: 0.65rem;
+  }
+
+  .film-toolbar-hint {
+    display: none;
+  }
+
+  .film-vgrid {
+    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .film-vgrid-featured {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 0.75rem;
+    padding-bottom: 0.35rem;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .film-vgrid-featured .film-vcard {
+    flex: 0 0 min(72vw, 240px);
+    scroll-snap-align: start;
+  }
+
+  .film-series-head {
+    margin-bottom: 0.55rem;
+  }
+
+  .film-intro {
+    margin-bottom: 1rem;
+  }
+
+  .film-main {
+    padding: 1rem 0.85rem 2rem;
+  }
+
+  .site-footer {
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
   }
 }
 

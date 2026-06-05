@@ -1,7 +1,15 @@
 {
   "schemaVersion": 2,
   "updated": "2026-06-05",
-  "featuredIds": ["mozvane-quick-stop"],
+  "featuredStrategy": "Streaming-style row: one entry point per series (ep 1 or lead trailer). Mozvane stays in the row as the flagship film, not the only tile. Re-order featuredIds when you want a different front door.",
+  "featuredIds": [
+    "mozvane-quick-stop",
+    "chronicles-trailer-1",
+    "dacatworld-paperhands",
+    "podcast-ep1",
+    "dabeezy-rebirth",
+    "shiro-fishing"
+  ],
   "videos": [
     {
       "id": "chronicles-trailer-1",
@@ -17,7 +25,9 @@
       "thumbnail": "https://i.ytimg.com/vi/CerrhmE6bLA/hqdefault.jpg",
       "duration": "1:24",
       "filterCategory": "chronicles",
-      "sortOrder": 1
+      "sortOrder": 1,
+      "featuredPick": true,
+      "featuredOrder": 2
     },
     {
       "id": "chronicles-trailer-2",
@@ -49,7 +59,9 @@
       "thumbnail": "https://i.ytimg.com/vi/3AMRcY-E7X4/hqdefault.jpg",
       "duration": "3:42",
       "filterCategory": "dacatworld",
-      "sortOrder": 1
+      "sortOrder": 1,
+      "featuredPick": true,
+      "featuredOrder": 3
     },
     {
       "id": "podcast-ep1",
@@ -65,7 +77,9 @@
       "thumbnail": "https://i.ytimg.com/vi/XcFX5NdVLhQ/hqdefault.jpg",
       "duration": "18:05",
       "filterCategory": "podcasts",
-      "sortOrder": 1
+      "sortOrder": 1,
+      "featuredPick": true,
+      "featuredOrder": 4
     },
     {
       "id": "podcast-ep2",
@@ -129,7 +143,9 @@
       "thumbnail": "https://i.ytimg.com/vi/roepEUbqn6U/hqdefault.jpg",
       "duration": "5:12",
       "filterCategory": "dabeezy",
-      "sortOrder": 1
+      "sortOrder": 1,
+      "featuredPick": true,
+      "featuredOrder": 5
     },
     {
       "id": "shiro-fishing",
@@ -145,7 +161,9 @@
       "thumbnail": "https://i.ytimg.com/vi/yIsz4sfHv10/hqdefault.jpg",
       "duration": "4:36",
       "filterCategory": "crossovers",
-      "sortOrder": 1
+      "sortOrder": 1,
+      "featuredPick": true,
+      "featuredOrder": 6
     },
     {
       "id": "shiro-crypt",
@@ -194,6 +212,8 @@
       "duration": "5:01",
       "filterCategory": "mozvane",
       "sortOrder": 1,
+      "featuredPick": true,
+      "featuredOrder": 1,
       "dedicatedPage": "mozvane/"
     }
   ],

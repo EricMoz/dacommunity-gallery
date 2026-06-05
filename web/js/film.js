@@ -11,6 +11,7 @@
     rows: document.getElementById("film-rows"),
     featured: document.getElementById("film-featured"),
     featuredGrid: document.getElementById("film-featured-grid"),
+    featuredCount: document.getElementById("film-featured-count"),
     search: document.getElementById("film-search"),
     filters: document.getElementById("film-filters"),
     stats: document.getElementById("film-stats"),
@@ -154,15 +155,30 @@
     target.appendChild(section);
   }
 
+  function resolveFeaturedIds() {
+    if (catalog.featuredIds && catalog.featuredIds.length) {
+      return catalog.featuredIds.slice();
+    }
+    return videos
+      .filter((v) => v.featuredPick)
+      .sort((a, b) => (a.featuredOrder || 99) - (b.featuredOrder || 99))
+      .map((v) => v.id);
+  }
+
   function renderFeatured(visible) {
     if (!els.featured || !els.featuredGrid || !catalog) return;
-    const ids = catalog.featuredIds || [];
+    const ids = resolveFeaturedIds();
     const show = activeFilter === "all" && !searchQuery;
     const featuredVideos = ids
       .map((id) => visible.find((v) => v.id === id))
       .filter(Boolean);
     els.featured.hidden = !show || !featuredVideos.length;
     els.featuredGrid.innerHTML = "";
+    if (els.featuredCount && featuredVideos.length) {
+      els.featuredCount.textContent =
+        featuredVideos.length +
+        (featuredVideos.length === 1 ? " starter" : " starters · one per series");
+    }
     if (!show || !featuredVideos.length) return;
     featuredVideos.forEach((v) => {
       els.featuredGrid.appendChild(createCard(v, { featured: true }));
@@ -183,7 +199,7 @@
 
   function render() {
     const visible = visibleVideos();
-    const featuredIds = new Set(catalog.featuredIds || []);
+    const featuredIds = new Set(catalog ? resolveFeaturedIds() : []);
     const catalogVideos = visible.filter((v) => !featuredIds.has(v.id) || activeFilter !== "all" || searchQuery);
 
     els.rows.innerHTML = "";
