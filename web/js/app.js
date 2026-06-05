@@ -685,7 +685,7 @@ function setGalleryCollectorView(entry) {
     tokenIds: collectorTokenIdSet(entry),
     pieceCount: nvl(entry.unique_pieces, (entry.holdings || []).length),
   };
-  renderCollectorContextBar();
+  renderCollectorFocusUi();
   refreshView();
 }
 
@@ -693,7 +693,7 @@ function clearGalleryCollectorView(opts) {
   opts = opts || {};
   galleryCollectorView = null;
   clearWalletShareUrl();
-  renderCollectorContextBar();
+  renderCollectorFocusUi();
   if (opts.clearResult !== false) {
     var resultEl = $("#wallet-result");
     if (resultEl) {
@@ -705,16 +705,58 @@ function clearGalleryCollectorView(opts) {
   refreshView();
 }
 
+/** Leave focused wallet grid — optional full reset of lookup UI. */
+function exitCollectorView(opts) {
+  opts = opts || {};
+  if (!galleryCollectorView) return;
+  if (opts.clearInput) {
+    var input = $("#wallet-input");
+    if (input) input.value = "";
+  }
+  clearGalleryCollectorView({ clearResult: opts.clearResult !== false });
+  if (opts.scrollGallery !== false) {
+    var list = $("#gallery-list");
+    if (list) list.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
+function renderCollectorFocusUi() {
+  var active = !!galleryCollectorView;
+  document.body.classList.toggle("has-collector-view", active);
+
+  var panel = $("#wallet-panel");
+  if (panel) panel.classList.toggle("is-collector-active", active);
+
+  var escapeBar = $("#collector-escape-bar");
+  if (escapeBar) escapeBar.hidden = !active;
+
+  var escapeName = $("#collector-escape-name");
+  if (escapeName && galleryCollectorView) {
+    escapeName.textContent = galleryCollectorView.label + " collection";
+  }
+
+  var scrim = $("#collector-gallery-scrim");
+  if (scrim) {
+    scrim.hidden = !active;
+    scrim.setAttribute("aria-hidden", active ? "false" : "true");
+    if (active) scrim.removeAttribute("tabindex");
+    else scrim.setAttribute("tabindex", "-1");
+  }
+
+  var zone = $("#gallery-focus-zone");
+  if (zone) zone.classList.toggle("is-dimmed", active);
+
+  renderCollectorContextBar();
+}
+
 function renderCollectorContextBar() {
   var bar = $("#collector-context-bar");
   if (!bar) return;
   if (!galleryCollectorView) {
     bar.hidden = true;
-    document.body.classList.remove("has-collector-view");
     return;
   }
   bar.hidden = false;
-  document.body.classList.add("has-collector-view");
   var nameEl = $("#collector-context-name");
   var metaEl = $("#collector-context-meta");
   if (nameEl) nameEl.textContent = galleryCollectorView.label;
@@ -723,19 +765,59 @@ function renderCollectorContextBar() {
       " · " +
       galleryCollectorView.pieceCount +
       " piece" +
-      (galleryCollectorView.pieceCount === 1 ? "" : "s") +
-      " in grid";
+      (galleryCollectorView.pieceCount === 1 ? "" : "s");
   }
-  var clearBtn = $("#collector-context-clear");
-  if (clearBtn && !clearBtn.dataset.bound) {
-    clearBtn.dataset.bound = "1";
-    clearBtn.addEventListener("click", function () {
-      var input = $("#wallet-input");
-      if (input) input.value = "";
-      clearGalleryCollectorView({ clearResult: true });
-      var list = $("#gallery-list");
-      if (list) list.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function bindCollectorExitUi() {
+  function onExitClick(e) {
+    if (e) e.preventDefault();
+    exitCollectorView({ clearResult: false, scrollGallery: true });
+  }
+
+  var exitPill = $("#collector-exit-pill");
+  var escapeClose = $("#collector-escape-close");
+  var scrim = $("#collector-gallery-scrim");
+  var contextClear = $("#collector-context-clear");
+
+  [exitPill, escapeClose, scrim, contextClear].forEach(function (el) {
+    if (!el || el.dataset.boundExit) return;
+    el.dataset.boundExit = "1";
+    el.addEventListener("click", onExitClick);
+  });
+}
+
+function handleEscapeKey() {
+  if ($("#collectors-modal").classList.contains("open")) {
+    closeCollectorsModal();
+    return;
+  }
+  if ($("#detail-panel").classList.contains("open")) {
+    closeDetail();
+    return;
+  }
+  if (galleryCollectorView) {
+    exitCollectorView({ clearResult: false, scrollGallery: false });
+    return;
+  }
+  if (searchQuery) {
+    searchQuery = "";
+    var searchInp = $("#search");
+    if (searchInp) searchInp.value = "";
+    refreshView();
+    return;
+  }
+  if (activeFilter !== "all" || sortKey !== "token_desc") {
+    activeFilter = "all";
+    sortKey = "token_desc";
+    var sortSel = $("#sort-select");
+    if (sortSel) sortSel.value = "token_desc";
+    document.querySelectorAll(".filter").forEach(function (btn) {
+      var on = btn.dataset.filter === "all";
+      btn.classList.toggle("active", on);
+      btn.setAttribute("aria-selected", on ? "true" : "false");
     });
+    refreshView();
   }
 }
 
@@ -1492,6 +1574,7 @@ function renderBrowseMeta(filtered, total) {
   }
   if (panel) {
     panel.classList.toggle("is-filtered", parts.length > 0 && !galleryCollectorView);
+    panel.classList.toggle("is-collector-filtered", !!galleryCollectorView);
   }
   if (!chips || !clearBtn) return;
   if (!parts.length) {
@@ -1519,9 +1602,7 @@ function renderBrowseMeta(filtered, total) {
     btn.addEventListener("click", function () {
       var k = btn.getAttribute("data-clear");
       if (k === "collector") {
-        var inpW = $("#wallet-input");
-        if (inpW) inpW.value = "";
-        clearGalleryCollectorView({ clearResult: true });
+        exitCollectorView({ clearResult: false, scrollGallery: false });
       } else if (k === "search") {
         searchQuery = "";
         var inp = $("#search");
@@ -1984,7 +2065,8 @@ function bindUi() {
   var emptyReset = $("#gallery-empty-reset");
   if (emptyReset) emptyReset.addEventListener("click", resetBrowseView);
   bindFreshnessToggle();
-  renderCollectorContextBar();
+  bindCollectorExitUi();
+  renderCollectorFocusUi();
   var cs = $("#collectors-search");
   if (cs) cs.addEventListener("input", function (e) { renderCollectors(e.target.value); });
   var viewBtn = $("#view-collectors-btn");
@@ -2008,11 +2090,7 @@ function bindUi() {
   }
   document.addEventListener("keydown", function (e) {
     if (e.key !== "Escape") return;
-    if ($("#collectors-modal").classList.contains("open")) {
-      closeCollectorsModal();
-      return;
-    }
-    closeDetail();
+    handleEscapeKey();
   });
 }
 
