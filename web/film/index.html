@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<!-- Film hub — Mozvane (~5 min); add film/<slug>/ for more titles when ready. -->
+<!-- Film hub — community video catalog (data/videos.json + js/film.js). -->
 <html lang="en">
 <head>
-  <meta name="site-build" content="20260605-8" />
+  <meta name="site-build" content="20260605-9" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>daCAT Films</title>
-  <meta name="description" content="Community films — Mozvane, the ~5 minute daCAT anime cut." />
+  <title>daCAT Films · Community cinema</title>
+  <meta name="description" content="Browse daCAT community film — Chronicles trailers, DACAT WORLD, podcasts, daBeezy, daCAT &amp; Shiro, crossovers, and Mozvane." />
   <link rel="icon" href="../assets/brand/dacat-icon-64.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/styles.css?v=20260605-8" />
+  <link rel="stylesheet" href="../css/styles.css?v=20260605-9" />
 </head>
-<body class="film-page">
+<body class="film-page film-hub-page">
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="../" aria-label="daCAT Home">
@@ -23,7 +23,7 @@
       <nav class="header-nav" aria-label="Main">
         <a class="nav-btn nav-btn-home" href="../">Home</a>
         <a class="nav-btn nav-btn-collections" href="../collections/">Collections</a>
-        <a class="nav-btn nav-btn-film is-active" aria-current="page">Film</a>
+        <span class="nav-btn nav-btn-film is-active" aria-current="page">Film</span>
         <a class="nav-btn nav-btn-chart" href="../analytics/">MC race</a>
         <a class="nav-btn nav-btn-wallet" href="../dacommunity/#wallet-panel">My daCATs</a>
         <a class="nav-btn" href="https://t.me/daCat_token" target="_blank" rel="noopener">TG</a>
@@ -31,11 +31,13 @@
     </div>
   </header>
 
-  <main class="film-main">
-    <section class="film-intro">
+  <main class="film-hub-main">
+    <section class="film-intro film-hub-hero">
       <p class="film-eyebrow">Community cinema</p>
       <h1>daCAT <span class="film-hero-name">films</span></h1>
-      <p class="film-tagline">Real community cuts — starting with Mozvane, the ~5 minute anime piece made with Sora and daBeezy.</p>
+      <p class="film-tagline film-hub-lead">
+        Trailers, podcasts, animated episodes, and crossover shorts from across the daCAT community — all in one place.
+      </p>
       <p class="film-nav-links">
         <a class="film-back" href="../dacommunity/">daCommunity archive</a>
         <span class="film-credit-sep" aria-hidden="true">·</span>
@@ -45,37 +47,79 @@
       </p>
     </section>
 
-    <section class="film-stage" aria-labelledby="mozvane-heading">
-      <h2 class="visually-hidden" id="mozvane-heading">Mozvane</h2>
-      <p class="film-eyebrow film-stage-kicker">Now playing · ~5 min</p>
-      <div class="film-player">
-        <iframe
-          src="https://www.youtube-nocookie.com/embed/bHcbwUs2_ds?rel=0"
-          title="Mozvane — daCAT anime film on YouTube"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-          loading="lazy"
-          referrerpolicy="strict-origin-when-cross-origin"
-        ></iframe>
-      </div>
-      <p class="film-credit">
-        <strong>Mozvane</strong> — Sora-era anime with help from daBeezy.
-        <span class="film-credit-sep">·</span>
-        <a href="https://www.youtube.com/watch?v=bHcbwUs2_ds" target="_blank" rel="noopener">Watch on YouTube</a>
-        <span class="film-credit-sep">·</span>
-        <a class="film-back" href="mozvane/">Dedicated watch page</a>
-      </p>
+    <section class="film-hub-toolbar" aria-label="Browse films">
+      <label class="film-search-wrap">
+        <span class="visually-hidden">Search films</span>
+        <input
+          type="search"
+          id="film-search"
+          class="film-search-input"
+          placeholder="Search titles, series, creators…"
+          autocomplete="off"
+          enterkeyhint="search"
+        />
+      </label>
+      <div id="film-filters" class="film-filters" role="group" aria-label="Filter by category"></div>
     </section>
 
-    <section class="film-coming panel-inset-film" aria-label="More films">
-      <h2 class="film-coming-title">More community cuts coming</h2>
-      <p class="film-coming-lead">When the next film is ready, it will land here — no placeholders, just honest room for what&apos;s actually in the pipeline.</p>
+    <div id="film-rows" class="film-rows" aria-live="polite"></div>
+
+    <section id="film-mozvane-section" class="film-series-section film-mozvane-section" aria-labelledby="film-mozvane-heading">
+      <header class="film-series-head film-mozvane-head">
+        <h2 id="film-mozvane-heading" class="film-series-title">Mozvane</h2>
+        <p class="film-mozvane-lead">Sora-era community anime — one series among many, preserved here for the archive.</p>
+      </header>
+      <div id="film-mozvane-row" class="film-row-scroll" role="list"></div>
     </section>
+
+    <p id="film-empty" class="film-empty" hidden>No titles match your search or filter.</p>
   </main>
+
+  <div id="film-modal" class="film-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="film-modal-title">
+    <div class="film-modal-backdrop" tabindex="-1"></div>
+    <div class="film-modal-panel">
+      <button type="button" class="film-modal-close" aria-label="Close player">×</button>
+      <div class="film-modal-layout">
+        <div class="film-modal-player-wrap">
+          <div id="film-player-host" class="film-modal-player"></div>
+          <p id="film-player-loading" class="film-player-loading">Loading player…</p>
+        </div>
+        <aside class="film-modal-details">
+          <span id="film-modal-series" class="film-modal-series-pill"></span>
+          <h2 id="film-modal-title" class="film-modal-title"></h2>
+          <dl class="film-modal-meta">
+            <div>
+              <dt>Type</dt>
+              <dd id="film-modal-type"></dd>
+            </div>
+            <div>
+              <dt>Creator</dt>
+              <dd id="film-modal-creator"></dd>
+            </div>
+            <div>
+              <dt>What it is</dt>
+              <dd id="film-modal-what"></dd>
+            </div>
+            <div>
+              <dt>Release</dt>
+              <dd id="film-modal-release"></dd>
+            </div>
+          </dl>
+          <p id="film-modal-desc" class="film-modal-desc"></p>
+          <p class="film-modal-links">
+            <a id="film-modal-yt" href="#" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+            <a id="film-modal-dedicated" class="film-modal-dedicated" href="mozvane/" hidden>Dedicated watch page</a>
+          </p>
+        </aside>
+      </div>
+    </div>
+  </div>
 
   <footer class="site-footer film-footer">
     <p><a href="https://www.dacat.fun/">dacat.fun</a> · <a href="https://www.dacatworld.com/">dacatworld</a></p>
-      <p class="site-version">Site build 20260605-8</p>
+    <p class="site-version">Site build 20260605-9</p>
   </footer>
+
+  <script src="../js/film.js?v=20260605-9" defer></script>
 </body>
 </html>
