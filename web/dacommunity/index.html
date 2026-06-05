@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/styles.css?v=20260605-9" />
+  <link rel="stylesheet" href="../css/styles.css?v=20260606-1" />
 </head>
 <body data-base="../">
   <header class="site-header">
@@ -125,25 +125,29 @@
         </div>
       </header>
 
-      <div class="search-field">
-        <label class="visually-hidden" for="search">Search gallery pieces</label>
-        <span class="search-field-icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2.25"/>
-            <path d="M16 16L20 20" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
-          </svg>
-        </span>
-        <input
-          type="search"
-          id="search"
-          class="browse-search-input"
-          placeholder="dacat.blast, story, #47…"
-          autocomplete="off"
-          enterkeyhint="search"
-        />
+      <div class="browse-compact-search" id="browse-compact-search">
+        <label class="visually-hidden" for="search">Search this collection</label>
+        <div class="search-field">
+          <span class="search-field-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2.25"/>
+              <path d="M16 16L20 20" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <input
+            type="search"
+            id="search"
+            class="browse-search-input"
+            placeholder="dacat.blast, story, #47…"
+            autocomplete="off"
+            enterkeyhint="search"
+          />
+        </div>
       </div>
 
-      <div class="browse-rows">
+      <details class="collector-browse-more" id="collector-browse-more" open>
+        <summary class="collector-browse-more-toggle">Filter &amp; sort</summary>
+        <div class="browse-rows">
         <div class="browse-row">
           <span class="browse-row-label" id="filter-label">Filter</span>
           <div class="filters filters-scroll" role="tablist" aria-labelledby="filter-label">
@@ -164,7 +168,8 @@
             <option value="name_asc">Name A–Z</option>
           </select>
         </div>
-      </div>
+        </div>
+      </details>
 
       <footer class="browse-foot" id="browse-meta">
         <p class="results-count" id="results-count" aria-live="polite">—</p>
@@ -258,6 +263,6 @@
   </footer>
 
   <script src="../js/pwa-register.js?v=20260605-1" defer></script>
-  <script src="../js/app.js?v=20260605-9" defer></script>
+  <script src="../js/app.js?v=20260606-1" defer></script>
 </body>
 </html>

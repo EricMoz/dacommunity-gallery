@@ -743,6 +743,25 @@ function renderCollectorFocusUi() {
   var banner = $("#collector-view-banner");
   if (banner) banner.hidden = !active;
 
+  var browse = $("#browse-controls");
+  if (browse) browse.classList.toggle("is-portfolio-browse", active);
+
+  var browseMore = $("#collector-browse-more");
+  if (browseMore) {
+    if (active) browseMore.removeAttribute("open");
+    else browseMore.setAttribute("open", "");
+  }
+
+  var hero = document.querySelector(".hero-band");
+  if (hero) hero.hidden = active;
+
+  var searchInp = $("#search");
+  if (searchInp) {
+    searchInp.placeholder = active
+      ? "Search this collection…"
+      : "dacat.blast, story, #47…";
+  }
+
   if (galleryCollectorView) {
     var label = galleryCollectorView.label;
     var count = galleryCollectorView.pieceCount;
@@ -750,20 +769,26 @@ function renderCollectorFocusUi() {
 
     var bannerMeta = $("#collector-banner-meta");
     if (bannerMeta) {
-      bannerMeta.textContent =
-        "Viewing " + label + " · " + count + " " + pieceWord + " in the grid below";
+      bannerMeta.textContent = count + " " + pieceWord + " in this portfolio";
     }
 
     var chipLabel = $("#collector-exit-chip-label");
     if (chipLabel) chipLabel.textContent = label;
 
+    document.title = label + " · daCommunity Gallery · daCAT";
+  } else {
+    document.title = "daCommunity Gallery · daCAT";
   }
 
   var zone = $("#gallery-focus-zone");
   if (zone) zone.classList.toggle("is-collector-grid", active);
 
   var list = $("#gallery-list");
-  if (list) list.classList.toggle("gallery-list--collector", active);
+  if (list) {
+    list.classList.toggle("gallery-list--collector", active);
+    list.classList.toggle("holdings-grid", active);
+    list.classList.toggle("collector-collection-grid", active);
+  }
 }
 
 function bindCollectorExitUi() {
@@ -1538,11 +1563,9 @@ function renderBrowseMeta(filtered, total) {
     if (galleryCollectorView) {
       countEl.textContent =
         filtered +
-        " shown · " +
+        " of " +
         galleryCollectorView.pieceCount +
-        " in " +
-        galleryCollectorView.label +
-        "'s collection";
+        " pieces";
     } else if (filtered === total) {
       countEl.textContent = total + " piece" + (total === 1 ? "" : "s") + " in the archive";
     } else {
@@ -1660,6 +1683,11 @@ function renderGallery(items) {
   var list = $("#gallery-list");
   var empty = $("#gallery-empty");
   if (!list) return;
+  if (galleryCollectorView) {
+    list.classList.add("holdings-grid", "collector-collection-grid", "gallery-list--collector");
+  } else {
+    list.classList.remove("holdings-grid", "collector-collection-grid", "gallery-list--collector");
+  }
   list.innerHTML = "";
   if (!items.length) {
     if (empty) {
@@ -1677,6 +1705,20 @@ function renderGallery(items) {
     return;
   }
   if (empty) empty.hidden = true;
+
+  if (galleryCollectorView) {
+    items.forEach(function (item) {
+      var holding = {
+        token_id: item.token_id,
+        display_name: item.local_slug || item.name,
+      };
+      var card = createHoldingCard(item, holding);
+      card.classList.add("holding-card--cinema");
+      list.appendChild(card);
+    });
+    return;
+  }
+
   items.forEach(function (item, idx) {
     var row = document.createElement("button");
     row.className = "gallery-row";

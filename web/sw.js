@@ -2,7 +2,7 @@
  * Minimal PWA service worker — offline shell + cached catalog.
  * Gallery JSON uses network-first so listings stay current when online.
  */
-const CACHE = "dacat-gallery-v2";
+const CACHE = "dacat-gallery-v3";
 const SHELL = [
   "./",
   "./dacommunity/",

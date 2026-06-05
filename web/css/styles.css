@@ -3254,50 +3254,205 @@ body.has-collector-view #wallet-panel.collector-hub.is-collector-active {
   margin-top: 0;
 }
 
+/* Portfolio link mode — dark room (film-page vibe) */
+body.has-collector-view {
+  background: #050505;
+  color: #e8e8e8;
+}
+
+body.has-collector-view #app {
+  background: transparent;
+  padding-bottom: 2rem;
+}
+
+body.has-collector-view .hero-band {
+  display: none !important;
+}
+
 body.has-collector-view #wallet-panel + #browse-controls {
-  margin-top: 0.75rem;
+  margin-top: 0.65rem;
 }
 
 body.has-collector-view .browse-collector-jump {
   display: none;
 }
 
+body.has-collector-view #browse-controls.is-portfolio-browse {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(165deg, #101010 0%, #080808 100%);
+  border: 2px solid rgba(255, 204, 0, 0.32);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.85);
+  padding: 0.65rem 0.85rem 0.75rem;
+  color: #ccc;
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .browse-compact-search {
+  order: 1;
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .browse-foot {
+  order: 2;
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .collector-browse-more {
+  order: 3;
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .browse-head {
+  display: none;
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .browse-compact-search {
+  margin: 0;
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .browse-search-input {
+  background: #141414;
+  color: #f0f0f0;
+  border-color: rgba(255, 204, 0, 0.38);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.9);
+  min-height: 44px;
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .search-field-icon {
+  color: #888;
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .collector-browse-more-toggle {
+  display: list-item;
+  cursor: pointer;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--yellow);
+  margin: 0.55rem 0 0.35rem;
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .collector-browse-more .browse-rows {
+  margin-top: 0.35rem;
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .browse-row-label {
+  color: #888;
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .filter {
+  background: #1a1a1a;
+  color: #ddd;
+  border-color: #444;
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .filter.active {
+  background: var(--yellow);
+  color: var(--black);
+  border-color: var(--black);
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .browse-sort-select {
+  background: #141414;
+  color: #eee;
+  border-color: rgba(255, 204, 0, 0.35);
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .browse-foot {
+  margin-top: 0.45rem;
+  padding-top: 0.45rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .results-count {
+  color: #aaa;
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .browse-foot-actions,
+body.has-collector-view #browse-controls.is-portfolio-browse .active-filters {
+  display: none;
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .btn-outline {
+  background: transparent;
+  color: #ccc;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+#browse-controls:not(.is-portfolio-browse) .collector-browse-more-toggle {
+  display: none;
+}
+
+#browse-controls:not(.is-portfolio-browse) .collector-browse-more .browse-rows {
+  display: block;
+}
+
 .gallery-focus-zone {
   position: relative;
 }
 
-.gallery-focus-zone.is-collector-grid {
-  margin-top: 0;
-  padding-top: 0.15rem;
+body.has-collector-view .gallery-focus-zone.is-collector-grid {
+  margin-top: 0.5rem;
+  padding: 0.85rem 0.85rem 1rem;
+  background: linear-gradient(180deg, #0a0a0a 0%, #060606 100%);
+  border: 2px solid rgba(255, 204, 0, 0.28);
+  border-radius: var(--radius);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.88);
 }
 
-.gallery-focus-zone.is-collector-grid::before {
-  content: "";
+body.has-collector-view .gallery-focus-zone.is-collector-grid::before {
+  content: "Collection";
   display: block;
-  height: 3px;
-  margin-bottom: 0.65rem;
-  border-radius: 999px;
-  background: linear-gradient(90deg, transparent, var(--yellow), transparent);
-  opacity: 0.55;
+  margin: 0 0 0.75rem;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  text-align: center;
+  height: auto;
+  border-radius: 0;
+  background: none;
+  opacity: 1;
 }
 
-body.has-collector-view .gallery-list--collector .gallery-row {
-  filter: none;
+body.has-collector-view .gallery-list.holdings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  gap: 0.85rem;
+}
+
+body.has-collector-view .holding-card--cinema {
+  border-color: rgba(255, 204, 0, 0.38);
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.92);
+}
+
+body.has-collector-view .holding-card--cinema .holding-card-body {
+  background: linear-gradient(180deg, #1c1c1c 0%, #0a0a0a 100%);
+  border-top-color: rgba(255, 204, 0, 0.28);
+  color: #eee;
+}
+
+body.has-collector-view .holding-card--cinema .holding-card-title {
+  color: #fff;
+}
+
+body.has-collector-view .holding-card--cinema .holding-card-meta {
+  color: #aaa;
+}
+
+body.has-collector-view .gallery-empty.panel {
+  background: #121212;
+  border-color: rgba(255, 204, 0, 0.3);
+  color: #ccc;
+}
+
+body.has-collector-view .gallery-empty-title {
+  color: var(--yellow);
 }
 
 .browse-controls.is-collector-filtered {
-  outline: 2px solid rgba(255, 204, 0, 0.4);
-  outline-offset: -2px;
-}
-
-.browse-controls.is-collector-filtered .browse-lead::after {
-  content: " · filters apply within this collection";
-  font-weight: 600;
-  color: var(--text-muted);
-}
-
-body.has-collector-view #browse-controls .browse-foot .active-filters {
-  display: none;
+  outline: none;
 }
 
 .owner-view-link {
@@ -3721,6 +3876,11 @@ body.has-collector-view #browse-controls .browse-foot .active-filters {
 
   .top-collector-pill {
     flex-shrink: 0;
+  }
+
+  body.has-collector-view .gallery-list.holdings-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 0.65rem;
   }
 
   .collector-portfolio-exit {
