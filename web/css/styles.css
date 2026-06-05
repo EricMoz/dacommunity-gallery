@@ -1696,7 +1696,7 @@ button.stat:focus-visible {
 .detail-description {
   white-space: pre-wrap;
   font-size: 0.94rem;
-  color: var(--text);
+  color: #2a2a2a;
   line-height: 1.65;
   margin: 0 0 1rem;
   padding-bottom: 0.85rem;
@@ -3497,6 +3497,183 @@ body.has-collector-view .gallery-empty.panel {
 
 body.has-collector-view .gallery-empty-title {
   color: var(--yellow);
+}
+
+/* NFT detail drawer — dark cinema theme (wallet portfolio view) */
+body.has-collector-view .detail-backdrop {
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+body.has-collector-view .detail-card {
+  background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+  border-left: 3px solid rgba(255, 204, 0, 0.5);
+  color: #f2f2f2;
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.75);
+}
+
+body.has-collector-view .detail-body {
+  color: #e6e6e6;
+}
+
+body.has-collector-view .detail-token {
+  color: #9a9a9a;
+}
+
+body.has-collector-view .detail-mint {
+  color: #d4bc5c;
+  background: rgba(255, 204, 0, 0.1);
+  border-color: rgba(255, 204, 0, 0.35);
+}
+
+body.has-collector-view #detail-title {
+  color: #fff;
+}
+
+body.has-collector-view #detail-title .piece-prefix {
+  color: var(--yellow);
+}
+
+body.has-collector-view #detail-title .piece-name {
+  color: #fff;
+}
+
+body.has-collector-view .detail-description {
+  color: #d6d6d6;
+  border-bottom-color: rgba(255, 255, 255, 0.14);
+}
+
+body.has-collector-view .detail-owners {
+  border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+body.has-collector-view .detail-owners-lead,
+body.has-collector-view .owner-chip-note {
+  color: #9a9a9a;
+}
+
+body.has-collector-view .detail-subhead {
+  color: #b8b8b8;
+}
+
+body.has-collector-view .chip {
+  background: #222;
+  border-color: rgba(255, 204, 0, 0.35);
+  color: #c8c8c8;
+}
+
+body.has-collector-view .chip strong {
+  color: var(--yellow);
+}
+
+body.has-collector-view .activity-disclosure-toggle {
+  background: #1c1c1c;
+  color: #f0f0f0;
+  border-color: rgba(255, 204, 0, 0.4);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.85);
+}
+
+body.has-collector-view .activity-disclosure-toggle.is-open {
+  background: #242424;
+}
+
+body.has-collector-view .activity-disclosure-count,
+body.has-collector-view .activity-disclosure-preview {
+  color: #9a9a9a;
+}
+
+body.has-collector-view .activity-disclosure-chevron {
+  border-color: var(--yellow);
+}
+
+body.has-collector-view .activity-disclosure-panel {
+  background: #141414;
+  border-color: rgba(255, 204, 0, 0.35);
+}
+
+body.has-collector-view .activity-row {
+  background: #1a1a1a;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.has-collector-view .activity-row-transfer {
+  border-left-color: #5ba3e8;
+}
+
+body.has-collector-view .activity-type,
+body.has-collector-view .activity-when {
+  color: #888;
+}
+
+body.has-collector-view .activity-detail {
+  color: #ececec;
+}
+
+body.has-collector-view .activity-opensea-link {
+  color: var(--yellow);
+}
+
+body.has-collector-view .activity-opensea-link:hover {
+  color: #fff;
+}
+
+body.has-collector-view .addr-action-lookup,
+body.has-collector-view .owner-view-link {
+  color: #7eb8ff;
+}
+
+body.has-collector-view .addr-action-lookup:hover,
+body.has-collector-view .owner-view-link:hover {
+  color: var(--yellow);
+}
+
+body.has-collector-view .addr-view-hint {
+  color: #777;
+}
+
+body.has-collector-view .addr-action-copy,
+body.has-collector-view .owner-chip-copy {
+  background: #2a2a2a;
+  color: #aaa;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+body.has-collector-view .addr-action-copy:hover,
+body.has-collector-view .owner-chip-copy:hover {
+  background: var(--yellow);
+  color: var(--black);
+  border-color: var(--black);
+}
+
+body.has-collector-view .owner-chip {
+  background: var(--yellow);
+  color: var(--black);
+  border-color: var(--black);
+}
+
+body.has-collector-view .owner-chip:hover,
+body.has-collector-view .owner-chip.active,
+body.has-collector-view .owner-chip.owner-chip-current {
+  background: #fff;
+  color: var(--black);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.9);
+}
+
+body.has-collector-view .owner-chip-more {
+  color: #888;
+}
+
+body.has-collector-view .detail-close {
+  border-color: var(--black);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.9);
+}
+
+body.has-collector-view .detail-opensea.btn-accent,
+body.has-collector-view #detail-opensea {
+  background: var(--yellow);
+  color: var(--black);
+  border-color: var(--black);
 }
 
 .browse-controls.is-collector-filtered {
