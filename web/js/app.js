@@ -55,6 +55,8 @@ let dataSource = "catalog";
 /** catalog | loading_full | live | error */
 let fullDataStatus = "catalog";
 let activeCollectorAddress = null;
+/** When set, main gallery grid shows only this collector's holdings. */
+let galleryCollectorView = null;
 /** Token id when detail drawer is open — refresh holders/activity after background merge. */
 let activeDetailTokenId = null;
 
@@ -613,13 +615,113 @@ function parseWalletFromUrl() {
   return (params.get("wallet") || params.get("ens") || "").trim();
 }
 
-function syncWalletShareUrl(address, displayValue) {
+function syncWalletShareUrl(address) {
   if (!address || !/^0x[a-fA-F0-9]{40}$/i.test(address)) return;
   var params = new URLSearchParams(window.location.search);
   params.set("wallet", address.toLowerCase());
   params.delete("ens");
-  var path = window.location.pathname + "?" + params.toString() + window.location.hash;
+  var q = params.toString();
+  var path = window.location.pathname + (q ? "?" + q : "") + window.location.hash;
   history.replaceState(null, "", path);
+}
+
+function clearWalletShareUrl() {
+  var params = new URLSearchParams(window.location.search);
+  params.delete("wallet");
+  params.delete("ens");
+  var q = params.toString();
+  var path = window.location.pathname + (q ? "?" + q : "") + window.location.hash;
+  history.replaceState(null, "", path);
+}
+
+function collectorTokenIdSet(entry) {
+  var ids = {};
+  (entry.holdings || []).forEach(function (h) {
+    ids[String(h.token_id)] = true;
+  });
+  return ids;
+}
+
+function setGalleryCollectorView(entry) {
+  if (!entry) return;
+  var label = entry.ens_name || entry.username || shortenAddress(entry.address);
+  galleryCollectorView = {
+    address: entry.address.toLowerCase(),
+    label: label,
+    tokenIds: collectorTokenIdSet(entry),
+    pieceCount: nvl(entry.unique_pieces, (entry.holdings || []).length),
+  };
+  renderCollectorContextBar();
+  refreshView();
+}
+
+function clearGalleryCollectorView(opts) {
+  opts = opts || {};
+  galleryCollectorView = null;
+  clearWalletShareUrl();
+  renderCollectorContextBar();
+  if (opts.clearResult !== false) {
+    var resultEl = $("#wallet-result");
+    if (resultEl) {
+      resultEl.hidden = true;
+      resultEl.innerHTML = "";
+    }
+    clearWalletResultHighlight();
+  }
+  refreshView();
+}
+
+function renderCollectorContextBar() {
+  var bar = $("#collector-context-bar");
+  if (!bar) return;
+  if (!galleryCollectorView) {
+    bar.hidden = true;
+    document.body.classList.remove("has-collector-view");
+    return;
+  }
+  bar.hidden = false;
+  document.body.classList.add("has-collector-view");
+  var nameEl = $("#collector-context-name");
+  var metaEl = $("#collector-context-meta");
+  if (nameEl) nameEl.textContent = galleryCollectorView.label;
+  if (metaEl) {
+    metaEl.textContent =
+      " · " +
+      galleryCollectorView.pieceCount +
+      " piece" +
+      (galleryCollectorView.pieceCount === 1 ? "" : "s") +
+      " in grid";
+  }
+  var clearBtn = $("#collector-context-clear");
+  if (clearBtn && !clearBtn.dataset.bound) {
+    clearBtn.dataset.bound = "1";
+    clearBtn.addEventListener("click", function () {
+      var input = $("#wallet-input");
+      if (input) input.value = "";
+      clearGalleryCollectorView({ clearResult: true });
+      var list = $("#gallery-list");
+      if (list) list.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+}
+
+function applyCollectorView(address) {
+  if (!address) return;
+  var key = address.toLowerCase();
+  var entry = walletIndex && walletIndex.by_address && walletIndex.by_address[key];
+  var meta = addressDisplayMeta(address);
+  closeDetail();
+  closeCollectorsModal();
+  var input = $("#wallet-input");
+  if (input) input.value = meta.lookupValue || meta.address;
+  if (entry) {
+    renderWalletSuccess(entry);
+    syncWalletShareUrl(entry.address);
+    var bar = $("#collector-context-bar");
+    if (bar) bar.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    return;
+  }
+  runWalletLookupFromAddress(address, meta.lookupValue);
 }
 
 function walletShareUrl(address) {
@@ -874,6 +976,7 @@ function renderWalletSuccess(entry) {
   bindCollectorResultActions(entry);
   var hub = resultEl.closest && resultEl.closest(".collector-hub");
   if (hub) hub.classList.add("has-result");
+  setGalleryCollectorView(entry);
 }
 
 function clearWalletResultHighlight() {
@@ -892,9 +995,12 @@ function addressActionHtml(address) {
     escapeHtml(meta.address) +
     '" data-lookup="' +
     escapeHtml(meta.lookupValue) +
-    '" title="Look up in collector search">' +
+    '" title="View this collector in the archive" aria-label="View collector ' +
+    escapeHtml(meta.display) +
+    '">' +
     escapeHtml(meta.display) +
     "</button>" +
+    '<span class="addr-view-hint">· view</span>' +
     '<button type="button" class="addr-action-copy" data-copy="' +
     escapeHtml(meta.address) +
     '" title="Copy full address">Copy</button></span>'
@@ -914,7 +1020,7 @@ function bindAddressActions(root) {
     btn.addEventListener("click", function (e) {
       e.preventDefault();
       e.stopPropagation();
-      runWalletLookupFromAddress(btn.getAttribute("data-address"), btn.getAttribute("data-lookup"));
+      applyCollectorView(btn.getAttribute("data-address"));
     });
   });
 }
@@ -1023,6 +1129,7 @@ async function renderWalletLookup(identifier, opts) {
   }
 
   if (lookup.error) {
+    clearGalleryCollectorView({ clearResult: false });
     renderWalletState("error", {
       title: lookup.title,
       message: lookup.error,
@@ -1282,6 +1389,11 @@ function compareItems(a, b) {
 function getFilteredItems() {
   if (!galleryData || !galleryData.items) return [];
   var items = galleryData.items.slice();
+  if (galleryCollectorView && galleryCollectorView.tokenIds) {
+    items = items.filter(function (i) {
+      return galleryCollectorView.tokenIds[String(i.token_id)];
+    });
+  }
   if (activeFilter === "listed") items = items.filter(function (i) { return i.listed; });
   if (activeFilter === "not_listed") items = items.filter(function (i) { return !i.listed; });
   if (activeFilter === "activity") items = items.filter(function (i) { return hasRecentActivity(i); });
@@ -1294,6 +1406,7 @@ function getFilteredItems() {
 }
 
 function resetBrowseView() {
+  clearGalleryCollectorView({ clearResult: true });
   activeFilter = "all";
   searchQuery = "";
   sortKey = "token_desc";
@@ -1315,7 +1428,15 @@ function renderBrowseMeta(filtered, total) {
   var clearBtn = $("#clear-filters");
   var panel = $("#browse-controls");
   if (countEl) {
-    if (filtered === total) {
+    if (galleryCollectorView) {
+      countEl.textContent =
+        filtered +
+        " of " +
+        galleryCollectorView.pieceCount +
+        " pieces for " +
+        galleryCollectorView.label +
+        (filtered < total ? " (archive has " + total + " total)" : "");
+    } else if (filtered === total) {
       countEl.textContent = total + " piece" + (total === 1 ? "" : "s") + " in the archive";
     } else {
       countEl.textContent =
@@ -1323,6 +1444,9 @@ function renderBrowseMeta(filtered, total) {
     }
   }
   var parts = [];
+  if (galleryCollectorView) {
+    parts.push({ key: "collector", label: "Collector: " + galleryCollectorView.label });
+  }
   if (searchQuery) {
     parts.push({ key: "search", label: 'Search: "' + searchQuery + '"' });
   }
@@ -1333,7 +1457,7 @@ function renderBrowseMeta(filtered, total) {
     parts.push({ key: "sort", label: SORT_LABELS[sortKey] || sortKey });
   }
   if (panel) {
-    panel.classList.toggle("is-filtered", parts.length > 0);
+    panel.classList.toggle("is-filtered", parts.length > 0 && !galleryCollectorView);
   }
   if (!chips || !clearBtn) return;
   if (!parts.length) {
@@ -1360,7 +1484,11 @@ function renderBrowseMeta(filtered, total) {
   chips.querySelectorAll("button").forEach(function (btn) {
     btn.addEventListener("click", function () {
       var k = btn.getAttribute("data-clear");
-      if (k === "search") {
+      if (k === "collector") {
+        var inpW = $("#wallet-input");
+        if (inpW) inpW.value = "";
+        clearGalleryCollectorView({ clearResult: true });
+      } else if (k === "search") {
         searchQuery = "";
         var inp = $("#search");
         if (inp) inp.value = "";
@@ -1431,7 +1559,18 @@ function renderGallery(items) {
   if (!list) return;
   list.innerHTML = "";
   if (!items.length) {
-    if (empty) empty.hidden = false;
+    if (empty) {
+      empty.hidden = false;
+      var lead = empty.querySelector(".gallery-empty-lead");
+      if (lead && galleryCollectorView) {
+        lead.textContent =
+          "Nothing matches for " +
+          galleryCollectorView.label +
+          " with the current filters — clear collector view or relax search.";
+      } else if (lead) {
+        lead.textContent = "The chaos is elsewhere — widen your search or clear a filter.";
+      }
+    }
     return;
   }
   if (empty) empty.hidden = true;
@@ -1663,21 +1802,24 @@ function renderDetailOwners(item) {
         (isCurrent ? " owner-chip-current" : "") +
         '" data-address="' +
         escapeHtml(meta.address) +
-        '" title="' +
-        escapeHtml(meta.full || meta.address) +
+        '" title="View all pieces held by ' +
+        escapeHtml(meta.display) +
         '">' +
         label +
         "</button>" +
+        '<button type="button" class="owner-view-link" data-address="' +
+        escapeHtml(meta.address) +
+        '">View collector</button>' +
         '<button type="button" class="addr-action-copy owner-chip-copy" data-copy="' +
         escapeHtml(meta.address) +
         '" title="Copy full address">Copy</button></span>'
       );
     })
     .join("");
-  chipsEl.querySelectorAll(".owner-chip").forEach(function (btn) {
+  chipsEl.querySelectorAll(".owner-chip, .owner-view-link").forEach(function (btn) {
     btn.addEventListener("click", function (e) {
       e.stopPropagation();
-      exploreCollector(btn.dataset.address, item.token_id);
+      applyCollectorView(btn.dataset.address);
     });
   });
   bindAddressActions(chipsEl);
@@ -1751,7 +1893,13 @@ function refreshView() {
   var total = galleryData.items.length;
   var filtered = getFilteredItems();
   renderBrowseMeta(filtered.length, total);
-  renderFeatured(galleryData.items);
+  var featuredSource = galleryData.items;
+  if (galleryCollectorView && galleryCollectorView.tokenIds) {
+    featuredSource = galleryData.items.filter(function (i) {
+      return galleryCollectorView.tokenIds[String(i.token_id)];
+    });
+  }
+  renderFeatured(featuredSource);
   renderGallery(filtered);
 }
 
@@ -1802,6 +1950,7 @@ function bindUi() {
   var emptyReset = $("#gallery-empty-reset");
   if (emptyReset) emptyReset.addEventListener("click", resetBrowseView);
   bindFreshnessToggle();
+  renderCollectorContextBar();
   var cs = $("#collectors-search");
   if (cs) cs.addEventListener("input", function (e) { renderCollectors(e.target.value); });
   var viewBtn = $("#view-collectors-btn");

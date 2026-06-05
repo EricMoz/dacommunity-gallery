@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/styles.css?v=20260605-3" />
+  <link rel="stylesheet" href="../css/styles.css?v=20260605-4" />
 </head>
 <body data-base="../">
   <header class="site-header">
@@ -86,7 +86,7 @@
           type="text"
           id="wallet-input"
           class="collector-lookup-input"
-          placeholder="mozvane.eth or 0x…"
+          placeholder="ENS name or 0x address"
           autocomplete="off"
           spellcheck="false"
           enterkeyhint="search"
@@ -104,8 +104,13 @@
 
     <section class="panel browse-controls" id="browse-controls" aria-label="Search and filter gallery">
       <header class="browse-head">
-        <h2 class="browse-title">Search the archive</h2>
-        <p class="browse-lead">Name, story, token #, or holder — find a piece in the static snapshot.</p>
+        <div class="browse-head-row">
+          <div>
+            <h2 class="browse-title">Search the archive</h2>
+            <p class="browse-lead">Name, story, token # — or filter the grid below.</p>
+          </div>
+          <a class="browse-collector-jump" href="#wallet-panel">Find your daCATs</a>
+        </div>
       </header>
 
       <div class="search-field">
@@ -158,6 +163,19 @@
       </footer>
       <p class="merge-status" id="merge-status" role="status" aria-live="polite" hidden></p>
     </section>
+
+    <div class="collector-context-bar panel" id="collector-context-bar" hidden role="status" aria-live="polite">
+      <div class="collector-context-inner">
+        <p class="collector-context-text">
+          Viewing <strong id="collector-context-name"></strong>
+          <span class="collector-context-meta" id="collector-context-meta"></span>
+        </p>
+        <div class="collector-context-actions">
+          <a class="btn btn-outline btn-sm" href="#wallet-panel" id="collector-context-hub">Share &amp; details</a>
+          <button type="button" class="btn btn-dark btn-sm" id="collector-context-clear">Clear · full gallery</button>
+        </div>
+      </div>
+    </div>
 
     <section class="featured-rail panel" id="featured-rail" hidden>
       <h2 class="section-label">Listed on OpenSea</h2>
@@ -239,6 +257,6 @@
   </footer>
 
   <script src="../js/pwa-register.js?v=20260605-1" defer></script>
-  <script src="../js/app.js?v=20260605-3" defer></script>
+  <script src="../js/app.js?v=20260605-4" defer></script>
 </body>
 </html>

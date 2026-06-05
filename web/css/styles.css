@@ -2898,6 +2898,101 @@ body.film-page {
   max-width: 36rem;
 }
 
+.browse-head-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.65rem 1rem;
+}
+
+.browse-collector-jump {
+  flex-shrink: 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--black);
+  padding: 0.45rem 0.75rem;
+  border: 2px solid var(--black);
+  border-radius: 999px;
+  background: var(--yellow);
+  box-shadow: 3px 3px 0 var(--black);
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.browse-collector-jump:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--black);
+  text-decoration: none;
+}
+
+.collector-context-bar {
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  background: var(--yellow);
+  border: 3px solid var(--black);
+  box-shadow: 5px 5px 0 var(--black);
+  position: sticky;
+  top: 4.25rem;
+  z-index: 50;
+  scroll-margin-top: 5rem;
+}
+
+.collector-context-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem 1rem;
+}
+
+.collector-context-text {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.collector-context-meta {
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.collector-context-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.owner-view-link {
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--blue-accent);
+  cursor: pointer;
+  padding: 0.15rem 0.3rem;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.owner-view-link:hover {
+  color: var(--black);
+}
+
+.addr-view-hint {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.addr-action-lookup:hover + .addr-view-hint {
+  color: var(--blue-accent);
+}
+
 /* Search: icon in reserved gutter — never overlaps text */
 .search-field {
   position: relative;
@@ -3292,6 +3387,25 @@ body.film-page {
 
   .top-collector-pill {
     flex-shrink: 0;
+  }
+
+  .collector-context-bar {
+    top: 3.5rem;
+  }
+
+  .collector-context-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .collector-context-actions .btn {
+    flex: 1;
+    text-align: center;
+  }
+
+  .browse-collector-jump {
+    width: 100%;
+    justify-content: center;
   }
 
   .gallery-row {
