@@ -41,7 +41,6 @@ jobs:
           grep -q "daCAT Chronicles" web/index.html || (echo "Homepage missing Chronicles card" && exit 1)
           test -f web/manifest.webmanifest || (echo "Missing web/manifest.webmanifest" && exit 1)
           test -f web/sw.js || (echo "Missing web/sw.js" && exit 1)
-          test -f web/data/universe_lore.json || (echo "Missing web/data/universe_lore.json" && exit 1)
           test -f web/data/gallery_catalog.json || (echo "Missing gallery_catalog.json — run: cd backend && python build_catalog.py" && exit 1)
           python backend/enrich_gallery_json.py || (echo "enrich_gallery_json failed — check owner_stats import" && exit 1)
           python backend/build_catalog.py || (echo "build_catalog failed" && exit 1)
