@@ -699,7 +699,7 @@ button.stat:focus-visible {
 .collector-spotlight-card {
   display: block;
   padding: 1.25rem 1.35rem;
-  background: var(--white);
+  background: linear-gradient(160deg, #fff9e8 0%, var(--white) 72%);
   border: 3px solid var(--black);
   border-radius: var(--radius);
   box-shadow: 6px 6px 0 var(--black);
@@ -1804,7 +1804,7 @@ button.stat:focus-visible {
 .site-home,
 .collections-hub {
   flex: 1;
-  max-width: 980px;
+  max-width: 1140px;
   margin: 0 auto;
   padding: 1.5rem 1.25rem 2.75rem;
   width: 100%;
@@ -1823,10 +1823,59 @@ button.stat:focus-visible {
   display: inline-block;
   max-width: 38rem;
   padding: 1.5rem 1.6rem 1.3rem;
-  background: var(--white);
+  background: linear-gradient(165deg, #fffef8 0%, var(--white) 58%);
   border: 3px solid var(--black);
   border-radius: var(--radius);
   box-shadow: 8px 8px 0 var(--black);
+}
+
+.home-page .home-hero .eyebrow {
+  color: var(--blue-accent);
+}
+
+.home-hero-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.home-hero-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--black);
+  background: #fff8d6;
+  border: 2px solid var(--black);
+  border-radius: 999px;
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.home-hero-pill:hover {
+  background: var(--yellow);
+  color: var(--black);
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 3px 3px 0 var(--black);
+}
+
+.home-hero-pill-muted {
+  background: var(--white);
+  color: var(--text-muted);
+}
+
+.home-hero-pill-muted:hover {
+  background: var(--white);
+  color: var(--black);
 }
 
 .home-hero h1,
@@ -1909,6 +1958,8 @@ button.stat:focus-visible {
   font-family: var(--font-display);
   font-size: clamp(1.25rem, 3.5vw, 1.5rem);
   margin: 0 0 0.3rem;
+  padding-left: 0.65rem;
+  border-left: 4px solid var(--yellow);
   line-height: 1.15;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -2324,12 +2375,31 @@ button.stat:focus-visible {
 .hub-more-card-film {
   background: linear-gradient(155deg, #121212 0%, #2a2a2a 100%);
   color: var(--white);
+  border-color: rgba(255, 204, 0, 0.28);
   box-shadow: 6px 6px 0 var(--black);
 }
 
 .hub-more-card-film:hover {
   color: var(--white);
-  box-shadow: 9px 9px 0 var(--black);
+  border-color: rgba(255, 204, 0, 0.55);
+  box-shadow:
+    9px 9px 0 var(--black),
+    0 0 28px rgba(255, 204, 0, 0.14);
+}
+
+.hub-more-badge {
+  display: inline-block;
+  align-self: flex-start;
+  margin: 0.05rem 0 0;
+  padding: 0.22rem 0.55rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 204, 0, 0.95);
+  background: rgba(255, 204, 0, 0.1);
+  border: 1px solid rgba(255, 204, 0, 0.35);
+  border-radius: 999px;
 }
 
 .hub-more-card-film .hub-more-kicker {
@@ -4813,6 +4883,15 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   .page-quick-links {
     justify-content: center;
     margin-bottom: 0.65rem;
+  }
+
+  .home-hero-nav {
+    justify-content: center;
+    margin-top: 0.85rem;
+  }
+
+  .home-hero-inner {
+    padding: 1.25rem 1.15rem 1.1rem;
   }
 
   .film-hub-page .film-hub-main {
