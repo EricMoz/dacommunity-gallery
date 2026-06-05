@@ -1,8 +1,9 @@
 /**
  * Minimal PWA service worker — offline shell + cached catalog.
  * Gallery JSON uses network-first so listings stay current when online.
+ * CACHE name is bumped by scripts/bump_deploy_version.py on each Pages deploy.
  */
-const CACHE = "dacat-gallery-v3";
+const CACHE = "dacat-gallery-v20260605-2";
 const SHELL = [
   "./",
   "./dacommunity/",
@@ -44,12 +45,17 @@ function isDataJson(url) {
   return /\/data\/gallery_(data|meta|wallet_index)\.json/i.test(url.pathname);
 }
 
+/** HTML/CSS/JS must be network-first so deploy bumps reach users (avoid stale SW cache). */
+function isMutableShell(url) {
+  return /\.(html|js|css)$/i.test(url.pathname);
+}
+
 self.addEventListener("fetch", function (event) {
   if (event.request.method !== "GET") return;
   var url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
 
-  if (isDataJson(url)) {
+  if (isDataJson(url) || isMutableShell(url)) {
     event.respondWith(networkFirstData(event.request));
     return;
   }

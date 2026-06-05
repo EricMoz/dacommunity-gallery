@@ -714,9 +714,12 @@ function exitCollectorView(opts) {
     if (input) input.value = "";
   }
   clearGalleryCollectorView({ clearResult: opts.clearResult !== false });
-  if (opts.scrollGallery !== false) {
-    var list = $("#gallery-list");
-    if (list) list.scrollIntoView({ behavior: "smooth", block: "start" });
+  /* Default: return to collector hub (not the grid — avoids landing mid-page). */
+  if (opts.scrollToHub !== false && opts.scrollGallery !== false) {
+    scrollToCollectorHub({
+      behavior: opts.scrollBehavior || "smooth",
+      updateHash: opts.updateHash !== false,
+    });
   }
 }
 
@@ -730,6 +733,7 @@ function scrollToCollectorCollection() {
   if (list) list.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
+/** Toggle dark portfolio layout: hide hero, compact browse, cinema grid. */
 function renderCollectorFocusUi() {
   var active = !!galleryCollectorView;
   document.body.classList.toggle("has-collector-view", active);
@@ -746,10 +750,14 @@ function renderCollectorFocusUi() {
   var browse = $("#browse-controls");
   if (browse) browse.classList.toggle("is-portfolio-browse", active);
 
-  var browseMore = $("#collector-browse-more");
-  if (browseMore) {
-    if (active) browseMore.removeAttribute("open");
-    else browseMore.setAttribute("open", "");
+  var browseAdvanced = $("#browse-advanced");
+  var browseToggle = $("#browse-advanced-toggle");
+  if (browseAdvanced) {
+    browseAdvanced.classList.toggle("is-collapsed", active);
+  }
+  if (browseToggle) {
+    browseToggle.hidden = !active;
+    browseToggle.setAttribute("aria-expanded", active ? "false" : "true");
   }
 
   var hero = document.querySelector(".hero-band");
@@ -814,7 +822,7 @@ function handleEscapeKey() {
     return;
   }
   if (galleryCollectorView) {
-    exitCollectorView({ clearResult: false, scrollGallery: false });
+    exitCollectorView({ clearResult: false });
     return;
   }
   if (searchQuery) {
@@ -864,9 +872,28 @@ function walletShareUrl(address) {
   return url.toString();
 }
 
-function scrollToCollectorHub() {
+/** Scroll to #wallet-panel after layout settles (hero unhidden on portfolio exit). */
+function scrollToCollectorHub(opts) {
+  opts = opts || {};
   var panel = $("#wallet-panel");
-  if (panel) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (!panel) return;
+
+  function runScroll() {
+    if (opts.updateHash !== false && location.hash !== "#wallet-panel") {
+      history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search + "#wallet-panel"
+      );
+    }
+    var behavior = opts.behavior === "instant" ? "auto" : opts.behavior || "smooth";
+    panel.scrollIntoView({ behavior: behavior, block: "start" });
+    panel.focus({ preventScroll: true });
+  }
+
+  requestAnimationFrame(function () {
+    requestAnimationFrame(runScroll);
+  });
 }
 
 function runWalletLookupFromAddress(address, lookupValue) {
@@ -1518,6 +1545,7 @@ function compareItems(a, b) {
   return Number(b.token_id) - Number(a.token_id);
 }
 
+/** Apply searchQuery, activeFilter, sortKey, and optional galleryCollectorView scope. */
 function getFilteredItems() {
   if (!galleryData || !galleryData.items) return [];
   var items = galleryData.items.slice();
@@ -1613,7 +1641,7 @@ function renderBrowseMeta(filtered, total) {
     btn.addEventListener("click", function () {
       var k = btn.getAttribute("data-clear");
       if (k === "collector") {
-        exitCollectorView({ clearResult: false, scrollGallery: false });
+        exitCollectorView({ clearResult: false });
       } else if (k === "search") {
         searchQuery = "";
         var inp = $("#search");
@@ -2049,6 +2077,22 @@ function refreshView() {
 
 var searchDebounceTimer = null;
 
+/** Show/hide × on search or wallet field; onClear runs after value is cleared. */
+function bindClearableField(input, clearBtn, onClear) {
+  if (!input || !clearBtn) return;
+  function syncClear() {
+    clearBtn.hidden = !input.value.trim();
+  }
+  input.addEventListener("input", syncClear);
+  clearBtn.addEventListener("click", function () {
+    input.value = "";
+    if (onClear) onClear();
+    syncClear();
+    input.focus();
+  });
+  syncClear();
+}
+
 function bindUi() {
   document.querySelectorAll(".filter").forEach(function (btn) {
     btn.addEventListener("click", function () {
@@ -2077,8 +2121,35 @@ function bindUi() {
         searchInput.value = "";
         searchQuery = "";
         refreshView();
+        var sc = $("#search-clear");
+        if (sc) sc.hidden = true;
         searchInput.blur();
       }
+    });
+    bindClearableField(searchInput, $("#search-clear"), function () {
+      searchQuery = "";
+      refreshView();
+    });
+  }
+  var walletInput = $("#wallet-input");
+  bindClearableField(walletInput, $("#wallet-clear"), function () {
+    var resultEl = $("#wallet-result");
+    if (resultEl) {
+      resultEl.hidden = true;
+      resultEl.innerHTML = "";
+    }
+    clearWalletResultHighlight();
+    var panel = $("#wallet-panel");
+    if (panel) panel.classList.remove("has-result");
+  });
+  var browseToggle = $("#browse-advanced-toggle");
+  if (browseToggle && !browseToggle.dataset.bound) {
+    browseToggle.dataset.bound = "1";
+    browseToggle.addEventListener("click", function () {
+      var adv = $("#browse-advanced");
+      if (!adv) return;
+      var collapsed = adv.classList.toggle("is-collapsed");
+      browseToggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
     });
   }
   var sortSelect = $("#sort-select");

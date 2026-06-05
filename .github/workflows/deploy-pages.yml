@@ -26,9 +26,14 @@ jobs:
         with:
           lfs: true
 
+      - name: Bump deploy build stamp
+        run: python scripts/bump_deploy_version.py
+
       - name: Verify site files
         run: |
           set -e
+          test -f web/VERSION.txt || (echo "Missing web/VERSION.txt — bump step failed" && exit 1)
+          test -f web/BUILD.json || (echo "Missing web/BUILD.json — bump step failed" && exit 1)
           node --check web/js/app.js || (echo "app.js has a syntax error — gallery will never load" && exit 1)
           test -f web/index.html || (echo "Missing web/index.html" && exit 1)
           test -f web/dacommunity/index.html || (echo "Missing web/dacommunity/index.html" && exit 1)

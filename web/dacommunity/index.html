@@ -2,6 +2,7 @@
 <!-- daCommunity gallery (from /collections/). Paths: data-base + initDataUrls() in app.js. -->
 <html lang="en">
 <head>
+  <meta name="site-build" content="20260605-2" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>daCommunity Gallery · daCAT</title>
@@ -14,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/styles.css?v=20260606-1" />
+  <link rel="stylesheet" href="../css/styles.css?v=20260605-2" />
 </head>
 <body data-base="../">
   <header class="site-header">
@@ -82,15 +83,18 @@
 
       <form class="collector-lookup-form" id="wallet-form">
         <label class="visually-hidden" for="wallet-input">Wallet or ENS name</label>
-        <input
-          type="text"
-          id="wallet-input"
-          class="collector-lookup-input"
-          placeholder="ENS name or 0x address"
-          autocomplete="off"
-          spellcheck="false"
-          enterkeyhint="search"
-        />
+        <div class="lookup-field">
+          <input
+            type="text"
+            id="wallet-input"
+            class="collector-lookup-input"
+            placeholder="ENS name or 0x address"
+            autocomplete="off"
+            spellcheck="false"
+            enterkeyhint="search"
+          />
+          <button type="button" class="field-clear" id="wallet-clear" hidden aria-label="Clear lookup">×</button>
+        </div>
         <button type="submit" class="btn btn-dark collector-lookup-submit">Look up</button>
       </form>
 
@@ -142,12 +146,13 @@
             autocomplete="off"
             enterkeyhint="search"
           />
+          <button type="button" class="field-clear" id="search-clear" hidden aria-label="Clear search">×</button>
         </div>
       </div>
 
-      <details class="collector-browse-more" id="collector-browse-more" open>
-        <summary class="collector-browse-more-toggle">Filter &amp; sort</summary>
-        <div class="browse-rows">
+      <div class="browse-advanced" id="browse-advanced">
+        <button type="button" class="browse-advanced-toggle" id="browse-advanced-toggle" hidden aria-expanded="true" aria-controls="browse-advanced-panel">Filter &amp; sort</button>
+        <div class="browse-rows" id="browse-advanced-panel">
         <div class="browse-row">
           <span class="browse-row-label" id="filter-label">Filter</span>
           <div class="filters filters-scroll" role="tablist" aria-labelledby="filter-label">
@@ -169,7 +174,7 @@
           </select>
         </div>
         </div>
-      </details>
+      </div>
 
       <footer class="browse-foot" id="browse-meta">
         <p class="results-count" id="results-count" aria-live="polite">—</p>
@@ -260,9 +265,10 @@
   <footer class="site-footer">
     <p>OpenSea ownership &amp; listings · Refreshed daily · Updated <span id="footer-updated">—</span></p>
     <p><a href="https://www.dacat.fun/">dacat.fun</a> · <a href="https://www.dacatworld.com/">dacatworld</a></p>
+    <p class="site-version">Site build 20260605-2</p>
   </footer>
 
-  <script src="../js/pwa-register.js?v=20260605-1" defer></script>
-  <script src="../js/app.js?v=20260606-1" defer></script>
+  <script src="../js/pwa-register.js?v=20260605-2" defer></script>
+  <script src="../js/app.js?v=20260605-2" defer></script>
 </body>
 </html>

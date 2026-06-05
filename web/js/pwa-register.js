@@ -23,6 +23,9 @@
   }
 
   window.addEventListener("load", function () {
-    navigator.serviceWorker.register(root + "sw.js", { scope: root }).catch(function () {});
+    var buildMeta = document.querySelector('meta[name="site-build"]');
+    var build = buildMeta && buildMeta.getAttribute("content");
+    var swUrl = root + "sw.js" + (build ? "?v=" + encodeURIComponent(build) : "");
+    navigator.serviceWorker.register(swUrl, { scope: root }).catch(function () {});
   });
 })();

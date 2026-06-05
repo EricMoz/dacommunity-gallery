@@ -2,21 +2,32 @@
 
 Static gallery for the [daCAT daCommunity](https://opensea.io/collection/rodeo-posts-12142) ERC-1155 collection on Base, plus a collections hub for upcoming **Badges** (Ethereum).
 
-**Live site:** https://ericmoz.github.io/dacommunity-gallery/ (footer shows `Site build …` — hard-refresh if it looks old: Ctrl+Shift+R)
+**Live site:** https://ericmoz.github.io/dacommunity-gallery/
 
 | Route | Purpose |
 |-------|---------|
-| `/` | **Home** — entertainment hub (Collections, film, charts) |
-| `/collections/` | **Collections** — daCommunity + Badges picker (gallery vs coming soon) |
-| `/dacommunity/` | Full gallery, collector lookup, OpenSea data |
+| `/` | **Home** — Collections, film, analytics |
+| `/collections/` | **Collections** — daCommunity + Badges picker |
+| `/dacommunity/` | Full gallery, search/filters, collector lookup, shareable `?wallet=` links |
 | `/badges/` | Badges coming-soon placeholder |
 | `/analytics/` | Cat Coin market cap bar chart race (Flourish embed) |
-| `/film/` | Films hub (tile picker) |
-| `/film/mozvane/` | Mozvane ~5 min anime (YouTube — Sora-era community film) |
+| `/film/` | Films hub |
+| `/film/mozvane/` | Mozvane community film (YouTube) |
 
-## Architecture (for reviewers)
+## Features
 
-This is a **static site** — no backend server in production. GitHub Pages serves `web/`; chain/market data is **pre-fetched** into JSON.
+- **Browse archive** — Search by name, story, or token #; filter (all / for sale / not listed / recent moves); sort (token #, price, transfer date, name).
+- **Collector lookup** — Enter ENS or `0x` address (no wallet connect). Clear (×) on the lookup field if the UI gets stuck.
+- **Portfolio view** — Dark “cinema” grid for one collector’s holdings; compact filter/sort panel; exit chip returns to full archive.
+- **Shareable links** — `?wallet=0x…` opens a collector portfolio; `#wallet-panel` scrolls to lookup.
+- **Detail drawer** — Holders, transfers, OpenSea link; background merge fills activity after first paint.
+- **PWA shell** — Light offline cache for HTML/CSS/JS; gallery JSON is network-first.
+
+Footer on the home page shows **Site build YYYYMMDD-N**. If the live site looks stale, hard-refresh (Ctrl+Shift+R) or check that build id against the latest deploy.
+
+## Architecture
+
+Static-first: no app server in production. GitHub Pages serves `web/`; chain data is pre-fetched into JSON.
 
 ```
 OpenSea API v2  ──►  Python (backend/)  ──►  web/data/*.json
@@ -27,71 +38,99 @@ OpenSea API v2  ──►  Python (backend/)  ──►  web/data/*.json
 
 | Piece | Role |
 |-------|------|
-| **OpenSea API v2** | NFT metadata, per-token owners, listings, collection stats, holder list |
-| **`fetch_gallery_data.py`** | Full refresh → `gallery_data.json` + `wallet_index.json` |
-| **`build_catalog.py`** | Slim `gallery_catalog.json` for fast first paint (~85 KB) |
-| **`merge_local_images.py`** | Optional: copy local artwork into `web/assets/nfts/` |
-| **`app.js`** | Catalog first, full JSON merge in background; wallet index lazy; path-aware under `/dacommunity/` |
+| **`fetch_gallery_data.py`** | Full refresh → `gallery_data.json`, `wallet_index.json` |
+| **`build_catalog.py`** | Slim `gallery_catalog.json` for fast first paint |
+| **`gallery_meta.json`** | Refresh status / staleness banner |
+| **`app.js`** | Catalog → full merge → wallet index; browse state; collector view; dark mode via `body.has-collector-view` |
 
 **Contract:** `0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1` (Base) · Steward: `dacatdreams.base.eth`
 
-**CI:** Daily workflow refreshes JSON (repo secret `OPENSEA_API_KEY`). Pages deploy publishes `web/` with Git LFS for images.
+### Frontend map (`web/`)
+
+| File | Role |
+|------|------|
+| `dacommunity/index.html` | Gallery shell: hero, `#wallet-panel`, `#browse-controls`, grid, detail drawer |
+| `css/styles.css` | Layout, browse/search, collector portfolio (dark), modals |
+| `js/app.js` | Data load, search/filter/sort, wallet lookup, URL sync |
+| `js/pwa-register.js` | Service worker registration |
+| `sw.js` | Cache shell; `CACHE` name tied to deploy build id |
 
 ## Local preview
 
-Browsers block `fetch()` on `file://` URLs — run any static server from `web/`:
+Browsers block `fetch()` on `file://` — serve `web/`:
 
 ```powershell
 cd web
 python -m http.server 8080
 ```
 
-Then open http://localhost:8080/ (home), http://localhost:8080/collections/ (pick a collection), or http://localhost:8080/dacommunity/ (gallery).
-
-On Windows, `start-gallery.bat` in the repo root is an optional shortcut that runs the same command.
+Open http://localhost:8080/dacommunity/ for the gallery. On Windows, `start-gallery.bat` at the repo root is a shortcut.
 
 ## Refresh data from OpenSea
 
 ```powershell
 cd backend
 pip install -r requirements.txt
-copy .env.example .env   # add OPENSEA_API_KEY from https://docs.opensea.io/reference/api-keys
+copy .env.example .env   # OPENSEA_API_KEY from https://docs.opensea.io/reference/api-keys
 python fetch_gallery_data.py
-python merge_local_images.py   # optional; needs local art folder
+python merge_local_images.py   # optional
 ```
 
 Or: `.\scripts\refresh.ps1` (fetch + merge + local server).
 
-`--quick` skips listings, owners, and wallet index. Full run takes ~5–8 minutes.
+- `--quick` skips listings, owners, and wallet index (~faster).
+- Full run ~5–8 minutes.
 
-After a transfer, run a full fetch so `recent_activity` and holder lists update. QA one token:
+After a transfer, run a full fetch so `recent_activity` and holders update. QA one token:
 
 ```powershell
 cd backend
-python fetch_gallery_data.py
 python ../scripts/verify_piece_activity.py --token 47 --expect-from mozvane.eth --expect-to 0x3e43287a26acf9e5206f4551ccda29c7d9bea93e
 ```
 
+## Deploy & cache busting
+
+GitHub Pages and browsers can cache HTML/CSS/JS. Every **Deploy gallery to GitHub Pages** run executes `scripts/bump_deploy_version.py`, which:
+
+1. Increments `web/VERSION.txt` (e.g. `20260604-3`)
+2. Writes `web/BUILD.json` with timestamp
+3. Updates `?v=` on CSS/JS in HTML pages
+4. Bumps `sw.js` `CACHE` name
+5. Updates **Site build …** in footers
+
+**Manual bump before push (optional):**
+
+```powershell
+.\scripts\bump-deploy.ps1
+git add web/
+git commit -m "chore: bump deploy build"
+git push
+```
+
+Push to `main` triggers deploy. **Actions** also runs a daily data refresh when `OPENSEA_API_KEY` is set.
+
 ## Security
 
-- **Never commit** `backend/.env` (gitignored). Use GitHub Actions secret `OPENSEA_API_KEY` for CI only.
-- **Daily refresh** needs that secret on the repo: [Settings → Secrets and variables → Actions](https://github.com/EricMoz/dacommunity-gallery/settings/secrets/actions) → **New repository secret** → name `OPENSEA_API_KEY`, value = your [OpenSea API key](https://docs.opensea.io/reference/api-keys). If the workflow email says “all jobs failed” in ~2 seconds, the secret is usually missing or expired (instant keys last ~30 days). The site reads `web/data/gallery_meta.json` and shows a **yellow/red banner** when refresh fails or data is stale; the footer reminds you to rotate the key about every 30 days.
-- **New listing today?** Until the nightly job runs, sync listings only: `cd backend && python patch_listings.py` (then commit/push, or wait for CI).
-- After a successful refresh commit, **Deploy gallery to GitHub Pages** runs automatically on `main`.
+- **Never commit** `backend/.env` (gitignored). Use GitHub secret `OPENSEA_API_KEY` for CI.
+- [Repository secrets](https://github.com/EricMoz/dacommunity-gallery/settings/secrets/actions) — missing/expired keys fail refresh in ~2s; the site shows a staleness banner from `gallery_meta.json`.
+- **New listing today?** `cd backend && python patch_listings.py` until the nightly job runs.
 - API keys are not used in the browser; the public site only reads static JSON.
-- `fetch_gallery_data.py --create-key` can mint a dev key locally — do not use in shared/CI environments; paste a long-lived key into the GitHub secret instead.
 
 ## Repo layout
 
 ```
-backend/          OpenSea fetch + title normalization + catalog build
+backend/          OpenSea fetch, catalog build, enrich helpers
 web/              Static site (HTML, CSS, JS, data, assets)
-  index.html      Site home (Collections + Watch & track sections)
-  collections/    NFT collections landing (daCommunity + Badges cards)
-  dacommunity/    daCommunity gallery (app.js expects ../data paths)
-  badges/         Badges placeholder
-  analytics/      Cat Coin MC race (Flourish)
-  film/           Films hub; film/mozvane/ etc. per title (YouTube embed)
+  dacommunity/    Main gallery (app.js uses ../data paths)
 .github/workflows Deploy Pages + daily data refresh
-scripts/          PowerShell helpers
+scripts/          bump_deploy_version.py, refresh.ps1, verify_piece_activity.py
 ```
+
+## CI
+
+| Workflow | Trigger | Purpose |
+|----------|---------|---------|
+| `deploy-pages.yml` | Push to `main`, manual | Bump build stamp, verify files, publish `web/` |
+| `refresh-data.yml` | Daily cron, manual | Fetch OpenSea → commit JSON |
+
+Requires Git LFS for NFT images under `web/assets/`.

@@ -1,3 +1,15 @@
+/* daCommunity Gallery — static site styles (dacat.fun brand).
+ *
+ * Layout map:
+ *   .site-header — sticky nav
+ *   .hero-band / .stats-strip — collection summary (dacommunity/)
+ *   .collector-hub (#wallet-panel) — ENS/0x lookup, portfolio exit bar
+ *   .browse-controls — archive search, filters, sort (#search, .filter, #sort-select)
+ *   .gallery-focus-zone — featured rail + grid; dark “cinema” when body.has-collector-view
+ *   .detail-panel — token drawer
+ *
+ * Dark portfolio: body.has-collector-view + .is-portfolio-browse on #browse-controls
+ */
 /* daCAT brand — yellow #FFCC00, black, comic energy (dacat.fun screenshots) */
 :root {
   --yellow: #ffcc00;
@@ -376,20 +388,30 @@ button.stat:focus-visible {
   flex-wrap: wrap;
   gap: 0.55rem;
   margin-bottom: 0.85rem;
+  align-items: stretch;
+}
+
+.lookup-field {
+  position: relative;
+  flex: 1;
+  min-width: min(100%, 220px);
+  display: block;
 }
 
 .collector-lookup-input,
 .wallet-form input {
-  flex: 1;
-  min-width: min(100%, 220px);
+  display: block;
+  width: 100%;
+  min-width: 0;
   min-height: 48px;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 2.75rem 0.75rem 1rem;
   border: 2px solid var(--black);
   border-radius: 8px;
   font: inherit;
   font-size: 1rem;
   background: var(--white);
   box-shadow: 4px 4px 0 var(--black);
+  box-sizing: border-box;
 }
 
 .collector-lookup-input:focus {
@@ -3295,7 +3317,7 @@ body.has-collector-view #browse-controls.is-portfolio-browse .browse-foot {
   order: 2;
 }
 
-body.has-collector-view #browse-controls.is-portfolio-browse .collector-browse-more {
+body.has-collector-view #browse-controls.is-portfolio-browse .browse-advanced {
   order: 3;
 }
 
@@ -3319,19 +3341,45 @@ body.has-collector-view #browse-controls.is-portfolio-browse .search-field-icon 
   color: #888;
 }
 
-body.has-collector-view #browse-controls.is-portfolio-browse .collector-browse-more-toggle {
-  display: list-item;
+body.has-collector-view #browse-controls.is-portfolio-browse .browse-advanced-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0.55rem 0 0.35rem;
+  padding: 0.35rem 0.5rem;
+  border: none;
+  background: transparent;
   cursor: pointer;
+  font: inherit;
   font-size: 0.72rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--yellow);
-  margin: 0.55rem 0 0.35rem;
 }
 
-body.has-collector-view #browse-controls.is-portfolio-browse .collector-browse-more .browse-rows {
+body.has-collector-view #browse-controls.is-portfolio-browse .browse-advanced-toggle::after {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.15s ease;
+  margin-top: -0.15rem;
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .browse-advanced-toggle[aria-expanded="true"]::after {
+  transform: rotate(-135deg);
+  margin-top: 0.1rem;
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .browse-advanced .browse-rows {
   margin-top: 0.35rem;
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .browse-advanced.is-collapsed .browse-rows {
+  display: none;
 }
 
 body.has-collector-view #browse-controls.is-portfolio-browse .browse-row-label {
@@ -3379,12 +3427,12 @@ body.has-collector-view #browse-controls.is-portfolio-browse .btn-outline {
   border-color: rgba(255, 255, 255, 0.25);
 }
 
-#browse-controls:not(.is-portfolio-browse) .collector-browse-more-toggle {
+#browse-controls:not(.is-portfolio-browse) .browse-advanced-toggle {
   display: none;
 }
 
-#browse-controls:not(.is-portfolio-browse) .collector-browse-more .browse-rows {
-  display: block;
+#browse-controls:not(.is-portfolio-browse) .browse-advanced .browse-rows {
+  display: flex;
 }
 
 .gallery-focus-zone {
@@ -3503,12 +3551,58 @@ body.has-collector-view .gallery-empty-title {
   z-index: 1;
 }
 
+/* Clear control — archive search + wallet lookup (recovery if UI sticks) */
+.field-clear {
+  position: absolute;
+  right: 0.45rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--black);
+  color: var(--yellow);
+  font-size: 1.25rem;
+  line-height: 1;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+
+.field-clear:hover {
+  transform: translateY(-50%) scale(1.06);
+  background: #222;
+}
+
+.field-clear:focus-visible {
+  outline: 3px solid var(--blue-accent);
+  outline-offset: 2px;
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .field-clear {
+  background: #2a2a2a;
+  color: var(--yellow);
+  border: 1px solid rgba(255, 204, 0, 0.4);
+}
+
+body.has-collector-view .collector-hub.is-collector-active .field-clear {
+  background: #2a2a2a;
+  color: var(--yellow);
+}
+
 .browse-search-input {
   display: block;
   width: 100%;
   min-height: 48px;
   box-sizing: border-box;
-  padding: 0.75rem 2.75rem 0.75rem 3.1rem;
+  padding: 0.75rem 2.85rem 0.75rem 3.1rem;
   border: 2px solid var(--black);
   border-radius: 8px;
   font: inherit;
