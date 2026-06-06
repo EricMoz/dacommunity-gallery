@@ -3364,6 +3364,190 @@ body.film-modal-open {
   display: none;
 }
 
+/* Up next — random (default) or series-order binge */
+.film-upnext {
+  border-top: 1px solid rgba(255, 204, 0, 0.22);
+  background: linear-gradient(180deg, #0c0c0c 0%, #080808 100%);
+}
+
+.film-upnext-bar,
+.film-upnext-end {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem 0.85rem;
+  padding: 0.7rem 0.85rem;
+}
+
+.film-upnext-end {
+  background: linear-gradient(180deg, rgba(255, 204, 0, 0.1) 0%, #0a0a0a 100%);
+}
+
+.film-upnext-end[hidden],
+.film-upnext-bar[hidden] {
+  display: none !important;
+}
+
+.film-upnext-preview {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
+.film-upnext-thumb {
+  flex-shrink: 0;
+  width: 72px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 204, 0, 0.35);
+  background: #111;
+}
+
+.film-upnext-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  min-width: 0;
+}
+
+.film-upnext-kicker {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 204, 0, 0.85);
+}
+
+.film-upnext-title {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #f2f2f2;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.film-upnext-meta {
+  font-size: 0.72rem;
+  color: #888;
+}
+
+.film-upnext-controls,
+.film-upnext-end-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.film-upnext-modes {
+  display: inline-flex;
+  padding: 0.15rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 204, 0, 0.28);
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.film-upnext-mode {
+  border: none;
+  background: transparent;
+  color: #aaa;
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  cursor: pointer;
+  min-height: 32px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.film-upnext-mode.is-active {
+  background: var(--yellow);
+  color: var(--black);
+}
+
+.film-upnext-mode:hover:not(.is-active) {
+  color: #fff;
+}
+
+.film-upnext-play,
+.film-upnext-play-now {
+  border: 2px solid var(--black);
+  background: var(--yellow);
+  color: var(--black);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  cursor: pointer;
+  min-height: 36px;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.85);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.film-upnext-play:hover,
+.film-upnext-play-now:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.85);
+}
+
+.film-upnext-play:disabled {
+  opacity: 0.45;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
+
+.film-upnext-countdown {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.4;
+  color: #d8d8d8;
+}
+
+.film-upnext-countdown strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+.film-upnext-countdown span {
+  color: var(--yellow);
+  font-weight: 800;
+}
+
+.film-upnext-cancel {
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  background: transparent;
+  color: #ccc;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  cursor: pointer;
+  min-height: 36px;
+}
+
+.film-upnext-cancel:hover {
+  border-color: rgba(255, 204, 0, 0.5);
+  color: var(--yellow);
+}
+
+.film-upnext-end-copy {
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
 .film-modal-details {
   padding: 1rem 1.1rem 1.25rem;
   border-left: 1px solid #222;
@@ -3460,6 +3644,47 @@ body.film-modal-open {
     border-left: 0;
     border-top: 1px solid #222;
     max-height: none;
+  }
+
+  .film-upnext-bar,
+  .film-upnext-end {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.65rem 0.75rem;
+  }
+
+  .film-upnext-controls,
+  .film-upnext-end-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .film-upnext-modes {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .film-upnext-mode {
+    flex: 1;
+    min-height: 40px;
+    font-size: 0.72rem;
+  }
+
+  .film-upnext-play,
+  .film-upnext-play-now,
+  .film-upnext-cancel {
+    min-height: 44px;
+    flex: 1;
+    text-align: center;
+  }
+
+  .film-upnext-end-actions .film-upnext-play-now {
+    flex: 1.2;
+  }
+
+  .film-upnext-thumb {
+    width: 80px;
+    height: 45px;
   }
 }
 

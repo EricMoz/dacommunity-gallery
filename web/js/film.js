@@ -1,11 +1,13 @@
 /**
- * daCAT Film theater — catalog grid, filters, modal player, random-next-on-end.
+ * daCAT Film theater — catalog grid, filters, modal player, up-next (random or series).
  */
 (function () {
   "use strict";
 
   const DATA_URL = new URL("../data/videos.json", window.location.href).href;
   const YT_ORIGIN = window.location.origin;
+  const UPNEXT_COUNTDOWN_SEC = 8;
+  const UPNEXT_MODE_KEY = "dacat-film-upnext-mode";
 
   const els = {
     rows: document.getElementById("film-rows"),
@@ -32,6 +34,18 @@
     modalDesc: document.getElementById("film-modal-desc"),
     modalYtLink: document.getElementById("film-modal-yt"),
     modalDedicated: document.getElementById("film-modal-dedicated"),
+    upnext: document.getElementById("film-upnext"),
+    upnextBar: document.getElementById("film-upnext-bar"),
+    upnextEnd: document.getElementById("film-upnext-end"),
+    upnextThumb: document.getElementById("film-upnext-thumb"),
+    upnextKicker: document.getElementById("film-upnext-kicker"),
+    upnextTitle: document.getElementById("film-upnext-title"),
+    upnextMeta: document.getElementById("film-upnext-meta"),
+    upnextPlay: document.getElementById("film-upnext-play"),
+    upnextCountdown: document.getElementById("film-upnext-countdown"),
+    upnextCancel: document.getElementById("film-upnext-cancel"),
+    upnextPlayNow: document.getElementById("film-upnext-play-now"),
+    upnextModes: document.querySelectorAll(".film-upnext-mode"),
   };
 
   let catalog = null;
@@ -42,6 +56,11 @@
   let ytPlayer = null;
   let ytApiReady = false;
   let pendingVideoId = null;
+  let nextMode = "random";
+  let lastRandomId = null;
+  let pendingUpNext = null;
+  let upNextTimer = null;
+  let upNextCountdownSec = 0;
 
   function loadYouTubeApi() {
     if (window.YT && window.YT.Player) {
@@ -230,16 +249,176 @@
     return videos.find((v) => v.id === id) || null;
   }
 
-  function pickRandomNext(current) {
+  function seriesList(current) {
+    return sortVideos(videos.filter((v) => v.series === current.series));
+  }
+
+  function pickRandomNext(current, extraExclude) {
+    const exclude = new Set([current.id]);
+    if (lastRandomId) exclude.add(lastRandomId);
+    if (extraExclude) extraExclude.forEach((id) => exclude.add(id));
+
     const sameSeries = videos.filter(
-      (v) => v.series === current.series && v.id !== current.id
+      (v) => v.series === current.series && !exclude.has(v.id)
     );
-    const pool =
+    let pool =
       sameSeries.length > 0
         ? sameSeries
-        : videos.filter((v) => v.id !== current.id);
+        : videos.filter((v) => !exclude.has(v.id));
+    if (!pool.length) {
+      pool = videos.filter((v) => v.id !== current.id);
+    }
     if (!pool.length) return null;
     return pool[Math.floor(Math.random() * pool.length)];
+  }
+
+  function pickSeriesNext(current) {
+    const list = seriesList(current);
+    if (list.length <= 1) return pickRandomNext(current);
+    const idx = list.findIndex((v) => v.id === current.id);
+    if (idx < 0) return list[0];
+    return list[(idx + 1) % list.length];
+  }
+
+  function resolveUpNext(current) {
+    if (!current) return null;
+    if (nextMode === "series") return pickSeriesNext(current);
+    return pickRandomNext(current);
+  }
+
+  function upNextModeLabel() {
+    return nextMode === "series" ? "Series" : "Random";
+  }
+
+  function clearUpNextCountdown() {
+    if (upNextTimer) {
+      clearInterval(upNextTimer);
+      upNextTimer = null;
+    }
+    upNextCountdownSec = 0;
+  }
+
+  function hideUpNextEnd() {
+    if (els.upnextEnd) els.upnextEnd.hidden = true;
+    if (els.upnextBar) els.upnextBar.hidden = false;
+  }
+
+  function fillUpNextPreview(video) {
+    if (!video) return;
+    if (els.upnextThumb) {
+      els.upnextThumb.src = video.thumbnail;
+      els.upnextThumb.alt = "";
+    }
+    if (els.upnextTitle) els.upnextTitle.textContent = video.title;
+    if (els.upnextMeta) {
+      els.upnextMeta.textContent =
+        video.series + " · " + (video.duration || "—");
+    }
+    if (els.upnextKicker) {
+      els.upnextKicker.textContent = "Up next · " + upNextModeLabel();
+    }
+  }
+
+  function syncUpNextModeUi() {
+    if (!els.upnextModes) return;
+    els.upnextModes.forEach((btn) => {
+      const on = btn.dataset.mode === nextMode;
+      btn.classList.toggle("is-active", on);
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  }
+
+  function setUpNextMode(mode) {
+    if (mode !== "random" && mode !== "series") return;
+    nextMode = mode;
+    try {
+      sessionStorage.setItem(UPNEXT_MODE_KEY, mode);
+    } catch (_) {
+      /* ignore */
+    }
+    syncUpNextModeUi();
+    const cur = findVideo(currentVideoId);
+    if (els.upnextEnd && !els.upnextEnd.hidden && cur) {
+      pendingUpNext = resolveUpNext(cur);
+      if (pendingUpNext) {
+        fillUpNextPreview(pendingUpNext);
+        updateCountdownText();
+      }
+    } else {
+      refreshUpNextUi();
+    }
+  }
+
+  function refreshUpNextUi() {
+    const cur = findVideo(currentVideoId);
+    if (!cur || !els.upnext) {
+      if (els.upnext) els.upnext.hidden = true;
+      return;
+    }
+    const next = resolveUpNext(cur);
+    pendingUpNext = next;
+    if (!next) {
+      els.upnext.hidden = true;
+      return;
+    }
+    els.upnext.hidden = false;
+    hideUpNextEnd();
+    fillUpNextPreview(next);
+    if (els.upnextPlay) {
+      els.upnextPlay.disabled = false;
+      els.upnextPlay.textContent =
+        nextMode === "series" ? "Next in series" : "Play random";
+    }
+  }
+
+  function showUpNextCountdown(nextVideo) {
+    if (!nextVideo || !els.upnext) return;
+    pendingUpNext = nextVideo;
+    els.upnext.hidden = false;
+    if (els.upnextBar) els.upnextBar.hidden = true;
+    if (els.upnextEnd) els.upnextEnd.hidden = false;
+    fillUpNextPreview(nextVideo);
+    clearUpNextCountdown();
+    upNextCountdownSec = UPNEXT_COUNTDOWN_SEC;
+    updateCountdownText();
+    upNextTimer = setInterval(() => {
+      upNextCountdownSec -= 1;
+      if (upNextCountdownSec <= 0) {
+        clearUpNextCountdown();
+        goToUpNext();
+        return;
+      }
+      updateCountdownText();
+    }, 1000);
+  }
+
+  function updateCountdownText() {
+    if (!els.upnextCountdown || !pendingUpNext) return;
+    const label =
+      nextMode === "series" ? "Next in series" : "Random pick";
+    els.upnextCountdown.innerHTML =
+      '<strong>' +
+      escapeHtml(pendingUpNext.title) +
+      "</strong> · " +
+      label +
+      " in <span>" +
+      upNextCountdownSec +
+      "s</span>";
+  }
+
+  function cancelUpNext() {
+    clearUpNextCountdown();
+    hideUpNextEnd();
+    refreshUpNextUi();
+  }
+
+  function goToUpNext() {
+    clearUpNextCountdown();
+    hideUpNextEnd();
+    const cur = findVideo(currentVideoId);
+    const next = pendingUpNext || (cur ? resolveUpNext(cur) : null);
+    if (!next) return;
+    transitionToVideo(next.id, { autoplay: true, isUpNext: true });
   }
 
   function destroyPlayer() {
@@ -258,7 +437,87 @@
     if (els.playerLoading) els.playerLoading.hidden = !on;
   }
 
-  function playInModal(videoId) {
+  function onPlayerStateChange(event) {
+    const YT = window.YT;
+    if (!YT || !YT.PlayerState) return;
+    if (
+      event.data === YT.PlayerState.PLAYING ||
+      event.data === YT.PlayerState.PAUSED
+    ) {
+      setPlayerLoading(false);
+    }
+    if (event.data === YT.PlayerState.ENDED) {
+      const cur = findVideo(currentVideoId);
+      if (!cur) return;
+      const next = resolveUpNext(cur);
+      if (next) showUpNextCountdown(next);
+      else cancelUpNext();
+    }
+  }
+
+  function createPlayer(video, autoplay) {
+    destroyPlayer();
+    const hostId = "film-yt-player";
+    els.playerHost.innerHTML = `<div id="${hostId}"></div>`;
+
+    ytPlayer = new window.YT.Player(hostId, {
+      videoId: video.youtubeId,
+      host: "https://www.youtube-nocookie.com",
+      playerVars: {
+        autoplay: autoplay ? 1 : 0,
+        rel: 0,
+        modestbranding: 1,
+        origin: YT_ORIGIN,
+      },
+      events: {
+        onReady: function () {
+          setPlayerLoading(false);
+          if (autoplay && ytPlayer && ytPlayer.playVideo) {
+            ytPlayer.playVideo();
+          }
+        },
+        onStateChange: onPlayerStateChange,
+        onError: function () {
+          setPlayerLoading(false);
+        },
+      },
+    });
+  }
+
+  function transitionToVideo(videoId, opts) {
+    opts = opts || {};
+    const video = findVideo(videoId);
+    if (!video) return;
+
+    const prevId = currentVideoId;
+    currentVideoId = videoId;
+    if (opts.isUpNext && nextMode === "random" && prevId) {
+      lastRandomId = prevId;
+    }
+
+    fillModalDetails(video);
+    const url = new URL(window.location.href);
+    url.searchParams.set("v", videoId);
+    history.replaceState(null, "", url);
+
+    setPlayerLoading(true);
+
+    if (ytPlayer && typeof ytPlayer.loadVideoById === "function") {
+      ytPlayer.loadVideoById(video.youtubeId);
+      if (opts.autoplay !== false && ytPlayer.playVideo) {
+        ytPlayer.playVideo();
+      }
+    } else if (ytApiReady) {
+      createPlayer(video, opts.autoplay !== false);
+    } else {
+      pendingVideoId = videoId;
+      loadYouTubeApi();
+    }
+
+    refreshUpNextUi();
+  }
+
+  function playInModal(videoId, autoplay) {
     const video = findVideo(videoId);
     if (!video) return;
     currentVideoId = videoId;
@@ -270,36 +529,8 @@
       return;
     }
     pendingVideoId = null;
-
-    destroyPlayer();
-    const hostId = "film-yt-player";
-    els.playerHost.innerHTML = `<div id="${hostId}"></div>`;
-
-    ytPlayer = new window.YT.Player(hostId, {
-      videoId: video.youtubeId,
-      host: "https://www.youtube-nocookie.com",
-      playerVars: {
-        rel: 0,
-        modestbranding: 1,
-        origin: YT_ORIGIN,
-      },
-      events: {
-        onReady: function () {
-          setPlayerLoading(false);
-        },
-        onStateChange: function (event) {
-          if (event.data === window.YT.PlayerState.ENDED) {
-            const cur = findVideo(currentVideoId);
-            if (!cur) return;
-            const next = pickRandomNext(cur);
-            if (next) openModal(next.id, true);
-          }
-        },
-        onError: function () {
-          setPlayerLoading(false);
-        },
-      },
-    });
+    createPlayer(video, autoplay !== false);
+    refreshUpNextUi();
   }
 
   function fillModalDetails(video) {
@@ -320,21 +551,23 @@
     }
   }
 
-  function openModal(videoId, autoplayNext) {
+  function openModal(videoId, opts) {
     const video = findVideo(videoId);
     if (!video) return;
+    const isChain =
+      opts && (opts.autoplayNext === true || opts.isUpNext === true);
 
+    lastRandomId = null;
+    clearUpNextCountdown();
     fillModalDetails(video);
     const url = new URL(window.location.href);
     url.searchParams.set("v", videoId);
     history.replaceState(null, "", url);
     els.modal.hidden = false;
     document.body.classList.add("film-modal-open");
-    if (!autoplayNext) {
-      els.modal.setAttribute("aria-hidden", "false");
-    }
-    playInModal(videoId);
-    if (els.modalClose && typeof els.modalClose.focus === "function") {
+    els.modal.setAttribute("aria-hidden", "false");
+    playInModal(videoId, true);
+    if (!isChain && els.modalClose && typeof els.modalClose.focus === "function") {
       try {
         els.modalClose.focus({ preventScroll: true });
       } catch (_) {
@@ -344,8 +577,11 @@
   }
 
   function closeModal() {
+    clearUpNextCountdown();
+    pendingUpNext = null;
     destroyPlayer();
     currentVideoId = null;
+    if (els.upnext) els.upnext.hidden = true;
     els.modal.hidden = true;
     document.body.classList.remove("film-modal-open");
     els.modal.setAttribute("aria-hidden", "true");
@@ -393,8 +629,28 @@
     if (els.modalClose) els.modalClose.addEventListener("click", closeModal);
     if (els.modalBackdrop)
       els.modalBackdrop.addEventListener("click", closeModal);
+    if (els.upnextPlay) {
+      els.upnextPlay.addEventListener("click", () => goToUpNext());
+    }
+    if (els.upnextPlayNow) {
+      els.upnextPlayNow.addEventListener("click", () => goToUpNext());
+    }
+    if (els.upnextCancel) {
+      els.upnextCancel.addEventListener("click", () => cancelUpNext());
+    }
+    if (els.upnextModes) {
+      els.upnextModes.forEach((btn) => {
+        btn.addEventListener("click", () => setUpNextMode(btn.dataset.mode));
+      });
+    }
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && !els.modal.hidden) closeModal();
+      if (e.key === "Escape" && !els.modal.hidden) {
+        if (els.upnextEnd && !els.upnextEnd.hidden) {
+          cancelUpNext();
+          return;
+        }
+        closeModal();
+      }
     });
   }
 
@@ -409,11 +665,22 @@
     window.scrollTo(0, 0);
   }
 
+  function loadUpNextMode() {
+    try {
+      const saved = sessionStorage.getItem(UPNEXT_MODE_KEY);
+      if (saved === "random" || saved === "series") nextMode = saved;
+    } catch (_) {
+      /* ignore */
+    }
+    syncUpNextModeUi();
+  }
+
   async function init() {
     if ("scrollRestoration" in history) {
       history.scrollRestoration = "manual";
     }
     keepPageAtTopUnlessDeepLink();
+    loadUpNextMode();
 
     loadYouTubeApi();
     bindEvents();
