@@ -393,6 +393,7 @@
       applyLightsDownDom(true);
     }
     syncBackButton();
+    syncPlayerSize();
   }
 
   function theatreBack() {
@@ -576,6 +577,7 @@
           }
           tryPendingLightsRestore();
           syncPlayerSize();
+          setTimeout(syncPlayerSize, 220);
         },
         onStateChange: onPlayerStateChange,
         onError: function () {
@@ -990,11 +992,21 @@
       requestAnimationFrame(() => {
         if (ytPlayer && els.player) {
           const r = els.player.getBoundingClientRect();
-          if (r.width > 60 && r.height > 30) {
+          if (r.width > 50 && r.height > 22) {
             ytPlayer.setSize(Math.round(r.width), Math.round(r.height));
           }
         }
       });
+      // Second chance shortly after — normal mode flex layout (title + action bar + upnext)
+      // can take an extra frame or two before the mount/player rect stabilizes.
+      setTimeout(function () {
+        if (ytPlayer && els.player) {
+          const r2 = els.player.getBoundingClientRect();
+          if (r2.width > 50 && r2.height > 22) {
+            ytPlayer.setSize(Math.round(r2.width), Math.round(r2.height));
+          }
+        }
+      }, 160);
     }
   }
 

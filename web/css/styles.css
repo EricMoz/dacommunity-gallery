@@ -3834,7 +3834,7 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
   position: relative;
   width: 100%;
   flex: 1 1 auto;
-  min-height: 0;
+  min-height: 380px; /* ensure grid has height in normal flow so aspect-ratio player gets a real box for YT init + syncSize (fixes default lights-on video not appearing) */
   display: grid;
   place-items: center;
   container-type: size;
@@ -4002,16 +4002,16 @@ body.film-theatre-awaiting-lights .film-theatre-footline {
   z-index: 6;
   max-width: none;
   margin: 0;
-  padding: 4.5rem 1rem 1.25rem;
+  padding: 2.8rem 1.5rem 1.25rem; /* reduced top padding + balanced sides so centered video sits closer to the action bar */
   justify-content: center;
   gap: 0;
 }
 
 .film-theatre-lights-down .film-theatre-action-bar {
   position: fixed;
-  top: 0.75rem;
-  left: 1rem;
-  right: 1rem;
+  top: 1.6rem;
+  left: 2.25rem;
+  right: 2.25rem;
   z-index: 8;
   margin: 0;
   padding: 0;
@@ -4024,11 +4024,11 @@ body.film-theatre-awaiting-lights .film-theatre-footline {
 }
 
 .film-theatre-lights-down .film-theatre-player {
-  /* Tighter immersive size so the fixed glass action bar (back + "Lights up" top-right)
-     and bottom up-next dim are never clipped or pushed off-screen. Default lights-on
-     now also reliably visible thanks to JS setSize. */
-  width: min(52vw, calc((100dvh - 10.5rem) * 16 / 9));
-  max-height: calc(100dvh - 10.5rem);
+  /* Slightly larger player (60vw / 9rem reserve) for better presence while the adjusted
+     stage padding + inset action bar keep Film hub / Lights up / up-next from feeling
+     lost in corners or too far from the video. Still safe for controls. */
+  width: min(60vw, calc((100dvh - 9rem) * 16 / 9));
+  max-height: calc(100dvh - 9rem);
   border-color: rgba(255, 204, 0, 0.22);
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 1),
