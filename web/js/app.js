@@ -35,7 +35,19 @@ let CATALOG_URL = "";
 let FULL_DATA_URL = "";
 let WALLET_URL = "";
 let META_URL = "";
+let VIDEOS_URL = "";
 let galleryMeta = null;
+let filmVideosById = null;
+
+/** Curated film hub entry points for the Community Highlights row. */
+var COMMUNITY_HIGHLIGHTS = [
+  { id: "chronicles-trailer-1", category: "daCAT Chronicles", label: "Comic Trailer #1" },
+  { id: "podcast-ep1", category: "Podcast", label: "Episode 1" },
+  { id: "dabeezy-rebirth", category: "daBeezy", label: "Episode 1: Rebirth" },
+  { id: "shiro-fishing", category: "daCAT & Shiro", label: "Ep 1 · Fishing Trip" },
+  { id: "crossover-kizuna", category: "Crossovers", label: "Kizuna vs DaCAT" },
+  { id: "mozvane-quick-stop", category: "Mozvane", label: "Mozvane (~5 min)" },
+];
 
 function initDataUrls() {
   var prefix = getDataPrefix();
@@ -43,6 +55,7 @@ function initDataUrls() {
   FULL_DATA_URL = prefix + "data/gallery_data.json";
   WALLET_URL = prefix + "data/wallet_index.json";
   META_URL = prefix + "data/gallery_meta.json";
+  VIDEOS_URL = prefix + "data/videos.json";
 }
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -152,7 +165,7 @@ function setFullDataStatus(status) {
       mergeEl.classList.remove("is-done");
       mergeEl.textContent = "Pulling full stories & transfer trails into the archive…";
     } else if (status === "live") {
-      mergeEl.textContent = "Full archive loaded — stories and activity are current for this snapshot.";
+      mergeEl.textContent = "Full archive loaded. Stories and activity match this snapshot.";
       mergeEl.classList.add("is-done");
       setTimeout(function () {
         if (fullDataStatus === "live") mergeEl.hidden = true;
@@ -160,7 +173,7 @@ function setFullDataStatus(status) {
     } else if (status === "error") {
       mergeEl.hidden = false;
       mergeEl.classList.remove("is-done");
-      mergeEl.textContent = "Could not load full details — excerpts still visible from catalog.";
+      mergeEl.textContent = "Could not load full details. Excerpts from the catalog are still visible.";
     } else {
       mergeEl.hidden = true;
     }
@@ -234,7 +247,7 @@ function updateFooterMaintenance(meta) {
   var updated = span && span.textContent !== "—" ? span.textContent : "—";
   var extra = "";
   if (meta.refresh && meta.refresh.status === "failed") {
-    extra = " · ⚠ refresh failed — renew OPENSEA_API_KEY secret";
+    extra = " · refresh failed: renew OPENSEA_API_KEY secret";
   } else if (meta.opensea_key && meta.opensea_key.rotation_reminder_days) {
     extra =
       " · renew API key secret about every " +
@@ -652,7 +665,7 @@ function copyFullAddress(address) {
   if (!address) return;
   var full = address.toLowerCase();
   function done(ok) {
-    showCopyToast(ok ? "Address copied" : "Copy failed — select and copy manually");
+    showCopyToast(ok ? "Address copied" : "Copy failed. Select and copy manually.");
   }
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(full).then(function () { done(true); }).catch(function () { done(false); });
@@ -1208,7 +1221,7 @@ function bindCollectorResultActions(entry) {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(url).then(
           function () {
-            showCopyToast("Share link copied — send your daCATs to the world");
+            showCopyToast("Share link copied. Send your daCATs to the world.");
           },
           function () {
             showCopyToast("Copy this URL: " + url);
@@ -1387,7 +1400,7 @@ async function resolveEnsToAddress(name) {
 function lookupWallet(identifier) {
   if (!walletIndex || !walletIndex.by_address) {
     return {
-      error: "Collector index still loading — try again in a moment.",
+      error: "Collector index is still loading. Try again in a moment.",
       title: "Archive warming up",
     };
   }
@@ -1415,7 +1428,7 @@ function lookupWallet(identifier) {
   var entry = walletIndex.by_address[address];
   if (!entry) {
     return {
-      error: "This wallet isn't in our daCommunity index — no pieces held in the daily snapshot.",
+      error: "This wallet is not in the daCommunity index. No pieces held in the daily snapshot.",
       title: "No daCATs here yet",
       hint: "They may still collect elsewhere, or the next refresh may catch a new holder.",
       address: address,
@@ -1628,7 +1641,7 @@ function renderHeroNote(collection) {
   if (!note) return;
   var steward = collection.creator_ens || "dacatdreams.base.eth";
   note.innerHTML =
-    "Originally minted on Rodeo. Contract on Base — stewarded by " +
+    "Originally minted on Rodeo. Contract on Base, stewarded by " +
     '<strong class="steward-name">' + escapeHtml(steward) + "</strong>.";
   note.hidden = false;
 }
@@ -1781,7 +1794,7 @@ function renderBrowseMeta(filtered, total) {
       countEl.textContent = total + " piece" + (total === 1 ? "" : "s") + " in the archive";
     } else {
       countEl.textContent =
-        "Showing " + filtered + " of " + total + " — the rest are hiding in the noise";
+        "Showing " + filtered + " of " + total + " pieces in the archive";
     }
   }
   var parts = [];
@@ -1873,29 +1886,78 @@ function renderGallerySkeletons(count) {
   }
 }
 
-function renderFeatured(allItems) {
+function filmHubUrl(videoId) {
+  return getDataPrefix() + "film/?v=" + encodeURIComponent(videoId);
+}
+
+async function loadFilmCatalog() {
+  if (filmVideosById) return filmVideosById;
+  try {
+    var data = await fetchJson(VIDEOS_URL, 15000);
+    filmVideosById = {};
+    (data.videos || []).forEach(function (v) {
+      filmVideosById[v.id] = v;
+    });
+    return filmVideosById;
+  } catch (e) {
+    console.warn("Film catalog for highlights:", e);
+    filmVideosById = {};
+    return filmVideosById;
+  }
+}
+
+function renderCommunityHighlights() {
   var rail = $("#featured-rail");
   var track = $("#rail-track");
-  var featured = allItems.filter(function (i) { return i.listed; }).slice(0, 10);
-  if (!featured.length) {
+  if (!rail || !track || !filmVideosById) {
+    if (rail) rail.hidden = true;
+    return;
+  }
+
+  var cards = [];
+  COMMUNITY_HIGHLIGHTS.forEach(function (spec) {
+    var video = filmVideosById[spec.id];
+    if (video) cards.push({ spec: spec, video: video });
+  });
+
+  if (!cards.length) {
     rail.hidden = true;
     return;
   }
+
   rail.hidden = false;
   track.innerHTML = "";
-  featured.forEach(function (item) {
-    var btn = document.createElement("button");
-    btn.className = "rail-card";
-    btn.type = "button";
-    var slot = document.createElement("div");
-    fillMediaSlot(slot, item);
-    btn.appendChild(slot);
-    var cap = document.createElement("div");
-    cap.className = "rail-card-caption";
-    cap.innerHTML = formatPieceTitleHtml(itemTitle(item));
-    btn.appendChild(cap);
-    btn.addEventListener("click", function () { openDetail(item); });
-    track.appendChild(btn);
+  cards.forEach(function (entry) {
+    var spec = entry.spec;
+    var video = entry.video;
+    var link = document.createElement("a");
+    link.className = "highlight-card";
+    link.href = filmHubUrl(video.id);
+    link.setAttribute("role", "listitem");
+    link.setAttribute(
+      "aria-label",
+      spec.category + ": " + spec.label + ". Watch on film hub."
+    );
+    var duration = video.duration || "";
+    link.innerHTML =
+      '<span class="highlight-card-thumb">' +
+      '<img src="' +
+      escapeHtml(video.thumbnail) +
+      '" alt="" loading="lazy" width="320" height="180" />' +
+      '<span class="highlight-card-play" aria-hidden="true"></span>' +
+      (duration
+        ? '<span class="highlight-card-duration">' + escapeHtml(duration) + "</span>"
+        : "") +
+      "</span>" +
+      '<span class="highlight-card-body">' +
+      '<span class="highlight-card-category">' +
+      escapeHtml(spec.category) +
+      "</span>" +
+      '<span class="highlight-card-title">' +
+      escapeHtml(spec.label) +
+      "</span>" +
+      "</span>";
+    track.appendChild(link);
   });
 }
 
@@ -1917,9 +1979,9 @@ function renderGallery(items) {
         lead.textContent =
           "Nothing matches for " +
           galleryCollectorView.label +
-          " with the current filters — clear collector view or relax search.";
+          " with the current filters. Clear collector view or relax your search.";
       } else if (lead) {
-        lead.textContent = "The chaos is elsewhere — widen your search or clear a filter.";
+        lead.textContent = "Nothing matched that search. Try different words or clear your filters.";
       }
     }
     return;
@@ -2270,7 +2332,7 @@ function refreshView() {
     var rail = $("#featured-rail");
     if (rail) rail.hidden = true;
   } else {
-    renderFeatured(galleryData.items);
+    renderCommunityHighlights();
   }
   renderGallery(filtered);
 }
@@ -2439,6 +2501,10 @@ async function init() {
     loadGalleryMeta().then(function () {
       renderDataFreshness();
       updateFooterMaintenance(galleryMeta);
+    });
+
+    loadFilmCatalog().then(function () {
+      if (!galleryCollectorView) renderCommunityHighlights();
     });
 
     loadWalletIndex().then(function () {

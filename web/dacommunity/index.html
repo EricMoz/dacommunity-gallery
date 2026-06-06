@@ -2,11 +2,11 @@
 <!-- daCommunity gallery (from /collections/). Paths: data-base + initDataUrls() in app.js. -->
 <html lang="en">
 <head>
-  <meta name="site-build" content="20260606-3" />
+  <meta name="site-build" content="20260606-4" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>daCommunity Gallery · daCAT</title>
-  <meta name="description" content="Browse daCAT daCommunity NFTs — stories, holders, transfers, and OpenSea listings." />
+  <meta name="description" content="Browse the daCommunity NFT archive: stories, collectors, transfers, and community film highlights." />
   <link rel="icon" href="../assets/brand/dacat-icon-64.png" type="image/png" />
   <link rel="manifest" href="../manifest.webmanifest" />
   <meta name="theme-color" content="#0a0a0a" />
@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/styles.css?v=20260606-3" />
+  <link rel="stylesheet" href="../css/styles.css?v=20260606-4" />
 </head>
 <body data-base="../">
   <header class="site-header">
@@ -43,7 +43,7 @@
         <p class="eyebrow">Legendary crypto culture</p>
         <h1>daCommunity <span class="accent">NFT Archive</span></h1>
         <p class="hero-lead">
-          Curated AI art from Telegram — browse stories, transfers, listings, and any collector wallet.
+          Telegram-born stories, collector wallets, and the wider daCAT film world. Browse the archive, find your pieces, follow the lore.
         </p>
         <p class="hero-note" id="hero-note" hidden></p>
         <div class="data-freshness" id="data-freshness" aria-live="polite">
@@ -53,11 +53,11 @@
               <strong>Data last updated</strong>
               <time id="data-freshness-time" datetime="">—</time>
             </p>
-            <p class="data-freshness-hint">Daily snapshot from OpenSea — not live on-chain. Stories &amp; transfers fill in after the first load.</p>
+            <p class="data-freshness-hint">Updated daily from OpenSea. Not live on-chain. Full stories and transfers appear after the first load.</p>
           </div>
           <button type="button" class="data-freshness-toggle" id="data-freshness-toggle" aria-expanded="false" aria-controls="data-freshness-detail">Why?</button>
           <p class="data-freshness-detail" id="data-freshness-detail" hidden>
-            GitHub Actions refreshes ownership, listings, and activity once per day. What you see here is that frozen moment — enough to browse safely without connecting a wallet or calling OpenSea from your browser.
+            GitHub Actions refreshes ownership, listings, and activity once per day. You get a safe snapshot to browse without connecting a wallet or calling OpenSea from your browser.
           </p>
         </div>
       </div>
@@ -94,7 +94,7 @@
         <div class="collector-hub-title-row">
           <div>
             <h2 class="collector-hub-title">Find your daCATs</h2>
-            <p class="collector-hub-lead">Look up any collector — see every piece they hold in the official archive. No wallet connect, just belonging.</p>
+            <p class="collector-hub-lead">Look up any collector and see every piece they hold in the archive. No wallet connect required.</p>
           </div>
           <button type="button" class="btn btn-outline" id="view-collectors-btn" hidden>All collectors</button>
         </div>
@@ -131,7 +131,7 @@
         <div class="browse-head-row">
           <div>
             <h2 class="browse-title">Search the archive</h2>
-            <p class="browse-lead">Name, story, token # — or filter the grid below.</p>
+            <p class="browse-lead">Search by name, story, or token number. Filter and sort the grid below.</p>
           </div>
           <a class="browse-collector-jump" href="#wallet-panel">Find your daCATs</a>
         </div>
@@ -195,15 +195,21 @@
     </section>
 
     <div class="gallery-focus-zone" id="gallery-focus-zone">
-      <section class="featured-rail panel" id="featured-rail" hidden>
-        <h2 class="section-label">Listed on OpenSea</h2>
-        <div class="rail-track" id="rail-track"></div>
+      <section class="highlights-rail panel" id="featured-rail" hidden aria-labelledby="highlights-heading">
+        <header class="highlights-rail-head">
+          <div class="highlights-rail-copy">
+            <h2 class="highlights-rail-title" id="highlights-heading">Community Highlights</h2>
+            <p class="highlights-rail-lead">Six doorways into the community film hub. Pick a series and start watching.</p>
+          </div>
+          <a class="highlights-rail-link" href="../film/">Browse all films</a>
+        </header>
+        <div class="highlights-track" id="rail-track" role="list"></div>
       </section>
 
       <section class="gallery-list" id="gallery-list" aria-label="Gallery" aria-busy="true"></section>
       <div class="gallery-empty panel" id="gallery-empty" hidden>
         <p class="gallery-empty-title">Nothing in this slice of the archive</p>
-        <p class="gallery-empty-lead">The chaos is elsewhere — widen your search or clear a filter.</p>
+        <p class="gallery-empty-lead">Nothing matched that search. Try different words or clear your filters.</p>
         <button type="button" class="btn btn-dark" id="gallery-empty-reset">Show all pieces</button>
       </div>
     </div>
@@ -265,19 +271,19 @@
     <div class="collectors-modal-card" role="dialog" aria-modal="true" aria-labelledby="collectors-modal-title">
       <button type="button" class="collectors-modal-close" id="collectors-modal-close" aria-label="Close">×</button>
       <h2 id="collectors-modal-title">daCommunity collectors</h2>
-      <p class="collectors-modal-lead">Tap a name to look up their holdings. Updated daily from OpenSea.</p>
+      <p class="collectors-modal-lead">Tap a collector to see their holdings. Index updates daily.</p>
       <input type="search" id="collectors-search" placeholder="Filter by name or 0x…" autocomplete="off" aria-label="Search collectors" />
       <div class="collectors-list" id="collectors-list" aria-live="polite"></div>
     </div>
   </div>
 
   <footer class="site-footer">
-    <p>OpenSea ownership &amp; listings · Refreshed daily · Updated <span id="footer-updated">—</span></p>
+    <p>OpenSea ownership and listings · Refreshed daily · Updated <span id="footer-updated">—</span></p>
     <p><a href="https://www.dacat.fun/">dacat.fun</a> · <a href="https://www.dacatworld.com/">dacatworld</a></p>
-    <p class="site-version">Site build 20260606-3</p>
+    <p class="site-version">Site build 20260606-4</p>
   </footer>
 
-  <script src="../js/pwa-register.js?v=20260606-3" defer></script>
-  <script src="../js/app.js?v=20260606-3" defer></script>
+  <script src="../js/pwa-register.js?v=20260606-4" defer></script>
+  <script src="../js/app.js?v=20260606-4" defer></script>
 </body>
 </html>
