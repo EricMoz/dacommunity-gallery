@@ -105,9 +105,11 @@ Nav markup is **duplicated** in each `web/**/index.html` (no shared partial yet)
 | Sticky escape bar | `.collector-escape-bar` at `top: var(--site-header-h)` |
 | Overflow | Do not set `overflow: hidden` on `.collector-theater-frame` — breaks sticky |
 | Share URL | `syncWalletShareUrl()` keeps `?wallet=…#wallet-panel` canonical |
-| Deep-link scroll | `?wallet=` URLs pin to top before JS, then `scrollToElementBelowHeader` on escape bar |
+| Deep-link scroll | `?wallet=` URLs pin to top (inline + `applyWalletFromUrl`); portfolio mode uses `scrollTo(0)` after hero hides |
 
 ### Wallet deep-link QA (`?wallet=0x…#wallet-panel`)
+
+**Scroll pitfall:** opening a portfolio from a scrolled archive leaves the old `scrollY` while the hero collapses — looks like a sticky-header offset. Fix: `scrollToCollectorTheaterTop` resets to `top: 0` when `galleryCollectorView` is active (refresh worked because inline `pinTop` already had `scrollY=0`).
 
 - [ ] Hard-refresh share URL; escape bar flush under nav (no gap, no overscroll).
 - [ ] “Your collection” + grid visible; hero hidden.
@@ -171,3 +173,4 @@ Film **Theatre mode** (`web/data/theatre_registry.json`, `theatre.js`) — see *
 | 20260606-11 | Search does not follow scroll | `.film-sticky-deck { position: static }` inside `.site-top-stack`; `.film-theater .site-top-stack { position: relative }` overrode sticky |
 | 20260606-12 | Restored follow-scroll + flush top | Dual sticky; removed `position: relative` on sticky chrome; restored `syncSiteHeaderHeight` + `ResizeObserver` |
 | 20260606-13 | Wallet deep-link misalignment | `#wallet-panel` moved to theater-top anchor; `scrollToElementBelowHeader`; suppressed hash scroll jump on `?wallet=` |
+| 20260606-20 | Wallet link offset on navigation (refresh OK) | Hero collapse left stale `scrollY`; portfolio scroll now `scrollTo(0)` + `pinWalletDeepLinkScroll` |

@@ -781,23 +781,34 @@ function setGalleryCollectorView(entry, opts) {
   renderCollectorFocusUi();
   refreshView();
   if (opts.scroll === false) return;
-  var behavior = opts.scrollBehavior || "smooth";
-  requestAnimationFrame(function () {
-    requestAnimationFrame(function () {
-      scrollToCollectorTheaterTop({ behavior: behavior });
-    });
-  });
+  scrollToCollectorTheaterTop({ behavior: opts.scrollBehavior || "smooth" });
 }
 
-/** Scroll to the top of the collector theater (escape bar), not mid-panel. */
+/**
+ * Scroll to the top of the collector theater (escape bar).
+ * Portfolio mode hides the hero — keep scrollY at 0 so we are not left at a prior archive depth.
+ */
 function scrollToCollectorTheaterTop(opts) {
   opts = opts || {};
-  var bar = $("#collector-escape-bar");
-  if (bar && !bar.hidden) {
-    scrollToElementBelowHeader(bar, opts);
-    return;
+  var behavior = opts.behavior === "instant" ? "auto" : opts.behavior || "smooth";
+
+  function run() {
+    syncSiteHeaderHeight();
+    if (galleryCollectorView) {
+      window.scrollTo({ top: 0, behavior: behavior });
+      return;
+    }
+    var bar = $("#collector-escape-bar");
+    if (bar && !bar.hidden) {
+      scrollToElementBelowHeader(bar, { behavior: behavior });
+      return;
+    }
+    scrollToCollectorCollection({ behavior: behavior });
   }
-  scrollToCollectorCollection(opts);
+
+  requestAnimationFrame(function () {
+    requestAnimationFrame(run);
+  });
 }
 
 /** Reset search/filter/sort inside an active collector view (stay in theater mode). */
@@ -1182,12 +1193,22 @@ function runWalletLookupFromAddress(address, lookupValue) {
   renderWalletLookup(input.value, { updateUrl: true, scrollBehavior: "smooth" });
 }
 
+function pinWalletDeepLinkScroll() {
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  window.scrollTo(0, 0);
+}
+
 async function applyWalletFromUrl() {
   var q = parseWalletFromUrl();
   if (!q) return;
+  pinWalletDeepLinkScroll();
   var input = $("#wallet-input");
   if (input) input.value = q;
   await renderWalletLookup(q, { updateUrl: true, scrollBehavior: "instant" });
+  pinWalletDeepLinkScroll();
+  requestAnimationFrame(function () {
+    requestAnimationFrame(pinWalletDeepLinkScroll);
+  });
 }
 
 function collectorRank(address) {

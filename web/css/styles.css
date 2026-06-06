@@ -5017,7 +5017,7 @@ body.has-collector-view .collector-theater-vignette {
   pointer-events: none;
 }
 
-.collector-theater-frame.is-active > .collector-escape-bar:first-child {
+.collector-theater-frame.is-active > .collector-escape-bar {
   border-radius: calc(var(--radius) + 1px) calc(var(--radius) + 1px) 0 0;
 }
 
