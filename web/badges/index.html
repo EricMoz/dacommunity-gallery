@@ -2,18 +2,29 @@
 <!-- Badges placeholder (Ethereum mainnet collection TBD). Linked from collections hub. -->
 <html lang="en">
 <head>
-  <meta name="site-build" content="20260606-13" />
+  <meta name="site-build" content="20260606-14" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Badges · Coming soon · daCAT</title>
-  <meta name="description" content="daCAT community Badges — coming soon." />
+  <meta name="description" content="daCAT community Badges on Ethereum — 1:1 holder drops crafted with the clowder. Coming soon." />
   <link rel="icon" href="../assets/brand/dacat-icon-64.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/styles.css?v=20260606-13" />
+  <link rel="stylesheet" href="../css/styles.css?v=20260606-14" />
 </head>
-<body class="hub-page badges-page">
+<body class="hub-page badges-page" data-collection="badges">
+  <div class="badges-cosmos" aria-hidden="true">
+    <div class="badges-starfield"></div>
+    <div class="badges-cosmos-glow"></div>
+    <div class="badges-soon-orbit">
+      <span class="orbit-badge">★</span>
+      <span class="orbit-badge orbit-badge-2">✦</span>
+      <span class="orbit-badge orbit-badge-3">★</span>
+      <span class="orbit-badge orbit-badge-4">✧</span>
+    </div>
+  </div>
+
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="https://www.dacat.fun/" target="_blank" rel="noopener" aria-label="daCAT — Badges">
@@ -33,27 +44,32 @@
 
   <main class="badges-soon">
     <section class="badges-soon-card panel">
-      <p class="eyebrow">New collection</p>
-      <h1>Badges <span class="accent">coming soon</span></h1>
+      <div class="badges-soon-hero-glyph" aria-hidden="true">
+        <span class="badges-hero-star">★</span>
+      </div>
+      <p class="eyebrow badges-soon-eyebrow">Community drop · Ethereum</p>
+      <h1>Badges <span class="accent badges-soon-shimmer">coming soon</span></h1>
       <p class="badges-soon-lead">
-        1:1 community badges on Ethereum — crafted for long-term holders and being wired up now.
+        1:1 holder badges for the clowder — crafted for long-term collectors building their own legend on-chain.
       </p>
-      <p class="badges-soon-note">Gallery and mint details will land here when the collection is ready.</p>
+      <ul class="badges-soon-teasers" aria-label="What to expect">
+        <li>Ethereum mainnet</li>
+        <li>1:1 community art</li>
+        <li>Holder-first drops</li>
+      </ul>
+      <p class="badges-soon-note">Gallery + mint details land here when the collection goes live. The community is already cooking.</p>
       <div class="badges-soon-actions">
         <a class="btn btn-dark" href="../collections/">← Collections</a>
-        <a class="btn btn-accent" href="../">Home</a>
+        <a class="btn btn-accent" href="https://t.me/daCat_token" target="_blank" rel="noopener">Join TG</a>
       </div>
     </section>
-    <div class="badges-soon-orbit" aria-hidden="true">
-      <span class="orbit-badge">★</span>
-      <span class="orbit-badge orbit-badge-2">✦</span>
-      <span class="orbit-badge orbit-badge-3">★</span>
-    </div>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer badges-footer">
     <p><a href="https://www.dacat.fun/">dacat.fun</a> · <a href="https://www.dacatworld.com/">dacatworld</a></p>
-      <p class="site-version">Site build 20260606-13</p>
+    <p class="site-version">Site build 20260606-14</p>
   </footer>
+
+  <script src="../js/badges-soon.js?v=20260606-14" defer></script>
 </body>
 </html>

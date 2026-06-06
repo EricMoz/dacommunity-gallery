@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "updated": "2026-06-06",
+  "collections": [
+    {
+      "id": "dacommunity",
+      "name": "daCommunity NFT Archive",
+      "status": "live",
+      "chain": "base",
+      "contract": "0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1",
+      "opensea_slug": "rodeo-posts-12142",
+      "route": "/dacommunity/",
+      "data": {
+        "gallery": "gallery_data.json",
+        "catalog": "gallery_catalog.json",
+        "wallet_index": "wallet_index.json"
+      },
+      "features": ["gallery", "wallet_lookup", "collector_view", "opensea_sync", "share_wallet_url"],
+      "theme": {
+        "accent": "#ffcc00",
+        "surface": "light_archive",
+        "collector_surface": "dark_cinema"
+      }
+    },
+    {
+      "id": "badges",
+      "name": "Badges",
+      "status": "coming_soon",
+      "chain": "ethereum",
+      "contract": null,
+      "opensea_slug": null,
+      "route": "/badges/",
+      "data": null,
+      "features": ["preview_only"],
+      "theme": {
+        "accent": "#ffcc00",
+        "accent_glow": "#ffd633",
+        "surface": "cosmic_soon",
+        "starfield": true
+      }
+    }
+  ]
+}

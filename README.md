@@ -11,7 +11,7 @@ Check the footer on any page for **Site build YYYYMMDD-N** (e.g. `20260605-8`). 
 | `/` | **Home** — Collections, film, analytics |
 | `/collections/` | **Collections** — daCommunity + Badges picker |
 | `/dacommunity/` | Gallery, search/filters, collector lookup, shareable `?wallet=` links |
-| `/badges/` | Badges coming-soon placeholder |
+| `/badges/` | **Badges** — cosmic coming-soon preview (Ethereum drop) |
 | `/analytics/` | Cat Coin market cap bar chart race (Flourish embed) |
 | `/film/` | **Films hub** — sticky search/filters, series grid, in-page player |
 | `/film/mozvane/` | Mozvane community film (YouTube) |
@@ -41,6 +41,7 @@ OpenSea API v2  ──►  Python (backend/)  ──►  web/data/*.json
 
 | Piece | Role |
 |-------|------|
+| **`collections_registry.py`** | Load `web/data/collections_registry.json` — multi-collection manifest |
 | **`fetch_gallery_data.py`** | Full refresh → `gallery_data.json`, `wallet_index.json` |
 | **`build_catalog.py`** | Slim `gallery_catalog.json` for fast first paint |
 | **`gallery_meta.json`** | Refresh status / staleness banner |
@@ -147,7 +148,8 @@ web/              Static site (HTML, CSS, JS, data, assets)
   VERSION.txt     Deploy build id (auto-bumped in CI)
 .github/workflows deploy-pages.yml, refresh-data.yml
 scripts/          bump_deploy_version.py, refresh.ps1, verify_piece_activity.py
-docs/             MAINTENANCE.md — QA, sticky layout, nav, regression notes
+docs/             MAINTENANCE.md, COLLECTIONS.md (multi-collection registry)
+web/data/collections_registry.json   Live + upcoming collection manifest
 ```
 
 ## CI

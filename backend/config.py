@@ -1,15 +1,26 @@
 """
 Shared constants for the OpenSea fetch pipeline.
 
-Contract and collection slug are fixed for this gallery; change here if the
-collection migrates again (Rodeo → OpenSea kept the same contract on Base).
+Primary collection values are sourced from web/data/collections_registry.json.
+Legacy imports (COLLECTION_SLUG, CONTRACT_ADDRESS, …) remain for existing scripts.
 """
 
-COLLECTION_SLUG = "rodeo-posts-12142"
-CONTRACT_ADDRESS = "0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1"
-CHAIN = "base"
+from __future__ import annotations
+
+try:
+    from collections_registry import get_primary_live
+
+    _PRIMARY = get_primary_live()
+    COLLECTION_SLUG = _PRIMARY.get("opensea_slug") or "rodeo-posts-12142"
+    CONTRACT_ADDRESS = _PRIMARY.get("contract") or "0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1"
+    CHAIN = _PRIMARY.get("chain") or "base"
+except Exception:
+    COLLECTION_SLUG = "rodeo-posts-12142"
+    CONTRACT_ADDRESS = "0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1"
+    CHAIN = "base"
+
 OPENSEA_BASE = "https://api.opensea.io/api/v2"
-OPENSEA_COLLECTION_URL = "https://opensea.io/collection/rodeo-posts-12142"
+OPENSEA_COLLECTION_URL = f"https://opensea.io/collection/{COLLECTION_SLUG}"
 
 # Rodeo decommissioned; collection migrated — contract address unchanged on Base
 COLLECTION_NOTE = (

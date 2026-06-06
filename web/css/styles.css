@@ -2410,17 +2410,110 @@ button.stat:focus-visible {
   border-color: #222;
 }
 
-/* Badges coming soon page */
+/* Badges coming soon — cosmic preview (registry theme: cosmic_soon) */
+.badges-page {
+  background: #050505;
+  color: #f2f2f2;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.badges-page .site-header,
+.badges-page .badges-soon,
+.badges-page .badges-footer {
+  position: relative;
+  z-index: 2;
+}
+
+.badges-cosmos {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 18%, rgba(255, 204, 0, 0.14), transparent 58%),
+    radial-gradient(ellipse 120% 80% at 50% 110%, rgba(255, 204, 0, 0.06), transparent 52%),
+    #050505;
+}
+
+.badges-starfield {
+  position: absolute;
+  inset: 0;
+}
+
+.badges-star {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--yellow);
+  box-shadow: 0 0 6px rgba(255, 204, 0, 0.65);
+  animation: badges-star-twinkle 3s ease-in-out infinite;
+  transform: translateZ(0);
+}
+
+.badges-star--bright {
+  background: #fff6c2;
+  box-shadow: 0 0 10px rgba(255, 230, 120, 0.9), 0 0 18px rgba(255, 204, 0, 0.45);
+}
+
+.badges-cosmos-glow {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  width: min(92vw, 520px);
+  height: min(92vw, 520px);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 204, 0, 0.12) 0%, transparent 68%);
+  animation: badges-glow-pulse 5s ease-in-out infinite;
+}
+
+.badges-soon-orbit {
+  position: absolute;
+  inset: 0;
+}
+
+.orbit-badge {
+  position: absolute;
+  font-size: clamp(1.75rem, 6vw, 2.75rem);
+  color: var(--yellow);
+  text-shadow:
+    0 0 12px rgba(255, 204, 0, 0.75),
+    0 0 28px rgba(255, 204, 0, 0.35);
+  animation: orbit-float 5.5s ease-in-out infinite;
+  opacity: 0.92;
+}
+
+.orbit-badge { top: 8%; left: 6%; }
+.orbit-badge-2 { top: 22%; right: 5%; font-size: clamp(2rem, 7vw, 3.25rem); animation-delay: -1.4s; }
+.orbit-badge-3 { bottom: 18%; left: 8%; animation-delay: -2.8s; }
+.orbit-badge-4 { bottom: 12%; right: 10%; font-size: clamp(1.5rem, 5vw, 2.35rem); animation-delay: -4.1s; opacity: 0.78; }
+
+@keyframes badges-star-twinkle {
+  0%, 100% { opacity: 0.35; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+@keyframes badges-glow-pulse {
+  0%, 100% { opacity: 0.55; transform: translate(-50%, -50%) scale(0.96); }
+  50% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.04); }
+}
+
+@keyframes orbit-float {
+  0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+  50% { transform: translateY(-14px) rotate(10deg) scale(1.06); }
+}
+
 .badges-page .badges-soon {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 680px;
+  max-width: 720px;
   margin: 0 auto;
-  padding: 2rem 1.25rem 2.75rem;
-  position: relative;
+  padding: clamp(1.25rem, 4vw, 2rem) 1.15rem 2.5rem;
+  min-height: min(72vh, 640px);
 }
 
 .badges-soon-card {
@@ -2428,8 +2521,13 @@ button.stat:focus-visible {
   z-index: 1;
   width: 100%;
   text-align: center;
-  padding: 2.1rem 1.65rem 1.85rem;
-  box-shadow: 10px 10px 0 var(--black);
+  padding: clamp(1.65rem, 4.5vw, 2.2rem) clamp(1.25rem, 4vw, 1.85rem) clamp(1.5rem, 4vw, 1.95rem);
+  background: linear-gradient(165deg, #fffef6 0%, var(--white) 48%);
+  border: 3px solid var(--black);
+  box-shadow:
+    10px 10px 0 var(--black),
+    0 0 0 1px rgba(255, 204, 0, 0.35),
+    0 0 48px rgba(255, 204, 0, 0.12);
   transition:
     transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.22s cubic-bezier(0.22, 1, 0.36, 1);
@@ -2437,30 +2535,108 @@ button.stat:focus-visible {
 
 .badges-soon-card:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 12px 12px 0 var(--black);
+  box-shadow:
+    12px 12px 0 var(--black),
+    0 0 0 1px rgba(255, 204, 0, 0.5),
+    0 0 64px rgba(255, 204, 0, 0.18);
+}
+
+.badges-soon-hero-glyph {
+  margin: 0 auto 0.65rem;
+  width: 4.5rem;
+  height: 4.5rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff9d6, var(--yellow) 58%, #e6b800 100%);
+  border: 3px solid var(--black);
+  box-shadow: 4px 4px 0 var(--black);
+  animation: badges-hero-pulse 3.2s ease-in-out infinite;
+}
+
+.badges-hero-star {
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--black);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+@keyframes badges-hero-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.badges-soon-eyebrow {
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
 }
 
 .badges-soon-card h1 {
   font-family: var(--font-display);
-  font-size: clamp(1.75rem, 5vw, 2.35rem);
-  margin: 0.35rem 0 0.85rem;
-  line-height: 1.12;
+  font-size: clamp(1.85rem, 6.5vw, 2.45rem);
+  margin: 0.2rem 0 0.75rem;
+  line-height: 1.1;
+  color: var(--black);
+}
+
+.badges-soon-shimmer {
+  display: inline-block;
+  background: linear-gradient(
+    105deg,
+    var(--yellow-dark) 0%,
+    #fff4a8 42%,
+    var(--yellow) 55%,
+    var(--yellow-dark) 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: badges-shimmer 4s linear infinite;
+}
+
+@keyframes badges-shimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 220% center; }
 }
 
 .badges-soon-lead {
-  font-size: 1rem;
+  font-size: clamp(0.95rem, 2.8vw, 1.05rem);
   color: var(--text-muted);
-  margin: 0 auto 0.65rem;
-  max-width: 38ch;
+  margin: 0 auto 0.85rem;
+  max-width: 40ch;
   line-height: 1.55;
+}
+
+.badges-soon-teasers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem;
+  margin: 0 auto 0.85rem;
+  padding: 0;
+  list-style: none;
+  max-width: 36rem;
+}
+
+.badges-soon-teasers li {
+  padding: 0.3rem 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: rgba(255, 204, 0, 0.35);
+  border: 2px solid var(--black);
+  border-radius: 999px;
 }
 
 .badges-soon-note {
   font-size: 0.84rem;
-  margin: 0 auto 1.4rem;
-  max-width: 36ch;
+  margin: 0 auto 1.35rem;
+  max-width: 38ch;
   color: var(--text-muted);
-  opacity: 0.9;
+  line-height: 1.5;
 }
 
 .badges-soon-actions {
@@ -2472,6 +2648,7 @@ button.stat:focus-visible {
 }
 
 .badges-soon-actions .btn {
+  min-height: 2.65rem;
   transition:
     transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.18s ease,
@@ -2488,28 +2665,18 @@ button.stat:focus-visible {
   box-shadow: 3px 3px 0 var(--black);
 }
 
-.badges-soon-orbit {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  z-index: 0;
+.badges-page .site-footer {
+  background: #050505;
+  border-top: 1px solid rgba(255, 204, 0, 0.2);
+  color: #aaa;
 }
 
-.orbit-badge {
-  position: absolute;
-  font-size: 2rem;
-  color: rgba(10, 10, 10, 0.1);
-  animation: orbit-float 6s ease-in-out infinite;
+.badges-page .site-footer a {
+  color: var(--yellow);
 }
 
-.orbit-badge { top: 10%; left: 10%; }
-.orbit-badge-2 { top: 58%; right: 8%; animation-delay: -2s; font-size: 2.5rem; }
-.orbit-badge-3 { bottom: 14%; left: 44%; animation-delay: -4s; }
-
-@keyframes orbit-float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-12px) rotate(8deg); }
+.badges-page .site-version {
+  color: #666;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2519,7 +2686,11 @@ button.stat:focus-visible {
   .collection-card-cta,
   .badges-soon-card,
   .badges-soon-actions .btn,
-  .orbit-badge {
+  .orbit-badge,
+  .badges-star,
+  .badges-cosmos-glow,
+  .badges-soon-hero-glyph,
+  .badges-soon-shimmer {
     transition: none;
     animation: none;
   }
@@ -2531,6 +2702,34 @@ button.stat:focus-visible {
   .badges-soon-card:hover,
   .badges-soon-actions .btn:hover {
     transform: none;
+  }
+
+  .badges-star {
+    opacity: 0.75;
+    transform: none;
+  }
+}
+
+@media (max-width: 719px) {
+  .badges-page .badges-soon {
+    min-height: calc(100vh - 8.5rem);
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+  .orbit-badge { top: 5%; left: 3%; }
+  .orbit-badge-2 { top: 14%; right: 2%; }
+  .orbit-badge-3 { bottom: 22%; left: 4%; }
+  .orbit-badge-4 { bottom: 8%; right: 4%; }
+
+  .badges-soon-teasers li {
+    font-size: 0.68rem;
+    padding: 0.28rem 0.6rem;
+  }
+
+  .badges-soon-actions .btn {
+    flex: 1 1 9rem;
+    justify-content: center;
   }
 }
 

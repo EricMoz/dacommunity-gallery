@@ -142,6 +142,12 @@ After deploy (~1–2 min):
 
 ---
 
+## Multi-collection prep
+
+Registry-driven collections (`web/data/collections_registry.json`) — see **`docs/COLLECTIONS.md`** for adding live drops, per-community themes, and feature flags. Hub cards are still manual until a registry-driven hub ships.
+
+---
+
 ## Known technical debt
 
 | Item | Risk | Suggested follow-up |
