@@ -123,61 +123,55 @@ a:hover { color: var(--blue-accent); }
   border-color: #333;
 }
 
-.nav-btn-accent {
-  background: var(--yellow);
-  color: var(--black);
-  border-color: var(--black);
+/* Hub links — same dark pill; hover gold; active page = sole solid yellow */
+.nav-btn-collections,
+.nav-btn-chart {
+  border-color: #3a3a3a;
 }
 
-/* Hub nav — collections solid; film cinema dashed; wallet + MC race dashed yellow */
-.nav-btn-collections {
-  border: 2px solid #3d3d3d;
-}
-
-.nav-btn-collections:hover {
+.nav-btn-collections:hover,
+.nav-btn-chart:hover,
+.nav-btn-film:hover {
   border-color: var(--yellow);
   color: var(--yellow);
 }
 
 .nav-btn-film {
-  background: transparent;
-  color: #e0e0e0;
-  border: 2px dashed rgba(255, 255, 255, 0.4);
+  background: var(--black-soft);
+  color: #e8e8e8;
+  border: 2px dashed rgba(255, 255, 255, 0.32);
 }
 
 .nav-btn-film:hover {
-  border-color: var(--yellow);
-  color: var(--yellow);
-  background: rgba(255, 204, 0, 0.08);
+  background: rgba(255, 204, 0, 0.06);
 }
 
-.nav-btn-wallet,
-.nav-btn-chart {
+/* My daCATs — dashed invite when elsewhere; solid only when this page is active */
+.nav-btn-wallet:not(.is-active) {
   background: transparent;
   color: var(--yellow);
-  border: 2px dashed rgba(255, 204, 0, 0.75);
+  border: 2px dashed rgba(255, 204, 0, 0.65);
 }
 
-.nav-btn-wallet:hover,
-.nav-btn-chart:hover {
-  background: rgba(255, 204, 0, 0.12);
-  color: var(--yellow);
+.nav-btn-wallet:not(.is-active):hover {
+  background: rgba(255, 204, 0, 0.1);
   border-color: var(--yellow);
 }
 
 .nav-btn-collections.is-active,
 .nav-btn-film.is-active,
 .nav-btn-wallet.is-active,
-.nav-btn-chart.is-active {
+.nav-btn-chart.is-active,
+.nav-btn-home.is-active {
   background: var(--yellow);
   color: var(--black);
   border: 2px solid var(--black);
   border-style: solid;
 }
 
-/* Home + utilities — quieter */
+/* Home — quiet entry */
 .nav-btn-home {
-  color: #b0b0b0;
+  color: #a8a8a8;
   background: transparent;
   border-color: transparent;
 }
@@ -187,15 +181,30 @@ a:hover { color: var(--blue-accent); }
   background: rgba(255, 255, 255, 0.06);
 }
 
+/* External / utility — never compete with hub yellow */
+.nav-btn-opensea,
 .nav-btn-utility {
-  color: #888;
-  font-size: 0.78rem;
+  color: #8a8a8a;
+  font-size: 0.76rem;
+  background: var(--black-soft);
   border-color: #2a2a2a;
 }
 
+.nav-btn-opensea {
+  margin-left: 0.2rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border-left: 1px solid #333;
+}
+
+.nav-btn-opensea:hover,
 .nav-btn-utility:hover {
-  color: var(--white);
-  border-color: #444;
+  color: #e8e8e8;
+  border-color: #555;
+}
+
+.header-nav {
+  align-items: center;
 }
 
 /* Main layout */
@@ -2121,9 +2130,6 @@ button.stat:focus-visible {
 
 .nav-btn-home.is-active,
 .nav-btn-collections.is-active {
-  background: var(--yellow);
-  color: var(--black);
-  border-color: var(--black);
   cursor: default;
 }
 
