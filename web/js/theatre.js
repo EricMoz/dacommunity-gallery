@@ -14,6 +14,7 @@
   var UPNEXT_MODE_KEY = "dacat-film-upnext-mode";
   var LIGHTS_PROMPT_KEY = "dacat-theatre-lights-prompted";
   var THEATRE_LIGHTS_KEY = "dacat-theatre-lights-down";
+  var THEATRE_STACK_KEY = "dacat-theatre-watch-stack";
   var YT_ORIGIN = window.location.origin;
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -33,6 +34,8 @@
   var upNextCountdownSec = 0;
   var endWatchTimer = null;
   var endTriggered = false;
+  var watchStack = [];
+  var suppressPopstate = false;
 
   var els = {
     title: document.getElementById("theatre-title"),
@@ -67,6 +70,7 @@
     upnextDimCancel: document.getElementById("theatre-upnext-dim-cancel"),
     upnextDimPlayNow: document.getElementById("theatre-upnext-dim-play-now"),
     upnextModes: document.querySelectorAll(".theatre-upnext-mode"),
+    backBtn: document.getElementById("theatre-back"),
   };
 
   function isTheatrePc() {
@@ -215,7 +219,82 @@
     return entry && entry.videoId ? entry.videoId : null;
   }
 
-  function navigateForVideo(video) {
+  function theatreHistoryState(videoId) {
+    return { theatre: true, videoId: videoId };
+  }
+
+  function theatreHubUrl() {
+    var entryId = watchStack[0] || (currentVideo && currentVideo.id);
+    var url = new URL("../", window.location.href);
+    if (entryId) url.searchParams.set("v", entryId);
+    return url.href;
+  }
+
+  function persistWatchStack() {
+    try {
+      sessionStorage.setItem(THEATRE_STACK_KEY, JSON.stringify(watchStack));
+    } catch (_) {
+      /* ignore */
+    }
+  }
+
+  function initWatchStack(videoId) {
+    watchStack = [];
+    try {
+      var saved = sessionStorage.getItem(THEATRE_STACK_KEY);
+      if (saved) {
+        var parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          watchStack = parsed.filter(function (id) {
+            return findVideo(id);
+          });
+        }
+      }
+    } catch (_) {
+      watchStack = [];
+    }
+    if (!watchStack.length || watchStack[watchStack.length - 1] !== videoId) {
+      watchStack = [videoId];
+    }
+    persistWatchStack();
+    syncBackButton();
+  }
+
+  function pushWatchStack(videoId) {
+    if (!videoId) return;
+    if (watchStack[watchStack.length - 1] === videoId) return;
+    watchStack.push(videoId);
+    persistWatchStack();
+    syncBackButton();
+  }
+
+  function trimWatchStackTo(videoId) {
+    if (!videoId || !watchStack.length) return;
+    while (watchStack.length > 1 && watchStack[watchStack.length - 1] !== videoId) {
+      watchStack.pop();
+    }
+    if (watchStack[watchStack.length - 1] !== videoId) {
+      watchStack.push(videoId);
+    }
+    persistWatchStack();
+    syncBackButton();
+  }
+
+  function syncBackButton() {
+    if (!els.backBtn) return;
+    if (watchStack.length > 1) {
+      els.backBtn.textContent = "\u2190 Previous film";
+      els.backBtn.setAttribute(
+        "aria-label",
+        "Previous film in this theatre session"
+      );
+    } else {
+      els.backBtn.textContent = "\u2190 Film hub";
+      els.backBtn.setAttribute("aria-label", "Back to film hub");
+    }
+  }
+
+  function applyTheatreUrl(video) {
     var pageId = document.body.getAttribute("data-video-id");
     var onDedicated =
       pageId &&
@@ -232,20 +311,76 @@
         video.id === canonical
       ) {
         document.body.setAttribute("data-video-id", video.id);
-        return false;
+        return url.pathname + url.search;
       }
       url.pathname = url.pathname.replace(/\/[^/]+\/?$/, "/theatre/");
       url.searchParams.set("v", video.id);
-      history.pushState(null, "", url.pathname + url.search);
       document.body.removeAttribute("data-video-id");
       document.body.removeAttribute("data-theatre-slug");
-      return false;
+      return url.pathname + url.search;
     }
 
     url.searchParams.set("v", video.id);
-    history.replaceState(null, "", url.pathname + url.search + url.hash);
     if (pageId) document.body.setAttribute("data-video-id", video.id);
-    return false;
+    return url.pathname + url.search;
+  }
+
+  function writeTheatreHistory(video, how) {
+    if (!video || how === "none") return;
+    var href = applyTheatreUrl(video);
+    var state = theatreHistoryState(video.id);
+    if (how === "push") history.pushState(state, "", href);
+    else history.replaceState(state, "", href);
+  }
+
+  function loadTheatreVideo(video, opts) {
+    opts = opts || {};
+    if (!video) return;
+    var keepLightsDown = opts.keepLights !== false && isLightsDown();
+    var entry = findRegistryEntry(catalog && catalog._theatreRegistry, video);
+    fillCopy(video, entry);
+    playVideo(video, opts.autoplay !== false);
+    resetEndTrigger();
+    if (keepLightsDown) setLightsDown(true);
+    syncBackButton();
+  }
+
+  function theatreBack() {
+    clearUpNextCountdown();
+    hideUpNextEnd();
+    refreshUpNextUi();
+
+    if (watchStack.length > 1) {
+      suppressPopstate = false;
+      history.back();
+      return;
+    }
+
+    try {
+      sessionStorage.removeItem(THEATRE_STACK_KEY);
+    } catch (_) {
+      /* ignore */
+    }
+    window.location.href = theatreHubUrl();
+  }
+
+  function onTheatrePopState(event) {
+    if (suppressPopstate) return;
+    var state = event.state;
+    if (!state || !state.theatre || !state.videoId) {
+      if (watchStack.length <= 1) {
+        window.location.href = theatreHubUrl();
+      }
+      return;
+    }
+
+    trimWatchStackTo(state.videoId);
+    var video = findVideo(state.videoId);
+    if (!video) {
+      window.location.href = theatreHubUrl();
+      return;
+    }
+    loadTheatreVideo(video, { autoplay: false, keepLights: true, history: "none" });
   }
 
   function loadYouTubeApi() {
@@ -581,13 +716,9 @@
       lastRandomId = prevId;
     }
 
-    navigateForVideo(next);
-
-    var entry = findRegistryEntry(catalog && catalog._theatreRegistry, next);
-    fillCopy(next, entry);
-    playVideo(next, true);
-    resetEndTrigger();
-    if (keepLightsDown) setLightsDown(true);
+    pushWatchStack(next.id);
+    writeTheatreHistory(next, "push");
+    loadTheatreVideo(next, { autoplay: true, keepLights: keepLightsDown });
   }
 
   function setUpNextMode(mode) {
@@ -701,6 +832,15 @@
     refreshUpNextUi();
   }
 
+  function bindBack() {
+    if (!els.backBtn) return;
+    els.backBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      theatreBack();
+    });
+    window.addEventListener("popstate", onTheatrePopState);
+  }
+
   function bindLights() {
     if (!els.lightsBtn) return;
     els.lightsBtn.addEventListener("click", function () {
@@ -764,6 +904,7 @@
   }
 
   async function init() {
+    bindBack();
     bindLights();
     bindUpNext();
     initPopcornField();
@@ -808,6 +949,8 @@
 
       var entry = findRegistryEntry(registry, video);
       currentVideo = video;
+      initWatchStack(video.id);
+      writeTheatreHistory(video, "replace");
       fillCopy(video, entry);
       restoreLightsState();
       playVideo(video, false);

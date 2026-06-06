@@ -85,7 +85,8 @@ OpenSea API v2  ──►  Python (backend/)  ──►  web/data/*.json
 1. Hub modal links **🍿 Theatre mode** for every video; mobile uses hub player only.
 2. **Lights down:** video stays bright; dim up-next chip **bottom-left**; **Lights up** pill **top-right** (see `docs/THEATRE.md` — do not stretch up-next full width).
 3. **Lights up:** Random/Series up-next under player; flying popcorn background (niche easter egg).
-4. Shares `dacat-film-upnext-mode` in `sessionStorage` with `film.js`.
+4. **Back:** watch stack + `history.pushState` — previous film in session, else film hub with `?v=` entry.
+5. Shares `dacat-film-upnext-mode` in `sessionStorage` with `film.js`.
 
 ## Local preview
 

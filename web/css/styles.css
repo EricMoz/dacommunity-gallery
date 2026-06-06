@@ -3306,25 +3306,32 @@ body.film-theater {
   padding: 0.85rem 1.15rem 2.5rem;
 }
 
-.film-theatre-escape {
+.film-theatre-top-chrome {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.65rem 1rem;
-  margin-bottom: 1rem;
+  justify-content: flex-start;
+  margin-bottom: 0.55rem;
 }
 
-.film-theatre-back {
-  font-size: 0.85rem;
+.film-theatre-back-btn {
+  padding: 0.38rem 0.8rem;
+  font: inherit;
+  font-size: 0.78rem;
   font-weight: 700;
   color: var(--theatre-accent);
-  text-decoration: none;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 204, 0, 0.32);
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
 }
 
-.film-theatre-back:hover {
+.film-theatre-back-btn:hover {
   color: #fff;
-  text-decoration: underline;
+  background: rgba(255, 204, 0, 0.12);
+  border-color: var(--theatre-accent);
 }
 
 .film-theatre-lights-dock {
@@ -3535,7 +3542,6 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
 }
 
 .film-theatre-lights-down .film-theatre-header,
-.film-theatre-lights-down .film-theatre-escape,
 .film-theatre-lights-down .film-theatre-kicker,
 .film-theatre-lights-down .film-theatre-series,
 .film-theatre-lights-down .film-theatre-title,
@@ -3601,7 +3607,23 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
     0 16px 48px rgba(0, 0, 0, 0.85);
 }
 
-/* Lights-down chrome: up-next = bottom-left chip · Lights up = top-right (never overlap) */
+/* Lights-down chrome: Back top-left · Lights up top-right · up-next bottom-left */
+.film-theatre-lights-down .film-theatre-top-chrome {
+  position: fixed;
+  top: 0.75rem;
+  left: 1rem;
+  z-index: 8;
+  margin: 0;
+}
+
+.film-theatre-lights-down .film-theatre-back-btn {
+  font-size: 0.72rem;
+  padding: 0.38rem 0.75rem;
+  background: rgba(0, 0, 0, 0.65);
+  border-color: rgba(255, 204, 0, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.65);
+}
+
 .film-theatre-lights-down .film-theatre-lights-dock {
   position: fixed;
   top: 0.75rem;

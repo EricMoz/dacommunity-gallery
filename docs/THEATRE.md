@@ -86,8 +86,15 @@ Do **not** stretch the dim up-next bar full width — it collides with **Lights 
 
 | Zone | Element | Position | Max width |
 |------|---------|----------|-----------|
+| Top-left | `#theatre-back` | `fixed; top: 0.75rem; left: 1rem` | previous film or film hub |
 | Top-right | `.film-theatre-lights-dock` | `fixed; top: 0.75rem; right: 1rem` | pill only |
 | Bottom-left | `.film-theatre-upnext` (dim panel) | `fixed; bottom: 1rem; left: 1rem` | `15.5rem` |
+
+### Back navigation (`watchStack` + `history.pushState`)
+
+- **First film in session:** Back → `/film/?v=<entryId>` (reopens hub modal on the film you started from).
+- **After Skip / auto-chain:** Back → previous film in stack (`history.back()` + `popstate`); label switches to **← Previous film**.
+- Stack persisted in `sessionStorage` (`dacat-theatre-watch-stack`) for in-page route changes (`mozvane/` → `theatre/?v=`).
 
 Both are `position: fixed` only while `body.film-theatre-lights-down`. The player (`.film-theatre-stage`) stays `z-index: 6` with no full-page overlay — vignette darkens edges only.
 
@@ -97,7 +104,8 @@ Both are `position: fixed` only while `body.film-theatre-lights-down`. The playe
 
 - [ ] Desktop: any film modal → **🍿 Theatre mode** → `/film/theatre/?v=<id>` loads
 - [ ] `/film/mozvane/` — dedicated route + registry theme
-- [ ] Lights down → video clear; up-next chip bottom-left; **Lights up** top-right (no overlap)
+- [ ] Lights down → **Back** top-left; up-next chip bottom-left; **Lights up** top-right (no overlap)
+- [ ] Skip twice → Back returns to previous film; third Back → film hub with entry `?v=`
 - [ ] Lights up → full Random/Series bar under player; popcorn background
 - [ ] Mozvane series row → dedicated “Theatre mode · full screen” CTA only
 - [ ] Mobile: no modal theatre link; `/film/theatre/` shows desktop-only copy
