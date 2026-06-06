@@ -1,18 +1,23 @@
 /**
  * daCAT Film — Theatre mode (immersive full-screen watch).
  * Resolves video from body[data-video-id] or ?v=; theme from theatre_registry.json.
+ * Desktop only; optional registry theme per slug.
  */
 (function () {
   "use strict";
 
   var VIDEOS_URL = new URL("../../data/videos.json", window.location.href).href;
   var REGISTRY_URL = new URL("../../data/theatre_registry.json", window.location.href).href;
+  var THEATRE_PC_MQ = window.matchMedia("(min-width: 769px)");
+  var POPCORN_COUNT = 24;
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   var els = {
     title: document.getElementById("theatre-title"),
     series: document.getElementById("theatre-series"),
     meta: document.getElementById("theatre-meta"),
     popcorn: document.getElementById("theatre-popcorn"),
+    popcornField: document.getElementById("theatre-popcorn-field"),
     player: document.getElementById("theatre-player"),
     loading: document.getElementById("theatre-loading"),
     error: document.getElementById("theatre-error"),
@@ -20,8 +25,8 @@
     lightsBtn: document.getElementById("theatre-lights"),
   };
 
-  function $(id) {
-    return document.getElementById(id);
+  function isTheatrePc() {
+    return THEATRE_PC_MQ.matches;
   }
 
   function resolveVideoId() {
@@ -37,8 +42,10 @@
   }
 
   function findRegistryEntry(registry, video) {
-    if (!registry || !video || !video.theatre) return null;
-    var slug = video.theatre.slug;
+    if (!registry || !video) return null;
+    var slug =
+      (video.theatre && video.theatre.slug) ||
+      document.body.getAttribute("data-theatre-slug");
     if (!slug || !registry.theatres) return null;
     return registry.theatres[slug] || null;
   }
@@ -105,17 +112,66 @@
     applyTheme(entry, video);
   }
 
+  function initPopcornField() {
+    var field = els.popcornField;
+    if (!field || field.dataset.ready === "1" || reduced || !isTheatrePc()) return;
+    field.dataset.ready = "1";
+
+    var frag = document.createDocumentFragment();
+    for (var i = 0; i < POPCORN_COUNT; i++) {
+      var kernel = document.createElement("span");
+      kernel.className = "film-theatre-popcorn-kernel";
+      kernel.textContent = "\uD83C\uDF7F";
+      var size = 0.72 + Math.random() * 0.85;
+      var left = Math.random() * 100;
+      var top = Math.random() * 100;
+      var delay = Math.random() * 8;
+      var dur = 4.5 + Math.random() * 5.5;
+      var opacity = 0.12 + Math.random() * 0.22;
+      kernel.style.cssText =
+        "left:" +
+        left +
+        "%;top:" +
+        top +
+        "%;font-size:" +
+        size +
+        "rem;opacity:" +
+        opacity +
+        ";animation-duration:" +
+        dur +
+        "s;animation-delay:-" +
+        delay +
+        "s;";
+      if (Math.random() > 0.78) kernel.classList.add("film-theatre-popcorn-kernel--bright");
+      frag.appendChild(kernel);
+    }
+    field.appendChild(frag);
+  }
+
   function bindLights() {
     if (!els.lightsBtn) return;
     els.lightsBtn.addEventListener("click", function () {
       var on = document.body.classList.toggle("film-theatre-lights-down");
       els.lightsBtn.setAttribute("aria-pressed", on ? "true" : "false");
       els.lightsBtn.textContent = on ? "Lights up" : "Lights down";
+      if (!on) {
+        document.body.classList.add("film-theatre-lights-up-burst");
+        window.setTimeout(function () {
+          document.body.classList.remove("film-theatre-lights-up-burst");
+        }, 700);
+      }
     });
   }
 
   async function init() {
     bindLights();
+    initPopcornField();
+
+    if (!isTheatrePc()) {
+      showError("Theatre mode is desktop-only. Use the film hub player on mobile.");
+      return;
+    }
+
     var videoId = resolveVideoId();
     if (!videoId) {
       showError("No film selected. Open Theatre mode from the film hub.");
@@ -129,8 +185,8 @@
       var video = findVideo(catalog, videoId);
       if (!video) throw new Error("Video not found in catalog.");
 
-      if (!video.theatre || video.theatre.enabled === false) {
-        showError("Theatre mode is not enabled for this title yet.");
+      if (video.theatre && video.theatre.enabled === false) {
+        showError("Theatre mode is not available for this title.");
         return;
       }
 

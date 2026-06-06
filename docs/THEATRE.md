@@ -1,6 +1,6 @@
 # Film Theatre mode
 
-Immersive full-screen watch experience for select community films. Distinct from the in-hub modal player — curtains, vignette, popcorn cue, and **Lights down** dim the chrome so the video dominates.
+Immersive full-screen watch experience for **every film on desktop** (769px+). Distinct from the in-hub modal player — minimal chrome, vignette, **Lights down** (near-black), and a niche flying-popcorn background when lights are up.
 
 **Live examples:** [Mozvane theatre](https://ericmoz.github.io/dacommunity-gallery/film/mozvane/) · generic route `/film/theatre/?v=<videoId>`
 
@@ -21,8 +21,8 @@ Immersive full-screen watch experience for select community films. Distinct from
 | Field | Purpose |
 |-------|---------|
 | `slug` | Key into `theatre_registry.json` |
-| `enabled` | Show Theatre mode links in hub + modal |
-| `route` | Canonical path under `/film/` (optional; default `theatre/?v=<id>`) |
+| `enabled` | Set `false` to opt a title out of theatre (default: all catalog videos on desktop) |
+| `route` | Canonical path under `/film/` for dedicated drops (optional; default `theatre/?v=<id>`) |
 
 ### `web/data/theatre_registry.json` — per theatre (backend / theme)
 
@@ -57,9 +57,10 @@ Both load `web/js/theatre.js` + `theatre_registry.json` for theme.
 
 ## Film hub integration (`film.js`)
 
-- Modal link: **🍿 Theatre mode** when `theatre.enabled`
-- Series row CTA under grids that include a theatre-enabled title
+- **Desktop only** (`min-width: 769px`): modal link **🍿 Theatre mode** for every catalog video unless `theatre.enabled === false`
+- Series row CTA only for titles with a dedicated `theatre.route` (e.g. Mozvane)
 - `theatreHref(video)` builds route from `theatre.route` or generic `theatre/?v=`
+- Mobile: hub modal player only; theatre URLs show a desktop-only message
 
 ---
 
@@ -72,11 +73,18 @@ Both load `web/js/theatre.js` + `theatre_registry.json` for theme.
 
 ---
 
+## Lights + popcorn easter egg
+
+- **Lights down:** near-black overlay (`::after`), chrome hidden, only floating **Lights up** control; player slightly scaled
+- **Lights up:** brief warm flash + popcorn field reveal
+- **Popcorn field** (`#theatre-popcorn-field`): subtle drifting 🍿 in the background when lights are **up** — discoverable, not advertised
+- `prefers-reduced-motion`: static kernels, no drift/pulse/flash
+
 ## QA checklist
 
-- [ ] `/film/mozvane/` — player loads, popcorn line, Lights down works
-- [ ] `/film/theatre/?v=mozvane-quick-stop` — same experience
-- [ ] Film hub → Mozvane → modal → Theatre mode link
-- [ ] Mozvane series row → “Theatre mode · full screen” under grid
-- [ ] Mobile: 16:9 player fills width; curtains don’t crush content
-- [ ] `prefers-reduced-motion`: no popcorn pulse
+- [ ] Desktop: any film modal → **🍿 Theatre mode** → `/film/theatre/?v=<id>` loads
+- [ ] `/film/mozvane/` — dedicated route + registry theme
+- [ ] Lights down → near black; Lights up → flash + popcorn background returns
+- [ ] Mozvane series row → dedicated “Theatre mode · full screen” CTA only
+- [ ] Mobile: no modal theatre link; `/film/theatre/` shows desktop-only copy
+- [ ] `prefers-reduced-motion`: no popcorn drift or lights flash

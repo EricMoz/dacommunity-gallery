@@ -133,10 +133,21 @@
     });
   }
 
+  const THEATRE_PC_MQ = window.matchMedia("(min-width: 769px)");
+
+  function isTheatrePc() {
+    return THEATRE_PC_MQ.matches;
+  }
+
   function theatreHref(video) {
-    if (!video.theatre || video.theatre.enabled === false) return null;
-    if (video.theatre.route) return video.theatre.route;
+    if (!isTheatrePc()) return null;
+    if (video.theatre && video.theatre.enabled === false) return null;
+    if (video.theatre && video.theatre.route) return video.theatre.route;
     return "theatre/?v=" + encodeURIComponent(video.id);
+  }
+
+  function hasDedicatedTheatreRoute(video) {
+    return !!(video.theatre && video.theatre.route && theatreHref(video));
   }
 
   function createCard(video, opts) {
@@ -179,7 +190,7 @@
     const grid = section.querySelector(".film-vgrid");
     sortVideos(list).forEach((v) => grid.appendChild(createCard(v)));
 
-    const theatreVideo = sortVideos(list).find((v) => theatreHref(v));
+    const theatreVideo = sortVideos(list).find((v) => hasDedicatedTheatreRoute(v));
     if (theatreVideo) {
       const href = theatreHref(theatreVideo);
       const cta = document.createElement("p");

@@ -3221,9 +3221,61 @@ body.film-theater {
   overflow-x: hidden;
 }
 
+.film-theatre-page::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  background: #000;
+  opacity: 0;
+  transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .film-theatre-page .film-theater-vignette {
   z-index: 0;
-  transition: opacity 0.45s ease;
+  transition: opacity 0.55s ease, background 0.55s ease;
+}
+
+.film-theatre-popcorn-field {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.film-theatre-popcorn-kernel {
+  position: absolute;
+  line-height: 1;
+  user-select: none;
+  filter: blur(0.2px);
+  animation: film-theatre-popcorn-drift 6s ease-in-out infinite;
+  transform: translateZ(0);
+}
+
+.film-theatre-popcorn-kernel--bright {
+  filter: blur(0);
+  text-shadow:
+    0 0 8px rgba(255, 204, 0, 0.45),
+    0 0 16px rgba(255, 204, 0, 0.2);
+}
+
+@keyframes film-theatre-popcorn-drift {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg) scale(0.92);
+    opacity: 0.55;
+  }
+  33% {
+    transform: translate(6px, -12px) rotate(8deg) scale(1.02);
+    opacity: 0.85;
+  }
+  66% {
+    transform: translate(-8px, -6px) rotate(-6deg) scale(0.98);
+    opacity: 0.7;
+  }
 }
 
 .film-theatre-curtain {
@@ -3428,6 +3480,10 @@ body.film-theater {
   color: #fff;
 }
 
+.film-theatre-lights-down::after {
+  opacity: 0.94;
+}
+
 .film-theatre-lights-down .film-theatre-header,
 .film-theatre-lights-down .film-theatre-escape,
 .film-theatre-lights-down .film-theatre-kicker,
@@ -3438,24 +3494,85 @@ body.film-theater {
 .film-theatre-lights-down .film-theatre-note,
 .film-theatre-lights-down .film-theatre-links,
 .film-theatre-lights-down .film-theatre-footer {
-  opacity: 0.12;
+  opacity: 0;
   pointer-events: none;
-  transition: opacity 0.45s ease;
+  transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.film-theatre-lights-down .film-theatre-popcorn-field {
+  opacity: 0;
+}
+
+.film-theatre-lights-down .film-theatre-escape {
+  position: fixed;
+  inset: auto 1rem 1rem;
+  z-index: 5;
+  margin: 0;
+  justify-content: flex-end;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.film-theatre-lights-down .film-theatre-back {
+  display: none;
 }
 
 .film-theatre-lights-down .film-theatre-lights-btn {
   opacity: 1;
   pointer-events: auto;
+  background: rgba(0, 0, 0, 0.55);
+  border-color: rgba(255, 204, 0, 0.55);
 }
 
 .film-theatre-lights-down .film-theater-vignette {
   opacity: 1;
-  background: radial-gradient(ellipse at center, transparent 8%, rgba(0, 0, 0, 0.92) 72%);
+  background: radial-gradient(ellipse at center, transparent 2%, rgba(0, 0, 0, 0.98) 58%);
+}
+
+.film-theatre-lights-down .film-theatre-curtain {
+  opacity: 0;
 }
 
 .film-theatre-lights-down .film-theatre-stage {
-  transform: scale(1.01);
-  transition: transform 0.45s ease;
+  transform: scale(1.015);
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.film-theatre-lights-down .film-theatre-player {
+  border-color: rgba(255, 204, 0, 0.18);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 1),
+    0 0 80px rgba(255, 204, 0, 0.08),
+    0 24px 80px rgba(0, 0, 0, 0.95);
+}
+
+.film-theatre-lights-up-burst::after {
+  animation: film-theatre-lights-up-flash 0.7s ease-out forwards;
+}
+
+.film-theatre-lights-up-burst .film-theatre-popcorn-field {
+  animation: film-theatre-popcorn-reveal 0.85s ease-out forwards;
+}
+
+@keyframes film-theatre-lights-up-flash {
+  0% {
+    opacity: 0.94;
+    background: #000;
+  }
+  18% {
+    opacity: 0.35;
+    background: rgba(255, 230, 140, 0.22);
+  }
+  100% {
+    opacity: 0;
+    background: #000;
+  }
+}
+
+@keyframes film-theatre-popcorn-reveal {
+  0% { opacity: 0; transform: scale(0.98); }
+  40% { opacity: 0.65; }
+  100% { opacity: 1; transform: scale(1); }
 }
 
 .film-series-theatre-cta {
@@ -6673,6 +6790,15 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     font-size: clamp(1.45rem, 7vw, 2rem);
   }
 
+  .film-modal-theatre,
+  .film-series-theatre-cta {
+    display: none !important;
+  }
+
+  .film-theatre-popcorn-field {
+    display: none;
+  }
+
   .film-toolbar-hint {
     display: none;
   }
@@ -6726,8 +6852,15 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   .data-freshness-dot,
   .merge-status::before,
   .collector-theater-frame.is-active,
-  .collector-theater-vignette {
+  .collector-theater-vignette,
+  .film-theatre-popcorn-kernel,
+  .film-theatre-popcorn,
+  .film-theatre-page::after {
     animation: none !important;
     transition: none !important;
+  }
+
+  .film-theatre-lights-down::after {
+    opacity: 0.94;
   }
 }
