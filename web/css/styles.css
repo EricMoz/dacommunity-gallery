@@ -4045,30 +4045,35 @@ body.film-theatre-awaiting-lights .film-theatre-footline {
   z-index: 6;
   max-width: none;
   margin: 0;
-  /* Top padding tuned to sit just below the centered action bar (1.25rem + bar height + gap).
-     The player (inside mount) is centered in the remaining space via justify-content + grid.
-     This + the narrower action bar above gives a tighter, more intentional composition
-     instead of the controls feeling lost in the corners of a giant black void. */
-  padding: 3.1rem 1.5rem 1.25rem;
+  /* Letterbox padding for true theatre presentation. Top padding clears the floating
+     side buttons; side/bottom padding + the player's max-w/max-h create balanced black
+     margins around the (slightly larger) video. The wider video + spread controls
+     give a premium, focused cinematic experience without feeling cramped or full-bleed. */
+  padding: 3.1rem 1.25rem 1.1rem;
   justify-content: center;
   gap: 0;
 }
 
 .film-theatre-lights-down .film-theatre-action-bar {
-  /* Centered control bar. Wider max-width (matching ~ the normal stage / typical player width)
-     so the space-between children (Film hub left, Lights up right) are separated and sit
-     roughly above the left and right edges of the video below — similar horizontal positions
-     as the buttons in lights-on mode, but the bar is fixed higher and the stage padding
-     prevents overlap with the video frame. */
+  /* Wide control container in immersive mode. Using left/right insets + space-between
+     pushes the two buttons (← Previous film / Film hub on left, Lights up on right) far
+     apart so they frame the video at its edges — similar to how they sit at the sides
+     of the content area in lights-on mode. The bar itself is made transparent (no long
+     glass pill) so the buttons appear as two elegant separate floating controls.
+     Stage padding below the top inset keeps them from overlapping the video. */
   position: fixed;
   top: 1.25rem;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 2.5rem;
+  right: 2.5rem;
   z-index: 8;
-  max-width: 860px;   /* wider than before so buttons spread to video edges; still centered, not screen-hugging */
+  max-width: none;
   width: auto;
   margin: 0;
   padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
 }
 
 .film-theatre-lights-down .film-theatre-player-mount {
@@ -4077,13 +4082,12 @@ body.film-theatre-awaiting-lights .film-theatre-footline {
 }
 
 .film-theatre-lights-down .film-theatre-player {
-  /* Use max-width + max-height + aspect-ratio so the browser computes the *largest*
-     true 16:9 box that fits both constraints. This prevents the previous "oddly long
-     horizontal" (width taking 60vw while height capped, breaking aspect and stretching
-     the iframe). The grid + justify-content:center in the stage keeps it nicely aligned
-     and centered under the (now wider) action bar. */
-  max-width: 60vw;
-  max-height: calc(100dvh - 9rem);
+  /* A little bigger than normal/lights-on mode (68vw vs the ~960px constrained normal player)
+     for more immersive theatre feel, while the max-height + stage padding + fixed controls
+     leave elegant black letterbox margins on all sides — not full-bleed "whole screen".
+     max-w/max-h + aspect-ratio guarantees proper 16:9 proportions and nice centering. */
+  max-width: 68vw;
+  max-height: calc(100dvh - 8rem);
   width: auto;
   height: auto;
   aspect-ratio: 16 / 9;
@@ -4103,8 +4107,11 @@ body.film-theatre-awaiting-lights .film-theatre-footline {
 
 .film-theatre-lights-down .film-theatre-back-btn,
 .film-theatre-lights-down .film-theatre-lights-btn {
-  font-size: 0.72rem;
-  padding: 0.38rem 0.75rem;
+  /* Slightly more substantial floating controls for the immersive theatre experience.
+     Still compact so they don't fight the video, but easier to read/click and feel
+     like premium "letterbox" controls rather than tiny afterthoughts. */
+  font-size: 0.78rem;
+  padding: 0.42rem 0.85rem;
   background: rgba(0, 0, 0, 0.65);
   border-color: rgba(255, 204, 0, 0.5);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.65);
