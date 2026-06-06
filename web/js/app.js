@@ -766,6 +766,9 @@ function setGalleryCollectorView(entry) {
     label: label,
     tokenIds: collectorTokenIdSet(entry),
     pieceCount: nvl(entry.unique_pieces, (entry.holdings || []).length),
+    uniquePieces: nvl(entry.unique_pieces, (entry.holdings || []).length),
+    collectionQuantity: nvl(entry.collection_quantity, "—"),
+    rank: collectorRank(entry.address),
   };
   renderCollectorFocusUi();
   refreshView();
@@ -945,10 +948,33 @@ function renderCollectorFocusUi() {
       escapeCount.hidden = false;
     }
 
+    var escapeStats = $("#collector-escape-stats");
+    if (escapeStats) {
+      var uq = galleryCollectorView.uniquePieces;
+      var qty = galleryCollectorView.collectionQuantity;
+      escapeStats.textContent =
+        uq + " unique · " + qty + " copies held";
+      escapeStats.hidden = false;
+    }
+
+    var escapeRank = $("#collector-escape-rank");
+    if (escapeRank) {
+      var rank = galleryCollectorView.rank;
+      if (rank && rank <= 10) {
+        escapeRank.textContent = "#" + rank + " in the archive";
+        escapeRank.hidden = false;
+      } else {
+        escapeRank.hidden = true;
+        escapeRank.textContent = "";
+      }
+    }
+
     document.title = label + " · daCommunity Gallery · daCAT";
   } else {
-    var escapeCountReset = $("#collector-escape-count");
-    if (escapeCountReset) escapeCountReset.hidden = true;
+    ["collector-escape-count", "collector-escape-stats", "collector-escape-rank"].forEach(function (id) {
+      var el = $("#" + id);
+      if (el) el.hidden = true;
+    });
     document.title = "daCommunity Gallery · daCAT";
   }
 
@@ -1256,29 +1282,58 @@ function renderHoldingsGrid(holdings, container) {
   }
 }
 
-function bindCollectorResultActions(entry) {
-  var shareBtn = $("#wallet-share-btn");
-  if (shareBtn) {
-    shareBtn.addEventListener("click", function () {
-      var url = walletShareUrl(entry.address);
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(url).then(
-          function () {
-            showCopyToast("Share link copied. Send your daCATs to the world.");
-          },
-          function () {
-            showCopyToast("Copy this URL: " + url);
-          }
-        );
-      } else {
-        showCopyToast("Share URL: " + url);
+function shareCollectorCollection(address) {
+  if (!address) return;
+  var url = walletShareUrl(address);
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(
+      function () {
+        showCopyToast("Share link copied — show off your daCATs.");
+      },
+      function () {
+        showCopyToast("Copy this URL: " + url);
       }
+    );
+  } else {
+    showCopyToast("Share URL: " + url);
+  }
+}
+
+function bindCollectorResultActions(entry) {
+  var address = entry.address;
+  var shareBtn = $("#wallet-share-btn");
+  if (shareBtn && !shareBtn.dataset.boundShare) {
+    shareBtn.dataset.boundShare = "1";
+    shareBtn.addEventListener("click", function () {
+      shareCollectorCollection(address);
     });
   }
   var copyBtn = $("#wallet-copy-address");
-  if (copyBtn) {
+  if (copyBtn && !copyBtn.dataset.boundCopy) {
+    copyBtn.dataset.boundCopy = "1";
     copyBtn.addEventListener("click", function () {
-      copyFullAddress(entry.address);
+      copyFullAddress(address);
+    });
+  }
+}
+
+function bindCollectorHeaderActions() {
+  var shareBtn = $("#collector-share-btn");
+  if (shareBtn && !shareBtn.dataset.boundShare) {
+    shareBtn.dataset.boundShare = "1";
+    shareBtn.addEventListener("click", function () {
+      if (galleryCollectorView && galleryCollectorView.address) {
+        shareCollectorCollection(galleryCollectorView.address);
+      }
+    });
+  }
+  var copyBtn = $("#collector-copy-address");
+  if (copyBtn && !copyBtn.dataset.boundCopy) {
+    copyBtn.dataset.boundCopy = "1";
+    copyBtn.addEventListener("click", function () {
+      if (galleryCollectorView && galleryCollectorView.address) {
+        copyFullAddress(galleryCollectorView.address);
+      }
     });
   }
 }
@@ -1339,7 +1394,7 @@ function renderWalletSuccess(entry) {
 
   resultEl.hidden = false;
   resultEl.innerHTML =
-    '<div class="collector-profile-card">' +
+    '<div class="collector-profile-card collector-profile-card--theater">' +
     '<div class="collector-profile-main">' +
     '<p class="collector-profile-eyebrow">Collector</p>' +
     '<p class="collector-profile-name">' +
@@ -1361,7 +1416,7 @@ function renderWalletSuccess(entry) {
     rankHtml +
     "</div>" +
     '<div class="collector-actions">' +
-    '<button type="button" class="btn btn-accent" id="wallet-share-btn">Share collection</button>' +
+    '<button type="button" class="btn btn-accent" id="wallet-share-btn">Share your daCATs</button>' +
     '<button type="button" class="btn btn-outline btn-sm" id="wallet-copy-address">Copy address</button>' +
     "</div></div>" +
     '<h3 class="holdings-heading">Pieces in the archive (' +
@@ -2477,6 +2532,7 @@ function bindUi() {
   if (emptyReset) emptyReset.addEventListener("click", resetBrowseView);
   bindFreshnessToggle();
   bindCollectorExitUi();
+  bindCollectorHeaderActions();
   bindCollectorHubNav();
   bindGalleryListClicks();
   renderCollectorFocusUi();

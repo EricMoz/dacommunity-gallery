@@ -4137,45 +4137,73 @@ body.has-collector-view .collector-theater-vignette {
   top: var(--site-header-h);
   z-index: 12;
   margin: 0;
-  padding: 0.8rem 1rem;
-  background: linear-gradient(180deg, #1a1a1a 0%, #111111 100%);
-  border-bottom: 1px solid rgba(255, 204, 0, 0.22);
+  padding: 0.85rem 1rem 0.75rem;
+  background: linear-gradient(180deg, #1c1c1c 0%, #101010 100%);
+  border-bottom: 1px solid rgba(255, 204, 0, 0.24);
   scroll-margin-top: 4.75rem;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.45);
 }
 
-.collector-escape-bar-inner {
+.collector-pride-header {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 0.75rem 1.15rem;
-  max-width: 100%;
+  gap: 0.85rem 1.25rem;
+  margin-bottom: 0.7rem;
 }
 
-.collector-escape-copy {
+.collector-pride-identity {
   flex: 1 1 14rem;
   min-width: 0;
 }
 
+.collector-pride-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.65rem;
+  margin-bottom: 0.35rem;
+}
+
 .collector-escape-name {
-  display: block;
   font-family: var(--font-display);
-  font-size: clamp(1rem, 3.2vw, 1.2rem);
+  font-size: clamp(1.15rem, 3.8vw, 1.45rem);
   font-weight: 700;
   color: #fff;
-  line-height: 1.2;
+  line-height: 1.15;
   letter-spacing: 0.02em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  text-shadow: 0 0 48px rgba(255, 204, 0, 0.12);
+}
+
+.collector-escape-rank-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.22rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--yellow);
+  border: 2px solid var(--black);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.85);
+  flex-shrink: 0;
+}
+
+.collector-pride-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.65rem;
 }
 
 .collector-escape-piece-badge {
   display: inline-flex;
   align-items: center;
-  margin-top: 0.35rem;
   padding: 0.2rem 0.55rem;
   border-radius: 999px;
   font-size: 0.72rem;
@@ -4185,6 +4213,71 @@ body.has-collector-view .collector-theater-vignette {
   color: var(--yellow);
   background: rgba(255, 204, 0, 0.12);
   border: 1px solid rgba(255, 204, 0, 0.35);
+}
+
+.collector-escape-stats {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #9a9a9a;
+}
+
+.collector-pride-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  flex-shrink: 0;
+}
+
+.collector-share-hero {
+  border: 2px solid var(--black);
+  background: var(--yellow);
+  color: var(--black);
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  padding: 0.6rem 1.15rem;
+  border-radius: 999px;
+  cursor: pointer;
+  min-height: 48px;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.9);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.collector-share-hero:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.85);
+  background: #ffe566;
+}
+
+.collector-action-ghost {
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.04);
+  color: #e8e8e8;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  min-height: 44px;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.collector-action-ghost:hover {
+  border-color: var(--yellow);
+  color: var(--yellow);
+  background: rgba(255, 204, 0, 0.08);
+}
+
+.collector-escape-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .collector-escape-count {
@@ -4490,13 +4583,15 @@ body.has-collector-view .collector-hub.has-result {
 
 .collector-hub.is-collector-compact .collector-hub-head,
 .collector-hub.is-collector-compact .collector-lookup-form,
-.collector-hub.is-collector-compact .top-collectors {
+.collector-hub.is-collector-compact .top-collectors,
+.collector-hub.is-collector-compact .wallet-result {
   display: none;
 }
 
 .collector-hub.is-collector-compact {
-  padding: 0.75rem 1rem 0.85rem;
-  border-bottom: 1px solid rgba(255, 204, 0, 0.1);
+  padding: 0;
+  margin: 0;
+  border: none;
 }
 
 .collector-hub.is-collector-compact .collector-profile-card {
@@ -5815,32 +5910,45 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 
   .collector-escape-bar {
     top: var(--site-header-h);
-    padding: 0.7rem 0.8rem;
+    padding: 0.75rem 0.8rem 0.65rem;
   }
 
-  .collector-escape-bar-inner {
+  .collector-pride-header {
     flex-direction: column;
     align-items: stretch;
-    gap: 0.65rem;
+    gap: 0.7rem;
+    margin-bottom: 0.6rem;
   }
 
-  .collector-escape-actions {
+  .collector-pride-actions {
     width: 100%;
-    flex-direction: row;
+    flex-direction: column;
     align-items: stretch;
+  }
+
+  .collector-share-hero {
+    width: 100%;
+    justify-content: center;
+    min-height: 50px;
+    font-size: 0.92rem;
+  }
+
+  .collector-action-ghost {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+  }
+
+  .collector-escape-nav {
+    flex-direction: row;
     gap: 0.5rem;
   }
 
-  .collector-escape-actions .collector-exit-pill {
+  .collector-escape-nav .collector-exit-pill {
     flex: 1;
     justify-content: center;
-    min-height: 48px;
-    font-size: 0.8rem;
-    padding: 0.5rem 0.65rem;
-  }
-
-  .collector-escape-actions .collector-exit-pill-primary {
-    flex: 1.15;
+    min-height: 44px;
+    font-size: 0.78rem;
   }
 
   .collector-hub.is-collector-compact {
@@ -5876,21 +5984,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     margin-top: 0;
   }
 
-  .collector-hub.is-collector-compact .collector-profile-card {
-    flex-direction: column;
-    align-items: stretch;
-  }
 
-  .collector-hub.is-collector-compact .collector-actions {
-    width: 100%;
-    flex-direction: row;
-    justify-content: stretch;
-  }
-
-  .collector-hub.is-collector-compact .collector-actions .btn {
-    flex: 1;
-    min-height: 48px;
-  }
 
   body.has-collector-view #browse-controls.is-portfolio-browse .browse-advanced-toggle {
     width: 100%;
