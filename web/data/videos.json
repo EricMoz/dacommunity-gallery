@@ -214,7 +214,11 @@
       "sortOrder": 1,
       "featuredPick": true,
       "featuredOrder": 1,
-      "dedicatedPage": "mozvane/"
+      "theatre": {
+        "slug": "mozvane",
+        "enabled": true,
+        "route": "mozvane/"
+      }
     }
   ],
   "seriesOrder": [

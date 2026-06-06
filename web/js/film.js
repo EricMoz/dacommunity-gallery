@@ -33,7 +33,7 @@
     modalRelease: document.getElementById("film-modal-release"),
     modalDesc: document.getElementById("film-modal-desc"),
     modalYtLink: document.getElementById("film-modal-yt"),
-    modalDedicated: document.getElementById("film-modal-dedicated"),
+    modalTheatre: document.getElementById("film-modal-theatre"),
     upnext: document.getElementById("film-upnext"),
     upnextBar: document.getElementById("film-upnext-bar"),
     upnextEnd: document.getElementById("film-upnext-end"),
@@ -132,6 +132,12 @@
     });
   }
 
+  function theatreHref(video) {
+    if (!video.theatre || video.theatre.enabled === false) return null;
+    if (video.theatre.route) return video.theatre.route;
+    return "theatre/?v=" + encodeURIComponent(video.id);
+  }
+
   function createCard(video, opts) {
     const featured = opts && opts.featured;
     const btn = document.createElement("button");
@@ -171,6 +177,19 @@
     `;
     const grid = section.querySelector(".film-vgrid");
     sortVideos(list).forEach((v) => grid.appendChild(createCard(v)));
+
+    const theatreVideo = sortVideos(list).find((v) => theatreHref(v));
+    if (theatreVideo) {
+      const href = theatreHref(theatreVideo);
+      const cta = document.createElement("p");
+      cta.className = "film-series-theatre-cta";
+      cta.innerHTML =
+        '<a class="film-theatre-cta-link" href="' +
+        escapeHtml(href) +
+        '"><span class="film-theatre-cta-icon" aria-hidden="true">🍿</span> Theatre mode · full screen</a>';
+      section.appendChild(cta);
+    }
+
     target.appendChild(section);
   }
 
@@ -543,11 +562,12 @@
     els.modalRelease.textContent = video.releaseDate || "";
     els.modalDesc.textContent = video.description || "";
     els.modalYtLink.href = `https://www.youtube.com/watch?v=${video.youtubeId}`;
-    if (video.dedicatedPage) {
-      els.modalDedicated.href = video.dedicatedPage;
-      els.modalDedicated.hidden = false;
-    } else {
-      els.modalDedicated.hidden = true;
+    const theatre = theatreHref(video);
+    if (theatre && els.modalTheatre) {
+      els.modalTheatre.href = theatre;
+      els.modalTheatre.hidden = false;
+    } else if (els.modalTheatre) {
+      els.modalTheatre.hidden = true;
     }
   }
 

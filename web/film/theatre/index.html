@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<!-- Mozvane theatre mode — canonical route for mozvane-quick-stop -->
+<!-- Generic theatre mode — ?v=<videoId> from videos.json (theatre.enabled) -->
 <html lang="en">
 <head>
   <meta name="site-build" content="20260606-15" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mozvane · Theatre mode · daCAT</title>
-  <meta name="description" content="Mozvane — five-minute daCAT anime film in theatre mode. Sora-era community flagship with daBeezy." />
+  <title>Theatre mode · daCAT Films</title>
+  <meta name="description" content="Immersive daCAT community film — theatre mode with full-screen player." />
   <link rel="icon" href="../../assets/brand/dacat-icon-64.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../../css/styles.css?v=20260606-15" />
 </head>
-<body class="film-page film-theater film-theatre-page" data-video-id="mozvane-quick-stop" data-theatre-slug="mozvane">
+<body class="film-page film-theater film-theatre-page">
   <div class="film-theater-vignette" aria-hidden="true"></div>
   <div class="film-theatre-curtain film-theatre-curtain--left" aria-hidden="true"></div>
   <div class="film-theatre-curtain film-theatre-curtain--right" aria-hidden="true"></div>
@@ -22,7 +22,7 @@
     <div class="header-inner">
       <a class="brand" href="../" aria-label="daCAT Films">
         <img class="brand-mascot" src="../../assets/brand/dacat-mascot.png" alt="" width="56" height="56" />
-        <span class="brand-tag">Mozvane</span>
+        <span class="brand-tag">Theatre</span>
       </a>
       <nav class="header-nav" aria-label="Main">
         <a class="nav-btn nav-btn-home" href="../../">Home</a>
@@ -41,10 +41,10 @@
     </nav>
 
     <section class="film-theatre-screen" aria-label="Theatre player">
-      <p class="film-theatre-kicker">Community spotlight · Theatre mode</p>
-      <p class="film-theatre-series" id="theatre-series">Mozvane</p>
-      <h1 class="film-theatre-title" id="theatre-title">Mozvane</h1>
-      <p class="film-theatre-meta" id="theatre-meta">Episode · ~5 min · daBeezy · Sora-era community film</p>
+      <p class="film-theatre-kicker">Theatre mode</p>
+      <p class="film-theatre-series" id="theatre-series"></p>
+      <h1 class="film-theatre-title" id="theatre-title">Loading…</h1>
+      <p class="film-theatre-meta" id="theatre-meta"></p>
 
       <div class="film-theatre-stage">
         <div class="film-theatre-player" id="theatre-player"></div>
@@ -54,12 +54,8 @@
 
       <p class="film-theatre-popcorn" id="theatre-popcorn">🍿 Grab popcorn — lights down.</p>
 
-      <p class="film-theatre-note">
-        An early daCAT anime attempt — crafted with <strong>OpenAI Sora</strong> (since decommissioned), with creative help from <strong>daBeezy</strong>.
-      </p>
-
       <p class="film-theatre-links">
-        <a id="theatre-yt" href="https://www.youtube.com/watch?v=bHcbwUs2_ds" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        <a id="theatre-yt" href="#" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
       </p>
     </section>
   </main>

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "updated": "2026-06-06",
+  "theatres": {
+    "mozvane": {
+      "videoId": "mozvane-quick-stop",
+      "canonicalRoute": "mozvane/",
+      "theme": {
+        "accent": "#ffcc00",
+        "curtains": true,
+        "vignette": true,
+        "popcornCue": "Grab popcorn — lights down."
+      },
+      "extras": {}
+    }
+  }
+}

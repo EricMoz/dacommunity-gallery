@@ -14,7 +14,8 @@ Check the footer on any page for **Site build YYYYMMDD-N** (e.g. `20260605-8`). 
 | `/badges/` | **Badges** — cosmic coming-soon preview (Ethereum drop) |
 | `/analytics/` | Cat Coin market cap bar chart race (Flourish embed) |
 | `/film/` | **Films hub** — sticky search/filters, series grid, in-page player |
-| `/film/mozvane/` | Mozvane community film (YouTube) |
+| `/film/mozvane/` | Mozvane — **Theatre mode** (immersive watch) |
+| `/film/theatre/?v=` | Generic theatre route for any `theatre.enabled` video |
 
 ## Features
 
@@ -57,6 +58,8 @@ OpenSea API v2  ──►  Python (backend/)  ──►  web/data/*.json
 | `css/styles.css` | Layout; `body.has-collector-view` = dark portfolio + detail theme |
 | `js/app.js` | Data load, search/filter/sort, wallet URL sync, grid + detail UI |
 | `js/film.js` | Film catalog, sticky header-height sync, modal player, up-next |
+| `js/theatre.js` | Theatre mode player + theme from `theatre_registry.json` |
+| `data/theatre_registry.json` | Per-film theatre theme + future `extras` hooks |
 | `js/home.js` | Home-only community highlights |
 | `js/pwa-register.js` | Registers `sw.js` with `?v=` from `<meta name="site-build">` |
 | `sw.js` | Network-first for HTML/CSS/JS; `CACHE` bumped per deploy |
@@ -148,7 +151,7 @@ web/              Static site (HTML, CSS, JS, data, assets)
   VERSION.txt     Deploy build id (auto-bumped in CI)
 .github/workflows deploy-pages.yml, refresh-data.yml
 scripts/          bump_deploy_version.py, refresh.ps1, verify_piece_activity.py
-docs/             MAINTENANCE.md, COLLECTIONS.md (multi-collection registry)
+docs/             MAINTENANCE.md, COLLECTIONS.md, THEATRE.md
 web/data/collections_registry.json   Live + upcoming collection manifest
 ```
 
