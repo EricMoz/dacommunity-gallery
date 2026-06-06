@@ -3515,6 +3515,28 @@ body.film-theater {
 .film-theatre-page {
   position: relative;
   overflow-x: hidden;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  --theatre-ui-reserve: 19.5rem;
+}
+
+body.film-theatre-awaiting-lights {
+  --theatre-ui-reserve: 21rem;
+}
+
+.film-theatre-page .site-header {
+  flex-shrink: 0;
+}
+
+.film-theatre-page .site-header .header-inner {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.film-theatre-page .brand-mascot {
+  width: 46px;
+  height: 46px;
 }
 
 .film-theatre-page .film-theater-vignette {
@@ -3599,13 +3621,25 @@ body.film-theater {
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0.85rem 1.15rem 2.5rem;
+  padding: 0.55rem 1.15rem 0.65rem;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .film-theatre-top-chrome {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 5;
   display: flex;
   justify-content: flex-start;
-  margin-bottom: 0.55rem;
+  margin: 0;
+  pointer-events: none;
+}
+
+.film-theatre-top-chrome .film-theatre-back-btn {
+  pointer-events: auto;
 }
 
 .film-theatre-back-btn {
@@ -3614,8 +3648,9 @@ body.film-theater {
   font-size: 0.78rem;
   font-weight: 700;
   color: var(--theatre-accent);
-  background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(255, 204, 0, 0.32);
+  background: rgba(0, 0, 0, 0.62);
+  border: 2px solid rgba(255, 204, 0, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
   border-radius: 999px;
   cursor: pointer;
   transition:
@@ -3634,8 +3669,9 @@ body.film-theater {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.45rem;
-  margin-top: 0.85rem;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+  flex-shrink: 0;
   transition:
     transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
     padding 0.45s ease,
@@ -3655,15 +3691,20 @@ body.film-theater {
 }
 
 body.film-theatre-awaiting-lights .film-theatre-lights-dock {
-  margin-top: 1rem;
-  padding: 1.1rem 1.35rem 1rem;
+  margin-top: 0.55rem;
+  padding: 0.7rem 1rem 0.65rem;
   background: rgba(0, 0, 0, 0.72);
   border: 2px solid rgba(255, 204, 0, 0.55);
-  border-radius: 14px;
+  border-radius: 12px;
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.8),
-    0 0 40px rgba(255, 204, 0, 0.12);
+    0 0 32px rgba(255, 204, 0, 0.1);
   animation: film-theatre-lights-prompt 2.8s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+body.film-theatre-awaiting-lights .film-theatre-popcorn {
+  display: none;
 }
 
 body.film-theatre-awaiting-lights .film-theatre-lights-hint {
@@ -3671,8 +3712,8 @@ body.film-theatre-awaiting-lights .film-theatre-lights-hint {
 }
 
 body.film-theatre-awaiting-lights .film-theatre-lights-btn {
-  font-size: 0.95rem;
-  padding: 0.65rem 1.35rem;
+  font-size: 0.88rem;
+  padding: 0.55rem 1.15rem;
   background: rgba(255, 204, 0, 0.16);
   border-color: var(--theatre-accent);
   color: #fff;
@@ -3717,11 +3758,16 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
 
 .film-theatre-screen {
   text-align: center;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
 }
 
 .film-theatre-kicker {
-  margin: 0 0 0.35rem;
-  font-size: 0.68rem;
+  margin: 0 0 0.2rem;
+  font-size: 0.64rem;
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -3729,8 +3775,8 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
 }
 
 .film-theatre-series {
-  margin: 0 0 0.25rem;
-  font-size: 0.8rem;
+  margin: 0 0 0.15rem;
+  font-size: 0.74rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -3739,16 +3785,16 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
 
 .film-theatre-title {
   font-family: var(--font-display);
-  font-size: clamp(1.65rem, 5.5vw, 2.65rem);
-  margin: 0 0 0.45rem;
-  line-height: 1.08;
+  font-size: clamp(1.35rem, 4.2vw, 2.15rem);
+  margin: 0 0 0.25rem;
+  line-height: 1.1;
   color: #f8f8f8;
   text-shadow: 0 0 40px rgba(255, 204, 0, 0.15);
 }
 
 .film-theatre-meta {
-  margin: 0 0 1.15rem;
-  font-size: 0.86rem;
+  margin: 0 0 0.45rem;
+  font-size: 0.8rem;
   color: #9a9a9a;
 }
 
@@ -3757,12 +3803,23 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
   max-width: 960px;
   margin: 0 auto;
   z-index: 4;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
 }
 
 .film-theatre-player {
   position: relative;
-  width: 100%;
+  width: min(100%, calc((100dvh - var(--theatre-ui-reserve)) * 16 / 9));
+  max-width: 100%;
+  max-height: min(58dvh, calc(100dvh - var(--theatre-ui-reserve)));
+  margin: 0 auto;
   aspect-ratio: 16 / 9;
+  height: auto;
+  flex: 0 1 auto;
   border-radius: 12px;
   overflow: hidden;
   border: 3px solid rgba(255, 204, 0, 0.4);
@@ -3793,8 +3850,9 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
 }
 
 .film-theatre-popcorn {
-  margin: 1rem auto 0.5rem;
-  font-size: clamp(0.95rem, 2.8vw, 1.08rem);
+  margin: 0.35rem auto 0;
+  font-size: clamp(0.85rem, 2.4vw, 0.98rem);
+  flex-shrink: 0;
   font-weight: 700;
   color: var(--theatre-accent);
   letter-spacing: 0.02em;
@@ -3820,8 +3878,21 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
 }
 
 .film-theatre-links {
-  margin: 0.85rem 0 0;
-  font-size: 0.84rem;
+  margin: 0.25rem 0 0;
+  font-size: 0.78rem;
+  flex-shrink: 0;
+}
+
+.film-theatre-footer {
+  flex-shrink: 0;
+  padding: 0.45rem 1rem max(0.5rem, env(safe-area-inset-bottom));
+  margin-top: auto;
+}
+
+.film-theatre-footer .site-version {
+  margin: 0.15rem 0 0;
+  font-size: 0.62rem;
+  opacity: 0.4;
 }
 
 .film-theatre-links a {
@@ -3866,7 +3937,7 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
 
 .film-theatre-lights-down .film-theatre-main {
   max-width: none;
-  padding: 0.5rem 0.75rem 1rem;
+  padding: 0.35rem 0.75rem 0.5rem;
 }
 
 .film-theatre-lights-down .film-theatre-screen {
@@ -3984,7 +4055,8 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
 
 /* Theatre — up next (full when lights up · minimal random when lights down) */
 .film-theatre-upnext {
-  margin-top: 0.65rem;
+  margin-top: 0;
+  flex-shrink: 0;
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid rgba(255, 204, 0, 0.2);
@@ -4144,6 +4216,50 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+}
+
+.film-theatre-page:has(.film-theatre-upnext:not([hidden])) {
+  --theatre-ui-reserve: 25rem;
+}
+
+@media (max-height: 900px) {
+  .film-theatre-page {
+    --theatre-ui-reserve: 18rem;
+  }
+
+  body.film-theatre-awaiting-lights {
+    --theatre-ui-reserve: 19.5rem;
+  }
+
+  .film-theatre-page:has(.film-theatre-upnext:not([hidden])) {
+    --theatre-ui-reserve: 23rem;
+  }
+
+  .film-theatre-title {
+    font-size: clamp(1.2rem, 3.8vw, 1.85rem);
+  }
+
+  .film-theatre-meta {
+    margin-bottom: 0.3rem;
+  }
+}
+
+@media (max-height: 760px) {
+  .film-theatre-page {
+    --theatre-ui-reserve: 16.5rem;
+  }
+
+  body.film-theatre-awaiting-lights {
+    --theatre-ui-reserve: 18rem;
+  }
+
+  .film-theatre-page:has(.film-theatre-upnext:not([hidden])) {
+    --theatre-ui-reserve: 21rem;
+  }
+
+  body.film-theatre-awaiting-lights .film-theatre-lights-hint {
+    font-size: 0.72rem;
+  }
 }
 
 .film-series-theatre-cta {
@@ -7400,13 +7516,33 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding: 0.3rem 0.85rem 0.45rem;
   }
 
+  .film-theatre-page {
+    --theatre-ui-reserve: 17.5rem;
+  }
+
+  body.film-theatre-awaiting-lights {
+    --theatre-ui-reserve: 19rem;
+  }
+
   .film-theatre-main {
-    padding: 0.65rem 0.85rem 2rem;
+    padding: 0.45rem 0.85rem 0.5rem;
   }
 
   .film-theatre-player {
     border-radius: 8px;
     border-width: 2px;
+    width: min(100%, calc((100dvh - var(--theatre-ui-reserve)) * 16 / 9));
+    max-height: min(52dvh, calc(100dvh - var(--theatre-ui-reserve)));
+  }
+
+  .film-theatre-top-chrome {
+    top: 0.4rem;
+    left: 0.4rem;
+  }
+
+  body.film-theatre-awaiting-lights .film-theatre-lights-dock {
+    margin-top: 0.45rem;
+    padding: 0.6rem 0.85rem 0.55rem;
   }
 
   .film-theatre-curtain {
