@@ -1,7 +1,8 @@
 /* daCommunity Gallery — static site styles (dacat.fun brand).
  *
  * Layout map:
- *   .site-header — sticky nav
+ *   .site-header — sticky nav (top: 0); height synced to --site-header-h via JS
+ *   .film-sticky-deck — film hub search/filters; sticky at top: var(--site-header-h)
  *   .hero-band / .stats-strip — collection summary (dacommunity/)
  *   .collector-hub (#wallet-panel) — ENS/0x lookup, portfolio exit bar
  *   .browse-controls — archive search, filters, sort (#search, .filter, #sort-select)
@@ -2849,23 +2850,15 @@ body.film-theater {
   background: radial-gradient(ellipse at center, transparent 35%, rgba(0, 0, 0, 0.65) 100%);
 }
 
-.film-theater .site-top-stack,
+/* Layer main/footer above vignette — never set position here on sticky header/deck */
 .film-theater .film-hub-main,
 .film-theater .site-footer {
   position: relative;
   z-index: 1;
 }
 
-.site-top-stack--film {
-  position: sticky;
-  top: 0;
+.film-hub-page .site-header {
   z-index: 100;
-  width: 100%;
-}
-
-.site-top-stack--film .site-header {
-  position: static;
-  top: auto;
 }
 
 .film-page .site-header {
@@ -3067,11 +3060,12 @@ body.film-theater {
 
 /* Film hub landing (/film/) */
 .film-hub-page .film-sticky-deck {
-  position: static;
-  top: auto;
-  z-index: auto;
+  position: sticky;
+  top: var(--site-header-h, 0px);
+  z-index: 90;
   width: 100%;
   margin: 0;
+  flex-shrink: 0;
   background: #030303;
   border-bottom: 1px solid rgba(255, 204, 0, 0.12);
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
@@ -6159,10 +6153,6 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 
   .film-hub-page .film-sticky-deck-inner {
     padding: 0.3rem 0.85rem 0.45rem;
-  }
-
-  .film-hub-page .film-hub-main {
-    padding: 1rem 0.85rem 2.5rem;
   }
 
   .film-toolbar-hint {

@@ -2483,18 +2483,25 @@ function bootGallery(data) {
 function syncSiteHeaderHeight() {
   var header = document.querySelector(".site-header");
   if (!header) return;
-  document.documentElement.style.setProperty(
-    "--site-header-h",
-    header.getBoundingClientRect().height + "px"
-  );
+  var h = Math.ceil(header.getBoundingClientRect().height);
+  document.documentElement.style.setProperty("--site-header-h", h + "px");
 }
 
-async function init() {
+function bindHeaderHeightSync() {
   syncSiteHeaderHeight();
+  var header = document.querySelector(".site-header");
+  if (header && typeof ResizeObserver !== "undefined") {
+    var ro = new ResizeObserver(syncSiteHeaderHeight);
+    ro.observe(header);
+  }
   window.addEventListener("resize", syncSiteHeaderHeight);
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(syncSiteHeaderHeight);
   }
+}
+
+async function init() {
+  bindHeaderHeightSync();
 
   initDataUrls();
 

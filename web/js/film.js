@@ -665,6 +665,28 @@
     window.scrollTo(0, 0);
   }
 
+  /** Measured header height — keeps .film-sticky-deck flush under .site-header when stuck. */
+  function syncSiteHeaderHeight() {
+    const header = document.querySelector(".site-header");
+    if (!header) return;
+    const h = Math.ceil(header.getBoundingClientRect().height);
+    document.documentElement.style.setProperty("--site-header-h", h + "px");
+  }
+
+  function bindHeaderHeightSync() {
+    const header = document.querySelector(".site-header");
+    if (!header) return;
+    syncSiteHeaderHeight();
+    if (typeof ResizeObserver !== "undefined") {
+      const ro = new ResizeObserver(syncSiteHeaderHeight);
+      ro.observe(header);
+    }
+    window.addEventListener("resize", syncSiteHeaderHeight);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(syncSiteHeaderHeight);
+    }
+  }
+
   function loadUpNextMode() {
     try {
       const saved = sessionStorage.getItem(UPNEXT_MODE_KEY);
@@ -676,6 +698,7 @@
   }
 
   async function init() {
+    bindHeaderHeightSync();
     if ("scrollRestoration" in history) {
       history.scrollRestoration = "manual";
     }
@@ -710,8 +733,12 @@
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
+    document.addEventListener("DOMContentLoaded", function () {
+      bindHeaderHeightSync();
+      init();
+    });
   } else {
+    bindHeaderHeightSync();
     init();
   }
 })();

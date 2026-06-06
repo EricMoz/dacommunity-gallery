@@ -2,7 +2,7 @@
 <!-- Film theater — data/videos.json + js/film.js -->
 <html lang="en">
 <head>
-  <meta name="site-build" content="20260606-11" />
+  <meta name="site-build" content="20260606-12" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>daCAT Films · Community theater</title>
@@ -11,46 +11,44 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/styles.css?v=20260606-11" />
+  <link rel="stylesheet" href="../css/styles.css?v=20260606-12" />
 </head>
 <body class="film-page film-hub-page film-theater">
   <div class="film-theater-vignette" aria-hidden="true"></div>
 
-  <div class="site-top-stack site-top-stack--film">
-    <header class="site-header">
-      <div class="header-inner">
-        <a class="brand" href="../" aria-label="daCAT Home">
-          <img class="brand-mascot" src="../assets/brand/dacat-mascot.png" alt="" width="56" height="56" />
-          <span class="brand-tag">Films</span>
-        </a>
-        <nav class="header-nav" aria-label="Main">
-          <a class="nav-btn nav-btn-home" href="../">Home</a>
-          <a class="nav-btn nav-btn-collections" href="../collections/">Collections</a>
-          <span class="nav-btn nav-btn-film is-active" aria-current="page">Film</span>
-          <a class="nav-btn nav-btn-wallet" href="../dacommunity/#wallet-panel">My daCATs</a>
-          <a class="nav-btn nav-btn-utility" href="https://t.me/daCat_token" target="_blank" rel="noopener">TG</a>
-        </nav>
-      </div>
-    </header>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../" aria-label="daCAT Home">
+        <img class="brand-mascot" src="../assets/brand/dacat-mascot.png" alt="" width="56" height="56" />
+        <span class="brand-tag">Films</span>
+      </a>
+      <nav class="header-nav" aria-label="Main">
+        <a class="nav-btn nav-btn-home" href="../">Home</a>
+        <a class="nav-btn nav-btn-collections" href="../collections/">Collections</a>
+        <span class="nav-btn nav-btn-film is-active" aria-current="page">Film</span>
+        <a class="nav-btn nav-btn-wallet" href="../dacommunity/#wallet-panel">My daCATs</a>
+        <a class="nav-btn nav-btn-utility" href="https://t.me/daCat_token" target="_blank" rel="noopener">TG</a>
+      </nav>
+    </div>
+  </header>
 
-    <div class="film-sticky-deck">
-      <div class="film-sticky-deck-inner">
-        <section class="film-hub-toolbar" aria-label="Browse films">
-          <label class="film-search-wrap">
-            <span class="visually-hidden">Search films</span>
-            <input
-              type="search"
-              id="film-search"
-              class="film-search-input"
-              placeholder="Search titles, series, creators…"
-              autocomplete="off"
-              enterkeyhint="search"
-            />
-          </label>
-          <div id="film-filters" class="film-filters" role="group" aria-label="Filter by series"></div>
-          <p class="film-toolbar-hint"><kbd>Esc</kbd> closes the player · Random up next auto-plays — switch to Series for in-order binge</p>
-        </section>
-      </div>
+  <div class="film-sticky-deck" id="film-sticky-deck">
+    <div class="film-sticky-deck-inner">
+      <section class="film-hub-toolbar" aria-label="Browse films">
+        <label class="film-search-wrap">
+          <span class="visually-hidden">Search films</span>
+          <input
+            type="search"
+            id="film-search"
+            class="film-search-input"
+            placeholder="Search titles, series, creators…"
+            autocomplete="off"
+            enterkeyhint="search"
+          />
+        </label>
+        <div id="film-filters" class="film-filters" role="group" aria-label="Filter by series"></div>
+        <p class="film-toolbar-hint"><kbd>Esc</kbd> closes the player · Random up next auto-plays — switch to Series for in-order binge</p>
+      </section>
     </div>
   </div>
 
@@ -159,9 +157,9 @@
 
   <footer class="site-footer film-footer">
     <p><a href="https://www.dacat.fun/">dacat.fun</a> · <a href="https://www.dacatworld.com/">dacatworld</a></p>
-    <p class="site-version">Site build 20260606-11</p>
+    <p class="site-version">Site build 20260606-12</p>
   </footer>
 
-  <script src="../js/film.js?v=20260606-11" defer></script>
+  <script src="../js/film.js?v=20260606-12" defer></script>
 </body>
 </html>

@@ -13,7 +13,7 @@ Check the footer on any page for **Site build YYYYMMDD-N** (e.g. `20260605-8`). 
 | `/dacommunity/` | Gallery, search/filters, collector lookup, shareable `?wallet=` links |
 | `/badges/` | Badges coming-soon placeholder |
 | `/analytics/` | Cat Coin market cap bar chart race (Flourish embed) |
-| `/film/` | Films hub |
+| `/film/` | **Films hub** — sticky search/filters, series grid, in-page player |
 | `/film/mozvane/` | Mozvane community film (YouTube) |
 
 ## Features
@@ -25,6 +25,8 @@ Check the footer on any page for **Site build YYYYMMDD-N** (e.g. `20260605-8`). 
 - **NFT detail drawer** — Readable dark theme in portfolio mode; holder badge **this portfolio** vs **latest transfer** in full archive.
 - **Shareable links** — `?wallet=0x…` opens a portfolio; `#wallet-panel` scrolls to lookup.
 - **PWA shell** — Offline-friendly shell; HTML/CSS/JS and `sw.js` cache names bump each deploy; gallery JSON is network-first.
+- **Film hub** — Catalog from `data/videos.json`; search + series filters stay sticky under the top nav while browsing (`/film/`).
+- **Nav hierarchy** — Collections + Film are primary hubs; one dashed-yellow `is-active` state; MC race demoted; My daCATs emphasized on home/gallery.
 
 ## Architecture
 
@@ -53,8 +55,11 @@ OpenSea API v2  ──►  Python (backend/)  ──►  web/data/*.json
 | `dacommunity/index.html` | Gallery shell: hero, `#wallet-panel`, browse, grid, detail drawer |
 | `css/styles.css` | Layout; `body.has-collector-view` = dark portfolio + detail theme |
 | `js/app.js` | Data load, search/filter/sort, wallet URL sync, grid + detail UI |
+| `js/film.js` | Film catalog, sticky header-height sync, modal player, up-next |
+| `js/home.js` | Home-only community highlights |
 | `js/pwa-register.js` | Registers `sw.js` with `?v=` from `<meta name="site-build">` |
 | `sw.js` | Network-first for HTML/CSS/JS; `CACHE` bumped per deploy |
+| `docs/MAINTENANCE.md` | **QA checklist**, sticky/nav pitfalls, regression notes for maintainers |
 
 ### `app.js` flow (maintainers)
 
@@ -63,6 +68,12 @@ OpenSea API v2  ──►  Python (backend/)  ──►  web/data/*.json
 3. Portfolio: `setGalleryCollectorView()` sets `galleryCollectorView.tokenIds`; grid filters via `getFilteredItems()`.
 4. Clicks: delegated on `#gallery-list` (`data-token-id` → `openDetail()`).
 5. Holders in detail: `resolveHoldersList()` → `sortHoldersForDisplay()`; highlight via `holderHighlightAddress()` only (uses `tokenIds` in portfolio mode — do not call `resolveHoldersList` from there).
+
+### Film hub (`film.js`)
+
+1. Header height → CSS variable `--site-header-h` via `syncSiteHeaderHeight()` (also `ResizeObserver` on nav wrap).
+2. `.film-sticky-deck` uses `position: sticky; top: var(--site-header-h)` — **do not** set `position: relative` on film header/deck (breaks follow-scroll). See `docs/MAINTENANCE.md`.
+3. Catalog from `../data/videos.json`; deep link `?v=<id>` opens modal player.
 
 ## Local preview
 
@@ -73,7 +84,7 @@ cd web
 python -m http.server 8080
 ```
 
-Open http://localhost:8080/dacommunity/ for the gallery. `start-gallery.bat` at the repo root is a Windows shortcut.
+Open http://localhost:8080/dacommunity/ for the gallery, or http://localhost:8080/film/ to QA sticky search. `start-gallery.bat` at the repo root is a Windows shortcut.
 
 ## Refresh data from OpenSea
 
@@ -136,6 +147,7 @@ web/              Static site (HTML, CSS, JS, data, assets)
   VERSION.txt     Deploy build id (auto-bumped in CI)
 .github/workflows deploy-pages.yml, refresh-data.yml
 scripts/          bump_deploy_version.py, refresh.ps1, verify_piece_activity.py
+docs/             MAINTENANCE.md — QA, sticky layout, nav, regression notes
 ```
 
 ## CI
