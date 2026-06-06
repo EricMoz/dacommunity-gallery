@@ -129,47 +129,75 @@ a:hover { color: var(--blue-accent); }
   border-color: var(--black);
 }
 
-/* Optional analytics — dashed nav, not primary CTA */
-.nav-btn-chart {
-  background: transparent;
-  color: var(--yellow);
-  border: 2px dashed rgba(255, 204, 0, 0.75);
-}
-
-.nav-btn-chart:hover {
-  background: rgba(255, 204, 0, 0.12);
-  color: var(--yellow);
-  border-color: var(--yellow);
-}
-
-.nav-btn-chart.is-active {
-  background: var(--yellow);
-  color: var(--black);
-  border-style: solid;
-  border-color: var(--black);
-}
-
-/* Optional film — silver dashed nav (cinema extra) */
+/* Hub primaries — collections, film, collector lookup */
+.nav-btn-collections,
 .nav-btn-film {
-  background: transparent;
-  color: #e0e0e0;
-  border: 2px dashed rgba(255, 255, 255, 0.4);
+  border: 2px solid #3d3d3d;
 }
 
+.nav-btn-collections:hover,
 .nav-btn-film:hover {
   border-color: var(--yellow);
   color: var(--yellow);
-  background: rgba(255, 204, 0, 0.08);
 }
 
-.nav-btn-film.is-active {
+.nav-btn-wallet {
+  border: 2px solid rgba(255, 204, 0, 0.5);
+  color: var(--yellow);
+  background: rgba(255, 204, 0, 0.1);
+}
+
+.nav-btn-wallet:hover {
+  border-color: var(--yellow);
+  background: rgba(255, 204, 0, 0.18);
+  color: #fff;
+}
+
+.nav-btn-collections.is-active,
+.nav-btn-film.is-active,
+.nav-btn-wallet.is-active {
   background: var(--yellow);
   color: var(--black);
-  border-style: solid;
-  border-color: var(--black);
+  border: 2px solid var(--black);
 }
 
-.nav-btn-wallet.is-active {
+/* Home + utilities — quieter */
+.nav-btn-home {
+  color: #b0b0b0;
+  background: transparent;
+  border-color: transparent;
+}
+
+.nav-btn-home:hover {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.nav-btn-utility {
+  color: #888;
+  font-size: 0.78rem;
+  border-color: #2a2a2a;
+}
+
+.nav-btn-utility:hover {
+  color: var(--white);
+  border-color: #444;
+}
+
+/* Analytics — secondary in nav (page-local on MC race only) */
+.nav-btn-chart {
+  background: var(--black-soft);
+  color: #9a9a9a;
+  border: 2px solid #333;
+  font-size: 0.78rem;
+}
+
+.nav-btn-chart:hover {
+  color: var(--yellow);
+  border-color: rgba(255, 204, 0, 0.45);
+}
+
+.nav-btn-chart.is-active {
   background: var(--yellow);
   color: var(--black);
   border: 2px solid var(--black);
@@ -3185,14 +3213,15 @@ body.film-theater {
   display: none;
 }
 
-.film-hub-toolbar {
+.film-hub-page .film-hub-toolbar {
   position: sticky;
-  top: var(--site-header-h);
-  z-index: 20;
-  margin: 0 0 1.25rem;
-  padding: 0.45rem 0 0.65rem;
+  top: var(--site-header-h, 0px);
+  z-index: 90;
+  margin: 0 -1.25rem 1.1rem;
+  padding: 0 1.25rem 0.55rem;
   background: #030303;
   border-bottom: 1px solid rgba(255, 204, 0, 0.12);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.55);
 }
 
 .film-search-wrap {
@@ -6090,14 +6119,11 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     margin-bottom: 0.5rem;
   }
 
-  :root {
-    --site-header-h: 3.85rem;
-  }
-
-  .film-hub-toolbar {
-    top: var(--site-header-h);
+  .film-hub-page .film-hub-toolbar {
+    margin-left: -0.85rem;
+    margin-right: -0.85rem;
+    padding: 0 0.85rem 0.5rem;
     margin-bottom: 1rem;
-    padding: 0.4rem 0 0.55rem;
   }
 
   .film-toolbar-hint {

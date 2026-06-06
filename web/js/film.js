@@ -694,6 +694,8 @@
       renderFilters();
       setLoading(false);
       render();
+      syncSiteHeaderHeight();
+      requestAnimationFrame(syncSiteHeaderHeight);
       keepPageAtTopUnlessDeepLink();
       openFromQuery();
     } catch (err) {
@@ -707,9 +709,27 @@
     }
   }
 
+  function syncSiteHeaderHeight() {
+    const header = document.querySelector(".site-header");
+    if (!header) return;
+    document.documentElement.style.setProperty(
+      "--site-header-h",
+      header.getBoundingClientRect().height + "px"
+    );
+  }
+
+  window.addEventListener("resize", syncSiteHeaderHeight);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(syncSiteHeaderHeight);
+  }
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
+    document.addEventListener("DOMContentLoaded", function () {
+      syncSiteHeaderHeight();
+      init();
+    });
   } else {
+    syncSiteHeaderHeight();
     init();
   }
 })();

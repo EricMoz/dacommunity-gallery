@@ -2575,7 +2575,22 @@ function bootGallery(data) {
   refreshView();
 }
 
+function syncSiteHeaderHeight() {
+  var header = document.querySelector(".site-header");
+  if (!header) return;
+  document.documentElement.style.setProperty(
+    "--site-header-h",
+    header.getBoundingClientRect().height + "px"
+  );
+}
+
 async function init() {
+  syncSiteHeaderHeight();
+  window.addEventListener("resize", syncSiteHeaderHeight);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(syncSiteHeaderHeight);
+  }
+
   initDataUrls();
 
   if (isFileProtocol()) {
