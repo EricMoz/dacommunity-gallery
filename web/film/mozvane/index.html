@@ -2,7 +2,7 @@
 <!-- Mozvane theatre mode — canonical route for mozvane-quick-stop -->
 <html lang="en">
 <head>
-  <meta name="site-build" content="20260606-34" />
+  <meta name="site-build" content="20260606-35" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mozvane · Theatre mode · daCAT</title>
@@ -11,9 +11,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../../css/styles.css?v=20260606-34" />
+  <link rel="stylesheet" href="../../css/styles.css?v=20260606-35" />
 </head>
 <body class="film-page film-theater film-theatre-page" data-video-id="mozvane-quick-stop" data-theatre-slug="mozvane">
+  <!-- Super early lights-down class for correct initial player size on direct load/refresh in lights down.
+       This is premium UX polish: no flash of wrong layout, video appears immediately at immersive size. -->
+  <script>
+    (function(){try{if(sessionStorage.getItem('dacat-theatre-lights-down')==='1'){document.body.classList.add('film-theatre-lights-down');}}catch(e){}})();
+  </script>
   <div class="film-theater-vignette" aria-hidden="true"></div>
   <div class="film-theatre-popcorn-field" id="theatre-popcorn-field" aria-hidden="true"></div>
   <div class="film-theatre-curtain film-theatre-curtain--left" aria-hidden="true"></div>
@@ -119,9 +124,9 @@
 
   <footer class="site-footer film-footer film-theatre-footer">
     <p><a href="https://www.dacat.fun/">dacat.fun</a> · <a href="https://www.dacatworld.com/">dacatworld</a></p>
-    <p class="site-version">Site build 20260606-34</p>
+    <p class="site-version">Site build 20260606-35</p>
   </footer>
 
-  <script src="../../js/theatre.js?v=20260606-34" defer></script>
+  <script src="../../js/theatre.js?v=20260606-35" defer></script>
 </body>
 </html>

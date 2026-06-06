@@ -110,6 +110,18 @@
       sessionStorage.setItem(LIGHTS_PROMPT_KEY, "1");
     } catch (_) {}
     // Idle watch will be started properly in apply path or on first activity; the class is what matters for layout.
+
+    // Premium polish: after early class, give the layout a tick then ensure YT player (if already created
+    // or created soon) matches the immersive container size. This helps "video not appearing" on refresh
+    // in lights down by guaranteeing the host div + iframe are at the final dvh-constrained size.
+    requestAnimationFrame(() => {
+      if (ytPlayer && typeof ytPlayer.setSize === 'function' && els.player) {
+        const r = els.player.getBoundingClientRect();
+        if (r.width > 60 && r.height > 30) {
+          ytPlayer.setSize(Math.round(r.width), Math.round(r.height));
+        }
+      }
+    });
   }
 
   function isTheatrePc() {
@@ -1006,6 +1018,21 @@
     }
     syncUpNextPanels();
     refreshUpNextUi();
+
+    // Premium UX: when toggling lights down/up, force the YouTube player to resize to the
+    // new container dimensions (the dvh-constrained immersive size or normal size).
+    // This eliminates cases where the iframe stays at the "wrong" size after the class change,
+    // which was contributing to "video not appearing" or looking off in lights down.
+    if (ytPlayer && typeof ytPlayer.setSize === 'function' && els.player) {
+      requestAnimationFrame(() => {
+        if (ytPlayer && els.player) {
+          const r = els.player.getBoundingClientRect();
+          if (r.width > 60 && r.height > 30) {
+            ytPlayer.setSize(Math.round(r.width), Math.round(r.height));
+          }
+        }
+      });
+    }
   }
 
   function tryPendingLightsRestore() {

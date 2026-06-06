@@ -4024,11 +4024,12 @@ body.film-theatre-awaiting-lights .film-theatre-footline {
 }
 
 .film-theatre-lights-down .film-theatre-player {
-  /* Slightly smaller than the previous 94vw/-4.5rem so the fixed top action bar
-     (with "Lights up" on the right) stays fully visible and not pushed off the page,
-     while keeping strong immersion. Extra dvh room + stage padding for the UI. */
-  width: min(86vw, calc((100dvh - 6rem) * 16 / 9));
-  max-height: calc(100dvh - 6rem);
+  /* Premium immersive but usable: noticeably smaller than full-bleed so the fixed action bar
+     (back on left, "Lights up" on right) and up-next dim always have breathing room and stay
+     fully visible/clickable. Uses dvh + generous subtraction for the top bar + safe margins.
+     This directly addresses "video a bit too large" while keeping the cinematic feel. */
+  width: min(78vw, calc((100dvh - 7.5rem) * 16 / 9));
+  max-height: calc(100dvh - 7.5rem);
   border-color: rgba(255, 204, 0, 0.22);
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 1),
@@ -4059,6 +4060,20 @@ body.film-theatre-awaiting-lights .film-theatre-footline {
   box-shadow: none;
   animation: none;
   transform: none;
+}
+
+/* Premium glassmorphism for the always-accessible action bar in full lights-down immersion.
+   Subtle background + blur so controls are readable against the dark video without being
+   harsh rectangles. The bar is fixed and high-z so navigation (back + lights toggle) is
+   always there but doesn't fight the cinematic experience. */
+.film-theatre-lights-down .film-theatre-action-bar {
+  background: rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 9999px;
+  padding: 0.15rem 0.55rem;
+  border: 1px solid rgba(255, 204, 0, 0.18);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
 }
 
 .film-theatre-lights-down .film-theatre-lights-hint {
