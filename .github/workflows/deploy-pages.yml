@@ -1,10 +1,18 @@
-# Publishes web/ to GitHub Pages. Requires LFS for NFT images in assets/.
+# Publishes web/ to GitHub Pages.
+#
+# LFS optimization: checkout uses lfs: false. .git/lfs + web/assets are restored from
+# Actions cache when asset pointers are unchanged. git lfs pull only fetches missing
+# objects (cheap on daily JSON-only pushes). Full pull happens on cache miss or when
+# web/assets/ changes. Daily refresh never pulls LFS — see refresh-data.yml.
 name: Deploy gallery to GitHub Pages
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 permissions:
   contents: read
@@ -22,10 +30,64 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      # LFS required: Pages must include full NFT media from web/assets/.
+      # Do not use lfs: true — it re-downloads every image each run. Materialize below.
       - uses: actions/checkout@v4
         with:
-          lfs: true
+          lfs: false
+          fetch-depth: 0
+
+      - name: Restore LFS asset cache
+        uses: actions/cache@v4
+        id: lfs-cache
+        with:
+          path: |
+            .git/lfs
+            web/assets
+          key: gallery-lfs-v1-${{ hashFiles('.gitattributes') }}-assets-${{ hashFiles('web/assets/**') }}
+          restore-keys: |
+            gallery-lfs-v1-${{ hashFiles('.gitattributes') }}-assets-
+            gallery-lfs-v1-${{ hashFiles('.gitattributes') }}-
+
+      - name: Materialize LFS assets
+        run: |
+          set -e
+          git lfs install
+
+          ASSETS_CHANGED=false
+          if [ "${{ github.event_name }}" = "push" ] && [ "${{ github.event.before }}" != "0000000000000000000000000000000000000000" ]; then
+            if git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" | grep -q '^web/assets/'; then
+              ASSETS_CHANGED=true
+              echo "web/assets/ changed — will sync LFS objects"
+            fi
+          fi
+
+          NEED_PULL=false
+          for probe in web/assets/brand/dacat-mascot.png web/assets/nfts/dacat_drive.jpg; do
+            if [ ! -f "$probe" ] || head -c 8 "$probe" | grep -q "version"; then
+              NEED_PULL=true
+              echo "Asset missing or still a pointer: $probe"
+              break
+            fi
+          done
+
+          if [ "$ASSETS_CHANGED" = true ] || [ "$NEED_PULL" = true ] || [ "${{ steps.lfs-cache.outputs.cache-hit }}" != "true" ]; then
+            echo "Running git lfs pull (incremental — local/cache objects are reused)"
+            git lfs pull --include="web/assets/**"
+          else
+            echo "Cache hit and assets materialized — skipping LFS download"
+          fi
+
+          for probe in web/assets/brand/dacat-mascot.png web/assets/nfts/dacat_drive.jpg; do
+            if [ ! -f "$probe" ]; then
+              echo "::error::Missing asset after LFS step: $probe"
+              exit 1
+            fi
+            if head -c 8 "$probe" | grep -q "version"; then
+              echo "::error::Asset still an LFS pointer after pull: $probe"
+              exit 1
+            fi
+          done
+          echo "LFS assets OK"
 
       - name: Bump deploy build stamp
         run: python scripts/bump_deploy_version.py

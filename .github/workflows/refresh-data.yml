@@ -3,7 +3,7 @@
 # LFS optimization: this workflow only updates web/data/*.json — it does not read or
 # write NFT images under web/assets/. Checkout uses lfs: false so the daily run does not
 # pull every LFS-tracked image (bandwidth-heavy; images change only when collections are added).
-# Jobs that publish the site still need lfs: true — see deploy-pages.yml.
+# Deploy caches LFS assets and only re-pulls when web/assets/ changes — see deploy-pages.yml.
 name: Refresh gallery data (daily)
 
 on:

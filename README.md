@@ -170,7 +170,7 @@ web/data/collections_registry.json   Live + upcoming collection manifest
 
 | Workflow | Trigger | Purpose |
 |----------|---------|---------|
-| `deploy-pages.yml` | Push to `main`, manual | Bump build, `node --check` app.js, publish `web/` |
-| `refresh-data.yml` | Daily cron, manual | Fetch OpenSea → commit JSON |
+| `deploy-pages.yml` | Push to `main`, manual | Bump build, cache LFS assets, publish `web/` |
+| `refresh-data.yml` | Daily cron, manual | Fetch OpenSea → commit JSON (`lfs: false`) |
 
-Requires Git LFS for NFT images under `web/assets/`.
+NFT images live in Git LFS under `web/assets/`. **Refresh** never downloads LFS. **Deploy** restores a cached copy and only runs `git lfs pull` on cache miss or when `web/assets/` changes — daily JSON updates should not re-download the full image set.

@@ -164,6 +164,19 @@ Panels are full-width white blocks — cars only show in the **side gutters** an
 
 ---
 
+## CI — LFS bandwidth (refresh + deploy)
+
+| Workflow | LFS | When images download |
+|----------|-----|----------------------|
+| `refresh-data.yml` | `lfs: false` | Never — JSON only |
+| `deploy-pages.yml` | `lfs: false` at checkout | Cache restore first; `git lfs pull` only on cache miss, missing materialized files, or `web/assets/` changed in push |
+
+Daily OpenSea refresh → push JSON → deploy reuses cached images. New collection art committed under `web/assets/` triggers an incremental LFS pull.
+
+**Manual QA after workflow changes:** run **Refresh gallery data** once, confirm deploy succeeds without LFS errors, footer build id updates on live site.
+
+---
+
 ## Deploy & verification
 
 ```powershell
