@@ -2,7 +2,7 @@
 <!-- daCommunity gallery (from /collections/). Paths: data-base + initDataUrls() in app.js. -->
 <html lang="en">
 <head>
-  <meta name="site-build" content="20260606-8" />
+  <meta name="site-build" content="20260606-9" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>daCommunity Gallery · daCAT</title>
@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/styles.css?v=20260606-8" />
+  <link rel="stylesheet" href="../css/styles.css?v=20260606-9" />
 </head>
 <body data-base="../">
   <header class="site-header">
@@ -28,7 +28,8 @@
         <a class="nav-btn nav-btn-home" href="../">Home</a>
         <a class="nav-btn nav-btn-collections" href="../collections/">Collections</a>
         <a class="nav-btn nav-btn-film" href="../film/">Film</a>
-        <a class="nav-btn nav-btn-wallet" href="#wallet-panel">Find my daCATs</a>
+        <a class="nav-btn nav-btn-wallet" href="#wallet-panel">My daCATs</a>
+        <a class="nav-btn nav-btn-chart" href="../analytics/">MC race</a>
         <a class="nav-btn nav-btn-accent" href="https://opensea.io/collection/rodeo-posts-12142" target="_blank" rel="noopener">OpenSea</a>
         <a class="nav-btn nav-btn-utility" href="https://t.me/daCat_token" target="_blank" rel="noopener">TG</a>
       </nav>
@@ -205,17 +206,6 @@
     </section>
 
     <div class="gallery-focus-zone" id="gallery-focus-zone">
-      <section class="highlights-rail panel" id="featured-rail" hidden aria-labelledby="highlights-heading">
-        <header class="highlights-rail-head">
-          <div class="highlights-rail-copy">
-            <h2 class="highlights-rail-title" id="highlights-heading">Community Highlights</h2>
-            <p class="highlights-rail-lead">Six doorways into the community film hub. Pick a series and start watching.</p>
-          </div>
-          <a class="highlights-rail-link" href="../film/">Browse all films</a>
-        </header>
-        <div class="highlights-track" id="rail-track" role="list"></div>
-      </section>
-
       <section class="gallery-list" id="gallery-list" aria-label="Gallery" aria-busy="true"></section>
       <div class="gallery-empty panel" id="gallery-empty" hidden>
         <p class="gallery-empty-title">Nothing in this slice of the archive</p>
@@ -290,10 +280,10 @@
   <footer class="site-footer">
     <p>OpenSea ownership and listings · Refreshed daily · Updated <span id="footer-updated">—</span></p>
     <p><a href="https://www.dacat.fun/">dacat.fun</a> · <a href="https://www.dacatworld.com/">dacatworld</a></p>
-    <p class="site-version">Site build 20260606-8</p>
+    <p class="site-version">Site build 20260606-9</p>
   </footer>
 
-  <script src="../js/pwa-register.js?v=20260606-8" defer></script>
-  <script src="../js/app.js?v=20260606-8" defer></script>
+  <script src="../js/pwa-register.js?v=20260606-9" defer></script>
+  <script src="../js/app.js?v=20260606-9" defer></script>
 </body>
 </html>

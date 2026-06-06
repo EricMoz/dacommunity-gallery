@@ -35,27 +35,13 @@ let CATALOG_URL = "";
 let FULL_DATA_URL = "";
 let WALLET_URL = "";
 let META_URL = "";
-let VIDEOS_URL = "";
 let galleryMeta = null;
-let filmVideosById = null;
-
-/** Curated film hub entry points for the Community Highlights row. */
-var COMMUNITY_HIGHLIGHTS = [
-  { id: "chronicles-trailer-1", category: "daCAT Chronicles", label: "Comic Trailer #1" },
-  { id: "podcast-ep1", category: "Podcast", label: "Episode 1" },
-  { id: "dabeezy-rebirth", category: "daBeezy", label: "Episode 1: Rebirth" },
-  { id: "shiro-fishing", category: "daCAT & Shiro", label: "Ep 1 · Fishing Trip" },
-  { id: "crossover-kizuna", category: "Crossovers", label: "Kizuna vs DaCAT" },
-  { id: "mozvane-quick-stop", category: "Mozvane", label: "Mozvane (~5 min)" },
-];
-
 function initDataUrls() {
   var prefix = getDataPrefix();
   CATALOG_URL = prefix + "data/gallery_catalog.json";
   FULL_DATA_URL = prefix + "data/gallery_data.json";
   WALLET_URL = prefix + "data/wallet_index.json";
   META_URL = prefix + "data/gallery_meta.json";
-  VIDEOS_URL = prefix + "data/videos.json";
 }
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -1985,81 +1971,6 @@ function renderGallerySkeletons(count) {
   }
 }
 
-function filmHubUrl(videoId) {
-  return getDataPrefix() + "film/?v=" + encodeURIComponent(videoId);
-}
-
-async function loadFilmCatalog() {
-  if (filmVideosById) return filmVideosById;
-  try {
-    var data = await fetchJson(VIDEOS_URL, 15000);
-    filmVideosById = {};
-    (data.videos || []).forEach(function (v) {
-      filmVideosById[v.id] = v;
-    });
-    return filmVideosById;
-  } catch (e) {
-    console.warn("Film catalog for highlights:", e);
-    filmVideosById = {};
-    return filmVideosById;
-  }
-}
-
-function renderCommunityHighlights() {
-  var rail = $("#featured-rail");
-  var track = $("#rail-track");
-  if (!rail || !track || !filmVideosById) {
-    if (rail) rail.hidden = true;
-    return;
-  }
-
-  var cards = [];
-  COMMUNITY_HIGHLIGHTS.forEach(function (spec) {
-    var video = filmVideosById[spec.id];
-    if (video) cards.push({ spec: spec, video: video });
-  });
-
-  if (!cards.length) {
-    rail.hidden = true;
-    return;
-  }
-
-  rail.hidden = false;
-  track.innerHTML = "";
-  cards.forEach(function (entry) {
-    var spec = entry.spec;
-    var video = entry.video;
-    var link = document.createElement("a");
-    link.className = "highlight-card";
-    link.href = filmHubUrl(video.id);
-    link.setAttribute("role", "listitem");
-    link.setAttribute(
-      "aria-label",
-      spec.category + ": " + spec.label + ". Watch on film hub."
-    );
-    var duration = video.duration || "";
-    link.innerHTML =
-      '<span class="highlight-card-thumb">' +
-      '<img src="' +
-      escapeHtml(video.thumbnail) +
-      '" alt="" loading="lazy" width="320" height="180" />' +
-      '<span class="highlight-card-play" aria-hidden="true"></span>' +
-      (duration
-        ? '<span class="highlight-card-duration">' + escapeHtml(duration) + "</span>"
-        : "") +
-      "</span>" +
-      '<span class="highlight-card-body">' +
-      '<span class="highlight-card-category">' +
-      escapeHtml(spec.category) +
-      "</span>" +
-      '<span class="highlight-card-title">' +
-      escapeHtml(spec.label) +
-      "</span>" +
-      "</span>";
-    track.appendChild(link);
-  });
-}
-
 function renderGallery(items) {
   var list = $("#gallery-list");
   var empty = $("#gallery-empty");
@@ -2427,12 +2338,6 @@ function refreshView() {
   var total = galleryData.items.length;
   var filtered = getFilteredItems();
   renderBrowseMeta(filtered.length, total);
-  if (galleryCollectorView) {
-    var rail = $("#featured-rail");
-    if (rail) rail.hidden = true;
-  } else {
-    renderCommunityHighlights();
-  }
   renderGallery(filtered);
 }
 
@@ -2616,10 +2521,6 @@ async function init() {
     loadGalleryMeta().then(function () {
       renderDataFreshness();
       updateFooterMaintenance(galleryMeta);
-    });
-
-    loadFilmCatalog().then(function () {
-      if (!galleryCollectorView) renderCommunityHighlights();
     });
 
     loadWalletIndex().then(function () {

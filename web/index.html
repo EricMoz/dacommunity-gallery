@@ -2,7 +2,7 @@
 <!-- Site home — collections · film & comics · track (analytics). -->
 <html lang="en">
 <head>
-  <meta name="site-build" content="20260606-8" />
+  <meta name="site-build" content="20260606-9" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>daCAT · Home</title>
@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20260606-8" />
+  <link rel="stylesheet" href="css/styles.css?v=20260606-9" />
 </head>
 <body class="home-page">
   <header class="site-header">
@@ -26,7 +26,8 @@
         <span class="nav-btn nav-btn-home is-active" aria-current="page">Home</span>
         <a class="nav-btn nav-btn-collections" href="collections/">Collections</a>
         <a class="nav-btn nav-btn-film" href="film/">Film</a>
-        <a class="nav-btn nav-btn-wallet" href="dacommunity/#wallet-panel">Find my daCATs</a>
+        <a class="nav-btn nav-btn-wallet" href="dacommunity/#wallet-panel">My daCATs</a>
+        <a class="nav-btn nav-btn-chart" href="analytics/">MC race</a>
         <a class="nav-btn nav-btn-accent" href="https://opensea.io/collection/rodeo-posts-12142" target="_blank" rel="noopener">OpenSea</a>
         <a class="nav-btn nav-btn-utility" href="https://t.me/daCat_token" target="_blank" rel="noopener">TG</a>
       </nav>
@@ -54,6 +55,19 @@
         <p class="collector-spotlight-lead">Look up any wallet — see every daCommunity piece you hold, then share a link to your collection.</p>
         <span class="collector-spotlight-cta">Open collector lookup →</span>
       </a>
+    </section>
+
+    <section class="home-section home-highlights" id="home-highlights-rail" hidden aria-labelledby="home-highlights-heading">
+      <div class="highlights-rail panel">
+        <header class="highlights-rail-head">
+          <div class="highlights-rail-copy">
+            <h2 class="highlights-rail-title" id="home-highlights-heading">Community Highlights</h2>
+            <p class="highlights-rail-lead">Six doorways into the community film hub. Pick a series and start watching.</p>
+          </div>
+          <a class="highlights-rail-link" href="film/">Browse all films</a>
+        </header>
+        <div class="highlights-track" id="home-highlights-track" role="list"></div>
+      </div>
     </section>
 
     <section id="collections" class="home-section" aria-labelledby="collections-heading">
@@ -129,8 +143,9 @@
 
   <footer class="site-footer">
     <p><a href="https://www.dacat.fun/">dacat.fun</a> · <a href="https://www.dacatworld.com/">dacatworld</a></p>
-    <p class="site-version">Site build 20260606-8</p>
+    <p class="site-version">Site build 20260606-9</p>
   </footer>
-  <script src="js/pwa-register.js?v=20260606-8" defer></script>
+  <script src="js/pwa-register.js?v=20260606-9" defer></script>
+  <script src="js/home.js?v=20260606-9" defer></script>
 </body>
 </html>

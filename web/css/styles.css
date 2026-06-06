@@ -129,36 +129,50 @@ a:hover { color: var(--blue-accent); }
   border-color: var(--black);
 }
 
-/* Hub primaries — collections, film, collector lookup */
-.nav-btn-collections,
-.nav-btn-film {
+/* Hub nav — collections solid; film cinema dashed; wallet + MC race dashed yellow */
+.nav-btn-collections {
   border: 2px solid #3d3d3d;
 }
 
-.nav-btn-collections:hover,
+.nav-btn-collections:hover {
+  border-color: var(--yellow);
+  color: var(--yellow);
+}
+
+.nav-btn-film {
+  background: transparent;
+  color: #e0e0e0;
+  border: 2px dashed rgba(255, 255, 255, 0.4);
+}
+
 .nav-btn-film:hover {
   border-color: var(--yellow);
   color: var(--yellow);
+  background: rgba(255, 204, 0, 0.08);
 }
 
-.nav-btn-wallet {
-  border: 2px solid rgba(255, 204, 0, 0.5);
+.nav-btn-wallet,
+.nav-btn-chart {
+  background: transparent;
   color: var(--yellow);
-  background: rgba(255, 204, 0, 0.1);
+  border: 2px dashed rgba(255, 204, 0, 0.75);
 }
 
-.nav-btn-wallet:hover {
+.nav-btn-wallet:hover,
+.nav-btn-chart:hover {
+  background: rgba(255, 204, 0, 0.12);
+  color: var(--yellow);
   border-color: var(--yellow);
-  background: rgba(255, 204, 0, 0.18);
-  color: #fff;
 }
 
 .nav-btn-collections.is-active,
 .nav-btn-film.is-active,
-.nav-btn-wallet.is-active {
+.nav-btn-wallet.is-active,
+.nav-btn-chart.is-active {
   background: var(--yellow);
   color: var(--black);
   border: 2px solid var(--black);
+  border-style: solid;
 }
 
 /* Home + utilities — quieter */
@@ -182,25 +196,6 @@ a:hover { color: var(--blue-accent); }
 .nav-btn-utility:hover {
   color: var(--white);
   border-color: #444;
-}
-
-/* Analytics — secondary in nav (page-local on MC race only) */
-.nav-btn-chart {
-  background: var(--black-soft);
-  color: #9a9a9a;
-  border: 2px solid #333;
-  font-size: 0.78rem;
-}
-
-.nav-btn-chart:hover {
-  color: var(--yellow);
-  border-color: rgba(255, 204, 0, 0.45);
-}
-
-.nav-btn-chart.is-active {
-  background: var(--yellow);
-  color: var(--black);
-  border: 2px solid var(--black);
 }
 
 /* Main layout */
@@ -2171,6 +2166,10 @@ button.stat:focus-visible {
 /* Home page sections (Collections, Watch & track) */
 .home-section {
   scroll-margin-top: 5.5rem;
+}
+
+.home-highlights .highlights-rail {
+  margin-bottom: 0;
 }
 
 .home-section .collection-grid {
