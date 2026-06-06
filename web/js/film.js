@@ -709,27 +709,9 @@
     }
   }
 
-  function syncSiteHeaderHeight() {
-    const header = document.querySelector(".site-header");
-    if (!header) return;
-    document.documentElement.style.setProperty(
-      "--site-header-h",
-      header.getBoundingClientRect().height + "px"
-    );
-  }
-
-  window.addEventListener("resize", syncSiteHeaderHeight);
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(syncSiteHeaderHeight);
-  }
-
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function () {
-      syncSiteHeaderHeight();
-      init();
-    });
+    document.addEventListener("DOMContentLoaded", init);
   } else {
-    syncSiteHeaderHeight();
     init();
   }
 })();

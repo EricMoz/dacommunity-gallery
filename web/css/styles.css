@@ -123,50 +123,55 @@ a:hover { color: var(--blue-accent); }
   border-color: #333;
 }
 
-/* Hub links — same dark pill; hover gold; active page = sole solid yellow */
+/* Hub links — collections & film get primary weight */
 .nav-btn-collections,
-.nav-btn-chart {
+.nav-btn-film {
+  font-size: 0.86rem;
   border-color: #3a3a3a;
 }
 
 .nav-btn-collections:hover,
-.nav-btn-chart:hover,
 .nav-btn-film:hover {
   border-color: var(--yellow);
   color: var(--yellow);
 }
 
-.nav-btn-film {
-  background: var(--black-soft);
-  color: #e8e8e8;
-  border: 2px dashed rgba(255, 255, 255, 0.32);
+/* My daCATs — emphasized on home + gallery, still no dash unless active */
+.home-page .nav-btn-wallet:not(.is-active),
+body[data-base] .nav-btn-wallet:not(.is-active) {
+  color: var(--yellow);
+  border-color: rgba(255, 204, 0, 0.35);
 }
 
-.nav-btn-film:hover {
-  background: rgba(255, 204, 0, 0.06);
+.home-page .nav-btn-wallet:not(.is-active):hover,
+body[data-base] .nav-btn-wallet:not(.is-active):hover {
+  background: rgba(255, 204, 0, 0.08);
+  border-color: var(--yellow);
 }
 
-/* My daCATs — dashed invite when elsewhere; solid only when this page is active */
-.nav-btn-wallet:not(.is-active) {
+/* MC race — demoted utility */
+.nav-btn-chart:not(.is-active) {
+  color: #666;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-color: transparent;
+  background: transparent;
+  opacity: 0.85;
+}
+
+.nav-btn-chart:not(.is-active):hover {
+  color: #999;
+  border-color: #333;
+  background: rgba(255, 255, 255, 0.04);
+  opacity: 1;
+}
+
+/* One dashed-yellow accent — current page only */
+.nav-btn.is-active {
   background: transparent;
   color: var(--yellow);
-  border: 2px dashed rgba(255, 204, 0, 0.65);
-}
-
-.nav-btn-wallet:not(.is-active):hover {
-  background: rgba(255, 204, 0, 0.1);
-  border-color: var(--yellow);
-}
-
-.nav-btn-collections.is-active,
-.nav-btn-film.is-active,
-.nav-btn-wallet.is-active,
-.nav-btn-chart.is-active,
-.nav-btn-home.is-active {
-  background: var(--yellow);
-  color: var(--black);
-  border: 2px solid var(--black);
-  border-style: solid;
+  border: 2px dashed var(--yellow);
+  cursor: default;
 }
 
 /* Home — quiet entry */
@@ -2844,11 +2849,23 @@ body.film-theater {
   background: radial-gradient(ellipse at center, transparent 35%, rgba(0, 0, 0, 0.65) 100%);
 }
 
-.film-theater .site-header,
+.film-theater .site-top-stack,
 .film-theater .film-hub-main,
 .film-theater .site-footer {
   position: relative;
   z-index: 1;
+}
+
+.site-top-stack--film {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+}
+
+.site-top-stack--film .site-header {
+  position: static;
+  top: auto;
 }
 
 .film-page .site-header {
@@ -3049,11 +3066,29 @@ body.film-theater {
 }
 
 /* Film hub landing (/film/) */
+.film-hub-page .film-sticky-deck {
+  position: static;
+  top: auto;
+  z-index: auto;
+  width: 100%;
+  margin: 0;
+  background: #030303;
+  border-bottom: 1px solid rgba(255, 204, 0, 0.12);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
+}
+
+.film-hub-page .film-sticky-deck-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0.35rem 1.25rem 0.5rem;
+  width: 100%;
+}
+
 .film-hub-page .film-hub-main {
   flex: 1;
   max-width: 1180px;
   margin: 0 auto;
-  padding: 1.75rem 1.25rem 3rem;
+  padding: 1.15rem 1.25rem 3rem;
   width: 100%;
   overflow-anchor: none;
 }
@@ -3219,14 +3254,12 @@ body.film-theater {
 }
 
 .film-hub-page .film-hub-toolbar {
-  position: sticky;
-  top: var(--site-header-h, 0px);
-  z-index: 90;
-  margin: 0 -1.25rem 1.1rem;
-  padding: 0 1.25rem 0.55rem;
-  background: #030303;
-  border-bottom: 1px solid rgba(255, 204, 0, 0.12);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.55);
+  position: static;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .film-search-wrap {
@@ -6124,11 +6157,12 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     margin-bottom: 0.5rem;
   }
 
-  .film-hub-page .film-hub-toolbar {
-    margin-left: -0.85rem;
-    margin-right: -0.85rem;
-    padding: 0 0.85rem 0.5rem;
-    margin-bottom: 1rem;
+  .film-hub-page .film-sticky-deck-inner {
+    padding: 0.3rem 0.85rem 0.45rem;
+  }
+
+  .film-hub-page .film-hub-main {
+    padding: 1rem 0.85rem 2.5rem;
   }
 
   .film-toolbar-hint {
