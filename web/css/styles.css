@@ -4837,6 +4837,57 @@ body.film-modal-open {
   gap: 0.65rem;
   flex: 1 1 12rem;
   min-width: 0;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+  -webkit-tap-highlight-color: rgba(255, 204, 0, 0.2);
+}
+
+.film-upnext-preview:hover,
+.film-upnext-preview:focus-visible {
+  background: rgba(255, 204, 0, 0.08);
+  outline: none;
+}
+
+.film-upnext-preview:hover .film-upnext-title,
+.film-upnext-preview:focus-visible .film-upnext-title {
+  color: var(--yellow);
+}
+
+.film-upnext-end-tap {
+  display: block;
+  width: 100%;
+  flex: 1 1 12rem;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+  -webkit-tap-highlight-color: rgba(255, 204, 0, 0.2);
+}
+
+.film-upnext-end-tap:hover,
+.film-upnext-end-tap:focus-visible {
+  background: rgba(255, 204, 0, 0.1);
+  outline: none;
+}
+
+.film-upnext-end-tap:hover .film-upnext-countdown strong,
+.film-upnext-end-tap:focus-visible .film-upnext-countdown strong {
+  color: var(--yellow);
 }
 
 .film-upnext-thumb {
@@ -5127,6 +5178,12 @@ body.film-modal-open {
   .film-upnext-thumb {
     width: 80px;
     height: 45px;
+  }
+
+  .film-upnext-preview,
+  .film-upnext-end-tap {
+    min-height: 44px;
+    padding: 0.15rem 0.1rem;
   }
 }
 

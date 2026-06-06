@@ -41,8 +41,10 @@
     upnextKicker: document.getElementById("film-upnext-kicker"),
     upnextTitle: document.getElementById("film-upnext-title"),
     upnextMeta: document.getElementById("film-upnext-meta"),
+    upnextPreview: document.getElementById("film-upnext-preview"),
     upnextPlay: document.getElementById("film-upnext-play"),
     upnextCountdown: document.getElementById("film-upnext-countdown"),
+    upnextEndTap: document.getElementById("film-upnext-end-tap"),
     upnextCancel: document.getElementById("film-upnext-cancel"),
     upnextPlayNow: document.getElementById("film-upnext-play-now"),
     upnextModes: document.querySelectorAll(".film-upnext-mode"),
@@ -58,6 +60,7 @@
   let pendingVideoId = null;
   let nextMode = "random";
   let lastRandomId = null;
+  let randomBag = [];
   let pendingUpNext = null;
   let upNextTimer = null;
   let upNextCountdownSec = 0;
@@ -284,7 +287,31 @@
     return sortVideos(videos.filter((v) => v.series === current.series));
   }
 
+  function shuffleIds(ids) {
+    const list = ids.slice();
+    for (let i = list.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const tmp = list[i];
+      list[i] = list[j];
+      list[j] = tmp;
+    }
+    return list;
+  }
+
+  function refillRandomBag(exclude) {
+    const blocked = exclude || new Set();
+    let ids = videos.map((v) => v.id).filter((id) => !blocked.has(id));
+    if (!ids.length) ids = videos.map((v) => v.id);
+    randomBag = shuffleIds(ids);
+  }
+
+  /** Fair shuffle bag — every title in the pool before repeats (covers single-video series). */
   function pickRandomNext(current, extraExclude) {
+    if (!videos.length) return null;
+    if (videos.length === 1) {
+      return videos[0].id === current.id ? null : videos[0];
+    }
+
     const exclude = new Set([current.id]);
     if (lastRandomId) exclude.add(lastRandomId);
     if (extraExclude) {
@@ -293,12 +320,16 @@
       });
     }
 
-    let pool = videos.filter((v) => !exclude.has(v.id));
-    if (!pool.length && videos.length > 1) {
-      pool = videos.filter((v) => v.id !== current.id);
+    randomBag = randomBag.filter((id) => !exclude.has(id));
+    if (!randomBag.length) refillRandomBag(exclude);
+
+    if (!randomBag.length) {
+      const pool = videos.filter((v) => !exclude.has(v.id));
+      if (!pool.length) return null;
+      return pool[Math.floor(Math.random() * pool.length)];
     }
-    if (!pool.length) return null;
-    return pool[Math.floor(Math.random() * pool.length)];
+
+    return findVideo(randomBag.shift());
   }
 
   function pickSeriesNext(current) {
@@ -345,6 +376,39 @@
     }
     if (els.upnextKicker) {
       els.upnextKicker.textContent = "Up next · " + upNextModeLabel();
+    }
+    const previewLabel =
+      "Play up next: " + video.title + " (" + video.series + ")";
+    if (els.upnextPreview) els.upnextPreview.setAttribute("aria-label", previewLabel);
+    if (els.upnextEndTap) els.upnextEndTap.setAttribute("aria-label", previewLabel);
+  }
+
+  function upNextPlayLabel() {
+    return nextMode === "series" ? "Next in series" : "Play next";
+  }
+
+  function reshuffleUpNextPreview() {
+    const cur = findVideo(currentVideoId);
+    if (!cur || nextMode !== "random") {
+      refreshUpNextUi();
+      return;
+    }
+    const extra = [];
+    if (pendingUpNext && pendingUpNext.id !== cur.id) {
+      extra.push(pendingUpNext.id);
+    }
+    const next = pickRandomNext(cur, extra);
+    pendingUpNext = next;
+    if (!next) {
+      if (els.upnext) els.upnext.hidden = true;
+      return;
+    }
+    if (els.upnext) els.upnext.hidden = false;
+    hideUpNextEnd();
+    fillUpNextPreview(next);
+    if (els.upnextPlay) {
+      els.upnextPlay.disabled = false;
+      els.upnextPlay.textContent = upNextPlayLabel();
     }
   }
 
@@ -395,8 +459,7 @@
     fillUpNextPreview(next);
     if (els.upnextPlay) {
       els.upnextPlay.disabled = false;
-      els.upnextPlay.textContent =
-        nextMode === "series" ? "Next in series" : "Play random";
+      els.upnextPlay.textContent = upNextPlayLabel();
     }
   }
 
@@ -441,23 +504,6 @@
     refreshUpNextUi();
   }
 
-  function resolveManualUpNext(cur) {
-    if (!cur) return null;
-    if (nextMode === "series") {
-      return pendingUpNext || resolveUpNext(cur);
-    }
-    const extra = [];
-    if (pendingUpNext && pendingUpNext.id !== cur.id) {
-      extra.push(pendingUpNext.id);
-    }
-    let next = pickRandomNext(cur, extra);
-    if (next && next.id === cur.id && videos.length > 1) {
-      extra.push(cur.id);
-      next = pickRandomNext(cur, extra);
-    }
-    return next;
-  }
-
   function goToUpNext(opts) {
     opts = opts || {};
     clearUpNextCountdown();
@@ -465,9 +511,7 @@
     const cur = findVideo(currentVideoId);
     if (!cur) return;
 
-    const next = opts.fromCountdown
-      ? pendingUpNext || resolveUpNext(cur)
-      : resolveManualUpNext(cur);
+    const next = pendingUpNext || resolveUpNext(cur);
 
     if (!next || next.id === cur.id) return;
     transitionToVideo(next.id, { autoplay: true, isUpNext: true });
@@ -634,6 +678,7 @@
       opts && (opts.autoplayNext === true || opts.isUpNext === true);
 
     lastRandomId = null;
+    randomBag = [];
     clearUpNextCountdown();
     fillModalDetails(video);
     const url = new URL(window.location.href);
@@ -705,6 +750,14 @@
     if (els.modalClose) els.modalClose.addEventListener("click", closeModal);
     if (els.modalBackdrop)
       els.modalBackdrop.addEventListener("click", closeModal);
+    if (els.upnextPreview) {
+      els.upnextPreview.addEventListener("click", () => goToUpNext({}));
+    }
+    if (els.upnextEndTap) {
+      els.upnextEndTap.addEventListener("click", () =>
+        goToUpNext({ fromCountdown: true })
+      );
+    }
     if (els.upnextPlay) {
       els.upnextPlay.addEventListener("click", () => goToUpNext({}));
     }
@@ -721,7 +774,7 @@
         btn.addEventListener("click", () => {
           const mode = btn.dataset.mode;
           if (mode === "random" && mode === nextMode) {
-            refreshUpNextUi();
+            reshuffleUpNextPreview();
             return;
           }
           setUpNextMode(mode);
