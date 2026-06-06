@@ -61,6 +61,7 @@
   let pendingUpNext = null;
   let upNextTimer = null;
   let upNextCountdownSec = 0;
+  let pendingAutoplayAfterLoad = false;
 
   function loadYouTubeApi() {
     if (window.YT && window.YT.Player) {
@@ -275,16 +276,14 @@
   function pickRandomNext(current, extraExclude) {
     const exclude = new Set([current.id]);
     if (lastRandomId) exclude.add(lastRandomId);
-    if (extraExclude) extraExclude.forEach((id) => exclude.add(id));
+    if (extraExclude) {
+      extraExclude.forEach((id) => {
+        if (id) exclude.add(id);
+      });
+    }
 
-    const sameSeries = videos.filter(
-      (v) => v.series === current.series && !exclude.has(v.id)
-    );
-    let pool =
-      sameSeries.length > 0
-        ? sameSeries
-        : videos.filter((v) => !exclude.has(v.id));
-    if (!pool.length) {
+    let pool = videos.filter((v) => !exclude.has(v.id));
+    if (!pool.length && videos.length > 1) {
       pool = videos.filter((v) => v.id !== current.id);
     }
     if (!pool.length) return null;
@@ -404,7 +403,7 @@
       upNextCountdownSec -= 1;
       if (upNextCountdownSec <= 0) {
         clearUpNextCountdown();
-        goToUpNext();
+        goToUpNext({ fromCountdown: true });
         return;
       }
       updateCountdownText();
@@ -431,12 +430,35 @@
     refreshUpNextUi();
   }
 
-  function goToUpNext() {
+  function resolveManualUpNext(cur) {
+    if (!cur) return null;
+    if (nextMode === "series") {
+      return pendingUpNext || resolveUpNext(cur);
+    }
+    const extra = [];
+    if (pendingUpNext && pendingUpNext.id !== cur.id) {
+      extra.push(pendingUpNext.id);
+    }
+    let next = pickRandomNext(cur, extra);
+    if (next && next.id === cur.id && videos.length > 1) {
+      extra.push(cur.id);
+      next = pickRandomNext(cur, extra);
+    }
+    return next;
+  }
+
+  function goToUpNext(opts) {
+    opts = opts || {};
     clearUpNextCountdown();
     hideUpNextEnd();
     const cur = findVideo(currentVideoId);
-    const next = pendingUpNext || (cur ? resolveUpNext(cur) : null);
-    if (!next) return;
+    if (!cur) return;
+
+    const next = opts.fromCountdown
+      ? pendingUpNext || resolveUpNext(cur)
+      : resolveManualUpNext(cur);
+
+    if (!next || next.id === cur.id) return;
     transitionToVideo(next.id, { autoplay: true, isUpNext: true });
   }
 
@@ -464,6 +486,22 @@
       event.data === YT.PlayerState.PAUSED
     ) {
       setPlayerLoading(false);
+      pendingAutoplayAfterLoad = false;
+    }
+    if (
+      pendingAutoplayAfterLoad &&
+      ytPlayer &&
+      ytPlayer.playVideo &&
+      (event.data === YT.PlayerState.CUED ||
+        event.data === YT.PlayerState.UNSTARTED ||
+        event.data === YT.PlayerState.BUFFERING)
+    ) {
+      pendingAutoplayAfterLoad = false;
+      try {
+        ytPlayer.playVideo();
+      } catch (_) {
+        /* ignore */
+      }
     }
     if (event.data === YT.PlayerState.ENDED) {
       const cur = findVideo(currentVideoId);
@@ -522,9 +560,16 @@
     setPlayerLoading(true);
 
     if (ytPlayer && typeof ytPlayer.loadVideoById === "function") {
+      pendingAutoplayAfterLoad = opts.autoplay !== false;
       ytPlayer.loadVideoById(video.youtubeId);
       if (opts.autoplay !== false && ytPlayer.playVideo) {
-        ytPlayer.playVideo();
+        try {
+          ytPlayer.playVideo();
+        } catch (_) {
+          /* wait for CUED in onPlayerStateChange */
+        }
+      } else {
+        pendingAutoplayAfterLoad = false;
       }
     } else if (ytApiReady) {
       createPlayer(video, opts.autoplay !== false);
@@ -650,17 +695,26 @@
     if (els.modalBackdrop)
       els.modalBackdrop.addEventListener("click", closeModal);
     if (els.upnextPlay) {
-      els.upnextPlay.addEventListener("click", () => goToUpNext());
+      els.upnextPlay.addEventListener("click", () => goToUpNext({}));
     }
     if (els.upnextPlayNow) {
-      els.upnextPlayNow.addEventListener("click", () => goToUpNext());
+      els.upnextPlayNow.addEventListener("click", () =>
+        goToUpNext({ fromCountdown: true })
+      );
     }
     if (els.upnextCancel) {
       els.upnextCancel.addEventListener("click", () => cancelUpNext());
     }
     if (els.upnextModes) {
       els.upnextModes.forEach((btn) => {
-        btn.addEventListener("click", () => setUpNextMode(btn.dataset.mode));
+        btn.addEventListener("click", () => {
+          const mode = btn.dataset.mode;
+          if (mode === "random" && mode === nextMode) {
+            refreshUpNextUi();
+            return;
+          }
+          setUpNextMode(mode);
+        });
       });
     }
     document.addEventListener("keydown", (e) => {

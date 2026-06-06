@@ -62,6 +62,8 @@ If this function is missing but still called, the deck offset falls back to `4.3
 - [ ] Mobile: filter chips wrap; deck still sticks; hint line hidden per CSS.
 - [ ] `?v=` deep link opens modal; page scroll position sensible.
 - [ ] DevTools console: no `syncSiteHeaderHeight is not defined`.
+- [ ] Modal → **Play random** while a video plays: always loads a different title (not the same preview stuck).
+- [ ] End-of-video countdown → **Play now** honors the previewed title.
 
 ---
 
