@@ -82,6 +82,36 @@
     backBtn: document.getElementById("theatre-back"),
   };
 
+  // Apply persisted lights-down class *as early as possible* (right after els, before data fetch/player mount).
+  // This is the key fix for the refresh-in-lights-down bug:
+  // - On hard refresh while lights down was active, sessionStorage has the key.
+  // - Previously the class was added *after* YT player mount (in normal/small size via tryPendingLightsRestore in onReady/playVideo).
+  // - Result: container resized too late → YT iframe created at wrong size → "Cueing film…" flashes then video never appears (blank).
+  // - Now the body class (and thus the big fixed stage + large player rules) are present before mountYtPlayer / YT.Player creation.
+  // - The container is already immersive-sized, so the iframe renders the video correctly.
+  // - Side effects (button label "Lights up", prompt dismiss, idle watch) are also applied early for correct initial UI.
+  var lightsDownFromStorage = false;
+  try {
+    if (sessionStorage.getItem(THEATRE_LIGHTS_KEY) === "1") {
+      lightsDownFromStorage = true;
+      document.body.classList.add("film-theatre-lights-down");
+    }
+  } catch (_) {
+    /* ignore */
+  }
+  if (lightsDownFromStorage) {
+    if (els.lightsBtn) {
+      els.lightsBtn.setAttribute("aria-pressed", "true");
+      els.lightsBtn.textContent = "Lights up";
+    }
+    // Inline the effects from dismissLightsPrompt + startChromeIdleWatch (safe before full init)
+    document.body.classList.remove("film-theatre-awaiting-lights");
+    try {
+      sessionStorage.setItem(LIGHTS_PROMPT_KEY, "1");
+    } catch (_) {}
+    // Idle watch will be started properly in apply path or on first activity; the class is what matters for layout.
+  }
+
   function isTheatrePc() {
     return THEATRE_PC_MQ.matches;
   }
