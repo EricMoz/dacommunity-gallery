@@ -76,7 +76,7 @@ Both load `web/js/theatre.js` + `theatre_registry.json` for theme.
 ## Lights + up-next (desktop only)
 
 - **First visit:** prominent **Lights down** dock below the player (pulses once per session); shrinks after you dim
-- **Lights down:** black room around the player — **video stays fully visible**; auto-random up-next; end-of-video countdown
+- **Lights down:** black room around the player — **video stays fully visible**; Skip / auto-chain stays in lights-down (in-page `pushState`, no reload); auto-random **1s before** video ends if idle
 - **Lights up:** full up-next bar with **Random / Series** toggle (shares `dacat-film-upnext-mode` with film hub modal); popcorn field drifts in background
 - `prefers-reduced-motion`: static kernels, no drift/pulse/flash
 

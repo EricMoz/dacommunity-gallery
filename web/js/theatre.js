@@ -10,8 +10,10 @@
   var THEATRE_PC_MQ = window.matchMedia("(min-width: 769px)");
   var POPCORN_COUNT = 24;
   var UPNEXT_COUNTDOWN_SEC = 8;
+  var UPNEXT_TAIL_SEC = 1;
   var UPNEXT_MODE_KEY = "dacat-film-upnext-mode";
   var LIGHTS_PROMPT_KEY = "dacat-theatre-lights-prompted";
+  var THEATRE_LIGHTS_KEY = "dacat-theatre-lights-down";
   var YT_ORIGIN = window.location.origin;
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -29,6 +31,8 @@
   var pendingUpNext = null;
   var upNextTimer = null;
   var upNextCountdownSec = 0;
+  var endWatchTimer = null;
+  var endTriggered = false;
 
   var els = {
     title: document.getElementById("theatre-title"),
@@ -216,24 +220,30 @@
     var onDedicated =
       pageId &&
       !new URLSearchParams(window.location.search).has("v");
+    var url = new URL(window.location.href);
 
     if (onDedicated && video.id !== pageId) {
       var slug = video.theatre && video.theatre.slug;
       var canonical = slug ? registryCanonicalId(slug) : null;
-      var href =
+      if (
         video.theatre &&
         video.theatre.route &&
         canonical &&
         video.id === canonical
-          ? "../" + video.theatre.route
-          : "../theatre/?v=" + encodeURIComponent(video.id);
-      window.location.href = href;
-      return true;
+      ) {
+        document.body.setAttribute("data-video-id", video.id);
+        return false;
+      }
+      url.pathname = url.pathname.replace(/\/[^/]+\/?$/, "/theatre/");
+      url.searchParams.set("v", video.id);
+      history.pushState(null, "", url.pathname + url.search);
+      document.body.removeAttribute("data-video-id");
+      document.body.removeAttribute("data-theatre-slug");
+      return false;
     }
 
-    var url = new URL(window.location.href);
     url.searchParams.set("v", video.id);
-    history.replaceState(null, "", url);
+    history.replaceState(null, "", url.pathname + url.search + url.hash);
     if (pageId) document.body.setAttribute("data-video-id", video.id);
     return false;
   }
@@ -269,6 +279,52 @@
     if (els.player) els.player.innerHTML = "";
   }
 
+  function clearEndWatch() {
+    if (endWatchTimer) {
+      clearInterval(endWatchTimer);
+      endWatchTimer = null;
+    }
+  }
+
+  function resetEndTrigger() {
+    endTriggered = false;
+    clearEndWatch();
+  }
+
+  function triggerUpNextAtTail() {
+    if (endTriggered || !currentVideo) return;
+    endTriggered = true;
+    clearEndWatch();
+    var next = resolveUpNext(currentVideo);
+    if (!next) {
+      cancelUpNext();
+      return;
+    }
+    pendingUpNext = next;
+    if (isLightsDown()) {
+      goToUpNext({ fromCountdown: true });
+      return;
+    }
+    showUpNextCountdown(next, { seconds: UPNEXT_TAIL_SEC });
+  }
+
+  function startEndWatch() {
+    clearEndWatch();
+    endWatchTimer = setInterval(function () {
+      if (!ytPlayer || !currentVideo || endTriggered) return;
+      var YT = window.YT;
+      if (!YT || ytPlayer.getPlayerState() !== YT.PlayerState.PLAYING) return;
+      try {
+        var dur = ytPlayer.getDuration();
+        var cur = ytPlayer.getCurrentTime();
+        if (!dur || dur <= 0 || isNaN(dur) || isNaN(cur)) return;
+        if (dur - cur <= UPNEXT_TAIL_SEC) triggerUpNextAtTail();
+      } catch (_) {
+        /* ignore */
+      }
+    }, 200);
+  }
+
   function onPlayerStateChange(event) {
     var YT = window.YT;
     if (!YT || !YT.PlayerState) return;
@@ -278,6 +334,17 @@
     ) {
       setPlayerLoading(false);
       pendingAutoplayAfterLoad = false;
+    }
+    if (event.data === YT.PlayerState.PLAYING) {
+      resetEndTrigger();
+      startEndWatch();
+    }
+    if (
+      event.data === YT.PlayerState.PAUSED ||
+      event.data === YT.PlayerState.ENDED ||
+      event.data === YT.PlayerState.CUED
+    ) {
+      clearEndWatch();
     }
     if (
       pendingAutoplayAfterLoad &&
@@ -295,9 +362,8 @@
       }
     }
     if (event.data === YT.PlayerState.ENDED) {
-      var next = resolveUpNext(currentVideo);
-      if (next) showUpNextCountdown(next);
-      else cancelUpNext();
+      if (endTriggered) return;
+      triggerUpNextAtTail();
     }
   }
 
@@ -445,7 +511,8 @@
     if (els.upnextDimCountdown) els.upnextDimCountdown.innerHTML = html;
   }
 
-  function showUpNextCountdown(nextVideo) {
+  function showUpNextCountdown(nextVideo, opts) {
+    opts = opts || {};
     if (!nextVideo || !els.upnext) return;
     pendingUpNext = nextVideo;
     els.upnext.hidden = false;
@@ -459,7 +526,8 @@
     }
     fillUpNextPreview(nextVideo);
     clearUpNextCountdown();
-    upNextCountdownSec = UPNEXT_COUNTDOWN_SEC;
+    upNextCountdownSec =
+      typeof opts.seconds === "number" ? opts.seconds : UPNEXT_COUNTDOWN_SEC;
     updateCountdownText();
     upNextTimer = setInterval(function () {
       upNextCountdownSec -= 1;
@@ -501,6 +569,7 @@
     hideUpNextEnd();
     if (!currentVideo) return;
 
+    var keepLightsDown = isLightsDown();
     var prevId = currentVideo.id;
     var next = opts.fromCountdown
       ? pendingUpNext || resolveUpNext(currentVideo)
@@ -508,15 +577,17 @@
 
     if (!next || next.id === currentVideo.id) return;
 
-    if (isLightsDown() || nextMode === "random") {
+    if (keepLightsDown || nextMode === "random") {
       lastRandomId = prevId;
     }
 
-    if (navigateForVideo(next)) return;
+    navigateForVideo(next);
 
     var entry = findRegistryEntry(catalog && catalog._theatreRegistry, next);
     fillCopy(next, entry);
     playVideo(next, true);
+    resetEndTrigger();
+    if (keepLightsDown) setLightsDown(true);
   }
 
   function setUpNextMode(mode) {
@@ -599,12 +670,32 @@
     }
   }
 
+  function persistLightsState(on) {
+    try {
+      if (on) sessionStorage.setItem(THEATRE_LIGHTS_KEY, "1");
+      else sessionStorage.removeItem(THEATRE_LIGHTS_KEY);
+    } catch (_) {
+      /* ignore */
+    }
+  }
+
+  function restoreLightsState() {
+    try {
+      if (sessionStorage.getItem(THEATRE_LIGHTS_KEY) === "1") {
+        setLightsDown(true);
+      }
+    } catch (_) {
+      /* ignore */
+    }
+  }
+
   function setLightsDown(on) {
     document.body.classList.toggle("film-theatre-lights-down", on);
     if (els.lightsBtn) {
       els.lightsBtn.setAttribute("aria-pressed", on ? "true" : "false");
       els.lightsBtn.textContent = on ? "Lights up" : "Lights down";
     }
+    persistLightsState(on);
     if (on) dismissLightsPrompt();
     syncUpNextPanels();
     refreshUpNextUi();
@@ -718,6 +809,7 @@
       var entry = findRegistryEntry(registry, video);
       currentVideo = video;
       fillCopy(video, entry);
+      restoreLightsState();
       playVideo(video, false);
     } catch (err) {
       console.error("Theatre mode:", err);
