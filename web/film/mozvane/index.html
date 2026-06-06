@@ -2,7 +2,7 @@
 <!-- Mozvane theatre mode — canonical route for mozvane-quick-stop -->
 <html lang="en">
 <head>
-  <meta name="site-build" content="20260606-29" />
+  <meta name="site-build" content="20260606-30" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mozvane · Theatre mode · daCAT</title>
@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../../css/styles.css?v=20260606-29" />
+  <link rel="stylesheet" href="../../css/styles.css?v=20260606-30" />
 </head>
 <body class="film-page film-theater film-theatre-page" data-video-id="mozvane-quick-stop" data-theatre-slug="mozvane">
   <div class="film-theater-vignette" aria-hidden="true"></div>
@@ -46,13 +46,16 @@
         <div class="film-theatre-top-chrome">
           <button type="button" class="film-theatre-back-btn" id="theatre-back">← Film hub</button>
         </div>
-        <div class="film-theatre-player" id="theatre-player"></div>
-        <p class="film-theatre-loading" id="theatre-loading">Rolling film…</p>
+        <div class="film-theatre-player-mount">
+          <div class="film-theatre-player-slot" id="theatre-player-slot" aria-hidden="true"></div>
+          <div class="film-theatre-player" id="theatre-player"></div>
+          <p class="film-theatre-loading" id="theatre-loading">Cueing film…</p>
+        </div>
         <p class="film-theatre-error" id="theatre-error" hidden></p>
 
         <div class="film-theatre-lights-dock" id="theatre-lights-dock">
+          <p class="film-theatre-lights-hint" id="theatre-lights-hint">🍿 Grab popcorn — tap Lights down</p>
           <button type="button" class="film-theatre-lights-btn" id="theatre-lights" aria-pressed="false">Lights down</button>
-          <p class="film-theatre-lights-hint" id="theatre-lights-hint">Dim the room — the film stays bright</p>
         </div>
 
         <div class="film-theatre-upnext" id="theatre-upnext" hidden>
@@ -106,7 +109,7 @@
         </div>
       </div>
 
-      <p class="film-theatre-popcorn" id="theatre-popcorn">🍿 Grab popcorn — lights down.</p>
+      <p class="film-theatre-popcorn" id="theatre-popcorn">Lights down anytime — full immersion.</p>
 
       <p class="film-theatre-note">
         An early daCAT anime attempt — crafted with <strong>OpenAI Sora</strong> (since decommissioned), with creative help from <strong>daBeezy</strong>.
@@ -120,9 +123,9 @@
 
   <footer class="site-footer film-footer film-theatre-footer">
     <p><a href="https://www.dacat.fun/">dacat.fun</a> · <a href="https://www.dacatworld.com/">dacatworld</a></p>
-    <p class="site-version">Site build 20260606-29</p>
+    <p class="site-version">Site build 20260606-30</p>
   </footer>
 
-  <script src="../../js/theatre.js?v=20260606-29" defer></script>
+  <script src="../../js/theatre.js?v=20260606-30" defer></script>
 </body>
 </html>

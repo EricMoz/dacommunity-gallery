@@ -49,6 +49,7 @@
     popcorn: document.getElementById("theatre-popcorn"),
     popcornField: document.getElementById("theatre-popcorn-field"),
     player: document.getElementById("theatre-player"),
+    playerSlot: document.getElementById("theatre-player-slot"),
     loading: document.getElementById("theatre-loading"),
     error: document.getElementById("theatre-error"),
     ytLink: document.getElementById("theatre-yt"),
@@ -224,8 +225,8 @@
     if (els.popcorn) {
       var cue =
         (entry && entry.theme && entry.theme.popcornCue) ||
-        "Grab popcorn — tap Lights down.";
-      els.popcorn.textContent = "\uD83C\uDF7F " + cue;
+        "Lights down anytime — full immersion.";
+      els.popcorn.textContent = cue;
     }
     document.title =
       (video.title || "Film") + " · Theatre mode · daCAT";
@@ -573,9 +574,7 @@
             ytPlayer.playVideo();
           }
           tryPendingLightsRestore();
-          if (isLightsDown()) {
-            requestAnimationFrame(capturePlayerAnchor);
-          }
+          syncPlayerPosition({ animate: false });
         },
         onStateChange: onPlayerStateChange,
         onError: function () {
@@ -607,13 +606,10 @@
       mountYtPlayer(video, autoplay !== false);
     }
     refreshUpNextUi();
-    if (isLightsDown()) {
-      requestAnimationFrame(function () {
-        capturePlayerAnchor();
-      });
-    } else {
+    requestAnimationFrame(function () {
+      syncPlayerPosition({ animate: false });
       tryPendingLightsRestore();
-    }
+    });
   }
 
   function clearUpNextCountdown() {
@@ -968,22 +964,67 @@
     );
   }
 
-  function capturePlayerAnchor() {
-    if (!els.player) return false;
-    var rect = els.player.getBoundingClientRect();
-    if (rect.width < 20 || rect.height < 20) return false;
-    var root = document.documentElement;
-    root.style.setProperty("--theatre-player-lock-top", rect.top + "px");
-    root.style.setProperty("--theatre-player-lock-width", rect.width + "px");
-    root.style.setProperty("--theatre-player-lock-height", rect.height + "px");
-    return true;
+  function rectToPlayerFrame(rect) {
+    return {
+      x: rect.left + rect.width / 2,
+      y: rect.top + rect.height / 2,
+      w: rect.width,
+      h: rect.height,
+    };
   }
 
-  function releasePlayerAnchor() {
+  function measureSlotFrame() {
+    if (!els.playerSlot) return null;
+    var rect = els.playerSlot.getBoundingClientRect();
+    if (rect.width < 20 || rect.height < 20) return null;
+    return rectToPlayerFrame(rect);
+  }
+
+  function cinemaFrame() {
+    var vh = window.innerHeight;
+    var vw = window.innerWidth;
+    var pad = 52;
+    var maxH = Math.min(vh - pad * 2, vh * 0.84);
+    var maxW = vw * 0.94;
+    var w = Math.min(maxW, (maxH * 16) / 9);
+    var h = (w * 9) / 16;
+    return {
+      x: vw / 2,
+      y: vh / 2,
+      w: w,
+      h: h,
+    };
+  }
+
+  function applyPlayerFrame(frame, animate) {
+    if (!els.player || !frame) return;
     var root = document.documentElement;
-    root.style.removeProperty("--theatre-player-lock-top");
-    root.style.removeProperty("--theatre-player-lock-width");
-    root.style.removeProperty("--theatre-player-lock-height");
+    root.style.setProperty("--theatre-player-x", frame.x + "px");
+    root.style.setProperty("--theatre-player-y", frame.y + "px");
+    root.style.setProperty("--theatre-player-w", frame.w + "px");
+    root.style.setProperty("--theatre-player-h", frame.h + "px");
+    els.player.classList.add("is-framed");
+    if (els.loading) els.loading.classList.add("is-framed");
+    if (animate === false && !reduced) {
+      els.player.classList.add("film-theatre-player--no-transition");
+      if (els.loading) {
+        els.loading.classList.add("film-theatre-player--no-transition");
+      }
+      requestAnimationFrame(function () {
+        els.player.classList.remove("film-theatre-player--no-transition");
+        if (els.loading) {
+          els.loading.classList.remove("film-theatre-player--no-transition");
+        }
+      });
+    }
+  }
+
+  function syncPlayerPosition(opts) {
+    opts = opts || {};
+    var frame = isLightsDown() ? cinemaFrame() : measureSlotFrame();
+    if (!frame) return false;
+    applyPlayerFrame(frame, opts.animate !== false);
+    return true;
   }
 
   function applyLightsDownDom(on) {
@@ -1005,27 +1046,32 @@
 
   function tryPendingLightsRestore() {
     if (!pendingLightsRestore || isLightsDown()) return;
-    if (!capturePlayerAnchor()) return;
+    if (!syncPlayerPosition({ animate: false })) return;
     pendingLightsRestore = false;
     applyLightsDownDom(true);
+    requestAnimationFrame(function () {
+      applyPlayerFrame(cinemaFrame(), !reduced);
+    });
   }
 
   function setLightsDown(on) {
     if (on) {
-      var attempts = 0;
-      var lockAndApply = function () {
-        if (capturePlayerAnchor()) {
-          applyLightsDownDom(true);
-          return;
-        }
-        attempts += 1;
-        if (attempts < 12) requestAnimationFrame(lockAndApply);
-      };
-      lockAndApply();
+      var start = measureSlotFrame();
+      if (start) applyPlayerFrame(start, false);
+      applyLightsDownDom(true);
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          applyPlayerFrame(cinemaFrame(), !reduced);
+        });
+      });
       return;
     }
     applyLightsDownDom(false);
-    requestAnimationFrame(releasePlayerAnchor);
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        syncPlayerPosition({ animate: !reduced });
+      });
+    });
   }
 
   function bindBack() {
@@ -1119,18 +1165,39 @@
     });
   }
 
-  function bindPlayerAnchorSync() {
+  function bindPlayerFrameSync() {
     window.addEventListener("resize", function () {
-      if (!isLightsDown()) return;
-      requestAnimationFrame(capturePlayerAnchor);
+      requestAnimationFrame(function () {
+        syncPlayerPosition({ animate: false });
+      });
     });
+    if (typeof ResizeObserver !== "undefined" && els.playerSlot) {
+      var ro = new ResizeObserver(function () {
+        if (isLightsDown()) return;
+        requestAnimationFrame(function () {
+          syncPlayerPosition({ animate: false });
+        });
+      });
+      ro.observe(els.playerSlot);
+    }
+  }
+
+  function initPlayerFrame() {
+    var attempts = 0;
+    var boot = function () {
+      if (syncPlayerPosition({ animate: false })) return;
+      attempts += 1;
+      if (attempts < 16) requestAnimationFrame(boot);
+    };
+    boot();
   }
 
   async function init() {
     bindBack();
     bindLights();
     bindUpNext();
-    bindPlayerAnchorSync();
+    bindPlayerFrameSync();
+    initPlayerFrame();
     initPopcornField();
     initLightsPrompt();
     loadUpNextMode();

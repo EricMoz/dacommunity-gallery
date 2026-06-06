@@ -3681,13 +3681,15 @@ body.film-theatre-awaiting-lights {
 }
 
 .film-theatre-lights-hint {
+  display: none;
   margin: 0;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: #9a9a9a;
-  max-width: 28ch;
-  line-height: 1.4;
-  transition: opacity 0.35s ease, max-height 0.35s ease;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--theatre-accent);
+  max-width: 22ch;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  transition: opacity 0.35s ease;
 }
 
 body.film-theatre-awaiting-lights .film-theatre-lights-dock {
@@ -3708,7 +3710,7 @@ body.film-theatre-awaiting-lights .film-theatre-popcorn {
 }
 
 body.film-theatre-awaiting-lights .film-theatre-lights-hint {
-  color: var(--theatre-accent);
+  display: block;
 }
 
 body.film-theatre-awaiting-lights .film-theatre-lights-btn {
@@ -3811,15 +3813,36 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
   gap: 0.45rem;
 }
 
-.film-theatre-player {
+.film-theatre-player-mount {
   position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.film-theatre-player-slot {
   width: min(100%, calc((100dvh - var(--theatre-ui-reserve)) * 16 / 9));
   max-width: 100%;
   max-height: min(58dvh, calc(100dvh - var(--theatre-ui-reserve)));
-  margin: 0 auto;
   aspect-ratio: 16 / 9;
-  height: auto;
-  flex: 0 1 auto;
+  visibility: hidden;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.film-theatre-player {
+  position: fixed;
+  top: var(--theatre-player-y, 50%);
+  left: var(--theatre-player-x, 50%);
+  width: var(--theatre-player-w, 640px);
+  height: var(--theatre-player-h, 360px);
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  aspect-ratio: unset;
+  transform: translate(-50%, -50%);
+  z-index: 6;
   border-radius: 12px;
   overflow: hidden;
   border: 3px solid rgba(255, 204, 0, 0.4);
@@ -3828,15 +3851,23 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
     0 0 60px rgba(255, 204, 0, 0.12),
     0 20px 60px rgba(0, 0, 0, 0.75);
   background: #000;
+  opacity: 0;
   transition:
-    top 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    left 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    width 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.45s ease,
-    box-shadow 0.45s ease;
+    top 0.95s cubic-bezier(0.33, 1, 0.45, 1),
+    left 0.95s cubic-bezier(0.33, 1, 0.45, 1),
+    width 0.95s cubic-bezier(0.33, 1, 0.45, 1),
+    height 0.95s cubic-bezier(0.33, 1, 0.45, 1),
+    opacity 0.35s ease,
+    border-color 0.55s ease,
+    box-shadow 0.55s ease;
+}
+
+.film-theatre-player.is-framed {
+  opacity: 1;
+}
+
+.film-theatre-player--no-transition {
+  transition: none !important;
 }
 
 .film-theatre-player iframe {
@@ -3847,7 +3878,36 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
   border: 0;
 }
 
-.film-theatre-loading,
+.film-theatre-loading {
+  position: fixed;
+  top: var(--theatre-player-y, 50%);
+  left: var(--theatre-player-x, 50%);
+  width: var(--theatre-player-w, 640px);
+  height: var(--theatre-player-h, 360px);
+  transform: translate(-50%, -50%);
+  margin: 0;
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(255, 204, 0, 0.85);
+  opacity: 0;
+  transition:
+    top 0.95s cubic-bezier(0.33, 1, 0.45, 1),
+    left 0.95s cubic-bezier(0.33, 1, 0.45, 1),
+    width 0.95s cubic-bezier(0.33, 1, 0.45, 1),
+    height 0.95s cubic-bezier(0.33, 1, 0.45, 1),
+    opacity 0.35s ease;
+}
+
+.film-theatre-loading.is-framed {
+  opacity: 1;
+}
+
 .film-theatre-error {
   margin: 0.85rem 0 0;
   font-size: 0.88rem;
@@ -3859,18 +3919,12 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
 }
 
 .film-theatre-popcorn {
-  margin: 0.35rem auto 0;
-  font-size: clamp(0.85rem, 2.4vw, 0.98rem);
+  margin: 0.4rem auto 0;
+  font-size: clamp(0.76rem, 2vw, 0.86rem);
   flex-shrink: 0;
-  font-weight: 700;
-  color: var(--theatre-accent);
-  letter-spacing: 0.02em;
-  animation: film-theatre-popcorn-pulse 3s ease-in-out infinite;
-}
-
-@keyframes film-theatre-popcorn-pulse {
-  0%, 100% { opacity: 0.88; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.02); }
+  font-weight: 600;
+  color: #7a7a7a;
+  letter-spacing: 0.03em;
 }
 
 .film-theatre-note {
@@ -3953,41 +4007,14 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
 
 .film-theatre-lights-down .film-theatre-stage {
   z-index: 6;
-  /* In-flow spacer so up-next / dock removal does not collapse layout */
-  min-height: var(--theatre-player-lock-height, 0px);
 }
 
 .film-theatre-lights-down .film-theatre-player {
-  position: fixed;
-  top: var(--theatre-player-lock-top, 50%);
-  left: 50%;
-  transform: translateX(-50%);
-  width: var(--theatre-player-lock-width, min(100%, calc((100dvh - var(--theatre-ui-reserve)) * 16 / 9)));
-  height: var(--theatre-player-lock-height, auto);
-  max-width: var(--theatre-player-lock-width, 100%);
-  max-height: var(--theatre-player-lock-height, min(58dvh, calc(100dvh - var(--theatre-ui-reserve))));
-  margin: 0;
-  z-index: 6;
   border-color: rgba(255, 204, 0, 0.22);
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 1),
     0 0 48px rgba(255, 204, 0, 0.1),
     0 16px 48px rgba(0, 0, 0, 0.85);
-}
-
-.film-theatre-lights-down .film-theatre-loading {
-  position: fixed;
-  top: var(--theatre-player-lock-top, 50%);
-  left: 50%;
-  transform: translateX(-50%);
-  width: var(--theatre-player-lock-width, 100%);
-  height: var(--theatre-player-lock-height, auto);
-  margin: 0;
-  z-index: 7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
 }
 
 /* Lights-down chrome: Back top-left · Lights up top-right · up-next bottom-left */
@@ -7600,11 +7627,14 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding: 0.45rem 0.85rem 0.5rem;
   }
 
+  .film-theatre-player-slot {
+    width: min(100%, calc((100dvh - var(--theatre-ui-reserve)) * 16 / 9));
+    max-height: min(52dvh, calc(100dvh - var(--theatre-ui-reserve)));
+  }
+
   .film-theatre-player {
     border-radius: 8px;
     border-width: 2px;
-    width: min(100%, calc((100dvh - var(--theatre-ui-reserve)) * 16 / 9));
-    max-height: min(52dvh, calc(100dvh - var(--theatre-ui-reserve)));
   }
 
   .film-theatre-top-chrome {
@@ -7691,6 +7721,8 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   .collector-theater-vignette,
   .film-theatre-popcorn-kernel,
   .film-theatre-popcorn,
+  .film-theatre-player,
+  .film-theatre-loading,
   .film-theatre-lights-dock,
   .film-theatre-top-chrome,
   .film-theatre-upnext {
