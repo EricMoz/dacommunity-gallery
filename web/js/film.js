@@ -153,6 +153,25 @@
     return !!(video.theatre && video.theatre.route && theatreHref(video));
   }
 
+  function resolveHeroTheatreHref() {
+    const withTheatre = sortVideos(videos.filter((v) => theatreHref(v)));
+    const dedicated = withTheatre.find((v) => hasDedicatedTheatreRoute(v));
+    if (dedicated) return theatreHref(dedicated);
+    return withTheatre.length ? theatreHref(withTheatre[0]) : null;
+  }
+
+  function syncHeroTheatreLink() {
+    const el = document.getElementById("film-hero-theatre");
+    if (!el) return;
+    const href = resolveHeroTheatreHref();
+    if (!href || !isTheatrePc()) {
+      el.hidden = true;
+      return;
+    }
+    el.href = href;
+    el.hidden = false;
+  }
+
   function createCard(video, opts) {
     const featured = opts && opts.featured;
     const btn = document.createElement("button");
@@ -845,6 +864,7 @@
 
     loadYouTubeApi();
     bindEvents();
+    THEATRE_PC_MQ.addEventListener("change", syncHeroTheatreLink);
     setLoading(true);
     try {
       const res = await fetch(DATA_URL, { cache: "no-store" });
@@ -855,6 +875,7 @@
       renderFilters();
       setLoading(false);
       render();
+      syncHeroTheatreLink();
       syncSiteHeaderHeight();
       requestAnimationFrame(syncSiteHeaderHeight);
       keepPageAtTopUnlessDeepLink();

@@ -4434,6 +4434,17 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   text-decoration: none;
 }
 
+.film-hub-theatre-quick {
+  font-weight: 800;
+  color: var(--yellow);
+  border-color: rgba(255, 204, 0, 0.45);
+  background: rgba(255, 204, 0, 0.1);
+}
+
+.film-hub-foot-links {
+  margin: 1.35rem 0 0.35rem;
+}
+
 /* Film hub landing (/film/) */
 .film-hub-page .film-sticky-deck {
   position: sticky;
@@ -7637,7 +7648,8 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
 
   .film-modal-theatre,
-  .film-series-theatre-cta {
+  .film-series-theatre-cta,
+  .film-hub-theatre-quick {
     display: none !important;
   }
 
