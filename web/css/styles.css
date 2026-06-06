@@ -2692,10 +2692,18 @@ button.stat:focus-visible {
   .badges-cosmos-glow,
   .badges-soon-hero-glyph,
   .badges-soon-shimmer,
-  .film-theatre-popcorn {
+  .film-theatre-popcorn,
+  .race-car--lap {
     transition: none;
     animation: none;
   }
+
+  .analytics-race-lane .race-car:nth-child(1) { offset-distance: 6%; }
+  .analytics-race-lane .race-car:nth-child(2) { offset-distance: 24%; }
+  .analytics-race-lane .race-car:nth-child(3) { offset-distance: 41%; }
+  .analytics-race-lane .race-car:nth-child(4) { offset-distance: 58%; }
+  .analytics-race-lane .race-car:nth-child(5) { offset-distance: 74%; }
+  .analytics-race-lane .race-car:nth-child(6) { offset-distance: 90%; }
 
   .collection-card:hover,
   .collection-card:hover .collection-card-visual img,
@@ -2953,6 +2961,214 @@ button.stat:focus-visible {
 
 .home-track .hub-more-card-solo {
   width: 100%;
+}
+
+/* Cat Coin analytics page — MC race track background */
+body.analytics-page {
+  position: relative;
+  overflow-x: hidden;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -8%, rgba(255, 255, 255, 0.42), transparent 58%),
+    radial-gradient(ellipse 70% 45% at 50% 108%, rgba(10, 10, 10, 0.06), transparent 55%),
+    linear-gradient(180deg, #ffe44d 0%, var(--yellow) 42%, #f0c200 100%);
+}
+
+body.analytics-page .site-header,
+body.analytics-page .analytics-main,
+body.analytics-page .site-footer {
+  position: relative;
+  z-index: 2;
+}
+
+.analytics-race-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.analytics-race-track {
+  position: absolute;
+  inset: clamp(0.45rem, 1.8vw, 0.85rem);
+  border: 3px dashed rgba(10, 10, 10, 0.22);
+  border-radius: clamp(14px, 3vw, 22px);
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 255, 255, 0.35),
+    inset 0 0 48px rgba(255, 255, 255, 0.12);
+}
+
+.analytics-race-checker {
+  position: absolute;
+  width: clamp(2.5rem, 8vw, 3.75rem);
+  height: clamp(2.5rem, 8vw, 3.75rem);
+  opacity: 0.28;
+  background:
+    linear-gradient(45deg, var(--black) 25%, transparent 25%, transparent 75%, var(--black) 75%),
+    linear-gradient(45deg, var(--black) 25%, transparent 25%, transparent 75%, var(--black) 75%);
+  background-size: 12px 12px;
+  background-position: 0 0, 6px 6px;
+  border: 2px solid rgba(10, 10, 10, 0.35);
+  border-radius: 4px;
+}
+
+.analytics-race-checker--tl {
+  top: -2px;
+  left: -2px;
+}
+
+.analytics-race-checker--br {
+  right: -2px;
+  bottom: -2px;
+  transform: rotate(180deg);
+}
+
+.analytics-race-speedlines {
+  position: absolute;
+  inset: 0;
+  opacity: 0.14;
+  background: repeating-linear-gradient(
+    -18deg,
+    transparent,
+    transparent 18px,
+    rgba(10, 10, 10, 0.55) 18px,
+    rgba(10, 10, 10, 0.55) 19px
+  );
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, black 20%, transparent 72%);
+}
+
+.analytics-race-lane {
+  position: absolute;
+  inset: 0;
+}
+
+.race-car--lap {
+  --lap-dur: 20s;
+  --lap-delay: 0s;
+  --lap-dir: normal;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 56px;
+  height: 32px;
+  margin: -16px 0 0 -28px;
+  opacity: 0.62;
+  filter: drop-shadow(2px 3px 0 rgba(10, 10, 10, 0.28));
+  offset-path: inset(4% 2.5% round 20px);
+  offset-distance: 0%;
+  offset-rotate: auto;
+  animation: analytics-race-lap var(--lap-dur) linear infinite;
+  animation-delay: var(--lap-delay);
+  animation-direction: var(--lap-dir);
+  will-change: offset-distance;
+}
+
+.race-car--drive {
+  width: 76px;
+  height: 50px;
+  margin: -25px 0 0 -38px;
+  opacity: 0.78;
+}
+
+.race-car--drive img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px 16px 8px 8px;
+  border: 2px solid var(--black);
+  box-shadow: 4px 4px 0 var(--black);
+}
+
+.race-car--mascot {
+  width: 62px;
+  height: 34px;
+  margin: -17px 0 0 -31px;
+  opacity: 0.7;
+}
+
+.race-car-mascot {
+  position: absolute;
+  left: 50%;
+  top: -10px;
+  width: 28px;
+  height: 28px;
+  transform: translateX(-50%);
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
+  z-index: 1;
+}
+
+.race-car-shell {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--black);
+  border-radius: 9px 16px 7px 7px;
+  box-shadow: 3px 3px 0 var(--black);
+  position: relative;
+}
+
+.race-car-shell::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: 18%;
+  width: 34%;
+  height: 42%;
+  border: 2px solid var(--black);
+  border-radius: 4px 8px 3px 3px;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.race-car-shell::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 14%;
+  width: 16%;
+  height: 16%;
+  border-radius: 50%;
+  background: var(--black);
+  box-shadow: calc(100% + 18px) 0 0 var(--black);
+}
+
+.race-car-shell--compact {
+  background: var(--yellow);
+}
+
+.race-car--yellow .race-car-shell {
+  background: var(--yellow);
+}
+
+.race-car--black .race-car-shell {
+  background: var(--black-soft);
+}
+
+.race-car--black .race-car-shell::before {
+  background: rgba(255, 204, 0, 0.35);
+}
+
+.race-car--white .race-car-shell {
+  background: var(--white);
+}
+
+.race-car--sm {
+  width: 44px;
+  height: 24px;
+  margin: -12px 0 0 -22px;
+  opacity: 0.5;
+}
+
+.race-car--sm .race-car-shell::before {
+  top: 3px;
+  height: 40%;
+}
+
+@keyframes analytics-race-lap {
+  to {
+    offset-distance: 100%;
+  }
 }
 
 /* Cat Coin analytics page (Flourish embed) */
