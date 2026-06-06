@@ -895,6 +895,9 @@ function renderCollectorFocusUi() {
       : "dacat.blast, story, #47…";
   }
 
+  var browseRibbon = $("#collector-browse-ribbon");
+  if (browseRibbon) browseRibbon.hidden = !active;
+
   if (galleryCollectorView) {
     var label = galleryCollectorView.label;
     var count = galleryCollectorView.pieceCount;
@@ -905,11 +908,14 @@ function renderCollectorFocusUi() {
 
     var escapeCount = $("#collector-escape-count");
     if (escapeCount) {
-      escapeCount.textContent = " · " + count + " " + pieceWord;
+      escapeCount.textContent = count + " " + pieceWord;
+      escapeCount.hidden = false;
     }
 
     document.title = label + " · daCommunity Gallery · daCAT";
   } else {
+    var escapeCountReset = $("#collector-escape-count");
+    if (escapeCountReset) escapeCountReset.hidden = true;
     document.title = "daCommunity Gallery · daCAT";
   }
 
@@ -1298,6 +1304,7 @@ function renderWalletSuccess(entry) {
   resultEl.innerHTML =
     '<div class="collector-profile-card">' +
     '<div class="collector-profile-main">' +
+    '<p class="collector-profile-eyebrow">Collector</p>' +
     '<p class="collector-profile-name">' +
     escapeHtml(label) +
     "</p>" +
@@ -1315,11 +1322,11 @@ function renderWalletSuccess(entry) {
     qty +
     " copies in collection</p>" +
     rankHtml +
-    "</div></div>" +
-    '<div class="collector-actions">' +
-    '<button type="button" class="btn btn-accent" id="wallet-share-btn">Share this collection</button>' +
-    '<button type="button" class="btn btn-outline btn-sm" id="wallet-copy-address">Copy address</button>' +
     "</div>" +
+    '<div class="collector-actions">' +
+    '<button type="button" class="btn btn-accent" id="wallet-share-btn">Share collection</button>' +
+    '<button type="button" class="btn btn-outline btn-sm" id="wallet-copy-address">Copy address</button>' +
+    "</div></div>" +
     '<h3 class="holdings-heading">Pieces in the archive (' +
     holdings.length +
     ")</h3>" +
