@@ -24,6 +24,7 @@
   --radius: 12px;
   --font: "DM Sans", system-ui, sans-serif;
   --font-display: "Space Grotesk", sans-serif;
+  --site-header-h: 4.35rem;
 }
 
 * { box-sizing: border-box; }
@@ -166,6 +167,12 @@ a:hover { color: var(--blue-accent); }
   color: var(--black);
   border-style: solid;
   border-color: var(--black);
+}
+
+.nav-btn-wallet.is-active {
+  background: var(--yellow);
+  color: var(--black);
+  border: 2px solid var(--black);
 }
 
 /* Main layout */
@@ -3180,11 +3187,11 @@ body.film-theater {
 
 .film-hub-toolbar {
   position: sticky;
-  top: 4.25rem;
+  top: var(--site-header-h);
   z-index: 20;
-  margin: 0 0 1.5rem;
-  padding: 0.85rem 0 1rem;
-  background: linear-gradient(180deg, #030303 0%, #030303 70%, transparent 100%);
+  margin: 0 0 1.25rem;
+  padding: 0.45rem 0 0.65rem;
+  background: #030303;
   border-bottom: 1px solid rgba(255, 204, 0, 0.12);
 }
 
@@ -4083,7 +4090,7 @@ body.has-collector-view .collector-theater-vignette {
   margin-top: 0.35rem;
   border: 1px solid rgba(255, 204, 0, 0.32);
   border-radius: calc(var(--radius) + 2px);
-  overflow: hidden;
+  overflow: visible;
   background: linear-gradient(168deg, #141414 0%, #080808 46%, #050505 100%);
   box-shadow:
     0 28px 72px rgba(0, 0, 0, 0.62),
@@ -4104,6 +4111,15 @@ body.has-collector-view .collector-theater-vignette {
   pointer-events: none;
 }
 
+.collector-theater-frame.is-active > .collector-escape-bar:first-child {
+  border-radius: calc(var(--radius) + 1px) calc(var(--radius) + 1px) 0 0;
+}
+
+.collector-theater-frame.is-active > .gallery-focus-zone.is-collector-grid:last-child {
+  border-radius: 0 0 calc(var(--radius) + 1px) calc(var(--radius) + 1px);
+  overflow: hidden;
+}
+
 @keyframes collectorTheaterIn {
   from {
     opacity: 0;
@@ -4118,7 +4134,7 @@ body.has-collector-view .collector-theater-vignette {
 .collector-escape-bar {
   display: block;
   position: sticky;
-  top: 4.35rem;
+  top: var(--site-header-h);
   z-index: 12;
   margin: 0;
   padding: 0.8rem 1rem;
@@ -5798,7 +5814,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
 
   .collector-escape-bar {
-    top: 3.85rem;
+    top: var(--site-header-h);
     padding: 0.7rem 0.8rem;
   }
 
@@ -5980,10 +5996,14 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     margin-bottom: 0.5rem;
   }
 
+  :root {
+    --site-header-h: 3.85rem;
+  }
+
   .film-hub-toolbar {
-    top: 6.5rem;
+    top: var(--site-header-h);
     margin-bottom: 1rem;
-    padding-top: 0.65rem;
+    padding: 0.4rem 0 0.55rem;
   }
 
   .film-toolbar-hint {

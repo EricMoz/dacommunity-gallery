@@ -693,14 +693,32 @@ function parseWalletFromUrl() {
   return (params.get("wallet") || params.get("ens") || "").trim();
 }
 
+/** Canonical /dacommunity/ URL (share links work from any page on the site). */
+function dacommunityBaseUrl() {
+  var path = (window.location.pathname || "/").replace(/\/index\.html$/i, "/");
+  var marker = "/dacommunity";
+  var idx = path.indexOf(marker);
+  if (idx >= 0) {
+    return new URL(path.slice(0, idx + marker.length) + "/", window.location.origin);
+  }
+  var segments = path.split("/").filter(Boolean);
+  if (segments.length && segments[segments.length - 1].indexOf(".") >= 0) {
+    segments.pop();
+  }
+  if (segments.length) {
+    return new URL("/" + segments[0] + "/dacommunity/", window.location.origin);
+  }
+  return new URL("/dacommunity/", window.location.origin);
+}
+
 function syncWalletShareUrl(address) {
   if (!address || !/^0x[a-fA-F0-9]{40}$/i.test(address)) return;
-  var params = new URLSearchParams(window.location.search);
-  params.set("wallet", address.toLowerCase());
-  params.delete("ens");
-  var q = params.toString();
-  var path = window.location.pathname + (q ? "?" + q : "") + window.location.hash;
-  history.replaceState(null, "", path);
+  var onDacommunity = window.location.pathname.indexOf("/dacommunity") >= 0;
+  var url = onDacommunity ? new URL(window.location.href) : dacommunityBaseUrl();
+  url.searchParams.set("wallet", address.toLowerCase());
+  url.searchParams.delete("ens");
+  url.hash = "wallet-panel";
+  history.replaceState(null, "", url.pathname + url.search + url.hash);
 }
 
 function clearWalletShareUrl() {
@@ -752,11 +770,20 @@ function setGalleryCollectorView(entry) {
   renderCollectorFocusUi();
   refreshView();
   requestAnimationFrame(function () {
-    var anchor = $("#collector-escape-bar");
-    if (anchor && !anchor.hidden) {
-      anchor.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    scrollToCollectorTheaterTop({ behavior: "smooth" });
   });
+}
+
+/** Scroll to the top of the collector theater (escape bar), not mid-panel. */
+function scrollToCollectorTheaterTop(opts) {
+  opts = opts || {};
+  var bar = $("#collector-escape-bar");
+  if (bar && !bar.hidden) {
+    var behavior = opts.behavior === "instant" ? "auto" : opts.behavior || "smooth";
+    bar.scrollIntoView({ behavior: behavior, block: "start" });
+    return;
+  }
+  scrollToCollectorCollection();
 }
 
 /** Reset search/filter/sort inside an active collector view (stay in theater mode). */
@@ -898,6 +925,12 @@ function renderCollectorFocusUi() {
   var browseRibbon = $("#collector-browse-ribbon");
   if (browseRibbon) browseRibbon.hidden = !active;
 
+  document.querySelectorAll(".nav-btn-wallet").forEach(function (el) {
+    el.classList.toggle("is-active", active);
+    if (active) el.setAttribute("aria-current", "page");
+    else el.removeAttribute("aria-current");
+  });
+
   if (galleryCollectorView) {
     var label = galleryCollectorView.label;
     var count = galleryCollectorView.pieceCount;
@@ -1003,17 +1036,17 @@ function applyCollectorView(address) {
   if (entry) {
     renderWalletSuccess(entry);
     syncWalletShareUrl(entry.address);
-    scrollToCollectorCollection();
+    scrollToCollectorTheaterTop({ behavior: "smooth" });
     return;
   }
   runWalletLookupFromAddress(address, meta.lookupValue);
 }
 
 function walletShareUrl(address) {
-  var url = new URL(window.location.href);
+  var url = dacommunityBaseUrl();
   url.searchParams.set("wallet", address.toLowerCase());
   url.searchParams.delete("ens");
-  if (!url.hash) url.hash = "wallet-panel";
+  url.hash = "wallet-panel";
   return url.toString();
 }
 
@@ -1050,6 +1083,10 @@ function scrollToCollectorHub(opts) {
 function navigateToCollectorHub() {
   closeDetail();
   closeCollectorsModal();
+  if (galleryCollectorView && parseWalletFromUrl()) {
+    scrollToCollectorTheaterTop({ behavior: "smooth" });
+    return;
+  }
   if (galleryCollectorView) {
     exitCollectorView({ scrollToHub: false });
   }
@@ -1113,7 +1150,7 @@ async function applyWalletFromUrl() {
   if (!q) return;
   var input = $("#wallet-input");
   if (input) input.value = q;
-  await renderWalletLookup(q, { updateUrl: false, scroll: true });
+  await renderWalletLookup(q, { updateUrl: true, scroll: true });
 }
 
 function collectorRank(address) {
@@ -1501,7 +1538,7 @@ async function renderWalletLookup(identifier, opts) {
   var entry = lookup.entry;
   renderWalletSuccess(entry);
   if (opts.updateUrl !== false) syncWalletShareUrl(entry.address);
-  if (opts.scroll) scrollToCollectorCollection();
+  if (opts.scroll) scrollToCollectorTheaterTop({ behavior: "smooth" });
 }
 
 function updateCollectorsButton() {
@@ -2525,7 +2562,7 @@ async function init() {
       applyPieceFromUrl();
     });
 
-    if (window.location.hash === "#wallet-panel") {
+    if (window.location.hash === "#wallet-panel" && !parseWalletFromUrl()) {
       setTimeout(scrollToCollectorHub, 600);
     }
   } catch (err) {
