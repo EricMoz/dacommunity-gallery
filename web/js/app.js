@@ -738,6 +738,30 @@ function setGalleryCollectorView(entry) {
   };
   renderCollectorFocusUi();
   refreshView();
+  requestAnimationFrame(function () {
+    var anchor = $("#collector-escape-bar");
+    if (anchor && !anchor.hidden) {
+      anchor.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  });
+}
+
+/** Reset search/filter/sort inside an active collector view (stay in theater mode). */
+function clearCollectorFilters() {
+  if (!galleryCollectorView) return;
+  activeFilter = "all";
+  searchQuery = "";
+  sortKey = "token_desc";
+  var search = $("#search");
+  var sort = $("#sort-select");
+  if (search) search.value = "";
+  if (sort) sort.value = "token_desc";
+  document.querySelectorAll(".filter").forEach(function (btn) {
+    var on = btn.dataset.filter === "all";
+    btn.classList.toggle("active", on);
+    btn.setAttribute("aria-selected", on ? "true" : "false");
+  });
+  refreshView();
 }
 
 function clearGalleryCollectorView(opts) {
@@ -833,8 +857,11 @@ function renderCollectorFocusUi() {
     panel.classList.toggle("is-collector-compact", active && panel.classList.contains("has-result"));
   }
 
-  var banner = $("#collector-view-banner");
-  if (banner) banner.hidden = !active;
+  var frame = $("#collector-theater-frame");
+  if (frame) frame.classList.toggle("is-active", active);
+
+  var escapeBar = $("#collector-escape-bar");
+  if (escapeBar) escapeBar.hidden = !active;
 
   var browse = $("#browse-controls");
   if (browse) browse.classList.toggle("is-portfolio-browse", active);
@@ -860,13 +887,13 @@ function renderCollectorFocusUi() {
     var count = galleryCollectorView.pieceCount;
     var pieceWord = count === 1 ? "piece" : "pieces";
 
-    var bannerMeta = $("#collector-banner-meta");
-    if (bannerMeta) {
-      bannerMeta.textContent = count + " " + pieceWord + " in this portfolio";
-    }
+    var escapeName = $("#collector-escape-name");
+    if (escapeName) escapeName.textContent = label;
 
-    var chipLabel = $("#collector-exit-chip-label");
-    if (chipLabel) chipLabel.textContent = label;
+    var escapeCount = $("#collector-escape-count");
+    if (escapeCount) {
+      escapeCount.textContent = " · " + count + " " + pieceWord;
+    }
 
     document.title = label + " · daCommunity Gallery · daCAT";
   } else {
@@ -890,11 +917,20 @@ function bindCollectorExitUi() {
     exitCollectorView();
   }
 
-  [$("#collector-banner-exit"), $("#collector-exit-chip")].forEach(function (el) {
+  [$("#collector-escape-archive")].forEach(function (el) {
     if (!el || el.dataset.boundExit) return;
     el.dataset.boundExit = "1";
     el.addEventListener("click", onExitClick);
   });
+
+  var clearFilters = $("#collector-clear-filters");
+  if (clearFilters && !clearFilters.dataset.boundExit) {
+    clearFilters.dataset.boundExit = "1";
+    clearFilters.addEventListener("click", function (e) {
+      if (e) e.preventDefault();
+      clearCollectorFilters();
+    });
+  }
 }
 
 function handleEscapeKey() {
@@ -1731,10 +1767,12 @@ function renderBrowseMeta(filtered, total) {
   var countEl = $("#results-count");
   var chips = $("#active-filters");
   var clearBtn = $("#clear-filters");
+  var collectorClearBtn = $("#collector-clear-filters");
   var panel = $("#browse-controls");
   if (countEl) {
     if (galleryCollectorView) {
       countEl.textContent =
+        "Showing " +
         filtered +
         " of " +
         galleryCollectorView.pieceCount +
@@ -1760,15 +1798,24 @@ function renderBrowseMeta(filtered, total) {
     panel.classList.toggle("is-filtered", parts.length > 0 && !galleryCollectorView);
     panel.classList.toggle("is-collector-filtered", !!galleryCollectorView);
   }
+  if (collectorClearBtn) {
+    collectorClearBtn.hidden = !galleryCollectorView || !parts.length;
+  }
   if (!chips || !clearBtn) return;
   if (!parts.length) {
     chips.hidden = true;
     chips.innerHTML = "";
-    clearBtn.hidden = !galleryCollectorView;
+    clearBtn.hidden = !!galleryCollectorView;
+    if (!galleryCollectorView) clearBtn.textContent = "Clear all";
     return;
   }
   chips.hidden = false;
-  clearBtn.hidden = false;
+  if (galleryCollectorView) {
+    clearBtn.hidden = true;
+  } else {
+    clearBtn.hidden = false;
+    clearBtn.textContent = "Clear all";
+  }
   chips.innerHTML = parts
     .map(function (p) {
       return (

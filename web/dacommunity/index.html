@@ -2,7 +2,7 @@
 <!-- daCommunity gallery (from /collections/). Paths: data-base + initDataUrls() in app.js. -->
 <html lang="en">
 <head>
-  <meta name="site-build" content="20260606-1" />
+  <meta name="site-build" content="20260606-2" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>daCommunity Gallery · daCAT</title>
@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/styles.css?v=20260606-1" />
+  <link rel="stylesheet" href="../css/styles.css?v=20260606-2" />
 </head>
 <body data-base="../">
   <header class="site-header">
@@ -69,6 +69,25 @@
       </div>
     </section>
 
+    <div class="collector-theater-vignette" aria-hidden="true"></div>
+
+    <div class="collector-theater-frame" id="collector-theater-frame">
+      <nav class="collector-escape-bar" id="collector-escape-bar" hidden aria-label="Collector view">
+        <div class="collector-escape-bar-inner">
+          <div class="collector-escape-copy">
+            <p class="collector-escape-kicker">Collector view</p>
+            <p class="collector-escape-status" id="collector-escape-status">
+              Viewing <strong id="collector-escape-name">—</strong>
+              <span class="collector-escape-count" id="collector-escape-count"></span>
+            </p>
+          </div>
+          <div class="collector-escape-actions">
+            <button type="button" class="collector-exit-pill collector-exit-pill-primary" id="collector-escape-archive">← Full archive</button>
+            <button type="button" class="collector-exit-pill collector-exit-pill-ghost" id="collector-clear-filters" hidden>Clear filters</button>
+          </div>
+        </div>
+      </nav>
+
     <section class="panel collector-hub" id="wallet-panel" tabindex="-1">
       <header class="collector-hub-head">
         <p class="collector-hub-kicker">Community · ownership</p>
@@ -105,17 +124,6 @@
 
       <div class="wallet-result" id="wallet-result" hidden aria-live="polite"></div>
 
-      <footer class="collector-portfolio-exit" id="collector-view-banner" hidden aria-label="Exit collection view">
-        <p class="collector-portfolio-exit-meta" id="collector-banner-meta"></p>
-        <div class="collector-portfolio-exit-actions">
-          <button type="button" class="collector-exit-chip" id="collector-exit-chip" aria-label="Exit collection view and return to full archive">
-            <span class="collector-exit-chip-prefix">Collector</span>
-            <span class="collector-exit-chip-label" id="collector-exit-chip-label">—</span>
-            <span class="collector-exit-chip-x" aria-hidden="true">×</span>
-          </button>
-          <button type="button" class="collector-exit-pill collector-exit-pill-ghost" id="collector-banner-exit">← Full archive</button>
-        </div>
-      </footer>
     </section>
 
     <section class="panel browse-controls" id="browse-controls" aria-label="Search and filter gallery">
@@ -180,7 +188,7 @@
         <p class="results-count" id="results-count" aria-live="polite">—</p>
         <div class="browse-foot-actions">
           <div class="active-filters" id="active-filters" hidden></div>
-          <button type="button" class="btn btn-outline btn-sm" id="clear-filters" hidden>Clear all</button>
+          <button type="button" class="btn btn-outline btn-sm browse-clear-archive" id="clear-filters" hidden>Clear all</button>
         </div>
       </footer>
       <p class="merge-status" id="merge-status" role="status" aria-live="polite" hidden></p>
@@ -199,6 +207,7 @@
         <button type="button" class="btn btn-dark" id="gallery-empty-reset">Show all pieces</button>
       </div>
     </div>
+    </div><!-- /.collector-theater-frame -->
 
     <div class="load-state" id="load-state">
       <div class="spinner"></div>
@@ -265,10 +274,10 @@
   <footer class="site-footer">
     <p>OpenSea ownership &amp; listings · Refreshed daily · Updated <span id="footer-updated">—</span></p>
     <p><a href="https://www.dacat.fun/">dacat.fun</a> · <a href="https://www.dacatworld.com/">dacatworld</a></p>
-    <p class="site-version">Site build 20260606-1</p>
+    <p class="site-version">Site build 20260606-2</p>
   </footer>
 
-  <script src="../js/pwa-register.js?v=20260606-1" defer></script>
-  <script src="../js/app.js?v=20260606-1" defer></script>
+  <script src="../js/pwa-register.js?v=20260606-2" defer></script>
+  <script src="../js/app.js?v=20260606-2" defer></script>
 </body>
 </html>

@@ -3628,16 +3628,96 @@ body.film-modal-open {
   text-decoration: none;
 }
 
-/* Focused wallet collection — dark portfolio stack (film-page vibe) */
-.collector-portfolio-exit {
+/* Collector theater — dark portfolio (archive stays light) */
+.collector-theater-vignette {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  background: radial-gradient(ellipse at center, transparent 42%, rgba(0, 0, 0, 0.72) 100%);
+  transition: opacity 0.35s ease;
+}
+
+body.has-collector-view .collector-theater-vignette {
+  opacity: 1;
+}
+
+.collector-theater-frame {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.collector-theater-frame.is-active {
+  margin-top: 0.35rem;
+  border: 2px solid rgba(255, 204, 0, 0.38);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: linear-gradient(165deg, #121212 0%, #070707 52%, #0a0a0a 100%);
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.55),
+    0 0 80px rgba(255, 204, 0, 0.06);
+  animation: collectorTheaterIn 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes collectorTheaterIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.collector-escape-bar {
+  display: block;
+  position: sticky;
+  top: 4.35rem;
+  z-index: 12;
+  margin: 0;
+  padding: 0.7rem 0.9rem;
+  background: linear-gradient(180deg, #161616 0%, #101010 100%);
+  border-bottom: 1px solid rgba(255, 204, 0, 0.28);
+  scroll-margin-top: 4.75rem;
+}
+
+.collector-escape-bar-inner {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 0.65rem 1rem;
-  margin: 0.85rem 0 0;
-  padding: 0.85rem 0 0;
-  border-top: 1px solid rgba(255, 204, 0, 0.22);
+}
+
+.collector-escape-copy {
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
+.collector-escape-count {
+  font-weight: 600;
+  color: #888;
+}
+
+.collector-exit-pill-primary {
+  background: var(--yellow);
+  color: var(--black);
+  border-color: var(--black);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.9);
+}
+
+.collector-exit-pill-primary:hover {
+  background: #ffe566;
+}
+
+/* Legacy — wallet footer exit (removed from markup) */
+.collector-portfolio-exit {
+  display: none;
 }
 
 .collector-portfolio-exit-meta {
@@ -3725,10 +3805,6 @@ body.film-modal-open {
   line-height: 1;
 }
 
-.collector-escape-bar {
-  display: none;
-}
-
 .collector-escape-kicker {
   margin: 0 0 0.2rem;
   font-size: 0.65rem;
@@ -3805,14 +3881,13 @@ body.film-modal-open {
 }
 
 body.has-collector-view #wallet-panel.collector-hub.is-collector-active {
-  background: linear-gradient(165deg, #141414 0%, #060606 48%, #0c0c0c 100%);
-  border: 2px solid rgba(255, 204, 0, 0.42);
-  box-shadow:
-    6px 6px 0 rgba(0, 0, 0, 0.92),
-    0 12px 48px rgba(0, 0, 0, 0.45),
-    0 0 72px rgba(255, 204, 0, 0.07);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
   outline: none;
-  scroll-margin-top: 5rem;
+  margin-bottom: 0;
+  scroll-margin-top: 0;
 }
 
 .collector-hub.is-collector-active .collector-hub-kicker {
@@ -3906,16 +3981,40 @@ body.has-collector-view #wallet-panel.collector-hub.is-collector-active {
 }
 
 .collector-hub.is-collector-compact {
-  padding: 1rem 1.15rem 1.1rem;
+  padding: 0.85rem 1rem 0.95rem;
 }
 
 .collector-hub.is-collector-compact .collector-profile-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.65rem 1rem;
+  padding: 0.85rem 0.95rem;
   margin-bottom: 0;
 }
 
+.collector-hub.is-collector-compact .collector-profile-main {
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
+.collector-hub.is-collector-compact .collector-profile-name {
+  font-size: 1.12rem;
+}
+
 .collector-hub.is-collector-compact .collector-actions {
-  margin-top: 0.65rem;
-  margin-bottom: 0;
+  flex: 0 1 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  gap: 0.4rem;
+}
+
+.collector-hub.is-collector-compact .collector-actions .btn {
+  min-height: 40px;
+  font-size: 0.78rem;
+  padding: 0.45rem 0.75rem;
 }
 
 .collector-hub.is-collector-compact .wallet-result {
@@ -3926,13 +4025,23 @@ body.has-collector-view #wallet-panel.collector-hub.is-collector-active {
 
 /* Portfolio link mode — dark room (film-page vibe) */
 body.has-collector-view {
-  background: #050505;
+  background:
+    radial-gradient(ellipse 120% 70% at 50% -15%, rgba(255, 204, 0, 0.07), transparent 55%),
+    radial-gradient(ellipse 90% 55% at 50% 108%, rgba(255, 204, 0, 0.04), transparent 50%),
+    #040404;
   color: #e8e8e8;
 }
 
 body.has-collector-view #app {
+  position: relative;
+  z-index: 1;
   background: transparent;
   padding-bottom: 2rem;
+}
+
+body.has-collector-view .load-state,
+body.has-collector-view .load-state.error {
+  color: #ccc;
 }
 
 body.has-collector-view .hero-band {
@@ -3940,7 +4049,7 @@ body.has-collector-view .hero-band {
 }
 
 body.has-collector-view #wallet-panel + #browse-controls {
-  margin-top: 0.65rem;
+  margin-top: 0;
 }
 
 body.has-collector-view .browse-collector-jump {
@@ -3950,10 +4059,14 @@ body.has-collector-view .browse-collector-jump {
 body.has-collector-view #browse-controls.is-portfolio-browse {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(165deg, #101010 0%, #080808 100%);
-  border: 2px solid rgba(255, 204, 0, 0.32);
-  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.85);
-  padding: 0.65rem 0.85rem 0.75rem;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  border-top: 1px solid rgba(255, 204, 0, 0.18);
+  border-bottom: 1px solid rgba(255, 204, 0, 0.12);
+  box-shadow: none;
+  margin-bottom: 0;
+  padding: 0.75rem 0.9rem 0.85rem;
   color: #ccc;
 }
 
@@ -4064,8 +4177,28 @@ body.has-collector-view #browse-controls.is-portfolio-browse .results-count {
   margin: 0;
 }
 
-body.has-collector-view #browse-controls.is-portfolio-browse .browse-foot-actions,
+body.has-collector-view #browse-controls.is-portfolio-browse .browse-foot-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+}
+
 body.has-collector-view #browse-controls.is-portfolio-browse .active-filters {
+  display: flex;
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .filter-chip {
+  background: rgba(255, 204, 0, 0.14);
+  color: #f0f0f0;
+  border-color: rgba(255, 204, 0, 0.45);
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .filter-chip button {
+  color: var(--yellow);
+}
+
+body.has-collector-view #browse-controls.is-portfolio-browse .browse-clear-archive {
   display: none;
 }
 
@@ -4141,29 +4274,16 @@ body.has-collector-view #browse-controls.is-portfolio-browse .btn-outline {
 }
 
 body.has-collector-view .gallery-focus-zone.is-collector-grid {
-  margin-top: 0.5rem;
-  padding: 0.85rem 0.85rem 1rem;
-  background: linear-gradient(180deg, #0a0a0a 0%, #060606 100%);
-  border: 2px solid rgba(255, 204, 0, 0.28);
-  border-radius: var(--radius);
-  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.88);
+  margin-top: 0;
+  padding: 0.9rem 0.9rem 1.1rem;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 body.has-collector-view .gallery-focus-zone.is-collector-grid::before {
-  content: "Collection";
-  display: block;
-  margin: 0 0 0.75rem;
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--yellow);
-  text-align: center;
-  height: auto;
-  border-radius: 0;
-  background: none;
-  opacity: 1;
-  pointer-events: none;
+  display: none;
 }
 
 body.has-collector-view .gallery-list.holdings-grid {
@@ -4203,9 +4323,9 @@ body.has-collector-view .gallery-empty-title {
 
 /* NFT detail drawer — dark cinema theme (wallet portfolio view) */
 body.has-collector-view .detail-backdrop {
-  background: rgba(0, 0, 0, 0.88);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 body.has-collector-view .detail-card {
@@ -5041,30 +5161,25 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     gap: 0.65rem;
   }
 
-  .collector-portfolio-exit {
+  .collector-escape-bar {
+    top: 3.85rem;
+    padding: 0.65rem 0.75rem;
+  }
+
+  .collector-escape-bar-inner {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .collector-portfolio-exit-actions {
+  .collector-escape-actions {
     width: 100%;
-  }
-
-  .collector-exit-chip {
-    flex: 1;
-    max-width: none;
-    width: 100%;
-  }
-
-  .collector-portfolio-exit-actions {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .collector-portfolio-exit-actions .collector-exit-pill {
-    flex: 1;
+  .collector-escape-actions .collector-exit-pill {
     width: 100%;
-    text-align: center;
+    justify-content: center;
     min-height: 44px;
   }
 
@@ -5098,7 +5213,16 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 
   body.has-collector-view .gallery-focus-zone.is-collector-grid {
     padding: 0.75rem 0.75rem 0.9rem;
-    margin-top: 0.35rem;
+    margin-top: 0;
+  }
+
+  .collector-hub.is-collector-compact .collector-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .collector-hub.is-collector-compact .collector-actions .btn {
+    width: 100%;
   }
 
   .gallery-row {
@@ -5255,7 +5379,9 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   .rail-card,
   .nav-btn,
   .data-freshness-dot,
-  .merge-status::before {
+  .merge-status::before,
+  .collector-theater-frame.is-active,
+  .collector-theater-vignette {
     animation: none !important;
     transition: none !important;
   }
