@@ -1,4 +1,9 @@
 # Fetches OpenSea data and commits JSON. Requires repository secret OPENSEA_API_KEY.
+#
+# LFS optimization: this workflow only updates web/data/*.json — it does not read or
+# write NFT images under web/assets/. Checkout uses lfs: false so the daily run does not
+# pull every LFS-tracked image (bandwidth-heavy; images change only when collections are added).
+# Jobs that publish the site still need lfs: true — see deploy-pages.yml.
 name: Refresh gallery data (daily)
 
 on:
@@ -22,9 +27,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
+      # Skip LFS: fetch_gallery_data.py only writes JSON; images rarely change and are
+      # not needed here. Use lfs: true only in deploy/build jobs that serve web/assets/.
       - uses: actions/checkout@v4
         with:
-          lfs: true
+          lfs: false
           fetch-depth: 0
 
       - uses: actions/setup-python@v5
