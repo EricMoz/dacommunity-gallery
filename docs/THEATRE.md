@@ -96,7 +96,7 @@ Do **not** stretch the dim up-next bar full width — it collides with **Lights 
 - **After Skip / auto-chain:** Back → previous film in stack (`history.back()` + `popstate`); label switches to **← Previous film**.
 - Stack persisted in `sessionStorage` (`dacat-theatre-watch-stack`) for in-page route changes (`mozvane/` → `theatre/?v=`).
 
-Both are `position: fixed` only while `body.film-theatre-lights-down`. The player (`.film-theatre-stage`) stays `z-index: 6` with no full-page overlay — vignette darkens edges only.
+Both are `position: fixed` only while `body.film-theatre-lights-down`. Chrome auto-hides after **2.5s** idle (`film-theatre-chrome-idle`); any mouse/keyboard activity wakes it. Disabled when `prefers-reduced-motion`. The player (`.film-theatre-stage`) stays `z-index: 6` with no full-page overlay — vignette darkens edges only.
 
 **Regression:** lights-down QA must confirm up-next chip and Lights up pill never overlap at 1280px and 1920px widths.
 

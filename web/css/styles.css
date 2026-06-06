@@ -3836,6 +3836,20 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
   justify-content: flex-end;
 }
 
+.film-theatre-lights-down .film-theatre-top-chrome,
+.film-theatre-lights-down .film-theatre-lights-dock,
+.film-theatre-lights-down .film-theatre-upnext {
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-top-chrome,
+body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-lights-dock,
+body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .film-series-theatre-cta {
   margin: 0.85rem 0 0;
   text-align: center;
@@ -7116,8 +7130,18 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   .collector-theater-vignette,
   .film-theatre-popcorn-kernel,
   .film-theatre-popcorn,
-  .film-theatre-lights-dock {
+  .film-theatre-lights-dock,
+  .film-theatre-top-chrome,
+  .film-theatre-upnext {
     animation: none !important;
     transition: none !important;
+  }
+
+  body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-top-chrome,
+  body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-lights-dock,
+  body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 }

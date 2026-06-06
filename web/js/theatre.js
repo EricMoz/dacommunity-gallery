@@ -36,6 +36,9 @@
   var endTriggered = false;
   var watchStack = [];
   var suppressPopstate = false;
+  var CHROME_IDLE_MS = 2500;
+  var chromeIdleTimer = null;
+  var chromeIdleBound = false;
 
   var els = {
     title: document.getElementById("theatre-title"),
@@ -655,6 +658,7 @@
     if (isLightsDown()) {
       if (els.upnextDim) els.upnextDim.hidden = true;
       if (els.upnextDimEnd) els.upnextDimEnd.hidden = false;
+      wakeDimChrome();
     } else {
       if (els.upnextBar) els.upnextBar.hidden = true;
       if (els.upnextEnd) els.upnextEnd.hidden = false;
@@ -820,6 +824,58 @@
     }
   }
 
+  function clearChromeIdleTimer() {
+    if (chromeIdleTimer) {
+      window.clearTimeout(chromeIdleTimer);
+      chromeIdleTimer = null;
+    }
+  }
+
+  function scheduleDimChromeIdle() {
+    clearChromeIdleTimer();
+    if (!isLightsDown() || reduced) return;
+    chromeIdleTimer = window.setTimeout(function () {
+      if (isLightsDown()) {
+        document.body.classList.add("film-theatre-chrome-idle");
+      }
+    }, CHROME_IDLE_MS);
+  }
+
+  function wakeDimChrome() {
+    if (!isLightsDown()) return;
+    document.body.classList.remove("film-theatre-chrome-idle");
+    scheduleDimChromeIdle();
+  }
+
+  function onChromeActivity() {
+    wakeDimChrome();
+  }
+
+  function startChromeIdleWatch() {
+    if (reduced) return;
+    if (!chromeIdleBound) {
+      chromeIdleBound = true;
+      ["mousemove", "mousedown", "keydown", "wheel", "touchstart"].forEach(
+        function (name) {
+          document.addEventListener(name, onChromeActivity, { passive: true });
+        }
+      );
+    }
+    wakeDimChrome();
+  }
+
+  function stopChromeIdleWatch() {
+    clearChromeIdleTimer();
+    document.body.classList.remove("film-theatre-chrome-idle");
+    if (!chromeIdleBound) return;
+    chromeIdleBound = false;
+    ["mousemove", "mousedown", "keydown", "wheel", "touchstart"].forEach(
+      function (name) {
+        document.removeEventListener(name, onChromeActivity);
+      }
+    );
+  }
+
   function setLightsDown(on) {
     document.body.classList.toggle("film-theatre-lights-down", on);
     if (els.lightsBtn) {
@@ -827,7 +883,12 @@
       els.lightsBtn.textContent = on ? "Lights up" : "Lights down";
     }
     persistLightsState(on);
-    if (on) dismissLightsPrompt();
+    if (on) {
+      dismissLightsPrompt();
+      startChromeIdleWatch();
+    } else {
+      stopChromeIdleWatch();
+    }
     syncUpNextPanels();
     refreshUpNextUi();
   }
