@@ -40,6 +40,7 @@
   var CHROME_IDLE_MS = 2500;
   var chromeIdleTimer = null;
   var chromeIdleBound = false;
+  var pendingLightsRestore = false;
 
   var els = {
     title: document.getElementById("theatre-title"),
@@ -571,6 +572,10 @@
           if (autoplay && ytPlayer && ytPlayer.playVideo) {
             ytPlayer.playVideo();
           }
+          tryPendingLightsRestore();
+          if (isLightsDown()) {
+            requestAnimationFrame(capturePlayerAnchor);
+          }
         },
         onStateChange: onPlayerStateChange,
         onError: function () {
@@ -602,6 +607,13 @@
       mountYtPlayer(video, autoplay !== false);
     }
     refreshUpNextUi();
+    if (isLightsDown()) {
+      requestAnimationFrame(function () {
+        capturePlayerAnchor();
+      });
+    } else {
+      tryPendingLightsRestore();
+    }
   }
 
   function clearUpNextCountdown() {
@@ -897,7 +909,7 @@
   function restoreLightsState() {
     try {
       if (sessionStorage.getItem(THEATRE_LIGHTS_KEY) === "1") {
-        setLightsDown(true);
+        pendingLightsRestore = true;
       }
     } catch (_) {
       /* ignore */
@@ -956,7 +968,25 @@
     );
   }
 
-  function setLightsDown(on) {
+  function capturePlayerAnchor() {
+    if (!els.player) return false;
+    var rect = els.player.getBoundingClientRect();
+    if (rect.width < 20 || rect.height < 20) return false;
+    var root = document.documentElement;
+    root.style.setProperty("--theatre-player-lock-top", rect.top + "px");
+    root.style.setProperty("--theatre-player-lock-width", rect.width + "px");
+    root.style.setProperty("--theatre-player-lock-height", rect.height + "px");
+    return true;
+  }
+
+  function releasePlayerAnchor() {
+    var root = document.documentElement;
+    root.style.removeProperty("--theatre-player-lock-top");
+    root.style.removeProperty("--theatre-player-lock-width");
+    root.style.removeProperty("--theatre-player-lock-height");
+  }
+
+  function applyLightsDownDom(on) {
     document.body.classList.toggle("film-theatre-lights-down", on);
     if (els.lightsBtn) {
       els.lightsBtn.setAttribute("aria-pressed", on ? "true" : "false");
@@ -971,6 +1001,31 @@
     }
     syncUpNextPanels();
     refreshUpNextUi();
+  }
+
+  function tryPendingLightsRestore() {
+    if (!pendingLightsRestore || isLightsDown()) return;
+    if (!capturePlayerAnchor()) return;
+    pendingLightsRestore = false;
+    applyLightsDownDom(true);
+  }
+
+  function setLightsDown(on) {
+    if (on) {
+      var attempts = 0;
+      var lockAndApply = function () {
+        if (capturePlayerAnchor()) {
+          applyLightsDownDom(true);
+          return;
+        }
+        attempts += 1;
+        if (attempts < 12) requestAnimationFrame(lockAndApply);
+      };
+      lockAndApply();
+      return;
+    }
+    applyLightsDownDom(false);
+    requestAnimationFrame(releasePlayerAnchor);
   }
 
   function bindBack() {
@@ -1064,10 +1119,18 @@
     });
   }
 
+  function bindPlayerAnchorSync() {
+    window.addEventListener("resize", function () {
+      if (!isLightsDown()) return;
+      requestAnimationFrame(capturePlayerAnchor);
+    });
+  }
+
   async function init() {
     bindBack();
     bindLights();
     bindUpNext();
+    bindPlayerAnchorSync();
     initPopcornField();
     initLightsPrompt();
     loadUpNextMode();
@@ -1115,6 +1178,7 @@
       fillCopy(video, entry);
       restoreLightsState();
       playVideo(video, false);
+      requestAnimationFrame(tryPendingLightsRestore);
     } catch (err) {
       console.error("Theatre mode:", err);
       showError(
