@@ -3885,12 +3885,13 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
   transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-@supports (width: 1cqw) and (height: 1cqh) {
-  .film-theatre-player-mount .film-theatre-player {
-    width: min(100cqw, calc(100cqh * 16 / 9));
-    max-height: 100cqh;
-  }
-}
+/* @supports cqw block removed (was causing circular sizing in normal flow:
+   the container query height depended on the player's aspect-sized content,
+   which depended on the cqw width → often resolved to near-zero width,
+   producing only the vertical border "line" instead of a proper player box.
+   Normal mode now relies on width:100% + aspect-ratio + min-heights on mount/player
+   + JS bootstrap/sync forcing explicit size. Lights-down uses its own explicit
+   max-width/max-height rules below which guarantee 16:9 fitting. */
 
 .film-theatre-player iframe {
   position: absolute;
@@ -4054,17 +4055,17 @@ body.film-theatre-awaiting-lights .film-theatre-footline {
 }
 
 .film-theatre-lights-down .film-theatre-action-bar {
-  /* Centered, constrained-width control bar in immersive mode.
-     Using left:50% + transform + max-width brings the Film hub (left) and Lights up (right)
-     buttons closer together and away from the screen edges. This fixes "off center top"
-     and "too far out on the sides" while keeping the glassmorphism pill look.
-     The stage padding below provides breathing room between this bar and the video frame. */
+  /* Centered control bar. Wider max-width (matching ~ the normal stage / typical player width)
+     so the space-between children (Film hub left, Lights up right) are separated and sit
+     roughly above the left and right edges of the video below — similar horizontal positions
+     as the buttons in lights-on mode, but the bar is fixed higher and the stage padding
+     prevents overlap with the video frame. */
   position: fixed;
   top: 1.25rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 8;
-  max-width: 580px;   /* key: shorter pill = buttons closer to each other and not hugging screen sides */
+  max-width: 860px;   /* wider than before so buttons spread to video edges; still centered, not screen-hugging */
   width: auto;
   margin: 0;
   padding: 0;
@@ -4076,11 +4077,16 @@ body.film-theatre-awaiting-lights .film-theatre-footline {
 }
 
 .film-theatre-lights-down .film-theatre-player {
-  /* Slightly larger player (60vw / 9rem reserve) for better presence while the adjusted
-     stage padding + inset action bar keep Film hub / Lights up / up-next from feeling
-     lost in corners or too far from the video. Still safe for controls. */
-  width: min(60vw, calc((100dvh - 9rem) * 16 / 9));
+  /* Use max-width + max-height + aspect-ratio so the browser computes the *largest*
+     true 16:9 box that fits both constraints. This prevents the previous "oddly long
+     horizontal" (width taking 60vw while height capped, breaking aspect and stretching
+     the iframe). The grid + justify-content:center in the stage keeps it nicely aligned
+     and centered under the (now wider) action bar. */
+  max-width: 60vw;
   max-height: calc(100dvh - 9rem);
+  width: auto;
+  height: auto;
+  aspect-ratio: 16 / 9;
   border-color: rgba(255, 204, 0, 0.22);
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 1),
