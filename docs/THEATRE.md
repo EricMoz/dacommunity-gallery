@@ -73,11 +73,11 @@ Both load `web/js/theatre.js` + `theatre_registry.json` for theme.
 
 ---
 
-## Lights + popcorn easter egg
+## Lights + up-next (desktop only)
 
-- **Lights down:** near-black overlay (`::after`), chrome hidden, only floating **Lights up** control; player slightly scaled
-- **Lights up:** brief warm flash + popcorn field reveal
-- **Popcorn field** (`#theatre-popcorn-field`): subtle drifting 🍿 in the background when lights are **up** — discoverable, not advertised
+- **First visit:** prominent **Lights down** dock below the player (pulses once per session); shrinks to a corner pill after you dim
+- **Lights down:** page goes black around the player — **video stays fully visible**; minimal **Random** up-next bar bottom-left; auto-advance countdown on video end
+- **Lights up:** full up-next bar with **Random / Series** toggle (shares `dacat-film-upnext-mode` with film hub modal); popcorn field drifts in background
 - `prefers-reduced-motion`: static kernels, no drift/pulse/flash
 
 ## QA checklist

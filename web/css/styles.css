@@ -3221,17 +3221,6 @@ body.film-theater {
   overflow-x: hidden;
 }
 
-.film-theatre-page::after {
-  content: "";
-  pointer-events: none;
-  position: fixed;
-  inset: 0;
-  z-index: 3;
-  background: #000;
-  opacity: 0;
-  transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 .film-theatre-page .film-theater-vignette {
   z-index: 0;
   transition: opacity 0.55s ease, background 0.55s ease;
@@ -3338,6 +3327,60 @@ body.film-theater {
   text-decoration: underline;
 }
 
+.film-theatre-lights-dock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.85rem;
+  transition:
+    transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.45s ease,
+    background 0.45s ease,
+    border-color 0.45s ease,
+    margin 0.45s ease;
+}
+
+.film-theatre-lights-hint {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #9a9a9a;
+  max-width: 28ch;
+  line-height: 1.4;
+  transition: opacity 0.35s ease, max-height 0.35s ease;
+}
+
+body.film-theatre-awaiting-lights .film-theatre-lights-dock {
+  margin-top: 1rem;
+  padding: 1.1rem 1.35rem 1rem;
+  background: rgba(0, 0, 0, 0.72);
+  border: 2px solid rgba(255, 204, 0, 0.55);
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.8),
+    0 0 40px rgba(255, 204, 0, 0.12);
+  animation: film-theatre-lights-prompt 2.8s ease-in-out infinite;
+}
+
+body.film-theatre-awaiting-lights .film-theatre-lights-hint {
+  color: var(--theatre-accent);
+}
+
+body.film-theatre-awaiting-lights .film-theatre-lights-btn {
+  font-size: 0.95rem;
+  padding: 0.65rem 1.35rem;
+  background: rgba(255, 204, 0, 0.16);
+  border-color: var(--theatre-accent);
+  color: #fff;
+  box-shadow: 0 0 24px rgba(255, 204, 0, 0.2);
+}
+
+@keyframes film-theatre-lights-prompt {
+  0%, 100% { transform: scale(1); border-color: rgba(255, 204, 0, 0.45); }
+  50% { transform: scale(1.02); border-color: rgba(255, 204, 0, 0.75); }
+}
+
 .film-theatre-lights-btn {
   padding: 0.4rem 0.85rem;
   font: inherit;
@@ -3348,7 +3391,13 @@ body.film-theater {
   border: 2px solid rgba(255, 204, 0, 0.35);
   border-radius: 999px;
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    font-size 0.45s ease,
+    padding 0.45s ease,
+    box-shadow 0.45s ease;
 }
 
 .film-theatre-lights-btn:hover {
@@ -3404,6 +3453,7 @@ body.film-theater {
   position: relative;
   max-width: 960px;
   margin: 0 auto;
+  z-index: 4;
 }
 
 .film-theatre-player {
@@ -3480,8 +3530,8 @@ body.film-theater {
   color: #fff;
 }
 
-.film-theatre-lights-down::after {
-  opacity: 0.94;
+.film-theatre-lights-down {
+  background: #000;
 }
 
 .film-theatre-lights-down .film-theatre-header,
@@ -3495,38 +3545,41 @@ body.film-theater {
 .film-theatre-lights-down .film-theatre-links,
 .film-theatre-lights-down .film-theatre-footer {
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+
+.film-theatre-lights-down .film-theatre-header {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
 }
 
 .film-theatre-lights-down .film-theatre-popcorn-field {
   opacity: 0;
 }
 
-.film-theatre-lights-down .film-theatre-escape {
-  position: fixed;
-  inset: auto 1rem 1rem;
-  z-index: 5;
-  margin: 0;
-  justify-content: flex-end;
-  opacity: 1;
-  pointer-events: auto;
+.film-theatre-lights-down .film-theatre-main {
+  max-width: none;
+  padding: 0.5rem 0.75rem 1rem;
 }
 
-.film-theatre-lights-down .film-theatre-back {
-  display: none;
-}
-
-.film-theatre-lights-down .film-theatre-lights-btn {
-  opacity: 1;
-  pointer-events: auto;
-  background: rgba(0, 0, 0, 0.55);
-  border-color: rgba(255, 204, 0, 0.55);
+.film-theatre-lights-down .film-theatre-screen {
+  padding-top: 0.25rem;
 }
 
 .film-theatre-lights-down .film-theater-vignette {
   opacity: 1;
-  background: radial-gradient(ellipse at center, transparent 2%, rgba(0, 0, 0, 0.98) 58%);
+  background: radial-gradient(
+    ellipse 85% 72% at 50% 46%,
+    transparent 0%,
+    transparent 42%,
+    rgba(0, 0, 0, 0.55) 72%,
+    rgba(0, 0, 0, 0.92) 100%
+  );
 }
 
 .film-theatre-lights-down .film-theatre-curtain {
@@ -3534,19 +3587,47 @@ body.film-theater {
 }
 
 .film-theatre-lights-down .film-theatre-stage {
-  transform: scale(1.015);
-  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  max-width: min(1200px, 96vw);
+  z-index: 6;
 }
 
 .film-theatre-lights-down .film-theatre-player {
-  border-color: rgba(255, 204, 0, 0.18);
+  position: relative;
+  z-index: 2;
+  border-color: rgba(255, 204, 0, 0.22);
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 1),
-    0 0 80px rgba(255, 204, 0, 0.08),
-    0 24px 80px rgba(0, 0, 0, 0.95);
+    0 0 48px rgba(255, 204, 0, 0.1),
+    0 16px 48px rgba(0, 0, 0, 0.85);
 }
 
-.film-theatre-lights-up-burst::after {
+.film-theatre-lights-down .film-theatre-lights-dock {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 8;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+  animation: none;
+  transform: none;
+}
+
+.film-theatre-lights-down .film-theatre-lights-hint {
+  display: none;
+}
+
+.film-theatre-lights-down .film-theatre-lights-btn {
+  font-size: 0.72rem;
+  padding: 0.38rem 0.75rem;
+  background: rgba(0, 0, 0, 0.65);
+  border-color: rgba(255, 204, 0, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.65);
+}
+
+.film-theatre-lights-up-burst .film-theater-vignette {
   animation: film-theatre-lights-up-flash 0.7s ease-out forwards;
 }
 
@@ -3556,16 +3637,21 @@ body.film-theater {
 
 @keyframes film-theatre-lights-up-flash {
   0% {
-    opacity: 0.94;
-    background: #000;
+    background: radial-gradient(
+      ellipse 85% 72% at 50% 46%,
+      rgba(255, 230, 140, 0.18) 0%,
+      transparent 55%
+    );
   }
-  18% {
-    opacity: 0.35;
-    background: rgba(255, 230, 140, 0.22);
+  35% {
+    background: radial-gradient(
+      ellipse 90% 80% at 50% 46%,
+      rgba(255, 230, 140, 0.28) 0%,
+      transparent 62%
+    );
   }
   100% {
-    opacity: 0;
-    background: #000;
+    background: radial-gradient(ellipse at center, transparent 35%, rgba(0, 0, 0, 0.65) 100%);
   }
 }
 
@@ -3573,6 +3659,144 @@ body.film-theater {
   0% { opacity: 0; transform: scale(0.98); }
   40% { opacity: 0.65; }
   100% { opacity: 1; transform: scale(1); }
+}
+
+/* Theatre — up next (full when lights up · minimal random when lights down) */
+.film-theatre-upnext {
+  margin-top: 0.65rem;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 204, 0, 0.2);
+  text-align: left;
+}
+
+.film-theatre-upnext[hidden] {
+  display: none !important;
+}
+
+.film-theatre-upnext-full[hidden],
+.film-theatre-upnext-dim[hidden] {
+  display: none !important;
+}
+
+.film-theatre-upnext-dim-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.5rem 0.7rem;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.film-theatre-upnext-dim-kicker {
+  flex-shrink: 0;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 204, 0, 0.8);
+}
+
+.film-theatre-upnext-dim-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #e8e8e8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.film-theatre-upnext-dim-play {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid var(--theatre-accent);
+  border-radius: 999px;
+  background: rgba(255, 204, 0, 0.15);
+  color: var(--theatre-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.film-theatre-upnext-dim-play:hover {
+  background: var(--theatre-accent);
+  color: #000;
+}
+
+.film-theatre-upnext-dim-end {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 0.75rem;
+  padding: 0.55rem 0.7rem;
+  background: rgba(255, 204, 0, 0.08);
+}
+
+.film-theatre-upnext-dim-end[hidden] {
+  display: none !important;
+}
+
+.film-theatre-upnext-dim-countdown {
+  margin: 0;
+  flex: 1 1 12rem;
+  font-size: 0.8rem;
+  color: #d0d0d0;
+}
+
+.film-theatre-upnext-dim-countdown strong {
+  color: #fff;
+}
+
+.film-theatre-upnext-dim-countdown span {
+  color: var(--theatre-accent);
+  font-weight: 800;
+}
+
+.film-theatre-upnext-dim-actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.film-theatre-upnext-dim-cancel,
+.film-theatre-upnext-dim-play-now {
+  border-radius: 999px;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.38rem 0.7rem;
+  cursor: pointer;
+  min-height: 32px;
+}
+
+.film-theatre-upnext-dim-cancel {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: transparent;
+  color: #bbb;
+}
+
+.film-theatre-upnext-dim-play-now {
+  border: 2px solid #000;
+  background: var(--theatre-accent);
+  color: #000;
+  font-weight: 800;
+}
+
+.film-theatre-lights-down .film-theatre-upnext {
+  position: fixed;
+  left: 1rem;
+  right: 4.5rem;
+  bottom: 1rem;
+  z-index: 7;
+  margin: 0;
+  border-color: rgba(255, 204, 0, 0.28);
+}
+
+.film-theatre-lights-down .film-theatre-upnext-dim-bar {
+  background: rgba(0, 0, 0, 0.82);
 }
 
 .film-series-theatre-cta {
@@ -6855,12 +7079,8 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   .collector-theater-vignette,
   .film-theatre-popcorn-kernel,
   .film-theatre-popcorn,
-  .film-theatre-page::after {
+  .film-theatre-lights-dock {
     animation: none !important;
     transition: none !important;
-  }
-
-  .film-theatre-lights-down::after {
-    opacity: 0.94;
   }
 }

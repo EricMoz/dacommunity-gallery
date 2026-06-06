@@ -148,7 +148,7 @@ After deploy (~1–2 min):
 
 Registry-driven collections (`web/data/collections_registry.json`) — see **`docs/COLLECTIONS.md`** for adding live drops, per-community themes, and feature flags. Hub cards are still manual until a registry-driven hub ships.
 
-Film **Theatre mode** (`web/data/theatre_registry.json`, `theatre.js`) — see **`docs/THEATRE.md`**. Desktop-only modal link for every catalog video; dedicated series CTA only when `theatre.route` is set (Mozvane). QA: lights down near-black, lights-up flash, subtle popcorn field when lights are up.
+Film **Theatre mode** (`web/data/theatre_registry.json`, `theatre.js`) — see **`docs/THEATRE.md`**. Desktop-only; YT API player; prominent lights-down prompt then corner pill; lights down = video clear + random up-next; lights up = Random/Series bar + popcorn field.
 
 ---
 
