@@ -2,7 +2,7 @@
 <!-- Mozvane theatre mode — canonical route for mozvane-quick-stop -->
 <html lang="en">
 <head>
-  <meta name="site-build" content="20260606-30" />
+  <meta name="site-build" content="20260606-31" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mozvane · Theatre mode · daCAT</title>
@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../../css/styles.css?v=20260606-30" />
+  <link rel="stylesheet" href="../../css/styles.css?v=20260606-31" />
 </head>
 <body class="film-page film-theater film-theatre-page" data-video-id="mozvane-quick-stop" data-theatre-slug="mozvane">
   <div class="film-theater-vignette" aria-hidden="true"></div>
@@ -47,7 +47,6 @@
           <button type="button" class="film-theatre-back-btn" id="theatre-back">← Film hub</button>
         </div>
         <div class="film-theatre-player-mount">
-          <div class="film-theatre-player-slot" id="theatre-player-slot" aria-hidden="true"></div>
           <div class="film-theatre-player" id="theatre-player"></div>
           <p class="film-theatre-loading" id="theatre-loading">Cueing film…</p>
         </div>
@@ -109,23 +108,19 @@
         </div>
       </div>
 
-      <p class="film-theatre-popcorn" id="theatre-popcorn">Lights down anytime — full immersion.</p>
-
-      <p class="film-theatre-note">
-        An early daCAT anime attempt — crafted with <strong>OpenAI Sora</strong> (since decommissioned), with creative help from <strong>daBeezy</strong>.
-      </p>
-
-      <p class="film-theatre-links">
-        <a id="theatre-yt" href="https://www.youtube.com/watch?v=bHcbwUs2_ds" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+      <p class="film-theatre-footline">
+        <span class="film-theatre-popcorn" id="theatre-popcorn">Lights down anytime — full immersion.</span>
+        <span class="film-theatre-foot-sep" aria-hidden="true">·</span>
+        <a class="film-theatre-yt-chip" id="theatre-yt" href="https://www.youtube.com/watch?v=bHcbwUs2_ds" target="_blank" rel="noopener noreferrer">YouTube</a>
       </p>
     </section>
   </main>
 
   <footer class="site-footer film-footer film-theatre-footer">
     <p><a href="https://www.dacat.fun/">dacat.fun</a> · <a href="https://www.dacatworld.com/">dacatworld</a></p>
-    <p class="site-version">Site build 20260606-30</p>
+    <p class="site-version">Site build 20260606-31</p>
   </footer>
 
-  <script src="../../js/theatre.js?v=20260606-30" defer></script>
+  <script src="../../js/theatre.js?v=20260606-31" defer></script>
 </body>
 </html>

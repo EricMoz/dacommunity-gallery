@@ -49,7 +49,6 @@
     popcorn: document.getElementById("theatre-popcorn"),
     popcornField: document.getElementById("theatre-popcorn-field"),
     player: document.getElementById("theatre-player"),
-    playerSlot: document.getElementById("theatre-player-slot"),
     loading: document.getElementById("theatre-loading"),
     error: document.getElementById("theatre-error"),
     ytLink: document.getElementById("theatre-yt"),
@@ -390,7 +389,9 @@
     fillCopy(video, entry);
     playVideo(video, opts.autoplay !== false);
     resetEndTrigger();
-    if (keepLightsDown) setLightsDown(true);
+    if (keepLightsDown && !isLightsDown()) {
+      applyLightsDownDom(true);
+    }
     syncBackButton();
   }
 
@@ -574,7 +575,6 @@
             ytPlayer.playVideo();
           }
           tryPendingLightsRestore();
-          syncPlayerPosition({ animate: false });
         },
         onStateChange: onPlayerStateChange,
         onError: function () {
@@ -606,10 +606,7 @@
       mountYtPlayer(video, autoplay !== false);
     }
     refreshUpNextUi();
-    requestAnimationFrame(function () {
-      syncPlayerPosition({ animate: false });
-      tryPendingLightsRestore();
-    });
+    tryPendingLightsRestore();
   }
 
   function clearUpNextCountdown() {
@@ -964,69 +961,6 @@
     );
   }
 
-  function rectToPlayerFrame(rect) {
-    return {
-      x: rect.left + rect.width / 2,
-      y: rect.top + rect.height / 2,
-      w: rect.width,
-      h: rect.height,
-    };
-  }
-
-  function measureSlotFrame() {
-    if (!els.playerSlot) return null;
-    var rect = els.playerSlot.getBoundingClientRect();
-    if (rect.width < 20 || rect.height < 20) return null;
-    return rectToPlayerFrame(rect);
-  }
-
-  function cinemaFrame() {
-    var vh = window.innerHeight;
-    var vw = window.innerWidth;
-    var pad = 52;
-    var maxH = Math.min(vh - pad * 2, vh * 0.84);
-    var maxW = vw * 0.94;
-    var w = Math.min(maxW, (maxH * 16) / 9);
-    var h = (w * 9) / 16;
-    return {
-      x: vw / 2,
-      y: vh / 2,
-      w: w,
-      h: h,
-    };
-  }
-
-  function applyPlayerFrame(frame, animate) {
-    if (!els.player || !frame) return;
-    var root = document.documentElement;
-    root.style.setProperty("--theatre-player-x", frame.x + "px");
-    root.style.setProperty("--theatre-player-y", frame.y + "px");
-    root.style.setProperty("--theatre-player-w", frame.w + "px");
-    root.style.setProperty("--theatre-player-h", frame.h + "px");
-    els.player.classList.add("is-framed");
-    if (els.loading) els.loading.classList.add("is-framed");
-    if (animate === false && !reduced) {
-      els.player.classList.add("film-theatre-player--no-transition");
-      if (els.loading) {
-        els.loading.classList.add("film-theatre-player--no-transition");
-      }
-      requestAnimationFrame(function () {
-        els.player.classList.remove("film-theatre-player--no-transition");
-        if (els.loading) {
-          els.loading.classList.remove("film-theatre-player--no-transition");
-        }
-      });
-    }
-  }
-
-  function syncPlayerPosition(opts) {
-    opts = opts || {};
-    var frame = isLightsDown() ? cinemaFrame() : measureSlotFrame();
-    if (!frame) return false;
-    applyPlayerFrame(frame, opts.animate !== false);
-    return true;
-  }
-
   function applyLightsDownDom(on) {
     document.body.classList.toggle("film-theatre-lights-down", on);
     if (els.lightsBtn) {
@@ -1046,32 +980,12 @@
 
   function tryPendingLightsRestore() {
     if (!pendingLightsRestore || isLightsDown()) return;
-    if (!syncPlayerPosition({ animate: false })) return;
     pendingLightsRestore = false;
     applyLightsDownDom(true);
-    requestAnimationFrame(function () {
-      applyPlayerFrame(cinemaFrame(), !reduced);
-    });
   }
 
   function setLightsDown(on) {
-    if (on) {
-      var start = measureSlotFrame();
-      if (start) applyPlayerFrame(start, false);
-      applyLightsDownDom(true);
-      requestAnimationFrame(function () {
-        requestAnimationFrame(function () {
-          applyPlayerFrame(cinemaFrame(), !reduced);
-        });
-      });
-      return;
-    }
-    applyLightsDownDom(false);
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        syncPlayerPosition({ animate: !reduced });
-      });
-    });
+    applyLightsDownDom(on);
   }
 
   function bindBack() {
@@ -1165,39 +1079,10 @@
     });
   }
 
-  function bindPlayerFrameSync() {
-    window.addEventListener("resize", function () {
-      requestAnimationFrame(function () {
-        syncPlayerPosition({ animate: false });
-      });
-    });
-    if (typeof ResizeObserver !== "undefined" && els.playerSlot) {
-      var ro = new ResizeObserver(function () {
-        if (isLightsDown()) return;
-        requestAnimationFrame(function () {
-          syncPlayerPosition({ animate: false });
-        });
-      });
-      ro.observe(els.playerSlot);
-    }
-  }
-
-  function initPlayerFrame() {
-    var attempts = 0;
-    var boot = function () {
-      if (syncPlayerPosition({ animate: false })) return;
-      attempts += 1;
-      if (attempts < 16) requestAnimationFrame(boot);
-    };
-    boot();
-  }
-
   async function init() {
     bindBack();
     bindLights();
     bindUpNext();
-    bindPlayerFrameSync();
-    initPlayerFrame();
     initPopcornField();
     initLightsPrompt();
     loadUpNextMode();
