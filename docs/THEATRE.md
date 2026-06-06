@@ -75,16 +75,30 @@ Both load `web/js/theatre.js` + `theatre_registry.json` for theme.
 
 ## Lights + up-next (desktop only)
 
-- **First visit:** prominent **Lights down** dock below the player (pulses once per session); shrinks to a corner pill after you dim
-- **Lights down:** page goes black around the player — **video stays fully visible**; minimal **Random** up-next bar bottom-left; auto-advance countdown on video end
+- **First visit:** prominent **Lights down** dock below the player (pulses once per session); shrinks after you dim
+- **Lights down:** black room around the player — **video stays fully visible**; auto-random up-next; end-of-video countdown
 - **Lights up:** full up-next bar with **Random / Series** toggle (shares `dacat-film-upnext-mode` with film hub modal); popcorn field drifts in background
 - `prefers-reduced-motion`: static kernels, no drift/pulse/flash
+
+### Lights-down chrome layout (maintainers)
+
+Do **not** stretch the dim up-next bar full width — it collides with **Lights up**.
+
+| Zone | Element | Position | Max width |
+|------|---------|----------|-----------|
+| Top-right | `.film-theatre-lights-dock` | `fixed; top: 0.75rem; right: 1rem` | pill only |
+| Bottom-left | `.film-theatre-upnext` (dim panel) | `fixed; bottom: 1rem; left: 1rem` | `15.5rem` |
+
+Both are `position: fixed` only while `body.film-theatre-lights-down`. The player (`.film-theatre-stage`) stays `z-index: 6` with no full-page overlay — vignette darkens edges only.
+
+**Regression:** lights-down QA must confirm up-next chip and Lights up pill never overlap at 1280px and 1920px widths.
 
 ## QA checklist
 
 - [ ] Desktop: any film modal → **🍿 Theatre mode** → `/film/theatre/?v=<id>` loads
 - [ ] `/film/mozvane/` — dedicated route + registry theme
-- [ ] Lights down → near black; Lights up → flash + popcorn background returns
+- [ ] Lights down → video clear; up-next chip bottom-left; **Lights up** top-right (no overlap)
+- [ ] Lights up → full Random/Series bar under player; popcorn background
 - [ ] Mozvane series row → dedicated “Theatre mode · full screen” CTA only
 - [ ] Mobile: no modal theatre link; `/film/theatre/` shows desktop-only copy
 - [ ] `prefers-reduced-motion`: no popcorn drift or lights flash

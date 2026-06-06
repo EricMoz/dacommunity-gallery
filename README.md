@@ -15,7 +15,7 @@ Check the footer on any page for **Site build YYYYMMDD-N** (e.g. `20260605-8`). 
 | `/analytics/` | Cat Coin market cap bar chart race (Flourish embed) |
 | `/film/` | **Films hub** — sticky search/filters, series grid, in-page player |
 | `/film/mozvane/` | Mozvane — **Theatre mode** (immersive watch) |
-| `/film/theatre/?v=` | Generic theatre route for any `theatre.enabled` video |
+| `/film/theatre/?v=` | Generic theatre route — **every catalog video on desktop** |
 
 ## Features
 
@@ -58,8 +58,9 @@ OpenSea API v2  ──►  Python (backend/)  ──►  web/data/*.json
 | `css/styles.css` | Layout; `body.has-collector-view` = dark portfolio + detail theme |
 | `js/app.js` | Data load, search/filter/sort, wallet URL sync, grid + detail UI |
 | `js/film.js` | Film catalog, sticky header-height sync, modal player, up-next |
-| `js/theatre.js` | Theatre mode player + theme from `theatre_registry.json` |
+| `js/theatre.js` | Theatre mode (desktop): YT API player, lights down/up, up-next |
 | `data/theatre_registry.json` | Per-film theatre theme + future `extras` hooks |
+| `docs/THEATRE.md` | Theatre QA, lights-down chrome layout, data contract |
 | `js/home.js` | Home-only community highlights |
 | `js/pwa-register.js` | Registers `sw.js` with `?v=` from `<meta name="site-build">` |
 | `sw.js` | Network-first for HTML/CSS/JS; `CACHE` bumped per deploy |
@@ -78,6 +79,13 @@ OpenSea API v2  ──►  Python (backend/)  ──►  web/data/*.json
 1. Header height → CSS variable `--site-header-h` via `syncSiteHeaderHeight()` (also `ResizeObserver` on nav wrap).
 2. `.film-sticky-deck` uses `position: sticky; top: var(--site-header-h)` — **do not** set `position: relative` on film header/deck (breaks follow-scroll). See `docs/MAINTENANCE.md`.
 3. Catalog from `../data/videos.json`; deep link `?v=<id>` opens modal player.
+
+### Theatre mode (`theatre.js`) — desktop only (769px+)
+
+1. Hub modal links **🍿 Theatre mode** for every video; mobile uses hub player only.
+2. **Lights down:** video stays bright; dim up-next chip **bottom-left**; **Lights up** pill **top-right** (see `docs/THEATRE.md` — do not stretch up-next full width).
+3. **Lights up:** Random/Series up-next under player; flying popcorn background (niche easter egg).
+4. Shares `dacat-film-upnext-mode` in `sessionStorage` with `film.js`.
 
 ## Local preview
 

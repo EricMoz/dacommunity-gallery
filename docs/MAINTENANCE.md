@@ -148,7 +148,7 @@ After deploy (~1–2 min):
 
 Registry-driven collections (`web/data/collections_registry.json`) — see **`docs/COLLECTIONS.md`** for adding live drops, per-community themes, and feature flags. Hub cards are still manual until a registry-driven hub ships.
 
-Film **Theatre mode** (`web/data/theatre_registry.json`, `theatre.js`) — see **`docs/THEATRE.md`**. Desktop-only; YT API player; prominent lights-down prompt then corner pill; lights down = video clear + random up-next; lights up = Random/Series bar + popcorn field.
+Film **Theatre mode** (`web/data/theatre_registry.json`, `theatre.js`) — see **`docs/THEATRE.md`**. Desktop-only; YT API player. **Lights-down layout:** compact up-next chip bottom-left (`max-width: 15.5rem`), Lights up pill top-right — must not overlap (see THEATRE.md chrome table). No full-page overlay on the player.
 
 ---
 

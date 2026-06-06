@@ -3601,10 +3601,13 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
     0 16px 48px rgba(0, 0, 0, 0.85);
 }
 
+/* Lights-down chrome: up-next = bottom-left chip · Lights up = top-right (never overlap) */
 .film-theatre-lights-down .film-theatre-lights-dock {
   position: fixed;
+  top: 0.75rem;
   right: 1rem;
-  bottom: 1rem;
+  bottom: auto;
+  left: auto;
   z-index: 8;
   margin: 0;
   padding: 0;
@@ -3680,26 +3683,27 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
 }
 
 .film-theatre-upnext-dim-bar {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  gap: 0.55rem;
-  padding: 0.5rem 0.7rem;
-  background: rgba(0, 0, 0, 0.72);
+  gap: 0.4rem 0.5rem;
+  padding: 0.42rem 0.55rem;
+  background: rgba(0, 0, 0, 0.78);
 }
 
 .film-theatre-upnext-dim-kicker {
-  flex-shrink: 0;
-  font-size: 0.58rem;
+  grid-column: 1 / -1;
+  font-size: 0.54rem;
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 204, 0, 0.8);
+  color: rgba(255, 204, 0, 0.75);
+  line-height: 1.2;
 }
 
 .film-theatre-upnext-dim-title {
-  flex: 1 1 auto;
   min-width: 0;
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   font-weight: 700;
   color: #e8e8e8;
   white-space: nowrap;
@@ -3709,16 +3713,21 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
 
 .film-theatre-upnext-dim-play {
   flex-shrink: 0;
-  width: 2rem;
-  height: 2rem;
-  border: 2px solid var(--theatre-accent);
-  border-radius: 999px;
-  background: rgba(255, 204, 0, 0.15);
+  border: 1px solid rgba(255, 204, 0, 0.45);
+  border-radius: 6px;
+  background: rgba(255, 204, 0, 0.1);
   color: var(--theatre-accent);
-  font-size: 0.72rem;
+  font: inherit;
+  font-size: 0.62rem;
   font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   cursor: pointer;
   line-height: 1;
+  padding: 0.32rem 0.45rem;
+  min-height: 0;
+  width: auto;
+  height: auto;
 }
 
 .film-theatre-upnext-dim-play:hover {
@@ -3728,11 +3737,10 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
 
 .film-theatre-upnext-dim-end {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem 0.75rem;
-  padding: 0.55rem 0.7rem;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.45rem;
+  padding: 0.5rem 0.55rem;
   background: rgba(255, 204, 0, 0.08);
 }
 
@@ -3742,8 +3750,8 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
 
 .film-theatre-upnext-dim-countdown {
   margin: 0;
-  flex: 1 1 12rem;
-  font-size: 0.8rem;
+  font-size: 0.72rem;
+  line-height: 1.35;
   color: #d0d0d0;
 }
 
@@ -3788,15 +3796,22 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
 .film-theatre-lights-down .film-theatre-upnext {
   position: fixed;
   left: 1rem;
-  right: 4.5rem;
   bottom: 1rem;
+  width: min(15.5rem, calc(100vw - 2rem));
+  max-width: 15.5rem;
   z-index: 7;
   margin: 0;
+  border-radius: 8px;
   border-color: rgba(255, 204, 0, 0.28);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.55);
 }
 
 .film-theatre-lights-down .film-theatre-upnext-dim-bar {
-  background: rgba(0, 0, 0, 0.82);
+  background: rgba(0, 0, 0, 0.88);
+}
+
+.film-theatre-lights-down .film-theatre-upnext-dim-actions {
+  justify-content: flex-end;
 }
 
 .film-series-theatre-cta {
