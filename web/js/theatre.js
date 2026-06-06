@@ -575,6 +575,7 @@
             ytPlayer.playVideo();
           }
           tryPendingLightsRestore();
+          syncPlayerSize();
         },
         onStateChange: onPlayerStateChange,
         onError: function () {
@@ -977,10 +978,14 @@
     syncUpNextPanels();
     refreshUpNextUi();
 
-    // Premium UX: when toggling lights down/up, force the YouTube player to resize to the
-    // new container dimensions (the dvh-constrained immersive size or normal size).
-    // This eliminates cases where the iframe stays at the "wrong" size after the class change,
-    // which was contributing to "video not appearing" or looking off in lights down.
+    syncPlayerSize();
+  }
+
+  function syncPlayerSize() {
+    // Force YT iframe to the final CSS box size of .film-theatre-player.
+    // Essential for default lights-on (normal) mode so the video appears at the
+    // correct dimensions immediately instead of cueing then blank (YT init often
+    // snapshots 0-height before layout settles). Also re-syncs after lights toggle.
     if (ytPlayer && typeof ytPlayer.setSize === 'function' && els.player) {
       requestAnimationFrame(() => {
         if (ytPlayer && els.player) {

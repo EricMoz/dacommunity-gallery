@@ -3843,11 +3843,11 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
 .film-theatre-player {
   position: relative;
   margin: 0 auto;
+  width: 100%;
+  max-width: 960px;
   aspect-ratio: 16 / 9;
-  width: min(100%, calc((100dvh - var(--theatre-ui-reserve)) * 16 / 9));
   height: auto;
-  max-width: 100%;
-  max-height: min(48dvh, calc(100dvh - var(--theatre-ui-reserve)));
+  max-height: min(56dvh, calc(100dvh - 10rem));
   flex-shrink: 1;
   border-radius: 12px;
   overflow: hidden;
@@ -4024,12 +4024,11 @@ body.film-theatre-awaiting-lights .film-theatre-footline {
 }
 
 .film-theatre-lights-down .film-theatre-player {
-  /* Premium immersive but usable: smaller than full-bleed so the fixed action bar
-     (back on left, "Lights up" on right) and up-next dim have breathing room and stay
-     fully visible/clickable without being cut off. More generous dvh subtraction for the top bar.
-     Addresses "video a bit too large" and button cut off while keeping cinematic feel. */
-  width: min(72vw, calc((100dvh - 8.5rem) * 16 / 9));
-  max-height: calc(100dvh - 8.5rem);
+  /* Tighter immersive size so the fixed glass action bar (back + "Lights up" top-right)
+     and bottom up-next dim are never clipped or pushed off-screen. Default lights-on
+     now also reliably visible thanks to JS setSize. */
+  width: min(52vw, calc((100dvh - 10.5rem) * 16 / 9));
+  max-height: calc(100dvh - 10.5rem);
   border-color: rgba(255, 204, 0, 0.22);
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 1),
