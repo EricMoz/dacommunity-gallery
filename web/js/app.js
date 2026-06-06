@@ -786,6 +786,42 @@ function scrollToCollectorCollection() {
   if (list) list.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
+var browseAdvancedMq = window.matchMedia("(max-width: 719px)");
+
+/** Collapse filter/sort on mobile (archive + portfolio); always open on desktop archive. */
+function syncBrowseAdvancedPanel() {
+  var browse = $("#browse-controls");
+  var browseToggle = $("#browse-advanced-toggle");
+  var browseAdvanced = $("#browse-advanced");
+  if (!browse || !browseToggle || !browseAdvanced) return;
+
+  var isPortfolio = browse.classList.contains("is-portfolio-browse");
+  var isMobile = browseAdvancedMq.matches;
+  var showToggle = isPortfolio || isMobile;
+  var userToggled = browseToggle.dataset.userToggled === "1";
+
+  browseToggle.hidden = !showToggle;
+
+  if (!showToggle) {
+    browseAdvanced.classList.remove("is-collapsed");
+    browseToggle.setAttribute("aria-expanded", "true");
+    return;
+  }
+
+  if (!userToggled) {
+    browseAdvanced.classList.add("is-collapsed");
+    browseToggle.setAttribute("aria-expanded", "false");
+  }
+}
+
+function onBrowseAdvancedMqChange() {
+  var browseToggle = $("#browse-advanced-toggle");
+  if (browseToggle && !browseAdvancedMq.matches) {
+    delete browseToggle.dataset.userToggled;
+  }
+  syncBrowseAdvancedPanel();
+}
+
 /** Toggle dark portfolio layout: hide hero, compact browse, cinema grid. */
 function renderCollectorFocusUi() {
   var active = !!galleryCollectorView;
@@ -803,15 +839,11 @@ function renderCollectorFocusUi() {
   var browse = $("#browse-controls");
   if (browse) browse.classList.toggle("is-portfolio-browse", active);
 
-  var browseAdvanced = $("#browse-advanced");
   var browseToggle = $("#browse-advanced-toggle");
-  if (browseAdvanced) {
-    browseAdvanced.classList.toggle("is-collapsed", active);
+  if (active && browseToggle) {
+    delete browseToggle.dataset.userToggled;
   }
-  if (browseToggle) {
-    browseToggle.hidden = !active;
-    browseToggle.setAttribute("aria-expanded", active ? "false" : "true");
-  }
+  syncBrowseAdvancedPanel();
 
   var hero = document.querySelector(".hero-band");
   if (hero) hero.hidden = active;
@@ -2268,8 +2300,16 @@ function bindUi() {
       if (!adv) return;
       var collapsed = adv.classList.toggle("is-collapsed");
       browseToggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
+      browseToggle.dataset.userToggled = "1";
     });
   }
+  if (typeof browseAdvancedMq.addEventListener === "function") {
+    browseAdvancedMq.addEventListener("change", onBrowseAdvancedMqChange);
+  } else if (typeof browseAdvancedMq.addListener === "function") {
+    browseAdvancedMq.addListener(onBrowseAdvancedMqChange);
+  }
+  window.addEventListener("resize", onBrowseAdvancedMqChange);
+  syncBrowseAdvancedPanel();
   var sortSelect = $("#sort-select");
   if (sortSelect) {
     sortSelect.value = sortKey;

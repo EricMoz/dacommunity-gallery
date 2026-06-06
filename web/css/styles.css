@@ -1095,9 +1095,6 @@ button.stat:focus-visible {
 }
 
 @media (max-width: 600px) {
-  .gallery-row { grid-template-columns: 72px 1fr; }
-  .gallery-thumb-wrap { width: 72px; height: 72px; }
-  .gallery-side { grid-column: 2; flex-direction: row; }
   .collectors-modal-card { max-height: 85vh; }
 }
 
@@ -4086,6 +4083,59 @@ body.has-collector-view #browse-controls.is-portfolio-browse .btn-outline {
   display: flex;
 }
 
+/* Archive browse: collapsible filter/sort on narrow viewports */
+@media (max-width: 719px) {
+  #browse-controls:not(.is-portfolio-browse) .browse-advanced-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin: 0.1rem 0 0;
+    padding: 0.5rem 0.85rem;
+    min-height: 44px;
+    border: 2px solid var(--black);
+    border-radius: 999px;
+    background: #fff8d6;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--black);
+    box-shadow: 3px 3px 0 var(--black);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+
+  #browse-controls:not(.is-portfolio-browse) .browse-advanced-toggle:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 var(--black);
+  }
+
+  #browse-controls:not(.is-portfolio-browse) .browse-advanced-toggle::after {
+    content: "";
+    width: 0.45rem;
+    height: 0.45rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.15s ease;
+    margin-top: -0.15rem;
+  }
+
+  #browse-controls:not(.is-portfolio-browse) .browse-advanced-toggle[aria-expanded="true"]::after {
+    transform: rotate(-135deg);
+    margin-top: 0.1rem;
+  }
+
+  #browse-controls:not(.is-portfolio-browse) .browse-advanced.is-collapsed .browse-rows {
+    display: none;
+  }
+
+  #browse-controls:not(.is-portfolio-browse) .browse-advanced .browse-rows {
+    margin-top: 0.65rem;
+  }
+}
+
 .gallery-focus-zone {
   position: relative;
 }
@@ -4726,6 +4776,194 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 
 /* Mobile: gallery + hub */
 @media (max-width: 640px) {
+  .panel {
+    margin-bottom: 1rem;
+    box-shadow: 5px 5px 0 var(--black);
+  }
+
+  .hero-inner {
+    padding: 1.1rem 1rem;
+  }
+
+  .hero-inner h1 {
+    font-size: clamp(1.55rem, 7vw, 2rem);
+  }
+
+  .hero-lead {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .stats-strip {
+    gap: 0.55rem;
+  }
+
+  .stat,
+  button.stat {
+    padding: 0.65rem 0.45rem;
+    min-height: 64px;
+  }
+
+  .collector-hub,
+  .wallet-panel {
+    padding: 1rem 1rem 1.05rem;
+    scroll-margin-top: 4.75rem;
+  }
+
+  .collector-hub-head {
+    margin-bottom: 0.85rem;
+  }
+
+  .collector-hub-title-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.55rem;
+  }
+
+  .collector-hub-title-row .btn-outline {
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  .collector-lookup-form {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .lookup-field {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .collector-lookup-submit {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .collector-profile-card {
+    padding: 0.9rem 0.95rem;
+    gap: 0.65rem;
+  }
+
+  .collector-profile-name {
+    font-size: 1.15rem;
+    word-break: break-word;
+  }
+
+  .collector-actions {
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .collector-actions .btn {
+    width: 100%;
+    min-height: 44px;
+    justify-content: center;
+  }
+
+  .browse-controls {
+    padding: 1rem 1rem 0.95rem;
+    gap: 0.85rem;
+    scroll-margin-top: 4.75rem;
+  }
+
+  .browse-head-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.55rem;
+  }
+
+  .browse-title {
+    font-size: 1.05rem;
+  }
+
+  .browse-lead {
+    font-size: 0.82rem;
+  }
+
+  .browse-collector-jump {
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  .browse-search-input,
+  .collector-lookup-input {
+    min-height: 48px;
+    font-size: 16px;
+  }
+
+  .field-clear {
+    width: 2.35rem;
+    height: 2.35rem;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .browse-sort-select {
+    min-height: 48px;
+    font-size: 16px;
+  }
+
+  .filters-scroll {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    padding: 0.35rem;
+    gap: 0.35rem;
+  }
+
+  .filters-scroll .filter {
+    flex-shrink: 0;
+    min-height: 44px;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.84rem;
+  }
+
+  .browse-foot {
+    padding-top: 0.75rem;
+    gap: 0.5rem;
+  }
+
+  .btn-sm {
+    min-height: 44px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .data-freshness {
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem 0.65rem;
+    padding: 0.65rem 0.75rem;
+    margin-top: 0.85rem;
+  }
+
+  .data-freshness-copy {
+    min-width: 0;
+  }
+
+  .data-freshness-hint {
+    font-size: 0.74rem;
+  }
+
+  .data-freshness-toggle {
+    grid-column: 1 / -1;
+    justify-self: start;
+    margin-top: 0.15rem;
+  }
+
+  .featured-rail {
+    padding: 0.85rem 0.85rem 0.95rem;
+  }
+
+  .rail-card {
+    flex: 0 0 min(42vw, 160px);
+  }
+
   .header-inner {
     padding: 0.55rem 0.85rem;
     flex-wrap: nowrap;
@@ -4775,29 +5013,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
 
   #app {
-    padding: 1rem 0.85rem 2.5rem;
-  }
-
-  .data-freshness {
-    grid-template-columns: auto 1fr;
-  }
-
-  .data-freshness-toggle {
-    grid-column: 2;
-    justify-self: start;
-    margin-top: 0.25rem;
-  }
-
-  .filters-scroll {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-    padding-bottom: 0.2rem;
-  }
-
-  .filters-scroll .filter {
-    flex-shrink: 0;
+    padding: 0.85rem max(0.75rem, env(safe-area-inset-left)) 2.5rem max(0.75rem, env(safe-area-inset-right));
   }
 
   .browse-row-sort {
@@ -4807,11 +5023,6 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   .holdings-grid {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 0.55rem;
-  }
-
-  .collector-actions .btn {
-    flex: 1 1 auto;
-    text-align: center;
   }
 
   .top-collectors-track {
@@ -4842,30 +5053,102 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   .collector-exit-chip {
     flex: 1;
     max-width: none;
+    width: 100%;
+  }
+
+  .collector-portfolio-exit-actions {
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .collector-portfolio-exit-actions .collector-exit-pill {
     flex: 1;
+    width: 100%;
     text-align: center;
+    min-height: 44px;
   }
 
-  .browse-collector-jump {
-    width: 100%;
-    justify-content: center;
+  .collector-hub.is-collector-compact {
+    padding: 0.85rem 0.85rem 0.95rem;
+  }
+
+  body.has-collector-view #wallet-panel.collector-hub.is-collector-active {
+    scroll-margin-top: 4.5rem;
+  }
+
+  body.has-collector-view #browse-controls.is-portfolio-browse {
+    padding: 0.75rem 0.85rem 0.85rem;
+    scroll-margin-top: 4.5rem;
+  }
+
+  body.has-collector-view #browse-controls.is-portfolio-browse .browse-search-input {
+    min-height: 48px;
+    font-size: 16px;
+  }
+
+  body.has-collector-view #browse-controls.is-portfolio-browse .filter {
+    min-height: 44px;
+    padding: 0.5rem 0.85rem;
+  }
+
+  body.has-collector-view #browse-controls.is-portfolio-browse .browse-sort-select {
+    min-height: 48px;
+    font-size: 16px;
+  }
+
+  body.has-collector-view .gallery-focus-zone.is-collector-grid {
+    padding: 0.75rem 0.75rem 0.9rem;
+    margin-top: 0.35rem;
   }
 
   .gallery-row {
-    grid-template-columns: 72px 1fr;
-    gap: 0.75rem;
-    padding: 0.65rem;
+    grid-template-columns: min(84px, 22vw) 1fr;
+    grid-template-areas:
+      "thumb meta"
+      "thumb side";
+    gap: 0.55rem 0.75rem;
+    padding: 0.75rem 0.7rem;
+    align-items: start;
+  }
+
+  .gallery-thumb-wrap {
+    grid-area: thumb;
+    width: min(84px, 22vw);
+    height: min(84px, 22vw);
+  }
+
+  .gallery-meta {
+    grid-area: meta;
+    min-width: 0;
+  }
+
+  .gallery-meta h3 {
+    font-size: 0.98rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .gallery-meta p {
+    font-size: 0.8rem;
+    -webkit-line-clamp: 3;
   }
 
   .gallery-side {
-    grid-column: 2;
+    grid-area: side;
     flex-direction: row;
     align-items: center;
-    gap: 0.35rem;
-    margin-top: 0.15rem;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0;
+  }
+
+  .token-pill {
+    font-size: 0.76rem;
+  }
+
+  .badge-listed {
+    font-size: 0.68rem;
+    padding: 0.25rem 0.5rem;
   }
 
   .detail-card {
