@@ -2963,7 +2963,7 @@ button.stat:focus-visible {
   width: 100%;
 }
 
-/* Cat Coin analytics page — MC race track background */
+/* MC race (/analytics/) — track background + Flourish embed layout */
 body.analytics-page {
   position: relative;
   overflow-x: hidden;
@@ -3171,7 +3171,6 @@ body.analytics-page .site-footer {
   }
 }
 
-/* Cat Coin analytics page (Flourish embed) */
 .analytics-main {
   flex: 1;
   max-width: 1080px;
@@ -3240,6 +3239,87 @@ body.analytics-page .site-footer {
 
 .analytics-credit a {
   font-weight: 600;
+}
+
+@media (max-width: 719px) {
+  body.analytics-page .analytics-main {
+    padding-left: 0.55rem;
+    padding-right: 0.55rem;
+    gap: 1rem;
+  }
+
+  body.analytics-page .panel {
+    width: calc(100% - 1.5rem);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .analytics-race-track {
+    inset: 0.35rem;
+    border-width: 2px;
+    border-color: rgba(10, 10, 10, 0.34);
+  }
+
+  .analytics-race-checker {
+    opacity: 0.42;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .analytics-race-speedlines {
+    opacity: 0.22;
+  }
+
+  .race-car--lap {
+    offset-path: inset(1.5% 0.75% round 12px);
+    opacity: 0.82;
+  }
+
+  .race-car--drive {
+    width: 64px;
+    height: 42px;
+    margin: -21px 0 0 -32px;
+    opacity: 0.92;
+  }
+
+  .race-car--mascot {
+    width: 54px;
+    height: 30px;
+    margin: -15px 0 0 -27px;
+    opacity: 0.86;
+  }
+
+  .race-car-mascot {
+    width: 24px;
+    height: 24px;
+    top: -8px;
+  }
+
+  .race-car--css:not(.race-car--sm) {
+    width: 48px;
+    height: 28px;
+    margin: -14px 0 0 -24px;
+    opacity: 0.78;
+  }
+
+  .race-car--sm {
+    opacity: 0.68;
+  }
+
+  .analytics-race-lane .race-car:nth-child(5),
+  .analytics-race-lane .race-car:nth-child(6) {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  body.analytics-page .panel {
+    width: calc(100% - 1.1rem);
+  }
+
+  .race-car--lap {
+    offset-path: inset(1% 0.5% round 10px);
+  }
 }
 
 /* Film pages — dark theater */

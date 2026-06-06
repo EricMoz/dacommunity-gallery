@@ -12,7 +12,7 @@ Check the footer on any page for **Site build YYYYMMDD-N** (e.g. `20260605-8`). 
 | `/collections/` | **Collections** — daCommunity + Badges picker |
 | `/dacommunity/` | Gallery, search/filters, collector lookup, shareable `?wallet=` links |
 | `/badges/` | **Badges** — cosmic coming-soon preview (Ethereum drop) |
-| `/analytics/` | Cat Coin market cap bar chart race (Flourish embed) |
+| `/analytics/` | **MC race** — Flourish bar chart race + looping track cars in the background |
 | `/film/` | **Films hub** — sticky search/filters, series grid, in-page player |
 | `/film/mozvane/` | Mozvane — **Theatre mode** (immersive watch) |
 | `/film/theatre/?v=` | Generic theatre route — **every catalog video on desktop** |
@@ -28,6 +28,7 @@ Check the footer on any page for **Site build YYYYMMDD-N** (e.g. `20260605-8`). 
 - **PWA shell** — Offline-friendly shell; HTML/CSS/JS and `sw.js` cache names bump each deploy; gallery JSON is network-first.
 - **Film hub** — Catalog from `data/videos.json`; search + series filters stay sticky under the top nav while browsing (`/film/`).
 - **Nav hierarchy** — Collections + Film are primary hubs; one dashed-yellow `is-active` state; MC race demoted; My daCATs emphasized on home/gallery.
+- **MC race** (`/analytics/`) — Flourish bar chart race; dashed track, checkered corners, and orbiting cars (dacat.drive + mascot) behind content. Mobile shows a slimmer panel gutter so cars peek at the edges; `prefers-reduced-motion` parks cars static.
 
 ## Architecture
 
@@ -61,6 +62,7 @@ OpenSea API v2  ──►  Python (backend/)  ──►  web/data/*.json
 | `js/theatre.js` | Theatre mode (desktop): YT API player, lights down/up, up-next |
 | `data/theatre_registry.json` | Per-film theatre theme + future `extras` hooks |
 | `docs/THEATRE.md` | Theatre QA, lights-down chrome layout, data contract |
+| `analytics/index.html` | MC race page — Flourish embed + `.analytics-race-scene` background |
 | `js/home.js` | Home-only community highlights |
 | `js/pwa-register.js` | Registers `sw.js` with `?v=` from `<meta name="site-build">` |
 | `sw.js` | Network-first for HTML/CSS/JS; `CACHE` bumped per deploy |

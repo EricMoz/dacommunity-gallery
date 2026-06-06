@@ -129,6 +129,41 @@ Nav markup is **duplicated** in each `web/**/index.html` (no shared partial yet)
 
 ---
 
+## MC race (`/analytics/`)
+
+Static Flourish embed plus a **CSS-only** race-track layer (no extra JS). Markup lives in `web/analytics/index.html`; styles in `web/css/styles.css` under `body.analytics-page`.
+
+### Layer stack
+
+| z-index | Layer |
+|---------|-------|
+| `0` | `.analytics-race-scene` — fixed track, speed lines, cars (`pointer-events: none`) |
+| `2` | Header, `.analytics-main` panels, footer |
+
+Cars use `offset-path: inset(… round …)` + `offset-rotate: auto` and loop via `@keyframes analytics-race-lap`. Six cars in HTML (dacat.drive image, mascot car, four CSS comic cars); mobile hides the two smallest (`nth-child(5)` / `(6)`).
+
+### Mobile visibility
+
+Panels are full-width white blocks — cars only show in the **side gutters** and in **gaps** between header, intro, chart, and footer. Below `719px`:
+
+- Narrower panels: `width: calc(100% - 1.5rem)` centered in `.analytics-main`
+- Tighter track inset + higher car/track opacity
+- Do not raise race scene `z-index` above panels (chart readability)
+
+### Reduced motion
+
+`@media (prefers-reduced-motion: reduce)` — animation off; cars parked at staggered `offset-distance` values.
+
+### Manual QA checklist — MC race
+
+- [ ] Hard-refresh `/analytics/`; footer build id current.
+- [ ] Desktop: cars orbit viewport; chart remains readable.
+- [ ] Mobile (~390px): dashed track + checkers visible; at least dacat.drive or mascot peeks in side gutter while scrolling.
+- [ ] `prefers-reduced-motion`: cars static, track still visible.
+- [ ] Flourish embed loads; play button works.
+
+---
+
 ## Deploy & verification
 
 ```powershell
@@ -142,7 +177,7 @@ After deploy (~1–2 min):
 
 1. Footer build id on live site ≥ your commit.
 2. `node --check web/js/app.js` and `web/js/film.js` before push.
-3. Spot-check `/film/`, `/dacommunity/?wallet=0x…`, `/`.
+3. Spot-check `/film/`, `/analytics/`, `/dacommunity/?wallet=0x…`, `/`.
 
 ---
 
