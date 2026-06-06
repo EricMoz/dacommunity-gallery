@@ -4,7 +4,7 @@
  *   .site-header — sticky nav (top: 0); height synced to --site-header-h via JS
  *   .film-sticky-deck — film hub search/filters; sticky at top: var(--site-header-h)
  *   .hero-band / .stats-strip — collection summary (dacommunity/)
- *   .collector-hub (#wallet-panel) — ENS/0x lookup, portfolio exit bar
+ *   #wallet-panel — hash anchor at theater top; #wallet-lookup — ENS/0x lookup form
  *   .browse-controls — archive search, filters, sort (#search, .filter, #sort-select)
  *   .gallery-focus-zone — featured rail + grid; dark “cinema” when body.has-collector-view
  *   .detail-panel — token drawer
@@ -4192,6 +4192,17 @@ body.has-collector-view .collector-theater-vignette {
   }
 }
 
+.collector-hash-anchor {
+  display: block;
+  height: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  pointer-events: none;
+  scroll-margin-top: var(--site-header-h, 4.35rem);
+}
+
 .collector-escape-bar {
   display: block;
   position: sticky;
@@ -4201,7 +4212,7 @@ body.has-collector-view .collector-theater-vignette {
   padding: 0.85rem 1rem 0.75rem;
   background: linear-gradient(180deg, #1c1c1c 0%, #101010 100%);
   border-bottom: 1px solid rgba(255, 204, 0, 0.24);
-  scroll-margin-top: 4.75rem;
+  scroll-margin-top: var(--site-header-h, 4.35rem);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 10px 32px rgba(0, 0, 0, 0.45);
@@ -4523,7 +4534,7 @@ body.has-collector-view .collector-theater-vignette {
   color: var(--yellow);
 }
 
-body.has-collector-view #wallet-panel.collector-hub.is-collector-active {
+body.has-collector-view #wallet-lookup.collector-hub.is-collector-active {
   background: transparent;
   border: none;
   border-radius: 0;
@@ -4752,7 +4763,7 @@ body.has-collector-view .hero-band {
   display: none !important;
 }
 
-body.has-collector-view #wallet-panel + #browse-controls {
+body.has-collector-view #wallet-lookup + #browse-controls {
   margin-top: 0;
 }
 
@@ -6016,7 +6027,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding: 0.85rem 0.85rem 0.95rem;
   }
 
-  body.has-collector-view #wallet-panel.collector-hub.is-collector-active {
+  body.has-collector-view #wallet-lookup.collector-hub.is-collector-active {
     scroll-margin-top: 4.5rem;
   }
 

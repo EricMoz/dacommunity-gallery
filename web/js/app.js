@@ -14,7 +14,8 @@
  * No wallet connect; ENS resolve via ensdata.net when needed.
  *
  * STATE: activeFilter, searchQuery, sortKey, galleryCollectorView (portfolio grid).
- * WALLET: lookup form, ?wallet= URL, resetWalletLookupHub, exitCollectorView.
+ * WALLET: #wallet-lookup form, ?wallet= URL, #wallet-panel hash anchor, exitCollectorView.
+ * SCROLL: scrollToElementBelowHeader uses --site-header-h (never scrollIntoView on sticky bars).
  * BROWSE: getFilteredItems → renderGallery; delegated clicks on #gallery-list.
  * DETAIL: openDetail drawer; holderHighlightAddress uses tokenIds (never resolveHoldersList).
  */
@@ -679,6 +680,24 @@ function parseWalletFromUrl() {
   return (params.get("wallet") || params.get("ens") || "").trim();
 }
 
+/** Measured sticky nav height — used for scroll offsets (collector escape bar, wallet hub). */
+function getSiteHeaderOffset() {
+  var raw = getComputedStyle(document.documentElement).getPropertyValue("--site-header-h").trim();
+  var px = parseFloat(raw);
+  if (!isNaN(px) && px > 0) return Math.ceil(px);
+  var header = document.querySelector(".site-header");
+  return header ? Math.ceil(header.getBoundingClientRect().height) : 0;
+}
+
+/** Scroll so el sits flush under the sticky site header (no scrollIntoView — avoids sticky gaps). */
+function scrollToElementBelowHeader(el, opts) {
+  opts = opts || {};
+  if (!el) return;
+  var behavior = opts.behavior === "instant" ? "auto" : opts.behavior || "smooth";
+  var top = el.getBoundingClientRect().top + window.pageYOffset - getSiteHeaderOffset();
+  window.scrollTo({ top: Math.max(0, top), behavior: behavior });
+}
+
 /** Canonical /dacommunity/ URL (share links work from any page on the site). */
 function dacommunityBaseUrl() {
   var path = (window.location.pathname || "/").replace(/\/index\.html$/i, "/");
@@ -704,7 +723,9 @@ function syncWalletShareUrl(address) {
   url.searchParams.set("wallet", address.toLowerCase());
   url.searchParams.delete("ens");
   url.hash = "wallet-panel";
+  if (bindCollectorHubNav._bound) bindCollectorHubNav._suppressHash = true;
   history.replaceState(null, "", url.pathname + url.search + url.hash);
+  if (bindCollectorHubNav._bound) bindCollectorHubNav._suppressHash = false;
 }
 
 function clearWalletShareUrl() {
@@ -729,7 +750,7 @@ function resetWalletLookupHub() {
   }
   clearWalletResultHighlight();
   clearWalletShareUrl();
-  var panel = $("#wallet-panel");
+  var panel = $("#wallet-lookup");
   if (panel) {
     panel.classList.remove("has-result");
     panel.classList.remove("is-collector-compact");
@@ -744,7 +765,8 @@ function collectorTokenIdSet(entry) {
   return ids;
 }
 
-function setGalleryCollectorView(entry) {
+function setGalleryCollectorView(entry, opts) {
+  opts = opts || {};
   if (!entry) return;
   var label = entry.ens_name || entry.username || shortenAddress(entry.address);
   galleryCollectorView = {
@@ -758,8 +780,12 @@ function setGalleryCollectorView(entry) {
   };
   renderCollectorFocusUi();
   refreshView();
+  if (opts.scroll === false) return;
+  var behavior = opts.scrollBehavior || "smooth";
   requestAnimationFrame(function () {
-    scrollToCollectorTheaterTop({ behavior: "smooth" });
+    requestAnimationFrame(function () {
+      scrollToCollectorTheaterTop({ behavior: behavior });
+    });
   });
 }
 
@@ -768,11 +794,10 @@ function scrollToCollectorTheaterTop(opts) {
   opts = opts || {};
   var bar = $("#collector-escape-bar");
   if (bar && !bar.hidden) {
-    var behavior = opts.behavior === "instant" ? "auto" : opts.behavior || "smooth";
-    bar.scrollIntoView({ behavior: behavior, block: "start" });
+    scrollToElementBelowHeader(bar, opts);
     return;
   }
-  scrollToCollectorCollection();
+  scrollToCollectorCollection(opts);
 }
 
 /** Reset search/filter/sort inside an active collector view (stay in theater mode). */
@@ -829,14 +854,12 @@ function exitCollectorView(opts) {
   }
 }
 
-function scrollToCollectorCollection() {
-  var panel = $("#wallet-panel");
-  if (panel && galleryCollectorView) {
-    panel.scrollIntoView({ behavior: "smooth", block: "start" });
-    return;
-  }
+function scrollToCollectorCollection(opts) {
+  opts = opts || {};
   var list = $("#gallery-list");
-  if (list) list.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (list && galleryCollectorView) {
+    scrollToElementBelowHeader(list, opts);
+  }
 }
 
 var browseAdvancedMq = window.matchMedia("(max-width: 719px)");
@@ -880,7 +903,7 @@ function renderCollectorFocusUi() {
   var active = !!galleryCollectorView;
   document.body.classList.toggle("has-collector-view", active);
 
-  var panel = $("#wallet-panel");
+  var panel = $("#wallet-lookup");
   if (panel) {
     panel.classList.toggle("is-collector-active", active);
     panel.classList.toggle("is-collector-compact", active && panel.classList.contains("has-result"));
@@ -1046,9 +1069,8 @@ function applyCollectorView(address) {
   var input = $("#wallet-input");
   if (input) input.value = meta.lookupValue || meta.address;
   if (entry) {
-    renderWalletSuccess(entry);
+    renderWalletSuccess(entry, { scrollBehavior: "smooth" });
     syncWalletShareUrl(entry.address);
-    scrollToCollectorTheaterTop({ behavior: "smooth" });
     return;
   }
   runWalletLookupFromAddress(address, meta.lookupValue);
@@ -1062,11 +1084,18 @@ function walletShareUrl(address) {
   return url.toString();
 }
 
-/** Scroll to #wallet-panel (sticky-header offset). Works even if hash is already set. */
+/** Scroll to wallet lookup hub (#wallet-lookup) or theater top when portfolio is open. */
 function scrollToCollectorHub(opts) {
   opts = opts || {};
-  var panel = $("#wallet-panel");
-  if (!panel) return;
+  if (!$("#wallet-panel")) return;
+
+  if (galleryCollectorView) {
+    scrollToCollectorTheaterTop(opts);
+    return;
+  }
+
+  var lookup = $("#wallet-lookup");
+  if (!lookup) return;
 
   function runScroll() {
     if (opts.updateHash !== false) {
@@ -1078,12 +1107,8 @@ function scrollToCollectorHub(opts) {
       );
       bindCollectorHubNav._suppressHash = false;
     }
-    var behavior = opts.behavior === "instant" ? "auto" : opts.behavior || "smooth";
-    var top =
-      panel.getBoundingClientRect().top + window.pageYOffset - 88;
-    window.scrollTo({ top: Math.max(0, top), behavior: behavior });
-    panel.scrollIntoView({ behavior: behavior, block: "start" });
-    panel.focus({ preventScroll: true });
+    scrollToElementBelowHeader(lookup, opts);
+    lookup.focus({ preventScroll: true });
   }
 
   requestAnimationFrame(function () {
@@ -1154,7 +1179,7 @@ function runWalletLookupFromAddress(address, lookupValue) {
   input.value = lookupValue || meta.lookupValue || meta.address;
   closeDetail();
   closeCollectorsModal();
-  renderWalletLookup(input.value, { updateUrl: true, scroll: true });
+  renderWalletLookup(input.value, { updateUrl: true, scrollBehavior: "smooth" });
 }
 
 async function applyWalletFromUrl() {
@@ -1162,7 +1187,7 @@ async function applyWalletFromUrl() {
   if (!q) return;
   var input = $("#wallet-input");
   if (input) input.value = q;
-  await renderWalletLookup(q, { updateUrl: true, scroll: true });
+  await renderWalletLookup(q, { updateUrl: true, scrollBehavior: "instant" });
 }
 
 function collectorRank(address) {
@@ -1365,7 +1390,7 @@ function renderWalletState(kind, opts) {
   }
 }
 
-function renderWalletSuccess(entry) {
+function renderWalletSuccess(entry, opts) {
   var resultEl = $("#wallet-result");
   if (!resultEl) return;
   var label = entry.ens_name || entry.username || shortenAddress(entry.address);
@@ -1414,7 +1439,7 @@ function renderWalletSuccess(entry) {
   bindCollectorResultActions(entry);
   var hub = resultEl.closest && resultEl.closest(".collector-hub");
   if (hub) hub.classList.add("has-result");
-  setGalleryCollectorView(entry);
+  setGalleryCollectorView(entry, { scrollBehavior: opts && opts.scrollBehavior });
 }
 
 function clearWalletResultHighlight() {
@@ -1577,9 +1602,8 @@ async function renderWalletLookup(identifier, opts) {
   }
 
   var entry = lookup.entry;
-  renderWalletSuccess(entry);
+  renderWalletSuccess(entry, opts);
   if (opts.updateUrl !== false) syncWalletShareUrl(entry.address);
-  if (opts.scroll) scrollToCollectorTheaterTop({ behavior: "smooth" });
 }
 
 function updateCollectorsButton() {

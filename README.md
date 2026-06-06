@@ -23,7 +23,7 @@ Check the footer on any page for **Site build YYYYMMDD-N** (e.g. `20260605-8`). 
 - **Collector lookup** — ENS or `0x` address, no wallet connect. **×** clears the field and result card.
 - **Portfolio view** — Dark cinema grid for one wallet (`?wallet=0x…`); search/filter in compact panel; exit returns to lookup with field cleared.
 - **NFT detail drawer** — Readable dark theme in portfolio mode; holder badge **this portfolio** vs **latest transfer** in full archive.
-- **Shareable links** — `?wallet=0x…` opens a portfolio; `#wallet-panel` scrolls to lookup.
+- **Shareable links** — `?wallet=0x…#wallet-panel` opens a portfolio aligned under the nav; `#wallet-panel` alone scrolls to the lookup hub.
 - **PWA shell** — Offline-friendly shell; HTML/CSS/JS and `sw.js` cache names bump each deploy; gallery JSON is network-first.
 - **Film hub** — Catalog from `data/videos.json`; search + series filters stay sticky under the top nav while browsing (`/film/`).
 - **Nav hierarchy** — Collections + Film are primary hubs; one dashed-yellow `is-active` state; MC race demoted; My daCATs emphasized on home/gallery.
@@ -52,7 +52,7 @@ OpenSea API v2  ──►  Python (backend/)  ──►  web/data/*.json
 
 | File | Role |
 |------|------|
-| `dacommunity/index.html` | Gallery shell: hero, `#wallet-panel`, browse, grid, detail drawer |
+| `dacommunity/index.html` | Gallery shell: hero, `#wallet-panel` anchor + `#wallet-lookup`, browse, grid, detail drawer |
 | `css/styles.css` | Layout; `body.has-collector-view` = dark portfolio + detail theme |
 | `js/app.js` | Data load, search/filter/sort, wallet URL sync, grid + detail UI |
 | `js/film.js` | Film catalog, sticky header-height sync, modal player, up-next |

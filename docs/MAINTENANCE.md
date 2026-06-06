@@ -98,9 +98,30 @@ Nav markup is **duplicated** in each `web/**/index.html` (no shared partial yet)
 | Concern | Detail |
 |---------|--------|
 | Body class | `has-collector-view` |
+| Hash anchor | `#wallet-panel` — zero-height anchor at top of `.collector-theater-frame` (share links) |
+| Lookup form | `#wallet-lookup` — the collector hub section (was also `#wallet-panel`) |
 | Sticky escape bar | `.collector-escape-bar` at `top: var(--site-header-h)` |
 | Overflow | Do not set `overflow: hidden` on `.collector-theater-frame` — breaks sticky |
-| Share URL | `syncWalletShareUrl()` keeps `?wallet=` canonical |
+| Share URL | `syncWalletShareUrl()` keeps `?wallet=…#wallet-panel` canonical |
+| Deep-link scroll | `?wallet=` URLs pin to top before JS, then `scrollToElementBelowHeader` on escape bar |
+
+### Wallet deep-link QA (`?wallet=0x…#wallet-panel`)
+
+- [ ] Hard-refresh share URL; escape bar flush under nav (no gap, no overscroll).
+- [ ] “Your collection” + grid visible; hero hidden.
+- [ ] No double-scroll jitter after catalog loads.
+- [ ] Console: no errors; `syncSiteHeaderHeight` / `--site-header-h` reasonable in DevTools.
+- [ ] “My daCATs” while in portfolio re-scrolls to theater top, not lookup form.
+- [ ] Exit portfolio → scrolls to `#wallet-lookup` hub, field cleared.
+
+### Scroll pitfalls (collector)
+
+| Mistake | Symptom |
+|---------|---------|
+| `scrollIntoView` on sticky escape bar | Gap under nav or bar hidden behind header |
+| Hash on lookup section while portfolio open | Browser jumps mid-page before JS runs |
+| Hardcoded `88px` offset | Misalignment when nav wraps to two rows |
+| Duplicate scroll calls in `renderWalletLookup` + `setGalleryCollectorView` | Jitter / wrong final position |
 
 ---
 
@@ -139,3 +160,4 @@ After deploy (~1–2 min):
 | 20260606-10 | ~1" gap under nav on PC | `--site-header-h` mismatch vs wrapped header |
 | 20260606-11 | Search does not follow scroll | `.film-sticky-deck { position: static }` inside `.site-top-stack`; `.film-theater .site-top-stack { position: relative }` overrode sticky |
 | 20260606-12 | Restored follow-scroll + flush top | Dual sticky; removed `position: relative` on sticky chrome; restored `syncSiteHeaderHeight` + `ResizeObserver` |
+| 20260606-13 | Wallet deep-link misalignment | `#wallet-panel` moved to theater-top anchor; `scrollToElementBelowHeader`; suppressed hash scroll jump on `?wallet=` |
