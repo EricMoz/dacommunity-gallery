@@ -3617,6 +3617,18 @@ body.film-theatre-awaiting-lights {
   z-index: 2;
 }
 
+/* ============================================================
+   THEATRE MODE — NORMAL (LIGHTS ON) LAYOUT
+   The goal is a nice contained theatre experience with the site
+   header, titles, action bar (Film hub + Lights down), the player,
+   up-next, and footer all visible and usable.
+   Sizing is deliberately hybrid: flex column for flow + dvh caps
+   so the player doesn't explode on tall/short viewports.
+   The hard part is that YT.Player needs a real non-zero box at
+   creation/onReady time, which is why we have min-heights here
+   plus aggressive JS syncPlayerSize() fallbacks in theatre.js.
+   ============================================================ */
+
 .film-theatre-main {
   flex: 1;
   width: 100%;
@@ -3834,7 +3846,13 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
   position: relative;
   width: 100%;
   flex: 1 1 auto;
-  min-height: 380px; /* ensure grid has height in normal flow so aspect-ratio player gets a real box for YT init + syncSize (fixes default lights-on video not appearing) */
+  /* Critical for default (lights-on) mode: the normal flow is a deep flex column
+     (main > screen > stage > mount). Ancestors use flex:1 + min-height:0 + overflow:hidden,
+     which can collapse to content size if the page wrapper doesn't establish viewport height.
+     The min-height here guarantees the grid (and therefore the centered player child)
+     has a real box so the 16/9 aspect-ratio produces visible dimensions and the YT iframe
+     has something to render into. Lights-down overrides this with fixed full-bleed stage. */
+  min-height: 520px;
   display: grid;
   place-items: center;
   container-type: size;
@@ -3847,7 +3865,14 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
   max-width: 960px;
   aspect-ratio: 16 / 9;
   height: auto;
+  /* max-height keeps the player from eating the whole page in normal mode (leaves room for
+     header, titles, action-bar, up-next, footer). The dvh calc is a safety net; the real
+     height comes from aspect-ratio once the mount has width + our min-height on the mount. */
   max-height: min(56dvh, calc(100dvh - 10rem));
+  /* min-height acts as a bootstrap for the box in normal flow (helps when flex ancestors
+     haven't fully computed or cqw units are small). YT creation and syncPlayerSize rely on
+     this element having a non-zero rect. */
+  min-height: 340px;
   flex-shrink: 1;
   border-radius: 12px;
   overflow: hidden;
@@ -3991,6 +4016,23 @@ body.film-theatre-awaiting-lights .film-theatre-footline {
   opacity: 0;
 }
 
+/* ============================================================
+   THEATRE MODE — LIGHTS DOWN (IMMERSIVE) OVERRIDES
+   When the user clicks "Lights down" (or we restore from
+   sessionStorage on video change), we go full cinematic:
+   - Most chrome (titles, header, footer, popcorn, curtains) fade out.
+   - Stage becomes position:fixed; inset:0 with controlled padding.
+   - Action bar is pulled out to its own fixed centered glass pill
+     (narrow max-width so the two buttons aren't stranded at the
+     screen edges).
+   - Player gets explicit vw + dvh sizing so it stays a comfortable
+     cinematic rectangle with breathing room for the controls and
+     up-next dim.
+   The JS (syncPlayerSize + applyLightsDownDom) re-measures and
+   calls ytPlayer.setSize after the class change because the
+   container geometry changes dramatically.
+   ============================================================ */
+
 .film-theatre-lights-down .film-theatre-main {
   max-width: none;
   padding: 0;
@@ -4002,20 +4044,30 @@ body.film-theatre-awaiting-lights .film-theatre-footline {
   z-index: 6;
   max-width: none;
   margin: 0;
-  padding: 2.8rem 1.5rem 1.25rem; /* reduced top padding + balanced sides so centered video sits closer to the action bar */
+  /* Top padding tuned to sit just below the centered action bar (1.25rem + bar height + gap).
+     The player (inside mount) is centered in the remaining space via justify-content + grid.
+     This + the narrower action bar above gives a tighter, more intentional composition
+     instead of the controls feeling lost in the corners of a giant black void. */
+  padding: 3.1rem 1.5rem 1.25rem;
   justify-content: center;
   gap: 0;
 }
 
 .film-theatre-lights-down .film-theatre-action-bar {
+  /* Centered, constrained-width control bar in immersive mode.
+     Using left:50% + transform + max-width brings the Film hub (left) and Lights up (right)
+     buttons closer together and away from the screen edges. This fixes "off center top"
+     and "too far out on the sides" while keeping the glassmorphism pill look.
+     The stage padding below provides breathing room between this bar and the video frame. */
   position: fixed;
-  top: 1.6rem;
-  left: 2.25rem;
-  right: 2.25rem;
+  top: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 8;
+  max-width: 580px;   /* key: shorter pill = buttons closer to each other and not hugging screen sides */
+  width: auto;
   margin: 0;
   padding: 0;
-  max-width: none;
 }
 
 .film-theatre-lights-down .film-theatre-player-mount {

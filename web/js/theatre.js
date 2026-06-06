@@ -17,6 +17,16 @@
   var THEATRE_STACK_KEY = "dacat-theatre-watch-stack";
   var YT_ORIGIN = window.location.origin;
 
+  /* =====================================================================
+     LIGHTS PERSISTENCE
+     We store the user's "lights down" preference in sessionStorage under
+     THEATRE_LIGHTS_KEY. On subsequent video loads (including cross-video
+     "keep lights" handoff) we re-apply the class and re-size the player.
+     IMPORTANT: Default arrival (direct link or refresh with no prior toggle)
+     is ALWAYS lights-on with full chrome. The early auto-apply inline script
+     was removed from the HTMLs to prevent unwanted immersive start.
+     ===================================================================== */
+
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   var catalog = null;
@@ -560,6 +570,20 @@
     els.player.innerHTML = '<div id="' + hostId + '"></div>';
     setPlayerLoading(true);
 
+    /* Bootstrap a reasonable size on the host container immediately.
+       YT.Player at creation time often snapshots whatever size (or 0-size) the host has.
+       Giving the inner host an explicit starting size helps the iframe appear with a
+       visible frame even before the later syncPlayerSize runs. The values are overwritten
+       by setSize once layout settles. */
+    var host = document.getElementById(hostId);
+    if (host && els.player) {
+      var stageW = (els.stage && els.stage.clientWidth) || els.player.offsetWidth || 720;
+      var bootW = Math.min(Math.max(stageW, 640), 920);
+      var bootH = Math.round(bootW * 9 / 16);
+      host.style.width = bootW + 'px';
+      host.style.height = bootH + 'px';
+    }
+
     ytPlayer = new window.YT.Player(hostId, {
       videoId: video.youtubeId,
       host: "https://www.youtube-nocookie.com",
@@ -984,30 +1008,65 @@
   }
 
   function syncPlayerSize() {
-    // Force YT iframe to the final CSS box size of .film-theatre-player.
-    // Essential for default lights-on (normal) mode so the video appears at the
-    // correct dimensions immediately instead of cueing then blank (YT init often
-    // snapshots 0-height before layout settles). Also re-syncs after lights toggle.
-    if (ytPlayer && typeof ytPlayer.setSize === 'function' && els.player) {
-      requestAnimationFrame(() => {
-        if (ytPlayer && els.player) {
-          const r = els.player.getBoundingClientRect();
-          if (r.width > 50 && r.height > 22) {
-            ytPlayer.setSize(Math.round(r.width), Math.round(r.height));
-          }
-        }
-      });
-      // Second chance shortly after — normal mode flex layout (title + action bar + upnext)
-      // can take an extra frame or two before the mount/player rect stabilizes.
-      setTimeout(function () {
-        if (ytPlayer && els.player) {
-          const r2 = els.player.getBoundingClientRect();
-          if (r2.width > 50 && r2.height > 22) {
-            ytPlayer.setSize(Math.round(r2.width), Math.round(r2.height));
-          }
-        }
-      }, 160);
+    /* Force the YouTube iframe to the final laid-out size of .film-theatre-player.
+       This is the heart of making the video "appear" reliably.
+
+       Why it's needed:
+       - Normal (lights-on) mode: deep flex column (main > screen > stage > mount > player).
+         Even with min-height on the mount and aspect-ratio on the player, at the moment
+         YT.Player is created and onReady fires the getBoundingClientRect can still be
+         tiny or 0 because ancestors are still sizing (titles, action-bar, up-next, and
+         whatever wrapper gives the page its height).
+       - Lights-down: the stage is position:fixed; inset:0 with explicit padding; the
+         player gets an explicit vw/dvh size via CSS. The class toggle + this function
+         re-measures after the layout change.
+       - YT IFrame API frequently bakes in whatever size the host div has at creation
+         time. Calling player.setSize(w, h) afterwards is the documented way to resize.
+
+       We try multiple times (rAF + short timeouts) and have a fallback that computes
+       a sensible cinematic 16:9 from the stage width when the measured rect is still
+       unrealistically small. We also write explicit style w/h on the player element
+       so the gold border and the absolute iframe context become visible immediately. */
+    if (!ytPlayer || typeof ytPlayer.setSize !== 'function' || !els.player) return;
+
+    function applySize(w, h) {
+      if (!ytPlayer || !els.player) return;
+      ytPlayer.setSize(Math.round(w), Math.round(h));
+      // Make the theatre frame (border + shadow + bg) visible even if CSS aspect
+      // calc is still fighting with flex/cqw in this particular viewport.
+      els.player.style.width = Math.round(w) + 'px';
+      els.player.style.height = Math.round(h) + 'px';
     }
+
+    function doSync() {
+      if (!ytPlayer || !els.player) return;
+      var r = els.player.getBoundingClientRect();
+      var w = r.width;
+      var h = r.height;
+
+      // If we still have a collapsed rect (common in normal flow on first passes),
+      // compute a good default from the stage's actual width. This is the
+      // "something we were missing" safety net.
+      if (h < 120) {
+        var stage = els.stage || document.querySelector('.film-theatre-stage');
+        var basis = (stage && stage.clientWidth) || w || 800;
+        w = Math.min(Math.max(basis, 640), 960);
+        h = w * 9 / 16;
+      }
+
+      if (w > 50 && h > 22) {
+        applySize(w, h);
+      }
+    }
+
+    // First attempt as soon as the browser has painted the current layout pass.
+    requestAnimationFrame(doSync);
+
+    // Normal flex layout (kicker, title, meta, action-bar inside stage, up-next)
+    // often needs one or two more frames. Also covers the case where a lights toggle
+    // just happened and the fixed vs flow sizes are still settling.
+    setTimeout(doSync, 140);
+    setTimeout(doSync, 380);
   }
 
   function tryPendingLightsRestore() {
