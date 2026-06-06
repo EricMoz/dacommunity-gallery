@@ -4081,8 +4081,64 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
   background: rgba(0, 0, 0, 0.78);
 }
 
+.film-theatre-upnext-dim-tap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.08rem;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.15s ease;
+  -webkit-tap-highlight-color: rgba(255, 204, 0, 0.2);
+}
+
+.film-theatre-upnext-dim-tap:hover,
+.film-theatre-upnext-dim-tap:focus-visible {
+  background: rgba(255, 204, 0, 0.1);
+  outline: none;
+}
+
+.film-theatre-upnext-dim-tap:hover .film-theatre-upnext-dim-title,
+.film-theatre-upnext-dim-tap:focus-visible .film-theatre-upnext-dim-title {
+  color: var(--theatre-accent);
+}
+
+.film-theatre-upnext-dim-end-tap {
+  display: block;
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.15s ease;
+  -webkit-tap-highlight-color: rgba(255, 204, 0, 0.2);
+}
+
+.film-theatre-upnext-dim-end-tap:hover,
+.film-theatre-upnext-dim-end-tap:focus-visible {
+  background: rgba(255, 204, 0, 0.1);
+  outline: none;
+}
+
+.film-theatre-upnext-dim-end-tap:hover .film-theatre-upnext-dim-countdown strong,
+.film-theatre-upnext-dim-end-tap:focus-visible .film-theatre-upnext-dim-countdown strong {
+  color: var(--theatre-accent);
+}
+
 .film-theatre-upnext-dim-kicker {
-  grid-column: 1 / -1;
   font-size: 0.54rem;
   font-weight: 800;
   letter-spacing: 0.1em;

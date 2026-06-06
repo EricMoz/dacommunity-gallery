@@ -29,6 +29,7 @@
 
   var nextMode = "random";
   var lastRandomId = null;
+  var randomBag = [];
   var pendingUpNext = null;
   var upNextTimer = null;
   var upNextCountdownSec = 0;
@@ -59,15 +60,19 @@
     upnextBar: document.getElementById("theatre-upnext-bar"),
     upnextEnd: document.getElementById("theatre-upnext-end"),
     upnextDimEnd: document.getElementById("theatre-upnext-dim-end"),
+    upnextPreview: document.getElementById("theatre-upnext-preview"),
     upnextThumb: document.getElementById("theatre-upnext-thumb"),
     upnextKicker: document.getElementById("theatre-upnext-kicker"),
     upnextTitle: document.getElementById("theatre-upnext-title"),
     upnextMeta: document.getElementById("theatre-upnext-meta"),
     upnextPlay: document.getElementById("theatre-upnext-play"),
     upnextCountdown: document.getElementById("theatre-upnext-countdown"),
+    upnextEndTap: document.getElementById("theatre-upnext-end-tap"),
     upnextCancel: document.getElementById("theatre-upnext-cancel"),
     upnextPlayNow: document.getElementById("theatre-upnext-play-now"),
+    upnextDimTap: document.getElementById("theatre-upnext-dim-tap"),
     upnextDimTitle: document.getElementById("theatre-upnext-dim-title"),
+    upnextDimEndTap: document.getElementById("theatre-upnext-dim-end-tap"),
     upnextDimPlay: document.getElementById("theatre-upnext-dim-play"),
     upnextDimCountdown: document.getElementById("theatre-upnext-dim-countdown"),
     upnextDimCancel: document.getElementById("theatre-upnext-dim-cancel"),
@@ -129,7 +134,41 @@
     );
   }
 
+  function shuffleIds(ids) {
+    var list = ids.slice();
+    var i = list.length - 1;
+    for (; i > 0; i -= 1) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = list[i];
+      list[i] = list[j];
+      list[j] = tmp;
+    }
+    return list;
+  }
+
+  function refillRandomBag(exclude) {
+    var blocked = exclude || new Set();
+    var ids = videos
+      .map(function (v) {
+        return v.id;
+      })
+      .filter(function (id) {
+        return !blocked.has(id);
+      });
+    if (!ids.length) {
+      ids = videos.map(function (v) {
+        return v.id;
+      });
+    }
+    randomBag = shuffleIds(ids);
+  }
+
   function pickRandomNext(current, extraExclude) {
+    if (!videos.length) return null;
+    if (videos.length === 1) {
+      return videos[0].id === current.id ? null : videos[0];
+    }
+
     var exclude = new Set([current.id]);
     if (lastRandomId) exclude.add(lastRandomId);
     if (extraExclude) {
@@ -137,16 +176,21 @@
         if (id) exclude.add(id);
       });
     }
-    var pool = videos.filter(function (v) {
-      return !exclude.has(v.id);
+
+    randomBag = randomBag.filter(function (id) {
+      return !exclude.has(id);
     });
-    if (!pool.length && videos.length > 1) {
-      pool = videos.filter(function (v) {
-        return v.id !== current.id;
+    if (!randomBag.length) refillRandomBag(exclude);
+
+    if (!randomBag.length) {
+      var pool = videos.filter(function (v) {
+        return !exclude.has(v.id);
       });
+      if (!pool.length) return null;
+      return pool[Math.floor(Math.random() * pool.length)];
     }
-    if (!pool.length) return null;
-    return pool[Math.floor(Math.random() * pool.length)];
+
+    return findVideo(randomBag.shift());
   }
 
   function pickSeriesNext(current) {
@@ -433,7 +477,7 @@
     if (endTriggered || !currentVideo) return;
     endTriggered = true;
     clearEndWatch();
-    var next = resolveUpNext(currentVideo);
+    var next = pendingUpNext || resolveUpNext(currentVideo);
     if (!next) {
       cancelUpNext();
       return;
@@ -578,8 +622,19 @@
     }
   }
 
+  function upNextPlayLabel() {
+    return isLightsDown() || nextMode === "random"
+      ? "Play next"
+      : "Next in series";
+  }
+
+  function previewAriaLabel(video) {
+    return "Play up next: " + video.title + " (" + video.series + ")";
+  }
+
   function fillUpNextPreview(video) {
     if (!video) return;
+    var label = previewAriaLabel(video);
     if (els.upnextThumb) {
       els.upnextThumb.src = video.thumbnail;
       els.upnextThumb.alt = "";
@@ -594,6 +649,37 @@
     }
     if (els.upnextDimTitle) {
       els.upnextDimTitle.textContent = video.title;
+    }
+    if (els.upnextPreview) els.upnextPreview.setAttribute("aria-label", label);
+    if (els.upnextEndTap) els.upnextEndTap.setAttribute("aria-label", label);
+    if (els.upnextDimTap) els.upnextDimTap.setAttribute("aria-label", label);
+    if (els.upnextDimEndTap) {
+      els.upnextDimEndTap.setAttribute("aria-label", label);
+    }
+  }
+
+  function reshuffleUpNextPreview() {
+    if (!currentVideo) return;
+    if (!isLightsDown() && nextMode !== "random") {
+      refreshUpNextUi();
+      return;
+    }
+    var extra = [];
+    if (pendingUpNext && pendingUpNext.id !== currentVideo.id) {
+      extra.push(pendingUpNext.id);
+    }
+    var next = pickRandomNext(currentVideo, extra);
+    pendingUpNext = next;
+    if (!next) {
+      if (els.upnext) els.upnext.hidden = true;
+      return;
+    }
+    if (els.upnext) els.upnext.hidden = false;
+    hideUpNextEnd();
+    fillUpNextPreview(next);
+    if (els.upnextPlay && !isLightsDown()) {
+      els.upnextPlay.disabled = false;
+      els.upnextPlay.textContent = upNextPlayLabel();
     }
   }
 
@@ -629,14 +715,16 @@
     fillUpNextPreview(next);
     if (els.upnextPlay && !isLightsDown()) {
       els.upnextPlay.disabled = false;
-      els.upnextPlay.textContent =
-        nextMode === "series" ? "Next in series" : "Play random";
+      els.upnextPlay.textContent = upNextPlayLabel();
     }
   }
 
   function updateCountdownText() {
     if (!pendingUpNext) return;
-    var label = upNextModeLabel() + " pick";
+    var label =
+      !isLightsDown() && nextMode === "series"
+        ? "Next in series"
+        : "Random pick";
     var html =
       "<strong>" +
       escapeHtml(pendingUpNext.title) +
@@ -685,23 +773,6 @@
     refreshUpNextUi();
   }
 
-  function resolveManualUpNext(cur) {
-    if (!cur) return null;
-    if (!isLightsDown() && nextMode === "series") {
-      return pendingUpNext || resolveUpNext(cur);
-    }
-    var extra = [];
-    if (pendingUpNext && pendingUpNext.id !== cur.id) {
-      extra.push(pendingUpNext.id);
-    }
-    var next = pickRandomNext(cur, extra);
-    if (next && next.id === cur.id && videos.length > 1) {
-      extra.push(cur.id);
-      next = pickRandomNext(cur, extra);
-    }
-    return next;
-  }
-
   function goToUpNext(opts) {
     opts = opts || {};
     clearUpNextCountdown();
@@ -710,9 +781,7 @@
 
     var keepLightsDown = isLightsDown();
     var prevId = currentVideo.id;
-    var next = opts.fromCountdown
-      ? pendingUpNext || resolveUpNext(currentVideo)
-      : resolveManualUpNext(currentVideo);
+    var next = pendingUpNext || resolveUpNext(currentVideo);
 
     if (!next || next.id === currentVideo.id) return;
 
@@ -735,7 +804,18 @@
       /* ignore */
     }
     syncUpNextModeUi();
-    refreshUpNextUi();
+    var endVisible =
+      (els.upnextEnd && !els.upnextEnd.hidden) ||
+      (els.upnextDimEnd && !els.upnextDimEnd.hidden);
+    if (endVisible && currentVideo) {
+      pendingUpNext = resolveUpNext(currentVideo);
+      if (pendingUpNext) {
+        fillUpNextPreview(pendingUpNext);
+        updateCountdownText();
+      }
+    } else {
+      refreshUpNextUi();
+    }
   }
 
   function loadUpNextMode() {
@@ -917,6 +997,26 @@
   }
 
   function bindUpNext() {
+    if (els.upnextPreview) {
+      els.upnextPreview.addEventListener("click", function () {
+        goToUpNext({});
+      });
+    }
+    if (els.upnextEndTap) {
+      els.upnextEndTap.addEventListener("click", function () {
+        goToUpNext({ fromCountdown: true });
+      });
+    }
+    if (els.upnextDimTap) {
+      els.upnextDimTap.addEventListener("click", function () {
+        goToUpNext({});
+      });
+    }
+    if (els.upnextDimEndTap) {
+      els.upnextDimEndTap.addEventListener("click", function () {
+        goToUpNext({ fromCountdown: true });
+      });
+    }
     if (els.upnextPlay) {
       els.upnextPlay.addEventListener("click", function () {
         goToUpNext({});
@@ -948,7 +1048,7 @@
         btn.addEventListener("click", function () {
           var mode = btn.dataset.mode;
           if (mode === "random" && mode === nextMode) {
-            refreshUpNextUi();
+            reshuffleUpNextPreview();
             return;
           }
           setUpNextMode(mode);

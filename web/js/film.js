@@ -561,7 +561,7 @@
     if (event.data === YT.PlayerState.ENDED) {
       const cur = findVideo(currentVideoId);
       if (!cur) return;
-      const next = resolveUpNext(cur);
+      const next = pendingUpNext || resolveUpNext(cur);
       if (next) showUpNextCountdown(next);
       else cancelUpNext();
     }

@@ -2,7 +2,7 @@
 <!-- Generic theatre mode — ?v=<videoId> from videos.json (theatre.enabled) -->
 <html lang="en">
 <head>
-  <meta name="site-build" content="20260606-27" />
+  <meta name="site-build" content="20260606-28" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Theatre mode · daCAT Films</title>
@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../../css/styles.css?v=20260606-27" />
+  <link rel="stylesheet" href="../../css/styles.css?v=20260606-28" />
 </head>
 <body class="film-page film-theater film-theatre-page">
   <div class="film-theater-vignette" aria-hidden="true"></div>
@@ -58,14 +58,14 @@
         <div class="film-theatre-upnext" id="theatre-upnext" hidden>
           <div class="film-theatre-upnext-full" id="theatre-upnext-full">
             <div class="film-upnext-bar" id="theatre-upnext-bar">
-              <div class="film-upnext-preview">
+              <button type="button" class="film-upnext-preview" id="theatre-upnext-preview" aria-label="Play up next">
                 <img id="theatre-upnext-thumb" class="film-upnext-thumb" alt="" width="96" height="54" />
-                <div class="film-upnext-copy">
+                <span class="film-upnext-copy">
                   <span class="film-upnext-kicker" id="theatre-upnext-kicker">Up next · Random</span>
                   <span class="film-upnext-title" id="theatre-upnext-title"></span>
                   <span class="film-upnext-meta" id="theatre-upnext-meta"></span>
-                </div>
-              </div>
+                </span>
+              </button>
               <div class="film-upnext-controls">
                 <div class="film-upnext-modes" role="group" aria-label="Up next mode">
                   <button type="button" class="film-upnext-mode theatre-upnext-mode is-active" data-mode="random" aria-pressed="true">Random</button>
@@ -75,10 +75,10 @@
               </div>
             </div>
             <div class="film-upnext-end" id="theatre-upnext-end" hidden>
-              <div class="film-upnext-end-copy">
+              <button type="button" class="film-upnext-end-tap" id="theatre-upnext-end-tap" aria-label="Play up next now">
                 <span class="film-upnext-kicker">Up next</span>
                 <p class="film-upnext-countdown" id="theatre-upnext-countdown"></p>
-              </div>
+              </button>
               <div class="film-upnext-end-actions">
                 <button type="button" class="film-upnext-cancel" id="theatre-upnext-cancel">Stay here</button>
                 <button type="button" class="film-upnext-play-now" id="theatre-upnext-play-now">Play now</button>
@@ -87,12 +87,16 @@
           </div>
           <div class="film-theatre-upnext-dim" id="theatre-upnext-dim" hidden>
             <div class="film-theatre-upnext-dim-bar">
-              <span class="film-theatre-upnext-dim-kicker">Up next · Random</span>
-              <span class="film-theatre-upnext-dim-title" id="theatre-upnext-dim-title"></span>
+              <button type="button" class="film-theatre-upnext-dim-tap" id="theatre-upnext-dim-tap" aria-label="Play up next">
+                <span class="film-theatre-upnext-dim-kicker">Up next · Random</span>
+                <span class="film-theatre-upnext-dim-title" id="theatre-upnext-dim-title"></span>
+              </button>
               <button type="button" class="film-theatre-upnext-dim-play" id="theatre-upnext-dim-play" aria-label="Play random next">Skip</button>
             </div>
             <div class="film-theatre-upnext-dim-end" id="theatre-upnext-dim-end" hidden>
-              <p class="film-theatre-upnext-dim-countdown" id="theatre-upnext-dim-countdown"></p>
+              <button type="button" class="film-theatre-upnext-dim-end-tap" id="theatre-upnext-dim-end-tap" aria-label="Play up next now">
+                <p class="film-theatre-upnext-dim-countdown" id="theatre-upnext-dim-countdown"></p>
+              </button>
               <div class="film-theatre-upnext-dim-actions">
                 <button type="button" class="film-theatre-upnext-dim-cancel" id="theatre-upnext-dim-cancel">Stay</button>
                 <button type="button" class="film-theatre-upnext-dim-play-now" id="theatre-upnext-dim-play-now">Play now</button>
@@ -112,9 +116,9 @@
 
   <footer class="site-footer film-footer film-theatre-footer">
     <p><a href="https://www.dacat.fun/">dacat.fun</a> · <a href="https://www.dacatworld.com/">dacatworld</a></p>
-    <p class="site-version">Site build 20260606-27</p>
+    <p class="site-version">Site build 20260606-28</p>
   </footer>
 
-  <script src="../../js/theatre.js?v=20260606-27" defer></script>
+  <script src="../../js/theatre.js?v=20260606-28" defer></script>
 </body>
 </html>
