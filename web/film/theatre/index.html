@@ -2,7 +2,7 @@
 <!-- Generic theatre mode — ?v=<videoId> from videos.json (theatre.enabled) -->
 <html lang="en">
 <head>
-  <meta name="site-build" content="20260606-32" />
+  <meta name="site-build" content="20260606-33" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Theatre mode · daCAT Films</title>
@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../../css/styles.css?v=20260606-32" />
+  <link rel="stylesheet" href="../../css/styles.css?v=20260606-33" />
 </head>
 <body class="film-page film-theater film-theatre-page">
   <div class="film-theater-vignette" aria-hidden="true"></div>
@@ -43,19 +43,20 @@
       <p class="film-theatre-meta" id="theatre-meta"></p>
 
       <div class="film-theatre-stage">
-        <div class="film-theatre-top-chrome">
-          <button type="button" class="film-theatre-back-btn" id="theatre-back">← Film hub</button>
-        </div>
+        <nav class="film-theatre-action-bar" id="theatre-action-bar" aria-label="Theatre controls">
+          <div class="film-theatre-top-chrome">
+            <button type="button" class="film-theatre-back-btn" id="theatre-back">← Film hub</button>
+          </div>
+          <div class="film-theatre-lights-dock" id="theatre-lights-dock">
+            <p class="film-theatre-lights-hint" id="theatre-lights-hint">🍿 Grab popcorn — tap Lights down</p>
+            <button type="button" class="film-theatre-lights-btn" id="theatre-lights" aria-pressed="false">Lights down</button>
+          </div>
+        </nav>
         <div class="film-theatre-player-mount">
           <div class="film-theatre-player" id="theatre-player"></div>
           <p class="film-theatre-loading" id="theatre-loading">Cueing film…</p>
         </div>
         <p class="film-theatre-error" id="theatre-error" hidden></p>
-
-        <div class="film-theatre-lights-dock" id="theatre-lights-dock">
-          <p class="film-theatre-lights-hint" id="theatre-lights-hint">🍿 Grab popcorn — tap Lights down</p>
-          <button type="button" class="film-theatre-lights-btn" id="theatre-lights" aria-pressed="false">Lights down</button>
-        </div>
 
         <div class="film-theatre-upnext" id="theatre-upnext" hidden>
           <div class="film-theatre-upnext-full" id="theatre-upnext-full">
@@ -118,9 +119,9 @@
 
   <footer class="site-footer film-footer film-theatre-footer">
     <p><a href="https://www.dacat.fun/">dacat.fun</a> · <a href="https://www.dacatworld.com/">dacatworld</a></p>
-    <p class="site-version">Site build 20260606-32</p>
+    <p class="site-version">Site build 20260606-33</p>
   </footer>
 
-  <script src="../../js/theatre.js?v=20260606-32" defer></script>
+  <script src="../../js/theatre.js?v=20260606-33" defer></script>
 </body>
 </html>
