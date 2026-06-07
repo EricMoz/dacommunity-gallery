@@ -3884,25 +3884,11 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
   position: relative;
   margin: 0 auto;
   width: 100%;
-  max-width: 960px;
-  /* Slightly taller than pure 16/9 so the gold border fully wraps the YouTube embed's
-     native chrome (title + bottom progress/controls), matching the border-alignment fix
-     we applied for lights-down. The actual video artwork size does not increase — the
-     extra vertical space is only for YT's UI to sit inside the decorative frame instead
-     of being clipped by overflow:hidden on the border box.
-
-     For lights-on we use a tighter max-height (and a media query for short laptop screens)
-     so the player + the full "video navigation bar" (upnext) below it can both fit without
-     cutting off the bottom of the page or forcing a scrollbar in theatre mode. The player
-     becomes a little more dynamic / shrinks on smaller height viewports while keeping the
-     video prominent. */
+  max-width: 900px;
+  /* Slightly constrained (900px vs 960px, and -12px in the calc) to ensure the gold frame does not cover or cut the right/bottom edges of the full YouTube player card (including its header, video, progress bar, logo, and controls). The aspect-ratio and max-height calc keep it responsive and centered while leaving room for the UI above (titles, action bar) and below (UP NEXT bar) so nothing overflows or gets clipped on laptop or larger screens in lights-on mode. */
   aspect-ratio: 16 / 9;
   height: auto;
-  /* Relaxed slightly vs previous to allow the player box to be tall enough for the *full*
-     YouTube embed (header + video + bottom chrome with progress/logo) inside the gold border
-     without the border clipping the YT controls. The extra height from JS chromeExtra is
-     now accommodated so the frame dynamically wraps the entire YT card accurately. */
-  max-height: min(50dvh, calc(100dvh - 11rem));
+  max-height: min(48dvh, calc(100dvh - 12rem));
   /* min-height acts as a bootstrap for the box in normal flow (helps when flex ancestors
      haven't fully computed or cqw units are small). YT creation and syncPlayerSize rely on
      this element having a non-zero rect. */
