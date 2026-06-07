@@ -1089,15 +1089,17 @@
       }
 
       if (w > 50 && h > 22) {
-        /* In lights-down, ensure the explicit size we give the gold frame is tall
-           enough to fully contain the YouTube player's chrome (title + progress bar
-           + buttons). This directly addresses the clipping visible in the provided
-           screenshot where the bottom of the YT UI was cut by the decorative border. */
-        if (isLightsDown()) {
-          var videoOnlyH = w * 9 / 16;
-          var withChrome = Math.round(videoOnlyH * 1.04);
-          if (h < withChrome) h = withChrome;
-        }
+        /* Ensure the gold decorative frame fully contains the entire YouTube embed
+           (the video artwork + YT's own title bar at top and progress/controls chrome
+           at bottom). This is the "border alignment fits around the video" fix.
+           We give the container ~4% extra height over pure 16/9 so the border sits
+           outside the full player UI instead of cutting it off. No increase to the
+           actual video content size — the extra is only for the chrome to fit inside
+           the gold frame. Applied to both lights-on (default) and lights-down. */
+        var videoOnlyH = w * 9 / 16;
+        var withChrome = Math.round(videoOnlyH * 1.04);
+        if (h < withChrome) h = withChrome;
+
         applySize(w, h);
       }
     }
@@ -1262,7 +1264,19 @@
       initWatchStack(video.id);
       writeTheatreHistory(video, "replace");
       fillCopy(video, entry);
+
+      /* Force lights-on on every full page load / refresh (including when the URL is
+         reloaded while the user was previously in lights-down). This matches the
+         documented default behavior ("Default arrival ... is ALWAYS lights-on") and
+         prevents the "video shrinks very small randomly" symptom that occurred when
+         the lights-down class + its different layout/sizing was applied during the
+         very first player mount and syncPlayerSize passes. In-session toggles and
+         cross-video "keep lights" handoff still respect the stored preference. */
+      try {
+        sessionStorage.removeItem(THEATRE_LIGHTS_KEY);
+      } catch (_) {}
       restoreLightsState();
+
       playVideo(video, false);
       requestAnimationFrame(tryPendingLightsRestore);
     } catch (err) {

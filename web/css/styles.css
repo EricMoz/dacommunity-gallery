@@ -3878,7 +3878,13 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
   margin: 0 auto;
   width: 100%;
   max-width: 960px;
-  aspect-ratio: 16 / 9;
+  /* Slightly taller than pure 16/9 so the gold border fully wraps the YouTube embed's
+     native chrome (title + bottom progress/controls), matching the border-alignment fix
+     we applied for lights-down. The actual video artwork size does not increase — the
+     extra vertical space is only for YT's UI to sit inside the decorative frame instead
+     of being clipped by overflow:hidden on the border box. The max-height constraint
+     and grid centering in the flow keep the overall on-page size impact minimal. */
+  aspect-ratio: 16 / 9.25;
   height: auto;
   /* max-height keeps the player from eating the whole page in normal mode (leaves room for
      header, titles, action-bar, up-next, footer). The dvh calc is a safety net; the real
