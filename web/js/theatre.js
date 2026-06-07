@@ -1048,6 +1048,14 @@
       startChromeIdleWatch();
     } else {
       stopChromeIdleWatch();
+      // When returning to lights-on, clear any previous explicit size that was set
+      // while in lights-down (e.g. large viewport px width). This prevents the
+      // player from staying wider than the 900px stage, causing permanent right-side
+      // cutoff of the video/gold border.
+      if (els.player) {
+        els.player.style.width = '';
+        els.player.style.height = '';
+      }
     }
     syncUpNextPanels();
     refreshUpNextUi();
@@ -1080,14 +1088,29 @@
     function applySize(w, h) {
       if (!ytPlayer || !els.player) return;
       ytPlayer.setSize(Math.round(w), Math.round(h));
-      // Make the theatre frame (border + shadow + bg) visible even if CSS aspect
-      // calc is still fighting with flex/cqw in this particular viewport.
-      els.player.style.width = Math.round(w) + 'px';
-      els.player.style.height = Math.round(h) + 'px';
+      if (isLightsDown()) {
+        // Lights-down: the outer .player div IS the gold frame. Force explicit size
+        // so the border fully encloses the video + YT chrome (including right edge).
+        els.player.style.width = Math.round(w) + 'px';
+        els.player.style.height = Math.round(h) + 'px';
+      } else {
+        // Lights-on: the .player div must respect the CSS (max-width:900px, margin:auto,
+        // aspect-ratio). Never leave a sticky large px width from lights-down, or the
+        // player will overflow the stage to the right and the border/video gets cut off.
+        els.player.style.width = '';
+        els.player.style.height = '';
+      }
     }
 
     function doSync() {
       if (!ytPlayer || !els.player) return;
+
+      // Ensure lights-on never inherits a wide inline size from a previous lights-down toggle.
+      if (!isLightsDown() && els.player) {
+        els.player.style.width = '';
+        els.player.style.height = '';
+      }
+
       var r = els.player.getBoundingClientRect();
       var w = r.width;
       var h = r.height;
@@ -1099,14 +1122,14 @@
         var stage = els.stage || document.querySelector('.film-theatre-stage');
         var basis = (stage && stage.clientWidth) || w || 800;
         if (isLightsDown()) {
-          /* Lights-down enlargement (82vw goal) with strict 16/9 for tight frame
-             around the video content + small extra for full YT chrome inside border. */
-          var target = Math.round(basis * 0.82);
-          w = Math.max(720, Math.min(target, Math.floor(basis * 0.92)));
-          h = Math.round(w * 9 / 16 + 30);
+          var target = Math.round(basis * 0.88);  // match current 88vw middle size
+          w = Math.max(720, Math.min(target, Math.floor(basis * 0.95)));
+          h = Math.round(w * 9 / 16 + 42);
         } else {
-          w = Math.min(Math.max(basis, 640), 960);
-          h = Math.round(w * 9 / 16 + 55);
+          // Lights-on: cap to the design max (900px) so we don't compute a size
+          // wider than the centered stage.
+          w = Math.min(Math.max(basis, 640), 900);
+          h = Math.round(w * 9 / 16 + 70);
         }
       }
 
