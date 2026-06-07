@@ -1090,14 +1090,16 @@
 
       if (w > 50 && h > 22) {
         /* Ensure the gold decorative frame fully contains the entire YouTube embed
-           (the video artwork + YT's own title bar at top and progress/controls chrome
-           at bottom). This is the "border alignment fits around the video" fix.
-           We give the container ~4% extra height over pure 16/9 so the border sits
-           outside the full player UI instead of cutting it off. No increase to the
-           actual video content size — the extra is only for the chrome to fit inside
-           the gold frame. Applied to both lights-on (default) and lights-down. */
+           (video artwork + YT's title bar + bottom progress/controls chrome).
+           For lights-on we add a fixed ~65px (typical YT controls height) so the
+           border wraps the full player UI without clipping the bottom (as seen in
+           the screenshot). This is pure border alignment — no increase to the
+           actual video artwork size. The extra height simply lets the YT chrome
+           live inside our gold frame instead of being cut off by overflow:hidden.
+           Lights-down keeps its proportional extra for the larger immersive box. */
         var videoOnlyH = w * 9 / 16;
-        var withChrome = Math.round(videoOnlyH * 1.04);
+        var chromeExtra = isLightsDown() ? Math.round(videoOnlyH * 0.04) : 65;
+        var withChrome = Math.round(videoOnlyH + chromeExtra);
         if (h < withChrome) h = withChrome;
 
         applySize(w, h);
