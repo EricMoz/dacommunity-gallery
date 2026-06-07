@@ -3922,8 +3922,8 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
    no scrollbar is needed for the core theatre content. */
 @media (max-height: 900px) {
   .film-theatre-player {
-    /* More aggressive constraint on short laptop screens so the player + the full UP NEXT video nav bar below it both fit completely without the bottom being cut off or requiring a scrollbar in theatre mode. The player yields space dynamically. */
-    max-height: min(36dvh, calc(100dvh - 12.5rem));
+    /* Constraint on short laptop screens so the player (now sized for full YT chrome) + the full UP NEXT video nav bar below it both fit completely without the bottom being cut off. The extra ~55px in lights-on for the YT bottom bar is accounted for. The player yields space dynamically. */
+    max-height: min(37dvh, calc(100dvh - 12rem));
   }
 
   /* Compact the top titles and the UP NEXT bar on short heights to help the video + nav bar fit. */

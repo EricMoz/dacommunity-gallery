@@ -591,8 +591,10 @@
       var stageW = (els.stage && els.stage.clientWidth) || els.player.offsetWidth || 720;
       var bootCap = isLightsDown() ? 1280 : 960;
       var bootW = Math.min(Math.max(stageW, 640), bootCap);
-      /* Strict 16/9 boot for clean tight frame from the start. */
-      var bootH = Math.round(bootW * 9 / 16);
+      /* Boot with extra for full YT chrome so initial frame already shows the complete
+         video card (header + bottom controls/logo) inside the gold border. */
+      var bootExtra = isLightsDown() ? 28 : 55;
+      var bootH = Math.round(bootW * 9 / 16 + bootExtra);
       host.style.width = bootW + 'px';
       host.style.height = bootH + 'px';
     }
@@ -1070,14 +1072,14 @@
         var basis = (stage && stage.clientWidth) || w || 800;
         if (isLightsDown()) {
           /* Lights-down enlargement (82vw goal) with strict 16/9 for tight frame
-             around the video content (no extra gaps or letterboxing inside the gold
-             border). */
+             around the video content + small extra for full YT chrome inside border. */
           var target = Math.round(basis * 0.82);
           w = Math.max(720, Math.min(target, Math.floor(basis * 0.92)));
+          h = Math.round(w * 9 / 16 + 28);
         } else {
           w = Math.min(Math.max(basis, 640), 960);
+          h = Math.round(w * 9 / 16 + 55);
         }
-        h = w * 9 / 16;
       }
 
       if (w > 50 && h > 22) {
@@ -1090,7 +1092,16 @@
            the user wants ("fit around the video itself"). The laptop fit for player
            + upnext nav bar is handled by the CSS max-height and @media rules. */
         var videoOnlyH = w * 9 / 16;
-        var withChrome = Math.round(videoOnlyH);
+        /* Size the gold frame container to the full YouTube embed height (16/9 video content
+           + native YT chrome for header at top and progress/controls/logo at bottom).
+           This makes the entire "video card" from YouTube visible and aligned perfectly
+           inside the gold border, including play/pause, progress, "More videos", YT logo,
+           etc. (as in the reference image). Use a fixed chrome extra (more in lights-on
+           where full bar is needed, smaller in lights-down to keep tight to the video content
+           without large gaps). The CSS aspect is strict 16/9 so the video fills the width
+           without side letterboxing; extra height goes below for the chrome. */
+        var chromeExtra = isLightsDown() ? 28 : 55;
+        var withChrome = Math.round(videoOnlyH + chromeExtra);
         if (h < withChrome) h = withChrome;
 
         applySize(w, h);
