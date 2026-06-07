@@ -574,11 +574,13 @@
        YT.Player at creation time often snapshots whatever size (or 0-size) the host has.
        Giving the inner host an explicit starting size helps the iframe appear with a
        visible frame even before the later syncPlayerSize runs. The values are overwritten
-       by setSize once layout settles. */
+       by setSize once layout settles. Use a higher ceiling so lights-down bigger video
+       path gets a good initial frame instead of a small centered box that later "jumps". */
     var host = document.getElementById(hostId);
     if (host && els.player) {
       var stageW = (els.stage && els.stage.clientWidth) || els.player.offsetWidth || 720;
-      var bootW = Math.min(Math.max(stageW, 640), 920);
+      var bootCap = isLightsDown() ? 1280 : 960;
+      var bootW = Math.min(Math.max(stageW, 640), bootCap);
       var bootH = Math.round(bootW * 9 / 16);
       host.style.width = bootW + 'px';
       host.style.height = bootH + 'px';
@@ -1050,7 +1052,20 @@
       if (h < 120) {
         var stage = els.stage || document.querySelector('.film-theatre-stage');
         var basis = (stage && stage.clientWidth) || w || 800;
-        w = Math.min(Math.max(basis, 640), 960);
+        if (isLightsDown()) {
+          /* Lights-down supports the bigger cinematic size (82vw goal). Do not hard-cap
+             at the old 960px normal-mode limit; compute a generous 16:9 from the actual
+             available stage width (after the letterbox padding). This prevents the player
+             from being artificially smaller than the CSS max allows, which was leaving
+             an extra "inch of black on the edge" and making the frame look off-center.
+             The final rect from CSS (max-w + aspect + grid centering) + this fallback
+             + the explicit style w/h + yt.setSize keeps the bordered video perfectly
+             centered with balanced letterbox in both lights on and lights down. */
+          var target = Math.round(basis * 0.82);
+          w = Math.max(720, Math.min(target, Math.floor(basis * 0.92)));
+        } else {
+          w = Math.min(Math.max(basis, 640), 960);
+        }
         h = w * 9 / 16;
       }
 

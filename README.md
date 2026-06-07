@@ -30,24 +30,6 @@ Check the footer on any page for **Site build YYYYMMDD-N** (e.g. `20260605-8`). 
 - **Nav hierarchy** — Collections + Film are primary hubs; one dashed-yellow `is-active` state; MC race demoted; My daCATs emphasized on home/gallery.
 - **MC race** (`/analytics/`) — Flourish bar chart race; dashed track, checkered corners, and orbiting cars (dacat.drive + mascot) behind content. Mobile shows a slimmer panel gutter so cars peek at the edges; `prefers-reduced-motion` parks cars static.
 
-## Mobile Experience (dacommunity Gallery)
-
-**For everyone (users, contributors, anyone):**
-The /dacommunity/ page is now much better on phones and small tablets (screens under 768px wide).
-- In the normal light "archive" view: The top navigation and filter/search bar stay nicely at the top (using safe-area-inset for notches), the gallery grid and cards have good spacing and big enough tap targets, and everything scrolls cleanly without huge empty gaps or overlapping text.
-- In the dark "collector/portfolio" view (when you click a wallet or "My daCATs"): A slim fixed top bar (the collector name, rank, piece count, share/copy buttons) stays at the very top of the screen even on notched phones. No giant "banner" or profile card eats up the screen. The filters and 2-column grid are compact but easy to use. Text doesn't collide. The dark cinema look stays premium but clean.
-
-All the hard work for mobile was done in 3 small batches so desktop (PC) looks and works exactly the same as before (no complaints on big screens).
-
-**For engineers / next person reading this:**
-- Everything mobile is in css/styles.css under @media (max-width: 768px) and a nested <480px for the tiniest phones.
-- Key techniques: position: fixed + top: env(safe-area-inset-top, 0) for the collector escape-bar (so it is "at the very top"), padding-top compensation on the theater-frame so content doesn't hide under the fixed bar, display: none !important for the large .collector-profile-card in mobile portfolio (so it doesn't act as a "huge banner" covering the screen — the slim escape-bar is the designed header), clamp() for fonts and gaps so it adapts, reduced padding/gap values only in the collector blocks, and :not(.is-portfolio-browse) for the light view filter bar sticky.
-- The 640px block had some old collector rules — cleaned the dupe ones in this pass and consolidated into the 768px block with clear "Batch 1-3" comments.
-- All collector mobile is scoped with body.has-collector-view so light archive view is not accidentally affected.
-- See the big "=== dacommunity Mobile Responsiveness (Batches 1-3, <768px only) ===" comment at the top of the collector styles for the full story and "next engineer" tips.
-- Test with browser dev tools device toolbar (320px, 360px, 375px, 414px, 480px, 768px) + real phones. Check safe-area, no overlaps, 44px+ tap targets, good rhythm, no huge empty space or collisions.
-- Desktop rules are completely untouched.
-
 ## Architecture
 
 Static-first: no app server in production. GitHub Pages serves `web/`; chain data is pre-fetched into JSON.
