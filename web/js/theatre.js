@@ -1126,8 +1126,10 @@
           w = Math.max(720, Math.min(target, Math.floor(basis * 0.95)));
           h = Math.round(w * 9 / 16 + 42);
         } else {
-          // Lights-on: cap to the design max (900px) so we don't compute a size
-          // wider than the centered stage.
+          // Lights-on: ALWAYS cap to the design max (900px) using the stage's constrained width.
+          // This prevents any previous large lights-down measurement or inline style from
+          // making the player wider than the centered stage, which was causing the right-side
+          // video/gold border cutoff that persisted across toggles.
           w = Math.min(Math.max(basis, 640), 900);
           h = Math.round(w * 9 / 16 + 70);
         }

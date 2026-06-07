@@ -7613,11 +7613,13 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     display: none;
   }
 
-  /* Mobile: show only Home (first) + current site (second, dynamically the active
-     or context one). Film theatre pages → Home + Film. Dacommunity → Home + My daCATs.
-     The is-active or specific nav-*-wallet keeps the "current" visible as #2. */
-  .film-theatre-page .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-film),
-  body[data-base] .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-wallet) {
+  /* Mobile (and focus views like collector wallet or theatre): consistent prioritized nav.
+     Always start with Home (primary escape route) + current/best section (Film or My daCATs as #2).
+     Then fill the rest of the core sections (Collections, Film, My daCATs) for easy access to best content.
+     Hide only utilities (OpenSea, MC race, TG) on small screens in these pages to keep clean.
+     This creates a consistent theme across dynamic arrangements: escape first, then relevant sections. */
+  .film-theatre-page .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-film):not(.nav-btn-collections):not(.nav-btn-wallet),
+  body[data-base] .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-film):not(.nav-btn-collections):not(.nav-btn-wallet) {
     display: none !important;
   }
 
@@ -8014,6 +8016,35 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .collector-profile-card,
   body.has-collector-view .collector-hub .wallet-state {
     display: none !important;
+  }
+
+  /* Expert UX polish for mobile "my dacats" / wallet focus view (theater mode):
+     - Compact the action buttons (Share your daCATs, Copy address, Back to full archive)
+       so they don't create long vertical dead space or land the back button in the middle of the page.
+     - Use row layout for actions on small screens to sit neatly in the escape bar.
+     - Tighten padding and the grid top margin so the holdings start immediately after the escape bar
+       with no huge black empty space. The "64 PIECES" and stats stay visible at top, buttons are
+       prominent but compact for thumb reach, back is not floating mid-screen.
+     - Preserves tap targets (min-height 40px+). */
+  body.has-collector-view .collector-escape-actions {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0.25rem;
+    align-items: center;
+  }
+  body.has-collector-view .collector-escape-actions button,
+  body.has-collector-view .collector-escape-nav .collector-exit-pill {
+    font-size: 0.72rem;
+    padding: 0.3rem 0.5rem;
+    min-height: 40px;
+    flex: 1 1 auto;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  body.has-collector-view .gallery-focus-zone.is-collector-grid {
+    margin-top: 0.25rem;
+    padding-top: 0.25rem;
   }
 
   /* Further compact the escape-bar banner itself on mobile collector to minimize top coverage */
