@@ -8035,10 +8035,10 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view {
     --collector-header-gap: 0.02rem;
     --collector-header-mb: 0.02rem;
-    --collector-btn-min-h: 26px;
-    --collector-btn-fs: 0.48rem;
-    --collector-btn-pad: 0.04rem 0.12rem;
-    --collector-bar-pad-y: 0.1rem;
+    --collector-btn-min-h: 30px;
+    --collector-btn-fs: 0.52rem;
+    --collector-btn-pad: 0.05rem 0.15rem;
+    --collector-bar-pad-y: 0.08rem;
   }
 
   /* Strong lock using vars + !important to guarantee tight name-to-buttons, row layout, small buttons.
@@ -8076,6 +8076,16 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     max-width: 100%;
     line-height: 1.1;
   }
+
+  /* Zero internal spacing in name section for all mobile collector to condense the header */
+  body.has-collector-view .collector-escape-kicker,
+  body.has-collector-view .collector-pride-title-row,
+  body.has-collector-view .collector-pride-meta {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.0;
+  }
+
   body.has-collector-view .collector-theater-frame.is-active {
     margin-top: 0;
   }
@@ -8222,9 +8232,9 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     /* Tighter values for this breakpoint - overrides the 768px vars for even smaller screens */
     --collector-header-gap: 0.01rem;
     --collector-header-mb: 0.01rem;
-    --collector-btn-min-h: 25px;
-    --collector-btn-fs: 0.46rem;
-    --collector-btn-pad: 0.03rem 0.1rem;
+    --collector-btn-min-h: 30px;
+    --collector-btn-fs: 0.52rem;
+    --collector-btn-pad: 0.05rem 0.15rem;
   }
 
   body.has-collector-view .collector-escape-bar {
@@ -8232,12 +8242,12 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
        The bar (with pride-identity name + compact action row) now flows naturally right after the site header. */
     position: sticky;
     top: 0;
-    padding: 0.08rem 0.18rem 0.04rem;
+    padding: 0.06rem 0.15rem 0.03rem;
     z-index: 200;
-    padding-top: calc(env(safe-area-inset-top, 0px) + 0.06rem);
+    padding-top: calc(env(safe-area-inset-top, 0px) + 0.04rem);
   }
   body.has-collector-view .collector-theater-frame {
-    padding-top: 0.08rem; /* sticky bar is in-flow; content follows immediately with minimal gap for premium tight feel */
+    padding-top: 0.06rem; /* sticky bar is in-flow; content follows immediately with minimal gap for premium tight feel */
   }
   body.has-collector-view .collector-escape-name {
     font-size: clamp(0.76rem, 3.2vw, 0.88rem);
@@ -8253,17 +8263,30 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     line-height: 1.0;
   }
 
+  body.has-collector-view .collector-pride-identity {
+    padding-bottom: 0 !important;
+    min-height: auto;
+  }
+
   /* Re-assert the lock with the new var values for this breakpoint */
   body.has-collector-view .collector-pride-header {
     gap: var(--collector-header-gap) !important;
     margin-bottom: var(--collector-header-mb) !important;
+    padding-bottom: 0 !important;
   }
   body.has-collector-view .collector-pride-actions button,
   body.has-collector-view .collector-escape-nav .collector-exit-pill,
   body.has-collector-view .collector-theater-frame button {
-    font-size: 0.50rem;
-    padding: 0.05rem 0.14rem;
-    min-height: 27px;
+    font-size: var(--collector-btn-fs) !important;
+    padding: var(--collector-btn-pad) !important;
+    min-height: var(--collector-btn-min-h) !important;
+  }
+  body.has-collector-view .collector-pride-actions .collector-share-hero,
+  body.has-collector-view .collector-pride-actions .collector-action-ghost,
+  body.has-collector-view .collector-pride-actions .collector-exit-pill {
+    min-height: var(--collector-btn-min-h) !important;
+    font-size: var(--collector-btn-fs) !important;
+    padding: var(--collector-btn-pad) !important;
   }
   body.has-collector-view .collector-pride-actions .collector-share-hero {
     padding: 0.05rem 0.18rem;
@@ -8345,7 +8368,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding-bottom: 0 !important;
   }
 
-  /* Make internal elements of the name section (kicker, title, meta) super compact to reduce overall height of identity */
+  /* Make internal elements of the name section super compact */
   body.has-collector-view .collector-escape-kicker,
   body.has-collector-view .collector-pride-title-row,
   body.has-collector-view .collector-pride-meta {
@@ -8353,21 +8376,30 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding: 0 !important;
     line-height: 1.0;
   }
+  body.has-collector-view .collector-pride-identity {
+    padding-bottom: 0 !important;
+    min-height: auto;
+  }
   body.has-collector-view .collector-escape-name {
     font-size: clamp(0.78rem, 3.2vw, 0.9rem);
     line-height: 1.0;
   }
 
-  /* Buttons sized larger to match Back button, in row, full width share */
+  /* Buttons sized larger to match Back button (32px+), with !important for all three to ensure consistency */
   body.has-collector-view .collector-pride-actions button,
   body.has-collector-view .collector-escape-nav .collector-exit-pill,
   body.has-collector-view .collector-theater-frame button {
-    min-height: var(--collector-btn-min-h);
-    font-size: var(--collector-btn-fs);
-    padding: var(--collector-btn-pad);
+    min-height: var(--collector-btn-min-h) !important;
+    font-size: var(--collector-btn-fs) !important;
+    padding: var(--collector-btn-pad) !important;
   }
   body.has-collector-view .collector-pride-actions .collector-share-hero,
   body.has-collector-view .collector-pride-actions .collector-action-ghost {
+    min-height: var(--collector-btn-min-h) !important;
+    font-size: var(--collector-btn-fs) !important;
+    padding: var(--collector-btn-pad) !important;
+  }
+  body.has-collector-view .collector-pride-actions .collector-exit-pill {
     min-height: var(--collector-btn-min-h) !important;
     font-size: var(--collector-btn-fs) !important;
     padding: var(--collector-btn-pad) !important;
