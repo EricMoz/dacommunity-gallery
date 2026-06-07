@@ -591,11 +591,8 @@
       var stageW = (els.stage && els.stage.clientWidth) || els.player.offsetWidth || 720;
       var bootCap = isLightsDown() ? 1280 : 960;
       var bootW = Math.min(Math.max(stageW, 640), bootCap);
-      /* Use slightly taller boot height in lights-down so the initial frame already
-         has room for the full YouTube chrome inside our gold border (avoids the
-         flash of clipped bottom controls before the first syncPlayerSize runs). */
-      var bootRatio = isLightsDown() ? (9 / 16 * 1.04) : (9 / 16);
-      var bootH = Math.round(bootW * bootRatio);
+      /* Strict 16/9 boot for clean tight frame from the start. */
+      var bootH = Math.round(bootW * 9 / 16);
       host.style.width = bootW + 'px';
       host.style.height = bootH + 'px';
     }
@@ -1072,40 +1069,28 @@
         var stage = els.stage || document.querySelector('.film-theatre-stage');
         var basis = (stage && stage.clientWidth) || w || 800;
         if (isLightsDown()) {
-          /* Lights-down supports the bigger cinematic size (82vw goal). Compute a
-             slightly taller box than pure 16/9 so the gold frame fully wraps the
-             YouTube embed including its native title bar and bottom progress/controls
-             (prevents the "frame cutting off the video" seen in the screenshot).
-             ~4% extra height + the CSS aspect-ratio:16/9.25 + max-h reserve ensures
-             the entire player UI sits inside the decorative border with no clipping
-             while still delivering the slight enlargement the user requested. */
+          /* Lights-down enlargement (82vw goal) with strict 16/9 for tight frame
+             around the video content (no extra gaps or letterboxing inside the gold
+             border). */
           var target = Math.round(basis * 0.82);
           w = Math.max(720, Math.min(target, Math.floor(basis * 0.92)));
-          h = Math.round(w * 9 / 16 * 1.04);
         } else {
           w = Math.min(Math.max(basis, 640), 960);
-          h = w * 9 / 16;
         }
+        h = w * 9 / 16;
       }
 
       if (w > 50 && h > 22) {
-        /* Ensure the gold decorative frame fully contains the entire YouTube embed
-           (video artwork + YT's title bar + bottom progress/controls chrome).
-           For lights-on we add a fixed ~65px (typical YT controls height) so the
-           border wraps the full player UI without clipping the bottom (as seen in
-           the screenshot). This is pure border alignment — no increase to the
-           actual video artwork size. The extra height simply lets the YT chrome
-           live inside our gold frame instead of being cut off by overflow:hidden.
-           Lights-down keeps its proportional extra for the larger immersive box. */
+        /* Strict 16/9 sizing for a clean, sharp gold frame that fits tightly around
+           the video content itself. No internal letterboxing, no side black bars,
+           no weird extra gaps below the video inside the border (the problems shown
+           in the two screenshots). The YT chrome (progress bar, icons) is overlaid
+           naturally at the bottom edge of the frame. This resolves the "broken"
+           look in both lights-on and lights-down while keeping the frame alignment
+           the user wants ("fit around the video itself"). The laptop fit for player
+           + upnext nav bar is handled by the CSS max-height and @media rules. */
         var videoOnlyH = w * 9 / 16;
-        /* For lights-on we use a conservative fixed extra (~48px) for the YT chrome.
-           This is enough for the progress bar and controls to sit inside the gold border
-           without clipping, while the tighter max-height + media query above ensure the
-           player + up-next navigation bar both fit on laptop screens without cutting off
-           the bottom of the page or requiring a scrollbar in theatre mode.
-           Lights-down keeps its proportional extra for the immersive box. */
-        var chromeExtra = isLightsDown() ? Math.round(videoOnlyH * 0.04) : 48;
-        var withChrome = Math.round(videoOnlyH + chromeExtra);
+        var withChrome = Math.round(videoOnlyH);
         if (h < withChrome) h = withChrome;
 
         applySize(w, h);
