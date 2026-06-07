@@ -593,7 +593,7 @@
       var bootW = Math.min(Math.max(stageW, 640), bootCap);
       /* Boot with extra for full YT chrome so initial frame already shows the complete
          video card (header + bottom controls/logo) inside the gold border. */
-      var bootExtra = isLightsDown() ? 28 : 55;
+      var bootExtra = isLightsDown() ? 30 : 70;
       var bootH = Math.round(bootW * 9 / 16 + bootExtra);
       host.style.width = bootW + 'px';
       host.style.height = bootH + 'px';
@@ -1075,7 +1075,7 @@
              around the video content + small extra for full YT chrome inside border. */
           var target = Math.round(basis * 0.82);
           w = Math.max(720, Math.min(target, Math.floor(basis * 0.92)));
-          h = Math.round(w * 9 / 16 + 28);
+          h = Math.round(w * 9 / 16 + 30);
         } else {
           w = Math.min(Math.max(basis, 640), 960);
           h = Math.round(w * 9 / 16 + 55);
@@ -1100,7 +1100,7 @@
            where full bar is needed, smaller in lights-down to keep tight to the video content
            without large gaps). The CSS aspect is strict 16/9 so the video fills the width
            without side letterboxing; extra height goes below for the chrome. */
-        var chromeExtra = isLightsDown() ? 28 : 55;
+        var chromeExtra = isLightsDown() ? 30 : 70;
         var withChrome = Math.round(videoOnlyH + chromeExtra);
         if (h < withChrome) h = withChrome;
 

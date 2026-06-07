@@ -3898,7 +3898,11 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
      video prominent. */
   aspect-ratio: 16 / 9;
   height: auto;
-  max-height: min(48dvh, calc(100dvh - 12rem));
+  /* Relaxed slightly vs previous to allow the player box to be tall enough for the *full*
+     YouTube embed (header + video + bottom chrome with progress/logo) inside the gold border
+     without the border clipping the YT controls. The extra height from JS chromeExtra is
+     now accommodated so the frame dynamically wraps the entire YT card accurately. */
+  max-height: min(50dvh, calc(100dvh - 11rem));
   /* min-height acts as a bootstrap for the box in normal flow (helps when flex ancestors
      haven't fully computed or cqw units are small). YT creation and syncPlayerSize rely on
      this element having a non-zero rect. */
@@ -3922,8 +3926,8 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
    no scrollbar is needed for the core theatre content. */
 @media (max-height: 900px) {
   .film-theatre-player {
-    /* Constraint on short laptop screens so the player (now sized for full YT chrome) + the full UP NEXT video nav bar below it both fit completely without the bottom being cut off. The extra ~55px in lights-on for the YT bottom bar is accounted for. The player yields space dynamically. */
-    max-height: min(37dvh, calc(100dvh - 12rem));
+    /* Constraint on short laptop screens so the player (sized for full YT chrome with 70px extra) + the full UP NEXT video nav bar below it both fit completely without the bottom being cut off. The player yields space dynamically while allowing the gold frame to accurately wrap the entire visible YouTube card. */
+    max-height: min(40dvh, calc(100dvh - 11rem));
   }
 
   /* Compact the top titles and the UP NEXT bar on short heights to help the video + nav bar fit. */
