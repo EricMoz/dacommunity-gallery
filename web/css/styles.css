@@ -7839,3 +7839,138 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     pointer-events: auto;
   }
 }
+
+/* Collector/wallet view mobile polish up to 768px (covers tablets in portrait too).
+   Puts the collector escape/header bar fixed/sticky at viewport top using safe-area-inset.
+   Reduces vertical whitespace/padding/gaps only in dark collector view.
+   Archive light view and >768 screens unaffected.
+   (Batch 3: added parallel light-view sticky + spacing for consistency between archive and collector.) */
+@media (max-width: 768px) {
+  .site-header {
+    /* Extend safe-area top bar handling to 768px for consistency across light and collector mobile */
+    padding-top: env(safe-area-inset-top, 0);
+  }
+
+  body.has-collector-view .collector-escape-bar {
+    /* Batch 1+3: Fixed at viewport top (with safe-area) in collector view for mobile "at the very top" requirement.
+       Higher z ensures it layers above site-header. Padding reduced for mobile. */
+    position: fixed;
+    top: env(safe-area-inset-top, 0px);
+    left: 0;
+    right: 0;
+    z-index: 120;
+    padding: 0.5rem 0.65rem 0.45rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  }
+
+  body.has-collector-view .collector-theater-frame {
+    padding-top: 2.6rem; /* reduced to match more compact escape-bar banner on mobile */
+  }
+
+  body.has-collector-view .collector-theater-frame.is-active {
+    margin-top: 0;
+  }
+
+  body.has-collector-view .collector-pride-header {
+    gap: 0.25rem;
+    margin-bottom: 0.2rem;
+  }
+
+  /* Strategic fix for "huge banner" covering most of screen in mobile collector/portfolio view:
+     The .collector-profile-card (and similar wallet-state) is a large detailed card designed for
+     the lookup/hub in light or initial states. In full portfolio mode (dark theater), the
+     .collector-escape-bar (pride-header) is the intended compact "banner" at top showing name,
+     rank, counts, stats, actions. Hiding the large card here prevents it from duplicating and
+     dominating vertical space on small screens, while keeping the escape-bar as the slim fixed
+     header. This is consistent with the design intent of the escape-bar for the active collector
+     theater experience. Light archive view unaffected. */
+  body.has-collector-view .collector-profile-card,
+  body.has-collector-view .collector-hub .wallet-state {
+    display: none !important;
+  }
+
+  /* Further compact the escape-bar banner itself on mobile collector to minimize top coverage */
+  body.has-collector-view .collector-escape-name {
+    font-size: clamp(0.95rem, 4.5vw, 1.15rem);
+    line-height: 1.1;
+  }
+
+  body.has-collector-view .collector-escape-bar {
+    padding: 0.35rem 0.5rem 0.3rem;
+  }
+
+  .collector-escape-nav {
+    gap: 0.35rem;
+  }
+
+  .collector-escape-nav .collector-exit-pill {
+    min-height: 44px;
+    font-size: 0.76rem;
+  }
+
+  body.has-collector-view #browse-controls.is-portfolio-browse {
+    padding: 0.45rem 0.55rem 0.55rem;
+    gap: 0.35rem;
+  }
+
+  body.has-collector-view #browse-controls.is-portfolio-browse .browse-advanced-toggle {
+    min-height: 44px;
+    font-size: 0.72rem;
+    margin: 0.15rem 0 0.1rem;
+    padding: 0.35rem 0.65rem;
+  }
+
+  body.has-collector-view #browse-controls.is-portfolio-browse .browse-advanced .browse-rows {
+    margin-top: 0.2rem;
+  }
+
+  body.has-collector-view #browse-controls.is-portfolio-browse .browse-foot {
+    margin-top: 0.25rem;
+    padding-top: 0.25rem;
+  }
+
+  body.has-collector-view .gallery-focus-zone.is-collector-grid {
+    padding: 0.4rem 0.5rem 0.55rem;
+  }
+
+  body.has-collector-view .gallery-list.holdings-grid {
+    gap: clamp(0.4rem, 1.2vw, 0.6rem);
+  }
+
+  body.has-collector-view .holding-card--cinema .holding-card-body {
+    padding: 0.4rem 0.45rem 0.5rem;
+  }
+}
+
+/* Additional compacting for very small screens (<480px) in collector view.
+   Further reduces tap target min-heights and fonts while keeping >=40px for usability (WCAG touch target guidance).
+   Prevents the escape-bar "banner" from feeling too large on diverse small devices like older Android/iPhone SE.
+   Light view and larger mobile/desktop unaffected. */
+@media (max-width: 480px) {
+  body.has-collector-view .collector-escape-bar {
+    padding: 0.25rem 0.4rem 0.2rem;
+  }
+
+  body.has-collector-view .collector-escape-name {
+    font-size: clamp(0.85rem, 4vw, 1.05rem);
+  }
+
+  .collector-escape-nav .collector-exit-pill {
+    min-height: 40px;
+    font-size: 0.7rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  body.has-collector-view #browse-controls.is-portfolio-browse .browse-advanced-toggle {
+    min-height: 40px;
+    font-size: 0.68rem;
+  }
+
+  body.has-collector-view .holding-card--cinema .holding-card-body {
+    padding: 0.3rem 0.35rem 0.4rem;
+  }
+
+  body.has-collector-view .gallery-list.holdings-grid {
+    gap: 0.4rem;
+  }
+}
