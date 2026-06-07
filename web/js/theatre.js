@@ -454,6 +454,16 @@
       ytApiReady = true;
       if (typeof prev === "function") prev();
       if (pendingVideo) mountYtPlayer(pendingVideo, true);
+      /* Critical for first-load in lights-on: when the YT API script loads
+         asynchronously after playVideo() set pendingVideo and returned early
+         (without reaching the refreshUpNextUi() call), we must explicitly
+         refresh the up-next bar here. This ensures the full "UP NEXT" nav bar
+         (with thumbnail, title, Random/Series buttons and Play) appears
+         immediately below the video on initial landing in lights-on mode,
+         instead of only after a lights toggle forces another refresh.
+         Also re-check lights restore for consistency. */
+      refreshUpNextUi();
+      tryPendingLightsRestore();
     };
     if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
       var tag = document.createElement("script");
@@ -619,6 +629,11 @@
     if (!ytApiReady) {
       pendingVideo = video;
       loadYouTubeApi();
+      /* Call these even in the pending path so the UP NEXT nav bar (full lights-on version)
+         gets populated and shown right away on first land, while the player is still cueing.
+         The async onYouTubeIframeAPIReady will call them again after mount for safety. */
+      refreshUpNextUi();
+      tryPendingLightsRestore();
       return;
     }
     if (ytPlayer && typeof ytPlayer.loadVideoById === "function") {
