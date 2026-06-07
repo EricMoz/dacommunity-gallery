@@ -4226,7 +4226,9 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.08rem;
+  /* Increased gap for clear separation between "UP NEXT · RANDOM" kicker and the title;
+     avoids visual text collision in the compact lights-down dim bar. */
+  gap: 0.15rem;
   min-width: 0;
   border: none;
   background: transparent;
@@ -4296,6 +4298,7 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding-right: 0.15rem; /* extra breathing room from the SKIP button in tight dim bar */
 }
 
 .film-theatre-upnext-dim-play {
@@ -4384,8 +4387,10 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   position: fixed;
   left: 1rem;
   bottom: 1rem;
-  width: min(15.5rem, calc(100vw - 2rem));
-  max-width: 15.5rem;
+  /* Slightly wider to give the long up-next title room before ellipsis + skip button;
+     prevents text collision in the dim bar on smaller viewports or long titles. */
+  width: min(17rem, calc(100vw - 2rem));
+  max-width: 17rem;
   z-index: 7;
   margin: 0;
   border-radius: 8px;
@@ -4395,6 +4400,9 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
 
 .film-theatre-lights-down .film-theatre-upnext-dim-bar {
   background: rgba(0, 0, 0, 0.88);
+  /* Larger column gap between the title area and SKIP button to prevent any visual
+     crowding or perceived collision in the bottom-left up-next dim bar. */
+  gap: 0.5rem 0.75rem;
 }
 
 .film-theatre-lights-down .film-theatre-upnext-dim-actions {
@@ -4403,6 +4411,16 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
 
 .film-theatre-page:has(.film-theatre-upnext:not([hidden])) {
   --theatre-ui-reserve: 24rem;
+}
+
+/* Hide footline when up-next bar is visible in lights-up mode to prevent text collision/overlap
+   with the up-next bar (the footline text "Lights down anytime..." gets covered, especially
+   noticeable on refresh when layout settles). The prompt is still available via the action-bar
+   hint and lights-down button. Keeps premium clean experience. */
+.film-theatre-page:has(.film-theatre-upnext:not([hidden])) .film-theatre-footline {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 @media (max-height: 900px) {
