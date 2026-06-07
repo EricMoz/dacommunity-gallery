@@ -7963,239 +7963,251 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
 }
 
-/* Collector/wallet view mobile polish up to 768px (covers tablets in portrait too).
-   Puts the collector escape/header bar fixed/sticky at viewport top using safe-area-inset.
-   Reduces vertical whitespace/padding/gaps only in dark collector view.
-   Archive light view and >768 screens unaffected.
-   (Batch 3: added parallel light-view sticky + spacing for consistency between archive and collector.) */
+/* Collector mobile (portrait + landscape): premium, dense, less cramped dark theater on phones.
+   All rules strictly scoped to body.has-collector-view + mobile media so desktop and main light archive view are 100% untouched.
+   Goals: single-row actions (Share/Copy/Back together), slim fixed escape-bar, tiny gaps, adaptive to orientation,
+   consistent compact site-header (no truncation), tight grid/cards, overall vertical reduction for comfort on iPhone etc. */
 @media (max-width: 768px) {
-  .site-header {
-    /* Extend safe-area top bar handling to 768px for consistency across light and collector mobile */
-    padding-top: env(safe-area-inset-top, 0);
-  }
-
   body.has-collector-view .collector-escape-bar {
-    /* Batch 1+3: Fixed at viewport top (with safe-area) in collector view for mobile "at the very top" requirement.
-       Higher z ensures it layers above site-header. Padding reduced for mobile. */
     position: fixed;
     top: env(safe-area-inset-top, 0px);
     left: 0;
     right: 0;
     z-index: 120;
-    padding: 0.5rem 0.65rem 0.45rem;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    padding: 0.22rem 0.45rem 0.16rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.55);
+    background: linear-gradient(180deg, #1c1c1c 0%, #111 100%);
   }
 
   body.has-collector-view .collector-theater-frame {
-    padding-top: 1.2rem; /* ultra tight for iPhone and small phones: escape-bar is the fixed top header with collection info; the Share/Copy/Back and grid flow right under it with almost no extra black space above. The theater dark is background only, content is dense and premium without vomit gaps. */
+    padding-top: 1.85rem; /* matches slim fixed bar height + tiny breathing room; eliminates large empty dark voids */
   }
 
   body.has-collector-view .collector-theater-frame.is-active {
     margin-top: 0;
   }
 
+  /* Name + actions stacked compactly: identity block (small lines) on top, then full-width single row of 3 action buttons.
+     This directly solves stacked buttons taking too much vertical. Now one tight action strip. */
   body.has-collector-view .collector-pride-header {
-    gap: 0.25rem;
-    margin-bottom: 0.2rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.08rem;
+    margin-bottom: 0.06rem;
+    flex-wrap: nowrap;
+  }
+  body.has-collector-view .collector-pride-identity {
+    margin-bottom: 0.02rem;
+  }
+  body.has-collector-view .collector-pride-actions {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.08rem;
+    width: 100%;
   }
 
-  /* Premium compact mobile for collector theater on real phones (iPhone etc.).
-     When viewport is phone-sized (even if tested by narrowing desktop), eliminate the huge black empty "vomit" space.
-     Make the escape-bar the slim top banner, and force the content (stats pill, action buttons, grid) to start immediately below with tiny gaps.
-     Use row for actions to save vertical space. Compact fonts/padding while keeping touch targets.
-     This only affects narrow viewports in has-collector-view; desktop wide and light archive untouched.
-     Maintainable: all rules scoped inside the existing mobile collector media queries. */
-  body.has-collector-view .collector-escape-actions {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 0.2rem;
-  }
-  body.has-collector-view .collector-escape-actions button,
+  /* Compact action buttons (now Share | Copy | ← Back all in one row inside pride-actions).
+     28px min-height still comfortable tap target. Small font/padding for dense premium phone feel. */
+  body.has-collector-view .collector-pride-actions button,
   body.has-collector-view .collector-escape-nav .collector-exit-pill,
   body.has-collector-view .collector-theater-frame button {
-    font-size: 0.7rem;
-    padding: 0.25rem 0.5rem;
-    min-height: 36px;
+    font-size: 0.54rem;
+    padding: 0.08rem 0.2rem;
+    min-height: 28px;
     flex: 1 1 auto;
+    line-height: 1.1;
+    white-space: nowrap;
   }
-  body.has-collector-view .collector-theater-frame .gallery-focus-zone.is-collector-grid,
-  body.has-collector-view .collector-theater-frame #browse-controls.is-portfolio-browse {
-    margin-top: 0.2rem;
-    padding-top: 0.2rem;
+  /* Keep share hero slightly more prominent but still compact */
+  body.has-collector-view .collector-pride-actions .collector-share-hero {
+    font-size: 0.55rem;
+    padding: 0.08rem 0.35rem;
   }
-  /* Further reduce any internal gaps in the top content area */
+
+  /* Collector escape name/stats even tighter */
+  body.has-collector-view .collector-escape-name {
+    font-size: clamp(0.92rem, 4vw, 1.08rem);
+    line-height: 1.08;
+  }
   body.has-collector-view .collector-pride-meta,
   body.has-collector-view .collector-escape-stats {
-    gap: 0.15rem;
-    font-size: 0.65rem;
+    gap: 0.08rem;
+    font-size: 0.60rem;
   }
 
-  /* Fix for "huge screen vomit" / large empty black space when testing phone layout by narrowing desktop browser (media query triggers collector mobile styles).
-     The fixed escape-bar + padding on frame + hiding of profile leaves the dark theater background with large gap before the visible content (64 PIECES pill, then Share/Copy/Back buttons, then grid).
-     This only happens in narrow viewports (phone sim from PC); wide desktop uses the nice contained card layout and looks good.
-     Solution: Force the action containers and grid to start immediately after the escape bar with minimal margin/padding. Compact the buttons themselves. This is maintainable as it's all in the existing mobile collector media queries and doesn't affect desktop or light archive view. */
-  body.has-collector-view .collector-pride-actions,
-  body.has-collector-view .collector-escape-actions,
-  body.has-collector-view .collector-theater-frame .collector-actions {
-    margin-top: 0.1rem;
-  }
-  body.has-collector-view .collector-theater-frame button,
-  body.has-collector-view .collector-theater-frame .btn,
-  body.has-collector-view .collector-theater-frame .collector-exit-pill {
-    font-size: 0.8rem;
-    padding: 0.35rem 0.6rem;
-    min-height: 40px;
-  }
-  body.has-collector-view .collector-theater-frame .gallery-focus-zone.is-collector-grid,
-  body.has-collector-view .collector-theater-frame #browse-controls {
-    margin-top: 0.25rem;
-    padding-top: 0.25rem;
-  }
-
-  /* Strategic fix for "huge banner" covering most of screen in mobile collector/portfolio view:
-     The .collector-profile-card (and similar wallet-state) is a large detailed card designed for
-     the lookup/hub in light or initial states. In full portfolio mode (dark theater), the
-     .collector-escape-bar (pride-header) is the intended compact "banner" at top showing name,
-     rank, counts, stats, actions. Hiding the large card here prevents it from duplicating and
-     dominating vertical space on small screens, while keeping the escape-bar as the slim fixed
-     header. This is consistent with the design intent of the escape-bar for the active collector
-     theater experience. Light archive view unaffected. */
+  /* Hide large profile card (was causing extra vertical + duplication in theater mode) */
   body.has-collector-view .collector-profile-card,
   body.has-collector-view .collector-hub .wallet-state {
     display: none !important;
   }
 
-  /* Further compact the escape-bar banner itself on mobile collector to minimize top coverage */
-  body.has-collector-view .collector-escape-name {
-    font-size: clamp(0.95rem, 4.5vw, 1.15rem);
-    line-height: 1.1;
+  /* Site-header in collector mobile: compact to match spirit of light mobile header (no truncation, less tall).
+     Scoped only — light archive view unchanged. */
+  body.has-collector-view .site-header {
+    padding-top: env(safe-area-inset-top, 0);
+    padding-bottom: 0.08rem;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+  }
+  body.has-collector-view .brand-mascot {
+    width: 26px;
+    height: 26px;
+  }
+  body.has-collector-view .brand-tag {
+    font-size: 0.53rem;
+    max-width: 3.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  body.has-collector-view .header-inner .brand {
+    min-width: 0;
+  }
+  body.has-collector-view .header-nav .nav-btn {
+    font-size: 0.52rem;
+    padding: 0.06rem 0.22rem;
+    min-height: 22px;
   }
 
-  body.has-collector-view .collector-escape-bar {
-    padding: 0.35rem 0.5rem 0.3rem;
-  }
-
-  .collector-escape-nav {
-    gap: 0.35rem;
-  }
-
-  .collector-escape-nav .collector-exit-pill {
-    min-height: 44px;
-    font-size: 0.76rem;
-  }
-
+  /* Tighten the browse controls + gallery zone immediately under the slim bar */
   body.has-collector-view #browse-controls.is-portfolio-browse {
-    padding: 0.45rem 0.55rem 0.55rem;
-    gap: 0.35rem;
+    padding: 0.3rem 0.4rem 0.35rem;
+    gap: 0.2rem;
   }
-
   body.has-collector-view #browse-controls.is-portfolio-browse .browse-advanced-toggle {
-    min-height: 44px;
-    font-size: 0.72rem;
-    margin: 0.15rem 0 0.1rem;
-    padding: 0.35rem 0.65rem;
+    min-height: 32px;
+    font-size: 0.62rem;
+    margin: 0.05rem 0 0;
+    padding: 0.2rem 0.5rem;
   }
-
   body.has-collector-view #browse-controls.is-portfolio-browse .browse-advanced .browse-rows {
-    margin-top: 0.2rem;
+    margin-top: 0.12rem;
   }
-
   body.has-collector-view #browse-controls.is-portfolio-browse .browse-foot {
-    margin-top: 0.25rem;
-    padding-top: 0.25rem;
+    margin-top: 0.15rem;
+    padding-top: 0.12rem;
   }
 
   body.has-collector-view .gallery-focus-zone.is-collector-grid {
-    padding: 0.4rem 0.5rem 0.55rem;
+    padding: 0.25rem 0.35rem 0.35rem;
   }
-
   body.has-collector-view .gallery-list.holdings-grid {
-    gap: clamp(0.4rem, 1.2vw, 0.6rem);
+    gap: 0.22rem;
+  }
+  body.has-collector-view .holding-card--cinema .holding-card-body {
+    padding: 0.22rem 0.28rem 0.28rem;
   }
 
-  body.has-collector-view .holding-card--cinema .holding-card-body {
-    padding: 0.4rem 0.45rem 0.5rem;
+  /* Clear nav (only visible for active filters) is minimal */
+  body.has-collector-view .collector-escape-nav {
+    padding-top: 0.04rem;
+    border-top: none;
+    gap: 0.1rem;
   }
 }
 
-/* Additional compacting for very small screens (<480px) in collector view.
-   Further reduces tap target min-heights and fonts while keeping >=40px for usability (WCAG touch target guidance).
-   Prevents the escape-bar "banner" from feeling too large on diverse small devices like older Android/iPhone SE.
-   Light view and larger mobile/desktop unaffected. */
-@media (max-width: 480px) {
+/* Landscape on phones/tablets (<=768 wide): limited height, more horizontal room.
+   Row layout for pride header (name + actions side-by-side), ultra compact buttons + denser grid. */
+@media (max-width: 768px) and (orientation: landscape) {
+  body.has-collector-view .collector-escape-bar {
+    padding: 0.1rem 0.3rem 0.08rem;
+  }
   body.has-collector-view .collector-theater-frame {
-    padding-top: 1.2rem; /* ultra tight for iPhone-sized: escape-bar is the fixed top header with collection info; the Share/Copy/Back buttons and grid flow right under it with almost no extra black space above. The theater dark is background only, content is dense and premium without large empty voids on the smallest screens. */
+    padding-top: 1.35rem;
   }
-
-  body.has-collector-view .collector-escape-bar {
-    padding: 0.25rem 0.4rem 0.2rem;
+  body.has-collector-view .collector-pride-header {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.12rem;
+    margin-bottom: 0.02rem;
   }
-
+  body.has-collector-view .collector-pride-identity {
+    flex: 1 1 12rem;
+    margin-bottom: 0;
+  }
+  body.has-collector-view .collector-pride-actions {
+    flex: 0 0 auto;
+    max-width: 62%;
+  }
+  body.has-collector-view .collector-pride-actions button,
+  body.has-collector-view .collector-escape-nav .collector-exit-pill {
+    min-height: 26px;
+    font-size: 0.50rem;
+    padding: 0.06rem 0.18rem;
+  }
   body.has-collector-view .collector-escape-name {
-    font-size: clamp(0.85rem, 4vw, 1.05rem);
+    font-size: clamp(0.82rem, 3.2vw, 0.96rem);
+    line-height: 1.05;
   }
-
-  /* Compact the action buttons (Share, Copy, Back) and pull the grid up to eliminate the middle-of-page floating buttons and huge black void on iPhone. */
-  body.has-collector-view .collector-escape-actions button,
-  body.has-collector-view .collector-escape-nav .collector-exit-pill,
-  body.has-collector-view .collector-theater-frame button {
-    font-size: 0.65rem;
-    padding: 0.2rem 0.4rem;
-    min-height: 36px;
+  body.has-collector-view .gallery-focus-zone.is-collector-grid,
+  body.has-collector-view #browse-controls.is-portfolio-browse {
+    margin-top: 0.06rem;
+    padding-top: 0.06rem;
   }
-
-  body.has-collector-view .collector-theater-frame .gallery-focus-zone.is-collector-grid,
-  body.has-collector-view .collector-theater-frame #browse-controls.is-portfolio-browse {
-    margin-top: 0.1rem;
-    padding-top: 0.1rem;
-  }
-
-  .collector-escape-nav .collector-exit-pill {
-    min-height: 40px;
-    font-size: 0.7rem;
-    padding: 0.3rem 0.5rem;
-  }
-
-  body.has-collector-view #browse-controls.is-portfolio-browse .browse-advanced-toggle {
-    min-height: 40px;
-    font-size: 0.68rem;
-  }
-
-  body.has-collector-view .holding-card--cinema .holding-card-body {
-    padding: 0.3rem 0.35rem 0.4rem;
-  }
-
   body.has-collector-view .gallery-list.holdings-grid {
-    gap: 0.4rem;
+    grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+    gap: 0.12rem;
   }
+  body.has-collector-view .holding-card--cinema .holding-card-body {
+    padding: 0.12rem 0.16rem 0.18rem;
+  }
+}
 
-  /* Ultra compact for iPhone SE and similar small phones (<480px) in collector theater view.
-     Make the top banner (escape-bar) and action buttons as small as possible while usable.
-     Pull the grid up immediately to eliminate any remaining empty black space.
-     This ensures premium tight experience on the smallest screens, while larger phones and desktop remain as before. */
+/* <480px portrait (true phones, iPhone SE etc): even denser, smallest usable sizes.
+   Prioritize vertical economy while premium (no cramping, good contrast, 26-28px taps). */
+@media (max-width: 480px) {
   body.has-collector-view .collector-escape-bar {
-    padding: 0.2rem 0.3rem 0.15rem;
+    padding: 0.12rem 0.28rem 0.08rem;
   }
-
-  body.has-collector-view .collector-escape-actions button,
+  body.has-collector-view .collector-theater-frame {
+    padding-top: 1.55rem;
+  }
+  body.has-collector-view .collector-escape-name {
+    font-size: clamp(0.82rem, 3.6vw, 0.96rem);
+    line-height: 1.05;
+  }
+  body.has-collector-view .collector-pride-actions button,
   body.has-collector-view .collector-escape-nav .collector-exit-pill,
   body.has-collector-view .collector-theater-frame button {
-    font-size: 0.65rem;
-    padding: 0.2rem 0.4rem;
-    min-height: 32px;
+    font-size: 0.52rem;
+    padding: 0.06rem 0.16rem;
+    min-height: 27px;
   }
-
-  body.has-collector-view .collector-theater-frame .gallery-focus-zone.is-collector-grid,
-  body.has-collector-view .collector-theater-frame #browse-controls.is-portfolio-browse {
-    margin-top: 0.1rem;
-    padding-top: 0.1rem;
+  body.has-collector-view .collector-pride-actions .collector-share-hero {
+    padding: 0.06rem 0.28rem;
   }
-
+  body.has-collector-view .collector-pride-meta,
+  body.has-collector-view .collector-escape-stats {
+    font-size: 0.58rem;
+    gap: 0.06rem;
+  }
+  body.has-collector-view #browse-controls.is-portfolio-browse {
+    padding: 0.22rem 0.3rem 0.25rem;
+  }
+  body.has-collector-view .gallery-focus-zone.is-collector-grid {
+    padding: 0.18rem 0.25rem 0.22rem;
+  }
   body.has-collector-view .gallery-list.holdings-grid {
-    gap: 0.3rem;
+    gap: 0.14rem;
   }
-
   body.has-collector-view .holding-card--cinema .holding-card-body {
-    padding: 0.2rem 0.25rem 0.3rem;
+    padding: 0.14rem 0.2rem 0.2rem;
+  }
+  /* Site header ultra compact on smallest collector mobile */
+  body.has-collector-view .site-header {
+    padding: 0.06rem 0.22rem;
+  }
+  body.has-collector-view .brand-mascot {
+    width: 24px;
+    height: 24px;
+  }
+  body.has-collector-view .brand-tag {
+    font-size: 0.50rem;
+    max-width: 2.9rem;
+  }
+  body.has-collector-view .header-nav .nav-btn {
+    font-size: 0.50rem;
+    padding: 0.04rem 0.16rem;
+    min-height: 20px;
   }
 }
