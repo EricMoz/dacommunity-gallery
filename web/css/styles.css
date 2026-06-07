@@ -3887,7 +3887,14 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
   margin: 0 auto;
   aspect-ratio: 16 / 9;
   max-width: 900px;
-  max-height: min(46dvh, calc(100dvh - var(--theatre-ui-reserve) - 12px));
+  /* Lights-on: let the JS (syncPlayerSize) be the primary driver of exact outer height
+     so the gold border always has enough room for the full YouTube embed chrome
+     (top title area + bottom progress bar + controls + logo). The reserve calc leaves
+     space for page UI (title, action bar, up-next). We no longer use aggressive
+     min(46dvh) caps that were causing the bottom of the YT card to be clipped by the
+     border on some loads / after upnext appears / on refresh. JS will set explicit
+     height = videoH + chromeExtra and the border will sit cleanly around it. */
+  max-height: calc(100dvh - var(--theatre-ui-reserve) - 4px);
   width: auto;
   height: auto;
   flex-shrink: 1;
@@ -3909,8 +3916,10 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
    no scrollbar is needed for the core theatre content. */
 @media (max-height: 900px) {
   .film-theatre-player {
-    /* Constraint on short laptop screens so the player (sized for full YT chrome with 70px extra) + the full UP NEXT video nav bar below it both fit completely without the bottom being cut off. The player yields space dynamically while allowing the gold frame to accurately wrap the entire visible YouTube card. */
-    max-height: min(40dvh, calc(100dvh - 11rem));
+    /* Short screens: still rely primarily on JS for exact chrome-accommodating height.
+       Loosened the previous tight min() so the outer gold box can be tall enough for
+       full YT bottom controls without cutoff. The reserve + page layout keep things fitting. */
+    max-height: calc(100dvh - var(--theatre-ui-reserve) - 4px);
   }
 
   /* Compact the top titles and the UP NEXT bar on short heights to help the video + nav bar fit. */
@@ -4107,7 +4116,7 @@ body.film-theatre-awaiting-lights .film-theatre-footline {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 3.5rem 0 1rem;
+  padding: 3.5rem 0 1.25rem;
   gap: 0;
 }
 
@@ -4144,16 +4153,14 @@ body.film-theatre-awaiting-lights .film-theatre-footline {
 }
 
 .film-theatre-lights-down .film-theatre-player {
-  /* The gold decorative frame must fully contain the YouTube embed (video area + YT's
-     own top title bar + bottom progress/controls chrome). Using a slightly taller
-     aspect-ratio (16/9.25) + 82vw width gives the player just the extra vertical
-     room needed so the bottom of the YT UI sits comfortably inside the gold border
-     instead of being clipped. 82vw is a small step up from the previous 80vw for the
-     "slightly larger" request while the taller box + max-height reserve keeps the
-     entire frame + video fully on-screen with elegant letterbox in lights-down.
-     max-height tuned with stage padding to leave breathing room above the dim UP NEXT bar. */
-  max-width: 82vw;
-  max-height: calc(100dvh - 6rem);
+  /* Premium middle size for theatre mode: comfortably larger than flow mode but not
+     overwhelming. 88vw gives a nice immersive video without pushing the fixed action
+     bar or bottom-left dim upnext bar into cramped positions. The gold frame encloses
+     the full YT card (video + native top/bottom chrome). Stage padding (top for glass
+     action bar, bottom for dim bar) lets the UI elements rest nicely with breathing
+     room around the centered gold-bordered player. Max-height leaves elegant letterbox. */
+  max-width: 88vw;
+  max-height: calc(100dvh - 5.5rem);
   width: auto;
   height: auto;
   margin-left: auto;
@@ -7861,7 +7868,9 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   .film-theatre-player {
     border-radius: 8px;
     border-width: 2px;
-    max-height: min(50dvh, calc(100dvh - var(--theatre-ui-reserve)));
+    /* Mobile/small: JS drives the precise height for full YT chrome inside gold.
+       Keep a generous max so we don't fight the explicit sizing from syncPlayerSize. */
+    max-height: calc(100dvh - var(--theatre-ui-reserve) - 4px);
   }
 
   body.film-theatre-awaiting-lights .film-theatre-lights-dock {

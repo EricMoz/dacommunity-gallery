@@ -415,6 +415,11 @@
     clearUpNextCountdown();
     hideUpNextEnd();
     refreshUpNextUi();
+    // Re-sync player size when using the Film hub back button or browser back.
+    // Layout (including upnext and reserves) can be in a different state than when
+    // we left, so make sure the gold border re-expands to fit full YT chrome.
+    setTimeout(syncPlayerSize, 80);
+    setTimeout(syncPlayerSize, 300);
 
     if (watchStack.length > 1) {
       suppressPopstate = false;
@@ -469,6 +474,10 @@
          Also re-check lights restore for consistency. */
       refreshUpNextUi();
       tryPendingLightsRestore();
+      // Extra late safety net for first-load or "came back to the page" cases where
+      // upnext + reserve + YT chrome settle in an order that leaves the gold border
+      // clipping the bottom controls. Gives layout full time to stabilize.
+      setTimeout(syncPlayerSize, 650);
     };
     if (!document.querySelector('script[src*="youtube.com/iframe_api"]')) {
       var tag = document.createElement("script");
@@ -642,6 +651,7 @@
          The async onYouTubeIframeAPIReady will call them again after mount for safety. */
       refreshUpNextUi();
       tryPendingLightsRestore();
+      setTimeout(syncPlayerSize, 720);
       return;
     }
     if (ytPlayer && typeof ytPlayer.loadVideoById === "function") {
@@ -659,6 +669,11 @@
     }
     refreshUpNextUi();
     tryPendingLightsRestore();
+    // Late safety sync for initial loads and back/forward navigation. Ensures that
+    // even if upnext banner + final reserve settle after the earlier rAF/timeouts,
+    // the gold player box grows to fit the complete YouTube chrome instead of
+    // getting stuck with the bottom controls cut off by the border.
+    setTimeout(syncPlayerSize, 720);
   }
 
   function clearUpNextCountdown() {
@@ -774,6 +789,14 @@
       els.upnextPlay.disabled = false;
       els.upnextPlay.textContent = upNextPlayLabel();
     }
+
+    // Up-next bar visibility updates the :has() rule that changes --theatre-ui-reserve.
+    // This can immediately tighten the CSS max-height on the player. Re-sync so the
+    // gold border box is (re)sized to fit the full YouTube chrome (progress + controls)
+    // instead of the bottom getting clipped. Covers the "odd cutoff that appears after
+    // refresh or first load when upnext banner settles".
+    setTimeout(syncPlayerSize, 60);
+    setTimeout(syncPlayerSize, 220);
   }
 
   function updateCountdownText() {
@@ -1105,7 +1128,7 @@
            where full bar is needed, smaller in lights-down to keep tight to the video content
            without large gaps). The CSS aspect is strict 16/9 so the video fills the width
            without side letterboxing; extra height goes below for the chrome. */
-        var chromeExtra = isLightsDown() ? 30 : 70;
+        var chromeExtra = isLightsDown() ? 42 : 70;
         var withChrome = Math.round(videoOnlyH + chromeExtra);
         if (h < withChrome) h = withChrome;
 
