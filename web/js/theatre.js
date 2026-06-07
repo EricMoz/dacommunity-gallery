@@ -17,6 +17,11 @@
   var THEATRE_STACK_KEY = "dacat-theatre-watch-stack";
   var YT_ORIGIN = window.location.origin;
 
+  // Force refresh / direct load to always start in lights-on mode (user requirement).
+  // This clears any persisted "lights down" from a previous visit so the player
+  // mounts at the correct in-flow size with the gold frame enclosing the full YT card.
+  try { sessionStorage.removeItem(THEATRE_LIGHTS_KEY); } catch (_) {}
+
   /* =====================================================================
      LIGHTS PERSISTENCE
      We store the user's "lights down" preference in sessionStorage under
