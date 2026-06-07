@@ -8321,27 +8321,28 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view {
     /* Ultra tight for smallest phones - the final lock. 
        Gap between name section (identity) and buttons (actions) is forced to near-zero.
-       Buttons sized for better readability/tap while staying compact. */
+       Buttons sized to match Back button for consistency (larger, usable). */
     --collector-header-gap: 0;
     --collector-header-mb: 0;
-    --collector-btn-min-h: 28px;
-    --collector-btn-fs: 0.50rem;
-    --collector-btn-pad: 0.05rem 0.15rem;
+    --collector-btn-min-h: 32px;
+    --collector-btn-fs: 0.55rem;
+    --collector-btn-pad: 0.06rem 0.2rem;
   }
 
   body.has-collector-view .collector-escape-bar {
-    padding: 0.06rem 0.15rem 0.04rem;
+    padding: 0.04rem 0.12rem 0.02rem;
     z-index: 210;
-    padding-top: calc(env(safe-area-inset-top, 0px) + 0.04rem);
+    padding-top: calc(env(safe-area-inset-top, 0px) + 0.02rem);
   }
   body.has-collector-view .collector-theater-frame {
-    padding-top: 0.06rem;
+    padding-top: 0.04rem;
   }
 
   /* Re-assert lock with ultra tight vars - gap 0 to eliminate vertical dark space between name and buttons */
   body.has-collector-view .collector-pride-header {
     gap: var(--collector-header-gap) !important;
     margin-bottom: var(--collector-header-mb) !important;
+    padding-bottom: 0 !important;
   }
 
   /* Make internal elements of the name section (kicker, title, meta) super compact to reduce overall height of identity */
@@ -8356,6 +8357,8 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     font-size: clamp(0.78rem, 3.2vw, 0.9rem);
     line-height: 1.0;
   }
+
+  /* Buttons sized larger to match Back button, in row, full width share */
   body.has-collector-view .collector-pride-actions button,
   body.has-collector-view .collector-escape-nav .collector-exit-pill,
   body.has-collector-view .collector-theater-frame button {
@@ -8363,8 +8366,14 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     font-size: var(--collector-btn-fs);
     padding: var(--collector-btn-pad);
   }
+  body.has-collector-view .collector-pride-actions .collector-share-hero,
+  body.has-collector-view .collector-pride-actions .collector-action-ghost {
+    min-height: var(--collector-btn-min-h) !important;
+    font-size: var(--collector-btn-fs) !important;
+    padding: var(--collector-btn-pad) !important;
+  }
   body.has-collector-view .collector-pride-actions .collector-share-hero {
-    padding: 0.04rem 0.18rem;
+    padding: 0.06rem 0.22rem;
   }
   body.has-collector-view .collector-pride-meta,
   body.has-collector-view .collector-escape-stats {
