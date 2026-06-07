@@ -591,7 +591,11 @@
       var stageW = (els.stage && els.stage.clientWidth) || els.player.offsetWidth || 720;
       var bootCap = isLightsDown() ? 1280 : 960;
       var bootW = Math.min(Math.max(stageW, 640), bootCap);
-      var bootH = Math.round(bootW * 9 / 16);
+      /* Use slightly taller boot height in lights-down so the initial frame already
+         has room for the full YouTube chrome inside our gold border (avoids the
+         flash of clipped bottom controls before the first syncPlayerSize runs). */
+      var bootRatio = isLightsDown() ? (9 / 16 * 1.04) : (9 / 16);
+      var bootH = Math.round(bootW * bootRatio);
       host.style.width = bootW + 'px';
       host.style.height = bootH + 'px';
     }
@@ -1068,23 +1072,32 @@
         var stage = els.stage || document.querySelector('.film-theatre-stage');
         var basis = (stage && stage.clientWidth) || w || 800;
         if (isLightsDown()) {
-          /* Lights-down supports the bigger cinematic size (82vw goal). Do not hard-cap
-             at the old 960px normal-mode limit; compute a generous 16:9 from the actual
-             available stage width (after the letterbox padding). This prevents the player
-             from being artificially smaller than the CSS max allows, which was leaving
-             an extra "inch of black on the edge" and making the frame look off-center.
-             The final rect from CSS (max-w + aspect + grid centering) + this fallback
-             + the explicit style w/h + yt.setSize keeps the bordered video perfectly
-             centered with balanced letterbox in both lights on and lights down. */
+          /* Lights-down supports the bigger cinematic size (82vw goal). Compute a
+             slightly taller box than pure 16/9 so the gold frame fully wraps the
+             YouTube embed including its native title bar and bottom progress/controls
+             (prevents the "frame cutting off the video" seen in the screenshot).
+             ~4% extra height + the CSS aspect-ratio:16/9.25 + max-h reserve ensures
+             the entire player UI sits inside the decorative border with no clipping
+             while still delivering the slight enlargement the user requested. */
           var target = Math.round(basis * 0.82);
           w = Math.max(720, Math.min(target, Math.floor(basis * 0.92)));
+          h = Math.round(w * 9 / 16 * 1.04);
         } else {
           w = Math.min(Math.max(basis, 640), 960);
+          h = w * 9 / 16;
         }
-        h = w * 9 / 16;
       }
 
       if (w > 50 && h > 22) {
+        /* In lights-down, ensure the explicit size we give the gold frame is tall
+           enough to fully contain the YouTube player's chrome (title + progress bar
+           + buttons). This directly addresses the clipping visible in the provided
+           screenshot where the bottom of the YT UI was cut by the decorative border. */
+        if (isLightsDown()) {
+          var videoOnlyH = w * 9 / 16;
+          var withChrome = Math.round(videoOnlyH * 1.04);
+          if (h < withChrome) h = withChrome;
+        }
         applySize(w, h);
       }
     }
