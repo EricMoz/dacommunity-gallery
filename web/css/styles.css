@@ -7999,6 +7999,28 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     margin-bottom: 0.2rem;
   }
 
+  /* Fix for "huge screen vomit" / large empty black space when testing phone layout by narrowing desktop browser (media query triggers collector mobile styles).
+     The fixed escape-bar + padding on frame + hiding of profile leaves the dark theater background with large gap before the visible content (64 PIECES pill, then Share/Copy/Back buttons, then grid).
+     This only happens in narrow viewports (phone sim from PC); wide desktop uses the nice contained card layout and looks good.
+     Solution: Force the action containers and grid to start immediately after the escape bar with minimal margin/padding. Compact the buttons themselves. This is maintainable as it's all in the existing mobile collector media queries and doesn't affect desktop or light archive view. */
+  body.has-collector-view .collector-pride-actions,
+  body.has-collector-view .collector-escape-actions,
+  body.has-collector-view .collector-theater-frame .collector-actions {
+    margin-top: 0.1rem;
+  }
+  body.has-collector-view .collector-theater-frame button,
+  body.has-collector-view .collector-theater-frame .btn,
+  body.has-collector-view .collector-theater-frame .collector-exit-pill {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.6rem;
+    min-height: 40px;
+  }
+  body.has-collector-view .collector-theater-frame .gallery-focus-zone.is-collector-grid,
+  body.has-collector-view .collector-theater-frame #browse-controls {
+    margin-top: 0.25rem;
+    padding-top: 0.25rem;
+  }
+
   /* Strategic fix for "huge banner" covering most of screen in mobile collector/portfolio view:
      The .collector-profile-card (and similar wallet-state) is a large detailed card designed for
      the lookup/hub in light or initial states. In full portfolio mode (dark theater), the
