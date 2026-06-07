@@ -7987,7 +7987,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
 
   body.has-collector-view .collector-theater-frame {
-    padding-top: 2.6rem; /* reduced to match more compact escape-bar banner on mobile */
+    padding-top: 1.2rem; /* ultra tight for iPhone and small phones: escape-bar is the fixed top header with collection info; the Share/Copy/Back and grid flow right under it with almost no extra black space above. The theater dark is background only, content is dense and premium without vomit gaps. */
   }
 
   body.has-collector-view .collector-theater-frame.is-active {
@@ -7997,6 +7997,37 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .collector-pride-header {
     gap: 0.25rem;
     margin-bottom: 0.2rem;
+  }
+
+  /* Premium compact mobile for collector theater on real phones (iPhone etc.).
+     When viewport is phone-sized (even if tested by narrowing desktop), eliminate the huge black empty "vomit" space.
+     Make the escape-bar the slim top banner, and force the content (stats pill, action buttons, grid) to start immediately below with tiny gaps.
+     Use row for actions to save vertical space. Compact fonts/padding while keeping touch targets.
+     This only affects narrow viewports in has-collector-view; desktop wide and light archive untouched.
+     Maintainable: all rules scoped inside the existing mobile collector media queries. */
+  body.has-collector-view .collector-escape-actions {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0.2rem;
+  }
+  body.has-collector-view .collector-escape-actions button,
+  body.has-collector-view .collector-escape-nav .collector-exit-pill,
+  body.has-collector-view .collector-theater-frame button {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+    min-height: 36px;
+    flex: 1 1 auto;
+  }
+  body.has-collector-view .collector-theater-frame .gallery-focus-zone.is-collector-grid,
+  body.has-collector-view .collector-theater-frame #browse-controls.is-portfolio-browse {
+    margin-top: 0.2rem;
+    padding-top: 0.2rem;
+  }
+  /* Further reduce any internal gaps in the top content area */
+  body.has-collector-view .collector-pride-meta,
+  body.has-collector-view .collector-escape-stats {
+    gap: 0.15rem;
+    font-size: 0.65rem;
   }
 
   /* Fix for "huge screen vomit" / large empty black space when testing phone layout by narrowing desktop browser (media query triggers collector mobile styles).
@@ -8092,12 +8123,31 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
    Prevents the escape-bar "banner" from feeling too large on diverse small devices like older Android/iPhone SE.
    Light view and larger mobile/desktop unaffected. */
 @media (max-width: 480px) {
+  body.has-collector-view .collector-theater-frame {
+    padding-top: 1.2rem; /* ultra tight for iPhone-sized: escape-bar is the fixed top header with collection info; the Share/Copy/Back buttons and grid flow right under it with almost no extra black space above. The theater dark is background only, content is dense and premium without large empty voids on the smallest screens. */
+  }
+
   body.has-collector-view .collector-escape-bar {
     padding: 0.25rem 0.4rem 0.2rem;
   }
 
   body.has-collector-view .collector-escape-name {
     font-size: clamp(0.85rem, 4vw, 1.05rem);
+  }
+
+  /* Compact the action buttons (Share, Copy, Back) and pull the grid up to eliminate the middle-of-page floating buttons and huge black void on iPhone. */
+  body.has-collector-view .collector-escape-actions button,
+  body.has-collector-view .collector-escape-nav .collector-exit-pill,
+  body.has-collector-view .collector-theater-frame button {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.4rem;
+    min-height: 36px;
+  }
+
+  body.has-collector-view .collector-theater-frame .gallery-focus-zone.is-collector-grid,
+  body.has-collector-view .collector-theater-frame #browse-controls.is-portfolio-browse {
+    margin-top: 0.1rem;
+    padding-top: 0.1rem;
   }
 
   .collector-escape-nav .collector-exit-pill {
@@ -8117,5 +8167,35 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 
   body.has-collector-view .gallery-list.holdings-grid {
     gap: 0.4rem;
+  }
+
+  /* Ultra compact for iPhone SE and similar small phones (<480px) in collector theater view.
+     Make the top banner (escape-bar) and action buttons as small as possible while usable.
+     Pull the grid up immediately to eliminate any remaining empty black space.
+     This ensures premium tight experience on the smallest screens, while larger phones and desktop remain as before. */
+  body.has-collector-view .collector-escape-bar {
+    padding: 0.2rem 0.3rem 0.15rem;
+  }
+
+  body.has-collector-view .collector-escape-actions button,
+  body.has-collector-view .collector-escape-nav .collector-exit-pill,
+  body.has-collector-view .collector-theater-frame button {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.4rem;
+    min-height: 32px;
+  }
+
+  body.has-collector-view .collector-theater-frame .gallery-focus-zone.is-collector-grid,
+  body.has-collector-view .collector-theater-frame #browse-controls.is-portfolio-browse {
+    margin-top: 0.1rem;
+    padding-top: 0.1rem;
+  }
+
+  body.has-collector-view .gallery-list.holdings-grid {
+    gap: 0.3rem;
+  }
+
+  body.has-collector-view .holding-card--cinema .holding-card-body {
+    padding: 0.2rem 0.25rem 0.3rem;
   }
 }
