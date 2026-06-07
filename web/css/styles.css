@@ -8092,7 +8092,8 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding: 0.25rem 0.35rem 0.35rem;
   }
   body.has-collector-view .gallery-list.holdings-grid {
-    gap: 0.22rem;
+    grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); /* ensure compact cards kick in as soon as we enter mobile collector widths */
+    gap: 0.15rem;
   }
   body.has-collector-view .holding-card--cinema .holding-card-body {
     padding: 0.22rem 0.28rem 0.28rem;
@@ -8160,7 +8161,10 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding: 0.12rem 0.28rem 0.08rem;
   }
   body.has-collector-view .collector-theater-frame {
-    padding-top: 1.55rem;
+    padding-top: 2.0rem; /* stronger clear so the escape-bar (with collector name) sits visibly at top without content creeping under it or creating voids */
+  }
+  body.has-collector-view .collector-escape-bar {
+    z-index: 200; /* sit above site header if needed so the name is not covered */
   }
   body.has-collector-view .collector-escape-name {
     font-size: clamp(0.82rem, 3.6vw, 0.96rem);
@@ -8188,7 +8192,8 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding: 0.18rem 0.25rem 0.22rem;
   }
   body.has-collector-view .gallery-list.holdings-grid {
-    gap: 0.14rem;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); /* lock compact card size so it doesn't revert to large 152px base on narrow widths */
+    gap: 0.12rem;
   }
   body.has-collector-view .holding-card--cinema .holding-card-body {
     padding: 0.14rem 0.2rem 0.2rem;
@@ -8209,5 +8214,52 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     font-size: 0.50rem;
     padding: 0.04rem 0.16rem;
     min-height: 20px;
+  }
+}
+
+/* Very narrow / real iPhone-sized and smaller (lock the compact premium style hard once we cross this threshold).
+   Prevents "reverting to large cards + big dark void above buttons" when the viewport gets smaller than the 480px rules expect.
+   Also gives extra top clearance so the collector name in the escape-bar is visible at the top and not covered by the site header or content. */
+@media (max-width: 400px) {
+  body.has-collector-view .collector-escape-bar {
+    padding: 0.08rem 0.2rem 0.05rem;
+    z-index: 210;
+  }
+  body.has-collector-view .collector-theater-frame {
+    padding-top: 2.6rem; /* generous clear for the full slim bar (name + single-row buttons) + any site header overlap on tiny devices */
+  }
+  body.has-collector-view .collector-escape-name {
+    font-size: clamp(0.75rem, 3.1vw, 0.88rem);
+    line-height: 1.0;
+  }
+  body.has-collector-view .collector-pride-actions button,
+  body.has-collector-view .collector-escape-nav .collector-exit-pill,
+  body.has-collector-view .collector-theater-frame button {
+    min-height: 25px;
+    font-size: 0.47rem;
+    padding: 0.04rem 0.1rem;
+  }
+  body.has-collector-view .gallery-list.holdings-grid {
+    grid-template-columns: repeat(auto-fill, minmax(55px, 1fr)); /* hard lock on the small card size the user likes */
+    gap: 0.08rem;
+  }
+  body.has-collector-view .holding-card--cinema .holding-card-body {
+    padding: 0.05rem 0.06rem 0.08rem;
+  }
+  body.has-collector-view .site-header {
+    padding: 0.02rem 0.1rem;
+  }
+  body.has-collector-view .brand-mascot {
+    width: 18px;
+    height: 18px;
+  }
+  body.has-collector-view .brand-tag {
+    font-size: 0.42rem;
+    max-width: 1.8rem;
+  }
+  body.has-collector-view .header-nav .nav-btn {
+    font-size: 0.46rem;
+    padding: 0.02rem 0.1rem;
+    min-height: 18px;
   }
 }
