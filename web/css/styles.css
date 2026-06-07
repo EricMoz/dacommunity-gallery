@@ -7978,15 +7978,37 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     left: 0;
     right: 0;
     z-index: 120;
-    padding: 0.18rem 0.4rem 0.12rem;
+    padding: 0.1rem 0.3rem 0.06rem; /* reduced bottom padding so the buttons row sits closer to the bottom of the bar with less internal dark space */
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.55);
     background: linear-gradient(180deg, #1c1c1c 0%, #111 100%);
     /* small safe-area padding on the bar itself so it sits comfortably below status bar without overlapping site-header */
-    padding-top: calc(env(safe-area-inset-top, 0px) + 0.1rem);
+    padding-top: calc(env(safe-area-inset-top, 0px) + 0.08rem);
   }
 
   body.has-collector-view .collector-theater-frame {
     padding-top: 0.15rem; /* minimal — the sticky bar is now in-flow, content follows naturally with no artificial void */
+  }
+
+  /* === STRONG LOCK for tight name-to-buttons gap on small collector views ===
+     Legacy blocks elsewhere in the file set large gap (0.7rem / 0.35rem), column on actions, and large button sizes.
+     These body.has-collector-view rules with !important on the critical layout properties ensure the desired
+     premium tight layout (name section immediately followed by one compact row of 3 small buttons) wins
+     regardless of source order or other media. This is the maintainable "lock" so it doesn't regress again. */
+  body.has-collector-view .collector-pride-header {
+    gap: 0.02rem !important;
+    margin-bottom: 0.02rem !important;
+  }
+  body.has-collector-view .collector-pride-actions {
+    flex-direction: row !important;
+    gap: 0.04rem !important;
+  }
+  body.has-collector-view .collector-share-hero,
+  body.has-collector-view .collector-action-ghost {
+    width: auto !important;
+    min-height: 26px !important;
+    font-size: 0.48rem !important;
+    padding: 0.04rem 0.12rem !important;
+    line-height: 1.05 !important;
   }
 
   /* Long-term maintainable guarantees for the collector name visibility on all small/mobile widths.
@@ -8029,7 +8051,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .collector-pride-actions {
     display: flex;
     flex-wrap: nowrap;
-    gap: 0.06rem;
+    gap: 0.04rem;
     width: 100%;
     margin-top: 0;
   }
@@ -8039,11 +8061,11 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .collector-pride-actions button,
   body.has-collector-view .collector-escape-nav .collector-exit-pill,
   body.has-collector-view .collector-theater-frame button {
-    font-size: 0.54rem;
-    padding: 0.08rem 0.2rem;
-    min-height: 28px;
+    font-size: 0.52rem;
+    padding: 0.06rem 0.14rem;
+    min-height: 26px;
     flex: 1 1 auto;
-    line-height: 1.1;
+    line-height: 1.05;
     white-space: nowrap;
   }
   /* Keep share hero slightly more prominent but still compact */
