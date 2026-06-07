@@ -3730,20 +3730,11 @@ body.film-theatre-awaiting-lights {
 }
 
 body.film-theatre-awaiting-lights .film-theatre-lights-dock {
-  /* Clean, compact single box for the first-time lights down prompt.
-     Hint text small above the button, cohesive rounded container on the right,
-     aligned with the left "Film hub" pill. This makes direct load to theatre mode
-     look sharp and intentional instead of a detached "broken" box on some monitors.
-     The prompt only shows on very first visit (per sessionStorage). */
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.1rem;
-  padding: 0.35rem 0.55rem 0.3rem;
-  background: rgba(0, 0, 0, 0.75);
-  border: 1px solid rgba(255, 204, 0, 0.5);
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  position: relative;
+  /* The dock stays in the action bar on the right, looking like the normal pill area.
+     The hint is a small callout positioned above the dock (not in the flow, not wrapping the button, not making the right side tall or "in that area" in a broken way).
+     Clean, sharp, aligned with the left "Film hub" pill. Only shows on first visit. */
+  padding: 0.2rem 0.4rem;
 }
 
 body.film-theatre-awaiting-lights .film-theatre-popcorn {
@@ -3751,16 +3742,23 @@ body.film-theatre-awaiting-lights .film-theatre-popcorn {
 }
 
 body.film-theatre-awaiting-lights .film-theatre-lights-hint {
-  display: block;
-  font-size: 0.62rem;
-  line-height: 1.15;
-  margin: 0;
-  padding: 0 0.1rem 0.05rem;
+  position: absolute;
+  top: -1.05rem;
+  right: 0;
+  font-size: 0.55rem;
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0.82);
+  padding: 0.12rem 0.35rem;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 204, 0, 0.45);
+  z-index: 20;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  line-height: 1;
 }
 
 body.film-theatre-awaiting-lights .film-theatre-lights-btn {
   font-size: 0.72rem;
-  padding: 0.3rem 0.65rem;
+  padding: 0.28rem 0.6rem;
   background: rgba(255, 204, 0, 0.16);
   border-color: var(--theatre-accent);
   color: #fff;
@@ -3924,7 +3922,32 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
    no scrollbar is needed for the core theatre content. */
 @media (max-height: 900px) {
   .film-theatre-player {
-    max-height: min(42dvh, calc(100dvh - 11rem));
+    /* More aggressive constraint on short laptop screens so the player + the full UP NEXT video nav bar below it both fit completely without the bottom being cut off or requiring a scrollbar in theatre mode. The player yields space dynamically. */
+    max-height: min(36dvh, calc(100dvh - 12.5rem));
+  }
+
+  /* Compact the top titles and the UP NEXT bar on short heights to help the video + nav bar fit. */
+  .film-theatre-kicker,
+  .film-theatre-series,
+  .film-theatre-meta {
+    font-size: 0.6rem;
+  }
+  .film-theatre-title {
+    font-size: 1.25rem;
+  }
+  .film-theatre-stage {
+    gap: 0.2rem;
+  }
+
+  .film-theatre-upnext .film-upnext-thumb {
+    width: 48px;
+    height: 27px;
+  }
+  .film-upnext-bar {
+    padding: 0.25rem 0.35rem;
+  }
+  .film-upnext-copy {
+    font-size: 0.7rem;
   }
 }
 
