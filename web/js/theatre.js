@@ -1098,7 +1098,13 @@
            live inside our gold frame instead of being cut off by overflow:hidden.
            Lights-down keeps its proportional extra for the larger immersive box. */
         var videoOnlyH = w * 9 / 16;
-        var chromeExtra = isLightsDown() ? Math.round(videoOnlyH * 0.04) : 65;
+        /* For lights-on we use a conservative fixed extra (~48px) for the YT chrome.
+           This is enough for the progress bar and controls to sit inside the gold border
+           without clipping, while the tighter max-height + media query above ensure the
+           player + up-next navigation bar both fit on laptop screens without cutting off
+           the bottom of the page or requiring a scrollbar in theatre mode.
+           Lights-down keeps its proportional extra for the immersive box. */
+        var chromeExtra = isLightsDown() ? Math.round(videoOnlyH * 0.04) : 48;
         var withChrome = Math.round(videoOnlyH + chromeExtra);
         if (h < withChrome) h = withChrome;
 
