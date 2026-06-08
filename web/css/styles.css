@@ -7683,63 +7683,70 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 
   .collector-escape-bar {
     top: var(--site-header-h);
-    padding: 0.75rem 0.8rem 0.65rem;
+    padding: 0.04rem 0.3rem 0.02rem !important;
   }
 
-  .collector-pride-header {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.7rem;
-    margin-bottom: 0.6rem;
-  }
-
-  .collector-pride-actions {
-    width: 100%;
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .collector-share-hero {
-    width: 100%;
-    justify-content: center;
-    min-height: 50px;
-    font-size: 0.92rem;
-  }
-
-  .collector-action-ghost {
-    width: 100%;
-    justify-content: center;
-    min-height: 48px;
-  }
-
-  /* Audit override: force tight layout and small buttons in collector view to prevent legacy column/large gap from this block.
-     Uses CSS vars for maintainability - change once in the main collector media. */
+  /* Definitive fix for the large vertical dark gap on mobile collector (your inspection finding).
+     The column + 0.7rem gap + 0.6rem margin-bottom on .collector-pride-header (and tall buttons)
+     was creating the empty dark space between the top info bar and the search section.
+     We force row + nowrap + horizontal scroll on narrow screens, zero all excessive verticals,
+     and make buttons tiny but usable. */
   body.has-collector-view .collector-pride-header {
-    gap: var(--collector-header-gap, 0.02rem) !important;
-    margin-bottom: var(--collector-header-mb, 0.02rem) !important;
-  }
-  body.has-collector-view .collector-pride-actions {
+    display: flex !important;
     flex-direction: row !important;
-    gap: var(--collector-header-gap, 0.04rem) !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap !important;
+    gap: 0.04rem 0.2rem !important;
+    margin: 0 !important;
+    margin-bottom: 0.02rem !important;
+    align-items: center !important;
+    padding: 0 !important;
   }
+
+  body.has-collector-view .collector-pride-identity {
+    min-width: 0;
+    flex-shrink: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.has-collector-view .collector-escape-kicker,
+  body.has-collector-view .collector-pride-title-row,
+  body.has-collector-view .collector-pride-meta {
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0.04rem 0.12rem !important;
+  }
+
+  body.has-collector-view .collector-pride-actions {
+    flex-wrap: nowrap !important;
+    gap: 0.04rem !important;
+    flex-shrink: 0;
+  }
+
   body.has-collector-view .collector-share-hero,
   body.has-collector-view .collector-action-ghost {
     width: auto !important;
-    min-height: var(--collector-btn-min-h, 26px) !important;
-    font-size: var(--collector-btn-fs, 0.48rem) !important;
-    padding: var(--collector-btn-pad, 0.04rem 0.12rem) !important;
+    min-height: 26px !important;
+    font-size: 0.62rem !important;
+    padding: 0.06rem 0.32rem !important;
+    line-height: 1.0 !important;
   }
 
   .collector-escape-nav {
-    flex-direction: row;
-    gap: 0.5rem;
+    flex-direction: row !important;
+    gap: 0.15rem !important;
+    padding-top: 0 !important;
+    border-top: none !important;
+    margin-top: 0.04rem !important;
   }
 
   .collector-escape-nav .collector-exit-pill {
-    flex: 1;
-    justify-content: center;
-    min-height: 44px;
-    font-size: 0.78rem;
+    min-height: 24px !important;
+    font-size: 0.58rem !important;
+    padding: 0.04rem 0.3rem !important;
   }
 
   .collector-hub.is-collector-compact {
