@@ -8005,15 +8005,14 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
    consistent compact site-header (no truncation), tight grid/cards, overall vertical reduction for comfort on iPhone etc. */
 @media (max-width: 768px) {
   body.has-collector-view .collector-escape-bar {
-    /* Sticky instead of fixed for reliable "name at top" behavior on mobile.
-       It flows right after the (compact) site-header, then sticks to the top of the viewport when scrolling.
-       This eliminates guessing padding-top values that cause massive dark voids on different devices/safe-areas.
-       The collector name (pride-identity) will now be reliably visible as the first thing in the collector view. */
+    /* Sticky below the site-header (not top:0) so it doesn't fight/overlap the sticky nav.
+       top: var(--site-header-h) makes the collector context bar stack cleanly below the global header.
+       This, plus the #app padding-top fix above, eliminates the dark vertical gap on small widths. */
     position: sticky;
-    top: 0;
+    top: var(--site-header-h);
     left: 0;
     right: 0;
-    z-index: 120;
+    z-index: 95; /* below site-header z-index ~100 to avoid fighting */
     padding: 0.1rem 0.3rem 0.06rem; /* reduced bottom padding so the buttons row sits closer to the bottom of the bar with less internal dark space */
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.55);
     background: linear-gradient(180deg, #1c1c1c 0%, #111 100%);
@@ -8023,6 +8022,13 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 
   body.has-collector-view .collector-theater-frame {
     padding-top: 0.15rem; /* minimal — the sticky bar is now in-flow, content follows naturally with no artificial void */
+  }
+
+  /* Extend #app padding override to full 768px collector mobile to kill dark gap between 641-768px.
+     Base #app has larger padding that creates void above the theater frame on mid-small widths. */
+  body.has-collector-view #app {
+    padding-top: 0.1rem;
+    padding-bottom: 0.75rem;
   }
 
   /* === Maintainable Collector Mobile Header System (Senior FE best practice) ===
@@ -8238,16 +8244,23 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
 
   body.has-collector-view .collector-escape-bar {
-    /* Sticky for reliable name visibility and no void on small screens.
-       The bar (with pride-identity name + compact action row) now flows naturally right after the site header. */
+    /* Sticky below the site-header (not top:0) so it doesn't fight/overlap the sticky nav.
+       top: var(--site-header-h) makes the collector context bar stack cleanly below the global header.
+       z-index lowered to sit below header. */
     position: sticky;
-    top: 0;
+    top: var(--site-header-h);
     padding: 0.06rem 0.15rem 0.03rem;
-    z-index: 200;
+    z-index: 95;
     padding-top: calc(env(safe-area-inset-top, 0px) + 0.04rem);
   }
   body.has-collector-view .collector-theater-frame {
     padding-top: 0.06rem; /* sticky bar is in-flow; content follows immediately with minimal gap for premium tight feel */
+  }
+
+  /* Ensure #app padding-top is zeroed in this breakpoint too (extends the 768px collector fix for no dark gap). */
+  body.has-collector-view #app {
+    padding-top: 0.1rem;
+    padding-bottom: 0.75rem;
   }
   body.has-collector-view .collector-escape-name {
     font-size: clamp(0.76rem, 3.2vw, 0.88rem);
@@ -8347,9 +8360,9 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
        Buttons sized to match Back button for consistency (larger, usable). */
     --collector-header-gap: 0;
     --collector-header-mb: 0;
-    --collector-btn-min-h: 32px;
-    --collector-btn-fs: 0.55rem;
-    --collector-btn-pad: 0.06rem 0.2rem;
+    --collector-btn-min-h: 34px;
+    --collector-btn-fs: 0.58rem;
+    --collector-btn-pad: 0.08rem 0.22rem;
   }
 
   body.has-collector-view .collector-escape-bar {
@@ -8359,6 +8372,12 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
   body.has-collector-view .collector-theater-frame {
     padding-top: 0.04rem;
+  }
+
+  /* Ensure #app padding-top is zeroed in this breakpoint too (extends the 768px collector fix for no dark gap). */
+  body.has-collector-view #app {
+    padding-top: 0.1rem;
+    padding-bottom: 0.75rem;
   }
 
   /* Re-assert lock with ultra tight vars - gap 0 to eliminate vertical dark space between name and buttons */
