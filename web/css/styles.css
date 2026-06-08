@@ -8040,11 +8040,11 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   */
   body.has-collector-view {
     --collector-header-gap: 0;
-    --collector-header-mb: 0.02rem;
-    --collector-btn-min-h: 32px;
-    --collector-btn-fs: 0.55rem;
-    --collector-btn-pad: 0.05rem 0.15rem;
-    --collector-bar-pad-y: 0.08rem;
+    --collector-header-mb: 0;
+    --collector-btn-min-h: 36px;
+    --collector-btn-fs: 0.65rem;
+    --collector-btn-pad: 0.1rem 0.25rem;
+    --collector-bar-pad-y: 0.06rem;
   }
 
   /* Strong lock using vars + !important to guarantee tight name-to-buttons, row layout, small buttons.
@@ -8052,13 +8052,15 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .collector-pride-header {
     gap: var(--collector-header-gap) !important;
     margin-bottom: var(--collector-header-mb) !important;
+    justify-content: flex-start !important; /* prevent base space-between from pushing actions to bottom, causing large gap in column layout on mobile */
   }
   body.has-collector-view .collector-pride-actions {
     flex-direction: row !important;
     gap: var(--collector-header-gap) !important;
   }
   body.has-collector-view .collector-share-hero,
-  body.has-collector-view .collector-action-ghost {
+  body.has-collector-view .collector-action-ghost,
+  body.has-collector-view .collector-pride-actions .collector-exit-pill {
     width: auto !important;
     min-height: var(--collector-btn-min-h) !important;
     font-size: var(--collector-btn-fs) !important;
@@ -8237,10 +8239,10 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view {
     /* Tighter values for this breakpoint - overrides the 768px vars for even smaller screens */
     --collector-header-gap: 0;
-    --collector-header-mb: 0.01rem;
-    --collector-btn-min-h: 32px;
-    --collector-btn-fs: 0.55rem;
-    --collector-btn-pad: 0.05rem 0.15rem;
+    --collector-header-mb: 0;
+    --collector-btn-min-h: 36px;
+    --collector-btn-fs: 0.65rem;
+    --collector-btn-pad: 0.1rem 0.25rem;
   }
 
   body.has-collector-view .collector-escape-bar {
@@ -8286,6 +8288,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     gap: var(--collector-header-gap) !important;
     margin-bottom: var(--collector-header-mb) !important;
     padding-bottom: 0 !important;
+    justify-content: flex-start !important; /* prevent base space-between from pushing actions to bottom */
   }
   body.has-collector-view .collector-pride-actions button,
   body.has-collector-view .collector-escape-nav .collector-exit-pill,
@@ -8360,9 +8363,9 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
        Buttons sized to match Back button for consistency (larger, usable). */
     --collector-header-gap: 0;
     --collector-header-mb: 0;
-    --collector-btn-min-h: 34px;
-    --collector-btn-fs: 0.58rem;
-    --collector-btn-pad: 0.08rem 0.22rem;
+    --collector-btn-min-h: 36px;
+    --collector-btn-fs: 0.65rem;
+    --collector-btn-pad: 0.1rem 0.25rem;
   }
 
   body.has-collector-view .collector-escape-bar {
@@ -8385,6 +8388,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     gap: var(--collector-header-gap) !important;
     margin-bottom: var(--collector-header-mb) !important;
     padding-bottom: 0 !important;
+    justify-content: flex-start !important; /* prevent base space-between from pushing actions to bottom */
   }
 
   /* Make internal elements of the name section super compact */
