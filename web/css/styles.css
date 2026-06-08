@@ -8041,7 +8041,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view {
     --collector-header-gap: 0;
     --collector-header-mb: 0;
-    --collector-btn-min-h: 36px;
+    --collector-btn-min-h: 38px;
     --collector-btn-fs: 0.65rem;
     --collector-btn-pad: 0.1rem 0.25rem;
     --collector-bar-pad-y: 0.06rem;
@@ -8240,7 +8240,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     /* Tighter values for this breakpoint - overrides the 768px vars for even smaller screens */
     --collector-header-gap: 0;
     --collector-header-mb: 0;
-    --collector-btn-min-h: 36px;
+    --collector-btn-min-h: 38px;
     --collector-btn-fs: 0.65rem;
     --collector-btn-pad: 0.1rem 0.25rem;
   }
@@ -8285,10 +8285,20 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 
   /* Re-assert the lock with the new var values for this breakpoint */
   body.has-collector-view .collector-pride-header {
+    /* Maintain the good compact look from wider narrow (Image #1: name in dark rounded box, buttons in row on the right inside the box) even on very small widths.
+       Use row for .collector-pride-header to keep name and buttons side-by-side in the same visual unit, avoiding the column stacking transition that causes the huge gap when width shrinks.
+       On ultra narrow (when the row no longer fits), the row content will naturally overflow and we enable horizontal scroll on the escape-bar so buttons don't drop down creating gap (like avoiding a non-existent box).
+       Buttons sized to 38px / 0.65rem with extra pad for Share/Copy to match Back's visual size/weight, not super small.
+       This is the final maintainable approach for premium condensed mobile experience: good look preserved, scroll instead of bad gap. */
+    flex-direction: row !important;
+    align-items: center;
     gap: var(--collector-header-gap) !important;
     margin-bottom: var(--collector-header-mb) !important;
     padding: 0 !important;
-    justify-content: flex-start !important; /* prevent base space-between from pushing actions to bottom, causing large gap in column layout on mobile */
+    justify-content: flex-start !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap; /* keep items in row for scroll */
   }
   body.has-collector-view .collector-pride-actions button,
   body.has-collector-view .collector-escape-nav .collector-exit-pill,
@@ -8385,10 +8395,20 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 
   /* Re-assert lock with ultra tight vars - gap 0 to eliminate vertical dark space between name and buttons */
   body.has-collector-view .collector-pride-header {
+    /* Maintain the good compact look from wider narrow (Image #1: name in dark rounded box, buttons in row on the right inside the box) even on very small widths.
+       Use row for .collector-pride-header to keep name and buttons side-by-side in the same visual unit, avoiding the column stacking transition that causes the huge gap when width shrinks.
+       On ultra narrow (when the row no longer fits), the row content will naturally overflow and we enable horizontal scroll on the escape-bar so buttons don't drop down creating gap (like avoiding a non-existent box).
+       Buttons sized to 38px / 0.65rem with extra pad for Share/Copy to match Back's visual size/weight, not super small.
+       This is the final maintainable approach for premium condensed mobile experience: good look preserved, scroll instead of bad gap. */
+    flex-direction: row !important;
+    align-items: center;
     gap: var(--collector-header-gap) !important;
     margin-bottom: var(--collector-header-mb) !important;
     padding: 0 !important;
-    justify-content: flex-start !important; /* prevent base space-between from pushing actions to bottom, causing large gap in column layout on mobile */
+    justify-content: flex-start !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap; /* keep items in row for scroll */
   }
 
   /* Make internal elements of the name section super compact */
