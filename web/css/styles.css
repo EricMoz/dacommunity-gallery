@@ -8287,8 +8287,8 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .collector-pride-header {
     gap: var(--collector-header-gap) !important;
     margin-bottom: var(--collector-header-mb) !important;
-    padding-bottom: 0 !important;
-    justify-content: flex-start !important; /* prevent base space-between from pushing actions to bottom */
+    padding: 0 !important;
+    justify-content: flex-start !important; /* prevent base space-between from pushing actions to bottom, causing large gap in column layout on mobile */
   }
   body.has-collector-view .collector-pride-actions button,
   body.has-collector-view .collector-escape-nav .collector-exit-pill,
@@ -8360,10 +8360,10 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view {
     /* Ultra tight for smallest phones - the final lock. 
        Gap between name section (identity) and buttons (actions) is forced to near-zero.
-       Buttons sized to match Back button for consistency (larger, usable). */
+       Buttons sized larger (38px / 0.65rem) to match Back, not super small. Gap 0 and internal zero to eliminate space. */
     --collector-header-gap: 0;
     --collector-header-mb: 0;
-    --collector-btn-min-h: 36px;
+    --collector-btn-min-h: 38px;
     --collector-btn-fs: 0.65rem;
     --collector-btn-pad: 0.1rem 0.25rem;
   }
@@ -8387,8 +8387,8 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .collector-pride-header {
     gap: var(--collector-header-gap) !important;
     margin-bottom: var(--collector-header-mb) !important;
-    padding-bottom: 0 !important;
-    justify-content: flex-start !important; /* prevent base space-between from pushing actions to bottom */
+    padding: 0 !important;
+    justify-content: flex-start !important; /* prevent base space-between from pushing actions to bottom, causing large gap in column layout on mobile */
   }
 
   /* Make internal elements of the name section super compact */
@@ -8427,8 +8427,9 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     font-size: var(--collector-btn-fs) !important;
     padding: var(--collector-btn-pad) !important;
   }
-  body.has-collector-view .collector-pride-actions .collector-share-hero {
-    padding: 0.06rem 0.22rem;
+  body.has-collector-view .collector-pride-actions .collector-share-hero,
+  body.has-collector-view .collector-pride-actions .collector-action-ghost {
+    padding: 0.1rem 0.35rem !important; /* extra horizontal to make "Share" and "Copy" pills visually larger and match the weight of the "← Back" button on small screens */
   }
   body.has-collector-view .collector-pride-meta,
   body.has-collector-view .collector-escape-stats {
