@@ -3882,20 +3882,41 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
   container-type: size;
 }
 
-/* Lights-on (default) fix for centering + no right-side cutoff (the 50% intermittent issue).
-   container-type:size was collapsing or clipping the gold frame + full YT chrome (title bar + controls + logo).
-   We give the gold-bordered player *more generous space in the surround* (larger safe inset + explicit padding
-   on the mount) so the premium theatre bezel has breathing room on PC. The player itself stays perfectly
-   centered via grid + margin auto + explicit JS sizes. Lights-down uses its own full-bleed flex centering. */
+/* Lights-on (default) player container — backout of the previous padding/16px inset that made cutoff feel worse.
+   Rethought approach:
+   - Keep container-type:none (the historical fix for collapse/cutoff in flow layout).
+   - Use only a tiny safe inset so the 3px gold border + shadow + full YT chrome (title + progress + controls + logo)
+     is never clipped on the right by subpixel/parent issues.
+   - Give "more space in the border surround the youtube video" on PC by adding horizontal padding to the
+     .film-theatre-stage (the direct parent of the framed player). This creates generous black letterbox around
+     the entire gold frame without shrinking the mount's available space or fighting the grid centering or the
+     JS syncPlayerSize measurements on the player element itself.
+   - Strong explicit centering on the player + mount so it stays dead-center even after JS writes explicit
+     width/height and during lights transitions.
+   - Lights-down keeps its own fixed full-bleed flex centering (already tuned for immersion). */
 body:not(.film-theatre-lights-down) .film-theatre-player-mount {
   container-type: none;
   max-width: 100%;
   box-sizing: border-box;
-  /* More generous safe space + padding around the gold frame so the YouTube video card (full embed chrome)
-     never clips on the right and has a luxurious "theatre screen" feel with black surround on desktop.
-     This + the player's own margin:0 auto + grid place-items:center guarantees the frame is dead-center. */
-  max-width: calc(100% - 16px);
-  padding: 8px; /* breathing room inside the stage around the entire bordered player */
+  /* tiny safe inset — do not make this larger or add padding here (that made the perceived size/centering worse) */
+  max-width: calc(100% - 6px);
+
+  /* Reinforce perfect horizontal + vertical centering of the gold frame inside the mount for lights-on.
+     Combined with the player's own margin auto this keeps the video dead-center even after multiple
+     JS syncPlayerSize passes and during lights transitions. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Desktop / wide PC: give the entire gold-bordered theatre player generous horizontal space from the
+   edges of the stage. This creates the premium "breathing room around the frame" / "space in the border
+   surround the youtube video" without shrinking the player mount or causing the recent cutoff/centering
+   regressions. Lights-down mode overrides the stage to fixed inset 0 with its own centering paddings. */
+body:not(.film-theatre-lights-down) .film-theatre-stage {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  box-sizing: border-box;
 }
 
 .film-theatre-player {
@@ -7653,24 +7674,32 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 
   /* Mobile nav reduction — reviewed & improved site-wide for consistency and breathing room.
      Policy (desktop always shows full nav; only <=768):
-     - Film theatre (immersive): exactly Home + Film (the pride/escape bar or page title provides context).
-     - dacommunity (archive): Home + My daCATs.
-     - Wallet collector view (has-collector-view + data-base): further reduced — only Home (the dark pride/escape bar
-       with "YOUR COLLECTION", name, pieces, Share/Copy/← Back is the prominent wallet context; top site nav would be redundant).
-     - Film hub: Home + Film (so it has "enough" reduction like theatre).
-     - Other pages keep reasonable primary items via their own is-active or we accept slightly more; this prevents
-       wrapping/overflow clutter while keeping the experience intentional.
-     The :not() selectors + high specificity inside the mobile block ensure order/cascade is predictable. */
+     - Film theatre (immersive): exactly Home + Film.
+     - dacommunity (archive / lookup): Home + My daCATs.
+     - Wallet collector view (has-collector-view on dacommunity): Home + Film + Collections (the pride/escape bar
+       provides the wallet-specific "YOUR COLLECTION" context, name, stats, Share/Copy/Back; top nav still offers
+       quick access to the main sections of the site).
+     - Film hub: Home + Film.
+     - The goal is to keep the top bar to 2-3 items max on mobile so it never feels cramped, while giving the
+       collector wallet view the main hubs (home/film/collections) the user asked for.
+     The :not() selectors + later collector-specific rules + !important where needed ensure the right things
+     are visible and the cascade order is clear. */
   .film-theatre-page .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-film),
   body[data-base] .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-wallet),
   .film-hub-page .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-film) {
     display: none !important;
   }
 
-  /* Wallet collector section: remove the extra (wallet) button from top nav — the collector pride header
-     + escape bar already provide a strong, branded "My Collection" experience with actions. Home remains as the
-     universal escape hatch. This is the "remove 1 or two" for the collector view specifically. */
-  body.has-collector-view .header-nav .nav-btn:not(.nav-btn-home) {
+  /* Wallet collector view on mobile: show Home + Film + Collections (as requested).
+     Hide the more peripheral ones (wallet link itself is redundant here because the big pride header
+     with "YOUR COLLECTION", the ENS name, pieces count, and the action buttons already own that context).
+     This is the balanced "add film and collections too" while still removing the extras. */
+  body.has-collector-view .header-nav .nav-btn-home,
+  body.has-collector-view .header-nav .nav-btn-film,
+  body.has-collector-view .header-nav .nav-btn-collections {
+    display: inline-flex !important;
+  }
+  body.has-collector-view .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-film):not(.nav-btn-collections) {
     display: none !important;
   }
 
