@@ -29,12 +29,12 @@ jobs:
     steps:
       # Skip LFS: fetch_gallery_data.py only writes JSON; images rarely change and are
       # not needed here. Use lfs: true only in deploy/build jobs that serve web/assets/.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           lfs: false
           fetch-depth: 0
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
           cache: pip
