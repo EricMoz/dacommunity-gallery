@@ -3810,7 +3810,7 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
 
 .film-theatre-screen {
   text-align: center;
-  max-width: 900px;
+  max-width: 1080px;  /* allow slightly bigger movie box in lights-up (the "dark mode" view with UI visible) on PC — more width room to grow than lights-down */
   margin: 0 auto;
   flex: 1;
   min-height: 0;
@@ -3855,7 +3855,7 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
 
 .film-theatre-stage {
   position: relative;
-  max-width: 900px;
+  max-width: 1080px;  /* allow slightly bigger movie box in lights-up on PC (room to grow with more width) */
   margin: 0 auto;
   z-index: 4;
   flex: 1;
@@ -3926,7 +3926,7 @@ body:not(.film-theatre-lights-down) .film-theatre-stage {
   margin-left: auto;
   margin-right: auto;
   aspect-ratio: 16 / 9;
-  max-width: 900px;
+  max-width: 1080px;  /* allow slightly bigger movie box in lights-up (dark mode with surrounding UI) on PC */
   /* Lights-on: let the JS (syncPlayerSize) be the primary driver of exact outer height
      so the gold border always has enough room for the full YouTube embed chrome
      (top title area + bottom progress bar + controls + logo). ... */
@@ -3945,6 +3945,15 @@ body:not(.film-theatre-lights-down) .film-theatre-stage {
   transition: border-color 0.4s ease, box-shadow 0.4s ease;
   /* Extra guarantee the framed video is centered in its mount even after JS sets explicit px width/height. */
   display: block;
+
+  /* Make the gold border "dynamic with it and fits around" the video:
+     box-sizing:border-box includes the border in the JS-set size (total footprint).
+     4px inner padding (black) creates breathing room on left + right so the actual
+     YouTube video content isn't tight against or "cut off" by the border line in
+     either lights-up or lights-down. The border now frames the video nicely with
+     a small dynamic matte. */
+  box-sizing: border-box;
+  padding: 4px;
 }
 
 /* Dynamic height handling for lights-on on laptop / shorter viewports.
@@ -3995,9 +4004,9 @@ body:not(.film-theatre-lights-down) .film-theatre-stage {
 
 .film-theatre-player iframe {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  inset: 4px;  /* match the inner padding so the video has breathing room from the gold border on all sides (left/right especially) */
+  width: auto;
+  height: auto;
   border: 0;
 }
 
@@ -4193,7 +4202,7 @@ body.film-theatre-awaiting-lights .film-theatre-footline {
 .film-theatre-lights-down .film-theatre-player {
   /* Lights-down: size tuned for good immersion while keeping gold frame around full YT card
      (video + chrome) without cutoff or misalignment. 82vw + calc provides balanced size. */
-  max-width: 82vw;
+  max-width: 80vw;  /* slightly tighter than before to guarantee more side letterbox room so the border + video never gets cut on sides even on wide screens or during centering */
   max-height: calc(100dvh - 6rem);
   width: auto;
   height: auto;
