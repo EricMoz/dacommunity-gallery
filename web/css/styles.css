@@ -3882,6 +3882,17 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
   container-type: size;
 }
 
+/* Lights-on (default) fix: container-type:size on the mount was causing right-side
+   cutoff of the YouTube player (border + embed chrome). Override only here; lights-down
+   keeps the base declaration (harmless, as its player uses explicit vw/dvh sizing). */
+body:not(.film-theatre-lights-down) .film-theatre-player-mount {
+  container-type: none;
+  max-width: 100%;
+  box-sizing: border-box;
+  /* tiny safe inset so full player (incl. 3px border + shadow) is never clipped on right */
+  max-width: calc(100% - 4px);
+}
+
 .film-theatre-player {
   position: relative;
   margin: 0 auto;
