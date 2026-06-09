@@ -7438,21 +7438,21 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
 
   /* Audit override: when in collector mobile view, force the tight premium gap between name section and action buttons.
-     This neutralizes the legacy large gap from this mobile block. */
+     This neutralizes the legacy large gap from this mobile block. Updated with refined breathing per mobile collector task. */
   body.has-collector-view .collector-pride-header {
-    gap: var(--collector-header-gap, 0.02rem) !important;
-    margin-bottom: var(--collector-header-mb, 0.02rem) !important;
+    gap: var(--collector-header-gap, 0.28rem) !important;
+    margin-bottom: var(--collector-header-mb, 0.1rem) !important;
   }
   body.has-collector-view .collector-pride-actions {
     flex-direction: row !important;
-    gap: var(--collector-header-gap, 0.04rem) !important;
+    gap: var(--collector-header-gap, 0.28rem) !important;
   }
   body.has-collector-view .collector-share-hero,
   body.has-collector-view .collector-action-ghost {
     width: auto !important;
-    min-height: var(--collector-btn-min-h, 26px) !important;
-    font-size: var(--collector-btn-fs, 0.48rem) !important;
-    padding: var(--collector-btn-pad, 0.04rem 0.12rem) !important;
+    min-height: var(--collector-btn-min-h, 34px) !important;
+    font-size: var(--collector-btn-fs, 0.66rem) !important;
+    padding: var(--collector-btn-pad, 0.16rem 0.42rem) !important;
   }
   body.has-collector-view #app {
     padding-top: 0.1rem;
@@ -7460,8 +7460,8 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
   body.has-collector-view .gallery-focus-zone,
   body.has-collector-view #browse-controls.is-portfolio-browse {
-    padding-top: 0.4rem;
-    padding-bottom: 0.5rem;
+    padding-top: 0.32rem;
+    padding-bottom: 0.4rem;
   }
 
   .browse-controls {
@@ -7680,8 +7680,9 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
 
   body.has-collector-view .gallery-list.holdings-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.7rem;
+    /* Neutralized prior 2-col (which could feel too sparse or inconsistent with 4-5 target); later collector-specific mobile rules (in @media max-768 collector blocks) provide the 80-92px auto-fill for comfortable 4-5 tiles/row on portrait. This keeps cascade predictable. */
+    grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+    gap: 0.4rem;
   }
 
   body.has-collector-view .holding-card--cinema .holding-card-title {
@@ -7709,11 +7710,11 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch;
     white-space: nowrap !important;
-    gap: 0.04rem 0.2rem !important;
+    gap: 0.15rem 0.35rem !important;
     margin: 0 !important;
-    margin-bottom: 0.02rem !important;
+    margin-bottom: 0.1rem !important;
     align-items: center !important;
-    padding: 0 !important;
+    padding: 0.1rem 0 !important;
   }
 
   body.has-collector-view .collector-pride-identity {
@@ -7728,21 +7729,21 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .collector-pride-meta {
     margin: 0 !important;
     padding: 0 !important;
-    gap: 0.04rem 0.12rem !important;
+    gap: 0.1rem 0.2rem !important;
   }
 
   body.has-collector-view .collector-pride-actions {
     flex-wrap: nowrap !important;
-    gap: 0.04rem !important;
+    gap: 0.1rem !important;
     flex-shrink: 0;
   }
 
   body.has-collector-view .collector-share-hero,
   body.has-collector-view .collector-action-ghost {
     width: auto !important;
-    min-height: 26px !important;
-    font-size: 0.62rem !important;
-    padding: 0.06rem 0.32rem !important;
+    min-height: 32px !important;
+    font-size: 0.68rem !important;
+    padding: 0.1rem 0.4rem !important;
     line-height: 1.0 !important;
   }
 
@@ -8025,17 +8026,18 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .collector-escape-bar {
     /* Sticky below the site-header (not top:0) so it doesn't fight/overlap the sticky nav.
        top: var(--site-header-h) makes the collector context bar stack cleanly below the global header.
-       This, plus the #app padding-top fix above, eliminates the dark vertical gap on small widths. */
+       This, plus the #app padding-top fix above, eliminates the dark vertical gap on small widths.
+       Increased vertical padding for breathing room / premium spacing matching rest of site (dark theme kept). */
     position: sticky;
     top: var(--site-header-h);
     left: 0;
     right: 0;
     z-index: 95; /* below site-header z-index ~100 to avoid fighting */
-    padding: 0.1rem 0.3rem 0.06rem; /* reduced bottom padding so the buttons row sits closer to the bottom of the bar with less internal dark space */
+    padding: 0.22rem 0.45rem 0.15rem;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.55);
     background: linear-gradient(180deg, #1c1c1c 0%, #111 100%);
     /* small safe-area padding on the bar itself so it sits comfortably below status bar without overlapping site-header */
-    padding-top: calc(env(safe-area-inset-top, 0px) + 0.08rem);
+    padding-top: calc(env(safe-area-inset-top, 0px) + 0.12rem);
   }
 
   body.has-collector-view .collector-theater-frame {
@@ -8057,12 +8059,15 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
      are always tightly aligned with minimal gap, in a single row for buttons, on all small widths.
   */
   body.has-collector-view {
-    --collector-header-gap: 0;
-    --collector-header-mb: 0;
-    --collector-btn-min-h: 38px;
-    --collector-btn-fs: 0.65rem;
-    --collector-btn-pad: 0.1rem 0.25rem;
-    --collector-bar-pad-y: 0.06rem;
+    /* Refined mobile collector header spacing for breathing room + premium feel (consistent with site aesthetic).
+       Row + nowrap + overflow kept to avoid the prior column-wrap dark-gap bug. Slightly larger gaps/pads/fonts
+       than ultra-cramped prior, still compact. Scoped to collector view only. */
+    --collector-header-gap: 0.35rem;
+    --collector-header-mb: 0.15rem;
+    --collector-btn-min-h: 36px;
+    --collector-btn-fs: 0.70rem;
+    --collector-btn-pad: 0.2rem 0.5rem;
+    --collector-bar-pad-y: 0.22rem;
   }
 
   /* Strong lock using vars + !important to guarantee tight name-to-buttons, row layout, small buttons.
@@ -8122,13 +8127,13 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 
   /* Collector escape name/stats even tighter (supporting) */
   body.has-collector-view .collector-escape-name {
-    font-size: clamp(0.82rem, 3.6vw, 0.95rem);
-    line-height: 1.05;
+    font-size: clamp(0.95rem, 3.6vw, 1.1rem);
+    line-height: 1.1;
   }
   body.has-collector-view .collector-pride-meta,
   body.has-collector-view .collector-escape-stats {
-    gap: 0.06rem;
-    font-size: 0.52rem;
+    gap: 0.12rem;
+    font-size: 0.58rem;
   }
 
   /* Hide large profile card (was causing extra vertical + duplication in theater mode) */
@@ -8165,10 +8170,12 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     min-height: 22px;
   }
 
-  /* Tighten the browse controls + gallery zone immediately under the slim bar */
+  /* Better breathing in the top collector controls area + larger more comfortable NFT grid (max ~4-5 tiles/row on portrait phones).
+     Larger minmax yields visually appealing cards vs prior cramped 70-82px. Increased gaps/paddings for premium spacious feel
+     while staying dark/premium and only affecting collector view on mobile. Desktop + light archive untouched. */
   body.has-collector-view #browse-controls.is-portfolio-browse {
-    padding: 0.3rem 0.4rem 0.35rem;
-    gap: 0.2rem;
+    padding: 0.45rem 0.5rem 0.5rem;
+    gap: 0.35rem;
   }
   body.has-collector-view #browse-controls.is-portfolio-browse .browse-advanced-toggle {
     min-height: 32px;
@@ -8185,30 +8192,34 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
 
   body.has-collector-view .gallery-focus-zone.is-collector-grid {
-    padding: 0.25rem 0.35rem 0.35rem;
+    padding: 0.4rem 0.45rem 0.5rem;
   }
   body.has-collector-view .gallery-list.holdings-grid {
-    grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); /* ensure compact cards kick in as soon as we enter mobile collector widths */
-    gap: 0.15rem;
+    grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+    gap: 0.45rem;
   }
   body.has-collector-view .holding-card--cinema .holding-card-body {
-    padding: 0.22rem 0.28rem 0.28rem;
+    padding: 0.42rem 0.5rem 0.5rem;
+  }
+  body.has-collector-view .holding-card--cinema .holding-card-title {
+    font-size: 0.88rem;
   }
 
   /* Clear nav (only visible for active filters) is minimal */
   body.has-collector-view .collector-escape-nav {
-    padding-top: 0.04rem;
+    padding-top: 0.1rem;
     border-top: none;
-    gap: 0.1rem;
+    gap: 0.2rem;
   }
 }
 
 /* Landscape on phones/tablets (<=768 wide): limited height, more horizontal room.
-   Row layout for pride header (name + actions side-by-side), ultra compact buttons + denser grid. */
+   Row layout for pride header (name + actions side-by-side), improved comfortable sizes + spacing per requirements.
+   Larger tiles (still ~4-5+ /row thanks to width), refined header breathing, dark premium. */
 @media (max-width: 768px) and (orientation: landscape) {
   body.has-collector-view .collector-escape-bar {
-    padding: 0.08rem 0.25rem 0.06rem;
-    padding-top: calc(env(safe-area-inset-top, 0px) + 0.08rem);
+    padding: 0.16rem 0.35rem 0.12rem;
+    padding-top: calc(env(safe-area-inset-top, 0px) + 0.1rem);
   }
   body.has-collector-view .collector-theater-frame {
     padding-top: 0.1rem;
@@ -8216,8 +8227,8 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .collector-pride-header {
     flex-direction: row;
     align-items: center;
-    gap: 0.12rem;
-    margin-bottom: 0.02rem;
+    gap: 0.25rem;
+    margin-bottom: 0.08rem;
   }
   body.has-collector-view .collector-pride-identity {
     flex: 1 1 12rem;
@@ -8229,52 +8240,56 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
   body.has-collector-view .collector-pride-actions button,
   body.has-collector-view .collector-escape-nav .collector-exit-pill {
-    min-height: 26px;
-    font-size: 0.55rem !important;
-    padding: 0.06rem 0.18rem;
+    min-height: 32px;
+    font-size: 0.62rem !important;
+    padding: 0.12rem 0.4rem;
   }
   body.has-collector-view .collector-escape-name {
-    font-size: clamp(0.82rem, 3.2vw, 0.96rem);
-    line-height: 1.05;
+    font-size: clamp(0.9rem, 3.2vw, 1.02rem);
+    line-height: 1.08;
   }
   body.has-collector-view .gallery-focus-zone.is-collector-grid,
   body.has-collector-view #browse-controls.is-portfolio-browse {
-    margin-top: 0.06rem;
-    padding-top: 0.06rem;
+    margin-top: 0.1rem;
+    padding-top: 0.12rem;
   }
   body.has-collector-view .gallery-list.holdings-grid {
-    grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
-    gap: 0.12rem;
+    grid-template-columns: repeat(auto-fill, minmax(86px, 1fr));
+    gap: 0.36rem;
   }
   body.has-collector-view .holding-card--cinema .holding-card-body {
-    padding: 0.12rem 0.16rem 0.18rem;
+    padding: 0.36rem 0.42rem 0.42rem;
+  }
+  body.has-collector-view .holding-card--cinema .holding-card-title {
+    font-size: 0.82rem;
   }
 }
 
-/* <480px portrait (true phones, iPhone SE etc): even denser, smallest usable sizes.
-   Prioritize vertical economy while premium (no cramping, good contrast, 26-28px taps). */
+/* <480px portrait (true phones, iPhone SE etc): refined comfortable sizes.
+   Larger tiles (target 4-5 max per row), better header vertical/horiz spacing for premium non-crunched feel.
+   Row+scroll preserved for stability. Dark theme. Light adjustments only for collector mobile. */
 @media (max-width: 480px) {
   body.has-collector-view {
-    /* Tighter values for this breakpoint - overrides the 768px vars for even smaller screens */
-    --collector-header-gap: 0;
-    --collector-header-mb: 0;
-    --collector-btn-min-h: 38px;
-    --collector-btn-fs: 0.65rem;
-    --collector-btn-pad: 0.1rem 0.25rem;
+    /* Refined (less cramped) values for this breakpoint - overrides the 768px vars. */
+    --collector-header-gap: 0.28rem;
+    --collector-header-mb: 0.1rem;
+    --collector-btn-min-h: 34px;
+    --collector-btn-fs: 0.66rem;
+    --collector-btn-pad: 0.16rem 0.42rem;
   }
 
   body.has-collector-view .collector-escape-bar {
     /* Sticky below the site-header (not top:0) so it doesn't fight/overlap the sticky nav.
        top: var(--site-header-h) makes the collector context bar stack cleanly below the global header.
-       z-index lowered to sit below header. */
+       z-index lowered to sit below header. Increased padding for breathing. */
     position: sticky;
     top: var(--site-header-h);
-    padding: 0.06rem 0.15rem 0.03rem;
+    padding: 0.18rem 0.32rem 0.1rem;
     z-index: 95;
-    padding-top: calc(env(safe-area-inset-top, 0px) + 0.04rem);
+    padding-top: calc(env(safe-area-inset-top, 0px) + 0.08rem);
   }
   body.has-collector-view .collector-theater-frame {
-    padding-top: 0.06rem; /* sticky bar is in-flow; content follows immediately with minimal gap for premium tight feel */
+    padding-top: 0.08rem; /* sticky bar is in-flow; content follows immediately with minimal gap for premium tight feel */
   }
 
   /* Ensure #app padding-top is zeroed in this breakpoint too (extends the 768px collector fix for no dark gap). */
@@ -8283,8 +8298,8 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding-bottom: 0.75rem;
   }
   body.has-collector-view .collector-escape-name {
-    font-size: clamp(0.76rem, 3.2vw, 0.88rem);
-    line-height: 1.0;
+    font-size: clamp(0.88rem, 3.2vw, 1.0rem);
+    line-height: 1.08;
   }
 
   /* Zero internal spacing in the name section (kicker, title row, meta) to pull buttons up tight with no dark gap on small mobile */
@@ -8303,11 +8318,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 
   /* Re-assert the lock with the new var values for this breakpoint */
   body.has-collector-view .collector-pride-header {
-    /* Maintain the good compact look from wider narrow (Image #1: name in dark rounded box, buttons in row on the right inside the box) even on very small widths.
-       Use row for .collector-pride-header to keep name and buttons side-by-side in the same visual unit, avoiding the column stacking transition that causes the huge gap when width shrinks.
-       On ultra narrow (when the row no longer fits), the row content will naturally overflow and we enable horizontal scroll on the escape-bar so buttons don't drop down creating gap (like avoiding a non-existent box).
-       Buttons sized to 38px / 0.65rem with extra pad for Share/Copy to match Back's visual size/weight, not super small.
-       This is the final maintainable approach for premium condensed mobile experience: good look preserved, scroll instead of bad gap. */
+    /* Maintain the good compact look ... (row + h-scroll to prevent wrap-induced gap). Slightly larger gaps/pads now for comfort. */
     flex-direction: row !important;
     align-items: center;
     gap: var(--collector-header-gap) !important;
@@ -8333,36 +8344,39 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding: var(--collector-btn-pad) !important;
   }
   body.has-collector-view .collector-pride-actions .collector-share-hero {
-    padding: 0.05rem 0.18rem;
+    padding: 0.1rem 0.3rem;
   }
   body.has-collector-view .collector-pride-meta,
   body.has-collector-view .collector-escape-stats {
-    font-size: 0.52rem;
-    gap: 0.04rem;
+    font-size: 0.56rem;
+    gap: 0.08rem;
   }
   /* make the 60 PIECES pill and rank badge tighter */
   body.has-collector-view .collector-escape-piece-badge {
-    padding: 0.06rem 0.25rem;
-    font-size: 0.48rem;
+    padding: 0.08rem 0.28rem;
+    font-size: 0.52rem;
   }
   body.has-collector-view .collector-escape-rank-badge {
-    padding: 0.05rem 0.2rem;
-    font-size: 0.48rem;
+    padding: 0.06rem 0.22rem;
+    font-size: 0.52rem;
   }
   body.has-collector-view #browse-controls.is-portfolio-browse {
-    padding: 0.22rem 0.3rem 0.25rem;
+    padding: 0.35rem 0.4rem 0.38rem;
   }
   body.has-collector-view .gallery-focus-zone.is-collector-grid {
-    padding: 0.18rem 0.25rem 0.22rem;
+    padding: 0.32rem 0.38rem 0.4rem;
   }
   body.has-collector-view .gallery-list.holdings-grid {
-    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); /* lock compact card size so it doesn't revert to large 152px base on narrow widths */
-    gap: 0.12rem;
+    grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+    gap: 0.38rem;
   }
   body.has-collector-view .holding-card--cinema .holding-card-body {
-    padding: 0.14rem 0.2rem 0.2rem;
+    padding: 0.35rem 0.4rem 0.4rem;
   }
-  /* Site header ultra compact on smallest collector mobile */
+  body.has-collector-view .holding-card--cinema .holding-card-title {
+    font-size: 0.82rem;
+  }
+  /* Site header ultra compact on smallest collector mobile (kept minimal change) */
   body.has-collector-view .site-header {
     padding: 0.06rem 0.22rem;
   }
@@ -8383,26 +8397,25 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 
 /* Very narrow / real iPhone-sized and smaller (lock the compact premium style hard once we cross this threshold).
    Prevents "reverting to large cards + big dark void above buttons" when the viewport gets smaller than the 480px rules expect.
-   Also gives extra top clearance so the collector name in the escape-bar is visible at the top and not covered by the site header or content. */
+   Also gives extra top clearance so the collector name in the escape-bar is visible at the top and not covered by the site header or content.
+   Refined: still targets 4-5 tiles max, with improved header spacing vs prior 70px/0.2rem cramp. */
 @media (max-width: 400px) {
   body.has-collector-view {
-    /* Ultra tight for smallest phones - the final lock. 
-       Gap between name section (identity) and buttons (actions) is forced to near-zero.
-       Buttons sized larger (38px / 0.65rem) to match Back, not super small. Gap 0 and internal zero to eliminate space. */
-    --collector-header-gap: 0;
-    --collector-header-mb: 0;
-    --collector-btn-min-h: 38px;
-    --collector-btn-fs: 0.65rem;
-    --collector-btn-pad: 0.1rem 0.25rem;
+    /* Refined for smallest phones (still compact but with breathing + usable cards). */
+    --collector-header-gap: 0.22rem;
+    --collector-header-mb: 0.06rem;
+    --collector-btn-min-h: 34px;
+    --collector-btn-fs: 0.62rem;
+    --collector-btn-pad: 0.12rem 0.32rem;
   }
 
   body.has-collector-view .collector-escape-bar {
-    padding: 0.04rem 0.12rem 0.02rem;
+    padding: 0.14rem 0.22rem 0.08rem;
     z-index: 210;
-    padding-top: calc(env(safe-area-inset-top, 0px) + 0.02rem);
+    padding-top: calc(env(safe-area-inset-top, 0px) + 0.06rem);
   }
   body.has-collector-view .collector-theater-frame {
-    padding-top: 0.04rem;
+    padding-top: 0.06rem;
   }
 
   /* Ensure #app padding-top is zeroed in this breakpoint too (extends the 768px collector fix for no dark gap). */
@@ -8411,13 +8424,9 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding-bottom: 0.75rem;
   }
 
-  /* Re-assert lock with ultra tight vars - gap 0 to eliminate vertical dark space between name and buttons */
+  /* Re-assert lock with refined vars - small but non-zero gap + row/h-scroll to eliminate bad vertical dark space */
   body.has-collector-view .collector-pride-header {
-    /* Maintain the good compact look from wider narrow (Image #1: name in dark rounded box, buttons in row on the right inside the box) even on very small widths.
-       Use row for .collector-pride-header to keep name and buttons side-by-side in the same visual unit, avoiding the column stacking transition that causes the huge gap when width shrinks.
-       On ultra narrow (when the row no longer fits), the row content will naturally overflow and we enable horizontal scroll on the escape-bar so buttons don't drop down creating gap (like avoiding a non-existent box).
-       Buttons sized to 38px / 0.65rem with extra pad for Share/Copy to match Back's visual size/weight, not super small.
-       This is the final maintainable approach for premium condensed mobile experience: good look preserved, scroll instead of bad gap. */
+    /* Row + h-scroll approach preserved for stability on ultra-narrow. Slightly increased spacing for the requested premium non-crunched header. */
     flex-direction: row !important;
     align-items: center;
     gap: var(--collector-header-gap) !important;
@@ -8442,11 +8451,11 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     min-height: auto;
   }
   body.has-collector-view .collector-escape-name {
-    font-size: clamp(0.78rem, 3.2vw, 0.9rem);
-    line-height: 1.0;
+    font-size: clamp(0.82rem, 3.2vw, 0.94rem);
+    line-height: 1.06;
   }
 
-  /* Buttons sized larger to match Back button (32px+), with !important for all three to ensure consistency */
+  /* Buttons sized for tap + match weight, with !important for all three to ensure consistency */
   body.has-collector-view .collector-pride-actions button,
   body.has-collector-view .collector-escape-nav .collector-exit-pill,
   body.has-collector-view .collector-theater-frame button {
@@ -8467,42 +8476,45 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
   body.has-collector-view .collector-pride-actions .collector-share-hero,
   body.has-collector-view .collector-pride-actions .collector-action-ghost {
-    padding: 0.1rem 0.35rem !important; /* extra horizontal to make "Share" and "Copy" pills visually larger and match the weight of the "← Back" button on small screens */
+    padding: 0.08rem 0.28rem !important;
   }
   body.has-collector-view .collector-pride-meta,
   body.has-collector-view .collector-escape-stats {
-    font-size: 0.52rem;
-    gap: 0.04rem;
-  }
-  body.has-collector-view .collector-escape-piece-badge {
-    padding: 0.06rem 0.25rem;
-    font-size: 0.48rem;
-  }
-  body.has-collector-view .collector-escape-rank-badge {
-    padding: 0.05rem 0.2rem;
-    font-size: 0.48rem;
-  }
-  body.has-collector-view .gallery-list.holdings-grid {
-    grid-template-columns: repeat(auto-fill, minmax(55px, 1fr));
+    font-size: 0.54rem;
     gap: 0.06rem;
   }
+  body.has-collector-view .collector-escape-piece-badge {
+    padding: 0.08rem 0.26rem;
+    font-size: 0.5rem;
+  }
+  body.has-collector-view .collector-escape-rank-badge {
+    padding: 0.06rem 0.2rem;
+    font-size: 0.5rem;
+  }
+  body.has-collector-view .gallery-list.holdings-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 0.3rem;
+  }
   body.has-collector-view .holding-card--cinema .holding-card-body {
-    padding: 0.04rem 0.05rem 0.06rem;
+    padding: 0.3rem 0.36rem 0.36rem;
+  }
+  body.has-collector-view .holding-card--cinema .holding-card-title {
+    font-size: 0.78rem;
   }
   body.has-collector-view .site-header {
-    padding: 0.02rem 0.1rem;
+    padding: 0.04rem 0.14rem;
   }
   body.has-collector-view .brand-mascot {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
   }
   body.has-collector-view .brand-tag {
-    font-size: 0.42rem;
-    max-width: 1.8rem;
+    font-size: 0.46rem;
+    max-width: 2.0rem;
   }
   body.has-collector-view .header-nav .nav-btn {
-    font-size: 0.46rem;
-    padding: 0.02rem 0.1rem;
+    font-size: 0.48rem;
+    padding: 0.03rem 0.12rem;
     min-height: 18px;
   }
 }
