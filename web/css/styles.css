@@ -3898,8 +3898,9 @@ body:not(.film-theatre-lights-down) .film-theatre-player-mount {
   container-type: none;
   max-width: 100%;
   box-sizing: border-box;
-  /* tiny safe inset — do not make this larger or add padding here (that made the perceived size/centering worse) */
-  max-width: calc(100% - 6px);
+  /* full width so the flex centering perfectly centers the gold frame + video with no deduction bias.
+     The stage padding (1.25rem) provides the surround space around the frame on PC without clipping the border.
+     This keeps the cutoff fix and the breathing room while making the player box dead-center (as it used to be). */
 
   /* Reinforce perfect horizontal + vertical centering of the gold frame inside the mount for lights-on.
      Combined with the player's own margin auto this keeps the video dead-center even after multiple
@@ -7685,12 +7686,13 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
      The :not() selectors + later collector-specific rules + !important where needed ensure the right things
      are visible and the cascade order is clear. */
   .film-theatre-page .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-film),
-  body[data-base] .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-wallet),
+  body[data-base]:not(.has-collector-view) .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-wallet),
   .film-hub-page .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-film) {
     display: none !important;
   }
 
   /* Wallet collector view on mobile: show Home + Film + Collections (as requested).
+     The data-base rule above now excludes has-collector-view so it doesn't fight.
      Hide the more peripheral ones (wallet link itself is redundant here because the big pride header
      with "YOUR COLLECTION", the ENS name, pieces count, and the action buttons already own that context).
      This is the balanced "add film and collections too" while still removing the extras. */
