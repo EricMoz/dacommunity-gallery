@@ -7437,8 +7437,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     line-height: 1.1;
   }
 
-  /* Audit override: when in collector mobile view, force the tight premium gap between name section and action buttons.
-     This neutralizes the legacy large gap from this mobile block. Updated with refined breathing per mobile collector task. */
+  /* Audit fallback for collector mobile (640px and below): small breathing in name banner, normal header expectation. */
   body.has-collector-view .collector-pride-header {
     gap: var(--collector-header-gap, 0.28rem) !important;
     margin-bottom: var(--collector-header-mb, 0.1rem) !important;
@@ -7454,14 +7453,23 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     font-size: var(--collector-btn-fs, 0.66rem) !important;
     padding: var(--collector-btn-pad, 0.16rem 0.42rem) !important;
   }
+
+  /* Name banner fallback breathing */
+  body.has-collector-view .collector-escape-kicker {
+    margin: 0 0 0.08rem !important;
+  }
+  body.has-collector-view .collector-pride-title-row {
+    margin-bottom: 0.04rem !important;
+  }
+
   body.has-collector-view #app {
     padding-top: 0.1rem;
     padding-bottom: 0.75rem;
   }
   body.has-collector-view .gallery-focus-zone,
   body.has-collector-view #browse-controls.is-portfolio-browse {
-    padding-top: 0.32rem;
-    padding-bottom: 0.4rem;
+    padding-top: 0.28rem;
+    padding-bottom: 0.35rem;
   }
 
   .browse-controls {
@@ -8142,57 +8150,54 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     display: none !important;
   }
 
-  /* Site-header in collector mobile: compact to match spirit of light mobile header (no truncation, less tall).
-     Scoped only — light archive view unchanged. */
-  body.has-collector-view .site-header {
-    padding-top: env(safe-area-inset-top, 0);
-    padding-bottom: 0.08rem;
-    padding-left: 0.3rem;
-    padding-right: 0.3rem;
+  /* Site-header: do NOT apply extra compaction in collector mobile.
+     Let the normal mobile header rules (from general max-768/640 media) apply so the top nav (logo + links + "my dacats" button)
+     matches the style/spacing on film, home, collections, etc. pages. Collector-specific nav hiding (Home + current) is kept elsewhere. */
+
+  /* Name banner breathing: a little more room between YOUR COLLECTION kicker, the ENS/name + rank line, and the pieces/stats count.
+     Small positive margins (instead of complete zero) so the prominent name banner doesn't feel tight, while keeping overall bar compact.
+     Paired with space savers in the search/filter zone below to preserve room for the grid. */
+  body.has-collector-view .collector-escape-kicker {
+    margin: 0 0 0.1rem !important;
+    padding: 0 !important;
   }
-  body.has-collector-view .brand-mascot {
-    width: 26px;
-    height: 26px;
+  body.has-collector-view .collector-pride-title-row {
+    margin: 0 0 0.06rem !important;
+    padding: 0 !important;
   }
-  body.has-collector-view .brand-tag {
-    font-size: 0.53rem;
-    max-width: 3.2rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  body.has-collector-view .header-inner .brand {
-    min-width: 0;
-  }
-  body.has-collector-view .header-nav .nav-btn {
-    font-size: 0.52rem;
-    padding: 0.06rem 0.22rem;
-    min-height: 22px;
+  body.has-collector-view .collector-pride-meta {
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   /* Better breathing in the top collector controls area + larger more comfortable NFT grid (max ~4-5 tiles/row on portrait phones).
-     Larger minmax yields visually appealing cards vs prior cramped 70-82px. Increased gaps/paddings for premium spacious feel
-     while staying dark/premium and only affecting collector view on mobile. Desktop + light archive untouched. */
+     Trimmed verticals slightly here (ribbon + controls padding) as space saver so the added name banner room + normal top header don't steal from the collection grid. */
   body.has-collector-view #browse-controls.is-portfolio-browse {
-    padding: 0.45rem 0.5rem 0.5rem;
-    gap: 0.35rem;
+    padding: 0.32rem 0.45rem 0.4rem;
+    gap: 0.25rem;
   }
   body.has-collector-view #browse-controls.is-portfolio-browse .browse-advanced-toggle {
-    min-height: 32px;
-    font-size: 0.62rem;
-    margin: 0.05rem 0 0;
-    padding: 0.2rem 0.5rem;
+    min-height: 30px;
+    font-size: 0.60rem;
+    margin: 0.02rem 0 0.08rem;
+    padding: 0.18rem 0.45rem;
   }
   body.has-collector-view #browse-controls.is-portfolio-browse .browse-advanced .browse-rows {
-    margin-top: 0.12rem;
+    margin-top: 0.08rem;
   }
   body.has-collector-view #browse-controls.is-portfolio-browse .browse-foot {
-    margin-top: 0.15rem;
-    padding-top: 0.12rem;
+    margin-top: 0.08rem;
+    padding-top: 0.06rem;
+  }
+
+  /* Space saver: slightly tighter ribbon + search/filter zone top so the (normal) top header + a bit more name banner room don't reduce grid real estate too much. */
+  body.has-collector-view .collector-browse-ribbon {
+    margin: 0 0 0.35rem !important;
+    padding-bottom: 0.3rem !important;
   }
 
   body.has-collector-view .gallery-focus-zone.is-collector-grid {
-    padding: 0.4rem 0.45rem 0.5rem;
+    padding: 0.32rem 0.4rem 0.42rem;
   }
   body.has-collector-view .gallery-list.holdings-grid {
     grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
@@ -8248,10 +8253,25 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     font-size: clamp(0.9rem, 3.2vw, 1.02rem);
     line-height: 1.08;
   }
+
+  /* Landscape: same small name banner breathing (kicker/title-row/meta) as portrait, no extra site-header shrink. */
+  body.has-collector-view .collector-escape-kicker {
+    margin: 0 0 0.08rem !important;
+    padding: 0 !important;
+  }
+  body.has-collector-view .collector-pride-title-row {
+    margin: 0 0 0.04rem !important;
+    padding: 0 !important;
+  }
+  body.has-collector-view .collector-pride-meta {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
   body.has-collector-view .gallery-focus-zone.is-collector-grid,
   body.has-collector-view #browse-controls.is-portfolio-browse {
-    margin-top: 0.1rem;
-    padding-top: 0.12rem;
+    margin-top: 0.06rem;
+    padding-top: 0.08rem;
   }
   body.has-collector-view .gallery-list.holdings-grid {
     grid-template-columns: repeat(auto-fill, minmax(86px, 1fr));
@@ -8302,13 +8322,19 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     line-height: 1.08;
   }
 
-  /* Zero internal spacing in the name section (kicker, title row, meta) to pull buttons up tight with no dark gap on small mobile */
-  body.has-collector-view .collector-escape-kicker,
-  body.has-collector-view .collector-pride-title-row,
+  /* Name banner: tiny breathing room (kicker / name+rank / pieces line) instead of full zero. Keeps banner prominent without tightness.
+     No site-header ultra-compact — normal mobile header sizes apply for consistency with film/home/etc. */
+  body.has-collector-view .collector-escape-kicker {
+    margin: 0 0 0.08rem !important;
+    padding: 0 !important;
+  }
+  body.has-collector-view .collector-pride-title-row {
+    margin: 0 0 0.05rem !important;
+    padding: 0 !important;
+  }
   body.has-collector-view .collector-pride-meta {
     margin: 0 !important;
     padding: 0 !important;
-    line-height: 1.0;
   }
 
   body.has-collector-view .collector-pride-identity {
@@ -8361,10 +8387,10 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     font-size: 0.52rem;
   }
   body.has-collector-view #browse-controls.is-portfolio-browse {
-    padding: 0.35rem 0.4rem 0.38rem;
+    padding: 0.28rem 0.35rem 0.32rem;
   }
   body.has-collector-view .gallery-focus-zone.is-collector-grid {
-    padding: 0.32rem 0.38rem 0.4rem;
+    padding: 0.26rem 0.32rem 0.34rem;
   }
   body.has-collector-view .gallery-list.holdings-grid {
     grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
@@ -8376,23 +8402,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .holding-card--cinema .holding-card-title {
     font-size: 0.82rem;
   }
-  /* Site header ultra compact on smallest collector mobile (kept minimal change) */
-  body.has-collector-view .site-header {
-    padding: 0.06rem 0.22rem;
-  }
-  body.has-collector-view .brand-mascot {
-    width: 24px;
-    height: 24px;
-  }
-  body.has-collector-view .brand-tag {
-    font-size: 0.55rem !important;
-    max-width: 2.9rem;
-  }
-  body.has-collector-view .header-nav .nav-btn {
-    font-size: 0.55rem !important;
-    padding: 0.04rem 0.16rem;
-    min-height: 20px;
-  }
+  /* Site header: normal mobile (no extra ultra-compact in collector). */
 }
 
 /* Very narrow / real iPhone-sized and smaller (lock the compact premium style hard once we cross this threshold).
@@ -8455,6 +8465,20 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     line-height: 1.06;
   }
 
+  /* Name banner breathing on ultra-narrow (small margins on kicker/title-row/meta). No site-header shrink — use normal mobile header. */
+  body.has-collector-view .collector-escape-kicker {
+    margin: 0 0 0.06rem !important;
+    padding: 0 !important;
+  }
+  body.has-collector-view .collector-pride-title-row {
+    margin: 0 0 0.04rem !important;
+    padding: 0 !important;
+  }
+  body.has-collector-view .collector-pride-meta {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
   /* Buttons sized for tap + match weight, with !important for all three to ensure consistency */
   body.has-collector-view .collector-pride-actions button,
   body.has-collector-view .collector-escape-nav .collector-exit-pill,
@@ -8501,20 +8525,5 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .holding-card--cinema .holding-card-title {
     font-size: 0.78rem;
   }
-  body.has-collector-view .site-header {
-    padding: 0.04rem 0.14rem;
-  }
-  body.has-collector-view .brand-mascot {
-    width: 20px;
-    height: 20px;
-  }
-  body.has-collector-view .brand-tag {
-    font-size: 0.46rem;
-    max-width: 2.0rem;
-  }
-  body.has-collector-view .header-nav .nav-btn {
-    font-size: 0.48rem;
-    padding: 0.03rem 0.12rem;
-    min-height: 18px;
-  }
+  /* Site header: normal mobile sizes (no collector-specific ultra shrink). */
 }
