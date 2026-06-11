@@ -32,6 +32,21 @@ function getDataPrefix() {
   return "";
 }
 
+/** Current build stamp from <meta name="site-build"> (injected by bump_deploy_version.py on deploy).
+ *  Used for strong cache-busting of all dynamic JSON data files so GitHub Pages / browser / SW
+ *  never serve stale gallery_*.json or wallet_index after a data refresh + deploy.
+ */
+function getBuildStamp() {
+  try {
+    var meta = document.querySelector('meta[name="site-build"]');
+    if (meta && meta.getAttribute("content")) {
+      return meta.getAttribute("content");
+    }
+  } catch (e) {}
+  // Fallback (file: protocol or missing meta) — short time-based token so we don't hammer caches in dev.
+  return "dev-" + Math.floor(Date.now() / 1000).toString(36);
+}
+
 let CATALOG_URL = "";
 let FULL_DATA_URL = "";
 let WALLET_URL = "";
@@ -39,10 +54,16 @@ let META_URL = "";
 let galleryMeta = null;
 function initDataUrls() {
   var prefix = getDataPrefix();
-  CATALOG_URL = prefix + "data/gallery_catalog.json";
-  FULL_DATA_URL = prefix + "data/gallery_data.json";
-  WALLET_URL = prefix + "data/wallet_index.json";
-  META_URL = prefix + "data/gallery_meta.json";
+  var stamp = getBuildStamp();
+  // Always append the deploy build stamp. This makes every data fetch URL unique per release
+  // (e.g. /data/gallery_data.json?v=20260610-5), busting GitHub Pages CDN, browser HTTP cache,
+  // and the SW's per-URL cache for the four dynamic JSONs. The stamp is the same one used
+  // for the HTML/CSS/JS ?v= links and the footer "Site build" text.
+  var q = "?v=" + stamp;
+  CATALOG_URL = prefix + "data/gallery_catalog.json" + q;
+  FULL_DATA_URL = prefix + "data/gallery_data.json" + q;
+  WALLET_URL = prefix + "data/wallet_index.json" + q;
+  META_URL = prefix + "data/gallery_meta.json" + q;
 }
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -249,6 +270,10 @@ async function loadGalleryMeta() {
   try {
     galleryMeta = await fetchJson(META_URL, 8000);
     applyGalleryMeta(galleryMeta);
+    // Force the "last updated" / data-freshness banner (and footer) to always reflect the
+    // authoritative data_generated_at from gallery_meta.json (the real pull timestamp),
+    // not a potentially stale generated_at that may have been embedded in the catalog/full JSON.
+    renderDataFreshness();
     updateFooterMaintenance(galleryMeta);
   } catch (e) {
     console.warn("gallery_meta.json not loaded:", e);
