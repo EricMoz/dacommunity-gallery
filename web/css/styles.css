@@ -7761,39 +7761,73 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding: 0.5rem 0.5rem 0.55rem;
   }
 
-  /* Clean mobile collector header layout (replacing old force-row-nowrap which caused truncation/cutoff).
-     On narrow screens: stack identity (name/rank/meta with good spacing) on top, actions below right-aligned and wrap-capable.
-     This prevents Back button cutoff, restores breathing room, while keeping compact premium dark feel.
-     Buttons get safe tap targets and full visibility. */
+  .collector-escape-bar {
+    top: var(--site-header-h);
+    padding: 0.04rem 0.3rem 0.02rem !important;
+  }
+
+  /* Definitive fix for the large vertical dark gap on mobile collector (your inspection finding).
+     The column + 0.7rem gap + 0.6rem margin-bottom on .collector-pride-header (and tall buttons)
+     was creating the empty dark space between the top info bar and the search section.
+     We force row + nowrap + horizontal scroll on narrow screens, zero all excessive verticals,
+     and make buttons tiny but usable. */
   body.has-collector-view .collector-pride-header {
-    flex-direction: column !important;
-    align-items: stretch !important;
-    gap: 0.25rem !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap !important;
+    gap: 0.15rem 0.35rem !important;
+    margin: 0 !important;
     margin-bottom: 0.1rem !important;
-    padding: 0 !important;
-    overflow: visible !important;
-    white-space: normal !important;
+    align-items: center !important;
+    padding: 0.1rem 0 !important;
   }
 
   body.has-collector-view .collector-pride-identity {
-    width: 100% !important;
     min-width: 0;
+    flex-shrink: 0;
     margin: 0 !important;
     padding: 0 !important;
+    max-width: 55% !important;  /* tweak to move the three buttons a little more to the left in mobile state so Back isnt creeping off the side */
+  }
+
+  body.has-collector-view .collector-escape-kicker,
+  body.has-collector-view .collector-pride-title-row,
+  body.has-collector-view .collector-pride-meta {
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0.1rem 0.2rem !important;
   }
 
   body.has-collector-view .collector-pride-actions {
-    width: 100% !important;
-    justify-content: flex-end !important;
-    flex-wrap: wrap !important;
-    gap: 0.25rem !important;
+    flex-wrap: nowrap !important;
+    gap: 0.1rem !important;
     flex-shrink: 0;
   }
 
-  body.has-collector-view .collector-escape-nav {
-    padding-top: 0.1rem !important;
+  body.has-collector-view .collector-share-hero,
+  body.has-collector-view .collector-action-ghost {
+    width: auto !important;
+    min-height: 32px !important;
+    font-size: 0.68rem !important;
+    padding: 0.1rem 0.4rem !important;
+    line-height: 1.0 !important;
+  }
+
+  .collector-escape-nav {
+    flex-direction: row !important;
+    gap: 0.15rem !important;
+    padding-top: 0 !important;
     border-top: none !important;
-    gap: 0.2rem !important;
+    margin-top: 0.04rem !important;
+  }
+
+  .collector-escape-nav .collector-exit-pill {
+    min-height: 24px !important;
+    font-size: 0.58rem !important;
+    padding: 0.04rem 0.3rem !important;
   }
 
   .collector-hub.is-collector-compact {
@@ -8071,7 +8105,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     z-index: 95; /* below site-header z-index ~100 to avoid fighting */
     padding: 0.3rem 0.5rem 0.25rem;
     padding-left: max(0.5rem, env(safe-area-inset-left, 0px));
-    padding-right: max(0.5rem, env(safe-area-inset-right, 0px));
+    padding-right: max(0.8rem, env(safe-area-inset-right, 0px));  /* increased right padding to move the three buttons (Share, Copy, Back) a little more to the left in mobile state, preventing the Back button from creeping off the right side of the screen */
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.55);
     background: linear-gradient(180deg, #1c1c1c 0%, #111 100%);
     /* safe-area padding on the bar itself so it sits comfortably below status bar without overlapping site-header */
@@ -8097,29 +8131,35 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
      are always tightly aligned with minimal gap, in a single row for buttons, on all small widths.
   */
   body.has-collector-view {
-    /* Spacious yet compact mobile collector header. Use column on mobile so name section has breathing room
-       and buttons sit below right-aligned (or wrap), preventing cutoff and truncation. Buttons have safe 40px+ targets.
-       Scoped to collector view. Desktop unchanged. */
-    --collector-header-gap: 0.3rem;
-    --collector-header-mb: 0.15rem;
+    /* More spacious mobile collector header (per UX requirements) while remaining compact.
+       Row + nowrap + overflow-x auto preserved for stability (avoids historical column-wrap dark gap bug).
+       Larger gaps, margins, button targets for better line spacing, visual hierarchy, tap comfort, and no edge cutoff.
+       Scoped only to collector view. */
+    --collector-header-gap: 0.45rem;
+    --collector-header-mb: 0.2rem;
     --collector-btn-min-h: 40px;
     --collector-btn-fs: 0.72rem;
     --collector-btn-pad: 0.25rem 0.55rem;
     --collector-bar-pad-y: 0.3rem;
   }
 
-  /* Mobile collector header: column layout for better space and no overflow issues.
-     Identity full width with restored spacing; actions full width, right aligned, wrap if needed. */
+  /* Strong lock using vars + !important to guarantee tight name-to-buttons, row layout, small buttons.
+     This is the central control for the premium tight header. */
   body.has-collector-view .collector-pride-header {
-    flex-direction: column !important;
-    align-items: stretch !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap !important;
     gap: var(--collector-header-gap) !important;
     margin-bottom: var(--collector-header-mb) !important;
+    justify-content: flex-start !important; /* prevent base space-between from pushing actions to bottom, causing large gap in column layout on mobile */
+    align-items: center !important;
+    padding: 0 !important;
   }
   body.has-collector-view .collector-pride-actions {
-    width: 100% !important;
-    justify-content: flex-end !important;
-    flex-wrap: wrap !important;
+    flex-direction: row !important;
     gap: var(--collector-header-gap) !important;
   }
   body.has-collector-view .collector-share-hero,
@@ -8137,6 +8177,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     min-height: 1.25em;
     visibility: visible;
     margin-bottom: 0;
+    max-width: 55% !important;  /* tweak to move the three buttons (Share/Copy/Back) a little more to the left in mobile so the Back button doesn't creep off the right side of the screen */
   }
   body.has-collector-view .collector-escape-name {
     display: inline-block;
@@ -8149,22 +8190,13 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     line-height: 1.1;
   }
 
-  /* Restore sensible line spacing and breathing in the name banner for premium feel (no more zeroed padding/margins that killed hierarchy).
-     Small positive values for kicker (YOUR COLLECTION), title-row (name + rank), meta (pieces + stats). */
-  body.has-collector-view .collector-escape-kicker {
-    margin: 0 0 0.1rem !important;
-    padding: 0 !important;
-    font-size: 0.65rem !important;
-  }
-  body.has-collector-view .collector-pride-title-row {
-    margin-bottom: 0.08rem !important;
-    padding: 0 !important;
-    gap: 0.5rem !important;
-  }
+  /* Zero internal spacing in name section for all mobile collector to condense the header */
+  body.has-collector-view .collector-escape-kicker,
+  body.has-collector-view .collector-pride-title-row,
   body.has-collector-view .collector-pride-meta {
     margin: 0 !important;
     padding: 0 !important;
-    gap: 0.15rem !important;
+    line-height: 1.0;
   }
 
   body.has-collector-view .collector-theater-frame.is-active {
@@ -8196,21 +8228,13 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
      Let the normal mobile header rules (from general max-768/640 media) apply so the top nav (logo + links + "my dacats" button)
      matches the style/spacing on film, home, collections, etc. pages. Collector-specific nav hiding (Home + current) is kept elsewhere. */
 
-  /* Name banner: improved line spacing + breathing room for premium readable hierarchy (YOUR COLLECTION kicker, ENS+rank, pieces/stats).
-     Larger positive margins + slightly bigger fonts/gaps. Keeps header compact but less dense than before.
-     Kicker gets more bottom space; title-row and meta get better internal rhythm. */
-  body.has-collector-view .collector-escape-kicker {
-    margin: 0 0 0.15rem !important;
-    padding: 0 !important;
-    font-size: 0.65rem !important;
-  }
-  body.has-collector-view .collector-pride-title-row {
-    margin: 0 0 0.1rem !important;
-    padding: 0 !important;
-  }
+  /* Zero internal spacing in name section for all mobile collector to condense the header (reverted to previous state) */
+  body.has-collector-view .collector-escape-kicker,
+  body.has-collector-view .collector-pride-title-row,
   body.has-collector-view .collector-pride-meta {
     margin: 0 !important;
     padding: 0 !important;
+    line-height: 1.0;
   }
 
   /* Better breathing in the top collector controls area + larger more comfortable NFT grid (max ~4-5 tiles/row on portrait phones).
@@ -8268,7 +8292,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .collector-escape-bar {
     padding: 0.25rem 0.4rem 0.2rem;
     padding-left: max(0.4rem, env(safe-area-inset-left, 0px));
-    padding-right: max(0.4rem, env(safe-area-inset-right, 0px));
+    padding-right: max(0.7rem, env(safe-area-inset-right, 0px));  /* increased to move buttons left, prevent Back cutoff */
     padding-top: calc(env(safe-area-inset-top, 0px) + 0.12rem);
   }
   body.has-collector-view .collector-theater-frame {
@@ -8281,14 +8305,13 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     margin-bottom: 0.1rem;
   }
   body.has-collector-view .collector-pride-identity {
-    width: 100%;
+    flex: 1 1 12rem;
     margin-bottom: 0;
+    max-width: 55% !important;  /* tweak to move the three buttons a little more to the left in mobile so the Back button isn't cut off on the right */
   }
   body.has-collector-view .collector-pride-actions {
-    width: 100%;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    gap: 0.25rem;
+    flex: 0 0 auto;
+    max-width: 62%;
   }
   body.has-collector-view .collector-pride-actions button,
   body.has-collector-view .collector-escape-nav .collector-exit-pill {
@@ -8354,7 +8377,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     top: var(--site-header-h);
     padding: 0.25rem 0.4rem 0.18rem;
     padding-left: max(0.4rem, env(safe-area-inset-left, 0px));
-    padding-right: max(0.4rem, env(safe-area-inset-right, 0px));
+    padding-right: max(0.7rem, env(safe-area-inset-right, 0px));  /* increased to move buttons left, prevent Back cutoff */
     z-index: 95;
     padding-top: calc(env(safe-area-inset-top, 0px) + 0.1rem);
   }
@@ -8374,34 +8397,32 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 
   /* Name banner: improved breathing (kicker / name+rank / pieces line). Keeps banner prominent without tightness.
      No site-header ultra-compact — normal mobile header sizes apply for consistency with film/home/etc. */
-  body.has-collector-view .collector-escape-kicker {
-    margin: 0 0 0.12rem !important;
-    padding: 0 !important;
-    font-size: 0.62rem !important;
-  }
-  body.has-collector-view .collector-pride-title-row {
-    margin: 0 0 0.08rem !important;
-    padding: 0 !important;
-  }
+  body.has-collector-view .collector-escape-kicker,
+  body.has-collector-view .collector-pride-title-row,
   body.has-collector-view .collector-pride-meta {
     margin: 0 !important;
     padding: 0 !important;
+    line-height: 1.0;
   }
 
   body.has-collector-view .collector-pride-identity {
     padding-bottom: 0 !important;
     min-height: auto;
+    max-width: 55% !important;  /* tweak to move the three buttons a little more to the left in mobile so the Back button isn't cut off on the right */
   }
 
-  /* 480px: column layout for name + buttons below to avoid truncation. Good spacing restored. */
+  /* Re-assert the lock with the new var values for this breakpoint */
   body.has-collector-view .collector-pride-header {
-    flex-direction: column !important;
-    align-items: stretch !important;
+    /* Maintain the good compact look ... (row + h-scroll to prevent wrap-induced gap). Slightly larger gaps/pads now for comfort. */
+    flex-direction: row !important;
+    align-items: center;
     gap: var(--collector-header-gap) !important;
     margin-bottom: var(--collector-header-mb) !important;
     padding: 0 !important;
-    overflow: visible !important;
-    white-space: normal !important;
+    justify-content: flex-start !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap; /* keep items in row for scroll */
   }
   body.has-collector-view .collector-pride-actions button,
   body.has-collector-view .collector-escape-nav .collector-exit-pill,
@@ -8470,7 +8491,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .collector-escape-bar {
     padding: 0.2rem 0.3rem 0.12rem;
     padding-left: max(0.3rem, env(safe-area-inset-left, 0px));
-    padding-right: max(0.3rem, env(safe-area-inset-right, 0px));
+    padding-right: max(0.6rem, env(safe-area-inset-right, 0px));  /* increased to move buttons left, prevent Back cutoff */
     z-index: 210;
     padding-top: calc(env(safe-area-inset-top, 0px) + 0.08rem);
   }
@@ -8484,45 +8505,45 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding-bottom: 0.75rem;
   }
 
-  /* 400px ultra-narrow: column layout to guarantee no cutoff, with decent spacing for premium feel. */
+  /* Re-assert lock with refined vars - small but non-zero gap + row/h-scroll to eliminate bad vertical dark space */
   body.has-collector-view .collector-pride-header {
-    flex-direction: column !important;
-    align-items: stretch !important;
+    /* Row + h-scroll approach preserved for stability on ultra-narrow. Slightly increased spacing for the requested premium non-crunched header. */
+    flex-direction: row !important;
+    align-items: center;
     gap: var(--collector-header-gap) !important;
     margin-bottom: var(--collector-header-mb) !important;
     padding: 0 !important;
-    overflow: visible !important;
-    white-space: normal !important;
+    justify-content: flex-start !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap; /* keep items in row for scroll */
   }
 
-  /* Reasonable spacing in name section (not super compact zeroed). */
+  /* Make internal elements of the name section super compact */
   body.has-collector-view .collector-escape-kicker,
   body.has-collector-view .collector-pride-title-row,
   body.has-collector-view .collector-pride-meta {
-    line-height: 1.1;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.0;
   }
   body.has-collector-view .collector-pride-identity {
     padding-bottom: 0 !important;
     min-height: auto;
+    max-width: 55% !important;  /* tweak to move the three buttons a little more to the left in mobile so the Back button isn't cut off on the right */
   }
   body.has-collector-view .collector-escape-name {
     font-size: clamp(0.82rem, 3.2vw, 0.94rem);
     line-height: 1.06;
   }
 
-  /* Name banner breathing on ultra-narrow (improved margins on kicker/title-row/meta for hierarchy). No site-header shrink — use normal mobile header. */
-  body.has-collector-view .collector-escape-kicker {
-    margin: 0 0 0.1rem !important;
-    padding: 0 !important;
-    font-size: 0.6rem !important;
-  }
-  body.has-collector-view .collector-pride-title-row {
-    margin: 0 0 0.06rem !important;
-    padding: 0 !important;
-  }
+  /* Zero internal spacing in name section for all mobile collector to condense the header (reverted) */
+  body.has-collector-view .collector-escape-kicker,
+  body.has-collector-view .collector-pride-title-row,
   body.has-collector-view .collector-pride-meta {
     margin: 0 !important;
     padding: 0 !important;
+    line-height: 1.0;
   }
 
   /* Buttons sized for tap + match weight, with !important for all three to ensure consistency */
