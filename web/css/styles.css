@@ -7473,29 +7473,29 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     line-height: 1.1;
   }
 
-  /* Audit fallback for collector mobile (640px and below): small breathing in name banner, normal header expectation. */
+  /* Audit fallback for collector mobile (640px and below): improved breathing in name banner, normal header expectation. */
   body.has-collector-view .collector-pride-header {
-    gap: var(--collector-header-gap, 0.28rem) !important;
-    margin-bottom: var(--collector-header-mb, 0.1rem) !important;
+    gap: var(--collector-header-gap, 0.35rem) !important;
+    margin-bottom: var(--collector-header-mb, 0.15rem) !important;
   }
   body.has-collector-view .collector-pride-actions {
     flex-direction: row !important;
-    gap: var(--collector-header-gap, 0.28rem) !important;
+    gap: var(--collector-header-gap, 0.35rem) !important;
   }
   body.has-collector-view .collector-share-hero,
   body.has-collector-view .collector-action-ghost {
     width: auto !important;
-    min-height: var(--collector-btn-min-h, 34px) !important;
-    font-size: var(--collector-btn-fs, 0.66rem) !important;
-    padding: var(--collector-btn-pad, 0.16rem 0.42rem) !important;
+    min-height: var(--collector-btn-min-h, 38px) !important;
+    font-size: var(--collector-btn-fs, 0.68rem) !important;
+    padding: var(--collector-btn-pad, 0.2rem 0.45rem) !important;
   }
 
-  /* Name banner fallback breathing */
+  /* Name banner fallback breathing (improved) */
   body.has-collector-view .collector-escape-kicker {
-    margin: 0 0 0.08rem !important;
+    margin: 0 0 0.12rem !important;
   }
   body.has-collector-view .collector-pride-title-row {
-    margin-bottom: 0.04rem !important;
+    margin-bottom: 0.08rem !important;
   }
 
   body.has-collector-view #app {
@@ -8095,17 +8095,20 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     /* Sticky below the site-header (not top:0) so it doesn't fight/overlap the sticky nav.
        top: var(--site-header-h) makes the collector context bar stack cleanly below the global header.
        This, plus the #app padding-top fix above, eliminates the dark vertical gap on small widths.
-       Increased vertical padding for breathing room / premium spacing matching rest of site (dark theme kept). */
+       More generous vertical + horizontal padding + safe-area for premium spacious feel on mobile (keeps dark theme).
+       Side padding uses env() to prevent Back button cutoff near edges/notch on various phones. */
     position: sticky;
     top: var(--site-header-h);
     left: 0;
     right: 0;
     z-index: 95; /* below site-header z-index ~100 to avoid fighting */
-    padding: 0.22rem 0.45rem 0.15rem;
+    padding: 0.3rem 0.5rem 0.25rem;
+    padding-left: max(0.5rem, env(safe-area-inset-left, 0px));
+    padding-right: max(0.5rem, env(safe-area-inset-right, 0px));
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.55);
     background: linear-gradient(180deg, #1c1c1c 0%, #111 100%);
-    /* small safe-area padding on the bar itself so it sits comfortably below status bar without overlapping site-header */
-    padding-top: calc(env(safe-area-inset-top, 0px) + 0.12rem);
+    /* safe-area padding on the bar itself so it sits comfortably below status bar without overlapping site-header */
+    padding-top: calc(env(safe-area-inset-top, 0px) + 0.15rem);
   }
 
   body.has-collector-view .collector-theater-frame {
@@ -8127,15 +8130,16 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
      are always tightly aligned with minimal gap, in a single row for buttons, on all small widths.
   */
   body.has-collector-view {
-    /* Refined mobile collector header spacing for breathing room + premium feel (consistent with site aesthetic).
-       Row + nowrap + overflow kept to avoid the prior column-wrap dark-gap bug. Slightly larger gaps/pads/fonts
-       than ultra-cramped prior, still compact. Scoped to collector view only. */
-    --collector-header-gap: 0.35rem;
-    --collector-header-mb: 0.15rem;
-    --collector-btn-min-h: 36px;
-    --collector-btn-fs: 0.70rem;
-    --collector-btn-pad: 0.2rem 0.5rem;
-    --collector-bar-pad-y: 0.22rem;
+    /* More spacious mobile collector header (per UX requirements) while remaining compact.
+       Row + nowrap + overflow-x auto preserved for stability (avoids historical column-wrap dark gap bug).
+       Larger gaps, margins, button targets for better line spacing, visual hierarchy, tap comfort, and no edge cutoff.
+       Scoped only to collector view. */
+    --collector-header-gap: 0.45rem;
+    --collector-header-mb: 0.2rem;
+    --collector-btn-min-h: 40px;
+    --collector-btn-fs: 0.72rem;
+    --collector-btn-pad: 0.25rem 0.55rem;
+    --collector-bar-pad-y: 0.3rem;
   }
 
   /* Strong lock using vars + !important to guarantee tight name-to-buttons, row layout, small buttons.
@@ -8193,15 +8197,15 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
      and the strong lock rules above (with !important). The legacy duplicates below have been removed for cleanliness.
      Only non-conflicting supporting styles (meta fonts etc.) remain if needed. */
 
-  /* Collector escape name/stats even tighter (supporting) */
+  /* Collector escape name/stats (supporting) - better readability */
   body.has-collector-view .collector-escape-name {
-    font-size: clamp(0.95rem, 3.6vw, 1.1rem);
-    line-height: 1.1;
+    font-size: clamp(1rem, 3.8vw, 1.15rem);
+    line-height: 1.15;
   }
   body.has-collector-view .collector-pride-meta,
   body.has-collector-view .collector-escape-stats {
-    gap: 0.12rem;
-    font-size: 0.58rem;
+    gap: 0.15rem;
+    font-size: 0.6rem;
   }
 
   /* Hide large profile card (was causing extra vertical + duplication in theater mode) */
@@ -8214,15 +8218,16 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
      Let the normal mobile header rules (from general max-768/640 media) apply so the top nav (logo + links + "my dacats" button)
      matches the style/spacing on film, home, collections, etc. pages. Collector-specific nav hiding (Home + current) is kept elsewhere. */
 
-  /* Name banner breathing: a little more room between YOUR COLLECTION kicker, the ENS/name + rank line, and the pieces/stats count.
-     Small positive margins (instead of complete zero) so the prominent name banner doesn't feel tight, while keeping overall bar compact.
-     Paired with space savers in the search/filter zone below to preserve room for the grid. */
+  /* Name banner: improved line spacing + breathing room for premium readable hierarchy (YOUR COLLECTION kicker, ENS+rank, pieces/stats).
+     Larger positive margins + slightly bigger fonts/gaps. Keeps header compact but less dense than before.
+     Kicker gets more bottom space; title-row and meta get better internal rhythm. */
   body.has-collector-view .collector-escape-kicker {
-    margin: 0 0 0.1rem !important;
+    margin: 0 0 0.15rem !important;
     padding: 0 !important;
+    font-size: 0.65rem !important;
   }
   body.has-collector-view .collector-pride-title-row {
-    margin: 0 0 0.06rem !important;
+    margin: 0 0 0.1rem !important;
     padding: 0 !important;
   }
   body.has-collector-view .collector-pride-meta {
@@ -8283,8 +8288,10 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
    Larger tiles (still ~4-5+ /row thanks to width), refined header breathing, dark premium. */
 @media (max-width: 768px) and (orientation: landscape) {
   body.has-collector-view .collector-escape-bar {
-    padding: 0.16rem 0.35rem 0.12rem;
-    padding-top: calc(env(safe-area-inset-top, 0px) + 0.1rem);
+    padding: 0.25rem 0.4rem 0.2rem;
+    padding-left: max(0.4rem, env(safe-area-inset-left, 0px));
+    padding-right: max(0.4rem, env(safe-area-inset-right, 0px));
+    padding-top: calc(env(safe-area-inset-top, 0px) + 0.12rem);
   }
   body.has-collector-view .collector-theater-frame {
     padding-top: 0.1rem;
@@ -8292,8 +8299,8 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .collector-pride-header {
     flex-direction: row;
     align-items: center;
-    gap: 0.25rem;
-    margin-bottom: 0.08rem;
+    gap: 0.3rem;
+    margin-bottom: 0.1rem;
   }
   body.has-collector-view .collector-pride-identity {
     flex: 1 1 12rem;
@@ -8305,22 +8312,23 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
   body.has-collector-view .collector-pride-actions button,
   body.has-collector-view .collector-escape-nav .collector-exit-pill {
-    min-height: 32px;
-    font-size: 0.62rem !important;
-    padding: 0.12rem 0.4rem;
+    min-height: 38px;
+    font-size: 0.68rem !important;
+    padding: 0.2rem 0.45rem;
   }
   body.has-collector-view .collector-escape-name {
-    font-size: clamp(0.9rem, 3.2vw, 1.02rem);
-    line-height: 1.08;
+    font-size: clamp(0.95rem, 3.2vw, 1.08rem);
+    line-height: 1.1;
   }
 
-  /* Landscape: same small name banner breathing (kicker/title-row/meta) as portrait, no extra site-header shrink. */
+  /* Landscape: improved name banner breathing (kicker/title-row/meta) for better hierarchy. */
   body.has-collector-view .collector-escape-kicker {
-    margin: 0 0 0.08rem !important;
+    margin: 0 0 0.12rem !important;
     padding: 0 !important;
+    font-size: 0.62rem !important;
   }
   body.has-collector-view .collector-pride-title-row {
-    margin: 0 0 0.04rem !important;
+    margin: 0 0 0.06rem !important;
     padding: 0 !important;
   }
   body.has-collector-view .collector-pride-meta {
@@ -8350,23 +8358,25 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
    Row+scroll preserved for stability. Dark theme. Light adjustments only for collector mobile. */
 @media (max-width: 480px) {
   body.has-collector-view {
-    /* Refined (less cramped) values for this breakpoint - overrides the 768px vars. */
-    --collector-header-gap: 0.28rem;
-    --collector-header-mb: 0.1rem;
-    --collector-btn-min-h: 34px;
-    --collector-btn-fs: 0.66rem;
-    --collector-btn-pad: 0.16rem 0.42rem;
+    /* Refined (less cramped) values for this breakpoint - overrides the 768px vars. More space than before. */
+    --collector-header-gap: 0.35rem;
+    --collector-header-mb: 0.15rem;
+    --collector-btn-min-h: 38px;
+    --collector-btn-fs: 0.68rem;
+    --collector-btn-pad: 0.2rem 0.45rem;
   }
 
   body.has-collector-view .collector-escape-bar {
     /* Sticky below the site-header (not top:0) so it doesn't fight/overlap the sticky nav.
        top: var(--site-header-h) makes the collector context bar stack cleanly below the global header.
-       z-index lowered to sit below header. Increased padding for breathing. */
+       z-index lowered to sit below header. Increased padding + safe-area for breathing + no cutoff. */
     position: sticky;
     top: var(--site-header-h);
-    padding: 0.18rem 0.32rem 0.1rem;
+    padding: 0.25rem 0.4rem 0.18rem;
+    padding-left: max(0.4rem, env(safe-area-inset-left, 0px));
+    padding-right: max(0.4rem, env(safe-area-inset-right, 0px));
     z-index: 95;
-    padding-top: calc(env(safe-area-inset-top, 0px) + 0.08rem);
+    padding-top: calc(env(safe-area-inset-top, 0px) + 0.1rem);
   }
   body.has-collector-view .collector-theater-frame {
     padding-top: 0.08rem; /* sticky bar is in-flow; content follows immediately with minimal gap for premium tight feel */
@@ -8378,18 +8388,19 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding-bottom: 0.75rem;
   }
   body.has-collector-view .collector-escape-name {
-    font-size: clamp(0.88rem, 3.2vw, 1.0rem);
-    line-height: 1.08;
+    font-size: clamp(0.92rem, 3.2vw, 1.05rem);
+    line-height: 1.1;
   }
 
-  /* Name banner: tiny breathing room (kicker / name+rank / pieces line) instead of full zero. Keeps banner prominent without tightness.
+  /* Name banner: improved breathing (kicker / name+rank / pieces line). Keeps banner prominent without tightness.
      No site-header ultra-compact — normal mobile header sizes apply for consistency with film/home/etc. */
   body.has-collector-view .collector-escape-kicker {
-    margin: 0 0 0.08rem !important;
+    margin: 0 0 0.12rem !important;
     padding: 0 !important;
+    font-size: 0.62rem !important;
   }
   body.has-collector-view .collector-pride-title-row {
-    margin: 0 0 0.05rem !important;
+    margin: 0 0 0.08rem !important;
     padding: 0 !important;
   }
   body.has-collector-view .collector-pride-meta {
@@ -8471,18 +8482,20 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
    Refined: still targets 4-5 tiles max, with improved header spacing vs prior 70px/0.2rem cramp. */
 @media (max-width: 400px) {
   body.has-collector-view {
-    /* Refined for smallest phones (still compact but with breathing + usable cards). */
-    --collector-header-gap: 0.22rem;
-    --collector-header-mb: 0.06rem;
-    --collector-btn-min-h: 34px;
-    --collector-btn-fs: 0.62rem;
-    --collector-btn-pad: 0.12rem 0.32rem;
+    /* Refined for smallest phones (still compact but with breathing + usable cards). Loosened a bit for tap targets and spacing. */
+    --collector-header-gap: 0.28rem;
+    --collector-header-mb: 0.1rem;
+    --collector-btn-min-h: 36px;
+    --collector-btn-fs: 0.64rem;
+    --collector-btn-pad: 0.18rem 0.38rem;
   }
 
   body.has-collector-view .collector-escape-bar {
-    padding: 0.14rem 0.22rem 0.08rem;
+    padding: 0.2rem 0.3rem 0.12rem;
+    padding-left: max(0.3rem, env(safe-area-inset-left, 0px));
+    padding-right: max(0.3rem, env(safe-area-inset-right, 0px));
     z-index: 210;
-    padding-top: calc(env(safe-area-inset-top, 0px) + 0.06rem);
+    padding-top: calc(env(safe-area-inset-top, 0px) + 0.08rem);
   }
   body.has-collector-view .collector-theater-frame {
     padding-top: 0.06rem;
@@ -8525,13 +8538,14 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     line-height: 1.06;
   }
 
-  /* Name banner breathing on ultra-narrow (small margins on kicker/title-row/meta). No site-header shrink — use normal mobile header. */
+  /* Name banner breathing on ultra-narrow (improved margins on kicker/title-row/meta for hierarchy). No site-header shrink — use normal mobile header. */
   body.has-collector-view .collector-escape-kicker {
-    margin: 0 0 0.06rem !important;
+    margin: 0 0 0.1rem !important;
     padding: 0 !important;
+    font-size: 0.6rem !important;
   }
   body.has-collector-view .collector-pride-title-row {
-    margin: 0 0 0.04rem !important;
+    margin: 0 0 0.06rem !important;
     padding: 0 !important;
   }
   body.has-collector-view .collector-pride-meta {
