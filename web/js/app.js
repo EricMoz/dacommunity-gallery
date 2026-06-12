@@ -318,7 +318,16 @@ async function fetchJson(url, timeoutMs) {
   const ctrl = new AbortController();
   const timer = setTimeout(function () { ctrl.abort(); }, timeoutMs);
   try {
-    const res = await fetch(url, { signal: ctrl.signal, cache: "default" });
+    // Strong no-store for our dynamic data JSONs (gallery_* and wallet_index) so that
+    // after a manual or daily refresh-data workflow updates the files in the repo + deploy,
+    // the browser always gets the absolute latest bytes from the server (bypassing any
+    // HTTP/browser cache). The ?v=BUILD stamp (from meta) still provides build-coherent
+    // long-term caching keys per release, and the SW network-first layer provides offline.
+    const isOurData = /\/data\/(gallery_(data|meta|catalog|wallet_index)|videos)\.json(\?|$)/i.test(url);
+    const res = await fetch(url, {
+      signal: ctrl.signal,
+      cache: isOurData ? "no-store" : "default"
+    });
     if (!res.ok) throw new Error("HTTP " + res.status + " for " + url);
     return await res.json();
   } finally {
@@ -2585,6 +2594,12 @@ async function init() {
   }
 
   try {
+    // Load meta early (small file, no-store via fetchJson) so that the initial
+    // data-freshness banner reflects the real pull timestamp from the latest
+    // refresh, not just the catalog's generated_at. This helps after manual
+    // data pulls.
+    loadGalleryMeta();
+
     galleryData = await loadCatalogFirst();
     dataSource = galleryData.source === "gallery_catalog" ? "catalog" : "full";
     bootGallery(galleryData);
@@ -2595,8 +2610,9 @@ async function init() {
       setFullDataStatus("live");
     }
 
+    // The early loadGalleryMeta will call render when it arrives.
+    // Keep the .then for footer etc in case.
     loadGalleryMeta().then(function () {
-      renderDataFreshness();
       updateFooterMaintenance(galleryMeta);
     });
 
