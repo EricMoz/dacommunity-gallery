@@ -1085,33 +1085,62 @@
     var isDown = isLightsDown();
     var stage = els.stage || document.querySelector('.film-theatre-stage');
 
-    // Reliable width: prefer stage inner width (accounts for lights-on side padding/letterbox calc)
-    var stageW = (stage && stage.clientWidth) || els.player.getBoundingClientRect().width || window.innerWidth * 0.9;
-    // Slightly larger in lights-down for immersion, with breathing room (letterbox)
-    var frac = isDown ? 0.85 : 0.80;
-    var maxW = Math.min(stageW * frac, isDown ? 1280 : 1080);
-    var w = Math.max(640, Math.min(maxW, stageW - 60)); // safety margin for borders/padding of stage + player border
+    if (isDown) {
+      // === LIGHTS-DOWN ONLY — make the gold player / video box noticeably larger so it
+      // fills more of the big dark "video screen box" (the area the user highlighted).
+      // Use direct viewport calculation for reliability in the fixed full-bleed stage.
+      // Also deliberately reserve bottom space so the bottom-left UP NEXT / SKIP bar is not
+      // covered by the video player's bottom progress/chrome area.
+      var vw = window.innerWidth || 1280;
+      var vh = window.innerHeight || 800;
 
-    // Base video height (strict 16/9 for content)
-    var videoH = w * 9 / 16;
-    var chromeExtra = isDown ? 28 : 62;  // tuned smaller in down for "slightly larger" player feel
-    var totalH = Math.round(videoH + chromeExtra);
+      var w = Math.min(vw * 0.85, 1300);   // the "slightly larger" the user wants
+      w = Math.max(720, w);
 
-    // Cap height using viewport + conservative reserves (header + titles + action + upnext + footline)
-    // This is the key fix for "exceeds layout -> clip on bottom/right" races.
-    var vh = window.innerHeight || 800;
-    var topReserve = isDown ? 90 : 110;   // action bar + titles (lights-down has less overhead)
-    var bottomReserve = isDown ? 70 : 95; // upnext/dim bar + footline
-    var maxAvailH = vh - topReserve - bottomReserve - 20; // breathing
-    if (totalH > maxAvailH) {
-      totalH = Math.max(360, maxAvailH);
-      w = Math.round( (totalH - chromeExtra) * 16 / 9 );
-      w = Math.max(500, Math.min(w, stageW - 60));
-      totalH = Math.round( (w * 9 / 16) + chromeExtra );
+      var videoOnlyH = w * 9 / 16;
+      var chromeExtra = 28;               // tight for lights-down
+      var totalH = Math.round(videoOnlyH + chromeExtra);
+
+      // Reserve ~100px at the bottom of the available height for the fixed up-next dim bar
+      // (the "UP NEXT · RANDOM" + "SKIP" the user arrowed). This prevents the YT bottom bar
+      // from covering it while still allowing the player itself to be larger horizontally
+      // and fill the highlighted empty space on the right.
+      var bottomReserveForUpNext = 100;
+      var maxHForPlayer = vh - 70 - bottomReserveForUpNext;  // 70px top for the fixed lights bar
+      if (totalH > maxHForPlayer) {
+        totalH = Math.max(420, maxHForPlayer);
+        w = Math.round((totalH - chromeExtra) * 16 / 9);
+      }
+
+      // Also respect the stage width if the fixed stage is somehow constrained
+      var stageW = (stage && stage.clientWidth) || vw;
+      w = Math.min(w, stageW * 0.92);
+
+      applySize(w, totalH);
+      return;
     }
 
-    // Final safety: never let the outer size make the framed content clip the mount/stage
-    // (mount itself must not be clipped; we size inside it)
+    // === LIGHTS-UP / DEFAULT PATH — LEFT COMPLETELY UNCHANGED (user confirmed "lights up mode looks good now")
+    var stageW = (stage && stage.clientWidth) || els.player.getBoundingClientRect().width || window.innerWidth * 0.9;
+    var frac = 0.80;
+    var maxW = Math.min(stageW * frac, 1080);
+    var w = Math.max(640, Math.min(maxW, stageW - 60));
+
+    var videoH = w * 9 / 16;
+    var chromeExtra = 62;
+    var totalH = Math.round(videoH + chromeExtra);
+
+    var vh = window.innerHeight || 800;
+    var topReserve = 110;
+    var bottomReserve = 95;
+    var maxAvailH = vh - topReserve - bottomReserve - 20;
+    if (totalH > maxAvailH) {
+      totalH = Math.max(360, maxAvailH);
+      w = Math.round((totalH - chromeExtra) * 16 / 9);
+      w = Math.max(500, Math.min(w, stageW - 60));
+      totalH = Math.round((w * 9 / 16) + chromeExtra);
+    }
+
     applySize(w, totalH);
   }
 

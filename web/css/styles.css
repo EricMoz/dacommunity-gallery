@@ -4593,7 +4593,7 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
      prevents text collision in the dim bar on smaller viewports or long titles. */
   width: min(17rem, calc(100vw - 2rem));
   max-width: 17rem;
-  z-index: 7;
+  z-index: 25;  /* ensure the bottom-left UP NEXT bar (with SKIP) is always above the video player chrome in lights-down */
   margin: 0;
   border-radius: 8px;
   border-color: rgba(255, 204, 0, 0.28);
