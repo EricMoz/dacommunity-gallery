@@ -51,6 +51,7 @@ let CATALOG_URL = "";
 let FULL_DATA_URL = "";
 let WALLET_URL = "";
 let META_URL = "";
+let REGISTRY_URL = "";
 let galleryMeta = null;
 function initDataUrls() {
   var prefix = getDataPrefix();
@@ -64,6 +65,7 @@ function initDataUrls() {
   FULL_DATA_URL = prefix + "data/gallery_data.json" + q;
   WALLET_URL = prefix + "data/wallet_index.json" + q;
   META_URL = prefix + "data/gallery_meta.json" + q;
+  REGISTRY_URL = prefix + "data/collections_registry.json" + q;
 }
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -84,6 +86,7 @@ let activeCollectorAddress = null;
 let galleryCollectorView = null;
 /** Token id when detail drawer is open — refresh holders/activity after background merge. */
 let activeDetailTokenId = null;
+let activeCollection = "all";
 
 var FILTER_LABELS = {
   all: "All",
@@ -99,6 +102,24 @@ var SORT_LABELS = {
   price_desc: "Price: High to Low",
   transfer_desc: "Recently Transferred",
 };
+
+let collectionsRegistry = null;
+
+function getLiveCollections() {
+  if (!collectionsRegistry || !collectionsRegistry.collections) {
+    return [{ id: "dacommunity", name: "daCommunity NFT Archive", status: "live" }];
+  }
+  return collectionsRegistry.collections.filter(function (c) {
+    return c.status === "live";
+  });
+}
+
+function getCollectionName(id) {
+  if (!id || id === "all") return "All collections";
+  var list = (collectionsRegistry && collectionsRegistry.collections) || [];
+  var found = list.find(function (c) { return c.id === id; });
+  return found ? found.name : id;
+}
 
 function isFileProtocol() {
   return window.location.protocol === "file:";
@@ -430,6 +451,19 @@ async function loadWalletIndex() {
   }
 }
 
+async function loadCollectionsRegistry() {
+  if (!REGISTRY_URL) {
+    collectionsRegistry = { collections: [{ id: "dacommunity", name: "daCommunity NFT Archive", status: "live" }] };
+    return;
+  }
+  try {
+    collectionsRegistry = await fetchJson(REGISTRY_URL, 10000);
+  } catch (e) {
+    console.warn("Collections registry load failed, using fallback:", e);
+    collectionsRegistry = { collections: [{ id: "dacommunity", name: "daCommunity NFT Archive", status: "live" }] };
+  }
+}
+
 function buildCollectorsFromIndex(idx) {
   if (!idx || !idx.by_address) return [];
   return Object.values(idx.by_address)
@@ -722,6 +756,47 @@ function parseWalletFromUrl() {
   return (params.get("wallet") || params.get("ens") || "").trim();
 }
 
+function parseBrowseParamsFromUrl() {
+  var params = new URLSearchParams(window.location.search);
+  var col = params.get("collection") || params.get("col");
+  if (col) activeCollection = col;
+  var f = params.get("filter");
+  if (f && FILTER_LABELS[f]) activeFilter = f;
+  var s = params.get("sort");
+  if (s && SORT_LABELS[s]) sortKey = s;
+  var q = params.get("q") || params.get("search");
+  if (q) searchQuery = q;
+}
+
+function syncBrowseParamsToUrl() {
+  try {
+    var params = new URLSearchParams(window.location.search);
+    if (activeCollection && activeCollection !== "all") {
+      params.set("collection", activeCollection);
+    } else {
+      params.delete("collection");
+    }
+    if (searchQuery) {
+      params.set("q", searchQuery);
+    } else {
+      params.delete("q");
+    }
+    if (activeFilter && activeFilter !== "all") {
+      params.set("filter", activeFilter);
+    } else {
+      params.delete("filter");
+    }
+    if (sortKey && sortKey !== "token_desc") {
+      params.set("sort", sortKey);
+    } else {
+      params.delete("sort");
+    }
+    var qs = params.toString();
+    var newUrl = window.location.pathname + (qs ? "?" + qs : "") + window.location.hash;
+    history.replaceState(null, "", newUrl);
+  } catch (e) {}
+}
+
 /** Measured sticky nav height — used for scroll offsets (collector escape bar, wallet hub). */
 function getSiteHeaderOffset() {
   var raw = getComputedStyle(document.documentElement).getPropertyValue("--site-header-h").trim();
@@ -859,10 +934,13 @@ function clearCollectorFilters() {
   activeFilter = "all";
   searchQuery = "";
   sortKey = "token_desc";
+  activeCollection = "all";
   var search = $("#search");
   var sort = $("#sort-select");
+  var colSel = $("#collection-select");
   if (search) search.value = "";
   if (sort) sort.value = "token_desc";
+  if (colSel) colSel.value = "all";
   document.querySelectorAll(".filter").forEach(function (btn) {
     var on = btn.dataset.filter === "all";
     btn.classList.toggle("active", on);
@@ -1078,6 +1156,10 @@ function handleEscapeKey() {
     closeCollectorsModal();
     return;
   }
+  if ($("#share-modal") && !$("#share-modal").hidden) {
+    closeShareModal();
+    return;
+  }
   if ($("#detail-panel").classList.contains("open")) {
     closeDetail();
     return;
@@ -1098,11 +1180,14 @@ function handleEscapeKey() {
     refreshView();
     return;
   }
-  if (activeFilter !== "all" || sortKey !== "token_desc") {
+  if (activeFilter !== "all" || sortKey !== "token_desc" || activeCollection !== "all") {
     activeFilter = "all";
     sortKey = "token_desc";
+    activeCollection = "all";
     var sortSel = $("#sort-select");
+    var colSel = $("#collection-select");
     if (sortSel) sortSel.value = "token_desc";
+    if (colSel) colSel.value = "all";
     document.querySelectorAll(".filter").forEach(function (btn) {
       var on = btn.dataset.filter === "all";
       btn.classList.toggle("active", on);
@@ -1371,6 +1456,76 @@ function shareCollectorCollection(address) {
   } else {
     showCopyToast("Share URL: " + url);
   }
+}
+
+function buildCurrentViewUrl() {
+  syncBrowseParamsToUrl();
+  return window.location.href;
+}
+
+function showShareModal() {
+  var modal = $("#share-modal");
+  if (!modal) return;
+  var url = buildCurrentViewUrl();
+  var copyBtn = $("#share-copy-btn");
+  if (copyBtn) {
+    copyBtn.onclick = function () {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function () {
+          showCopyToast("Link copied (includes collection + filters)");
+        }).catch(function () {
+          showCopyToast("Copy: " + url);
+        });
+      } else {
+        showCopyToast("Copy: " + url);
+      }
+      closeShareModal();
+    };
+  }
+  modal.querySelectorAll(".share-social-btn").forEach(function (btn) {
+    btn.onclick = function () {
+      var platform = btn.getAttribute("data-platform");
+      shareToSocial(platform, url);
+    };
+  });
+  modal.hidden = false;
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+
+function closeShareModal() {
+  var modal = $("#share-modal");
+  if (!modal) return;
+  modal.hidden = true;
+  modal.setAttribute("aria-hidden", "true");
+  if (!$("#detail-panel").classList.contains("open") && !$("#collectors-modal").classList.contains("open")) {
+    document.body.style.overflow = "";
+  }
+}
+
+function shareToSocial(platform, url) {
+  var text = encodeURIComponent("daCAT archive view — filters & collection included");
+  var u = encodeURIComponent(url);
+  var href = "";
+  if (platform === "x") {
+    href = "https://twitter.com/intent/tweet?text=" + text + "&url=" + u;
+  } else if (platform === "telegram") {
+    href = "https://t.me/share/url?url=" + u + "&text=" + text;
+  } else if (platform === "facebook") {
+    href = "https://www.facebook.com/sharer/sharer.php?u=" + u;
+  } else if (platform === "instagram") {
+    // No direct web share; copy link and hint
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url);
+    }
+    showCopyToast("Link copied — paste into Instagram story or post");
+    closeShareModal();
+    return;
+  }
+  if (href) {
+    window.open(href, "_blank", "noopener");
+  }
+  closeShareModal();
 }
 
 function bindCollectorResultActions(entry) {
@@ -1920,6 +2075,12 @@ function getFilteredItems() {
       return galleryCollectorView.tokenIds[String(i.token_id)];
     });
   }
+  // Collection filter (for multi-collection future; current data defaults to dacommunity)
+  if (activeCollection && activeCollection !== "all") {
+    items = items.filter(function (i) {
+      return (i.collection_id || "dacommunity") === activeCollection;
+    });
+  }
   if (activeFilter === "listed") items = items.filter(function (i) { return i.listed; });
   if (activeFilter === "not_listed") items = items.filter(function (i) { return !i.listed; });
   if (activeFilter === "activity") items = items.filter(function (i) { return hasRecentActivity(i); });
@@ -1936,10 +2097,13 @@ function resetBrowseView() {
   activeFilter = "all";
   searchQuery = "";
   sortKey = "token_desc";
+  activeCollection = "all";
   var search = $("#search");
   var sort = $("#sort-select");
+  var colSel = $("#collection-select");
   if (search) search.value = "";
   if (sort) sort.value = "token_desc";
+  if (colSel) colSel.value = "all";
   document.querySelectorAll(".filter").forEach(function (btn) {
     var on = btn.dataset.filter === "all";
     btn.classList.toggle("active", on);
@@ -1972,6 +2136,9 @@ function renderBrowseMeta(filtered, total) {
   var parts = [];
   if (searchQuery) {
     parts.push({ key: "search", label: 'Search: "' + searchQuery + '"' });
+  }
+  if (activeCollection && activeCollection !== "all") {
+    parts.push({ key: "collection", label: getCollectionName(activeCollection) });
   }
   if (activeFilter !== "all") {
     parts.push({ key: "filter", label: FILTER_LABELS[activeFilter] || activeFilter });
@@ -2034,6 +2201,10 @@ function renderBrowseMeta(filtered, total) {
         sortKey = "token_desc";
         var sel = $("#sort-select");
         if (sel) sel.value = "token_desc";
+      } else if (k === "collection") {
+        activeCollection = "all";
+        var colSel = $("#collection-select");
+        if (colSel) colSel.value = "all";
       }
       refreshView();
     });
@@ -2446,6 +2617,20 @@ function bindClearableField(input, clearBtn, onClear) {
   syncClear();
 }
 
+function populateCollectionSelect() {
+  var sel = $("#collection-select");
+  if (!sel) return;
+  var live = getLiveCollections();
+  sel.innerHTML = '<option value="all">All collections</option>';
+  live.forEach(function(c){
+    var o = document.createElement('option');
+    o.value = c.id;
+    o.textContent = c.name || c.id;
+    sel.appendChild(o);
+  });
+  sel.value = activeCollection || "all";
+}
+
 function bindUi() {
   document.querySelectorAll(".filter").forEach(function (btn) {
     btn.addEventListener("click", function () {
@@ -2456,6 +2641,7 @@ function bindUi() {
       btn.classList.add("active");
       btn.setAttribute("aria-selected", "true");
       activeFilter = btn.dataset.filter;
+      syncBrowseParamsToUrl();
       refreshView();
     });
   });
@@ -2466,6 +2652,7 @@ function bindUi() {
       var val = e.target.value.trim();
       searchDebounceTimer = setTimeout(function () {
         searchQuery = val;
+        syncBrowseParamsToUrl();
         refreshView();
       }, 120);
     });
@@ -2473,6 +2660,7 @@ function bindUi() {
       if (e.key === "Escape") {
         searchInput.value = "";
         searchQuery = "";
+        syncBrowseParamsToUrl();
         refreshView();
         var sc = $("#search-clear");
         if (sc) sc.hidden = true;
@@ -2481,6 +2669,7 @@ function bindUi() {
     });
     bindClearableField(searchInput, $("#search-clear"), function () {
       searchQuery = "";
+      syncBrowseParamsToUrl();
       refreshView();
     });
   }
@@ -2515,9 +2704,36 @@ function bindUi() {
     sortSelect.value = sortKey;
     sortSelect.addEventListener("change", function (e) {
       sortKey = e.target.value;
+      syncBrowseParamsToUrl();
       refreshView();
     });
   }
+
+  // Collection filter (dropdown from live entries in registry; only shown for live collections)
+  populateCollectionSelect();
+  var collectionSelect = $("#collection-select");
+  if (collectionSelect) {
+    collectionSelect.addEventListener("change", function (e) {
+      activeCollection = e.target.value;
+      syncBrowseParamsToUrl();
+      refreshView();
+    });
+  }
+
+  // Apply any parsed state from URL (?collection=...&filter=... etc) to the controls
+  var searchInputForState = $("#search");
+  if (searchInputForState && searchQuery) searchInputForState.value = searchQuery;
+  if (activeFilter !== "all") {
+    document.querySelectorAll(".filter").forEach(function (b) {
+      var on = b.dataset.filter === activeFilter;
+      b.classList.toggle("active", on);
+      b.setAttribute("aria-selected", on ? "true" : "false");
+    });
+  }
+  var sortForState = $("#sort-select");
+  if (sortForState) sortForState.value = sortKey;
+  var colForState = $("#collection-select");
+  if (colForState) colForState.value = activeCollection || "all";
   var clearBtn = $("#clear-filters");
   if (clearBtn) clearBtn.addEventListener("click", resetBrowseView);
   var emptyReset = $("#gallery-empty-reset");
@@ -2527,6 +2743,15 @@ function bindUi() {
   bindCollectorHeaderActions();
   bindCollectorHubNav();
   bindGalleryListClicks();
+
+  // Archive view share (includes collection + current filters/sort/search)
+  var archiveShare = $("#archive-share-btn");
+  if (archiveShare && !archiveShare.dataset.bound) {
+    archiveShare.dataset.bound = "1";
+    archiveShare.addEventListener("click", function () {
+      showShareModal();
+    });
+  }
   renderCollectorFocusUi();
   var cs = $("#collectors-search");
   if (cs) cs.addEventListener("input", function (e) { renderCollectors(e.target.value); });
@@ -2534,6 +2759,11 @@ function bindUi() {
   if (viewBtn) viewBtn.addEventListener("click", openCollectorsModal);
   $("#collectors-modal-close").addEventListener("click", closeCollectorsModal);
   $("#collectors-modal-backdrop").addEventListener("click", closeCollectorsModal);
+  // Share modal close
+  var shareClose = $("#share-modal-close");
+  if (shareClose) shareClose.addEventListener("click", closeShareModal);
+  var shareBackdrop = $("#share-modal-backdrop");
+  if (shareBackdrop) shareBackdrop.addEventListener("click", closeShareModal);
   $("#wallet-form").addEventListener("submit", function (e) {
     e.preventDefault();
     var v = $("#wallet-input").value.trim();
@@ -2558,6 +2788,14 @@ function bindUi() {
 /** Turn loaded JSON into UI: clear loaders, stats, gallery rows, event handlers. */
 function bootGallery(data) {
   galleryData = data;
+  // Tag items with collection_id for multi-collection filtering (future-proof; current data is dacommunity)
+  if (galleryData && Array.isArray(galleryData.items)) {
+    galleryData.items.forEach(function (item) {
+      if (!item.collection_id) {
+        item.collection_id = (galleryData.collection && galleryData.collection.slug === "rodeo-posts-12142") ? "dacommunity" : "dacommunity";
+      }
+    });
+  }
   indexItems(galleryData);
   var loadEl = $("#load-state");
   if (loadEl) loadEl.hidden = true;
@@ -2607,6 +2845,12 @@ async function init() {
     // refresh, not just the catalog's generated_at. This helps after manual
     // data pulls.
     loadGalleryMeta();
+
+    // Parse any collection/filter/sort/search from URL (supports pre-filter from /collections/ + share links)
+    parseBrowseParamsFromUrl();
+
+    // Load registry early for collection filter UI (only live ones shown)
+    loadCollectionsRegistry().then(populateCollectionSelect).catch(function(){ populateCollectionSelect(); });
 
     galleryData = await loadCatalogFirst();
     dataSource = galleryData.source === "gallery_catalog" ? "catalog" : "full";

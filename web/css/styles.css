@@ -2970,7 +2970,12 @@ body.analytics-page {
     linear-gradient(180deg, #ffe44d 0%, var(--yellow) 42%, #f0c200 100%);
 }
 
-body.analytics-page .site-header,
+body.analytics-page .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--black);
+}
 body.analytics-page .analytics-main,
 body.analytics-page .site-footer {
   position: relative;
@@ -5779,9 +5784,15 @@ body.film-modal-open {
 .browse-head-row {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 0.65rem 1rem;
+}
+.archive-share-btn {
+  flex-shrink: 0;
+  font-size: 0.78rem;
+  padding: 0.25rem 0.55rem;
+  min-height: 32px;
 }
 
 .browse-collector-jump {
@@ -6590,7 +6601,8 @@ body.has-collector-view #browse-controls.is-portfolio-browse .filter.active {
   border-color: var(--black);
 }
 
-body.has-collector-view #browse-controls.is-portfolio-browse .browse-sort-select {
+body.has-collector-view #browse-controls.is-portfolio-browse .browse-sort-select,
+body.has-collector-view #browse-controls.is-portfolio-browse .browse-collection-select {
   background: #141414 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23eee' d='M1 1l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 0.85rem center;
   background-size: 12px 8px;
   color: #eee;
@@ -7041,6 +7053,92 @@ body.has-collector-view #detail-opensea {
   z-index: 1;
 }
 
+/* Share modal (filters + collection) — desktop card, mobile bottom sheet */
+.share-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 350;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.share-modal[hidden] { display: none !important; }
+.share-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+.share-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: #111;
+  color: #eee;
+  border: 2px solid #333;
+  border-radius: 12px 12px 0 0;
+  padding: 1rem 1rem 1.25rem;
+  box-shadow: 0 -8px 30px rgba(0,0,0,0.6);
+  z-index: 2;
+}
+@media (min-width: 600px) {
+  .share-modal {
+    align-items: center;
+  }
+  .share-modal-card {
+    border-radius: 12px;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+}
+.share-modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  color: #888;
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+}
+.share-modal-title {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.share-modal-lead {
+  margin: 0 0 0.75rem;
+  font-size: 0.8rem;
+  color: #aaa;
+}
+.share-copy-btn {
+  width: 100%;
+  min-height: 44px;
+  margin-bottom: 0.75rem;
+}
+.share-socials {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+.share-social-btn {
+  min-height: 44px;
+  padding: 0.4rem;
+  border: 2px solid #444;
+  background: #1a1a1a;
+  color: #eee;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.1s, transform 0.1s;
+}
+.share-social-btn:hover {
+  background: #222;
+  transform: translateY(-1px);
+}
+
 /* Clear control — archive search + wallet lookup (recovery if UI sticks) */
 .field-clear {
   position: absolute;
@@ -7156,7 +7254,8 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   flex-shrink: 0;
 }
 
-.browse-sort-select {
+.browse-sort-select,
+.browse-collection-select {
   width: 100%;
   max-width: 100%;
   min-height: 44px;
