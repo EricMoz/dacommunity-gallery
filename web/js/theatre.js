@@ -1086,33 +1086,32 @@
     var stage = els.stage || document.querySelector('.film-theatre-stage');
 
     if (isDown) {
-      // === LIGHTS-DOWN ONLY — make the gold player / video box noticeably larger so it
-      // fills more of the big dark "video screen box" (the area the user highlighted).
-      // Use direct viewport calculation for reliability in the fixed full-bleed stage.
-      // Also deliberately reserve bottom space so the bottom-left UP NEXT / SKIP bar is not
-      // covered by the video player's bottom progress/chrome area.
+      // === LIGHTS-DOWN ONLY (lights-up path left untouched) ===
+      // Force a larger player box so the video fills more of the big dark frame area
+      // the user expects in lights-down. Compute large width from viewport.
+      // Use a generous height (minimal vertical reserve) so the player is tall.
+      // The actual space for the up-next bar at bottom is created by a margin-bottom
+      // on .film-theatre-player in the lights-down CSS (see styles.css). This lets the
+      // gold frame + video be significantly larger without the YT bottom chrome covering
+      // the UP NEXT / SKIP pill.
       var vw = window.innerWidth || 1280;
       var vh = window.innerHeight || 800;
 
-      var w = Math.min(vw * 0.85, 1300);   // the "slightly larger" the user wants
+      var w = Math.min(vw * 0.85, 1400);
       w = Math.max(720, w);
 
       var videoOnlyH = w * 9 / 16;
-      var chromeExtra = 28;               // tight for lights-down
+      var chromeExtra = 28;
       var totalH = Math.round(videoOnlyH + chromeExtra);
 
-      // Reserve ~100px at the bottom of the available height for the fixed up-next dim bar
-      // (the "UP NEXT · RANDOM" + "SKIP" the user arrowed). This prevents the YT bottom bar
-      // from covering it while still allowing the player itself to be larger horizontally
-      // and fill the highlighted empty space on the right.
-      var bottomReserveForUpNext = 100;
-      var maxHForPlayer = vh - 70 - bottomReserveForUpNext;  // 70px top for the fixed lights bar
+      // Only a small cap so it doesn't go completely off top/bottom. The CSS margin-bottom
+      // on the player will shift it up to clear the bottom bar area.
+      var maxHForPlayer = vh - 50;
       if (totalH > maxHForPlayer) {
-        totalH = Math.max(420, maxHForPlayer);
+        totalH = maxHForPlayer;
         w = Math.round((totalH - chromeExtra) * 16 / 9);
       }
 
-      // Also respect the stage width if the fixed stage is somehow constrained
       var stageW = (stage && stage.clientWidth) || vw;
       w = Math.min(w, stageW * 0.92);
 
@@ -1120,11 +1119,13 @@
       return;
     }
 
-    // === LIGHTS-UP / DEFAULT PATH — LEFT COMPLETELY UNCHANGED (user confirmed "lights up mode looks good now")
+    // === LIGHTS-UP / DEFAULT PATH — minimal tweak only to safety margin to prevent the
+    // initial slight right cutoff the user reported (it was self-fixing on "next" because
+    // later syncs had final layout). Lights-up behavior and size otherwise unchanged.
     var stageW = (stage && stage.clientWidth) || els.player.getBoundingClientRect().width || window.innerWidth * 0.9;
     var frac = 0.80;
     var maxW = Math.min(stageW * frac, 1080);
-    var w = Math.max(640, Math.min(maxW, stageW - 60));
+    var w = Math.max(640, Math.min(maxW, stageW - 80));  // slightly more safety for padding + border + inset on first load
 
     var videoH = w * 9 / 16;
     var chromeExtra = 62;

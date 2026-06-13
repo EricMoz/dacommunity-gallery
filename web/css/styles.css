@@ -4274,16 +4274,18 @@ body.film-theatre-awaiting-lights .film-theatre-footline {
 }
 
 .film-theatre-lights-down .film-theatre-player {
-  /* Lights-down: *slightly larger* player (85vw) for more immersion while the stage centering +
-     reduced padding + action-bar side insets provide good visual breathing room (letterbox)
-     around the entire gold frame so it never feels tight or clips on any edge. The JS sync
-     now also caps to this to guarantee first-load correctness without races. */
+  /* Lights-down: *slightly larger* player (85vw) for more immersion. 
+     The margin-bottom reserves space at the bottom of the screen for the fixed
+     UP NEXT dim bar (with SKIP) so the video player's bottom chrome does not cover it.
+     Combined with the larger JS-computed size, the gold frame + video now fills more
+     of the available "larger video screen box" while keeping the up-next visible. */
   max-width: 85vw;
-  max-height: calc(100dvh - 4rem);
+  max-height: calc(100dvh - 3.5rem);
   width: auto;
   height: auto;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 70px;  /* leaves room below the gold frame for the bottom-left up-next without coverage */
   aspect-ratio: 16 / 9;
   border-color: rgba(255, 204, 0, 0.22);
   box-shadow:
