@@ -3887,7 +3887,9 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
   margin: 0 auto;
   flex: 1;
   min-height: 0;
-  overflow: hidden;
+  /* Removed overflow:hidden — was contributing to clipping of player-mount/stage when JS+CSS sizes
+     settled at slightly different times on first load or after lights toggle. The stage/player now
+     control their own bounds; ancestors use flex min-height:0 for containment without hard clip on the frame. */
   display: flex;
   flex-direction: column;
   gap: 0.28rem;
@@ -4227,16 +4229,15 @@ body.film-theatre-awaiting-lights .film-theatre-footline {
   z-index: 6;
   max-width: none;
   margin: 0;
-  /* Perfect centering: no horizontal padding on the stage so the flex + grid centering
-     + player's own width rule produce equal letterbox left/right around the gold frame.
-     Top padding clears the fixed action bar; bottom clears up-next/dim bar. This keeps
-     the entire framed YT card (or trailer card) dead-center in both axes in lights-down
-     with no visual shift or off-center appearance on any screen. */
+  /* Perfect centering + slightly larger player: reduced vertical padding (more breathing room around
+     the bigger frame without feeling cramped or cutting the gold border). Horizontal 0 keeps equal
+     letterbox. The player itself is sized larger (85vw) but still has generous side/vertical letterbox
+     via the stage centering + action-bar insets. */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 3.5rem 0 1rem;
+  padding: 2.5rem 0 0.75rem;
   gap: 0;
 }
 
@@ -4273,10 +4274,12 @@ body.film-theatre-awaiting-lights .film-theatre-footline {
 }
 
 .film-theatre-lights-down .film-theatre-player {
-  /* Lights-down: size tuned for good immersion while keeping gold frame around full YT card
-     (video + chrome) without cutoff or misalignment. 82vw + calc provides balanced size. */
-  max-width: 80vw;  /* slightly tighter than before to guarantee more side letterbox room so the border + video never gets cut on sides even on wide screens or during centering */
-  max-height: calc(100dvh - 6rem);
+  /* Lights-down: *slightly larger* player (85vw) for more immersion while the stage centering +
+     reduced padding + action-bar side insets provide good visual breathing room (letterbox)
+     around the entire gold frame so it never feels tight or clips on any edge. The JS sync
+     now also caps to this to guarantee first-load correctness without races. */
+  max-width: 85vw;
+  max-height: calc(100dvh - 4rem);
   width: auto;
   height: auto;
   margin-left: auto;

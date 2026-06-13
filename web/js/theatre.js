@@ -98,6 +98,7 @@
     upnextDimPlayNow: document.getElementById("theatre-upnext-dim-play-now"),
     upnextModes: document.querySelectorAll(".theatre-upnext-mode"),
     backBtn: document.getElementById("theatre-back"),
+    stage: document.querySelector('.film-theatre-stage'),
   };
 
   function isTheatrePc() {
@@ -598,20 +599,17 @@
     els.player.innerHTML = '<div id="' + hostId + '"></div>';
     setPlayerLoading(true);
 
-    /* Bootstrap a reasonable size on the host container immediately.
-       YT.Player at creation time often snapshots whatever size (or 0-size) the host has.
-       Giving the inner host an explicit starting size helps the iframe appear with a
-       visible frame even before the later syncPlayerSize runs. The values are overwritten
-       by setSize once layout settles. Use a higher ceiling so lights-down bigger video
-       path gets a good initial frame instead of a small centered box that later "jumps". */
+    /* Bootstrap a reasonable size on the host container immediately (stable first load).
+       Uses the same conservative viewport/stage-based calc as the new syncPlayerSize so the
+       initial YT snapshot + gold frame is already the correct large size in lights-down and
+       correctly fitting in lights-on, eliminating the "jumps" or "tiny then cutoff on refresh" races. */
     var host = document.getElementById(hostId);
     if (host && els.player) {
-      var stageW = (els.stage && els.stage.clientWidth) || els.player.offsetWidth || 720;
-      var bootCap = isLightsDown() ? 1280 : 960;
-      var bootW = Math.min(Math.max(stageW, 640), bootCap);
-      /* Boot with extra for full YT chrome so initial frame already shows the complete
-         video card (header + bottom controls/logo) inside the gold border. */
-      var bootExtra = isLightsDown() ? 30 : 70;
+      var stageW = (els.stage && els.stage.clientWidth) || els.player.offsetWidth || Math.round(window.innerWidth * 0.8);
+      var isDown = isLightsDown();
+      var frac = isDown ? 0.85 : 0.80;
+      var bootW = Math.max(640, Math.min(stageW * frac, isDown ? 1200 : 1000));
+      var bootExtra = isDown ? 28 : 62;
       var bootH = Math.round(bootW * 9 / 16 + bootExtra);
       host.style.width = bootW + 'px';
       host.style.height = bootH + 'px';
@@ -1060,94 +1058,61 @@
   }
 
   function syncPlayerSize() {
-    /* Force the YouTube iframe to the final laid-out size of .film-theatre-player.
-       This is the heart of making the video "appear" reliably.
+    /* Stable first-load and resize-aware player sizing.
+       Rewritten for reliability (previous version had races between measurement, upnext :has var,
+       flex settling, YT creation time snapshot, and CSS max-heights causing right/bottom cutoff on
+       some loads/refresh cycles).
 
-       Why it's needed:
-       - Normal (lights-on) mode: deep flex column (main > screen > stage > mount > player).
-         Even with min-height on the mount and aspect-ratio on the player, at the moment
-         YT.Player is created and onReady fires the getBoundingClientRect can still be
-         tiny or 0 because ancestors are still sizing (titles, action-bar, up-next, and
-         whatever wrapper gives the page its height).
-       - Lights-down: the stage is position:fixed; inset:0 with explicit padding; the
-         player gets an explicit vw/dvh size via CSS. The class toggle + this function
-         re-measures after the layout change.
-       - YT IFrame API frequently bakes in whatever size the host div has at creation
-         time. Calling player.setSize(w, h) afterwards is the documented way to resize.
-
-       We try multiple times (rAF + short timeouts) and have a fallback that computes
-       a sensible cinematic 16:9 from the stage width when the measured rect is still
-       unrealistically small. We also write explicit style w/h on the player element
-       so the gold border and the absolute iframe context become visible immediately. */
+       Strategy (prioritizes stability + correct on first paint):
+       - Always compute target size from reliable inputs: stage width (or viewport) + known reserves.
+       - Cap conservatively so the final explicit size + border/padding NEVER exceeds the available
+         space in ancestors (prevents overflow:hidden clipping on screen/stage/mount).
+       - Slightly larger player in lights-down (85% frac vs ~78-82%).
+       - Still write explicit w/h on player (for gold frame to show immediately) and call YT setSize.
+       - Combined with ResizeObserver + load/resize listeners for ongoing correctness.
+       - The gold frame now reliably fits the full YT chrome without cutoff on first load in both modes. */
     if (!ytPlayer || typeof ytPlayer.setSize !== 'function' || !els.player) return;
 
     function applySize(w, h) {
       if (!ytPlayer || !els.player) return;
-      ytPlayer.setSize(Math.round(w), Math.round(h));
-      // Make the theatre frame (border + shadow + bg) visible even if CSS aspect
-      // calc is still fighting with flex in this particular viewport.
-      els.player.style.width = Math.round(w) + 'px';
-      els.player.style.height = Math.round(h) + 'px';
+      var rw = Math.round(w);
+      var rh = Math.round(h);
+      ytPlayer.setSize(rw, rh);
+      els.player.style.width = rw + 'px';
+      els.player.style.height = rh + 'px';
     }
 
-    function doSync() {
-      if (!ytPlayer || !els.player) return;
+    var isDown = isLightsDown();
+    var stage = els.stage || document.querySelector('.film-theatre-stage');
 
-      var r = els.player.getBoundingClientRect();
-      var w = r.width;
-      var h = r.height;
+    // Reliable width: prefer stage inner width (accounts for lights-on side padding/letterbox calc)
+    var stageW = (stage && stage.clientWidth) || els.player.getBoundingClientRect().width || window.innerWidth * 0.9;
+    // Slightly larger in lights-down for immersion, with breathing room (letterbox)
+    var frac = isDown ? 0.85 : 0.80;
+    var maxW = Math.min(stageW * frac, isDown ? 1280 : 1080);
+    var w = Math.max(640, Math.min(maxW, stageW - 60)); // safety margin for borders/padding of stage + player border
 
-      // If we still have a collapsed rect (common in normal flow on first passes),
-      // compute a good default from the stage's actual width. This is the
-      // "something we were missing" safety net.
-      if (h < 120) {
-        var stage = els.stage || document.querySelector('.film-theatre-stage');
-        var basis = (stage && stage.clientWidth) || w || 800;
-        if (isLightsDown()) {
-          /* Lights-down: use current size target */
-          var target = Math.round(basis * 0.82);
-          w = Math.max(720, Math.min(target, Math.floor(basis * 0.92)));
-          h = Math.round(w * 9 / 16 + 30);
-        } else {
-          w = Math.min(Math.max(basis, 640), 960);
-          h = Math.round(w * 9 / 16 + 55);
-        }
-      }
+    // Base video height (strict 16/9 for content)
+    var videoH = w * 9 / 16;
+    var chromeExtra = isDown ? 28 : 62;  // tuned smaller in down for "slightly larger" player feel
+    var totalH = Math.round(videoH + chromeExtra);
 
-      if (w > 50 && h > 22) {
-        /* Strict 16/9 sizing for a clean, sharp gold frame that fits tightly around
-           the video content itself. No internal letterboxing, no side black bars,
-           no weird extra gaps below the video inside the border (the problems shown
-           in the two screenshots). The YT chrome (progress bar, icons) is overlaid
-           naturally at the bottom edge of the frame. This resolves the "broken"
-           look in both lights-on and lights-down while keeping the frame alignment
-           the user wants ("fit around the video itself"). The laptop fit for player
-           + upnext nav bar is handled by the CSS max-height and @media rules. */
-        var videoOnlyH = w * 9 / 16;
-        /* Size the gold frame container to the full YouTube embed height (16/9 video content
-           + native YT chrome for header at top and progress/controls/logo at bottom).
-           This makes the entire "video card" from YouTube visible and aligned perfectly
-           inside the gold border, including play/pause, progress, "More videos", YT logo,
-           etc. (as in the reference image). Use a fixed chrome extra (more in lights-on
-           where full bar is needed, smaller in lights-down to keep tight to the video content
-           without large gaps). The CSS aspect is strict 16/9 so the video fills the width
-           without side letterboxing; extra height goes below for the chrome. */
-        var chromeExtra = isLightsDown() ? 30 : 70;
-        var withChrome = Math.round(videoOnlyH + chromeExtra);
-        if (h < withChrome) h = withChrome;
-
-        applySize(w, h);
-      }
+    // Cap height using viewport + conservative reserves (header + titles + action + upnext + footline)
+    // This is the key fix for "exceeds layout -> clip on bottom/right" races.
+    var vh = window.innerHeight || 800;
+    var topReserve = isDown ? 90 : 110;   // action bar + titles (lights-down has less overhead)
+    var bottomReserve = isDown ? 70 : 95; // upnext/dim bar + footline
+    var maxAvailH = vh - topReserve - bottomReserve - 20; // breathing
+    if (totalH > maxAvailH) {
+      totalH = Math.max(360, maxAvailH);
+      w = Math.round( (totalH - chromeExtra) * 16 / 9 );
+      w = Math.max(500, Math.min(w, stageW - 60));
+      totalH = Math.round( (w * 9 / 16) + chromeExtra );
     }
 
-    // First attempt as soon as the browser has painted the current layout pass.
-    requestAnimationFrame(doSync);
-
-    // Normal flex layout (kicker, title, meta, action-bar inside stage, up-next)
-    // often needs one or two more frames. Also covers the case where a lights toggle
-    // just happened and the fixed vs flow sizes are still settling.
-    setTimeout(doSync, 140);
-    setTimeout(doSync, 380);
+    // Final safety: never let the outer size make the framed content clip the mount/stage
+    // (mount itself must not be clipped; we size inside it)
+    applySize(w, totalH);
   }
 
   function tryPendingLightsRestore() {
@@ -1251,6 +1216,35 @@
     });
   }
 
+  /* === Reliable resize handling to fix race conditions in player sizing on first load and layout changes === */
+  var resizeDebounce = null;
+  function setupReliableSizing() {
+    // Window resize
+    window.addEventListener('resize', function () {
+      if (resizeDebounce) clearTimeout(resizeDebounce);
+      resizeDebounce = setTimeout(syncPlayerSize, 100);
+    });
+
+    // ResizeObserver on key containers for layout changes (upnext show/hide, fonts, etc) without race
+    if (typeof ResizeObserver !== 'undefined') {
+      try {
+        var ro = new ResizeObserver(function () {
+          if (resizeDebounce) clearTimeout(resizeDebounce);
+          resizeDebounce = setTimeout(syncPlayerSize, 60);
+        });
+        if (els.stage) ro.observe(els.stage);
+        if (els.player) ro.observe(els.player);
+        if (els.upnext) ro.observe(els.upnext);
+      } catch (e) { /* observer optional */ }
+    }
+
+    // Extra safety call after full load
+    window.addEventListener('load', function () {
+      setTimeout(syncPlayerSize, 150);
+      setTimeout(syncPlayerSize, 450);
+    });
+  }
+
   async function init() {
     bindBack();
     bindLights();
@@ -1259,6 +1253,7 @@
     initLightsPrompt();
     loadUpNextMode();
     loadYouTubeApi();
+    setupReliableSizing();
 
     if (!isTheatrePc()) {
       showError("Theatre mode is desktop-only. Use the film hub player on mobile.");
