@@ -4285,7 +4285,6 @@ body.film-theatre-awaiting-lights .film-theatre-footline {
   height: auto;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 70px;  /* leaves room below the gold frame for the bottom-left up-next without coverage */
   aspect-ratio: 16 / 9;
   border-color: rgba(255, 204, 0, 0.22);
   box-shadow:

@@ -605,14 +605,35 @@
        correctly fitting in lights-on, eliminating the "jumps" or "tiny then cutoff on refresh" races. */
     var host = document.getElementById(hostId);
     if (host && els.player) {
-      var stageW = (els.stage && els.stage.clientWidth) || els.player.offsetWidth || Math.round(window.innerWidth * 0.8);
-      var isDown = isLightsDown();
-      var frac = isDown ? 0.85 : 0.80;
-      var bootW = Math.max(640, Math.min(stageW * frac, isDown ? 1200 : 1000));
-      var bootExtra = isDown ? 28 : 62;
-      var bootH = Math.round(bootW * 9 / 16 + bootExtra);
-      host.style.width = bootW + 'px';
-      host.style.height = bootH + 'px';
+      var isDownBoot = isLightsDown();
+      var stageWBoot = (els.stage && els.stage.clientWidth) || els.player.offsetWidth || Math.round(window.innerWidth * 0.8);
+      if (isDownBoot) {
+        // Match the updated stable logic for first-paint in lights-down.
+        var contentWBoot = stageWBoot;
+        var contentHBoot = (els.stage && els.stage.clientHeight) || 600;
+        var safetyBoot = 24;
+        var maxWBoot = contentWBoot - (safetyBoot * 2);
+        var maxHBoot = contentHBoot - (safetyBoot * 2);
+        var bootW = Math.min(contentWBoot * 0.88, maxWBoot);
+        bootW = Math.max(720, Math.min(bootW, maxWBoot));
+        var bootVideoH = bootW * 9 / 16;
+        var bootExtra = 28;
+        var bootH = Math.round(bootVideoH + bootExtra);
+        if (bootH > maxHBoot) {
+          bootH = maxHBoot;
+          bootW = Math.round((bootH - bootExtra) * 16 / 9);
+        }
+        host.style.width = Math.round(bootW) + 'px';
+        host.style.height = Math.round(bootH) + 'px';
+      } else {
+        // lights-up bootstrap - minimal change
+        var bootCap = 960;
+        var bootW = Math.min(Math.max(stageWBoot, 640), bootCap);
+        var bootExtra = 62;
+        var bootH = Math.round(bootW * 9 / 16 + bootExtra);
+        host.style.width = bootW + 'px';
+        host.style.height = bootH + 'px';
+      }
     }
 
     ytPlayer = new window.YT.Player(hostId, {
@@ -1086,34 +1107,37 @@
     var stage = els.stage || document.querySelector('.film-theatre-stage');
 
     if (isDown) {
-      // === LIGHTS-DOWN ONLY (lights-up path left untouched) ===
-      // Force a larger player box so the video fills more of the big dark frame area
-      // the user expects in lights-down. Compute large width from viewport.
-      // Use a generous height (minimal vertical reserve) so the player is tall.
-      // The actual space for the up-next bar at bottom is created by a margin-bottom
-      // on .film-theatre-player in the lights-down CSS (see styles.css). This lets the
-      // gold frame + video be significantly larger without the YT bottom chrome covering
-      // the UP NEXT / SKIP pill.
-      var vw = window.innerWidth || 1280;
-      var vh = window.innerHeight || 800;
+      // === LIGHTS-DOWN ONLY (lights-up path left untouched per user request) ===
+      // The core issue was that the player size was not respecting the actual "video screen box"
+      // defined by the stage's current padding and layout. The stage padding (currently 2.5rem top / 0.75rem bottom)
+      // creates the safe letterbox area where the fixed top action bar (Film hub / Lights up) and bottom up-next live.
+      // By querying the stage's *actual client dimensions* (which already subtract the padding for the content area),
+      // we size the player to fill most of that inner box. This prevents intrusion into the top bar area
+      // and makes the gold frame + video expand to match the available larger box in lights-down.
+      // The YT inner will scale with the set size.
+      // We use the actual stage at sync time (after layout) + safety margin inside the content area.
+      var contentW = stage ? stage.clientWidth : (window.innerWidth * 0.9);
+      var contentH = stage ? stage.clientHeight : (window.innerHeight * 0.7);
 
-      var w = Math.min(vw * 0.85, 1400);
-      w = Math.max(720, w);
+      // Leave a small safety letterbox *inside* the content area (in addition to stage padding)
+      // so the gold frame doesn't touch the very edge of the "box" and to ensure the fixed bars
+      // (which sit in the stage padding) are not overlapped by the frame.
+      var safety = 24; // px on each side
+      var maxW = contentW - (safety * 2);
+      var maxH = contentH - (safety * 2);
+
+      var w = Math.min(contentW * 0.88, maxW);  // 88% of the *actual content box* for slightly larger fill
+      w = Math.max(720, Math.min(w, maxW));
 
       var videoOnlyH = w * 9 / 16;
       var chromeExtra = 28;
       var totalH = Math.round(videoOnlyH + chromeExtra);
 
-      // Only a small cap so it doesn't go completely off top/bottom. The CSS margin-bottom
-      // on the player will shift it up to clear the bottom bar area.
-      var maxHForPlayer = vh - 50;
-      if (totalH > maxHForPlayer) {
-        totalH = maxHForPlayer;
+      if (totalH > maxH) {
+        totalH = maxH;
         w = Math.round((totalH - chromeExtra) * 16 / 9);
+        w = Math.max(640, Math.min(w, maxW));
       }
-
-      var stageW = (stage && stage.clientWidth) || vw;
-      w = Math.min(w, stageW * 0.92);
 
       applySize(w, totalH);
       return;
