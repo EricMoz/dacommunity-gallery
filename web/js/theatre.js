@@ -30,6 +30,7 @@
      IMPORTANT: Default arrival (direct link or refresh with no prior toggle)
      is ALWAYS lights-on with full chrome. The early auto-apply inline script
      was removed from the HTMLs to prevent unwanted immersive start.
+     (See also CSS for .film-theater-frame.is-active and player sizing.)
      ===================================================================== */
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -48,6 +49,8 @@
   var pendingUpNext = null;
   var upNextTimer = null;
   var upNextCountdownSec = 0;
+
+  /* === State & DOM refs (similar pattern to film.js but isolated for Theatre Mode) === */
   var endWatchTimer = null;
   var endTriggered = false;
   var watchStack = [];
@@ -454,6 +457,7 @@
     loadTheatreVideo(video, { autoplay: false, keepLights: true, history: "none" });
   }
 
+  /* === YouTube + Player bootstrap (Theatre uses separate YT player instance) === */
   function loadYouTubeApi() {
     if (window.YT && window.YT.Player) {
       ytApiReady = true;
@@ -1267,6 +1271,7 @@
       return;
     }
 
+    /* Data load uses no-store + explicit cache bust from meta to stay fresh with daily video registry updates. */
     try {
       var res = await fetch(VIDEOS_URL, { cache: "no-store" });
       if (!res.ok) throw new Error(String(res.status));

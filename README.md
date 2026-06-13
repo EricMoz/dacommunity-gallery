@@ -1,105 +1,117 @@
-# daCommunity Gallery
+# daCAT Gallery & World
 
-Static gallery for the [daCAT daCommunity](https://opensea.io/collection/rodeo-posts-12142) ERC-1155 collection on Base, plus a collections hub for upcoming **Badges** (Ethereum).
+**Zero-cost, zero-friction, premium-feel static experience for the daCAT universe.**
 
-**Live site:** https://ericmoz.github.io/dacommunity-gallery/
+A fully static GitHub Pages site delivering a rich NFT gallery, collector portfolio view, immersive Theatre Mode, film hub, and live analytics — all without a backend at runtime or any wallet connect.
 
-Check the footer on any page for **Site build YYYYMMDD-N** (e.g. `20260605-8`). If yours is older after a deploy, hard-refresh (**Ctrl+Shift+R**) or try a private window.
+- **Global archive** of the daCAT daCommunity (Base) + coming attractions (Badges on Ethereum)
+- **Find your daCATs** instantly via ENS or 0x (shareable `?wallet=` links)
+- **Theatre Mode** — lights-down immersive player for desktop
+- **Daily fresh data** via pre-fetched OpenSea pipeline + aggressive cache-busting
 
-| Route | Purpose |
-|-------|---------|
-| `/` | **Home** — Collections, film, analytics |
-| `/collections/` | **Collections** — daCommunity + Badges picker |
-| `/dacommunity/` | Gallery, search/filters, collector lookup, shareable `?wallet=` links |
-| `/badges/` | **Badges** — cosmic coming-soon preview (Ethereum drop) |
-| `/analytics/` | **MC race** — Flourish bar chart race + looping track cars in the background |
-| `/film/` | **Films hub** — sticky search/filters, series grid, in-page player |
-| `/film/mozvane/` | Mozvane — **Theatre mode** (immersive watch) |
-| `/film/theatre/?v=` | Generic theatre route — **every catalog video on desktop** |
+**Live:** https://ericmoz.github.io/dacommunity-gallery/ (or the official mirror once promoted)
 
-## Features
+> Check any page footer for the **Site build** stamp (e.g. `20260613-6`). After a deploy, hard-refresh (`Ctrl+Shift+R` / `Cmd+Shift+R`) or use a private window if you see stale content.
 
-- **Browse archive** — Search by name, story, or token #; filter (all / for sale / not listed / recent moves); sort (token #, price, transfer date, name).
-- **My daCATs** — Nav link on every page → `dacommunity/#wallet-panel` (collector lookup).
-- **Collector lookup** — ENS or `0x` address, no wallet connect. **×** clears the field and result card.
-- **Portfolio view** — Dark cinema grid for one wallet (`?wallet=0x…`); search/filter in compact panel; exit returns to lookup with field cleared.
-- **NFT detail drawer** — Readable dark theme in portfolio mode; holder badge **this portfolio** vs **latest transfer** in full archive.
-- **Shareable links** — `?wallet=0x…#wallet-panel` opens a portfolio aligned under the nav; `#wallet-panel` alone scrolls to the lookup hub.
-- **PWA shell** — Offline-friendly shell; HTML/CSS/JS and `sw.js` cache names bump each deploy; gallery JSON is network-first.
-- **Film hub** — Catalog from `data/videos.json`; search + series filters stay sticky under the top nav while browsing (`/film/`).
-- **Nav hierarchy** — Collections + Film are primary hubs; one dashed-yellow `is-active` state; MC race demoted; My daCATs emphasized on home/gallery.
-- **MC race** (`/analytics/`) — Flourish bar chart race; dashed track, checkered corners, and orbiting cars (dacat.drive + mascot) behind content. Mobile shows a slimmer panel gutter so cars peek at the edges; `prefers-reduced-motion` parks cars static.
+## Why this project stands out
 
-## Architecture
+- **True static hosting** — GitHub Pages + CDN. $0 ongoing cost, instant deploys, no server to maintain.
+- **Pre-fetched + bulletproof cache-busting** — Backend (Python) pulls OpenSea once per day into JSON. Every deploy bumps `?v=`, service worker `CACHE`, `<meta name="site-build">`, and all asset links so browsers/SW/CDN never serve old data or shell.
+- **Vanilla JS doing "impossible" UX** — Complex gallery + dark cinema portfolio + sticky theatre player + share state + multi-collection awareness, all in a few small files. No frameworks, no build step for the frontend.
+- **Zero-friction collector experience** — Look up any wallet, get a beautiful shareable link, no connect, no gas, works on mobile.
+- **Thoughtful details everywhere** — Theatre lights, flying popcorn, precise safe-area padding, collector header that never gaps, price badges that never clip, smooth grid that respects min/max columns.
+- **Registry-driven multi-collection ready** — `collections_registry.json` + status flags mean new live collections light up automatically in filters, pre-links, and share URLs (see Part 1 of recent updates).
 
-Static-first: no app server in production. GitHub Pages serves `web/`; chain data is pre-fetched into JSON.
+## Routes
+
+| Route                  | Experience |
+|------------------------|------------|
+| `/`                    | Home hub — quick cards to everything + subtle store promo |
+| `/collections/`        | Collection picker (live gallery + coming-soon teasers) |
+| `/dacommunity/`        | Main gallery + search/filters/sort + "Find your daCATs" wallet lookup + collector portfolio (`?wallet=...`) |
+| `/badges/`             | Cosmic "Coming soon" teaser (static + starfield) |
+| `/analytics/`          | MC race — Flourish bar chart + animated track cars |
+| `/film/`               | Film hub — sticky search + series filters + in-page YT player + Theatre links |
+| `/film/mozvane/`       | Dedicated Theatre Mode (desktop immersive) |
+| `/film/theatre/?v=ID`  | Generic theatre route for any catalog video |
+
+## Key Features (current)
+
+- **Gallery** — Fast catalog first-paint, background full-data enrichment, live "for sale" / "recent transfers" filters, price sorting, search across name/story/token.
+- **Collector Portfolio** — Dark cinema grid scoped to one wallet. Same filters work inside it. Clean exit back to lookup.
+- **Wallet deep links** — `?wallet=0x...#wallet-panel` or `?ens=...` — opens lookup + portfolio instantly. Share buttons copy the full URL.
+- **Multi-collection filter** (new) — Dropdown in the archive (only shows `status: "live"` entries from `collections_registry.json`). Pre-filter links from `/collections/` (`?collection=dacommunity`). "Find your daCATs" + share links respect the active collection.
+- **Theatre Mode** — Lights-down experience, up-next, full controls when lights up, persistent preferences via sessionStorage. Mobile gracefully falls back to hub player.
+- **Strong data freshness** — Daily OpenSea sync (see backend). Visible "last pull" + staleness banners. Network-first for JSON in SW.
+- **PWA** — Installable, offline shell, versioned cache.
+
+## Honest limitations
+
+- **Not live data** — Gallery, ownership, listings, and transfers update once per day via GitHub Action (see `.github/workflows/refresh-data.yml`). Great for a premium static feel; not a real-time on-chain explorer.
+- **Single primary collection today** — daCommunity is the only fully live gallery. Badges and future drops use the registry + "coming soon" pattern so nothing breaks when we flip the switch.
+- **No wallet signing** — By design. This is a read-only community archive and discovery tool.
+- **Desktop-heavy Theatre** — Full lights experience is 769px+. Mobile gets the excellent hub player instead.
+
+## Architecture at a glance
 
 ```
-OpenSea API v2  ──►  Python (backend/)  ──►  web/data/*.json
-                                              │
-                                              ▼
-                                    GitHub Pages (web/)
+OpenSea (daily)  →  backend/*.py  →  web/data/*.json  (catalog + full + wallet index + videos + registry)
+                                                    ↓
+                                          GitHub Pages (web/)
+                                          (HTML + vanilla JS + CSS + SW)
 ```
 
-| Piece | Role |
-|-------|------|
-| **`collections_registry.py`** | Load `web/data/collections_registry.json` — multi-collection manifest |
-| **`fetch_gallery_data.py`** | Full refresh → `gallery_data.json`, `wallet_index.json` |
-| **`build_catalog.py`** | Slim `gallery_catalog.json` for fast first paint |
-| **`gallery_meta.json`** | Refresh status / staleness banner |
-| **`app.js`** | Catalog → full merge → wallet index; browse + portfolio + detail drawer |
+- **Registry first** (`web/data/collections_registry.json` + `backend/collections_registry.py`) — single source for what is live vs preview.
+- **Two-tier data** — `gallery_catalog.json` (tiny, instant paint) + `gallery_data.json` (rich, loaded in background).
+- **Frontend** — `app.js` (gallery + collector), `film.js` + `theatre.js` (film), tiny page-specific scripts.
+- **Cache discipline** — Every deploy runs `scripts/bump_deploy_version.py` which touches `?v=`, meta, SW `CACHE`, `VERSION.txt`, footers.
+- **No build** for the web shell (pure static). Python only for data pipeline.
 
-**Contract:** `0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1` (Base) · Steward: `dacatdreams.base.eth`
+See `docs/MAINTENANCE.md`, `docs/COLLECTIONS.md`, `docs/THEATRE.md` for deeper maintainer notes.
 
-### Frontend (`web/`)
+## Local development
 
-| File | Role |
-|------|------|
-| `dacommunity/index.html` | Gallery shell: hero, `#wallet-panel` anchor + `#wallet-lookup`, browse, grid, detail drawer |
-| `css/styles.css` | Layout; `body.has-collector-view` = dark portfolio + detail theme |
-| `js/app.js` | Data load, search/filter/sort, wallet URL sync, grid + detail UI |
-| `js/film.js` | Film catalog, sticky header-height sync, modal player, up-next |
-| `js/theatre.js` | Theatre mode (desktop): YT API player, lights down/up, up-next |
-| `data/theatre_registry.json` | Per-film theatre theme + future `extras` hooks |
-| `docs/THEATRE.md` | Theatre QA, lights-down chrome layout, data contract |
-| `analytics/index.html` | MC race page — Flourish embed + `.analytics-race-scene` background |
-| `js/home.js` | Home-only community highlights |
-| `js/pwa-register.js` | Registers `sw.js` with `?v=` from `<meta name="site-build">` |
-| `sw.js` | Network-first for HTML/CSS/JS; `CACHE` bumped per deploy |
-| `docs/MAINTENANCE.md` | **QA checklist**, sticky/nav pitfalls, regression notes for maintainers |
-
-### `app.js` flow (maintainers)
-
-1. `init()` → `loadCatalogFirst()` → `bootGallery()` → `bindUi()` (once).
-2. Background: `refreshFullDataInBackground()`, `loadWalletIndex()`, `applyWalletFromUrl()`.
-3. Portfolio: `setGalleryCollectorView()` sets `galleryCollectorView.tokenIds`; grid filters via `getFilteredItems()`.
-4. Clicks: delegated on `#gallery-list` (`data-token-id` → `openDetail()`).
-5. Holders in detail: `resolveHoldersList()` → `sortHoldersForDisplay()`; highlight via `holderHighlightAddress()` only (uses `tokenIds` in portfolio mode — do not call `resolveHoldersList` from there).
-
-### Film hub (`film.js`)
-
-1. Header height → CSS variable `--site-header-h` via `syncSiteHeaderHeight()` (also `ResizeObserver` on nav wrap).
-2. `.film-sticky-deck` uses `position: sticky; top: var(--site-header-h)` — **do not** set `position: relative` on film header/deck (breaks follow-scroll). See `docs/MAINTENANCE.md`.
-3. Catalog from `../data/videos.json`; deep link `?v=<id>` opens modal player.
-
-### Theatre mode (`theatre.js`) — desktop only (769px+)
-
-1. Hub modal links **🍿 Theatre mode** for every video; mobile uses hub player only.
-2. **Lights down:** video stays bright; dim up-next chip **bottom-left**; **Lights up** pill **top-right** (see `docs/THEATRE.md` — do not stretch up-next full width).
-3. **Lights up:** Random/Series up-next under player; flying popcorn background (niche easter egg).
-4. **Back:** watch stack + `history.pushState` — previous film in session, else film hub with `?v=` entry.
-5. Shares `dacat-film-upnext-mode` in `sessionStorage` with `film.js`.
-
-## Local preview
-
-Browsers block `fetch()` on `file://` — serve `web/`:
-
-```powershell
+```bash
+# Serve the web root (required — fetch() is blocked on file://)
 cd web
 python -m http.server 8080
+# or
+npx serve .
 ```
 
-Open http://localhost:8080/dacommunity/ for the gallery, or http://localhost:8080/film/ to QA sticky search. `start-gallery.bat` at the repo root is a Windows shortcut.
+Open http://localhost:8080 (or the dacommunity subpath). Use `start-gallery.bat` on Windows for the same.
+
+For data work:
+```bash
+cd backend
+python -m pip install -r requirements.txt
+# See refresh.ps1 / .github/workflows for the real daily path
+```
+
+## Contributing
+
+PRs welcome for:
+- Polish, accessibility, mobile edge cases
+- New "live" entries in the registry + corresponding data
+- Theatre / film enhancements
+- Documentation
+
+Please keep the "static first, zero ongoing cost, delightful details" spirit. Run the bump script locally before pushing if you changed shell assets so the build stamp advances.
+
+## Credits
+
+Built with love for the daCAT community by the same folks who bring you the comics, films, and chaos.
+
+- Data pipeline & static discipline: the daCAT engineering crew
+- Art & lore: Randy Chavez, DaKingsi, and the wider world
+- Special thanks to everyone who minted, held, and created the stories that made an archive worth building.
+
+Enjoy the gallery. Find your daCATs. Share the link. 
+
+**dacat.fun · dacatworld · dacat.store**
+```
+
+Enjoy the gallery. Find your daCATs. Shop the store. Share the stories.
 
 ## Refresh data from OpenSea
 

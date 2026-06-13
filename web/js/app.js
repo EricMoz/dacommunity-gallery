@@ -1,25 +1,42 @@
 /**
  * daCommunity Gallery — static frontend (served from /dacommunity/ on Pages).
  *
+ * This is the core vanilla JS app powering:
+ * - Global gallery browse (search + filters + sort + grid)
+ * - Wallet / collector lookup (?wallet= deep links, portfolio view)
+ * - Multi-collection awareness (via collections_registry.json + activeCollection filter)
+ * - Detail drawer, activity, owners
+ * - Strong cache-busting for data + assets (via build stamp)
+ *
  * BOOT FLOW (init → bootGallery):
- *   1. initDataUrls() — resolve ../data/*.json from body[data-base] on subpages
+ *   1. initDataUrls() — resolve ../data/*.json from body[data-base] on subpages + ?v= bust
  *   2. loadCatalogFirst() — small gallery_catalog.json (~140KB) for first paint
  *   3. bootGallery() — hide #load-state, fill #stats-strip, render grid, bindUi()
  *   4. refreshFullDataInBackground() — merge descriptions + recent_activity from full JSON
  *   5. loadWalletIndex() — ENS names for collector lookup (non-blocking)
+ *   6. loadCollectionsRegistry() — for live collection filter UI (Part 1 multi-col)
  *
  * If app.js fails to parse, the page stays on static HTML loaders (#load-state spinner
  * + four .stat.skeleton cards). CI runs `node --check` on this file before deploy.
  *
  * No wallet connect; ENS resolve via ensdata.net when needed.
+ * All state is client-side; filters/sort/search/collection do not persist across reloads
+ * except via explicit ? params for share links.
  *
- * STATE: activeFilter, searchQuery, sortKey, galleryCollectorView (portfolio grid).
- * WALLET: #wallet-lookup form, ?wallet= URL, #wallet-panel hash anchor, exitCollectorView.
- * SCROLL: scrollToElementBelowHeader uses --site-header-h (never scrollIntoView on sticky bars).
- * BROWSE: getFilteredItems → renderGallery; delegated clicks on #gallery-list.
- * DETAIL: openDetail drawer; holderHighlightAddress uses tokenIds (never resolveHoldersList).
+ * STATE (top-level lets):
+ *   activeFilter, searchQuery, sortKey, activeCollection
+ *   galleryCollectorView (the dark portfolio mode)
+ *   galleryData, itemsById, collectorsList
+ *
+ * KEY MODULES (search for comments):
+ * - Data loading & registry
+ * - Browse / filtering (getFilteredItems, renderBrowseMeta)
+ * - Collector / wallet view
+ * - Share + URL sync (for multi-col + filters)
+ * - Render pipeline
  */
 
+/* === Data URL Resolution & Build Stamp (cache busting) === */
 /** Parent path prefix when gallery is not at site root (e.g. /dacommunity/). */
 function getDataPrefix() {
   var body = document.body;
@@ -70,6 +87,7 @@ function initDataUrls() {
 
 const $ = (sel, root = document) => root.querySelector(sel);
 
+/* === Global State (single source of truth for browse + collector modes) === */
 let galleryData = null;
 let walletIndex = null;
 let collectorsList = [];
@@ -88,6 +106,7 @@ let galleryCollectorView = null;
 let activeDetailTokenId = null;
 let activeCollection = "all";
 
+/* Browse labels (used for chips + resets). Extended for multi-col in Part 1. */
 var FILTER_LABELS = {
   all: "All",
   listed: "For sale",
@@ -408,6 +427,8 @@ function mergeFullDescriptions(full) {
 // --- Data loading: catalog (fast) → full JSON (stories/activity) → wallet index ---
 
 /** First paint: lean catalog built by backend/build_catalog.py (no recent_activity). */
+/* === Data Loading (catalog first, then full + registry + wallet index) === */
+/* Strong emphasis on ?v= busting + no-store for live data freshness after daily backend runs. */
 async function loadCatalogFirst() {
   if (isFileProtocol()) throw new Error("FILE_PROTOCOL");
   try {
@@ -451,6 +472,11 @@ async function loadWalletIndex() {
   }
 }
 
+/* Registry loader (Part 1 multi-col support).
+ * Only "live" collections appear in dropdown / pre-filters / share links.
+ * "coming_soon" (e.g. Badges) are deliberately excluded to preserve their teaser UX.
+ * Adding a new live collection = update registry.json + ensure items carry collection_id.
+ */
 async function loadCollectionsRegistry() {
   if (!REGISTRY_URL) {
     collectionsRegistry = { collections: [{ id: "dacommunity", name: "daCommunity NFT Archive", status: "live" }] };
@@ -509,6 +535,7 @@ function itemTitle(item) {
   return item.display_name || item.local_slug || item.name || "Token #" + item.token_id;
 }
 
+/* === Utility Formatters === */
 function formatPieceTitleHtml(title) {
   var t = title || "";
   if (t.toLowerCase().indexOf("dacat.") === 0) {
@@ -749,6 +776,7 @@ function copyFullAddress(address) {
   document.body.removeChild(ta);
 }
 
+/* === Collector / Wallet View (dark cinema portfolio + ?wallet= deep links) === */
 // --- Collector lookup (wallet_index.json, shareable ?wallet= URLs) ---
 
 function parseWalletFromUrl() {
@@ -1441,6 +1469,9 @@ function renderHoldingsGrid(holdings, container) {
   }
 }
 
+/* Share helpers (wallet-specific + new view-level for filters+collection in Part 1).
+ * buildCurrentViewUrl + sync ensure share links carry collection + activeFilter/sort/q.
+ */
 function shareCollectorCollection(address) {
   if (!address) return;
   var url = walletShareUrl(address);
@@ -1458,6 +1489,9 @@ function shareCollectorCollection(address) {
   }
 }
 
+/* === Share Modal (Part 1) — copyable URL with current collection + filters + social quick-links.
+ * Mobile bottom-sheet via CSS; desktop centered. Reuses existing toast / URL helpers.
+ */
 function buildCurrentViewUrl() {
   syncBrowseParamsToUrl();
   return window.location.href;
@@ -2066,7 +2100,10 @@ function compareItems(a, b) {
   return Number(b.token_id) - Number(a.token_id);
 }
 
-/** Apply searchQuery, activeFilter, sortKey, and optional galleryCollectorView scope. */
+/* === Core Browse Logic (filter + sort + collection scoping) === */
+/** Apply searchQuery, activeFilter, sortKey, activeCollection, and optional galleryCollectorView scope.
+ *  Collection filter added for Part 1; falls back gracefully for legacy data.
+ */
 function getFilteredItems() {
   if (!galleryData || !galleryData.items) return [];
   var items = galleryData.items.slice();
@@ -2785,6 +2822,7 @@ function bindUi() {
   });
 }
 
+/* === Boot & Bind (wires everything after initial data load; also handles URL param restore for collection/filters) === */
 /** Turn loaded JSON into UI: clear loaders, stats, gallery rows, event handlers. */
 function bootGallery(data) {
   galleryData = data;
@@ -2825,6 +2863,7 @@ function bindHeaderHeightSync() {
   }
 }
 
+/* Main entry (called at bottom). Orchestrates data loads + early URL param parsing (for ?collection= etc). */
 async function init() {
   bindHeaderHeightSync();
 

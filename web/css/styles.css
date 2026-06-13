@@ -2888,6 +2888,68 @@ button.stat:focus-visible {
   color: var(--black);
 }
 
+/* Subtle store/merch promo banner (Part 1) — clean, on-brand, good mobile */
+.home-store-promo {
+  margin: 1.5rem 0 0.5rem;
+  padding: 0 1rem;
+}
+.store-promo {
+  display: block;
+  background: rgba(255, 204, 0, 0.06);
+  border: 1px solid rgba(255, 204, 0, 0.25);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  color: inherit;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+}
+.store-promo:hover {
+  background: rgba(255, 204, 0, 0.1);
+  border-color: rgba(255, 204, 0, 0.4);
+  transform: translateY(-1px);
+}
+.store-promo-kicker {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--yellow);
+  margin-bottom: 0.2rem;
+}
+.store-promo-main {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #111;
+  margin-bottom: 0.15rem;
+}
+.store-promo-desc {
+  display: block;
+  font-size: 0.82rem;
+  color: #444;
+  margin-bottom: 0.35rem;
+}
+.store-promo-cta {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--yellow);
+}
+@media (max-width: 480px) {
+  .home-store-promo {
+    margin: 1rem 0 0.25rem;
+    padding: 0 0.75rem;
+  }
+  .store-promo {
+    padding: 0.7rem 0.85rem;
+  }
+  .store-promo-main {
+    font-size: 0.9rem;
+  }
+}
+
 .home-stories-layout {
   display: flex;
   flex-direction: column;
@@ -5154,6 +5216,21 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
 .film-vcard-creator {
   font-size: 0.75rem;
   color: #888;
+}
+
+.film-vcard-world-note {
+  font-size: 0.68rem;
+  color: #777;
+  margin-top: 0.15rem;
+  line-height: 1.3;
+}
+.film-vcard-world-note a {
+  color: var(--yellow);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.film-vcard-world-note a:hover {
+  color: #f0c000;
 }
 
 .film-empty {

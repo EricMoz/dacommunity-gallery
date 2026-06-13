@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<!-- Film theater — data/videos.json + js/film.js -->
+<!-- Film hub (catalog + player).
+     - film.js handles grid, filters, modal YT player, up-next.
+     - daCAT World / podcast videos get store/YouTube note (Part 1).
+     - Theatre mode links to /film/mozvane/ (uses theatre.js for immersive).
+     See film.js + docs/COLLECTIONS.md for structure. -->
 <html lang="en">
 <head>
-  <meta name="site-build" content="20260613-6" />
+  <meta name="site-build" content="20260613-7" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>daCAT Films · Community theater</title>
@@ -11,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/styles.css?v=20260613-6" />
+  <link rel="stylesheet" href="../css/styles.css?v=20260613-7" />
 </head>
 <body class="film-page film-hub-page film-theater">
   <div class="film-theater-vignette" aria-hidden="true"></div>
@@ -58,7 +62,7 @@
       <h1>daCAT <span class="film-hero-name">films</span></h1>
       <nav class="page-quick-links" aria-label="Quick links">
         <a class="page-quick-link film-hub-theatre-quick" id="film-hero-theatre" href="mozvane/">🍿 Theatre mode</a>
-        <a class="page-quick-link" href="../collections/">Collections</a>
+        <a class="page-quick-link" href="https://dacat.store/">Shop</a>
         <a class="page-quick-link" href="../">Home</a>
       </nav>
       <p class="film-tagline film-hub-lead">
@@ -80,7 +84,7 @@
     <div id="film-rows" class="film-catalog"></div>
 
     <nav class="film-hub-foot-links page-quick-links" aria-label="Also explore">
-      <a class="page-quick-link" href="../dacommunity/">Archive</a>
+      <a class="page-quick-link" href="https://dacat.store/">Shop</a>
     </nav>
 
     <p id="film-empty" class="film-empty" hidden>No titles match your search or filter.</p>
@@ -160,10 +164,10 @@
   </div>
 
   <footer class="site-footer film-footer">
-    <p><a href="https://www.dacat.fun/">dacat.fun</a> · <a href="https://www.dacatworld.com/">dacatworld</a></p>
-    <p class="site-version">Site build 20260613-6</p>
+    <p><a href="https://www.dacat.fun/">dacat.fun</a> · <a href="https://www.dacatworld.com/">dacatworld</a> · <a href="https://dacat.store/">dacat.store</a></p>
+    <p class="site-version">Site build 20260613-7</p>
   </footer>
 
-  <script src="../js/film.js?v=20260613-6" defer></script>
+  <script src="../js/film.js?v=20260613-7" defer></script>
 </body>
 </html>

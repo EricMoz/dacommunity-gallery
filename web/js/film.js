@@ -190,6 +190,10 @@
         <span class="film-vcard-series">${escapeHtml(video.series)}</span>
         <span class="film-vcard-title">${escapeHtml(video.title)}</span>
         <span class="film-vcard-creator">${escapeHtml(video.creator)}</span>
+        ${ (video.creator === "DACAT WORLD" || video.filterCategory === "dacatworld" || video.filterCategory === "podcasts")
+          ? '<span class="film-vcard-world-note">daCAT World · <a href="https://dacat.store/" target="_blank" rel="noopener">Shop merch &amp; comics</a> · <a href="https://www.youtube.com/@DacatWorld" target="_blank" rel="noopener">YouTube</a></span>'
+          : ''
+        }
       </span>
     `;
     btn.addEventListener("click", () => openModal(video.id));
