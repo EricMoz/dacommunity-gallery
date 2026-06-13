@@ -2923,8 +2923,8 @@ button.stat:focus-visible {
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--yellow);
-  background: rgba(255, 204, 0, 0.15);
+  color: var(--blue-accent);
+  background: rgba(42, 127, 212, 0.12);
   padding: 0.15rem 0.55rem;
   border-radius: 999px;
   margin-bottom: 0.4rem;
@@ -2947,7 +2947,7 @@ button.stat:focus-visible {
 .hub-more-card-shop .hub-more-card-cta {
   font-size: 0.82rem;
   font-weight: 700;
-  color: var(--yellow);
+  color: var(--black);
 }
 
 @media (max-width: 480px) {
@@ -6675,6 +6675,25 @@ body.has-collector-view #browse-controls.is-portfolio-browse .browse-advanced-to
 
 body.has-collector-view #browse-controls.is-portfolio-browse .browse-advanced .browse-rows {
   margin-top: 0.35rem;
+}
+
+/* Collector view: place clear filters inline on right of FILTER & SORT toggle to save vertical space (Part 5) */
+body.has-collector-view #browse-controls.is-portfolio-browse .browse-toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.35rem 0 0.15rem;
+}
+body.has-collector-view #browse-controls.is-portfolio-browse .browse-advanced-toggle {
+  margin: 0; /* moved to row */
+  flex: 1;
+  width: auto !important; /* allow inline beside clear on mobile too */
+}
+body.has-collector-view #browse-controls.is-portfolio-browse #collector-clear-filters {
+  flex-shrink: 0;
+  min-height: 36px;
+  font-size: 0.68rem;
+  padding: 0.2rem 0.5rem;
 }
 
 body.has-collector-view #browse-controls.is-portfolio-browse .browse-advanced.is-collapsed .browse-rows {
