@@ -2187,8 +2187,8 @@ button.stat:focus-visible {
 }
 
 .home-section-head {
-  margin-bottom: 1.1rem;
-  padding-bottom: 0.65rem;
+  margin-bottom: 1.15rem;
+  padding-bottom: 0.7rem;
   border-bottom: 3px solid var(--black);
 }
 
@@ -2888,72 +2888,81 @@ button.stat:focus-visible {
   color: var(--black);
 }
 
-/* Subtle store/merch promo banner (Part 1) — clean, on-brand, good mobile */
-.home-store-promo {
-  margin: 1.5rem 0 0.5rem;
-  padding: 0 1rem;
+/* Elevated home shop section (Part 3) — matches TRACK/FILM structure, premium light/yellow feel */
+.home-shop {
+  scroll-margin-top: 5.5rem;
 }
-.store-promo {
+
+.home-shop .home-section-head {
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--black);
+}
+
+.hub-more-card-shop {
   display: block;
-  background: rgba(255, 204, 0, 0.06);
-  border: 1px solid rgba(255, 204, 0, 0.25);
-  border-radius: 10px;
-  padding: 0.85rem 1rem;
+  background: #fffef5;
+  border: 3px solid var(--black);
+  border-radius: 12px;
+  padding: 1.1rem 1.25rem 1.15rem;
   color: inherit;
   text-decoration: none;
-  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  box-shadow: 5px 5px 0 var(--black);
+  transition: transform 0.12s, box-shadow 0.12s, border-color 0.12s;
 }
-.store-promo:hover {
-  background: rgba(255, 204, 0, 0.1);
-  border-color: rgba(255, 204, 0, 0.4);
-  transform: translateY(-1px);
+
+.hub-more-card-shop:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 var(--black);
+  border-color: var(--yellow);
 }
-.store-promo-kicker {
-  display: block;
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--yellow);
-  margin-bottom: 0.2rem;
-}
-.store-promo-main {
-  display: block;
-  font-size: 0.95rem;
-  font-weight: 700;
-  line-height: 1.25;
-  color: #111;
-  margin-bottom: 0.15rem;
-}
-.store-promo-desc {
-  display: block;
-  font-size: 0.82rem;
-  color: #444;
-  margin-bottom: 0.35rem;
-}
-.store-promo-cta {
+
+.hub-more-card-shop .hub-more-kicker {
   display: inline-block;
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  background: rgba(255, 204, 0, 0.15);
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  margin-bottom: 0.4rem;
+}
+
+.hub-more-card-shop .hub-more-card-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin: 0 0 0.25rem;
+  color: #111;
+}
+
+.hub-more-card-shop .hub-more-card-desc {
+  font-size: 0.9rem;
+  color: #444;
+  line-height: 1.45;
+  margin: 0 0 0.65rem;
+}
+
+.hub-more-card-shop .hub-more-card-cta {
+  font-size: 0.82rem;
+  font-weight: 700;
   color: var(--yellow);
 }
+
 @media (max-width: 480px) {
-  .home-store-promo {
-    margin: 1rem 0 0.25rem;
-    padding: 0 0.75rem;
+  .hub-more-card-shop {
+    padding: 0.9rem 1rem 1rem;
   }
-  .store-promo {
-    padding: 0.7rem 0.85rem;
-  }
-  .store-promo-main {
-    font-size: 0.9rem;
+  .hub-more-card-shop .hub-more-card-title {
+    font-size: 1rem;
   }
 }
 
 .home-stories-layout {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.15rem;
 }
 
 .hub-more-grid-pair {
@@ -5630,6 +5639,21 @@ body.film-modal-open {
   font-size: 0.82rem;
   line-height: 1.55;
   color: #9a9a9a;
+}
+
+/* Tasteful daCAT World merch note — only inside player modal (Part 2), not in list */
+.film-modal-world-promo {
+  margin: 0.6rem 0 0;
+  font-size: 0.76rem;
+  color: #777;
+  line-height: 1.4;
+}
+.film-modal-world-promo a {
+  color: var(--yellow);
+  font-weight: 500;
+}
+.film-modal-world-promo a:hover {
+  color: #fff;
 }
 
 .film-modal-links {

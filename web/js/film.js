@@ -190,10 +190,6 @@
         <span class="film-vcard-series">${escapeHtml(video.series)}</span>
         <span class="film-vcard-title">${escapeHtml(video.title)}</span>
         <span class="film-vcard-creator">${escapeHtml(video.creator)}</span>
-        ${ (video.creator === "DACAT WORLD" || video.filterCategory === "dacatworld" || video.filterCategory === "podcasts")
-          ? '<span class="film-vcard-world-note">daCAT World · <a href="https://dacat.store/" target="_blank" rel="noopener">Shop merch &amp; comics</a> · <a href="https://www.youtube.com/@DacatWorld" target="_blank" rel="noopener">YouTube</a></span>'
-          : ''
-        }
       </span>
     `;
     btn.addEventListener("click", () => openModal(video.id));
@@ -685,6 +681,20 @@
     els.modalRelease.textContent = video.releaseDate || "";
     els.modalDesc.textContent = video.description || "";
     els.modalYtLink.href = `https://www.youtube.com/watch?v=${video.youtubeId}`;
+
+    // Remove any stale promo
+    const oldPromo = document.getElementById('film-modal-world-promo');
+    if (oldPromo) oldPromo.remove();
+
+    // Show tasteful daCAT World / merch note ONLY inside the modal for relevant videos (Part 2)
+    const isWorld = video.creator === "DACAT WORLD" || video.filterCategory === "dacatworld" || video.filterCategory === "podcasts";
+    if (isWorld && els.modalDesc && els.modalDesc.parentNode) {
+      const promo = document.createElement('p');
+      promo.id = 'film-modal-world-promo';
+      promo.className = 'film-modal-world-promo';
+      promo.innerHTML = `daCAT World · <a href="https://dacat.store/" target="_blank" rel="noopener noreferrer">Shop merch &amp; free comics</a> · <a href="https://www.youtube.com/@DacatWorld" target="_blank" rel="noopener noreferrer">YouTube</a>`;
+      els.modalDesc.parentNode.insertBefore(promo, els.modalDesc.nextSibling);
+    }
     const theatre = theatreHref(video);
     if (theatre && els.modalTheatre) {
       els.modalTheatre.href = theatre;
