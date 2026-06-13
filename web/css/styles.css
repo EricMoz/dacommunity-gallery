@@ -7469,7 +7469,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     margin-bottom: 0.35rem;
   }
   .collector-escape-name {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     line-height: 1.1;
   }
 
@@ -8157,6 +8157,12 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     justify-content: flex-start !important; /* prevent base space-between from pushing actions to bottom, causing large gap in column layout on mobile */
     align-items: center !important;
     padding: 0 !important;
+    /* Hide scrollbar on very narrow mobile while keeping horizontal scroll if needed for the row layout.
+       This removes visible horizontal scrollbar without changing flex structure. */
+    scrollbar-width: none !important;
+  }
+  body.has-collector-view .collector-pride-header::-webkit-scrollbar {
+    display: none !important;
   }
   body.has-collector-view .collector-pride-actions {
     flex-direction: row !important;
@@ -8190,13 +8196,14 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     line-height: 1.1;
   }
 
-  /* Zero internal spacing in name section for all mobile collector to condense the header */
+  /* Zero internal spacing in name section for all mobile collector to condense the header.
+     Increased line-height for better breathing room and readability while preserving compact vertical rhythm. */
   body.has-collector-view .collector-escape-kicker,
   body.has-collector-view .collector-pride-title-row,
   body.has-collector-view .collector-pride-meta {
     margin: 0 !important;
     padding: 0 !important;
-    line-height: 1.0;
+    line-height: 1.65 !important;
   }
 
   body.has-collector-view .collector-theater-frame.is-active {
@@ -8207,15 +8214,16 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
      and the strong lock rules above (with !important). The legacy duplicates below have been removed for cleanliness.
      Only non-conflicting supporting styles (meta fonts etc.) remain if needed. */
 
-  /* Collector escape name/stats (supporting) - better readability */
+  /* Collector escape name/stats (supporting) - better readability.
+     Slightly larger name using clamp for premium feel on mobile. */
   body.has-collector-view .collector-escape-name {
-    font-size: clamp(1rem, 3.8vw, 1.15rem);
+    font-size: clamp(1.05rem, 4vw, 1.2rem);
     line-height: 1.15;
   }
   body.has-collector-view .collector-pride-meta,
   body.has-collector-view .collector-escape-stats {
     gap: 0.15rem;
-    font-size: 0.6rem;
+    font-size: 0.66rem;
   }
 
   /* Hide large profile card (was causing extra vertical + duplication in theater mode) */
@@ -8228,13 +8236,14 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
      Let the normal mobile header rules (from general max-768/640 media) apply so the top nav (logo + links + "my dacats" button)
      matches the style/spacing on film, home, collections, etc. pages. Collector-specific nav hiding (Home + current) is kept elsewhere. */
 
-  /* Zero internal spacing in name section for all mobile collector to condense the header (reverted to previous state) */
+  /* Zero internal spacing in name section for all mobile collector to condense the header (reverted to previous state).
+     Increased line-height for better breathing room and readability while preserving compact vertical rhythm. */
   body.has-collector-view .collector-escape-kicker,
   body.has-collector-view .collector-pride-title-row,
   body.has-collector-view .collector-pride-meta {
     margin: 0 !important;
     padding: 0 !important;
-    line-height: 1.0;
+    line-height: 1.65 !important;
   }
 
   /* Better breathing in the top collector controls area + larger more comfortable NFT grid (max ~4-5 tiles/row on portrait phones).
@@ -8303,6 +8312,12 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     align-items: center;
     gap: 0.3rem;
     margin-bottom: 0.1rem;
+    /* Hide scrollbar on narrow while keeping scroll if needed. */
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  body.has-collector-view .collector-pride-header::-webkit-scrollbar {
+    display: none;
   }
   body.has-collector-view .collector-pride-identity {
     flex: 1 1 12rem;
@@ -8320,7 +8335,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding: 0.2rem 0.45rem;
   }
   body.has-collector-view .collector-escape-name {
-    font-size: clamp(0.95rem, 3.2vw, 1.08rem);
+    font-size: clamp(1rem, 3.5vw, 1.12rem);
     line-height: 1.1;
   }
 
@@ -8391,7 +8406,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding-bottom: 0.75rem;
   }
   body.has-collector-view .collector-escape-name {
-    font-size: clamp(0.92rem, 3.2vw, 1.05rem);
+    font-size: clamp(0.98rem, 3.4vw, 1.1rem);
     line-height: 1.1;
   }
 
@@ -8402,7 +8417,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .collector-pride-meta {
     margin: 0 !important;
     padding: 0 !important;
-    line-height: 1.0;
+    line-height: 1.65 !important;
   }
 
   body.has-collector-view .collector-pride-identity {
@@ -8413,7 +8428,8 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 
   /* Re-assert the lock with the new var values for this breakpoint */
   body.has-collector-view .collector-pride-header {
-    /* Maintain the good compact look ... (row + h-scroll to prevent wrap-induced gap). Slightly larger gaps/pads now for comfort. */
+    /* Maintain the good compact look ... (row + h-scroll to prevent wrap-induced gap). Slightly larger gaps/pads now for comfort.
+       Hide scrollbar visually for clean narrow mobile. */
     flex-direction: row !important;
     align-items: center;
     gap: var(--collector-header-gap) !important;
@@ -8423,6 +8439,10 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     white-space: nowrap; /* keep items in row for scroll */
+    scrollbar-width: none !important;
+  }
+  body.has-collector-view .collector-pride-header::-webkit-scrollbar {
+    display: none !important;
   }
   body.has-collector-view .collector-pride-actions button,
   body.has-collector-view .collector-escape-nav .collector-exit-pill,
@@ -8443,17 +8463,17 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
   body.has-collector-view .collector-pride-meta,
   body.has-collector-view .collector-escape-stats {
-    font-size: 0.56rem;
+    font-size: 0.66rem;
     gap: 0.08rem;
   }
   /* make the 60 PIECES pill and rank badge tighter */
   body.has-collector-view .collector-escape-piece-badge {
     padding: 0.08rem 0.28rem;
-    font-size: 0.52rem;
+    font-size: 0.62rem;
   }
   body.has-collector-view .collector-escape-rank-badge {
     padding: 0.06rem 0.22rem;
-    font-size: 0.52rem;
+    font-size: 0.58rem;
   }
   body.has-collector-view #browse-controls.is-portfolio-browse {
     padding: 0.28rem 0.35rem 0.32rem;
@@ -8507,7 +8527,8 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 
   /* Re-assert lock with refined vars - small but non-zero gap + row/h-scroll to eliminate bad vertical dark space */
   body.has-collector-view .collector-pride-header {
-    /* Row + h-scroll approach preserved for stability on ultra-narrow. Slightly increased spacing for the requested premium non-crunched header. */
+    /* Row + h-scroll approach preserved for stability on ultra-narrow. Slightly increased spacing for the requested premium non-crunched header.
+       Hide scrollbar visually for clean narrow mobile. */
     flex-direction: row !important;
     align-items: center;
     gap: var(--collector-header-gap) !important;
@@ -8517,6 +8538,10 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     white-space: nowrap; /* keep items in row for scroll */
+    scrollbar-width: none !important;
+  }
+  body.has-collector-view .collector-pride-header::-webkit-scrollbar {
+    display: none !important;
   }
 
   /* Make internal elements of the name section super compact */
@@ -8525,7 +8550,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .collector-pride-meta {
     margin: 0 !important;
     padding: 0 !important;
-    line-height: 1.0;
+    line-height: 1.65 !important;
   }
   body.has-collector-view .collector-pride-identity {
     padding-bottom: 0 !important;
@@ -8533,7 +8558,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     max-width: 55% !important;  /* tweak to move the three buttons a little more to the left in mobile so the Back button isn't cut off on the right */
   }
   body.has-collector-view .collector-escape-name {
-    font-size: clamp(0.82rem, 3.2vw, 0.94rem);
+    font-size: clamp(0.88rem, 3.3vw, 1rem);
     line-height: 1.06;
   }
 
@@ -8543,7 +8568,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .collector-pride-meta {
     margin: 0 !important;
     padding: 0 !important;
-    line-height: 1.0;
+    line-height: 1.65 !important;
   }
 
   /* Buttons sized for tap + match weight, with !important for all three to ensure consistency */
@@ -8571,16 +8596,16 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
   body.has-collector-view .collector-pride-meta,
   body.has-collector-view .collector-escape-stats {
-    font-size: 0.54rem;
+    font-size: 0.66rem;
     gap: 0.06rem;
   }
   body.has-collector-view .collector-escape-piece-badge {
     padding: 0.08rem 0.26rem;
-    font-size: 0.5rem;
+    font-size: 0.62rem;
   }
   body.has-collector-view .collector-escape-rank-badge {
     padding: 0.06rem 0.2rem;
-    font-size: 0.5rem;
+    font-size: 0.58rem;
   }
   body.has-collector-view .gallery-list.holdings-grid {
     grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
