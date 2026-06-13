@@ -89,6 +89,7 @@ var FILTER_LABELS = {
   all: "All",
   listed: "For sale",
   not_listed: "Not listed",
+  activity: "Recent Transfers",
 };
 
 var SORT_LABELS = {

@@ -6573,6 +6573,11 @@ body.has-collector-view #browse-controls.is-portfolio-browse .browse-row-label {
   color: #888;
 }
 
+body.has-collector-view #browse-controls.is-portfolio-browse .filters,
+body.has-collector-view #browse-controls.is-portfolio-browse .filters-scroll {
+  background: transparent;
+}
+
 body.has-collector-view #browse-controls.is-portfolio-browse .filter {
   background: #1a1a1a;
   color: #ddd;
