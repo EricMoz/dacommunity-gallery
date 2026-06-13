@@ -460,8 +460,10 @@ function formatEth(n) {
   if (n == null || isNaN(n)) return "—";
   var v = Number(n);
   if (v === 0) return "0";
-  if (v < 0.01) return v.toFixed(4);
-  return v.toFixed(3);
+  var prec = (v < 0.01) ? 4 : 3;
+  var str = v.toFixed(prec);
+  // strip trailing zeros after decimal (e.g. 0.0030 -> 0.003, 0.050 -> 0.05)
+  return str.replace(/\.?0+$/, '');
 }
 
 function escapeHtml(str) {

@@ -8286,6 +8286,18 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     font-size: 0.88rem;
   }
 
+  /* Fix overflowing price badge (badge-listed) on listed NFTs in collector mobile grid.
+     Only scoped to collector view. Minimal responsive tweak: smaller font via clamp, constrained size, no overflow.
+     Preserves green styling, no desktop impact. */
+  body.has-collector-view .holding-card--cinema .badge-listed {
+    font-size: clamp(0.48rem, 2.2vw, 0.58rem);
+    padding: 0.1rem 0.22rem;
+    max-width: 5.2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   /* Clear nav (only visible for active filters) is minimal */
   body.has-collector-view .collector-escape-nav {
     padding-top: 0.1rem;
