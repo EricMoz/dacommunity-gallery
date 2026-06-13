@@ -6740,7 +6740,7 @@ body.has-collector-view .gallery-focus-zone.is-collector-grid::before {
 
 body.has-collector-view .gallery-list.holdings-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(152px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
   gap: 0.9rem;
 }
 
@@ -6783,6 +6783,18 @@ body.has-collector-view .holding-card--cinema .holding-card-title {
 
 body.has-collector-view .holding-card--cinema .holding-card-meta {
   color: #9a9a9a;
+  min-width: 0; /* allow flex children (id + badge) to shrink and prevent badge overflow/clip */
+}
+
+/* Constrain green price badge (ETH) in collector cards at all widths so it never overflows/clips the meta or card.
+   Complements the tighter mobile-specific clamp rule below. Scoped only to collector view. */
+body.has-collector-view .holding-card--cinema .badge-listed {
+  font-size: 0.58rem;
+  padding: 0.1rem 0.2rem;
+  max-width: 5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 body.has-collector-view .holding-card--cinema:focus-visible {
@@ -7756,8 +7768,8 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
 
   body.has-collector-view .gallery-list.holdings-grid {
-    /* Neutralized prior 2-col (which could feel too sparse or inconsistent with 4-5 target); later collector-specific mobile rules (in @media max-768 collector blocks) provide the 80-92px auto-fill for comfortable 4-5 tiles/row on portrait. This keeps cascade predictable. */
-    grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+    /* Collector mobile: sized for max ~6 cols near 768px upper, smoothly dropping toward min 3 on phones. Prevents 7-col mid-size jump + badge clip. */
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
     gap: 0.4rem;
   }
 
@@ -8284,7 +8296,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding: 0.32rem 0.4rem 0.42rem;
   }
   body.has-collector-view .gallery-list.holdings-grid {
-    grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     gap: 0.45rem;
   }
   body.has-collector-view .holding-card--cinema .holding-card-body {
@@ -8299,8 +8311,8 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
      Preserves green styling, no desktop impact. */
   body.has-collector-view .holding-card--cinema .badge-listed {
     font-size: clamp(0.48rem, 2.2vw, 0.58rem);
-    padding: 0.1rem 0.22rem;
-    max-width: 5.2em;
+    padding: 0.08rem 0.18rem;
+    max-width: 4.8em;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -8380,7 +8392,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding-top: 0.08rem;
   }
   body.has-collector-view .gallery-list.holdings-grid {
-    grid-template-columns: repeat(auto-fill, minmax(86px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
     gap: 0.36rem;
   }
   body.has-collector-view .holding-card--cinema .holding-card-body {
@@ -8502,7 +8514,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding: 0.26rem 0.32rem 0.34rem;
   }
   body.has-collector-view .gallery-list.holdings-grid {
-    grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
     gap: 0.38rem;
   }
   body.has-collector-view .holding-card--cinema .holding-card-body {
@@ -8628,7 +8640,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     font-size: 0.58rem;
   }
   body.has-collector-view .gallery-list.holdings-grid {
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
     gap: 0.3rem;
   }
   body.has-collector-view .holding-card--cinema .holding-card-body {
