@@ -89,16 +89,14 @@ var FILTER_LABELS = {
   all: "All",
   listed: "For sale",
   not_listed: "Not listed",
-  activity: "Recent moves",
 };
 
 var SORT_LABELS = {
-  token_desc: "Newest token #",
-  token_asc: "Oldest token #",
-  price_asc: "Price · low first",
-  price_desc: "Price · high first",
-  transfer_desc: "Recently transferred",
-  name_asc: "Name A–Z",
+  token_desc: "Newest",
+  token_asc: "Oldest",
+  price_asc: "Price: Low to High",
+  price_desc: "Price: High to Low",
+  transfer_desc: "Recently Transferred",
 };
 
 function isFileProtocol() {
