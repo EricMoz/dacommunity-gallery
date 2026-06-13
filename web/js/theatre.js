@@ -1122,11 +1122,11 @@
       // Leave a small safety letterbox *inside* the content area (in addition to stage padding)
       // so the gold frame doesn't touch the very edge of the "box" and to ensure the fixed bars
       // (which sit in the stage padding) are not overlapped by the frame.
-      var safety = 24; // px on each side
+      var safety = 30; // px on each side - increased to match larger stage padding for top bar clearance
       var maxW = contentW - (safety * 2);
       var maxH = contentH - (safety * 2);
 
-      var w = Math.min(contentW * 0.88, maxW);  // 88% of the *actual content box* for slightly larger fill
+      var w = Math.min(contentW * 0.90, maxW);  // 90% of the *actual content box* for slightly larger fill in lights-down
       w = Math.max(720, Math.min(w, maxW));
 
       var videoOnlyH = w * 9 / 16;
