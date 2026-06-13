@@ -3,7 +3,7 @@
  * Gallery JSON uses network-first so listings stay current when online.
  * CACHE name is bumped by scripts/bump_deploy_version.py on each Pages deploy.
  */
-const CACHE = "dacat-gallery-v20260612-1";
+const CACHE = "dacat-gallery-v20260613-1";
 const SHELL = [
   "./",
   "./dacommunity/",
@@ -42,7 +42,10 @@ self.addEventListener("activate", function (event) {
 });
 
 function isDataJson(url) {
-  return /\/data\/(gallery_(data|meta|wallet_index)|videos)\.json/i.test(url.pathname);
+  // Include all dynamic gallery JSONs (catalog too) so they use network-first (with ?v= busting)
+  // and don't get stale cached versions across deploys. Catalog was previously in SHELL precache
+  // (bare URL) but versioned requests now go through here for freshness after refresh.
+  return /\/data\/(gallery_(data|meta|catalog|wallet_index)|videos)\.json/i.test(url.pathname);
 }
 
 /** HTML/CSS/JS must be network-first so deploy bumps reach users (avoid stale SW cache). */

@@ -206,6 +206,13 @@ function renderDataFreshness() {
   }
   var footer = $("#footer-updated");
   if (footer && iso) footer.textContent = formatDataUpdated(iso);
+
+  // Dynamically update the hint to emphasize the actual last_updated timestamp (from gallery_meta.json
+  // data_generated_at) while keeping the static explanatory text. Previously the hint was purely static.
+  var hintEl = document.getElementById("data-freshness-hint");
+  if (hintEl) {
+    hintEl.textContent = `Refreshed daily from OpenSea (last data pull: ${formatDataUpdated(iso) || '—'}). Not live on-chain. Full stories and transfers appear after the first load.`;
+  }
 }
 
 function bindFreshnessToggle() {

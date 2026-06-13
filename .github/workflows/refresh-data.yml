@@ -17,6 +17,7 @@ env:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: refresh-gallery-data
@@ -81,6 +82,7 @@ jobs:
           git push origin main || true
 
       - name: Commit updated data
+        id: commit
         if: success()
         run: |
           set -e
@@ -89,8 +91,18 @@ jobs:
           git add web/data/gallery_data.json web/data/gallery_catalog.json web/data/wallet_index.json web/data/gallery_meta.json
           if git diff --staged --quiet; then
             echo "No JSON changes — OpenSea data already up to date."
+            echo "changed=false" >> $GITHUB_OUTPUT
             exit 0
           fi
           git commit -m "chore: daily refresh from OpenSea ($(date -u +%Y-%m-%d))"
           git pull --rebase origin main
           git push origin main
+          echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Trigger Deploy gallery to GitHub Pages
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Triggering deploy workflow after successful data commit"
+          gh workflow run "Deploy gallery to GitHub Pages" --repo ${{ github.repository }} --ref main
