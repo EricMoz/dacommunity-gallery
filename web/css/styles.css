@@ -3990,8 +3990,12 @@ body:not(.film-theatre-lights-down) .film-theatre-player-mount {
    surround the youtube video" without shrinking the player mount or causing the recent cutoff/centering
    regressions. Lights-down mode overrides the stage to fixed inset 0 with its own centering paddings. */
 body:not(.film-theatre-lights-down) .film-theatre-stage {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
+  /* Reduced padding from 1.25rem to 0.75rem to fix right-side cutoff of player and iframe
+     (YouTube logo/edge was clipped by tight containers + padding + border + inset).
+     Still provides some letterbox/breathing around the gold frame without causing cutoff.
+     The player max 1080px + its padding/border now fits fully inside the stage/screen/main. */
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
   box-sizing: border-box;
 }
 
@@ -4080,18 +4084,12 @@ body:not(.film-theatre-lights-down) .film-theatre-stage {
 .film-theatre-player iframe {
   position: absolute;
   inset: 4px;  /* match the inner padding so the video has breathing room from the gold border on all sides (left/right especially) */
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
   border: 0;
 }
 
-/* In lights-down, force the YT iframe to fill the full inner size of the player (after the 4px matte)
-   so the video content expands to match the gold frame size. The setSize from JS gives the target,
-   this ensures the embedded video + its controls-background fills it without being stuck small. */
-.film-theatre-lights-down .film-theatre-player iframe {
-  width: 100%;
-  height: 100%;
-}
+
 
 .film-theatre-loading {
   position: absolute;
@@ -4237,25 +4235,24 @@ body.film-theatre-awaiting-lights .film-theatre-footline {
   z-index: 6;
   max-width: none;
   margin: 0;
-  /* Use larger top padding to ensure the centered player (gold frame) does not intrude upward
-     into the fixed action bar area (Film hub back button and "Lights up" button space).
-     The padding creates the top letterbox where the action bar lives. Bottom padding for up-next breathing.
-     Player will be centered inside this padded area. */
+  /* Reduced top padding significantly (from 3.5rem to 2rem) and changed to justify-content: flex-start
+     + small margin-top on mount so the player sits higher with less wasted black space above it.
+     This prevents the player from sitting too low and gives more room for the video without cutoff
+     or intrusion. Bottom padding provides breathing for up-next. Horizontal 0 for equal letterbox.
+     Player size slightly increased to 92vw while keeping good breathing room via the padding/letterbox. */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 3.5rem 0 1rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 2rem 0 1rem;
   gap: 0;
 }
 
 .film-theatre-lights-down .film-theatre-action-bar {
   /* Wide control container in immersive mode. Using left/right insets + space-between
-     pushes the two buttons (← Film hub on left, Lights up on right) far apart so they
-     frame the (now ~10-20% bigger) video at its edges. The bar uses glass + blur for
-     premium readability over the video. Top offset + stage padding tuned together with
-     the larger player so buttons never clip or feel cramped in any lights-down scenario
-     (desktop, mobile, any ?v= route). */
+     pushes the two buttons (← Previous film on left, Lights up on right) far apart so they
+     frame the video at its edges. The bar uses glass + blur for premium readability over the video.
+     With reduced stage padding and player sitting higher, buttons frame without intrusion. */
   position: fixed;
   top: 1.4rem;
   left: 2.5rem;
@@ -4272,25 +4269,27 @@ body.film-theatre-awaiting-lights .film-theatre-footline {
 }
 
 .film-theatre-lights-down .film-theatre-player-mount {
-  /* Reinforce perfect centering of the player inside the mount for lights-down.
-     Explicitly none for container-type to avoid any circular sizing issues with the fixed layout.
-     The grid + place-items:center + the stage's align-items:center above ensure equal
-     black letterbox left/right around the video frame. */
+  /* Explicit fix per requirements: override the grid + place-items: center that was keeping the player
+     vertically centered (and thus too low with wasted space above) even after stage padding reduction.
+     Use flex + align-items: flex-start so the player sits higher / closer to the top action bar.
+     This + the flex-start on stage + reduced top padding eliminates the excessive black space above
+     in Lights Down while keeping horizontal centering. */
   flex: 1;
   min-height: 0;
-  display: grid;
-  place-items: center;
-  container-type: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: 0.25rem;
 }
 
 .film-theatre-lights-down .film-theatre-player {
-  /* Lights-down: slightly larger player (90vw) for more immersion while the increased stage
-     padding and JS size cap (based on actual stage content area) provide good breathing room
-     (letterbox) around the frame. The player is centered in the padded stage content area
-     so it respects the top action bar space and bottom up-next space without intrusion or cutoff.
-     max-height loosened to allow the larger size on typical viewports. */
-  max-width: 90vw;
-  max-height: calc(100dvh - 5rem);
+  /* Slightly larger (92vw) for more immersion in lights down. The reduced stage padding,
+     flex-start alignment + margin-top on mount ensure the player sits higher with minimal
+     wasted space above (addresses excessive top black space). max-height adjusted to fit
+     without cutoff while keeping breathing room. The iframe (now 100% in general rule) fills
+     the frame properly. */
+  max-width: 92vw;
+  max-height: calc(100dvh - 4rem);
   width: auto;
   height: auto;
   margin-left: auto;
