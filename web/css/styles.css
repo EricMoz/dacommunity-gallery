@@ -4031,13 +4031,15 @@ body:not(.film-theatre-lights-down) .film-theatre-action-bar {
 body:not(.film-theatre-lights-down) .film-theatre-player {
   box-sizing: border-box;
   padding: 4px;
-  /* Critical lights-up only: do NOT force min-width:1080px here (the base rule has it for the old "stable pin").
-     The JS syncPlayerSize computes the exact intended outer gold frame width (frac of stage, capped at 1080, with chromeExtra for full YT UI).
-     Letting the explicit inline width/height from applySize win (min-width:0) makes the gold border box exactly the size needed for the video content.
-     This prevents the "huge fixed length" gold box while the actual YT embed renders smaller/top-left inside it.
-     The action bar (capped to same 1080 max) + upnext (capped) will then visually match the actual rendered video border length.
-     max-width + centering (mount flex + player margin auto) are preserved. */
-  min-width: 0;
+  /* Lights-up only: restore the min-width:1080px pin *here* (scoped rule only) so the gold frame
+     demands a stable large width independent of the Up Next bar's min-content/title length.
+     This (plus stage min-width:100% and upnext caps) keeps the player from shrinking/growing with
+     the series/upnext box below. The JS still computes w from stage and sets explicit size + setSize;
+     with the iframe inset:0 + !important the video will snugly fill the (stable large) gold frame.
+     The previous global min-width caused temporary mismatch on some loads; scoping + the other
+     iframe/mount/JS fixes ensure the box and YT content match without top-left or cutoff.
+     Action bar will be synced to this same stable width so buttons match the video border exactly. */
+  min-width: 1080px;
 }
 
 .film-theatre-player {

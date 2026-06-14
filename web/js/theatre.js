@@ -1070,6 +1070,15 @@
     if (on) {
       dismissLightsPrompt();
       startChromeIdleWatch();
+      /* When entering lights-down, immediately clear any lights-up bar sizing so the
+         fixed glass action bar (left/right + no max cap) takes over cleanly without
+         a narrow maxWidth left over from lights-up. This ensures no skew/short bar in down mode. */
+      if (els.actionBar) {
+        els.actionBar.style.width = '';
+        els.actionBar.style.maxWidth = '';
+        els.actionBar.style.marginLeft = '';
+        els.actionBar.style.marginRight = '';
+      }
     } else {
       stopChromeIdleWatch();
     }
@@ -1141,6 +1150,17 @@
       }
 
       applySize(w, totalH);
+
+      /* Lights-down: explicitly clear any lights-up action bar width/maxWidth/margin styles
+         so the lights-down fixed positioning (left/right + glass pill + max-width:none) fully
+         controls the bar without interference from the up-mode "match player" logic.
+         This reverts any side-effects on lights-down and keeps the two modes completely isolated. */
+      if (els.actionBar) {
+        els.actionBar.style.width = '';
+        els.actionBar.style.maxWidth = '';
+        els.actionBar.style.marginLeft = '';
+        els.actionBar.style.marginRight = '';
+      }
       return;
     }
 
@@ -1169,13 +1189,18 @@
 
     applySize(w, totalH);
 
-    /* Lights-up only: make the top action bar (Previous film / Lights down) exactly match the *current*
-       width of the gold video border (the player we just sized). This ensures the buttons are spread
-       to the left and right edges of the actual gold frame (space-between on the bar), not wider than
-       the video (matching the upnext bar behavior below) or affected by title length.
-       The CSS cap at 1080px remains as a safe upper bound; the inline maxWidth here is <= that and wins. */
+    /* Lights-up only: make the top action bar (Previous film / Lights up) exactly match the *current*
+       width of the gold video border (the player we just sized, which is now stable/large thanks to
+       the scoped min-width:1080px + stage forcing + upnext caps). This ensures the buttons are spread
+       to the exact left and right edges of the gold frame via space-between, matching the video border
+       length (not the upnext below, and not skewed/short). We also reinforce width + auto margins so
+       the bar is reliably centered at the player's width even during early syncs or transitions. */
     if (els.actionBar) {
-      els.actionBar.style.maxWidth = Math.round(w) + 'px';
+      var barW = Math.round(w) + 'px';
+      els.actionBar.style.width = '100%';
+      els.actionBar.style.maxWidth = barW;
+      els.actionBar.style.marginLeft = 'auto';
+      els.actionBar.style.marginRight = 'auto';
     }
   }
 
