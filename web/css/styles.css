@@ -3988,6 +3988,11 @@ body:not(.film-theatre-lights-down) .film-theatre-player-mount {
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Ensure the mount (player container) stretches to the full stage width (now forced stable by stage min-width:100% and player min-width).
+     This isolates the player size from up-next content below. */
+  /* Mount audit (lights-up only): flex centering positions the .film-theatre-player (gold-bordered frame)
+     in the middle of available space. The player (scoped rule) + its iframe (inset:0 scoped rule) ensure
+     the YouTube content fills snugly inside the 4px-padded gold frame with no excess frame size or BR cutoff. */
 }
 
 /* Desktop / wide PC: give the entire gold-bordered theatre player generous horizontal space from the
@@ -4002,6 +4007,30 @@ body:not(.film-theatre-lights-down) .film-theatre-stage {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
   box-sizing: border-box;
+}
+
+/* Lights Up only: make the top action bar (Film hub + Lights down buttons) align to the video player frame.
+   Cap its width to match the player so buttons stay fixed in position relative to the gold border,
+   independent of the Up Next section below. */
+body:not(.film-theatre-lights-down) .film-theatre-action-bar {
+  max-width: 1080px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Lights Up only reinforcement for .film-theatre-player (audit per requirements).
+   Explicitly scoped so this rule applies *only* to non-lights-down state.
+   - padding:4px provides the exact matte between the 3px gold border and the video.
+   - box-sizing:border-box keeps the overall player footprint (incl. border+padding) stable at the
+     JS-set size + max-width:1080px, so the frame does not grow/shrink with Up Next content.
+   - Combined with the lights-up-only iframe inset:0 (below), the gold frame now fits snugly/tightly
+     around the actual YT embed content with correct 4px inner padding on all sides.
+   - Horizontal/vertical centering of the gold frame (the player) inside the available mount area
+     is handled by the flex centering on the mount (next rule); the video itself fills the padded
+     rect so appears properly centered/aligned inside the frame. No changes to shared base or lights-down. */
+body:not(.film-theatre-lights-down) .film-theatre-player {
+  box-sizing: border-box;
+  padding: 4px;
 }
 
 .film-theatre-player {
@@ -4095,6 +4124,24 @@ body:not(.film-theatre-lights-down) .film-theatre-stage {
 .film-theatre-player iframe {
   position: absolute;
   inset: 4px;  /* match the inner padding so the video has breathing room from the gold border on all sides (left/right especially) */
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Lights Up (non-lights-down) only: fix the gold frame snug fit around the actual YouTube video.
+   - Change inset from 4px to 0 so the iframe fills the *entire* inner content box created by the
+     player's padding:4px (the 4px black matte between gold border and video).
+   - This makes the gold border frame fit *tightly/snugly* with exactly the intended 4px inner padding
+     on all sides; previously the extra inset made the frame appear oversized vs the embed and
+     clipped the bottom-right "Watch on YouTube" YT chrome UI.
+   - Video now properly fills (and is aligned to) the padded frame area. Centering of the whole
+     player frame inside mount/stage uses the existing lights-up flex centering on .film-theatre-player-mount.
+   - Only this lights-up rule is added; lights-down rules and the base player size/aspect/max-width preserved.
+   - Player size remains stable (min-width + caps isolate from Up Next title length). */
+body:not(.film-theatre-lights-down) .film-theatre-player iframe {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
