@@ -5584,22 +5584,22 @@ body.film-modal-open {
 /* Film video popup mobile: reduce large top/bottom vertical gaps (margin/padding) in the modal
    and upnext bar so stacked content fits better on small screens. Desktop unaffected. */
 @media (max-width: 768px) {
+  /* Consolidated: matches the main film modal mobile reductions for minimal vertical gap. */
   .film-modal {
-    padding: 0.25rem !important;
+    padding: 0.1rem !important;
   }
   .film-modal-panel {
-    max-height: calc(100vh - 0.5rem);
-    padding-top: 0.25rem !important;
-    padding-bottom: 0.25rem !important;
+    max-height: 100vh;
+    padding-top: 0.1rem !important;
+    padding-bottom: 0.1rem !important;
   }
   .film-upnext {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
+    margin: 0 !important;
   }
   .film-upnext-bar,
   .film-upnext-end {
-    padding-top: 0.35rem !important;
-    padding-bottom: 0.35rem !important;
+    padding: 0.2rem 0.4rem !important;
+    margin: 0 !important;
   }
 }
 
@@ -5908,8 +5908,11 @@ body.film-modal-open {
 }
 
 @media (max-width: 768px) {
+  /* Consolidated film popup mobile: minimal vertical gaps for tight stacked fit (player + upnext).
+     Strong overrides on padding/margin for #film-modal, panel, and upnext* to eliminate empty space.
+     Values reduced significantly vs base 0.7rem+ padding. */
   .film-modal {
-    padding: 0.25rem !important;
+    padding: 0.1rem !important;
   }
 
   .film-modal-panel {
@@ -5917,9 +5920,8 @@ body.film-modal-open {
     border-radius: 0;
     border-left: 0;
     border-right: 0;
-    /* reduce vertical gaps */
-    padding-top: 0.25rem !important;
-    padding-bottom: 0.25rem !important;
+    padding-top: 0.1rem !important;
+    padding-bottom: 0.1rem !important;
   }
 
   .film-modal-layout {
@@ -5932,18 +5934,16 @@ body.film-modal-open {
     max-height: none;
   }
 
-  .film-upnext,
-  .film-upnext-bar,
-  .film-upnext-end {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
+  .film-upnext {
+    margin: 0 !important;
   }
 
   .film-upnext-bar,
   .film-upnext-end {
     flex-direction: column;
     align-items: stretch;
-    padding: 0.35rem 0.5rem !important;
+    padding: 0.2rem 0.4rem !important;
+    margin: 0 !important;
   }
 
   .film-upnext-controls,
@@ -8735,15 +8735,24 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     display: none !important;
   }
   body.has-collector-view .collector-pride-actions {
+    /* Consolidated mobile: controlled row, no wrap to keep Share/Copy/Back together, full width to prevent float/overflow. */
+    display: flex !important;
     flex-direction: row !important;
+    flex-wrap: nowrap !important;
     gap: var(--collector-header-gap) !important;
     width: 100% !important;
     max-width: 100% !important;
+    overflow: visible !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
   }
   #wallet-panel .collector-share-hero {
+    /* Specific for #wallet-panel share: no max-width limit, stays in row, no float off. */
     flex: 0 0 auto !important;
+    flex-shrink: 0 !important;
     white-space: nowrap !important;
-    max-width: 4.5em !important; /* prevent long text making it float off on narrow */
+    max-width: none !important;
+    min-width: 0 !important;
   }
   body.has-collector-view .collector-share-hero,
   body.has-collector-view .collector-action-ghost,
@@ -8914,10 +8923,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     margin-bottom: 0;
     max-width: 55% !important;  /* tweak to move the three buttons a little more to the left in mobile so the Back button isn't cut off on the right */
   }
-  body.has-collector-view .collector-pride-actions {
-    flex: 0 0 auto;
-    max-width: 62%;
-  }
+  /* Consolidated: actions and share-hero behavior inherited from main 768px block (row + nowrap + no float limits). Only size overrides here. */
   body.has-collector-view .collector-pride-actions button,
   body.has-collector-view .collector-escape-nav .collector-exit-pill {
     min-height: 38px;
@@ -9042,15 +9048,12 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding: var(--collector-btn-pad) !important;
     min-height: var(--collector-btn-min-h) !important;
   }
+  /* Consolidated share-hero: inherits row/nowrap/no-float from main 768px. Only size here for 480px. */
   body.has-collector-view .collector-pride-actions .collector-share-hero,
-  body.has-collector-view .collector-pride-actions .collector-action-ghost,
-  body.has-collector-view .collector-pride-actions .collector-exit-pill {
+  body.has-collector-view .collector-pride-actions .collector-action-ghost {
     min-height: var(--collector-btn-min-h) !important;
     font-size: var(--collector-btn-fs) !important;
     padding: var(--collector-btn-pad) !important;
-  }
-  body.has-collector-view .collector-pride-actions .collector-share-hero {
-    padding: 0.1rem 0.3rem;
   }
   body.has-collector-view .collector-pride-meta,
   body.has-collector-view .collector-escape-stats {
@@ -9163,7 +9166,8 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     line-height: 1.65 !important;
   }
 
-  /* Buttons sized for tap + match weight, with !important for all three to ensure consistency */
+  /* Buttons sized for tap + match weight, with !important for all three to ensure consistency.
+     Actions layout and share no-float consolidated in main 768px block (this sub-bp only adjusts sizes). */
   body.has-collector-view .collector-pride-actions button,
   body.has-collector-view .collector-escape-nav .collector-exit-pill,
   body.has-collector-view .collector-theater-frame button {
@@ -9181,10 +9185,6 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     min-height: var(--collector-btn-min-h) !important;
     font-size: var(--collector-btn-fs) !important;
     padding: var(--collector-btn-pad) !important;
-  }
-  body.has-collector-view .collector-pride-actions .collector-share-hero,
-  body.has-collector-view .collector-pride-actions .collector-action-ghost {
-    padding: 0.08rem 0.28rem !important;
   }
   body.has-collector-view .collector-pride-meta,
   body.has-collector-view .collector-escape-stats {
