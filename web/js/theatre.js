@@ -627,8 +627,9 @@
         host.style.width = Math.round(bootW) + 'px';
         host.style.height = Math.round(bootH) + 'px';
       } else {
-        // lights-up bootstrap - minimal change
-        var bootCap = 960;
+        // lights-up bootstrap - use the new smaller target cap (900px) for consistency with
+        // the 15-20% reduction in frame size.
+        var bootCap = 800;
         var bootW = Math.min(Math.max(stageWBoot, 640), bootCap);
         var bootExtra = 62;
         var bootH = Math.round(bootW * 9 / 16 + bootExtra);
@@ -1164,12 +1165,13 @@
       return;
     }
 
-    // === LIGHTS-UP / DEFAULT PATH — minimal tweak only to safety margin to prevent the
-    // initial slight right cutoff the user reported (it was self-fixing on "next" because
-    // later syncs had final layout). Lights-up behavior and size otherwise unchanged.
+    // === LIGHTS-UP / DEFAULT PATH — 15-20% smaller target frame size (900px cap instead of 1080px)
+    // so the gold-bordered video + player is more comfortable on screen. The frac + safety keep
+    // it nicely proportioned and with breathing room. The mount min-width and upnext caps keep
+    // the size stable and independent of the Up Next title/series bar. Lights-up only.
     var stageW = (stage && stage.clientWidth) || els.player.getBoundingClientRect().width || window.innerWidth * 0.9;
     var frac = 0.80;
-    var maxW = Math.min(stageW * frac, 1080);
+    var maxW = Math.min(stageW * frac, 900);
     var w = Math.max(640, Math.min(maxW, stageW - 80));  // slightly more safety for padding + border + inset on first load
 
     var videoH = w * 9 / 16;

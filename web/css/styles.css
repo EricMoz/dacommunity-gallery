@@ -4000,7 +4000,7 @@ body:not(.film-theatre-lights-down) .film-theatre-player-mount {
      The *player* itself is still capped by its max-width + the JS explicit size, so it won't go
      "super wide" beyond the intended design. The actual rendered player border width is then used
      for the action bar (via JS measurement) so the buttons always hug the gold video frame exactly. */
-  min-width: 1080px;
+  min-width: 900px;
 }
 
 /* Desktop / wide PC: give the entire gold-bordered theatre player generous horizontal space from the
@@ -4011,17 +4011,32 @@ body:not(.film-theatre-lights-down) .film-theatre-stage {
   /* Reduced padding from 1.25rem to 0.75rem to fix right-side cutoff of player and iframe
      (YouTube logo/edge was clipped by tight containers + padding + border + inset).
      Still provides some letterbox/breathing around the gold frame without causing cutoff.
-     The player max 1080px + its padding/border now fits fully inside the stage/screen/main. */
+     The player max ~900px + its padding/border now fits fully inside the stage/screen/main. */
   padding-left: 0.75rem;
   padding-right: 0.75rem;
   box-sizing: border-box;
+  /* Lights-up only: smaller target size for the video frame (15-20% reduction from previous 1080px design)
+     so the gold-bordered player is more comfortable on screen while remaining the dominant element.
+     The JS calc caps to this value; the mount min-width keeps the area stable (independent of upnext). */
+  --theatre-video-max: 900px;
 }
 
 /* Lights Up only: make the top action bar (Film hub + Lights down buttons) align to the video player frame.
    Cap its width to match the player so buttons stay fixed in position relative to the gold border,
    independent of the Up Next section below. */
 body:not(.film-theatre-lights-down) .film-theatre-action-bar {
-  max-width: 1080px;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Lights Up only: make the bottom Up Next bar a little shorter than the video gold frame
+   (user request for visual breathing / hierarchy). Still capped and centered so it never
+   influences the player size. */
+body:not(.film-theatre-lights-down) .film-theatre-upnext,
+body:not(.film-theatre-lights-down) .film-upnext-bar,
+body:not(.film-theatre-lights-down) .film-upnext-end {
+  max-width: 850px;
   margin: 0 auto;
   width: 100%;
 }
@@ -4039,11 +4054,11 @@ body:not(.film-theatre-lights-down) .film-theatre-action-bar {
 body:not(.film-theatre-lights-down) .film-theatre-player {
   box-sizing: border-box;
   padding: 4px;
-  /* Lights-up only: override the base min-width so the player's box size is driven by the JS
-     explicit width (from syncPlayerSize calc) + its own max-width:1080px. No hard 1080px min on
-     the player prevents "super wide for no reason" or blown-up video (setSize would mismatch a
-     forced-large box). The stable large area comes from the mount's min-width (see below) so
-     stage measurements stay generous and the frame doesn't collapse to the upnext box. */
+  /* Lights-up only: 15-20% smaller target frame (900px max). The box size is driven by the JS
+     explicit width (from syncPlayerSize calc) + this max-width. No hard min on the player (see mount
+     for stability). This makes the gold-bordered video more comfortable while keeping the snug 4px
+     matte (inset:0 + padding) and proper fill/centering of the YT content inside the frame. */
+  max-width: 900px;
   min-width: 0;
 }
 
