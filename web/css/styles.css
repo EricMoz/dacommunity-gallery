@@ -5607,7 +5607,7 @@ body.film-modal-open {
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  flex: 1 1 12rem;
+  flex: 1 1 6rem;
   min-width: 0;
   border: none;
   background: transparent;
@@ -5985,6 +5985,9 @@ body.film-modal-open {
     min-height: 44px;
     padding: 0.15rem 0.1rem;
   }
+  .film-upnext-preview {
+    flex: 1 1 6rem;
+  }
 }
 
 .visually-hidden {
@@ -6186,10 +6189,12 @@ body.film-modal-open {
     padding: 0.2rem 0.4rem;
     font-size: 0.72rem;
     min-height: 28px;
+    width: 50%;
   }
   .browse-collector-jump {
     padding: 0.2rem 0.45rem;
     font-size: 0.72rem;
+    width: 50%;
   }
 }
 
@@ -7229,7 +7234,7 @@ body.has-collector-view .holding-card--cinema .holding-card-meta {
 body.has-collector-view .holding-card--cinema .badge-listed {
   font-size: 0.58rem;
   padding: 0.1rem 0.2rem;
-  max-width: 5em;
+  max-width: 6.8em;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -8250,7 +8255,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
        collector wallet view the main hubs (home/film/collections) the user asked for.
      The :not() selectors + later collector-specific rules + !important where needed ensure the right things
      are visible and the cascade order is clear. */
-  .film-theatre-page .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-film),
+  .film-theatre-page .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-collections):not(.nav-btn-film),
   body[data-base]:not(.has-collector-view) .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-wallet),
   .film-hub-page .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-collections):not(.nav-btn-film) {
     display: none !important;
@@ -8879,7 +8884,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .holding-card--cinema .badge-listed {
     font-size: clamp(0.48rem, 2.2vw, 0.58rem);
     padding: 0.08rem 0.18rem;
-    max-width: 4.8em;
+    max-width: 6.8em;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
