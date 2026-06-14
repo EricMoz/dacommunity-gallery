@@ -5584,7 +5584,7 @@ body.film-modal-open {
 /* Film video popup mobile: reduce large top/bottom vertical gaps (margin/padding) in the modal
    and upnext bar so stacked content fits better on small screens. Desktop unaffected. */
 @media (max-width: 768px) {
-  /* Consolidated: matches the main film modal mobile reductions for minimal vertical gap. */
+  /* Film popup mobile: reduced vertical for upnext to show links without extra scroll. */
   .film-modal {
     padding: 0.1rem !important;
   }
@@ -5598,7 +5598,7 @@ body.film-modal-open {
   }
   .film-upnext-bar,
   .film-upnext-end {
-    padding: 0.2rem 0.4rem !important;
+    padding: 0.1rem 0.25rem !important;
     margin: 0 !important;
   }
 }
@@ -5908,9 +5908,7 @@ body.film-modal-open {
 }
 
 @media (max-width: 768px) {
-  /* Consolidated film popup mobile: minimal vertical gaps for tight stacked fit (player + upnext).
-     Strong overrides on padding/margin for #film-modal, panel, and upnext* to eliminate empty space.
-     Values reduced significantly vs base 0.7rem+ padding. */
+  /* Film popup mobile: reduced padding for upnext bar/details to fit player + links in one view without scroll. */
   .film-modal {
     padding: 0.1rem !important;
   }
@@ -5932,6 +5930,11 @@ body.film-modal-open {
     border-left: 0;
     border-top: 1px solid #222;
     max-height: none;
+    padding: 0.5rem 0.6rem 0.75rem; /* reduced for tighter fit on mobile vertical to show links without scroll */
+  }
+
+  .film-modal-links {
+    gap: 0.3rem 0.6rem; /* tighter links on mobile to help fit in view */
   }
 
   .film-upnext {
@@ -5942,7 +5945,7 @@ body.film-modal-open {
   .film-upnext-end {
     flex-direction: column;
     align-items: stretch;
-    padding: 0.2rem 0.4rem !important;
+    padding: 0.1rem 0.25rem !important;
     margin: 0 !important;
   }
 
