@@ -6009,9 +6009,21 @@ body.film-modal-open {
 .browse-head-row {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 0.65rem 1rem;
+}
+
+.browse-title-group {
+  flex: 1;
+  min-width: 0;
+}
+
+.browse-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-shrink: 0;
 }
 .archive-share-btn {
   flex-shrink: 0;
@@ -6034,16 +6046,6 @@ body.film-modal-open {
   flex-shrink: 0;
   margin-right: 0.1rem; /* pull slightly closer to following share button */
   box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6);
-}
-  padding: 0.45rem 0.75rem;
-  border: 2px solid var(--black);
-  border-radius: 999px;
-  background: var(--yellow);
-  box-shadow: 3px 3px 0 var(--black);
-  min-height: 40px;
-  display: inline-flex;
-  align-items: center;
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
 .browse-collector-jump:hover {
@@ -6917,8 +6919,9 @@ body.has-collector-view #browse-controls.is-portfolio-browse .btn-outline {
   display: flex;
 }
 
-/* Archive browse: collapsible filter/sort on narrow viewports */
-@media (max-width: 719px) {
+/* Archive browse: collapsible filter/sort on narrow viewports 
+   Kick in at mid-small so that when Recent Transfers would wrap, it switches to the "FILTER & SORT" button instead of bad partial wrap. */
+@media (max-width: 850px) {
   #browse-controls:not(.is-portfolio-browse) .browse-advanced-toggle {
     display: inline-flex;
     align-items: center;
