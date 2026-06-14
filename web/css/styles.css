@@ -3988,11 +3988,19 @@ body:not(.film-theatre-lights-down) .film-theatre-player-mount {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Ensure the mount (player container) stretches to the full stage width (now forced stable by stage min-width:100% and player min-width).
+  /* Ensure the mount (player container) stretches to the full stage width (now forced stable by stage min-width:100%).
      This isolates the player size from up-next content below. */
   /* Mount audit (lights-up only): flex centering positions the .film-theatre-player (gold-bordered frame)
      in the middle of available space. The player (scoped rule) + its iframe (inset:0 scoped rule) ensure
      the YouTube content fills snugly inside the 4px-padded gold frame with no excess frame size or BR cutoff. */
+
+  /* Lights-up only: give the centering mount a stable min-width. This forces the stage/mount area
+     wide enough for a premium large player (so JS stage.clientWidth measurements and the frac calc
+     produce a good expanded size instead of shrinking to the upnext series box min-content).
+     The *player* itself is still capped by its max-width + the JS explicit size, so it won't go
+     "super wide" beyond the intended design. The actual rendered player border width is then used
+     for the action bar (via JS measurement) so the buttons always hug the gold video frame exactly. */
+  min-width: 1080px;
 }
 
 /* Desktop / wide PC: give the entire gold-bordered theatre player generous horizontal space from the
@@ -4031,15 +4039,12 @@ body:not(.film-theatre-lights-down) .film-theatre-action-bar {
 body:not(.film-theatre-lights-down) .film-theatre-player {
   box-sizing: border-box;
   padding: 4px;
-  /* Lights-up only: restore the min-width:1080px pin *here* (scoped rule only) so the gold frame
-     demands a stable large width independent of the Up Next bar's min-content/title length.
-     This (plus stage min-width:100% and upnext caps) keeps the player from shrinking/growing with
-     the series/upnext box below. The JS still computes w from stage and sets explicit size + setSize;
-     with the iframe inset:0 + !important the video will snugly fill the (stable large) gold frame.
-     The previous global min-width caused temporary mismatch on some loads; scoping + the other
-     iframe/mount/JS fixes ensure the box and YT content match without top-left or cutoff.
-     Action bar will be synced to this same stable width so buttons match the video border exactly. */
-  min-width: 1080px;
+  /* Lights-up only: override the base min-width so the player's box size is driven by the JS
+     explicit width (from syncPlayerSize calc) + its own max-width:1080px. No hard 1080px min on
+     the player prevents "super wide for no reason" or blown-up video (setSize would mismatch a
+     forced-large box). The stable large area comes from the mount's min-width (see below) so
+     stage measurements stay generous and the frame doesn't collapse to the upnext box. */
+  min-width: 0;
 }
 
 .film-theatre-player {

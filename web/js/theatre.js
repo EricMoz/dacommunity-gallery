@@ -1189,14 +1189,18 @@
 
     applySize(w, totalH);
 
-    /* Lights-up only: make the top action bar (Previous film / Lights up) exactly match the *current*
-       width of the gold video border (the player we just sized, which is now stable/large thanks to
-       the scoped min-width:1080px + stage forcing + upnext caps). This ensures the buttons are spread
-       to the exact left and right edges of the gold frame via space-between, matching the video border
-       length (not the upnext below, and not skewed/short). We also reinforce width + auto margins so
-       the bar is reliably centered at the player's width even during early syncs or transitions. */
-    if (els.actionBar) {
-      var barW = Math.round(w) + 'px';
+    /* Lights-up only: make the top action bar (Previous film / Lights up) *exactly* match the *final
+       rendered* width of the gold video border (the .film-theatre-player after mount min-width,
+       player max-width, the explicit JS style.width, centering, and all layout).
+       We measure els.player.offsetWidth (the actual gold frame border box) instead of the pre-layout
+       calc `w`. This completely breaks the dependency on the Up Next series bar — the buttons will
+       always hug the left and right edges of the actual video gold frame (via space-between on the
+       bar), even if the upnext is narrow or the stage measurement had races.
+       Multiple sync calls + ResizeObserver on the player guarantee we re-sync the bar to the final size.
+       We also reinforce width + auto margins for reliable centering of the bar at the frame width. */
+    if (els.actionBar && els.player) {
+      var actual = els.player.offsetWidth || Math.round(w);
+      var barW = actual + 'px';
       els.actionBar.style.width = '100%';
       els.actionBar.style.maxWidth = barW;
       els.actionBar.style.marginLeft = 'auto';
