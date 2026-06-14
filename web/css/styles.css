@@ -5585,18 +5585,21 @@ body.film-modal-open {
    and upnext bar so stacked content fits better on small screens. Desktop unaffected. */
 @media (max-width: 768px) {
   .film-modal {
-    padding: 0.5rem;
+    padding: 0.25rem !important;
   }
   .film-modal-panel {
-    max-height: calc(100vh - 1rem);
+    max-height: calc(100vh - 0.5rem);
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
   }
   .film-upnext {
-    margin-top: 0;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
   }
   .film-upnext-bar,
   .film-upnext-end {
-    padding-top: 0.4rem;
-    padding-bottom: 0.4rem;
+    padding-top: 0.35rem !important;
+    padding-bottom: 0.35rem !important;
   }
 }
 
@@ -5906,8 +5909,7 @@ body.film-modal-open {
 
 @media (max-width: 768px) {
   .film-modal {
-    padding: 0;
-    align-items: stretch;
+    padding: 0.25rem !important;
   }
 
   .film-modal-panel {
@@ -5915,6 +5917,9 @@ body.film-modal-open {
     border-radius: 0;
     border-left: 0;
     border-right: 0;
+    /* reduce vertical gaps */
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
   }
 
   .film-modal-layout {
@@ -5927,11 +5932,18 @@ body.film-modal-open {
     max-height: none;
   }
 
+  .film-upnext,
+  .film-upnext-bar,
+  .film-upnext-end {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
   .film-upnext-bar,
   .film-upnext-end {
     flex-direction: column;
     align-items: stretch;
-    padding: 0.65rem 0.75rem;
+    padding: 0.35rem 0.5rem !important;
   }
 
   .film-upnext-controls,
@@ -8293,9 +8305,8 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 
   body.has-collector-view .gallery-list.holdings-grid,
   body.has-collector-view .gallery-focus-zone.is-collector-grid {
-    /* Mobile collector: max 3 NFTs per row, scales smoothly (equal columns) as width decreases.
-       Uses 3-col fixed on mobile to respect "maximum of 3" while auto-fill base handles desktop. */
-    grid-template-columns: repeat(3, 1fr);
+    /* Force max 3 per row on mobile, override any auto-fill/minmax. Scales smoothly with 1fr columns to prevent price tag cutoff on narrow widths. */
+    grid-template-columns: repeat(3, 1fr) !important;
     gap: 0.35rem;
   }
 
@@ -8644,6 +8655,13 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
    Goals: single-row actions (Share/Copy/Back together), slim fixed escape-bar, tiny gaps, adaptive to orientation,
    consistent compact site-header (no truncation), tight grid/cards, overall vertical reduction for comfort on iPhone etc. */
 @media (max-width: 768px) {
+  /* Force max 3 per row for collector grid on all mobile widths, overriding any auto-fill/minmax in sub rules or base. */
+  body.has-collector-view .gallery-list.holdings-grid,
+  body.has-collector-view .gallery-focus-zone.is-collector-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.35rem !important;
+  }
+
   body.has-collector-view .collector-escape-bar {
     /* Sticky below the site-header (not top:0) so it doesn't fight/overlap the sticky nav.
        top: var(--site-header-h) makes the collector context bar stack cleanly below the global header.
@@ -8719,6 +8737,13 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .collector-pride-actions {
     flex-direction: row !important;
     gap: var(--collector-header-gap) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  #wallet-panel .collector-share-hero {
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+    max-width: 4.5em !important; /* prevent long text making it float off on narrow */
   }
   body.has-collector-view .collector-share-hero,
   body.has-collector-view .collector-action-ghost,
@@ -8827,9 +8852,10 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .gallery-focus-zone.is-collector-grid {
     padding: 0.32rem 0.4rem 0.42rem;
   }
-  body.has-collector-view .gallery-list.holdings-grid {
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 0.45rem;
+  body.has-collector-view .gallery-list.holdings-grid,
+  body.has-collector-view .gallery-focus-zone.is-collector-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.35rem;
   }
   body.has-collector-view .holding-card--cinema .holding-card-body {
     padding: 0.42rem 0.5rem 0.5rem;
@@ -8923,9 +8949,10 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     margin-top: 0.06rem;
     padding-top: 0.08rem;
   }
-  body.has-collector-view .gallery-list.holdings-grid {
-    grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
-    gap: 0.36rem;
+  body.has-collector-view .gallery-list.holdings-grid,
+  body.has-collector-view .gallery-focus-zone.is-collector-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.35rem;
   }
   body.has-collector-view .holding-card--cinema .holding-card-body {
     padding: 0.36rem 0.42rem 0.42rem;
@@ -9045,9 +9072,10 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .gallery-focus-zone.is-collector-grid {
     padding: 0.26rem 0.32rem 0.34rem;
   }
-  body.has-collector-view .gallery-list.holdings-grid {
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-    gap: 0.38rem;
+  body.has-collector-view .gallery-list.holdings-grid,
+  body.has-collector-view .gallery-focus-zone.is-collector-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.35rem;
   }
   body.has-collector-view .holding-card--cinema .holding-card-body {
     padding: 0.35rem 0.4rem 0.4rem;
@@ -9171,8 +9199,9 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding: 0.06rem 0.2rem;
     font-size: 0.58rem;
   }
-  body.has-collector-view .gallery-list.holdings-grid {
-    grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+  body.has-collector-view .gallery-list.holdings-grid,
+  body.has-collector-view .gallery-focus-zone.is-collector-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
     gap: 0.3rem;
   }
   body.has-collector-view .holding-card--cinema .holding-card-body {
