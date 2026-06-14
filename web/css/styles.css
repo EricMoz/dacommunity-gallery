@@ -5467,6 +5467,7 @@ body.film-modal-open {
   max-width: 1080px;
   margin: 0 auto;
   width: 100%;
+  min-width: 0; /* allow this flex item to shrink below its min-content so the stage doesn't size down to the upnext bar when its title is short */
 }
 
 .film-upnext-bar,
@@ -5481,6 +5482,7 @@ body.film-modal-open {
   max-width: 1080px;
   margin-left: auto;
   margin-right: auto;
+  min-width: 0; /* help the flex container inside the capped upnext respect the max-width without being forced by content */
 }
 
 .film-upnext-end {
@@ -5581,15 +5583,14 @@ body.film-modal-open {
   font-weight: 700;
   color: #f2f2f2;
   line-height: 1.25;
-  /* Hard truncate (single line + ellipsis) so even very long titles
-     are cut off cleanly and cannot influence the width of the upnext bar,
-     the stage, or the video player above it. This fixes the root cause
-     of Lights Up mode width changing based on Up Next title length.
-     The upnext bar is forced to the video box width (the gold frame / YT content is the priority). */
-  white-space: nowrap;
+  /* Allow wrap to multiple lines (up to 2) or truncate with ellipsis if too long.
+     The bar is capped to the video player width, so the title never affects the player size.
+     The video/gold frame size is independent of the Up Next title length. */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%; /* ensure the title container respects the capped bar width */
+  max-width: 100%;
 }
 
 .film-upnext-meta {
@@ -6049,8 +6050,12 @@ body.film-modal-open {
 }
 
 .browse-collector-jump:hover {
-  filter: brightness(1.05);
+  background: var(--yellow);
+  color: var(--black);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.7);
   text-decoration: none;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, color 0.12s ease;
 }
 
 /* Collector theater — dark portfolio (archive stays light) */
@@ -6909,6 +6914,22 @@ body.has-collector-view #browse-controls.is-portfolio-browse .btn-outline {
   background: transparent;
   color: #ccc;
   border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Make filter pills use horizontal scroll (mobile-like) on mid-small widths in collector view,
+   so they don't overflow or wrap badly before the full mobile rules at 768px. The FILTER & SORT button is the main entry. */
+@media (max-width: 850px) {
+  body.has-collector-view #browse-controls.is-portfolio-browse .filters,
+  body.has-collector-view #browse-controls.is-portfolio-browse .filters-scroll {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  body.has-collector-view #browse-controls.is-portfolio-browse .filter {
+    flex-shrink: 0;
+  }
 }
 
 #browse-controls:not(.is-portfolio-browse) .browse-advanced-toggle {
