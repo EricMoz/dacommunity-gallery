@@ -4229,72 +4229,54 @@ body.film-theatre-awaiting-lights .film-theatre-footline {
   padding: 0;
 }
 
+/* 
+   LIGHTS DOWN — SIMPLIFIED (expert maintenance fix)
+   Previous approach (flex stage + mount grid/flex hacks + padding + margin-top tweaks) 
+   was fragile, grew complex comments, and still produced too much dead black space 
+   around a conservatively sized player.
+
+   New simpler model:
+   - The stage is just a full-bleed fixed container (no flex layout).
+   - The mount becomes a full-bleed transparent anchor layer.
+   - The player itself is positioned with direct, predictable viewport math (small top offset + large % size).
+   - Size bumped to 94vw / 82vh so the gold-framed video actually dominates the black field
+     and feels cinematic instead of "floating small in a void".
+   - Breathing room for fixed "Lights up" button (top) and up-next bar (bottom) is preserved.
+   - Internal 4px matte + gold border (from base rules) still gives nice separation from the video content.
+   - Much easier to tune in the future: change 2-3 numbers in one rule.
+*/
 .film-theatre-lights-down .film-theatre-stage {
   position: fixed;
   inset: 0;
   z-index: 6;
   max-width: none;
   margin: 0;
-  /* Reduced top padding significantly (from 3.5rem to 2rem) and changed to justify-content: flex-start
-     + small margin-top on mount so the player sits higher with less wasted black space above it.
-     This prevents the player from sitting too low and gives more room for the video without cutoff
-     or intrusion. Bottom padding provides breathing for up-next. Horizontal 0 for equal letterbox.
-     Player size slightly increased to 92vw while keeping good breathing room via the padding/letterbox. */
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 2rem 0 1rem;
-  gap: 0;
-}
-
-.film-theatre-lights-down .film-theatre-action-bar {
-  /* Wide control container in immersive mode. Using left/right insets + space-between
-     pushes the two buttons (← Previous film on left, Lights up on right) far apart so they
-     frame the video at its edges. The bar uses glass + blur for premium readability over the video.
-     With reduced stage padding and player sitting higher, buttons frame without intrusion. */
-  position: fixed;
-  top: 1.4rem;
-  left: 2.5rem;
-  right: 2.5rem;
-  z-index: 8;
-  max-width: none;
-  width: auto;
-  margin: 0;
-  padding: 0;
   background: transparent;
-  border: none;
-  box-shadow: none;
-  border-radius: 0;
 }
 
 .film-theatre-lights-down .film-theatre-player-mount {
-  /* Explicit fix per requirements: override the grid + place-items: center that was keeping the player
-     vertically centered (and thus too low with wasted space above) even after stage padding reduction.
-     Use flex + align-items: flex-start so the player sits higher / closer to the top action bar.
-     This + the flex-start on stage + reduced top padding eliminates the excessive black space above
-     in Lights Down while keeping horizontal centering. */
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  margin-top: 0.25rem;
+  /* Full-bleed positioning layer so the player can be placed with simple absolute rules
+     without any inherited flex, grid, or stage padding fighting the layout. */
+  position: fixed;
+  inset: 0;
+  z-index: 7;
+  display: block;
 }
 
 .film-theatre-lights-down .film-theatre-player {
-  /* Slightly larger (92vw) for more immersion in lights down. The reduced stage padding,
-     flex-start alignment + margin-top on mount ensure the player sits higher with minimal
-     wasted space above (addresses excessive top black space). max-height adjusted to fit
-     without cutoff while keeping breathing room. The iframe (now 100% in general rule) fills
-     the frame properly. */
-  max-width: 92vw;
-  max-height: calc(100dvh - 4rem);
-  width: auto;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
+  /* Direct, simple, large cinematic size for Lights Down.
+     Top offset clears the fixed action bar without wasting vertical space.
+     94vw + 82vh (capped reasonably) makes the framed video the clear focus
+     while still leaving elegant black breathing room on all sides.
+     This replaces the previous hard-to-maintain centering/padding chain. */
+  position: absolute;
+  top: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(94vw, 1550px);
+  max-height: 82vh;
   aspect-ratio: 16 / 9;
+  box-sizing: border-box;
   border-color: rgba(255, 204, 0, 0.22);
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 1),
