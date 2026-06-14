@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T10:27:58.673347+00:00",
+  "generated_at": "2026-06-14T04:23:35.721368+00:00",
   "source": "gallery_catalog",
   "collection": {
     "slug": "rodeo-posts-12142",
@@ -14,7 +14,7 @@
     "contract_name": "Rodeo posts",
     "floor_eth": 0.0005,
     "floor_symbol": "ETH",
-    "num_owners": 57,
+    "num_owners": 58,
     "total_sales": 0,
     "total_volume": 0.0,
     "piece_count": 65,
@@ -271,12 +271,12 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 8,
+        "holder_count": 9,
         "circulating_copies": 31,
         "top_holders": [
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 12
+            "quantity": 11
           },
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
@@ -298,7 +298,7 @@
         "holders": [
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 12
+            "quantity": 11
           },
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
@@ -325,16 +325,20 @@
             "quantity": 1
           },
           {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1
+          },
+          {
             "address": "0x93b34003169bd7cdb3e0710fedff4cb6795a32ef",
             "quantity": 1
           }
         ],
         "latest_change": {
           "type": "transfer",
-          "at": "2026-02-12T16:40:39+00:00",
-          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
-          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-          "quantity": 10
+          "at": "2026-06-14T04:14:27+00:00",
+          "from": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+          "quantity": 1
         }
       },
       "minted_at": "2025-12-13T02:29:13+00:00"

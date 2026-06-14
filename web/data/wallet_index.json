@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T10:27:58.670551+00:00",
+  "generated_at": "2026-06-14T04:23:35.718490+00:00",
   "holders_index": {
     "ens_aliases": {
       "lostthegame.eth": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
@@ -11,6 +11,7 @@
       "wyando.eth": "0x6372d911ad7329509d683828be1bf5d4eb45bb42",
       "dao100.eth": "0x5469f22fc52ad7a5e1f430a75b1cbd542393dfb0",
       "mfer-chick.eth": "0xeeb67b2952cd04901c3c797cee44ebacb9cf0da2",
+      "dagato.eth": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
       "slowfreeze.eth": "0x93b34003169bd7cdb3e0710fedff4cb6795a32ef",
       "tibob.eth": "0x7f23f1c4be15fa3adabc821de9ef70efa5503f24",
       "ahotwallet.eth": "0x68bca5a8bdebe05fb8a6648c7316b4eb7e19a064",
@@ -350,7 +351,7 @@
         "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
         "ens_name": "mozvane.eth",
         "username": null,
-        "collection_quantity": 283,
+        "collection_quantity": 282,
         "unique_pieces": 60,
         "holdings": [
           {
@@ -2225,6 +2226,20 @@
           }
         ]
       },
+      "0x94ff0ec6ce56b65541f6a4763d35caf51db29821": {
+        "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+        "ens_name": "dagato.eth",
+        "username": "daGATO_eth",
+        "collection_quantity": 1,
+        "unique_pieces": 1,
+        "holdings": [
+          {
+            "token_id": "61",
+            "name": "dacat.gaze",
+            "display_name": "dacat.gaze"
+          }
+        ]
+      },
       "0x93b34003169bd7cdb3e0710fedff4cb6795a32ef": {
         "address": "0x93b34003169bd7cdb3e0710fedff4cb6795a32ef",
         "ens_name": "slowfreeze.eth",
@@ -2589,7 +2604,7 @@
         "ens_name": "mozvane.eth",
         "username": null,
         "unique_pieces": 60,
-        "collection_quantity": 283
+        "collection_quantity": 282
       },
       {
         "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
@@ -2798,6 +2813,13 @@
         "address": "0x9e1e84fa1070469de7d59212cc1706e8f3f0bd67",
         "ens_name": null,
         "username": null,
+        "unique_pieces": 1,
+        "collection_quantity": 1
+      },
+      {
+        "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+        "ens_name": "dagato.eth",
+        "username": "daGATO_eth",
         "unique_pieces": 1,
         "collection_quantity": 1
       },
