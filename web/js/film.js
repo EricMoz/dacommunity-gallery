@@ -671,6 +671,63 @@
     refreshUpNextUi();
   }
 
+  function showSocialShareModal(url, title) {
+    title = title || "Check this out on daCAT Films";
+    var id = "social-share-modal";
+    var existing = document.getElementById(id);
+    if (existing) existing.remove();
+
+    var modal = document.createElement("div");
+    modal.id = id;
+    modal.className = "social-share-modal";
+    modal.innerHTML =
+      '<div class="social-share-backdrop"></div>' +
+      '<div class="social-share-card">' +
+        '<button class="social-close" aria-label="Close">×</button>' +
+        '<h3>Share</h3>' +
+        '<div class="social-buttons">' +
+          '<a class="social-btn" data-type="x" target="_blank" rel="noopener">𝕏 Post</a>' +
+          '<a class="social-btn" data-type="tg" target="_blank" rel="noopener">Telegram</a>' +
+          '<a class="social-btn" data-type="fb" target="_blank" rel="noopener">Facebook</a>' +
+          '<button class="social-btn copy" data-type="copy">📋 Copy link</button>' +
+        '</div>' +
+      '</div>';
+
+    document.body.appendChild(modal);
+
+    var close = function () { modal.remove(); };
+    modal.querySelector(".social-share-backdrop").addEventListener("click", close);
+    modal.querySelector(".social-close").addEventListener("click", close);
+
+    var encodedUrl = encodeURIComponent(url);
+    var encodedTitle = encodeURIComponent(title);
+
+    var x = modal.querySelector('[data-type="x"]');
+    x.href = "https://x.com/intent/tweet?text=" + encodedTitle + "&url=" + encodedUrl;
+
+    var tg = modal.querySelector('[data-type="tg"]');
+    tg.href = "https://t.me/share/url?url=" + encodedUrl + "&text=" + encodedTitle;
+
+    var fb = modal.querySelector('[data-type="fb"]');
+    fb.href = "https://www.facebook.com/sharer/sharer.php?u=" + encodedUrl;
+
+    var copyBtn = modal.querySelector('[data-type="copy"]');
+    copyBtn.addEventListener("click", function () {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function () {
+          copyBtn.textContent = "Copied!";
+          setTimeout(close, 700);
+        }).catch(function () {
+          prompt("Copy link:", url);
+          close();
+        });
+      } else {
+        prompt("Copy link:", url);
+        close();
+      }
+    });
+  }
+
   function fillModalDetails(video) {
     els.modalTitle.textContent = video.title;
     els.modalSeries.textContent = video.series;
@@ -701,6 +758,16 @@
       els.modalTheatre.hidden = false;
     } else if (els.modalTheatre) {
       els.modalTheatre.hidden = true;
+    }
+
+    // Bind the small share button (styled differently as a compact button, placed after the links)
+    var shareBtn = document.getElementById("film-modal-share");
+    if (shareBtn) {
+      shareBtn.onclick = function () {
+        var ytUrl = `https://www.youtube.com/watch?v=${video.youtubeId}`;
+        var shareTitle = video.title + " — daCAT Films";
+        showSocialShareModal(ytUrl, shareTitle);
+      };
     }
   }
 

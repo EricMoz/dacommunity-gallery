@@ -4720,6 +4720,84 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   color: #fff;
 }
 
+.film-modal-share-btn {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid rgba(255, 204, 0, 0.35);
+  background: rgba(0, 0, 0, 0.4);
+  color: #ffcc00;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 0.35rem;
+  line-height: 1.1;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.film-modal-share-btn:hover {
+  background: rgba(255, 204, 0, 0.12);
+  border-color: rgba(255, 204, 0, 0.5);
+}
+
+/* Social share modal styles (for collector, archive, and film modal) */
+.social-share-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+}
+.social-share-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+}
+.social-share-card {
+  position: relative;
+  background: #111;
+  border: 2px solid #333;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  width: 260px;
+  color: #eee;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  font-size: 0.9rem;
+}
+.social-share-card h3 {
+  margin: 0 0 0.6rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+.social-share-card .social-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.45rem 0.6rem;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #f0f0f0;
+  text-decoration: none;
+  font-size: 0.82rem;
+  margin-bottom: 0.35rem;
+}
+.social-share-card .social-btn:hover {
+  background: #222;
+  border-color: #444;
+}
+.social-share-card .social-btn.copy {
+  background: #222;
+  cursor: pointer;
+}
+.social-share-card .social-close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
 .film-nav-links {
   margin: 0;
   font-size: 0.85rem;
@@ -5365,6 +5443,13 @@ body.film-modal-open {
 .film-upnext {
   border-top: 1px solid rgba(255, 204, 0, 0.22);
   background: linear-gradient(180deg, #0c0c0c 0%, #080808 100%);
+  /* Cap width to exactly match the video player (960px) and center it.
+     This ensures long or short Up Next titles never expand or shrink the
+     containing stage/player width in Lights Up mode. The bar now fits
+     the YouTube video frame itself. */
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .film-upnext-bar,
@@ -5475,10 +5560,13 @@ body.film-modal-open {
   font-weight: 700;
   color: #f2f2f2;
   line-height: 1.25;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  /* Hard truncate (single line + ellipsis) so even very long titles
+     are cut off cleanly and cannot influence the width of the upnext bar,
+     the stage, or the video player above it. This fixes the root cause
+     of Lights Up mode width changing based on Up Next title length. */
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .film-upnext-meta {
@@ -5910,11 +5998,19 @@ body.film-modal-open {
 }
 
 .browse-collector-jump {
-  flex-shrink: 0;
-  font-size: 0.82rem;
+  background: var(--yellow);
+  color: var(--black);
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
   font-weight: 700;
   text-decoration: none;
-  color: var(--black);
+  white-space: nowrap;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
   padding: 0.45rem 0.75rem;
   border: 2px solid var(--black);
   border-radius: 999px;
@@ -5927,8 +6023,7 @@ body.film-modal-open {
 }
 
 .browse-collector-jump:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0 var(--black);
+  filter: brightness(1.05);
   text-decoration: none;
 }
 

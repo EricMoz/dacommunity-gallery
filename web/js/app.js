@@ -1472,21 +1472,68 @@ function renderHoldingsGrid(holdings, container) {
 /* Share helpers (wallet-specific + new view-level for filters+collection in Part 1).
  * buildCurrentViewUrl + sync ensure share links carry collection + activeFilter/sort/q.
  */
+function showSocialShareModal(url, title) {
+  title = title || "Check this out on daCommunity Gallery";
+  var id = "social-share-modal";
+  var existing = document.getElementById(id);
+  if (existing) existing.remove();
+
+  var modal = document.createElement("div");
+  modal.id = id;
+  modal.className = "social-share-modal";
+  modal.innerHTML =
+    '<div class="social-share-backdrop"></div>' +
+    '<div class="social-share-card">' +
+      '<button class="social-close" aria-label="Close">×</button>' +
+      '<h3>Share</h3>' +
+      '<div class="social-buttons">' +
+        '<a class="social-btn" data-type="x" target="_blank" rel="noopener">𝕏 Post</a>' +
+        '<a class="social-btn" data-type="tg" target="_blank" rel="noopener">Telegram</a>' +
+        '<a class="social-btn" data-type="fb" target="_blank" rel="noopener">Facebook</a>' +
+        '<button class="social-btn copy" data-type="copy">📋 Copy link</button>' +
+      '</div>' +
+    '</div>';
+
+  document.body.appendChild(modal);
+
+  var close = function () { modal.remove(); };
+  modal.querySelector(".social-share-backdrop").addEventListener("click", close);
+  modal.querySelector(".social-close").addEventListener("click", close);
+
+  var encodedUrl = encodeURIComponent(url);
+  var encodedTitle = encodeURIComponent(title);
+
+  var x = modal.querySelector('[data-type="x"]');
+  x.href = "https://x.com/intent/tweet?text=" + encodedTitle + "&url=" + encodedUrl;
+
+  var tg = modal.querySelector('[data-type="tg"]');
+  tg.href = "https://t.me/share/url?url=" + encodedUrl + "&text=" + encodedTitle;
+
+  var fb = modal.querySelector('[data-type="fb"]');
+  fb.href = "https://www.facebook.com/sharer/sharer.php?u=" + encodedUrl;
+
+  var copyBtn = modal.querySelector('[data-type="copy"]');
+  copyBtn.addEventListener("click", function () {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () {
+        copyBtn.textContent = "Copied!";
+        setTimeout(close, 700);
+      }).catch(function () {
+        prompt("Copy link:", url);
+        close();
+      });
+    } else {
+      prompt("Copy link:", url);
+      close();
+    }
+  });
+}
+
 function shareCollectorCollection(address) {
   if (!address) return;
   var url = walletShareUrl(address);
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(url).then(
-      function () {
-        showCopyToast("Share link copied — show off your daCATs.");
-      },
-      function () {
-        showCopyToast("Copy this URL: " + url);
-      }
-    );
-  } else {
-    showCopyToast("Share URL: " + url);
-  }
+  var title = "Check out this daCATs collection on daCommunity Gallery";
+  showSocialShareModal(url, title);
 }
 
 /* === Share Modal (Part 1) — copyable URL with current collection + filters + social quick-links.
@@ -2786,7 +2833,9 @@ function bindUi() {
   if (archiveShare && !archiveShare.dataset.bound) {
     archiveShare.dataset.bound = "1";
     archiveShare.addEventListener("click", function () {
-      showShareModal();
+      var url = window.location.href.split("#")[0];
+      var title = "daCommunity NFT Archive";
+      showSocialShareModal(url, title);
     });
   }
   renderCollectorFocusUi();
