@@ -8725,11 +8725,9 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     white-space: nowrap !important;
     gap: var(--collector-header-gap) !important;
     margin-bottom: var(--collector-header-mb) !important;
-    justify-content: flex-start !important; /* prevent base space-between from pushing actions to bottom, causing large gap in column layout on mobile */
+    justify-content: space-between !important; /* right-align actions (Share/Copy/Back) like desktop, while name stays left */
     align-items: center !important;
     padding: 0 !important;
-    /* Hide scrollbar on very narrow mobile while keeping horizontal scroll if needed for the row layout.
-       This removes visible horizontal scrollbar without changing flex structure. */
     scrollbar-width: none !important;
   }
   body.has-collector-view .collector-pride-header::-webkit-scrollbar {
@@ -8788,6 +8786,13 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     margin: 0 !important;
     padding: 0 !important;
     line-height: 1.65 !important;
+  }
+  /* Slight extra breathing between rank badge (in title-row) and pieces count (in meta) for business-card readability in name banner. */
+  body.has-collector-view .collector-pride-title-row {
+    margin-bottom: 0.15rem !important;
+  }
+  body.has-collector-view .collector-pride-meta {
+    gap: 0.25rem 0.5rem !important; /* slightly more space for easy read of pieces + copies stats */
   }
 
   body.has-collector-view .collector-theater-frame.is-active {
@@ -8909,7 +8914,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     align-items: center;
     gap: 0.3rem;
     margin-bottom: 0.1rem;
-    /* Hide scrollbar on narrow while keeping scroll if needed. */
+    justify-content: space-between; /* right-align actions like desktop */
     overflow-x: auto;
     scrollbar-width: none;
   }
@@ -9120,17 +9125,16 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 
   /* Re-assert lock with refined vars - small but non-zero gap + row/h-scroll to eliminate bad vertical dark space */
   body.has-collector-view .collector-pride-header {
-    /* Row + h-scroll approach preserved for stability on ultra-narrow. Slightly increased spacing for the requested premium non-crunched header.
-       Hide scrollbar visually for clean narrow mobile. */
+    /* Row + h-scroll for ultra-narrow. Right-align actions like desktop. */
     flex-direction: row !important;
     align-items: center;
     gap: var(--collector-header-gap) !important;
     margin-bottom: var(--collector-header-mb) !important;
     padding: 0 !important;
-    justify-content: flex-start !important;
+    justify-content: space-between !important;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    white-space: nowrap; /* keep items in row for scroll */
+    white-space: nowrap;
     scrollbar-width: none !important;
   }
   body.has-collector-view .collector-pride-header::-webkit-scrollbar {
