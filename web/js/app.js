@@ -1021,7 +1021,7 @@ function scrollToCollectorCollection(opts) {
   }
 }
 
-var browseAdvancedMq = window.matchMedia("(max-width: 850px)");
+var browseAdvancedMq = window.matchMedia("(max-width: 950px)");
 
 /** Collapse filter/sort on mobile (archive + portfolio); always open on desktop archive. */
 function syncBrowseAdvancedPanel() {

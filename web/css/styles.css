@@ -3942,6 +3942,8 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
   /* Maintainable source of truth for Lights Up: up next bar must fit the video player box.
      Long Up Next titles must be cut off and not affect the gold frame / YT video width. */
   --theatre-video-max: 1080px;
+  /* Force the stage to take the full width available from its parent (the screen), not shrink-to-fit based on the min-content of the upnext bar when the title is short. This makes the player width stable at the full intended size (up to 1080px). */
+  min-width: 100%;
 }
 
 .film-theatre-player-mount {
@@ -4013,7 +4015,13 @@ body:not(.film-theatre-lights-down) .film-theatre-stage {
      so the gold border always has enough room for the full YouTube embed chrome
      (top title area + bottom progress bar + controls + logo). ... */
   max-height: calc(100dvh - var(--theatre-ui-reserve) - 4px);
-  width: auto;
+  /* Pin player width to stable 1080px in Lights Up (non-lights-down) only.
+     This breaks the shrink-to-fit dependency on the sibling upnext's min-content (title length).
+     The stage/mount will be forced to at least this size by the player's min-width.
+     Up Next title (in .film-upnext-title) can wrap or ellipsis within its own capped bar.
+     Lights Down rules override width/max-width so unaffected. */
+  width: 100%;
+  min-width: 1080px;
   height: auto;
   flex-shrink: 1;
   border-radius: 12px;
@@ -6941,8 +6949,8 @@ body.has-collector-view #browse-controls.is-portfolio-browse .btn-outline {
 }
 
 /* Archive browse: collapsible filter/sort on narrow viewports 
-   Kick in at mid-small so that when Recent Transfers would wrap, it switches to the "FILTER & SORT" button instead of bad partial wrap. */
-@media (max-width: 850px) {
+   Kick in at mid-small (950px) so that the filter pills collapse into the "FILTER & SORT" dropdown button sooner when they no longer fit comfortably on one line. */
+@media (max-width: 950px) {
   #browse-controls:not(.is-portfolio-browse) .browse-advanced-toggle {
     display: inline-flex;
     align-items: center;
