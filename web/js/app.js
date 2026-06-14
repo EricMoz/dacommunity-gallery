@@ -1,39 +1,11 @@
 /**
- * daCommunity Gallery — static frontend (served from /dacommunity/ on Pages).
+ * daCommunity Gallery core JS (vanilla, static).
+ * Powers: gallery browse (search/filters/sort/grid), ?wallet= collector view,
+ * ?collection= multi-col support, detail/activity, URL share.
  *
- * This is the core vanilla JS app powering:
- * - Global gallery browse (search + filters + sort + grid)
- * - Wallet / collector lookup (?wallet= deep links, portfolio view)
- * - Multi-collection awareness (via collections_registry.json + activeCollection filter)
- * - Detail drawer, activity, owners
- * - Strong cache-busting for data + assets (via build stamp)
- *
- * BOOT FLOW (init → bootGallery):
- *   1. initDataUrls() — resolve ../data/*.json from body[data-base] on subpages + ?v= bust
- *   2. loadCatalogFirst() — small gallery_catalog.json (~140KB) for first paint
- *   3. bootGallery() — hide #load-state, fill #stats-strip, render grid, bindUi()
- *   4. refreshFullDataInBackground() — merge descriptions + recent_activity from full JSON
- *   5. loadWalletIndex() — ENS names for collector lookup (non-blocking)
- *   6. loadCollectionsRegistry() — for live collection filter UI (Part 1 multi-col)
- *
- * If app.js fails to parse, the page stays on static HTML loaders (#load-state spinner
- * + four .stat.skeleton cards). CI runs `node --check` on this file before deploy.
- *
- * No wallet connect; ENS resolve via ensdata.net when needed.
- * All state is client-side; filters/sort/search/collection do not persist across reloads
- * except via explicit ? params for share links.
- *
- * STATE (top-level lets):
- *   activeFilter, searchQuery, sortKey, activeCollection
- *   galleryCollectorView (the dark portfolio mode)
- *   galleryData, itemsById, collectorsList
- *
- * KEY MODULES (search for comments):
- * - Data loading & registry
- * - Browse / filtering (getFilteredItems, renderBrowseMeta)
- * - Collector / wallet view
- * - Share + URL sync (for multi-col + filters)
- * - Render pipeline
+ * Boot: initDataUrls -> loadCatalogFirst -> bootGallery -> background enrich + wallet/collections.
+ * Client state only; ?params for deep links/share.
+ * No wallet connect needed.
  */
 
 /* === Data URL Resolution & Build Stamp (cache busting) === */

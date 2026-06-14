@@ -38,8 +38,8 @@ A fully static GitHub Pages site delivering a rich NFT gallery, collector portfo
 ## Key Features (current)
 
 - **Gallery** — Fast catalog first-paint, background full-data enrichment, live "for sale" / "recent transfers" filters, price sorting, search across name/story/token.
-- **Collector Portfolio** — Dark cinema grid scoped to one wallet. Same filters work inside it. Clean exit back to lookup.
-- **Wallet deep links** — `?wallet=0x...#wallet-panel` or `?ens=...` — opens lookup + portfolio instantly. Share buttons copy the full URL.
+- **Collector Portfolio** — Dark cinema grid scoped to one wallet. Same filters work inside it. Clean "Back to Archive" escape in profile card + pride bar (works for direct ?wallet= links from NFTs too).
+- **Wallet deep links** — `?wallet=0x...#wallet-panel` or `?ens=...` — opens lookup + portfolio instantly. Share buttons copy the full URL. Mobile nav on collection pages includes Collections for easy navigation.
 - **Multi-collection filter** (new) — Dropdown in the archive (only shows `status: "live"` entries from `collections_registry.json`). Pre-filter links from `/collections/` (`?collection=dacommunity`). "Find your daCATs" + share links respect the active collection.
 - **Theatre Mode** — Lights-down experience, up-next, full controls when lights up, persistent preferences via sessionStorage. Mobile gracefully falls back to hub player.
 - **Strong data freshness** — Daily OpenSea sync (see backend). Visible "last pull" + staleness banners. Network-first for JSON in SW.

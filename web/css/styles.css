@@ -8245,20 +8245,13 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     display: none;
   }
 
-  /* Mobile nav reduction — reviewed & improved site-wide for consistency and breathing room.
-     Policy (desktop always shows full nav; only <=768):
-     - Film theatre (immersive): exactly Home + Film.
-     - dacommunity (archive / lookup): Home + My daCATs.
-     - Wallet collector view (has-collector-view on dacommunity): Home + Film + Collections (the pride/escape bar
-       provides the wallet-specific "YOUR COLLECTION" context, name, stats, Share/Copy/Back; top nav still offers
-       quick access to the main sections of the site).
-     - Film hub: Home + Film.
-     - The goal is to keep the top bar to 2-3 items max on mobile so it never feels cramped, while giving the
-       collector wallet view the main hubs (home/film/collections) the user asked for.
-     The :not() selectors + later collector-specific rules + !important where needed ensure the right things
-     are visible and the cascade order is clear. */
+  /* Mobile nav reduction (desktop full nav; <=768 shows 2-3 items max for clean tap targets).
+     - dacommunity archive/?collection=: Home + My daCATs + Collections
+     - has-collector-view: Home + Film + Collections (pride bar provides context)
+     - film pages: Home + Film (+Collections on hub)
+     Use :not() + !important to lock visible set. */
   .film-theatre-page .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-collections):not(.nav-btn-film),
-  body[data-base]:not(.has-collector-view) .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-wallet),
+  body[data-base]:not(.has-collector-view) .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-wallet):not(.nav-btn-collections),
   .film-hub-page .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-collections):not(.nav-btn-film) {
     display: none !important;
   }
@@ -8284,6 +8277,11 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     font-size: 0.76rem;
     display: inline-flex;
     align-items: center;
+  }
+
+  /* Mobile header polish: brand (logo + name) never squishes or wraps awkwardly; nav scrolls if needed. */
+  .brand {
+    flex-shrink: 0;
   }
 
   #app {
@@ -8700,13 +8698,10 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding-bottom: 0.75rem;
   }
 
-  /* === Maintainable Collector Mobile Header System (Senior FE best practice) ===
-     Use CSS custom properties scoped to the collector mobile context.
-     Change spacing/sizes in ONE place (here or in smaller breakpoints) and it propagates.
-     The !important + high specificity locks win over any legacy .collector-xxx rules from previous iterations.
-     This section + the overrides after legacy blocks (see ~7425 and ~7695) ensure the name section and buttons
-     are always tightly aligned with minimal gap, in a single row for buttons, on all small widths.
-  */
+  /* Collector mobile header: use CSS vars for spacing/sizes (single place to tweak).
+     !important + specificity locks the compact row layout for name + actions on small screens.
+     (Vars defined above; sub-breakpoints inherit/adjust.) */
+
   body.has-collector-view {
     /* More spacious mobile collector header (per UX requirements) while remaining compact.
        Row + nowrap + overflow-x auto preserved for stability (avoids historical column-wrap dark gap bug).
@@ -8720,8 +8715,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     --collector-bar-pad-y: 0.3rem;
   }
 
-  /* Strong lock using vars + !important to guarantee tight name-to-buttons, row layout, small buttons.
-     This is the central control for the premium tight header. */
+  /* Central lock for compact mobile collector header (row + scroll for name+actions). */
   body.has-collector-view .collector-pride-header {
     display: flex !important;
     flex-direction: row !important;
@@ -8742,15 +8736,12 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     display: none !important;
   }
   body.has-collector-view .collector-pride-actions {
-    /* Consolidated mobile: controlled row, no wrap to keep Share/Copy/Back together, full width to prevent float/overflow. */
+    /* Consolidated: row + nowrap to keep Share/Copy/Back together and in view after the name. Natural flex width (no 100% to avoid overflow/push off on narrow). */
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
     gap: var(--collector-header-gap) !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow: visible !important;
-    justify-content: flex-end !important;
+    justify-content: flex-start !important;
     align-items: center !important;
   }
   #wallet-panel .collector-share-hero {
@@ -8776,7 +8767,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     min-height: 1.25em;
     visibility: visible;
     margin-bottom: 0;
-    max-width: 55% !important;  /* tweak to move the three buttons (Share/Copy/Back) a little more to the left in mobile so the Back button doesn't creep off the right side of the screen */
+    max-width: 45% !important;  /* leave more room (~55%) for the 3 action buttons (Share/Copy/Back) so they remain visible on narrow mobile without needing to scroll the header */
   }
   body.has-collector-view .collector-escape-name {
     display: inline-block;
@@ -9027,7 +9018,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .collector-pride-identity {
     padding-bottom: 0 !important;
     min-height: auto;
-    max-width: 55% !important;  /* tweak to move the three buttons a little more to the left in mobile so the Back button isn't cut off on the right */
+    max-width: 40% !important;  /* leave more room for Share/Copy/Back buttons on ultra-narrow so they don't disappear off the right */
   }
 
   /* Re-assert the lock with the new var values for this breakpoint */
@@ -9157,7 +9148,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .collector-pride-identity {
     padding-bottom: 0 !important;
     min-height: auto;
-    max-width: 55% !important;  /* tweak to move the three buttons a little more to the left in mobile so the Back button isn't cut off on the right */
+    max-width: 40% !important;  /* leave more room for Share/Copy/Back buttons on ultra-narrow so they don't disappear off the right */
   }
   body.has-collector-view .collector-escape-name {
     font-size: clamp(0.88rem, 3.3vw, 1rem);
