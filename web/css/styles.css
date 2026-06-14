@@ -4275,10 +4275,11 @@ body.film-theatre-awaiting-lights .film-theatre-footline {
      The key fix for the persistent "youtube video to fit the damn box": the player has the 4px matte padding,
      and the iframe is forced to exactly fill the inner content area (inset 4px) so the YT video + its chrome
      (title bar, controls) tightly matches the gold frame without extra internal black or undersized video.
-     Slightly reduced (88vw / -7rem) so the top of the frame stays comfortably below the fixed blurry glass
-     action bar (the banner with the top buttons) while still looking large and immersive. */
-  max-width: 88vw;
-  max-height: calc(100dvh - 7rem);
+     Further reduced ~15% (75vw / -9rem) per request so the entire gold frame + video sits a bit smaller
+     and comfortably below the fixed blurry glass action bar (top banner with Previous Film / Lights up buttons)
+     while remaining nicely centered and immersive. */
+  max-width: 75vw;
+  max-height: calc(100dvh - 9rem);
   width: auto;
   height: auto;
   margin-left: auto;
