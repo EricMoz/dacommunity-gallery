@@ -1531,9 +1531,9 @@ function showSocialShareModal(url, title) {
 
 function shareCollectorCollection(address) {
   if (!address) return;
-  var url = walletShareUrl(address);
-  var title = "Check out this daCATs collection on daCommunity Gallery";
-  showSocialShareModal(url, title);
+  // Use the standard share modal (same as main gallery view) which handles social options and centers properly.
+  // The current URL (synced with ?wallet=) will be used by buildCurrentViewUrl inside showShareModal.
+  showShareModal();
 }
 
 /* === Share Modal (Part 1) — copyable URL with current collection + filters + social quick-links.
@@ -2833,9 +2833,8 @@ function bindUi() {
   if (archiveShare && !archiveShare.dataset.bound) {
     archiveShare.dataset.bound = "1";
     archiveShare.addEventListener("click", function () {
-      var url = window.location.href.split("#")[0];
-      var title = "daCommunity NFT Archive";
-      showSocialShareModal(url, title);
+      // Use the standard share modal for archive view (same as main gallery)
+      showShareModal();
     });
   }
   renderCollectorFocusUi();
