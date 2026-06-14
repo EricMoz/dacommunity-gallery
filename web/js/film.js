@@ -743,14 +743,20 @@
     const oldPromo = document.getElementById('film-modal-world-promo');
     if (oldPromo) oldPromo.remove();
 
-    // Show tasteful daCAT World / merch note ONLY inside the modal for relevant videos (Part 2)
+    // For daCAT World / podcast videos in the modal: 
+    // - no "YouTube" channel link (removed per request)
+    // - "Shop merch & free comics" on its own clean line *below* the main links (Watch on YT, Theatre, Share)
+    //   so layout is less cluttered. Placed after .film-modal-links. Styling (class) kept intact.
     const isWorld = video.creator === "DACAT WORLD" || video.filterCategory === "dacatworld" || video.filterCategory === "podcasts";
-    if (isWorld && els.modalDesc && els.modalDesc.parentNode) {
-      const promo = document.createElement('p');
-      promo.id = 'film-modal-world-promo';
-      promo.className = 'film-modal-world-promo';
-      promo.innerHTML = `daCAT World · <a href="https://dacat.store/" target="_blank" rel="noopener noreferrer">Shop merch &amp; free comics</a> · <a href="https://www.youtube.com/@DacatWorld" target="_blank" rel="noopener noreferrer">YouTube</a>`;
-      els.modalDesc.parentNode.insertBefore(promo, els.modalDesc.nextSibling);
+    if (isWorld) {
+      const modalLinks = els.modal ? els.modal.querySelector('.film-modal-links') : document.querySelector('.film-modal-links');
+      if (modalLinks && modalLinks.parentNode) {
+        const promo = document.createElement('p');
+        promo.id = 'film-modal-world-promo';
+        promo.className = 'film-modal-world-promo';
+        promo.innerHTML = `<a href="https://dacat.store/" target="_blank" rel="noopener noreferrer">Shop merch &amp; free comics</a>`;
+        modalLinks.parentNode.insertBefore(promo, modalLinks.nextSibling);
+      }
     }
     const theatre = theatreHref(video);
     if (theatre && els.modalTheatre) {
