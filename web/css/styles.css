@@ -6189,12 +6189,10 @@ body.film-modal-open {
     padding: 0.2rem 0.4rem;
     font-size: 0.72rem;
     min-height: 28px;
-    width: 50%;
   }
   .browse-collector-jump {
     padding: 0.2rem 0.45rem;
     font-size: 0.72rem;
-    width: 50%;
   }
 }
 
@@ -8090,7 +8088,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
 
   .browse-collector-jump {
-    width: 100%;
+    width: 50%;
     justify-content: center;
     min-height: 44px;
   }
@@ -8138,6 +8136,10 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     min-height: 44px;
     width: 100%;
     justify-content: center;
+  }
+
+  .archive-share-btn {
+    width: 50%;
   }
 
   .data-freshness {
