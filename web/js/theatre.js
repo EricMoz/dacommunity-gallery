@@ -98,6 +98,7 @@
     upnextDimPlayNow: document.getElementById("theatre-upnext-dim-play-now"),
     upnextModes: document.querySelectorAll(".theatre-upnext-mode"),
     backBtn: document.getElementById("theatre-back"),
+    actionBar: document.getElementById("theatre-action-bar"),
     stage: document.querySelector('.film-theatre-stage'),
   };
 
@@ -1167,6 +1168,15 @@
     }
 
     applySize(w, totalH);
+
+    /* Lights-up only: make the top action bar (Previous film / Lights down) exactly match the *current*
+       width of the gold video border (the player we just sized). This ensures the buttons are spread
+       to the left and right edges of the actual gold frame (space-between on the bar), not wider than
+       the video (matching the upnext bar behavior below) or affected by title length.
+       The CSS cap at 1080px remains as a safe upper bound; the inline maxWidth here is <= that and wins. */
+    if (els.actionBar) {
+      els.actionBar.style.maxWidth = Math.round(w) + 'px';
+    }
   }
 
   function tryPendingLightsRestore() {
