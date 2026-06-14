@@ -5581,6 +5581,25 @@ body.film-modal-open {
   display: none !important;
 }
 
+/* Film video popup mobile: reduce large top/bottom vertical gaps (margin/padding) in the modal
+   and upnext bar so stacked content fits better on small screens. Desktop unaffected. */
+@media (max-width: 768px) {
+  .film-modal {
+    padding: 0.5rem;
+  }
+  .film-modal-panel {
+    max-height: calc(100vh - 1rem);
+  }
+  .film-upnext {
+    margin-top: 0;
+  }
+  .film-upnext-bar,
+  .film-upnext-end {
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+  }
+}
+
 .film-upnext-preview {
   display: flex;
   align-items: center;
@@ -6143,6 +6162,23 @@ body.film-modal-open {
   box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.7);
   text-decoration: none;
   transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, color 0.12s ease;
+}
+
+/* Help "Find your daCATs" + Share sit side-by-side properly on mid-small widths before any collapse.
+   Smaller padding/gap + adjusted font to prevent floating off or wrapping awkwardly. */
+@media (max-width: 900px) {
+  .browse-head-actions {
+    gap: 0.2rem;
+  }
+  .archive-share-btn {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.72rem;
+    min-height: 28px;
+  }
+  .browse-collector-jump {
+    padding: 0.2rem 0.45rem;
+    font-size: 0.72rem;
+  }
 }
 
 /* Collector theater — dark portfolio (archive stays light) */
@@ -6794,6 +6830,20 @@ body.has-collector-view .browse-collector-jump {
   display: none;
 }
 
+/* More breathing room and line spacing around collector name/header area (name, lead, head)
+   in collector view. Prioritizes mobile readability without affecting desktop grid. */
+body.has-collector-view .collector-hub-head {
+  margin-bottom: 1.2rem;
+}
+body.has-collector-view .collector-hub-title {
+  margin: 0 0 0.45rem;
+  line-height: 1.15;
+}
+body.has-collector-view .collector-hub-lead {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
 .collector-browse-ribbon {
   display: flex;
   align-items: center;
@@ -6939,6 +6989,7 @@ body.has-collector-view #browse-controls.is-portfolio-browse .filter {
   background: #1a1a1a;
   color: #ddd;
   border-color: #444;
+  padding: 0.3rem 0.55rem;
 }
 
 body.has-collector-view #browse-controls.is-portfolio-browse .filter.active {
@@ -7028,8 +7079,8 @@ body.has-collector-view #browse-controls.is-portfolio-browse .btn-outline {
 }
 
 /* Archive browse: collapsible filter/sort on narrow viewports 
-   Kick in at mid-small (950px) so that the filter pills collapse into the "FILTER & SORT" dropdown button sooner when they no longer fit comfortably on one line. */
-@media (max-width: 950px) {
+   Lowered breakpoint to 850px so "Find your daCATs" + Share can sit side-by-side cleanly longer before advanced collapses. Prevents Share floating off. */
+@media (max-width: 850px) {
   #browse-controls:not(.is-portfolio-browse) .browse-advanced-toggle {
     display: inline-flex;
     align-items: center;
@@ -7988,7 +8039,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     margin: 0 0 0.12rem !important;
   }
   body.has-collector-view .collector-pride-title-row {
-    margin-bottom: 0.08rem !important;
+    margin-bottom: 0.25rem !important;
   }
 
   body.has-collector-view #app {
@@ -8189,7 +8240,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
      are visible and the cascade order is clear. */
   .film-theatre-page .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-film),
   body[data-base]:not(.has-collector-view) .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-wallet),
-  .film-hub-page .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-film) {
+  .film-hub-page .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-collections):not(.nav-btn-film) {
     display: none !important;
   }
 
@@ -8240,18 +8291,26 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     flex-shrink: 0;
   }
 
-  body.has-collector-view .gallery-list.holdings-grid {
-    /* Collector mobile: sized for max ~6 cols near 768px upper, smoothly dropping toward min 3 on phones. Prevents 7-col mid-size jump + badge clip. */
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-    gap: 0.4rem;
+  body.has-collector-view .gallery-list.holdings-grid,
+  body.has-collector-view .gallery-focus-zone.is-collector-grid {
+    /* Mobile collector: max 3 NFTs per row, scales smoothly (equal columns) as width decreases.
+       Uses 3-col fixed on mobile to respect "maximum of 3" while auto-fill base handles desktop. */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.35rem;
+  }
+
+  body.has-collector-view .holding-card,
+  body.has-collector-view .holding-card--cinema {
+    /* Slightly larger cards on mobile collector for better tap targets and presence. */
+    font-size: 1.02em;
   }
 
   body.has-collector-view .holding-card--cinema .holding-card-title {
-    font-size: 0.78rem;
+    font-size: 0.82rem;
   }
 
   body.has-collector-view .holding-card--cinema .holding-card-body {
-    padding: 0.5rem 0.5rem 0.55rem;
+    padding: 0.55rem 0.55rem 0.6rem;
   }
 
   .collector-escape-bar {
@@ -8342,8 +8401,8 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
 
   body.has-collector-view #browse-controls.is-portfolio-browse .filter {
-    min-height: 44px;
-    padding: 0.5rem 0.85rem;
+    min-height: 40px;
+    padding: 0.35rem 0.6rem;
   }
 
   body.has-collector-view #browse-controls.is-portfolio-browse .browse-sort-select {
