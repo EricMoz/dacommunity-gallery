@@ -3939,6 +3939,9 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
+  /* Maintainable source of truth for Lights Up: up next bar must fit the video player box.
+     Long Up Next titles must be cut off and not affect the gold frame / YT video width. */
+  --theatre-video-max: 1080px;
 }
 
 .film-theatre-player-mount {
@@ -5458,11 +5461,10 @@ body.film-modal-open {
 .film-upnext {
   border-top: 1px solid rgba(255, 204, 0, 0.22);
   background: linear-gradient(180deg, #0c0c0c 0%, #080808 100%);
-  /* Cap width to exactly match the video player (960px) and center it.
-     This ensures long or short Up Next titles never expand or shrink the
-     containing stage/player width in Lights Up mode. The bar now fits
-     the YouTube video frame itself. */
-  max-width: 960px;
+  /* Cap to the stage max (1080px) so the up next bar always matches the video player box width in Lights Up.
+     The video/gold frame is the reference -- title length must not affect it.
+     Maintainable: if the stage/player max changes, update here too (or use CSS var on the stage). */
+  max-width: 1080px;
   margin: 0 auto;
   width: 100%;
 }
@@ -5476,7 +5478,7 @@ body.film-modal-open {
   gap: 0.65rem 0.85rem;
   padding: 0.7rem 0.85rem;
   /* Extra cap so the bar itself (with title/controls) never exceeds the video player width, even if upnext container sizing differs. */
-  max-width: 960px;
+  max-width: 1080px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -5582,10 +5584,12 @@ body.film-modal-open {
   /* Hard truncate (single line + ellipsis) so even very long titles
      are cut off cleanly and cannot influence the width of the upnext bar,
      the stage, or the video player above it. This fixes the root cause
-     of Lights Up mode width changing based on Up Next title length. */
+     of Lights Up mode width changing based on Up Next title length.
+     The upnext bar is forced to the video box width (the gold frame / YT content is the priority). */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 100%; /* ensure the title container respects the capped bar width */
 }
 
 .film-upnext-meta {
@@ -6017,13 +6021,19 @@ body.film-modal-open {
 }
 
 .browse-collector-jump {
+  background: var(--black);
   color: var(--yellow);
-  font-size: 0.82rem;
-  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
   text-decoration: none;
-  white-space: nowrap;
+  border: 1px solid var(--black);
+  display: inline-flex;
+  align-items: center;
   flex-shrink: 0;
   margin-right: 0.1rem; /* pull slightly closer to following share button */
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6);
 }
   padding: 0.45rem 0.75rem;
   border: 2px solid var(--black);
@@ -7301,8 +7311,18 @@ body.has-collector-view #detail-opensea {
   inset: 0;
   z-index: 350;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
+}
+
+/* Force the share modal (used by the archive Share button) to be a centered card on *all* device widths,
+   including mobile. Prevents it from shooting to the bottom as a bottom-sheet and keeps the Share button
+   layout stable when the viewport is narrow. */
+@media (max-width: 600px) {
+  .share-modal-card {
+    border-radius: 12px;
+    max-width: 90vw;
+  }
 }
 .share-modal[hidden] { display: none !important; }
 .share-modal-backdrop {
@@ -7317,10 +7337,11 @@ body.has-collector-view #detail-opensea {
   background: #111;
   color: #eee;
   border: 2px solid #333;
-  border-radius: 12px 12px 0 0;
+  border-radius: 12px;
   padding: 1rem 1rem 1.25rem;
-  box-shadow: 0 -8px 30px rgba(0,0,0,0.6);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
   z-index: 2;
+  margin: 0 auto;
 }
 @media (min-width: 600px) {
   .share-modal {
