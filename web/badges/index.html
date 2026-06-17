@@ -15,8 +15,8 @@
   <link rel="stylesheet" href="../css/styles.css?v=20260617-4" />
 </head>
 <body class="hub-page badges-page" data-collection="badges">
-  <!-- Cosmic background scaffolding retained from the prepared theme (cosmic_soon surface + starfield divs).
-       The original teaser animation script is not loaded; static glow + CSS provide the vibe. -->
+  <!-- Themed background elements (cosmic_soon surface) retained from the original badges preparation.
+       No custom starfield animation is initialized (the old soon.js is not loaded). -->
 
   <header class="site-header">
     <div class="header-inner">
@@ -35,47 +35,24 @@
     </div>
   </header>
 
-  <main class="badges-live">
-    <div class="badges-hero">
-      <a class="page-back" href="../collections/">← Collections</a>
+  <main class="badges-live" style="max-width:720px;margin:2rem auto;padding:0 1rem;text-align:center">
+    <div class="panel" style="padding:2rem">
       <p class="eyebrow">Ethereum · Personal awards</p>
-      <h1>daCAT <span class="accent">Badges</span></h1>
-      <p class="badges-hero-lead">
-        Personal 1:1 rewards and recognition crafted by daCAT World for the clowder. Trillion Club (custom recipient name on each 1:1), Rookie Card 2026, Collector Cat, Gem Nova Green, Award Badges and 500 Billion Club.
+      <h1 style="margin:.25rem 0">daCAT <span class="accent">Badges</span></h1>
+      <p>
+        Personal 1:1 rewards created by daCAT World (Trillion Club custom-named per recipient, Rookie Card 2026, Collector Cat, Gem Nova Green, etc.).
       </p>
-      <p class="badges-hero-note">
-        <strong>Series view here</strong> (collection image) keeps discovery clean — no 1:1 spam. When a specific personalized copy is in your wallet, it appears named for you in the collector lookup on the main archive.
+      <p style="margin:1rem 0">
+        <strong>Generic series images</strong> are shown in the archive search grid (the "light" discovery view) to avoid duplicate 1:1 spam. When you look up a wallet that holds a specific personalized copy, it appears with the recipient name in the collector view.
       </p>
-      <div class="badges-meta">
-        <span class="badge-pill">15 created</span>
-        <span class="badge-pill">11 one-of-ones</span>
-        <span class="badge-pill">Issuer excluded from holder stats</span>
+      <p>
+        Badges are browsed using the <strong>existing archive search</strong> infra — just pick "daCAT Badges" from the <strong>Collection</strong> dropdown.
+      </p>
+      <a class="btn btn-accent" href="../dacommunity/?collection=badges" style="display:inline-block;margin-top:1rem">Open daCAT Badges in Archive Search →</a>
+      <div style="margin-top:1rem;font-size:0.9em;opacity:0.8">
+        15 created • 11 one-of-ones • Issuer excluded from holder stats
       </div>
     </div>
-
-    <section class="panel badges-controls" aria-label="Filter badges">
-      <div class="browse-compact-search">
-        <label class="visually-hidden" for="badges-search">Search badges</label>
-        <div class="search-field">
-          <span class="search-field-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="2"/><path d="M16 16L20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </span>
-          <input type="search" id="badges-search" class="browse-search-input" placeholder="Trillion, Rookie, #3…" autocomplete="off" />
-        </div>
-      </div>
-      <div class="badges-subcats" id="badges-subcats" role="tablist" aria-label="Sub-categories"></div>
-    </section>
-
-    <div class="gallery-focus-zone">
-      <section class="gallery-list badges-grid" id="badges-grid" aria-label="Badges" aria-busy="true"></section>
-      <div class="gallery-empty panel" id="badges-empty" hidden>
-        <p class="gallery-empty-title">No badges match</p>
-        <p class="gallery-empty-lead">Try a different sub-category or clear the search.</p>
-        <button type="button" class="btn btn-dark" id="badges-empty-reset">Show all</button>
-      </div>
-    </div>
-
-    <p class="badges-foot-note">All pieces created by the issuer wallet on Ethereum. Specific 1:1s (with member name) surface in your collector view when held. Full provenance on OpenSea.</p>
   </main>
 
   <footer class="site-footer badges-footer">
@@ -83,149 +60,8 @@
     <p class="site-version">Site build 20260617-4</p>
   </footer>
 
-  <script>
-    /* Dedicated thin renderer for the badges route (series-rep grid + subcats).
-       Reuses patterns from app.js (getBuildStamp, escapeHtml, fetch ?v= + no-store, filter chips, gallery-list/holding-card markup)
-       and collector CSS (.holding-card, .filter, .gallery-empty, .search-field) so the page stays small and "lights on".
-       The full app.js collector theater is intentionally not pulled in (badges has no wallet_index/collector_view in the same way). */
-    (function () {
-      "use strict";
-      var catalog = null;
-      var activeSub = "all";
-      var searchQ = "";
-
-      function getBuildStamp() {
-        try {
-          var meta = document.querySelector('meta[name="site-build"]');
-          if (meta && meta.getAttribute("content")) return meta.getAttribute("content");
-        } catch (e) {}
-        return "dev";
-      }
-      function escapeHtml(s) {
-        return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-      }
-      function getSubcats(items) {
-        var set = {};
-        (items || []).forEach(function (it) {
-          var sc = it.sub_category || "Other";
-          set[sc] = true;
-        });
-        return Object.keys(set).sort();
-      }
-      function matches(item) {
-        if (activeSub !== "all" && (item.sub_category || "Other") !== activeSub) return false;
-        if (!searchQ) return true;
-        var q = searchQ.toLowerCase();
-        var hay = ((item.display_name || item.name || "") + " " + (item.sub_category || "") + " " + (item.excerpt || "")).toLowerCase();
-        return hay.indexOf(q) !== -1;
-      }
-      function renderSubcats(items) {
-        var wrap = document.getElementById("badges-subcats");
-        if (!wrap) return;
-        var subs = getSubcats(items);
-        wrap.innerHTML = "";
-        var all = document.createElement("button");
-        all.className = "filter" + (activeSub === "all" ? " active" : "");
-        all.textContent = "All";
-        all.setAttribute("role", "tab");
-        all.onclick = function () { activeSub = "all"; renderGrid(); renderSubcats(items); };
-        wrap.appendChild(all);
-        subs.forEach(function (sc) {
-          var b = document.createElement("button");
-          b.className = "filter" + (activeSub === sc ? " active" : "");
-          b.textContent = sc;
-          b.setAttribute("role", "tab");
-          b.onclick = function () { activeSub = sc; renderGrid(); renderSubcats(items); };
-          wrap.appendChild(b);
-        });
-      }
-      function renderGrid() {
-        var grid = document.getElementById("badges-grid");
-        var empty = document.getElementById("badges-empty");
-        if (!grid || !catalog) return;
-        var filtered = (catalog.items || []).filter(matches);
-        grid.innerHTML = "";
-        if (!filtered.length) {
-          if (empty) empty.hidden = false;
-          return;
-        }
-        if (empty) empty.hidden = true;
-        filtered.forEach(function (item) {
-          var card = document.createElement("a");
-          card.className = "holding-card badge-card";
-          card.href = item.opensea_url || "#";
-          card.target = "_blank";
-          card.rel = "noopener";
-          var imgSrc = item.image_url || "";
-          // ensure relative from /badges/
-          if (imgSrc.indexOf("assets/") === 0) imgSrc = "../" + imgSrc;
-          var is1 = item.is_1_of_1 ? '<span class="badge-pill pill-1of1">1/1</span>' : '';
-          var sub = item.sub_category ? '<span class="badge-pill pill-sub">' + escapeHtml(item.sub_category) + '</span>' : '';
-          card.innerHTML =
-            '<div class="holding-media">' +
-              (imgSrc ? '<img src="' + escapeHtml(imgSrc) + '" alt="" loading="lazy" />' : '<div class="holding-media-fallback">★</div>') +
-            '</div>' +
-            '<div class="holding-body">' +
-              '<div class="holding-head">' +
-                '<h3 class="holding-title">' + escapeHtml(item.display_name || item.name) + '</h3>' +
-                '<div class="holding-pills">' + is1 + sub + '</div>' +
-              '</div>' +
-              '<p class="holding-excerpt">' + escapeHtml(item.excerpt || "") + '</p>' +
-              '<span class="holding-cta">View on OpenSea →</span>' +
-            '</div>';
-          grid.appendChild(card);
-        });
-      }
-      async function init() {
-        var grid = document.getElementById("badges-grid");
-        if (!grid) return;
-        try {
-          var stamp = getBuildStamp();
-          var url = "../data/badges_catalog.json?v=" + encodeURIComponent(stamp);
-          var res = await fetch(url, { cache: "no-store" });
-          if (!res.ok) throw new Error("HTTP " + res.status);
-          catalog = await res.json();
-          // initial subcats + grid
-          renderSubcats(catalog.items || []);
-          renderGrid();
-          // search
-          var si = document.getElementById("badges-search");
-          if (si) {
-            var t;
-            si.addEventListener("input", function (e) {
-              clearTimeout(t);
-              var v = e.target.value.trim();
-              t = setTimeout(function () {
-                searchQ = v;
-                renderGrid();
-              }, 80);
-            });
-            si.addEventListener("keydown", function (e) {
-              if (e.key === "Escape") {
-                si.value = ""; searchQ = ""; renderGrid(); si.blur();
-              }
-            });
-          }
-          var reset = document.getElementById("badges-empty-reset");
-          if (reset) reset.onclick = function () {
-            activeSub = "all"; searchQ = "";
-            var s = document.getElementById("badges-search"); if (s) s.value = "";
-            renderSubcats(catalog.items || []);
-            renderGrid();
-          };
-          // mark ready
-          if (grid) grid.setAttribute("aria-busy", "false");
-        } catch (e) {
-          console.warn("Badges catalog load failed", e);
-          if (grid) grid.innerHTML = '<div class="panel" style="padding:1.25rem">Could not load badges list. <a href="../collections/">Back to collections</a></div>';
-        }
-      }
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", init);
-      } else {
-        init();
-      }
-    })();
-  </script>
+  <!-- No custom grid or renderer here. Badges are viewed via the existing archive search
+       (select "daCAT Badges" from the Collection dropdown on the main gallery page).
+       This page is a lightweight themed entry point that links into the shared infra. -->
 </body>
 </html>

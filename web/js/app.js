@@ -112,6 +112,39 @@ function getCollectionName(id) {
   return found ? found.name : id;
 }
 
+/** Return per-collection catalog/full data URLs (with current prefix + build stamp) when the
+ *  registry entry for a live collection specifies its own data files (e.g. badges_*).
+ *  Returns null for the primary daCommunity / "all" so the default gallery_* URLs are used.
+ */
+function getCollectionDataUrls(colId) {
+  if (!colId || colId === "all" || colId === "dacommunity") return null;
+  var list = (collectionsRegistry && collectionsRegistry.collections) || [];
+  var col = list.find(function (c) { return c.id === colId; });
+  if (!col || !col.data) return null;
+  var prefix = getDataPrefix();
+  var stamp = getBuildStamp();
+  var q = "?v=" + stamp;
+  return {
+    catalog: prefix + "data/" + (col.data.catalog || "gallery_catalog.json") + q,
+    full: prefix + "data/" + (col.data.gallery || "gallery_data.json") + q
+  };
+}
+
+/** Light adaptation so the host gallery page feels like the selected collection
+ *  without inventing a whole new page. Only touches the hero area when badges (or future collections) is active.
+ */
+function adaptHeaderForCollection() {
+  if (activeCollection !== "badges") return;
+  try {
+    var h1 = document.querySelector(".hero-band h1");
+    if (h1) h1.innerHTML = 'daCAT <span class="accent">Badges</span>';
+    var lead = document.querySelector(".hero-lead");
+    if (lead) lead.textContent = "Personal 1:1 awards. Series images shown in the grid (generic photos to keep discovery clean, no 1:1 dupes). Your specific named copy appears in the collector wallet lookup when you hold it.";
+    var note = document.getElementById("hero-note");
+    if (note) note.textContent = "Select daCAT Badges from the Collection dropdown (or land here with ?collection=badges).";
+  } catch (e) {}
+}
+
 function isFileProtocol() {
   return window.location.protocol === "file:";
 }
@@ -2168,27 +2201,6 @@ function resetBrowseView() {
   refreshView();
 }
 
-/** Low-risk prompt when Badges collection is chosen in the main archive light search dropdown.
- *  Badges uses its own dedicated themed page (/badges/) for the clean series grid + subcats.
- *  This avoids loading two full data shapes into the archive chrome and keeps daCommunity flows untouched.
- */
-function showBadgesCollectionPrompt() {
-  var list = $("#gallery-list");
-  var empty = $("#gallery-empty");
-  if (empty) empty.hidden = true;
-  if (list) {
-    list.innerHTML =
-      '<div class="panel" style="max-width:720px;margin:1rem auto;padding:1.25rem 1.5rem;text-align:center">' +
-      '<p style="margin:0 0 .5rem;font-weight:600">daCAT Badges — live personal awards</p>' +
-      '<p style="margin:.25rem 0 1rem;opacity:.85">Use the clean series view (collection images) in the dedicated gallery to avoid 1:1 duplicate spam in discovery. Your specific named 1:1 (Trillion Club etc.) appears automatically in the collector wallet lookup when you hold it.</p>' +
-      '<a class="btn btn-accent" href="../badges/" style="display:inline-block">Open Badges gallery →</a>' +
-      ' <a class="btn btn-outline btn-sm" href="../collections/" style="display:inline-block;margin-left:.5rem">Collections</a>' +
-      '</div>';
-  }
-  var count = $("#results-count");
-  if (count) count.textContent = "Badges live in dedicated view";
-}
-
 function renderBrowseMeta(filtered, total) {
   var countEl = $("#results-count");
   var chips = $("#active-filters");
@@ -2790,13 +2802,49 @@ function bindUi() {
   populateCollectionSelect();
   var collectionSelect = $("#collection-select");
   if (collectionSelect) {
-    collectionSelect.addEventListener("change", function (e) {
-      activeCollection = e.target.value;
+    collectionSelect.addEventListener("change", async function (e) {
+      var newCol = e.target.value;
+      if (newCol === activeCollection) return;
+      activeCollection = newCol;
       syncBrowseParamsToUrl();
-      if (activeCollection === "badges") {
-        showBadgesCollectionPrompt();
+
+      var urls = getCollectionDataUrls(activeCollection);
+      if (urls) {
+        // Switch data source to the other collection's catalog/data and reload the grid
+        // using the exact same load + boot + render paths the main archive uses.
+        CATALOG_URL = urls.catalog;
+        FULL_DATA_URL = urls.full;
+
+        var loadEl = $("#load-state");
+        if (loadEl) loadEl.hidden = false;
+
+        try {
+          var newData = await loadCatalogFirst();
+          galleryData = newData;
+          // Tag with the correct collection_id so getFilteredItems scoping works
+          if (galleryData && Array.isArray(galleryData.items)) {
+            var cid = activeCollection || (galleryData.collection && galleryData.collection.slug) || "dacommunity";
+            galleryData.items.forEach(function (item) {
+              if (!item.collection_id) item.collection_id = cid;
+            });
+          }
+          dataSource = (galleryData.source || "").indexOf("badges") === 0 ? "catalog" : "full";
+          indexItems(galleryData);
+          var loadEl2 = $("#load-state");
+          if (loadEl2) loadEl2.hidden = true;
+          renderStats(galleryData.collection);
+          renderDataFreshness();
+          refreshView();
+          adaptHeaderForCollection();
+        } catch (err) {
+          console.error("Collection data switch failed", err);
+          if (loadEl) loadEl.hidden = true;
+          // fall back to whatever is loaded
+          refreshView();
+        }
       } else {
         refreshView();
+        adaptHeaderForCollection();
       }
     });
   }
@@ -2815,9 +2863,6 @@ function bindUi() {
   if (sortForState) sortForState.value = sortKey;
   var colForState = $("#collection-select");
   if (colForState) colForState.value = activeCollection || "all";
-  if (activeCollection === "badges") {
-    setTimeout(showBadgesCollectionPrompt, 0);
-  }
   var clearBtn = $("#clear-filters");
   if (clearBtn) clearBtn.addEventListener("click", resetBrowseView);
   var emptyReset = $("#gallery-empty-reset");
@@ -2876,10 +2921,9 @@ function bootGallery(data) {
   galleryData = data;
   // Tag items with collection_id for multi-collection filtering (future-proof; current data is dacommunity)
   if (galleryData && Array.isArray(galleryData.items)) {
+    var cid = activeCollection || (galleryData.collection && galleryData.collection.slug) || "dacommunity";
     galleryData.items.forEach(function (item) {
-      if (!item.collection_id) {
-        item.collection_id = (galleryData.collection && galleryData.collection.slug === "rodeo-posts-12142") ? "dacommunity" : "dacommunity";
-      }
+      if (!item.collection_id) item.collection_id = cid;
     });
   }
   indexItems(galleryData);
@@ -2937,11 +2981,21 @@ async function init() {
     parseBrowseParamsFromUrl();
 
     // Load registry early for collection filter UI (only live ones shown)
-    loadCollectionsRegistry().then(populateCollectionSelect).catch(function(){ populateCollectionSelect(); });
+    await loadCollectionsRegistry().catch(function(){});
+    populateCollectionSelect();
+
+    // If URL asked for a different live collection that has its own data files (e.g. ?collection=badges),
+    // switch the globals *before* the first fetch so the existing loadCatalogFirst / boot path just works.
+    var initialColUrls = getCollectionDataUrls(activeCollection);
+    if (initialColUrls) {
+      CATALOG_URL = initialColUrls.catalog;
+      FULL_DATA_URL = initialColUrls.full;
+    }
 
     galleryData = await loadCatalogFirst();
     dataSource = galleryData.source === "gallery_catalog" ? "catalog" : "full";
     bootGallery(galleryData);
+    adaptHeaderForCollection();
 
     if (dataSource === "catalog") {
       refreshFullDataInBackground();
