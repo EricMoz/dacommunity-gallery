@@ -81,6 +81,20 @@ let originalHeroLead = null;
 let activeDetailTokenId = null;
 let activeCollection = "all";
 
+function getItemKey(item) {
+  if (item && item.source_created_collection) {
+    return item.source_created_collection + '-' + item.token_id;
+  }
+  return item ? item.token_id : '';
+}
+
+function getItemKey(item) {
+  if (item.source_created_collection) {
+    return item.source_created_collection + '-' + item.token_id;
+  }
+  return item.token_id;
+}
+
 /* Browse labels (used for chips + resets). Extended for multi-col in Part 1. */
 var FILTER_LABELS = {
   all: "All",
@@ -433,14 +447,14 @@ function indexItems(data) {
     if (/\.(mov|mp4|webm)(\?|$)/i.test(i.image_url || "") && !i.media_type) {
       i.media_type = "video";
     }
-    itemsById.set(String(i.token_id), i);
+    itemsById.set(getItemKey(i), i);
   });
 }
 
 function mergeFullDescriptions(full) {
   if (!full || !full.items) return;
   full.items.forEach(function (fullItem) {
-    const cur = itemsById.get(String(fullItem.token_id));
+    const cur = itemsById.get(getItemKey(fullItem));
     if (!cur) return;
     if (fullItem.description) cur.description = fullItem.description;
     if (fullItem.excerpt) cur.excerpt = fullItem.excerpt;
@@ -459,7 +473,7 @@ function mergeFullDescriptions(full) {
   renderStats(galleryData.collection);
   refreshView();
   if (activeDetailTokenId) {
-    var openItem = itemsById.get(String(activeDetailTokenId));
+    var openItem = itemsById.get(activeDetailTokenId);
     if (openItem) refreshDetailPanel(openItem);
   }
 }
@@ -1373,7 +1387,7 @@ function bindGalleryListClicks() {
     if (!card || !list.contains(card)) return;
     var tid = card.getAttribute("data-token-id");
     if (!tid) return;
-    var item = itemsById.get(String(tid));
+    var item = itemsById.get(tid);
     if (item) openDetail(item);
   });
 }
@@ -1473,7 +1487,7 @@ function createHoldingCard(item, holding) {
     listedBadge +
     "</div></div>";
   if (item) {
-    btn.setAttribute("data-token-id", String(item.token_id));
+    btn.setAttribute("data-token-id", getItemKey(item));
     fillMediaSlot(btn.querySelector(".holding-card-slot"), item, { controls: false });
     var thumb = btn.querySelector(".holding-card-slot img, .holding-card-slot video");
     if (
@@ -1501,7 +1515,7 @@ function renderHoldingsGrid(holdings, container) {
     return Number(b.token_id) - Number(a.token_id);
   });
   sorted.forEach(function (h) {
-    var item = itemsById.get(String(h.token_id));
+    var item = itemsById.get(getItemKey(h));
     container.appendChild(createHoldingCard(item, h));
   });
   if (!sorted.length) {
@@ -1892,7 +1906,7 @@ function renderHoldingsChips(holdings, container, opts) {
   container.innerHTML = "";
   var html = holdings
     .map(function (h) {
-      var item = itemsById.get(String(h.token_id));
+      var item = itemsById.get(getItemKey(h));
       var src = item ? imgSrc(item) : "";
       var name = h.display_name || h.name || (item ? itemTitle(item) : "#" + h.token_id);
       var hi = highlightTokenId && String(h.token_id) === String(highlightTokenId) ? " holding-chip-current" : "";
@@ -1903,7 +1917,7 @@ function renderHoldingsChips(holdings, container, opts) {
   container.innerHTML = html || "<span class='empty'>No pieces indexed.</span>";
   container.querySelectorAll(".holding-chip").forEach(function (btn) {
     btn.addEventListener("click", function () {
-      var item = itemsById.get(String(btn.dataset.token));
+      var item = itemsById.get(btn.dataset.token);
       if (item) openDetail(item);
     });
   });
@@ -1980,7 +1994,7 @@ function exploreCollector(address, highlightTokenId) {
   var entry = walletIndex && walletIndex.by_address && walletIndex.by_address[key];
   var explore = $("#collector-explore");
   if (!entry && activeDetailTokenId) {
-    var piece = itemsById.get(String(activeDetailTokenId));
+    var piece = itemsById.get(activeDetailTokenId);
     if (piece && holderRowForToken(piece, key)) {
       entry = {
         address: key,
@@ -2388,7 +2402,7 @@ function renderGallery(items) {
       };
       var card = createHoldingCard(item, holding);
       card.classList.add("holding-card--cinema");
-      card.setAttribute("data-token-id", String(item.token_id));
+      card.setAttribute("data-token-id", getItemKey(item));
       list.appendChild(card);
     });
     return;
@@ -2420,7 +2434,7 @@ function renderGallery(items) {
     if (thumb && thumb.tagName === "IMG" && item.opensea_image_url && resolveMediaUrl(item.image_url) !== resolveMediaUrl(item.opensea_image_url)) {
       thumb.addEventListener("error", function () { thumb.src = resolveMediaUrl(item.opensea_image_url); }, { once: true });
     }
-    row.setAttribute("data-token-id", String(item.token_id));
+    row.setAttribute("data-token-id", getItemKey(item));
     list.appendChild(row);
   });
 }
@@ -2659,7 +2673,7 @@ function refreshDetailPanel(item) {
 function openDetail(item) {
   if (!item) return;
   closeCollectorsModal();
-  activeDetailTokenId = item.token_id;
+  activeDetailTokenId = getItemKey(item);
   var panel = $("#detail-panel");
   if (!panel) return;
   fillMediaSlot($("#detail-media-slot"), item, { autoplay: true, controls: true });
@@ -2896,7 +2910,7 @@ function bindUi() {
             loadWalletIndex().then(function () {
               updateCollectorsButton();
               if (activeDetailTokenId) {
-                var openItem = itemsById.get(String(activeDetailTokenId));
+                var openItem = itemsById.get(activeDetailTokenId);
                 if (openItem) refreshDetailPanel(openItem);
               }
               // do not auto-apply wallet from url on manual switch to avoid side effects
@@ -3108,7 +3122,7 @@ async function init() {
         renderStats(galleryData.collection);
         updateCollectorsButton();
         if (activeDetailTokenId) {
-          var openItem = itemsById.get(String(activeDetailTokenId));
+          var openItem = itemsById.get(activeDetailTokenId);
           if (openItem) refreshDetailPanel(openItem);
         }
         applyWalletFromUrl();
