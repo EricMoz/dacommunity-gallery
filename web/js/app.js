@@ -1887,12 +1887,6 @@ function buildHoldingsFromCurrentItems(address) {
 }
 
 function lookupWallet(identifier) {
-  if (!walletIndex || !walletIndex.by_address) {
-    return {
-      error: "Collector index is still loading. Try again in a moment.",
-      title: "Archive warming up",
-    };
-  }
   var raw = identifier.trim();
   if (!raw) {
     return {
@@ -1901,6 +1895,29 @@ function lookupWallet(identifier) {
     };
   }
   var address = raw.toLowerCase();
+
+  // Try synthetic holdings from whatever is currently loaded in galleryData (badges items have owners lists).
+  // This works even if walletIndex is not loaded for this view.
+  var synth = buildHoldingsFromCurrentItems(address);
+  if (synth.length > 0) {
+    return {
+      entry: {
+        address: address,
+        holdings: synth,
+        unique_pieces: synth.length,
+        collection_quantity: synth.length,
+        ens_name: null,
+        username: null
+      }
+    };
+  }
+
+  if (!walletIndex || !walletIndex.by_address) {
+    return {
+      error: "Collector index is still loading. Try again in a moment.",
+      title: "Archive warming up",
+    };
+  }
 
   if (isEnsName(raw)) {
     var alias = walletIndex.ens_aliases && walletIndex.ens_aliases[raw.toLowerCase()];
@@ -1916,20 +1933,6 @@ function lookupWallet(identifier) {
 
   var entry = walletIndex.by_address[address];
   if (!entry) {
-    // Support badges and other collections: synthesize holdings from current items using owners data
-    var synth = buildHoldingsFromCurrentItems(address);
-    if (synth.length > 0) {
-      return {
-        entry: {
-          address: address,
-          holdings: synth,
-          unique_pieces: synth.length,
-          collection_quantity: synth.length,
-          ens_name: null,
-          username: null
-        }
-      };
-    }
     return {
       error: "This wallet has no pieces in the current snapshot (dacommunity or badges).",
       title: "No pieces found",
@@ -2151,11 +2154,64 @@ function renderHeroNote(collection) {
 function renderStats(collection) {
   var strip = $("#stats-strip");
   strip.innerHTML = "";
+
+  // Compute dynamic stats based on current filter ("badges", dacommunity, or "all")
+  var pieces = nvl(collection && collection.piece_count, 0);
+  var collectorsVal = statCollectorsValue(collection);
+  var floorVal = formatEth(collection && collection.floor_eth) + " " + ((collection && collection.floor_symbol) || "ETH");
+  var listedVal = nvl(collection && collection.listed_count, "—");
+
+  if (!activeCollection || activeCollection === "all") {
+    // Combined stats for All collections
+    var allItems = (galleryData && galleryData.items) || [];
+    pieces = allItems.length;
+
+    // listed and floor from current items
+    var listed = 0;
+    var minFloor = null;
+    allItems.forEach(function (it) {
+      if (it.listed) {
+        listed++;
+        if (it.listing && it.listing.amount_eth != null) {
+          var p = Number(it.listing.amount_eth);
+          if (!isNaN(p) && (minFloor === null || p < minFloor)) minFloor = p;
+        }
+      }
+    });
+    listedVal = listed > 0 ? listed : "—";
+    floorVal = minFloor != null ? formatEth(minFloor) + " ETH" : "—";
+
+    // collectors: prefer walletIndex length if loaded, else unique from current owners (approx)
+    if (collectorsList && collectorsList.length) {
+      collectorsVal = collectorsList.length;
+    } else {
+      var uniq = {};
+      allItems.forEach(function (it) {
+        var os = (it.owners || {}).holders || (it.owners || {}).top_holders || [];
+        os.forEach(function (o) { if (o.address) uniq[o.address.toLowerCase()] = true; });
+      });
+      collectorsVal = Object.keys(uniq).length || "—";
+    }
+  } else if (activeCollection === "badges") {
+    // Badges specific
+    var bItems = (galleryData && galleryData.items) || [];
+    pieces = bItems.length;
+    listedVal = "—"; // badges rarely listed in this data
+    floorVal = "—";
+    // collectors approx from owners
+    var uniqB = {};
+    bItems.forEach(function (it) {
+      var os = (it.owners || {}).holders || (it.owners || {}).top_holders || [];
+      os.forEach(function (o) { if (o.address) uniqB[o.address.toLowerCase()] = true; });
+    });
+    collectorsVal = Object.keys(uniqB).length || nvl(collection && collection.num_owners, "—");
+  }
+
   var defs = [
-    { label: "Pieces", value: nvl(collection.piece_count, "—"), clickable: false },
-    { label: "Collectors", value: statCollectorsValue(collection), clickable: true },
-    { label: "Floor", value: formatEth(collection.floor_eth) + " " + (collection.floor_symbol || "ETH"), clickable: false },
-    { label: "Listed", value: nvl(collection.listed_count, "—"), clickable: false },
+    { label: "Pieces", value: pieces || "—", clickable: false },
+    { label: "Collectors", value: collectorsVal, clickable: true },
+    { label: "Floor", value: floorVal, clickable: false },
+    { label: "Listed", value: listedVal, clickable: false },
   ];
   defs.forEach(function (s) {
     var el = document.createElement(s.clickable ? "button" : "div");
@@ -2166,12 +2222,16 @@ function renderStats(collection) {
       el.title = "View all collectors";
       el.setAttribute("aria-label", "View collectors");
       el.addEventListener("click", function () {
-        if (collectorsList.length) openCollectorsModal();
+        if (collectorsList && collectorsList.length) openCollectorsModal();
       });
     }
     strip.appendChild(el);
   });
-  renderHeroNote(collection);
+
+  // hero note only for main dacom
+  if (!activeCollection || activeCollection === "all" || activeCollection === "dacommunity") {
+    renderHeroNote(collection || galleryData && galleryData.collection);
+  }
 }
 
 function itemLatestTransferAt(item) {
@@ -2312,6 +2372,14 @@ function resetBrowseView() {
     btn.setAttribute("aria-selected", on ? "true" : "false");
   });
   refreshView();
+  // Clean URL and hash so we don't stay stuck on ?collection=badges#wallet-panel
+  try {
+    var params = new URLSearchParams(window.location.search);
+    params.delete("collection");
+    var qs = params.toString();
+    var newUrl = window.location.pathname + (qs ? "?" + qs : "");
+    history.replaceState(null, "", newUrl);
+  } catch (e) {}
 }
 
 function renderBrowseMeta(filtered, total) {
@@ -2948,6 +3016,28 @@ function bindUi() {
           refreshView();
           adaptHeaderForCollection();
           applyCollectionUI();
+
+          // Load wallet index anyway (for ENS names in owner lists for badges, even if no full wallet_lookup panel)
+          loadWalletIndex().then(function () {
+            // Enrich badge owners with ENS from walletIndex for display
+            if (galleryData && Array.isArray(galleryData.items)) {
+              var byAddr = (walletIndex && walletIndex.by_address) || {};
+              galleryData.items.forEach(function (item) {
+                var os = item.owners || {};
+                ["holders", "top_holders"].forEach(function (k) {
+                  (os[k] || []).forEach(function (o) {
+                    var e = byAddr[(o.address || "").toLowerCase()];
+                    if (e && e.ens_name) o.ens_name = e.ens_name;
+                  });
+                });
+              });
+            }
+            // re-render owners if a detail is open, so ENS can appear
+            if (activeDetailTokenId) {
+              var openItem = itemsById.get(activeDetailTokenId);
+              if (openItem) refreshDetailPanel(openItem);
+            }
+          });
         } else {
           // primary dacommunity or "all": reset to default data URLs and reload
           initDataUrls();
