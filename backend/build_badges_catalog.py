@@ -20,15 +20,27 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA_PATH = ROOT / "web" / "data" / "badges_data.json"
 CATALOG_PATH = ROOT / "web" / "data" / "badges_catalog.json"
 
-def slim_item(item: dict) -> dict:
-    # Mirror main slim + keep unique badge fields needed for vibe
+def resolve_local_badge_image(item: dict, root: Path) -> str:
+    """Prefer local series/rep PNG asset for clean search grid (avoids 1:1 spam).
+    Falls back to recorded url. All current badges have matching png in assets/badges/.
+    """
+    slug = (item.get("local_slug") or "").strip()
+    if slug:
+        candidate = root / "web" / "assets" / "badges" / f"{slug}.png"
+        if candidate.exists():
+            return f"assets/badges/{slug}.png"
+    return item.get("image_url") or ""
+
+def slim_item(item: dict, root: Path) -> dict:
+    # Mirror main slim + keep unique badge fields + subcats/tags for light filters/grouping
+    img = resolve_local_badge_image(item, root)
     return {
         "token_id": item.get("token_id"),
         "name": item.get("name"),
         "display_name": item.get("display_name"),
         "local_slug": item.get("local_slug"),
         "excerpt": item.get("excerpt", ""),
-        "image_url": item.get("image_url"),
+        "image_url": img,
         "media_type": item.get("media_type", "image"),
         "opensea_url": item.get("opensea_url"),
         "listed": item.get("listed", False),
@@ -42,6 +54,9 @@ def slim_item(item: dict) -> dict:
         "mystery_status": item.get("mystery_status", "approved"),
         "ens_match_detected": item.get("ens_match_detected", False),
         "source_created_collection": item.get("source_created_collection"),
+        # For sub-category grouping (Trillion Club etc) and tags in light search / badges page
+        "sub_category": item.get("sub_category"),
+        "tags": item.get("tags", []),
     }
 
 def main() -> None:
@@ -50,7 +65,7 @@ def main() -> None:
         return
 
     data = json.loads(DATA_PATH.read_text(encoding="utf-8"))
-    items = [slim_item(item) for item in data.get("items", [])]
+    items = [slim_item(item, ROOT) for item in data.get("items", [])]
 
     catalog = {
         "generated_at": data.get("generated_at"),

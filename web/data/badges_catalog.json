@@ -20,9 +20,25 @@
       "image_url": "assets/badges/dacat-rookie-card-2026.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat-rookie-card-2026",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 333,
+        "top_holders": [],
+        "holders": []
+      },
+      "minted_at": "2026-06-01T00:00:00Z",
       "is_1_of_1": false,
       "award_category": "dacat_rookie_card_2026",
-      "unclaimed_or_available": true
+      "unclaimed_or_available": true,
+      "mystery_status": "approved",
+      "ens_match_detected": false,
+      "source_created_collection": "dacat-rookie-card-2026",
+      "sub_category": "Rookie Card 2026",
+      "tags": [
+        "personalized"
+      ]
     },
     {
       "token_id": "2",
@@ -30,12 +46,30 @@
       "display_name": "DACAT 8 TRILLION CLUB",
       "local_slug": "dacat-8-trillion-club",
       "excerpt": "DACAT 8 TRILLION CLUB badge. 2 total. ",
-      "image_url": "https://opensea.io/collection/dacat-8-trillion-club",
+      "image_url": "assets/badges/dacat-8-trillion-club.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat-8-trillion-club",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 2,
+        "top_holders": [],
+        "holders": []
+      },
+      "minted_at": "2026-06-01T00:00:00Z",
       "is_1_of_1": true,
       "award_category": "dacat_8_trillion_club",
-      "unclaimed_or_available": true
+      "unclaimed_or_available": true,
+      "mystery_status": "approved",
+      "ens_match_detected": false,
+      "source_created_collection": "dacat-8-trillion-club",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "1_of_1",
+        "trillion_club",
+        "personalized"
+      ]
     },
     {
       "token_id": "3",
@@ -46,9 +80,27 @@
       "image_url": "assets/badges/dagato-dacat-award-badges.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dagato-dacat-award-badges",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 2,
+        "top_holders": [],
+        "holders": []
+      },
+      "minted_at": "2026-06-01T00:00:00Z",
       "is_1_of_1": true,
       "award_category": "dagato_dacat_award_badges",
-      "unclaimed_or_available": true
+      "unclaimed_or_available": true,
+      "mystery_status": "approved",
+      "ens_match_detected": false,
+      "source_created_collection": "dagato-dacat-award-badges",
+      "sub_category": "Award Badges",
+      "tags": [
+        "1_of_1",
+        "award",
+        "personalized"
+      ]
     },
     {
       "token_id": "4",
@@ -59,9 +111,25 @@
       "image_url": "assets/badges/dacat-1-trillion-club.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat-1-trillion-club",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 22,
+        "circulating_copies": 25,
+        "top_holders": [],
+        "holders": []
+      },
+      "minted_at": "2026-06-01T00:00:00Z",
       "is_1_of_1": false,
       "award_category": "dacat_1_trillion_club",
-      "unclaimed_or_available": false
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "ens_match_detected": false,
+      "source_created_collection": "dacat-1-trillion-club",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "trillion_club"
+      ]
     },
     {
       "token_id": "5",
@@ -72,9 +140,27 @@
       "image_url": "assets/badges/dacat-6-trillion-club.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat-6-trillion-club",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [],
+        "holders": []
+      },
+      "minted_at": "2026-06-01T00:00:00Z",
       "is_1_of_1": true,
       "award_category": "dacat_6_trillion_club",
-      "unclaimed_or_available": true
+      "unclaimed_or_available": true,
+      "mystery_status": "approved",
+      "ens_match_detected": false,
+      "source_created_collection": "dacat-6-trillion-club",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "1_of_1",
+        "trillion_club",
+        "personalized"
+      ]
     },
     {
       "token_id": "6",
@@ -85,9 +171,27 @@
       "image_url": "assets/badges/dacat-4-trillion-club.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat-4-trillion-club",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 2,
+        "top_holders": [],
+        "holders": []
+      },
+      "minted_at": "2026-06-01T00:00:00Z",
       "is_1_of_1": true,
       "award_category": "dacat_4_trillion_club",
-      "unclaimed_or_available": true
+      "unclaimed_or_available": true,
+      "mystery_status": "approved",
+      "ens_match_detected": false,
+      "source_created_collection": "dacat-4-trillion-club",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "1_of_1",
+        "trillion_club",
+        "personalized"
+      ]
     },
     {
       "token_id": "7",
@@ -95,12 +199,30 @@
       "display_name": "DACAT 9 TRILLION CLUB",
       "local_slug": "dacat-9-trillion-club",
       "excerpt": "DACAT 9 TRILLION CLUB badge. 3 total. ",
-      "image_url": "https://opensea.io/collection/dacat-9-trillion-club",
+      "image_url": "assets/badges/dacat-9-trillion-club.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat-9-trillion-club",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 3,
+        "circulating_copies": 3,
+        "top_holders": [],
+        "holders": []
+      },
+      "minted_at": "2026-06-01T00:00:00Z",
       "is_1_of_1": true,
       "award_category": "dacat_9_trillion_club",
-      "unclaimed_or_available": true
+      "unclaimed_or_available": true,
+      "mystery_status": "approved",
+      "ens_match_detected": false,
+      "source_created_collection": "dacat-9-trillion-club",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "1_of_1",
+        "trillion_club",
+        "personalized"
+      ]
     },
     {
       "token_id": "8",
@@ -108,12 +230,26 @@
       "display_name": "DACAT WORLD - COLLECTOR CAT",
       "local_slug": "dacat-world-collector-cat",
       "excerpt": "DACAT WORLD - COLLECTOR CAT badge. 33 total. ",
-      "image_url": "https://opensea.io/collection/dacat-world-collector-cat",
+      "image_url": "assets/badges/dacat-world-collector-cat.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat-world-collector-cat",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 14,
+        "circulating_copies": 33,
+        "top_holders": [],
+        "holders": []
+      },
+      "minted_at": "2026-06-01T00:00:00Z",
       "is_1_of_1": false,
       "award_category": "dacat_world_collector_cat",
-      "unclaimed_or_available": false
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "ens_match_detected": false,
+      "source_created_collection": "dacat-world-collector-cat",
+      "sub_category": "Collector Cat",
+      "tags": []
     },
     {
       "token_id": "9",
@@ -121,12 +257,26 @@
       "display_name": "DACAT GEM - NOVA GREEN",
       "local_slug": "dacat-gem-nova-green",
       "excerpt": "DACAT GEM - NOVA GREEN badge. 33 total. ",
-      "image_url": "assets/badges/dacat-gem-nova-green.mov",
+      "image_url": "assets/badges/dacat-gem-nova-green.png",
       "media_type": "video",
       "opensea_url": "https://opensea.io/collection/dacat-gem-nova-green",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 10,
+        "circulating_copies": 33,
+        "top_holders": [],
+        "holders": []
+      },
+      "minted_at": "2026-06-01T00:00:00Z",
       "is_1_of_1": false,
       "award_category": "dacat_gem_nova_green",
-      "unclaimed_or_available": false
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "ens_match_detected": false,
+      "source_created_collection": "dacat-gem-nova-green",
+      "sub_category": "Gem Nova Green",
+      "tags": []
     },
     {
       "token_id": "10",
@@ -137,9 +287,27 @@
       "image_url": "assets/badges/dacat-10-trillion-club.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat-10-trillion-club",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 4,
+        "circulating_copies": 4,
+        "top_holders": [],
+        "holders": []
+      },
+      "minted_at": "2026-06-01T00:00:00Z",
       "is_1_of_1": true,
       "award_category": "dacat_10_trillion_club",
-      "unclaimed_or_available": true
+      "unclaimed_or_available": true,
+      "mystery_status": "approved",
+      "ens_match_detected": false,
+      "source_created_collection": "dacat-10-trillion-club",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "1_of_1",
+        "trillion_club",
+        "personalized"
+      ]
     },
     {
       "token_id": "11",
@@ -150,9 +318,27 @@
       "image_url": "assets/badges/dacat-7-trillion-club.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat-7-trillion-club",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [],
+        "holders": []
+      },
+      "minted_at": "2026-06-01T00:00:00Z",
       "is_1_of_1": true,
       "award_category": "dacat_7_trillion_club",
-      "unclaimed_or_available": true
+      "unclaimed_or_available": true,
+      "mystery_status": "approved",
+      "ens_match_detected": false,
+      "source_created_collection": "dacat-7-trillion-club",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "1_of_1",
+        "trillion_club",
+        "personalized"
+      ]
     },
     {
       "token_id": "12",
@@ -160,12 +346,30 @@
       "display_name": "DACAT 3 TRILLION CLUB",
       "local_slug": "dacat-3-trillion-club",
       "excerpt": "DACAT 3 TRILLION CLUB badge. 1 total. ",
-      "image_url": "https://opensea.io/collection/dacat-3-trillion-club",
+      "image_url": "assets/badges/dacat-3-trillion-club.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat-3-trillion-club",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [],
+        "holders": []
+      },
+      "minted_at": "2026-06-01T00:00:00Z",
       "is_1_of_1": true,
       "award_category": "dacat_3_trillion_club",
-      "unclaimed_or_available": true
+      "unclaimed_or_available": true,
+      "mystery_status": "approved",
+      "ens_match_detected": false,
+      "source_created_collection": "dacat-3-trillion-club",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "1_of_1",
+        "trillion_club",
+        "personalized"
+      ]
     },
     {
       "token_id": "13",
@@ -176,9 +380,27 @@
       "image_url": "assets/badges/dacat-5-trillion-club.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat-5-trillion-club",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 2,
+        "top_holders": [],
+        "holders": []
+      },
+      "minted_at": "2026-06-01T00:00:00Z",
       "is_1_of_1": true,
       "award_category": "dacat_5_trillion_club",
-      "unclaimed_or_available": true
+      "unclaimed_or_available": true,
+      "mystery_status": "approved",
+      "ens_match_detected": false,
+      "source_created_collection": "dacat-5-trillion-club",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "1_of_1",
+        "trillion_club",
+        "personalized"
+      ]
     },
     {
       "token_id": "14",
@@ -189,9 +411,27 @@
       "image_url": "assets/badges/dacat-2-trillion-club.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat-2-trillion-club",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 4,
+        "circulating_copies": 4,
+        "top_holders": [],
+        "holders": []
+      },
+      "minted_at": "2026-06-01T00:00:00Z",
       "is_1_of_1": true,
       "award_category": "dacat_2_trillion_club",
-      "unclaimed_or_available": true
+      "unclaimed_or_available": true,
+      "mystery_status": "approved",
+      "ens_match_detected": false,
+      "source_created_collection": "dacat-2-trillion-club",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "1_of_1",
+        "trillion_club",
+        "personalized"
+      ]
     },
     {
       "token_id": "15",
@@ -199,12 +439,29 @@
       "display_name": "DACAT 500 BILLION CLUB",
       "local_slug": "dacat-500-billion-club",
       "excerpt": "DACAT 500 BILLION CLUB badge. 1 total. ",
-      "image_url": "https://opensea.io/collection/dacat-500-billion-club",
+      "image_url": "assets/badges/dacat-500-billion-club.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat-500-billion-club",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [],
+        "holders": []
+      },
+      "minted_at": "2026-06-01T00:00:00Z",
       "is_1_of_1": true,
       "award_category": "dacat_500_billion_club",
-      "unclaimed_or_available": true
+      "unclaimed_or_available": true,
+      "mystery_status": "approved",
+      "ens_match_detected": false,
+      "source_created_collection": "dacat-500-billion-club",
+      "sub_category": "500 Billion Club",
+      "tags": [
+        "1_of_1",
+        "personalized"
+      ]
     }
   ]
 }

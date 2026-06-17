@@ -446,8 +446,8 @@ async function loadWalletIndex() {
 
 /* Registry loader (Part 1 multi-col support).
  * Only "live" collections appear in dropdown / pre-filters / share links.
- * "coming_soon" (e.g. Badges) are deliberately excluded to preserve their teaser UX.
- * Adding a new live collection = update registry.json + ensure items carry collection_id.
+ * Badges is now live (series reps in light search via dedicated view + ?collection hint).
+ * Adding a new live collection = update registry.json + data wiring.
  */
 async function loadCollectionsRegistry() {
   if (!REGISTRY_URL) {
@@ -2168,6 +2168,27 @@ function resetBrowseView() {
   refreshView();
 }
 
+/** Low-risk prompt when Badges collection is chosen in the main archive light search dropdown.
+ *  Badges uses its own dedicated themed page (/badges/) for the clean series grid + subcats.
+ *  This avoids loading two full data shapes into the archive chrome and keeps daCommunity flows untouched.
+ */
+function showBadgesCollectionPrompt() {
+  var list = $("#gallery-list");
+  var empty = $("#gallery-empty");
+  if (empty) empty.hidden = true;
+  if (list) {
+    list.innerHTML =
+      '<div class="panel" style="max-width:720px;margin:1rem auto;padding:1.25rem 1.5rem;text-align:center">' +
+      '<p style="margin:0 0 .5rem;font-weight:600">daCAT Badges — live personal awards</p>' +
+      '<p style="margin:.25rem 0 1rem;opacity:.85">Use the clean series view (collection images) in the dedicated gallery to avoid 1:1 duplicate spam in discovery. Your specific named 1:1 (Trillion Club etc.) appears automatically in the collector wallet lookup when you hold it.</p>' +
+      '<a class="btn btn-accent" href="../badges/" style="display:inline-block">Open Badges gallery →</a>' +
+      ' <a class="btn btn-outline btn-sm" href="../collections/" style="display:inline-block;margin-left:.5rem">Collections</a>' +
+      '</div>';
+  }
+  var count = $("#results-count");
+  if (count) count.textContent = "Badges live in dedicated view";
+}
+
 function renderBrowseMeta(filtered, total) {
   var countEl = $("#results-count");
   var chips = $("#active-filters");
@@ -2772,7 +2793,11 @@ function bindUi() {
     collectionSelect.addEventListener("change", function (e) {
       activeCollection = e.target.value;
       syncBrowseParamsToUrl();
-      refreshView();
+      if (activeCollection === "badges") {
+        showBadgesCollectionPrompt();
+      } else {
+        refreshView();
+      }
     });
   }
 
@@ -2790,6 +2815,9 @@ function bindUi() {
   if (sortForState) sortForState.value = sortKey;
   var colForState = $("#collection-select");
   if (colForState) colForState.value = activeCollection || "all";
+  if (activeCollection === "badges") {
+    setTimeout(showBadgesCollectionPrompt, 0);
+  }
   var clearBtn = $("#clear-filters");
   if (clearBtn) clearBtn.addEventListener("click", resetBrowseView);
   var emptyReset = $("#gallery-empty-reset");
