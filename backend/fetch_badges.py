@@ -21,12 +21,16 @@ from __future__ import annotations
 
 import json
 import os
+import re
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 import requests
 from dotenv import load_dotenv
+
+from opensea_client import OpenSeaClient
 
 ROOT = Path(__file__).resolve().parent.parent
 REVIEW_DIR = ROOT / "backend" / "review"
@@ -35,8 +39,10 @@ REVIEW_DIR.mkdir(parents=True, exist_ok=True)
 ISSUER_WALLET = "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee".lower()
 
 # Cutoff date - user to set the "certain date"
-# Format: ISO like "2025-01-01T00:00:00Z" or date only
-CUTOFF_DATE = "2025-01-01"  # TODO: User, please adjust this to the actual start date for badges
+# Format: date only "YYYY-MM-DD" or full ISO.
+# IMPORTANT for newer wallets with lots of other creations: set this to just before the first badge creation date (e.g. "2026-06-01").
+# Broad cutoffs pull thousands of unrelated mints by the wallet, causing slow runs + rate limits.
+CUTOFF_DATE = "2026-06-01"  # Edit to match when your badges actually started. Use recent date for "newer wallet" scenario.
 
 # Reference patterns from the user's created tab table (for award_category + mystery detection)
 # These are used to seed categories and to decide if something is "known good" or mystery.
@@ -45,6 +51,47 @@ KNOWN_GOOD_PATTERNS = [
     "billion club"
 ]
 
+# Known badge collection slugs from the initial bootstrap / user's table.
+# Instead of broad wallet mint events (which pulls unrelated creations), we target only these.
+# This is fast, avoids rate limits, and matches "search on those we know are in the badges".
+# To add a new badge collection in future: add its opensea slug here, re-run fetch.
+KNOWN_BADGE_COLLECTION_SLUGS = [
+    "dacatrookie2026",
+    "dacat1trillionclub",
+    "dacat2trillion",
+    "dacat3trillion",
+    "dacat4trillion",
+    "dacat5trillion",
+    "dacat6trillion",
+    "dacat7trillion",
+    "dacat8trillion",
+    "dacat9trillion",
+    "dacat10trillion",
+    "dacat500billion",
+    "dacat-world-collector-cat",  # verify slug if needed
+    "dacat-gem-nova-green",
+    "dagatoawards",
+]
+
+# Map from (correct) collection slug to the local asset slug used for images (to match existing assets/badges/*.png)
+SLUG_TO_LOCAL_ASSET = {
+    "dacatrookie2026": "dacat-rookie-card-2026",
+    "dacat1trillionclub": "dacat-1-trillion-club",
+    "dacat2trillion": "dacat-2-trillion-club",
+    "dacat3trillion": "dacat-3-trillion-club",
+    "dacat4trillion": "dacat-4-trillion-club",
+    "dacat5trillion": "dacat-5-trillion-club",
+    "dacat6trillion": "dacat-6-trillion-club",
+    "dacat7trillion": "dacat-7-trillion-club",
+    "dacat8trillion": "dacat-8-trillion-club",
+    "dacat9trillion": "dacat-9-trillion-club",
+    "dacat10trillion": "dacat-10-trillion-club",
+    "dacat500billion": "dacat-500-billion-club",
+    "dacat-world-collector-cat": "dacat-world-collector-cat",
+    "dacat-gem-nova-green": "dacat-gem-nova-green",
+    "dagatoawards": "dagato-dacat-award-badges",
+}
+
 def load_api_key() -> str:
     load_dotenv(ROOT / "backend" / ".env")
     key = os.getenv("OPENSEA_API_KEY", "").strip()
@@ -52,8 +99,10 @@ def load_api_key() -> str:
         raise ValueError("OPENSEA_API_KEY not set in backend/.env")
     return key
 
-def fetch_mint_events_by_wallet(api_key: str, wallet: str, after: str, chain: str = "ethereum", limit: int = 200) -> list[dict]:
-    """Fetch mint events created by the wallet after the cutoff date."""
+def fetch_mint_events_by_wallet(api_key: str, wallet: str, after: str, chain: str = "ethereum", limit: int = 200, collection_slug: str = None) -> list[dict]:
+    """Fetch mint events created by the wallet after the cutoff date.
+    If collection_slug is provided, scope to that collection only (targeted, fast, avoids unrelated mints).
+    """
     headers = {"X-API-KEY": api_key, "Accept": "application/json"}
     events = []
     next_cursor = None
@@ -67,17 +116,30 @@ def fetch_mint_events_by_wallet(api_key: str, wallet: str, after: str, chain: st
             "occurred_after": occurred_after,
             "limit": limit
         }
+        if collection_slug:
+            params["collection_slug"] = collection_slug
         if next_cursor:
             params["next"] = next_cursor
 
         url = "https://api.opensea.io/api/v2/events"
-        resp = requests.get(url, headers=headers, params=params, timeout=60)
-        resp.raise_for_status()
-        data = resp.json()
-        batch = data.get("asset_events", [])
-        events.extend(batch)
-        next_cursor = data.get("next")
-        print(f"  Fetched {len(batch)} mint events (total: {len(events)})...")
+        for attempt in range(5):  # retry on rate limit
+            resp = requests.get(url, headers=headers, params=params, timeout=60)
+            if resp.status_code == 429:
+                wait = (2 ** attempt) * 1.5  # backoff
+                print(f"  Rate limited (429), sleeping {wait:.1f}s (attempt {attempt+1})...")
+                time.sleep(wait)
+                continue
+            resp.raise_for_status()
+            data = resp.json()
+            batch = data.get("asset_events", [])
+            events.extend(batch)
+            next_cursor = data.get("next")
+            print(f"  Fetched {len(batch)} mint events (total: {len(events)})...")
+            time.sleep(0.6)  # Throttle between successful pages
+            break
+        else:
+            print("  Too many 429s, giving up on this page.")
+            break
         if not next_cursor or len(batch) == 0:
             break
     return events
@@ -109,6 +171,38 @@ def get_collection_stats(slug: str, api_key: str) -> dict:
 def is_known_pattern(name: str, collection: str) -> bool:
     text = (name + " " + collection).lower()
     return any(p in text for p in KNOWN_GOOD_PATTERNS)
+
+
+def clean_description(text: str | None) -> str:
+    if not text:
+        return ""
+    text = text.replace("\r\n", "\n").strip()
+    text = re.sub(r"\n{3,}", "\n\n", text)
+    return text
+
+
+def excerpt(text: str, max_len: int = 160) -> str:
+    flat = re.sub(r"\s+", " ", text).strip()
+    if len(flat) <= max_len:
+        return flat
+    return flat[: max_len - 1].rstrip() + "…"
+
+
+def summarize_owners(owners: list[dict]) -> dict:
+    if not owners:
+        return {"holder_count": 0, "circulating_copies": 0, "top_holders": [], "holders": []}
+    sorted_owners = sorted(owners, key=lambda x: int(x.get("quantity", 0)), reverse=True)
+    total_copies = sum(int(o.get("quantity", 0)) for o in sorted_owners)
+    holder_rows = [
+        {"address": o.get("address"), "quantity": int(o.get("quantity", 0))}
+        for o in sorted_owners if o.get("address")
+    ]
+    return {
+        "holder_count": len(holder_rows),
+        "circulating_copies": total_copies,
+        "top_holders": holder_rows[:5],
+        "holders": holder_rows,
+    }
 
 def get_sub_category(award_cat: str, name: str) -> str:
     """Compute sub_category for search dropdown filters and unique tags.
@@ -290,15 +384,115 @@ def main():
     print(f"Issuer wallet: {ISSUER_WALLET}")
     print(f"CUTOFF_DATE: {CUTOFF_DATE} (edit in this file if needed)")
     print(f"Known good patterns for categories/mystery: {KNOWN_GOOD_PATTERNS}")
-    print("Fetching mint events created by the wallet on Ethereum...")
+    print(f"Targeting only known badge collections (using same nfts list as main dacommunity pipeline): {KNOWN_BADGE_COLLECTION_SLUGS}")
+    print("Fetching NFTs list for known badge collections (no broad mint events scan)...")
 
-    events = fetch_mint_events_by_wallet(api_key, ISSUER_WALLET, CUTOFF_DATE)
-
+    client = OpenSeaClient(api_key)
     items = []
-    for ev in events:
-        item = enrich_badge(ev, api_key)
-        if item:
-            items.append(item)
+    first_mint_validated = False
+    from collections import defaultdict
+    slug_nfts = defaultdict(list)
+    for slug in KNOWN_BADGE_COLLECTION_SLUGS:
+        print(f"  -> {slug}")
+        try:
+            nfts = client.iter_collection_nfts(slug)
+            for nft in nfts:
+                slug_nfts[slug].append(nft)
+        except Exception as e:
+            print(f"  Error for {slug}: {e}")
+
+    for slug, nfts in slug_nfts.items():
+        if not nfts:
+            continue
+        # take first for name/image etc (series rep), but for rookie use the specific token 1 to match bootstrap first mint
+        if slug == "dacatrookie2026":
+            nft = next((n for n in nfts if str(n.get("identifier") or n.get("token_id") or "") == "1"), nfts[0])
+        else:
+            nft = nfts[0]
+        token_id = str(nft.get("identifier") or nft.get("token_id") or "1")
+        contract = nft.get("contract")
+        if isinstance(contract, dict):
+            contract = contract.get("address", "")
+        elif not isinstance(contract, str):
+            contract = ""
+        name = nft.get("name") or f"{slug} #{token_id}"
+        desc = clean_description(nft.get("description") or "")
+        image = nft.get("image_url") or nft.get("animation_url") or ""
+        media_type = "video" if (image or "").lower().endswith((".mp4", ".mov", ".webm")) else "image"
+        created_at = nft.get("created_at") or nft.get("minted_at")
+
+        # aggregate owners from all nfts in this collection (for accurate holder count)
+        all_owners = []
+        for n in nfts:
+            t_id = str(n.get("identifier") or n.get("token_id") or "")
+            c = n.get("contract")
+            if isinstance(c, dict):
+                c = c.get("address", "")
+            elif not isinstance(c, str):
+                c = ""
+            if c and t_id:
+                try:
+                    os = client.get_nft_owners(t_id, chain="ethereum", contract=c)
+                    all_owners.extend(os)
+                except:
+                    pass
+        owner_stats = summarize_owners(all_owners)
+
+        # supply / 1of1 from first or total
+        supply = len(nfts) or 1
+        is_1of1 = supply <= 5 or any("1/1" in str(t).lower() or "one of one" in str(t).lower() for t in nft.get("traits", []))
+
+        category = get_sub_category("", name).lower().replace(" ", "_")
+        unclaimed = "unclaimed" in name.lower() or "available" in (desc or "").lower()
+        mystery = not is_known_pattern(name, slug)
+
+        display_name = name
+        awarded_for = category.replace("_", " ").title()
+        if "trillion club" in (name + " " + slug).lower() and " - " in name:
+            custom = name.split(" - ")[0].strip()
+            if custom:
+                display_name = name
+                awarded_for = f"{category.replace('_', ' ').title()} - {custom}"
+
+        local_slug = SLUG_TO_LOCAL_ASSET.get(slug, slug + "-" + token_id)
+        item = {
+            "token_id": token_id,
+            "name": name,
+            "display_name": display_name,
+            "local_slug": local_slug,
+            "description": desc,
+            "excerpt": excerpt(desc),
+            "image_url": image,
+            "media_type": media_type,
+            "opensea_url": f"https://opensea.io/collection/{slug}",
+            "traits": nft.get("traits", []),
+            "listed": False,
+            "listing": None,
+            "owners": owner_stats,
+            "minted_at": created_at,
+            "is_1_of_1": is_1of1,
+            "edition_size": supply,
+            "award_category": category,
+            "unclaimed_or_available": unclaimed,
+            "mystery_status": "mystery_until_review" if mystery else "approved",
+            "source_created_collection": slug,
+            "created_by_wallet": ISSUER_WALLET,
+            "sub_category": get_sub_category(category, name),
+            "tags": get_tags({"is_1_of_1": is_1of1, "award_category": category, "unclaimed_or_available": unclaimed, "name": name, "description": desc}),
+        }
+        items.append(item)
+
+        # validate first mint (rookie is first slug)
+        if not first_mint_validated and slug == "dacatrookie2026":
+            print(f"\nFirst mint validated in data (rookie card token {token_id}):")
+            print(f"  slug: {slug}, token: {token_id}, created: {created_at}")
+            print(f"  opensea_url: {item['opensea_url']}")
+            first_mint_validated = True
+
+    if not first_mint_validated:
+        print("Note: Could not validate first mint (rookie #1) - check data.")
+    else:
+        print("First mint (rookie #1) successfully validated.")
 
     # Stats
     total = len(items)

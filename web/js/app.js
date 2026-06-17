@@ -74,6 +74,9 @@ let fullDataStatus = "catalog";
 let activeCollectorAddress = null;
 /** When set, main gallery grid shows only this collector's holdings. */
 let galleryCollectorView = null;
+
+let originalHeroTitle = null;
+let originalHeroLead = null;
 /** Token id when detail drawer is open — refresh holders/activity after background merge. */
 let activeDetailTokenId = null;
 let activeCollection = "all";
@@ -130,18 +133,50 @@ function getCollectionDataUrls(colId) {
   };
 }
 
+function getCurrentCollection() {
+  if (!collectionsRegistry || !activeCollection || activeCollection === "all") return null;
+  var list = (collectionsRegistry && collectionsRegistry.collections) || [];
+  return list.find(function (c) { return c.id === activeCollection; }) || null;
+}
+
+function applyCollectionUI() {
+  var col = getCurrentCollection();
+  var hasWallet = !col || (col.features || []).indexOf("wallet_lookup") !== -1;
+  var walletLookup = $("#wallet-lookup");
+  if (walletLookup) {
+    walletLookup.style.display = hasWallet ? "" : "none";
+  }
+  if (!hasWallet) {
+    clearGalleryCollectorView({ clearResult: true });
+    if (typeof collectorsList !== "undefined") {
+      collectorsList = [];
+    }
+    var btn = $("#view-collectors-btn");
+    if (btn) btn.hidden = true;
+  }
+}
+
 /** Light adaptation so the host gallery page feels like the selected collection
  *  without inventing a whole new page. Only touches the hero area when badges (or future collections) is active.
  */
 function adaptHeaderForCollection() {
-  if (activeCollection !== "badges") return;
+  var isBadges = activeCollection === "badges";
+  document.body.classList.toggle("is-badges-view", isBadges);
   try {
     var h1 = document.querySelector(".hero-band h1");
-    if (h1) h1.innerHTML = 'daCAT <span class="accent">Badges</span>';
     var lead = document.querySelector(".hero-lead");
-    if (lead) lead.textContent = "Personal 1:1 awards. Series images shown in the grid (generic photos to keep discovery clean, no 1:1 dupes). Your specific named copy appears in the collector wallet lookup when you hold it.";
-    var note = document.getElementById("hero-note");
-    if (note) note.textContent = "Select daCAT Badges from the Collection dropdown (or land here with ?collection=badges).";
+    if (!h1 || !lead) return;
+    if (typeof originalHeroTitle === "undefined" || originalHeroTitle === null) {
+      originalHeroTitle = h1.innerHTML;
+      originalHeroLead = lead.textContent;
+    }
+    if (isBadges) {
+      h1.innerHTML = 'daCAT <span class="accent">Badges</span>';
+      lead.textContent = "Personal 1:1 awards. Series images shown in the grid (generic photos to keep discovery clean, no 1:1 dupes). Your specific named copy appears in the collector wallet lookup when you hold it.";
+    } else {
+      h1.innerHTML = originalHeroTitle || h1.innerHTML;
+      lead.textContent = originalHeroLead || lead.textContent;
+    }
   } catch (e) {}
 }
 
@@ -2808,20 +2843,20 @@ function bindUi() {
       activeCollection = newCol;
       syncBrowseParamsToUrl();
 
+      var col = getCurrentCollection();
+      var hasWallet = !col || (col.features || []).indexOf("wallet_lookup") !== -1;
+
       var urls = getCollectionDataUrls(activeCollection);
-      if (urls) {
-        // Switch data source to the other collection's catalog/data and reload the grid
-        // using the exact same load + boot + render paths the main archive uses.
-        CATALOG_URL = urls.catalog;
-        FULL_DATA_URL = urls.full;
+      var loadEl = $("#load-state");
+      if (loadEl) loadEl.hidden = false;
 
-        var loadEl = $("#load-state");
-        if (loadEl) loadEl.hidden = false;
-
-        try {
+      try {
+        if (urls) {
+          // badges or other secondary collection: load its data files
+          CATALOG_URL = urls.catalog;
+          FULL_DATA_URL = urls.full;
           var newData = await loadCatalogFirst();
           galleryData = newData;
-          // Tag with the correct collection_id so getFilteredItems scoping works
           if (galleryData && Array.isArray(galleryData.items)) {
             var cid = activeCollection || (galleryData.collection && galleryData.collection.slug) || "dacommunity";
             galleryData.items.forEach(function (item) {
@@ -2830,21 +2865,57 @@ function bindUi() {
           }
           dataSource = (galleryData.source || "").indexOf("badges") === 0 ? "catalog" : "full";
           indexItems(galleryData);
-          var loadEl2 = $("#load-state");
-          if (loadEl2) loadEl2.hidden = true;
           renderStats(galleryData.collection);
           renderDataFreshness();
           refreshView();
           adaptHeaderForCollection();
-        } catch (err) {
-          console.error("Collection data switch failed", err);
-          if (loadEl) loadEl.hidden = true;
-          // fall back to whatever is loaded
+          applyCollectionUI();
+        } else {
+          // primary dacommunity or "all": reset to default data URLs and reload
+          initDataUrls();
+          var newData = await loadCatalogFirst();
+          galleryData = newData;
+          if (galleryData && Array.isArray(galleryData.items)) {
+            var cid = activeCollection || (galleryData.collection && galleryData.collection.slug) || "dacommunity";
+            galleryData.items.forEach(function (item) {
+              if (!item.collection_id) item.collection_id = cid;
+            });
+          }
+          dataSource = galleryData.source === "gallery_catalog" ? "catalog" : "full";
+          indexItems(galleryData);
+          renderStats(galleryData.collection);
+          renderDataFreshness();
           refreshView();
+          adaptHeaderForCollection();
+          applyCollectionUI();
+          // re-load wallet/collector data and background enrich for main archive
+          if (dataSource === "catalog") {
+            refreshFullDataInBackground();
+          }
+          if (hasWallet) {
+            loadWalletIndex().then(function () {
+              updateCollectorsButton();
+              if (activeDetailTokenId) {
+                var openItem = itemsById.get(String(activeDetailTokenId));
+                if (openItem) refreshDetailPanel(openItem);
+              }
+              // do not auto-apply wallet from url on manual switch to avoid side effects
+            });
+          } else {
+            clearGalleryCollectorView({ clearResult: true });
+            if (typeof collectorsList !== "undefined") collectorsList = [];
+            var btn = $("#view-collectors-btn");
+            if (btn) btn.hidden = true;
+          }
         }
-      } else {
+      } catch (err) {
+        console.error("Collection data switch failed", err);
+        if (loadEl) loadEl.hidden = true;
         refreshView();
         adaptHeaderForCollection();
+        applyCollectionUI();
+      } finally {
+        if (loadEl) loadEl.hidden = true;
       }
     });
   }
@@ -2996,6 +3067,27 @@ async function init() {
     dataSource = galleryData.source === "gallery_catalog" ? "catalog" : "full";
     bootGallery(galleryData);
     adaptHeaderForCollection();
+    applyCollectionUI();
+
+    // For "all collections", merge in badges items so both are visible in the search grid when no collection filter
+    if (!activeCollection || activeCollection === "all") {
+      try {
+        const bq = "?v=" + getBuildStamp();
+        const bprefix = getDataPrefix();
+        const bres = await fetch(bprefix + "data/badges_catalog.json" + bq, {cache: "no-store"});
+        if (bres.ok) {
+          const bdata = await bres.json();
+          if (bdata && bdata.items && bdata.items.length) {
+            bdata.items.forEach(i => { if (!i.collection_id) i.collection_id = "badges"; });
+            galleryData.items = (galleryData.items || []).concat(bdata.items);
+            // reindex after merge
+            indexItems(galleryData);
+          }
+        }
+      } catch (e) {
+        console.warn("Could not merge badges into all view", e);
+      }
+    }
 
     if (dataSource === "catalog") {
       refreshFullDataInBackground();
@@ -3009,16 +3101,25 @@ async function init() {
       updateFooterMaintenance(galleryMeta);
     });
 
-    loadWalletIndex().then(function () {
-      renderStats(galleryData.collection);
-      updateCollectorsButton();
-      if (activeDetailTokenId) {
-        var openItem = itemsById.get(String(activeDetailTokenId));
-        if (openItem) refreshDetailPanel(openItem);
-      }
-      applyWalletFromUrl();
-      applyPieceFromUrl();
-    });
+    var initCol = getCurrentCollection();
+    var hasWalletInit = !initCol || (initCol.features || []).indexOf("wallet_lookup") !== -1;
+    if (hasWalletInit) {
+      loadWalletIndex().then(function () {
+        renderStats(galleryData.collection);
+        updateCollectorsButton();
+        if (activeDetailTokenId) {
+          var openItem = itemsById.get(String(activeDetailTokenId));
+          if (openItem) refreshDetailPanel(openItem);
+        }
+        applyWalletFromUrl();
+        applyPieceFromUrl();
+      });
+    } else {
+      clearGalleryCollectorView({ clearResult: true });
+      if (typeof collectorsList !== "undefined") collectorsList = [];
+      var btnInit = $("#view-collectors-btn");
+      if (btnInit) btnInit.hidden = true;
+    }
 
     if (window.location.hash === "#wallet-panel" && !parseWalletFromUrl()) {
       setTimeout(scrollToCollectorHub, 600);

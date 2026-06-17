@@ -1244,6 +1244,34 @@ button.stat:focus-visible {
   box-shadow: 7px 7px 0 var(--black);
 }
 
+/* Badges in the main archive search grid (existing .gallery-row cards):
+   Larger framed thumb so the illustrated series art (Rookie card, Trillion clubs etc.)
+   looks like proper collectibles instead of tiny squished thumbs.
+   Uses the normal archive search UI — no new webpage or custom grid. */
+.is-badges-view .gallery-row {
+  grid-template-columns: 120px 1fr auto;
+  padding: 0.5rem 0.75rem;
+  background: #fff;
+  border: 1px solid #111;
+}
+.is-badges-view .gallery-thumb-wrap {
+  width: 120px;
+  height: 120px;
+  border: 4px solid #111;
+  background: #fff;
+  box-shadow: 3px 3px 0 #000;
+  border-radius: 2px;
+}
+.is-badges-view .gallery-thumb-slot img,
+.is-badges-view .gallery-thumb-slot video {
+  object-fit: contain;
+  image-rendering: crisp-edges;
+  background: #f8f8f8;
+}
+.is-badges-view .gallery-meta h3 {
+  font-size: 1.1rem;
+}
+
 .gallery-thumb-wrap {
   width: 96px;
   height: 96px;
