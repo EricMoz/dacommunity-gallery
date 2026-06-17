@@ -1016,7 +1016,7 @@ function clearCollectorFilters() {
   activeFilter = "all";
   searchQuery = "";
   sortKey = "token_desc";
-  activeCollection = "all";
+  // Do not force activeCollection to 'all' here — preserve badges or current collection context
   var search = $("#search");
   var sort = $("#sort-select");
   var colSel = $("#collection-select");
@@ -1860,6 +1860,32 @@ async function resolveEnsToAddress(name) {
   return addr.toLowerCase();
 }
 
+function buildHoldingsFromCurrentItems(address) {
+  var addr = (address || '').toLowerCase();
+  var holdings = [];
+  var seen = {};
+  (galleryData && galleryData.items || []).forEach(function (item) {
+    var key = (item.source_created_collection || 'dacommunity') + ':' + item.token_id;
+    if (seen[key]) return;
+    var ownersData = item.owners || {};
+    var list = ownersData.holders || ownersData.top_holders || [];
+    var owns = list.some(function (o) {
+      return (o.address || '').toLowerCase() === addr;
+    });
+    if (owns) {
+      seen[key] = true;
+      holdings.push({
+        token_id: item.token_id,
+        name: item.display_name || item.name,
+        display_name: item.display_name || item.name,
+        image_url: item.image_url,
+        opensea_url: item.opensea_url
+      });
+    }
+  });
+  return holdings;
+}
+
 function lookupWallet(identifier) {
   if (!walletIndex || !walletIndex.by_address) {
     return {
@@ -1890,10 +1916,24 @@ function lookupWallet(identifier) {
 
   var entry = walletIndex.by_address[address];
   if (!entry) {
+    // Support badges and other collections: synthesize holdings from current items using owners data
+    var synth = buildHoldingsFromCurrentItems(address);
+    if (synth.length > 0) {
+      return {
+        entry: {
+          address: address,
+          holdings: synth,
+          unique_pieces: synth.length,
+          collection_quantity: synth.length,
+          ens_name: null,
+          username: null
+        }
+      };
+    }
     return {
-      error: "This wallet is not in the daCommunity index. No pieces held in the daily snapshot.",
-      title: "No daCATs here yet",
-      hint: "They may still collect elsewhere, or the next refresh may catch a new holder.",
+      error: "This wallet has no pieces in the current snapshot (dacommunity or badges).",
+      title: "No pieces found",
+      hint: "They may hold badges or other collections not yet indexed, or try a different address.",
       address: address,
     };
   }
@@ -2178,8 +2218,22 @@ function itemMatchesSearch(item, q) {
 
 function compareItems(a, b) {
   var key = sortKey || "token_desc";
-  if (key === "token_desc") return Number(b.token_id) - Number(a.token_id);
-  if (key === "token_asc") return Number(a.token_id) - Number(b.token_id);
+  if (key === "token_desc") {
+    var da = Date.parse(a.minted_at || 0) || 0;
+    var db = Date.parse(b.minted_at || 0) || 0;
+    if (da && db && da !== db) return db - da; // newest first across collections
+    if (da && !db) return -1;
+    if (!da && db) return 1;
+    return Number(b.token_id) - Number(a.token_id);
+  }
+  if (key === "token_asc") {
+    var da2 = Date.parse(a.minted_at || 0) || 0;
+    var db2 = Date.parse(b.minted_at || 0) || 0;
+    if (da2 && db2 && da2 !== db2) return da2 - db2;
+    if (da2 && !db2) return 1;
+    if (!da2 && db2) return -1;
+    return Number(a.token_id) - Number(b.token_id);
+  }
   if (key === "name_asc") {
     return itemTitle(a).localeCompare(itemTitle(b), undefined, { sensitivity: "base" });
   }
@@ -2208,9 +2262,19 @@ function compareItems(a, b) {
 function getFilteredItems() {
   if (!galleryData || !galleryData.items) return [];
   var items = galleryData.items.slice();
-  if (galleryCollectorView && galleryCollectorView.tokenIds) {
+  if (galleryCollectorView) {
+    var addr = (galleryCollectorView.address || "").toLowerCase();
+    var tidSet = galleryCollectorView.tokenIds || {};
     items = items.filter(function (i) {
-      return galleryCollectorView.tokenIds[String(i.token_id)];
+      var tid = String(i.token_id);
+      if (tidSet[tid]) return true;
+      // Also include via owners data (for badges + cross-collection in all view)
+      var owners = (i.owners || {});
+      var holders = owners.holders || owners.top_holders || [];
+      for (var j=0; j<holders.length; j++) {
+        if ((holders[j].address || "").toLowerCase() === addr) return true;
+      }
+      return false;
     });
   }
   // Collection filter (for multi-collection future; current data defaults to dacommunity)
@@ -2897,6 +2961,28 @@ function bindUi() {
           }
           dataSource = galleryData.source === "gallery_catalog" ? "catalog" : "full";
           indexItems(galleryData);
+          // For "all" after switch: merge badges so both collections visible unfiltered
+          if (!activeCollection || activeCollection === "all") {
+            try {
+              const bq = "?v=" + getBuildStamp();
+              const bprefix = getDataPrefix();
+              const bres = await fetch(bprefix + "data/badges_catalog.json" + bq, {cache: "no-store"});
+              if (bres.ok) {
+                const bdata = await bres.json();
+                if (bdata && bdata.items && bdata.items.length) {
+                  bdata.items.forEach(i => { if (!i.collection_id) i.collection_id = "badges"; });
+                  var have = new Set((galleryData.items || []).map(function(ii){ return (ii.source_created_collection || 'dacommunity') + ':' + ii.token_id; }));
+                  (bdata.items || []).forEach(function(bi){
+                    var k = (bi.source_created_collection || 'badges') + ':' + bi.token_id;
+                    if (!have.has(k)) {
+                      galleryData.items.push(bi);
+                    }
+                  });
+                  indexItems(galleryData);
+                }
+              }
+            } catch(e){ console.warn('badges merge on all switch failed', e); }
+          }
           renderStats(galleryData.collection);
           renderDataFreshness();
           refreshView();

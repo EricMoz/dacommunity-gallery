@@ -72,14 +72,16 @@ class OpenSeaClient:
     def get_contract(self) -> dict[str, Any]:
         return self._get(f"/chain/{CHAIN}/contract/{CONTRACT_ADDRESS}")
 
-    def iter_collection_nfts(self, limit: int = 200) -> list[dict[str, Any]]:
+    def iter_collection_nfts(self, collection_slug: str = None, limit: int = 200) -> list[dict[str, Any]]:
+        if collection_slug is None:
+            collection_slug = COLLECTION_SLUG
         nfts: list[dict[str, Any]] = []
         next_cursor: str | None = None
         while True:
             params: dict[str, Any] = {"limit": limit}
             if next_cursor:
                 params["next"] = next_cursor
-            data = self._get(f"/collection/{COLLECTION_SLUG}/nfts", params)
+            data = self._get(f"/collection/{collection_slug}/nfts", params)
             nfts.extend(data.get("nfts") or [])
             next_cursor = data.get("next")
             if not next_cursor:
@@ -112,7 +114,11 @@ class OpenSeaClient:
                 break
         return listings
 
-    def get_nft_owners(self, token_id: str) -> list[dict[str, Any]]:
+    def get_nft_owners(self, token_id: str, chain: str = None, contract: str = None) -> list[dict[str, Any]]:
+        if chain is None:
+            chain = CHAIN
+        if contract is None:
+            contract = CONTRACT_ADDRESS
         owners: list[dict[str, Any]] = []
         next_cursor: str | None = None
         while True:
@@ -120,7 +126,7 @@ class OpenSeaClient:
             if next_cursor:
                 params["next"] = next_cursor
             data = self._get(
-                f"/chain/{CHAIN}/contract/{CONTRACT_ADDRESS}/nfts/{token_id}/owners",
+                f"/chain/{chain}/contract/{contract}/nfts/{token_id}/owners",
                 params,
             )
             owners.extend(data.get("owners") or [])

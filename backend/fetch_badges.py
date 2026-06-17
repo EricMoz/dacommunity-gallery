@@ -301,13 +301,15 @@ def enrich_badge(raw_event: dict, api_key: str) -> dict | None:
     # Parsing is only for Trillion Club type (as they have the custom names); other collections use collection level or normal.
     custom_recipient = None
     awarded_for = category.replace('_', ' ').title()
+    # Force generic series name for the catalog item used in general/light search.
+    # This prevents personalized 1:1 names (e.g. "MOZVANE - ...") from appearing outside wallet collector view.
     display_name = name
     if "trillion club" in (name + " " + collection_slug).lower():
         if " - " in name:
             custom_recipient = name.split(" - ")[0].strip()
-        if custom_recipient:
-            display_name = name
-            awarded_for = f"{category.replace('_', ' ').title()} - {custom_recipient}"
+        base = name.split(" - ", 1)[-1].strip() if " - " in name else name
+        display_name = base
+        awarded_for = category.replace('_', ' ').title()
 
     # Mystery if doesn't match known good patterns from the user's table
     mystery = not is_known_pattern(name, collection_slug)
@@ -446,13 +448,10 @@ def main():
         unclaimed = "unclaimed" in name.lower() or "available" in (desc or "").lower()
         mystery = not is_known_pattern(name, slug)
 
-        display_name = name
+        # Force generic for search/light view
+        base = name.split(" - ", 1)[-1].strip() if " - " in name else name
+        display_name = base
         awarded_for = category.replace("_", " ").title()
-        if "trillion club" in (name + " " + slug).lower() and " - " in name:
-            custom = name.split(" - ")[0].strip()
-            if custom:
-                display_name = name
-                awarded_for = f"{category.replace('_', ' ').title()} - {custom}"
 
         local_slug = SLUG_TO_LOCAL_ASSET.get(slug, slug + "-" + token_id)
         item = {

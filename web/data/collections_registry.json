@@ -29,17 +29,16 @@
       "chain": "ethereum",
       "contract": null,
       "opensea_slug": null,
-      "route": "/badges/",
+      "route": "/dacommunity/?collection=badges",
       "data": {
         "gallery": "badges_data.json",
         "catalog": "badges_catalog.json"
       },
-      "features": ["badges", "awards", "1of1", "gallery", "unclaimed"],
+      "features": ["gallery", "collector_view"],
       "theme": {
         "accent": "#ffcc00",
-        "accent_glow": "#ffd633",
-        "surface": "cosmic_soon",
-        "starfield": true
+        "surface": "light_archive",
+        "collector_surface": "dark_cinema"
       }
     }
   ]

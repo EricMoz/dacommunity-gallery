@@ -16,13 +16,13 @@
   "items": [
     {
       "token_id": "3",
-      "name": "DACAT ROOKIE CARD 2026 - FIRST ROUND",
-      "display_name": "DACAT ROOKIE CARD 2026 - FIRST ROUND",
+      "name": "DACAT Rookie Card 2026",
+      "display_name": "DACAT Rookie Card 2026",
       "local_slug": "dacat-rookie-card-2026",
-      "excerpt": "The 2026 DACAT ROOKIE CARD is a limited-edition community NFT created to welcome new members to DACAT. Only 333 First Round DACAT Rookie Cards will be issued f…",
+      "excerpt": "DACAT Rookie Card 2026 — daCAT Badges series on Ethereum.",
       "image_url": "assets/badges/dacat-rookie-card-2026.png",
       "media_type": "image",
-      "opensea_url": "https://opensea.io/collection/dacatrookie2026",
+      "opensea_url": "https://opensea.io/item/ethereum/0x776160fee93ea8727b2c2db360599f33977e93f1/3",
       "listed": false,
       "listing": null,
       "owners": {
@@ -49,7 +49,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-06-15T12:00:00+00:00",
       "is_1_of_1": true,
       "award_category": "rookie_card_2026",
       "unclaimed_or_available": false,
@@ -63,13 +63,13 @@
     },
     {
       "token_id": "25",
-      "name": "DATRAIL CAT - DACAT 1 TRILLION CLUB MEMBERSHIP",
-      "display_name": "DATRAIL CAT - DACAT 1 TRILLION CLUB MEMBERSHIP",
+      "name": "DACAT 1 Trillion Club Membership",
+      "display_name": "DACAT 1 Trillion Club Membership",
       "local_slug": "dacat-1-trillion-club",
-      "excerpt": "Exclusive 1 of 1 NFT minted to honor DATRAILCAT.ETH into the DACAT 1 TRILLION CLUB The DACAT 1 TRILLION CLUB is an elite NFT membership collection created to r…",
+      "excerpt": "DACAT 1 Trillion Club Membership — daCAT Badges series on Ethereum.",
       "image_url": "assets/badges/dacat-1-trillion-club.png",
       "media_type": "image",
-      "opensea_url": "https://opensea.io/collection/dacat1trillionclub",
+      "opensea_url": "https://opensea.io/item/ethereum/0x0b5be1e2b68467afa8c371576f47b27e50f2b14f/25",
       "listed": false,
       "listing": null,
       "owners": {
@@ -200,7 +200,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-06-15T12:00:00+00:00",
       "is_1_of_1": false,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -214,10 +214,10 @@
     },
     {
       "token_id": "4",
-      "name": "WARRIOR PR - DACAT 2 TRILLION CLUB MEMBERSHIP",
-      "display_name": "WARRIOR PR - DACAT 2 TRILLION CLUB MEMBERSHIP",
+      "name": "DACAT 2 Trillion Club Membership",
+      "display_name": "DACAT 2 Trillion Club Membership",
       "local_slug": "dacat-2-trillion-club",
-      "excerpt": "Exclusive 1-of-1 NFT minted in recognition of WARRIORPR.ETH as a member of the DACAT 2 TRILLION CLUB. The DACAT 2 TRILLION CLUB is a recognition program create…",
+      "excerpt": "DACAT 2 Trillion Club Membership — daCAT Badges series on Ethereum.",
       "image_url": "assets/badges/dacat-2-trillion-club.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat2trillion",
@@ -263,7 +263,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-06-15T12:00:00+00:00",
       "is_1_of_1": true,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -278,10 +278,10 @@
     },
     {
       "token_id": "1",
-      "name": "DATRAIL CAT - DACAT 3 TRILLION CLUB MEMBERSHIP",
-      "display_name": "DATRAIL CAT - DACAT 3 TRILLION CLUB MEMBERSHIP",
+      "name": "DACAT 3 Trillion Club Membership",
+      "display_name": "DACAT 3 Trillion Club Membership",
       "local_slug": "dacat-3-trillion-club",
-      "excerpt": "Exclusive 1-of-1 NFT minted in recognition of DATRAILCAT.ETH as a member of the DACAT 3 TRILLION CLUB. The DACAT 3 TRILLION CLUB is a recognition program creat…",
+      "excerpt": "DACAT 3 Trillion Club Membership — daCAT Badges series on Ethereum.",
       "image_url": "assets/badges/dacat-3-trillion-club.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat3trillion",
@@ -303,7 +303,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-06-15T12:00:00+00:00",
       "is_1_of_1": true,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -318,10 +318,10 @@
     },
     {
       "token_id": "2",
-      "name": "DABEEZY - DACAT 4 TRILLION CLUB MEMBERSHIP",
-      "display_name": "DABEEZY - DACAT 4 TRILLION CLUB MEMBERSHIP",
+      "name": "DACAT 4 Trillion Club Membership",
+      "display_name": "DACAT 4 Trillion Club Membership",
       "local_slug": "dacat-4-trillion-club",
-      "excerpt": "Exclusive 1-of-1 NFT minted in recognition of DABEEZY.ETH as a member of the DACAT 4 TRILLION CLUB. The DACAT 4 TRILLION CLUB is a recognition program created…",
+      "excerpt": "DACAT 4 Trillion Club Membership — daCAT Badges series on Ethereum.",
       "image_url": "assets/badges/dacat-4-trillion-club.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat4trillion",
@@ -351,7 +351,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-06-15T12:00:00+00:00",
       "is_1_of_1": true,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -366,13 +366,13 @@
     },
     {
       "token_id": "2",
-      "name": "MOZVANE - 5 TRILLION DACAT CLUB MEMBERSHIP",
-      "display_name": "MOZVANE - 5 TRILLION DACAT CLUB MEMBERSHIP",
+      "name": "DACAT 5 Trillion Club Membership",
+      "display_name": "DACAT 5 Trillion Club Membership",
       "local_slug": "dacat-5-trillion-club",
-      "excerpt": "Exclusive 1-of-1 NFT minted in recognition of MOZVAN..ETH as a member of the DACAT 5 TRILLION CLUB. The DACAT 5 TRILLION CLUB is a recognition program created…",
+      "excerpt": "DACAT 5 Trillion Club Membership — daCAT Badges series on Ethereum.",
       "image_url": "assets/badges/dacat-5-trillion-club.png",
       "media_type": "image",
-      "opensea_url": "https://opensea.io/collection/dacat5trillion",
+      "opensea_url": "https://opensea.io/item/ethereum/0x1276d1e11aa5d2cc0854b936477f4d3bc88a5df1/2",
       "listed": false,
       "listing": null,
       "owners": {
@@ -399,7 +399,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-06-15T12:00:00+00:00",
       "is_1_of_1": true,
       "award_category": "mozvane_-_5_trillion_dacat_club_membership",
       "unclaimed_or_available": false,
@@ -414,10 +414,10 @@
     },
     {
       "token_id": "1",
-      "name": "CHADALAC666 - DACAT 6 TRILLION CLUB MEMBERSHIP",
-      "display_name": "CHADALAC666 - DACAT 6 TRILLION CLUB MEMBERSHIP",
+      "name": "DACAT 6 Trillion Club Membership",
+      "display_name": "DACAT 6 Trillion Club Membership",
       "local_slug": "dacat-6-trillion-club",
-      "excerpt": "Exclusive 1-of-1 NFT minted in recognition of CHADALAC666.ETH as a member of the DACAT 6 TRILLION CLUB. The DACAT 6 TRILLION CLUB is a recognition program crea…",
+      "excerpt": "DACAT 6 Trillion Club Membership — daCAT Badges series on Ethereum.",
       "image_url": "assets/badges/dacat-6-trillion-club.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat6trillion",
@@ -439,7 +439,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-06-15T12:00:00+00:00",
       "is_1_of_1": true,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -454,10 +454,10 @@
     },
     {
       "token_id": "1",
-      "name": "LOST THE GAME - DACAT 7 TRILLION CLUB MEMBERSHIP",
-      "display_name": "LOST THE GAME - DACAT 7 TRILLION CLUB MEMBERSHIP",
+      "name": "DACAT 7 Trillion Club Membership",
+      "display_name": "DACAT 7 Trillion Club Membership",
       "local_slug": "dacat-7-trillion-club",
-      "excerpt": "Exclusive 1-of-1 NFT minted in recognition of LOSTTHEGAME.ETH as a member of the DACAT 7 TRILLION CLUB. The DACAT 7 TRILLION CLUB is a recognition program crea…",
+      "excerpt": "DACAT 7 Trillion Club Membership — daCAT Badges series on Ethereum.",
       "image_url": "assets/badges/dacat-7-trillion-club.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat7trillion",
@@ -479,7 +479,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-06-15T12:00:00+00:00",
       "is_1_of_1": true,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -494,10 +494,10 @@
     },
     {
       "token_id": "2",
-      "name": "JEFF ADAMS - DACAT 8 TRILLION CLUB MEMBERSHIP",
-      "display_name": "JEFF ADAMS - DACAT 8 TRILLION CLUB MEMBERSHIP",
+      "name": "DACAT 8 Trillion Club Membership",
+      "display_name": "DACAT 8 Trillion Club Membership",
       "local_slug": "dacat-8-trillion-club",
-      "excerpt": "Exclusive 1-of-1 NFT minted in recognition of JEFFADAMS.ETH as a member of the DACAT 8 TRILLION CLUB. The DACAT 8 TRILLION CLUB is a recognition program create…",
+      "excerpt": "DACAT 8 Trillion Club Membership — daCAT Badges series on Ethereum.",
       "image_url": "assets/badges/dacat-8-trillion-club.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat8trillion",
@@ -527,7 +527,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-06-15T12:00:00+00:00",
       "is_1_of_1": true,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -542,10 +542,10 @@
     },
     {
       "token_id": "4",
-      "name": "SOUTH FLORIDA - DACAT 9 TRILLION CLUB MEMBERSHIP ",
-      "display_name": "SOUTH FLORIDA - DACAT 9 TRILLION CLUB MEMBERSHIP ",
+      "name": "DACAT 9 Trillion Club Membership",
+      "display_name": "DACAT 9 Trillion Club Membership",
       "local_slug": "dacat-9-trillion-club",
-      "excerpt": "Exclusive 1-of-1 NFT minted in recognition of SOUTH-FLORIDA.ETH as a member of the DACAT 9 TRILLION CLUB. The DACAT 9 TRILLION CLUB is a recognition program cr…",
+      "excerpt": "DACAT 9 Trillion Club Membership — daCAT Badges series on Ethereum.",
       "image_url": "assets/badges/dacat-9-trillion-club.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat9trillion",
@@ -583,7 +583,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-06-15T12:00:00+00:00",
       "is_1_of_1": true,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -598,10 +598,10 @@
     },
     {
       "token_id": "4",
-      "name": "DACAT STUDIOS - DACAT 10 TRILLION CLUB MEMBERSHIP",
-      "display_name": "DACAT STUDIOS - DACAT 10 TRILLION CLUB MEMBERSHIP",
+      "name": "DACAT 10 Trillion Club Membership",
+      "display_name": "DACAT 10 Trillion Club Membership",
       "local_slug": "dacat-10-trillion-club",
-      "excerpt": "Exclusive 1-of-1 NFT minted in recognition of DACATSTUDIOS.ETH as a member of the DACAT 10 TRILLION CLUB. The DACAT 10 TRILLION CLUB is an ultra-elite recognit…",
+      "excerpt": "DACAT 10 Trillion Club Membership — daCAT Badges series on Ethereum.",
       "image_url": "assets/badges/dacat-10-trillion-club.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat10trillion",
@@ -647,7 +647,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-06-15T12:00:00+00:00",
       "is_1_of_1": true,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -662,10 +662,10 @@
     },
     {
       "token_id": "1",
-      "name": "INSHIRO WETRUST - 500 BILLION CLUB MEMBERSHIP",
-      "display_name": "INSHIRO WETRUST - 500 BILLION CLUB MEMBERSHIP",
+      "name": "DACAT 500 Billion Club Membership",
+      "display_name": "DACAT 500 Billion Club Membership",
       "local_slug": "dacat-500-billion-club",
-      "excerpt": "The DACAT 500 BILLION CLUB recognizes community members who have accumulated and held at least 500 BILLION DACAT tokens in a single wallet. This NFT badge hono…",
+      "excerpt": "DACAT 500 Billion Club Membership — daCAT Badges series on Ethereum.",
       "image_url": "assets/badges/dacat-500-billion-club.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat500billion",
@@ -687,7 +687,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-06-15T12:00:00+00:00",
       "is_1_of_1": true,
       "award_category": "500_billion_club",
       "unclaimed_or_available": false,
@@ -701,10 +701,10 @@
     },
     {
       "token_id": "1",
-      "name": "COLLECTOR CAT - FIRST APPEARANCE",
-      "display_name": "COLLECTOR CAT - FIRST APPEARANCE",
+      "name": "DACAT World Collector Cat",
+      "display_name": "DACAT World Collector Cat",
       "local_slug": "dacat-world-collector-cat",
-      "excerpt": "Collector Cat makes his first appearance in the DACAT WORLD universe. A legendary explorer from the planet Cryptosphere, Collector Cat travels across the stars…",
+      "excerpt": "DACAT World Collector Cat — daCAT Badges series on Ethereum.",
       "image_url": "assets/badges/dacat-world-collector-cat.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat-world-collector-cat",
@@ -794,7 +794,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-06-15T12:00:00+00:00",
       "is_1_of_1": true,
       "award_category": "collector_cat",
       "unclaimed_or_available": false,
@@ -808,10 +808,10 @@
     },
     {
       "token_id": "1",
-      "name": "DACAT GEM - NOVA GREEN #1",
-      "display_name": "DACAT GEM - NOVA GREEN #1",
+      "name": "DACAT Gem Nova Green",
+      "display_name": "DACAT Gem Nova Green",
       "local_slug": "dacat-gem-nova-green",
-      "excerpt": "The DACAT COMMUNITY GEM – NOVA GREEN is a digital collectible created to recognize and celebrate members of the DACAT community. These gems may be freely distr…",
+      "excerpt": "DACAT Gem Nova Green — daCAT Badges series on Ethereum.",
       "image_url": "assets/badges/dacat-gem-nova-green.png",
       "media_type": "video",
       "opensea_url": "https://opensea.io/collection/dacat-gem-nova-green",
@@ -885,7 +885,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-06-15T12:00:00+00:00",
       "is_1_of_1": true,
       "award_category": "gem_nova_green",
       "unclaimed_or_available": false,
@@ -899,10 +899,10 @@
     },
     {
       "token_id": "4",
-      "name": "DaGATO 13 TRILLION DACAT AWARD MOTION NFT",
-      "display_name": "DaGATO 13 TRILLION DACAT AWARD MOTION NFT",
+      "name": "DaGATO Award Badge",
+      "display_name": "DaGATO Award Badge",
       "local_slug": "dagato-dacat-award-badges",
-      "excerpt": "Forged across the ages and honored among the most dedicated holders in the DACAT community, this custom 1-of-1 recognition badge celebrates DAGATO.ETH for hold…",
+      "excerpt": "DaGATO Award Badge — daCAT Badges series on Ethereum.",
       "image_url": "assets/badges/dagato-dacat-award-badges.png",
       "media_type": "video",
       "opensea_url": "https://opensea.io/collection/dagatoawards",
@@ -932,7 +932,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-06-15T12:00:00+00:00",
       "is_1_of_1": true,
       "award_category": "dagato_13_trillion_dacat_award_motion_nft",
       "unclaimed_or_available": false,
