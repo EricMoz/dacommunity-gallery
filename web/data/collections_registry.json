@@ -24,14 +24,17 @@
     },
     {
       "id": "badges",
-      "name": "Badges",
-      "status": "coming_soon",
+      "name": "daCAT Badges",
+      "status": "live",
       "chain": "ethereum",
       "contract": null,
       "opensea_slug": null,
       "route": "/badges/",
-      "data": null,
-      "features": ["preview_only"],
+      "data": {
+        "gallery": "badges_data.json",
+        "catalog": "badges_catalog.json"
+      },
+      "features": ["badges", "awards", "1of1", "gallery", "unclaimed"],
       "theme": {
         "accent": "#ffcc00",
         "accent_glow": "#ffd633",
