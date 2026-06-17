@@ -34,6 +34,7 @@ def resolve_local_badge_image(item: dict, root: Path) -> str:
 def slim_item(item: dict, root: Path) -> dict:
     # Mirror main slim + keep unique badge fields + subcats/tags for light filters/grouping
     img = resolve_local_badge_image(item, root)
+    orig_img = item.get("image_url") or item.get("opensea_image_url") or ""
     return {
         "token_id": item.get("token_id"),
         "name": item.get("name"),
@@ -43,6 +44,7 @@ def slim_item(item: dict, root: Path) -> dict:
         "image_url": img,
         "media_type": item.get("media_type", "image"),
         "opensea_url": item.get("opensea_url"),
+        "opensea_image_url": orig_img if orig_img.startswith("http") else None,
         "listed": item.get("listed", False),
         "listing": item.get("listing"),
         "owners": item.get("owners"),

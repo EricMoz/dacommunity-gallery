@@ -88,13 +88,6 @@ function getItemKey(item) {
   return item ? item.token_id : '';
 }
 
-function getItemKey(item) {
-  if (item.source_created_collection) {
-    return item.source_created_collection + '-' + item.token_id;
-  }
-  return item.token_id;
-}
-
 /* Browse labels (used for chips + resets). Extended for multi-col in Part 1. */
 var FILTER_LABELS = {
   all: "All",
@@ -562,6 +555,47 @@ function buildCollectorsFromIndex(idx) {
     });
 }
 
+function buildCollectorsFromBadgeItems(items) {
+  var byAddr = {};
+  (items || []).forEach(function (item) {
+    if (!item.source_created_collection) return; // badges only
+    var os = item.owners || {};
+    var list = os.holders || os.top_holders || [];
+    list.forEach(function (h) {
+      var a = (h.address || '').toLowerCase();
+      if (!a) return;
+      if (!byAddr[a]) {
+        byAddr[a] = {
+          address: h.address,
+          ens_name: null,
+          username: null,
+          unique_pieces: 0,
+          collection_quantity: 0
+        };
+      }
+      byAddr[a].collection_quantity += (h.quantity || 1);
+    });
+  });
+  // enrich ENS from walletIndex if available (many overlap)
+  Object.keys(byAddr).forEach(function (a) {
+    var e = walletIndex && walletIndex.by_address && walletIndex.by_address[a];
+    if (e) {
+      byAddr[a].ens_name = e.ens_name;
+      byAddr[a].username = e.username;
+    }
+  });
+  return Object.values(byAddr)
+    .map(function (e) {
+      // for badges, unique_pieces is number of different series owned
+      // but since one item per series, use collection_quantity as proxy, or count series
+      e.unique_pieces = e.collection_quantity; // simplistic, each series=1 for most
+      return e;
+    })
+    .sort(function (a, b) {
+      return b.collection_quantity - a.collection_quantity;
+    });
+}
+
 function formatMintDate(iso) {
   if (!iso) return "";
   var d = new Date(iso);
@@ -647,8 +681,11 @@ function displayExcerpt(item) {
 }
 
 function isVideoItem(item) {
+  if (!item) return false;
   if (item.media_type === "video") return true;
-  return /\.(mp4|mov|webm)(\?|$)/i.test(item.image_url || "");
+  if (/\.(mp4|mov|webm)(\?|$)/i.test(item.image_url || "")) return true;
+  if (/\.(mp4|mov|webm)(\?|$)/i.test(item.opensea_image_url || "")) return true;
+  return false;
 }
 
 function resolveMediaUrl(url) {
@@ -1037,7 +1074,11 @@ function clearCollectorFilters() {
   var colSel = $("#collection-select");
   if (search) search.value = "";
   if (sort) sort.value = "token_desc";
-  if (colSel) colSel.value = "all";
+  if (colSel) {
+    colSel.value = "all";
+    // dispatch to ensure data for all is loaded while keeping portfolio
+    colSel.dispatchEvent(new Event('change'));
+  }
   document.querySelectorAll(".filter").forEach(function (btn) {
     var on = btn.dataset.filter === "all";
     btn.classList.toggle("active", on);
@@ -1297,12 +1338,38 @@ function handleEscapeKey() {
 function applyCollectorView(address) {
   if (!address) return;
   var key = address.toLowerCase();
-  var entry = walletIndex && walletIndex.by_address && walletIndex.by_address[key];
   var meta = addressDisplayMeta(address);
   closeDetail();
   closeCollectorsModal();
   var input = $("#wallet-input");
   if (input) input.value = meta.lookupValue || meta.address;
+  // Always try synth from current items first (e.g. badges context) to show portfolio with owned from current view
+  var synthHoldings = buildHoldingsFromCurrentItems(key);
+  if (synthHoldings.length > 0) {
+    var m = (walletIndex && walletIndex.by_address && walletIndex.by_address[key]) || {};
+    var fEns = null, fUser = null;
+    (galleryData && galleryData.items || []).forEach(function (item) {
+      var list = (item.owners || {}).holders || (item.owners || {}).top_holders || [];
+      list.forEach(function (o) {
+        if ((o.address || "").toLowerCase() === key && o.ens_name) {
+          fEns = o.ens_name;
+          if (o.username) fUser = o.username;
+        }
+      });
+    });
+    var entry = {
+      address: key,
+      holdings: synthHoldings,
+      unique_pieces: synthHoldings.length,
+      collection_quantity: synthHoldings.length,
+      ens_name: fEns || m.ens_name || null,
+      username: fUser || m.username || null
+    };
+    renderWalletSuccess(entry, { scrollBehavior: "smooth" });
+    syncWalletShareUrl(key);
+    return;
+  }
+  var entry = walletIndex && walletIndex.by_address && walletIndex.by_address[key];
   if (entry) {
     renderWalletSuccess(entry, { scrollBehavior: "smooth" });
     syncWalletShareUrl(entry.address);
@@ -1894,7 +1961,8 @@ function buildHoldingsFromCurrentItems(address) {
         name: item.display_name || item.name,
         display_name: item.display_name || item.name,
         image_url: item.image_url,
-        opensea_url: item.opensea_url
+        opensea_url: item.opensea_url,
+        source_created_collection: item.source_created_collection
       });
     }
   });
@@ -1941,10 +2009,8 @@ function lookupWallet(identifier) {
   }
 
   if (!walletIndex || !walletIndex.by_address) {
-    return {
-      error: "Collector index is still loading. Try again in a moment.",
-      title: "Archive warming up",
-    };
+    // Kick off load in background for future calls / ENS; fall through to no-pieces if none.
+    loadWalletIndex().catch(function(){});
   }
 
   if (isEnsName(raw)) {
@@ -1959,7 +2025,7 @@ function lookupWallet(identifier) {
     };
   }
 
-  var entry = walletIndex.by_address[address];
+  var entry = walletIndex && walletIndex.by_address && walletIndex.by_address[address];
   if (!entry) {
     return {
       error: "This wallet has no pieces in the current snapshot (dacommunity or badges).",
@@ -1998,6 +2064,12 @@ async function renderWalletLookup(identifier, opts) {
   opts = opts || {};
   clearWalletResultHighlight();
   renderWalletState("loading");
+
+  // Always ensure wallet index is available (for ENS + cross lookup) before deciding errors.
+  // Synth path (badges owners etc) takes priority inside lookupWallet regardless.
+  if (!walletIndex) {
+    try { await loadWalletIndex(); } catch (e) { /* non-fatal */ }
+  }
 
   var lookup = lookupWallet(identifier);
 
@@ -2064,19 +2136,29 @@ function exploreCollector(address, highlightTokenId) {
   var key = address.toLowerCase();
   var entry = walletIndex && walletIndex.by_address && walletIndex.by_address[key];
   var explore = $("#collector-explore");
-  if (!entry && activeDetailTokenId) {
-    var piece = itemsById.get(activeDetailTokenId);
-    if (piece && holderRowForToken(piece, key)) {
+  if (!entry) {
+    // Prefer full synth from current loaded items (badges context, or mixed after "all" merge)
+    // so "view collector" / owner chips can show their actual owned pieces even for pure-badge holders.
+    var synth = buildHoldingsFromCurrentItems(key);
+    if (synth.length > 0) {
       entry = {
         address: key,
-        holdings: [
-          {
-            token_id: piece.token_id,
-            name: itemTitle(piece),
-            display_name: piece.display_name,
-          },
-        ],
+        holdings: synth,
       };
+    } else if (activeDetailTokenId) {
+      var piece = itemsById.get(activeDetailTokenId);
+      if (piece && holderRowForToken(piece, key)) {
+        entry = {
+          address: key,
+          holdings: [
+            {
+              token_id: piece.token_id,
+              name: itemTitle(piece),
+              display_name: piece.display_name,
+            },
+          ],
+        };
+      }
     }
   }
   if (!entry) {
@@ -2136,8 +2218,14 @@ function fillMediaSlot(slot, item, opts) {
   opts = opts || {};
   slot.innerHTML = "";
   var src = imgSrc(item);
+  // In portfolio/collector view, prefer the specific/personalized opensea image (e.g. video token 4 for dagato 13T)
+  // while generic grid/browse uses the local png series asset.
+  if (galleryCollectorView && item && item.opensea_image_url && /^https?:/i.test(item.opensea_image_url)) {
+    src = resolveMediaUrl(item.opensea_image_url);
+  }
   if (!src) return;
-  if (isVideoItem(item)) {
+  var effectiveVideo = isVideoItem(item) || /\.(mp4|mov|webm)(\?|$)/i.test(src || "");
+  if (effectiveVideo) {
     var v = document.createElement("video");
     v.className = "thumb-media";
     v.src = src;
@@ -2361,6 +2449,10 @@ function getFilteredItems() {
       var holders = owners.holders || owners.top_holders || [];
       for (var j=0; j<holders.length; j++) {
         if ((holders[j].address || "").toLowerCase() === addr) return true;
+      }
+      if (i.source_created_collection) {
+        // badges: only trust owner match (token_ids collide across series, rep tokens not unique)
+        return false;
       }
       // Fallback tid match for main dacommunity style
       var tid = String(i.token_id);
@@ -3046,6 +3138,8 @@ function bindUi() {
           }
           dataSource = (galleryData.source || "").indexOf("badges") === 0 ? "catalog" : "full";
           indexItems(galleryData);
+          collectorsList = buildCollectorsFromBadgeItems(galleryData.items);
+          updateCollectorsButton();
           renderStats(galleryData.collection);
           renderDataFreshness();
           refreshView();
@@ -3290,9 +3384,17 @@ async function init() {
 
     galleryData = await loadCatalogFirst();
     dataSource = galleryData.source === "gallery_catalog" ? "catalog" : "full";
+    if (activeCollection === "badges") {
+      collectorsList = buildCollectorsFromBadgeItems(galleryData.items);
+      updateCollectorsButton();
+    }
     bootGallery(galleryData);
     adaptHeaderForCollection();
     applyCollectionUI();
+    if (activeCollection === 'badges') {
+      collectorsList = buildCollectorsFromBadgeItems(galleryData.items);
+      updateCollectorsButton();
+    }
 
     // For "all collections", merge in badges items so both are visible in the search grid when no collection filter
     if (!activeCollection || activeCollection === "all") {

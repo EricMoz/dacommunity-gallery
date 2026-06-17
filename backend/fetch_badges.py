@@ -93,10 +93,15 @@ SLUG_TO_LOCAL_ASSET = {
 }
 
 def load_api_key() -> str:
-    load_dotenv(ROOT / "backend" / ".env")
+    # Load from backend/.env if present, but also honor process env var
+    # (so $env:OPENSEA_API_KEY=... or export works directly)
+    try:
+        load_dotenv(ROOT / "backend" / ".env")
+    except Exception:
+        pass
     key = os.getenv("OPENSEA_API_KEY", "").strip()
     if not key:
-        raise ValueError("OPENSEA_API_KEY not set in backend/.env")
+        raise ValueError("OPENSEA_API_KEY not set (put in backend/.env or set as environment variable)")
     return key
 
 def fetch_mint_events_by_wallet(api_key: str, wallet: str, after: str, chain: str = "ethereum", limit: int = 200, collection_slug: str = None) -> list[dict]:
@@ -167,6 +172,32 @@ def get_collection_stats(slug: str, api_key: str) -> dict:
     if resp.status_code == 200:
         return resp.json()
     return {}
+
+def get_collection_holders(slug: str, api_key: str) -> list[dict]:
+    """Efficiently get all holders for a badge collection slug using paginated /holders.
+    Much faster than per-NFT owners calls (avoids hundreds of requests).
+    Supports both 'next' and 'cursor' pagination keys used by OpenSea.
+    """
+    headers = {"X-API-KEY": api_key}
+    holders: list[dict] = []
+    cursor = None
+    while True:
+        params: dict = {"limit": 100}
+        if cursor:
+            # Try both common keys; OpenSea varies by endpoint/collection
+            params["next"] = cursor
+            params["cursor"] = cursor
+        resp = requests.get(f"https://api.opensea.io/api/v2/collections/{slug}/holders", headers=headers, params=params, timeout=30)
+        if resp.status_code != 200:
+            print(f"  Note: holders fetch for {slug} returned {resp.status_code}")
+            break
+        data = resp.json()
+        holders.extend(data.get("holders") or [])
+        # Prefer next, fall back to cursor
+        cursor = data.get("next") or data.get("cursor")
+        if not cursor:
+            break
+    return holders
 
 def is_known_pattern(name: str, collection: str) -> bool:
     text = (name + " " + collection).lower()
@@ -433,35 +464,59 @@ def main():
             nft = next((n for n in nfts if str(n.get("identifier") or n.get("token_id") or "") == "3"), nfts[0])
         else:
             nft = nfts[0]
+
+        # Special handling for dagatoawards: treat as 13 Trillion Club 1:1 like other trillions.
+        # Generic view (grid/search) uses the local png asset on file (based on token 3 visual).
+        # Portfolio/collector view will show the specific video NFT (token 4).
+        # Pipeline uses per-token owners so only dagato is owner, edition 1.
+        use_specific_token = None
+        force_1of1 = False
+        if slug == "dagatoawards":
+            use_specific_token = "4"  # the video/personalized 1:1 for portfolio
+            force_1of1 = True
+
+        if use_specific_token:
+            specific_nft = next((n for n in nfts if str(n.get("identifier") or n.get("token_id") or "") == use_specific_token), None)
+            if specific_nft:
+                nft = specific_nft
+
         token_id = str(nft.get("identifier") or nft.get("token_id") or "1")
         contract = nft.get("contract")
         if isinstance(contract, dict):
             contract = contract.get("address", "")
         elif not isinstance(contract, str):
             contract = ""
+        if not contract:
+            # try alternate fields returned by some collection responses
+            contract = (nft.get("asset_contract") or {}).get("address") or nft.get("contract_address") or ""
         name = nft.get("name") or f"{slug} #{token_id}"
+        if not contract or not token_id:
+            print(f"  Skipping {slug} item - missing contract or token id")
+            continue
+
+        # dagatoawards: force token_id "4" for the specific NFT shown in portfolio, 1:1
+        if slug == "dagatoawards":
+            token_id = "4"
+            display_name = "13 TRILLION CLUB MEMBERSHIP"
+            category = "trillion_club"
+            force_1of1 = True
         desc = clean_description(nft.get("description") or "")
         image = nft.get("image_url") or nft.get("animation_url") or ""
         media_type = "video" if (image or "").lower().endswith((".mp4", ".mov", ".webm")) else "image"
         # Prefer exact first mint event timestamp (targeted per rep token)
         created_at = get_first_mint_timestamp("ethereum", contract, token_id, api_key) or nft.get("created_at") or nft.get("minted_at")
 
-        # aggregate owners from all nfts in this collection (for accurate holder count)
-        all_owners = []
-        for n in nfts:
-            t_id = str(n.get("identifier") or n.get("token_id") or "")
-            c = n.get("contract")
-            if isinstance(c, dict):
-                c = c.get("address", "")
-            elif not isinstance(c, str):
-                c = ""
-            if c and t_id:
-                try:
-                    os = client.get_nft_owners(t_id, chain="ethereum", contract=c)
-                    all_owners.extend(os)
-                except:
-                    pass
-        owner_stats = summarize_owners(all_owners)
+        # aggregate owners from collection holders (efficient, avoids N per-nft calls)
+        if slug == "dagatoawards":
+            # per-token owners for the specific 1:1 (token 4) so only dagato picked as owner
+            owners_list = get_owners("ethereum", contract, token_id, api_key)
+            non_issuer_holders = [o for o in owners_list if (o.get("address") or "").lower() != ISSUER_WALLET]
+            owner_stats = summarize_owners(non_issuer_holders)
+        else:
+            all_holders = get_collection_holders(slug, api_key)
+            # filter issuer
+            non_issuer_holders = [h for h in all_holders if (h.get("address") or "").lower() != ISSUER_WALLET]
+            owner_stats = summarize_owners(non_issuer_holders)
 
         # Resolve ENS for owners (like main dacommunity) so collector view shows ENS names
         for holder_list in (owner_stats.get("holders", []), owner_stats.get("top_holders", [])):
@@ -476,14 +531,38 @@ def main():
         # supply / 1of1 from first or total
         supply = len(nfts) or 1
         is_1of1 = supply <= 5 or any("1/1" in str(t).lower() or "one of one" in str(t).lower() for t in nft.get("traits", []))
+        if slug == "dagatoawards":
+            supply = 1
+            is_1of1 = True
 
         category = get_sub_category("", name).lower().replace(" ", "_")
         unclaimed = "unclaimed" in name.lower() or "available" in (desc or "").lower()
         mystery = not is_known_pattern(name, slug)
 
-        # Force generic for search/light view
-        base = name.split(" - ", 1)[-1].strip() if " - " in name else name
-        display_name = base
+        # Use full collection name from dacatworld profile for generic search titles
+        # (full titles for series/copies, no personal or abbreviated like "first Round")
+        title_map = {
+            "dacatrookie2026": "DACAT ROOKIE CARD 2026",
+            "dacat1trillionclub": "DACAT 1 TRILLION CLUB",
+            "dacat2trillion": "DACAT 2 TRILLION CLUB",
+            "dacat3trillion": "DACAT 3 TRILLION CLUB",
+            "dacat4trillion": "DACAT 4 TRILLION CLUB",
+            "dacat5trillion": "DACAT 5 TRILLION CLUB",
+            "dacat6trillion": "DACAT 6 TRILLION CLUB",
+            "dacat7trillion": "DACAT 7 TRILLION CLUB",
+            "dacat8trillion": "DACAT 8 TRILLION CLUB",
+            "dacat9trillion": "DACAT 9 TRILLION CLUB",
+            "dacat10trillion": "DACAT 10 TRILLION CLUB",
+            "dacat500billion": "DACAT 500 BILLION CLUB",
+            "dacat-world-collector-cat": "DACAT WORLD - COLLECTOR CAT",
+            "dacat-gem-nova-green": "DACAT GEM - NOVA GREEN",
+            "dagatoawards": "13 TRILLION CLUB MEMBERSHIP",
+        }
+        display_name = title_map.get(slug, name)
+        if slug == "dagatoawards":
+            name = "13 TRILLION CLUB MEMBERSHIP"
+            display_name = "13 TRILLION CLUB MEMBERSHIP"
+            category = "trillion_club"
         awarded_for = category.replace("_", " ").title()
 
         local_slug = SLUG_TO_LOCAL_ASSET.get(slug, slug + "-" + token_id)
