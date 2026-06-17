@@ -34,7 +34,7 @@
         "gallery": "badges_data.json",
         "catalog": "badges_catalog.json"
       },
-      "features": ["gallery", "collector_view"],
+      "features": ["gallery", "collector_view", "wallet_lookup"],
       "theme": {
         "accent": "#ffcc00",
         "surface": "light_archive",

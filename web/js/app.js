@@ -677,10 +677,25 @@ function addressDisplayMeta(address) {
   var key = address.toLowerCase();
   var full = address;
   var entry = walletIndex && walletIndex.by_address && walletIndex.by_address[key];
-  var lookupValue = (entry && entry.ens_name) || full;
-  var display = entry
-    ? entry.ens_name || entry.username || shortenAddress(full)
-    : shortenAddress(full);
+  // Also check attached ens_name from badge owners data (for pure badge holders or after fetch with ENS)
+  var fromDataEns = null;
+  if (galleryData && Array.isArray(galleryData.items)) {
+    for (var it of galleryData.items) {
+      var os = it.owners || {};
+      for (var kk of ["holders", "top_holders"]) {
+        for (var o of (os[kk] || [])) {
+          if ((o.address || "").toLowerCase() === key && o.ens_name) {
+            fromDataEns = o.ens_name;
+            break;
+          }
+        }
+      }
+    }
+  }
+  var ens = (entry && entry.ens_name) || fromDataEns;
+  var username = entry && entry.username;
+  var lookupValue = ens || full;
+  var display = ens || username || shortenAddress(full);
   return {
     address: key,
     display: display,
@@ -1900,14 +1915,27 @@ function lookupWallet(identifier) {
   // This works even if walletIndex is not loaded for this view.
   var synth = buildHoldingsFromCurrentItems(address);
   if (synth.length > 0) {
+    var meta = (walletIndex && walletIndex.by_address && walletIndex.by_address[address]) || {};
+    // Also pick ens directly from the badge item owners (populated by fetch or enrich)
+    var foundEns = null;
+    var foundUser = null;
+    (galleryData && galleryData.items || []).forEach(function (item) {
+      var list = (item.owners || {}).holders || (item.owners || {}).top_holders || [];
+      list.forEach(function (o) {
+        if ((o.address || "").toLowerCase() === address && o.ens_name) {
+          foundEns = o.ens_name;
+          if (o.username) foundUser = o.username;
+        }
+      });
+    });
     return {
       entry: {
         address: address,
         holdings: synth,
         unique_pieces: synth.length,
         collection_quantity: synth.length,
-        ens_name: null,
-        username: null
+        ens_name: foundEns || meta.ens_name || null,
+        username: foundUser || meta.username || null
       }
     };
   }
@@ -2326,14 +2354,17 @@ function getFilteredItems() {
     var addr = (galleryCollectorView.address || "").toLowerCase();
     var tidSet = galleryCollectorView.tokenIds || {};
     items = items.filter(function (i) {
-      var tid = String(i.token_id);
-      if (tidSet[tid]) return true;
-      // Also include via owners data (for badges + cross-collection in all view)
+      // Prioritize exact owner match from the item's owners list. This is critical for badges
+      // (where token_id is a rep id and not unique/ownership token) to ensure only truly owned
+      // series are shown, matching OpenSea data.
       var owners = (i.owners || {});
       var holders = owners.holders || owners.top_holders || [];
       for (var j=0; j<holders.length; j++) {
         if ((holders[j].address || "").toLowerCase() === addr) return true;
       }
+      // Fallback tid match for main dacommunity style
+      var tid = String(i.token_id);
+      if (tidSet[tid]) return true;
       return false;
     });
   }

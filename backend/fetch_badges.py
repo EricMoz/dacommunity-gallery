@@ -204,6 +204,27 @@ def summarize_owners(owners: list[dict]) -> dict:
         "holders": holder_rows,
     }
 
+
+def get_first_mint_timestamp(chain: str, contract: str, token_id: str, api_key: str) -> str | None:
+    """Fetch the exact mint event timestamp for this specific token (targeted, no broad scan).
+    This gives accurate first-minted date for the representative NFT without clogging the pipeline.
+    Falls back to NFT created_at if events not available.
+    """
+    headers = {"X-API-KEY": api_key}
+    url = f"https://api.opensea.io/api/v2/events/chain/{chain}/contract/{contract}/nfts/{token_id}"
+    params = {"event_type": "mint", "limit": 1}
+    try:
+        resp = requests.get(url, headers=headers, params=params, timeout=30)
+        if resp.status_code == 200:
+            events = resp.json().get("asset_events", [])
+            if events:
+                ts = events[0].get("event_timestamp")
+                if ts:
+                    return datetime.fromtimestamp(int(ts), tz=timezone.utc).isoformat()
+    except Exception as e:
+        print(f"  Note: could not fetch mint event for {token_id} ({e})")
+    return None
+
 def get_sub_category(award_cat: str, name: str) -> str:
     """Compute sub_category for search dropdown filters and unique tags.
     Rules based on data:
@@ -408,7 +429,8 @@ def main():
             continue
         # take first for name/image etc (series rep), but for rookie use the specific token 1 to match bootstrap first mint
         if slug == "dacatrookie2026":
-            nft = next((n for n in nfts if str(n.get("identifier") or n.get("token_id") or "") == "1"), nfts[0])
+            # Use the actual first mint token for rookie (token 3 per validation)
+            nft = next((n for n in nfts if str(n.get("identifier") or n.get("token_id") or "") == "3"), nfts[0])
         else:
             nft = nfts[0]
         token_id = str(nft.get("identifier") or nft.get("token_id") or "1")
@@ -421,7 +443,8 @@ def main():
         desc = clean_description(nft.get("description") or "")
         image = nft.get("image_url") or nft.get("animation_url") or ""
         media_type = "video" if (image or "").lower().endswith((".mp4", ".mov", ".webm")) else "image"
-        created_at = nft.get("created_at") or nft.get("minted_at")
+        # Prefer exact first mint event timestamp (targeted per rep token)
+        created_at = get_first_mint_timestamp("ethereum", contract, token_id, api_key) or nft.get("created_at") or nft.get("minted_at")
 
         # aggregate owners from all nfts in this collection (for accurate holder count)
         all_owners = []
@@ -439,6 +462,16 @@ def main():
                 except:
                     pass
         owner_stats = summarize_owners(all_owners)
+
+        # Resolve ENS for owners (like main dacommunity) so collector view shows ENS names
+        for holder_list in (owner_stats.get("holders", []), owner_stats.get("top_holders", [])):
+            for h in holder_list:
+                try:
+                    res = client.resolve_account(h["address"])
+                    if res.get("ens_name"):
+                        h["ens_name"] = res["ens_name"]
+                except Exception:
+                    pass
 
         # supply / 1of1 from first or total
         supply = len(nfts) or 1
