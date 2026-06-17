@@ -63,6 +63,18 @@ jobs:
           cd backend
           python fetch_gallery_data.py
 
+      - name: Fetch badges (for owners/dates)
+        if: success()
+        env:
+          OPENSEA_API_KEY: ${{ secrets.OPENSEA_API_KEY }}
+        run: |
+          set -e
+          cd backend
+          python fetch_badges.py
+          # promote latest proposed
+          cp review/$(ls review/badges_proposed_*.json | tail -1 | xargs basename) ../web/data/badges_data.json
+          python build_badges_catalog.py
+
       - name: Record refresh failure
         if: failure()
         run: |
@@ -88,7 +100,7 @@ jobs:
           set -e
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add web/data/gallery_data.json web/data/gallery_catalog.json web/data/wallet_index.json web/data/gallery_meta.json
+          git add web/data/gallery_data.json web/data/gallery_catalog.json web/data/wallet_index.json web/data/gallery_meta.json web/data/badges_data.json web/data/badges_catalog.json
           if git diff --staged --quiet; then
             echo "No JSON changes — OpenSea data already up to date."
             echo "changed=false" >> $GITHUB_OUTPUT

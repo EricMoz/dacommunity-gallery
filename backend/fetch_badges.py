@@ -42,7 +42,7 @@ ISSUER_WALLET = "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee".lower()
 # Format: date only "YYYY-MM-DD" or full ISO.
 # IMPORTANT for newer wallets with lots of other creations: set this to just before the first badge creation date (e.g. "2026-06-01").
 # Broad cutoffs pull thousands of unrelated mints by the wallet, causing slow runs + rate limits.
-CUTOFF_DATE = "2026-06-01"  # Edit to match when your badges actually started. Use recent date for "newer wallet" scenario.
+CUTOFF_DATE = "2026-05-20"  # Edit to match when your badges actually started (~3 weeks before 2026-06-17, first ones ~May 27). Use recent date for "newer wallet" scenario.
 
 # Reference patterns from the user's created tab table (for award_category + mystery detection)
 # These are used to seed categories and to decide if something is "known good" or mystery.

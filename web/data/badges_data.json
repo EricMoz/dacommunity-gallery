@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-17T13:21:59.317008+00:00",
+  "generated_at": "2026-06-17T19:40:56.530545+00:00",
   "source": "mints_created_by_wallet_on_ethereum_after_cutoff",
   "cutoff_date": "2026-06-01",
   "collection": {
@@ -17,14 +17,14 @@
   "items": [
     {
       "token_id": "3",
-      "name": "DACAT Rookie Card 2026",
-      "display_name": "DACAT Rookie Card 2026",
+      "name": "DACAT ROOKIE CARD 2026 - FIRST ROUND",
+      "display_name": "FIRST ROUND",
       "local_slug": "dacat-rookie-card-2026",
-      "description": "DACAT Rookie Card 2026 \u2014 daCAT Badges series on Ethereum.",
-      "excerpt": "DACAT Rookie Card 2026 \u2014 daCAT Badges series on Ethereum.",
+      "description": "The 2026 DACAT ROOKIE CARD is a limited-edition community NFT created to welcome new members to DACAT. Only 333 First Round DACAT Rookie Cards will be issued for 2026. Additional subsequent rookie  rounds may be introduced in the future.\n\nThese cards are awarded by members of the DACAT Community to individuals who show an interest in building, creating, collecting, participating in, or contributing to the growth of DACAT.\n\nThe Rookie Card is a symbol of recognition and community participation. It is not a purchase, investment contract, security, or promise of future rewards, compensation, or financial benefit.\n\nRookie Card holders may be considered for future community activities, events, contests, recognition programs, and Rookie of the Year initiatives as determined by community members. Participation in any future activity, program, or recognition is not guaranteed.\n\nWelcome to DACAT!\n\nWe hope you have an amazing 2026 rookie season and go on to become a true DACAT LEGEND.\n\nhttps://www.dacatworld.com\n\nhttps://www.dacat.fun\n\nVisit the DACAT WORLD store:\nhttps://dacat.store",
+      "excerpt": "The 2026 DACAT ROOKIE CARD is a limited-edition community NFT created to welcome new members to DACAT. Only 333 First Round DACAT Rookie Cards will be issued f…",
       "image_url": "https://i2c.seadn.io/ethereum/0x776160fee93ea8727b2c2db360599f33977e93f1/794e820d62ad8d10e5b80409141c4d/dd794e820d62ad8d10e5b80409141c4d.png",
       "media_type": "image",
-      "opensea_url": "https://opensea.io/item/ethereum/0x776160fee93ea8727b2c2db360599f33977e93f1/3",
+      "opensea_url": "https://opensea.io/collection/dacatrookie2026",
       "traits": [],
       "listed": false,
       "listing": null,
@@ -52,7 +52,7 @@
           }
         ]
       },
-      "minted_at": "2026-06-15T12:00:00+00:00",
+      "minted_at": "2026-06-13T22:52:23+00:00",
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "rookie_card_2026",
@@ -67,14 +67,14 @@
     },
     {
       "token_id": "25",
-      "name": "DACAT 1 Trillion Club Membership",
-      "display_name": "DACAT 1 Trillion Club Membership",
+      "name": "DATRAIL CAT - DACAT 1 TRILLION CLUB MEMBERSHIP",
+      "display_name": "DACAT 1 TRILLION CLUB MEMBERSHIP",
       "local_slug": "dacat-1-trillion-club",
-      "description": "DACAT 1 Trillion Club Membership \u2014 daCAT Badges series on Ethereum.",
-      "excerpt": "DACAT 1 Trillion Club Membership \u2014 daCAT Badges series on Ethereum.",
+      "description": "Exclusive 1 of 1 NFT minted to honor DATRAILCAT.ETH into the DACAT 1 TRILLION CLUB\n\nThe DACAT 1 TRILLION CLUB is an elite NFT membership collection created to recognize the legendary diamond handed holders of at least 1,000,000,000,000 DaCAT tokens or more in a single ENS ETH wallet.\n\nEach NFT serves as a digital badge of conviction, loyalty, and belief in the future of the DACAT UNIVERSE and community. Built for the earliest and strongest supporters, the collection celebrates those bold enough to hold through the early days and help build something bigger than a token — a decentralized entertainment movement powered by creators, collectors, and community.\n\nHolding a DACAT 1 TRILLION CLUB NFT represents:\n\n- Membership in one of the highest-tier DaCAT holder groups\n\n- Recognition as an early supporter of the DACAT ecosystem\n\n- A collectible piece of DACAT history\n\n- Potential access to future community events, rewards, and recognition opportunities\n\n- Proof of commitment to the vision of BUILD YOUR WORLD WITH DACAT\n\nDACAT TOKEN was launched on January 23, 2024\n\nCelebrate DACAT DAY on March 3, 2033\n\nWhere will you be on 3-3-33\n\nhttps://www.dacat.fun\n\nhttps://www.dacatworld.com",
+      "excerpt": "Exclusive 1 of 1 NFT minted to honor DATRAILCAT.ETH into the DACAT 1 TRILLION CLUB The DACAT 1 TRILLION CLUB is an elite NFT membership collection created to r…",
       "image_url": "https://i2c.seadn.io/ethereum/0x0b5be1e2b68467afa8c371576f47b27e50f2b14f/d62af7953a0c8afb20cedcb53bd9aa/8fd62af7953a0c8afb20cedcb53bd9aa.png",
       "media_type": "image",
-      "opensea_url": "https://opensea.io/item/ethereum/0x0b5be1e2b68467afa8c371576f47b27e50f2b14f/25",
+      "opensea_url": "https://opensea.io/collection/dacat1trillionclub",
       "traits": [],
       "listed": false,
       "listing": null,
@@ -88,7 +88,8 @@
           },
           {
             "address": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "elons-cat.eth"
           },
           {
             "address": "0x1fc100b151a1ffa55d41a134a1a826a242d9c7c9",
@@ -96,11 +97,13 @@
           },
           {
             "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dasheesh.eth"
           },
           {
             "address": "0x4ff3ba0c7b39f57fc934c014e8c796f1efb44043",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "chadalac666.eth"
           }
         ],
         "holders": [
@@ -110,7 +113,8 @@
           },
           {
             "address": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "elons-cat.eth"
           },
           {
             "address": "0x1fc100b151a1ffa55d41a134a1a826a242d9c7c9",
@@ -118,63 +122,78 @@
           },
           {
             "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dasheesh.eth"
           },
           {
             "address": "0x4ff3ba0c7b39f57fc934c014e8c796f1efb44043",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "chadalac666.eth"
           },
           {
             "address": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "warriorpr.eth"
           },
           {
             "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dacatchronicles.eth"
           },
           {
             "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dabaker.eth"
           },
           {
             "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "jeffadams.eth"
           },
           {
             "address": "0xe597a25c77317b361636270251dc53d36491a11d",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "mrcryptonist.eth"
           },
           {
             "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "south-florida.eth"
           },
           {
             "address": "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dabronk.eth"
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dabeezy.eth"
           },
           {
             "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dbcrypto.eth"
           },
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "kingsi.eth"
           },
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "lostthegame.eth"
           },
           {
             "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "cryptlos.eth"
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "mozvane.eth"
           },
           {
             "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
@@ -194,19 +213,22 @@
           },
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dagato.eth"
           },
           {
             "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "grumpyx.eth"
           },
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dacatstudios.eth"
           }
         ]
       },
-      "minted_at": "2026-06-15T12:00:00+00:00",
+      "minted_at": "2026-05-27T03:46:23+00:00",
       "is_1_of_1": false,
       "edition_size": 25,
       "award_category": "trillion_club",
@@ -221,11 +243,11 @@
     },
     {
       "token_id": "4",
-      "name": "DACAT 2 Trillion Club Membership",
-      "display_name": "DACAT 2 Trillion Club Membership",
+      "name": "WARRIOR PR - DACAT 2 TRILLION CLUB MEMBERSHIP",
+      "display_name": "DACAT 2 TRILLION CLUB MEMBERSHIP",
       "local_slug": "dacat-2-trillion-club",
-      "description": "DACAT 2 Trillion Club Membership \u2014 daCAT Badges series on Ethereum.",
-      "excerpt": "DACAT 2 Trillion Club Membership \u2014 daCAT Badges series on Ethereum.",
+      "description": "Exclusive 1-of-1 NFT minted in recognition of WARRIORPR.ETH as a member of the DACAT 2 TRILLION CLUB.\n\nThe DACAT 2 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community. This exclusive digital badge commemorates ownership of at least 2,000,000,000,000 DACAT tokens in a single ENS Ethereum wallet and serves as a symbol of extraordinary commitment to the DACAT vision. Representing one of the highest membership tiers within the ecosystem, the 2 TRILLION CLUB recognizes those who have demonstrated exceptional belief in the future of DACAT and the decentralized creator movement.\n\nMore than a collectible, this badge stands as a permanent mark of support, loyalty, and participation in helping build a community-powered entertainment universe where creators, collectors, and supporters can Build Their World With DACAT.\n\nIf this NFT badge is held in an ENS Ethereum wallet together with the accompanying 2 Trillion DACAT Tokens, the holder may be eligible for future recognition initiatives, community acknowledgements, or other opportunities that may be created and voluntarily provided by members or supporters of the DACAT community.\n\nThis NFT is issued solely as a commemorative recognition badge. Ownership of this NFT does not create any contractual rights, ownership interests, revenue-sharing rights, investment rights, or entitlement to compensation of any kind. Any future recognition, benefits, or acknowledgements are entirely discretionary and are not guaranteed, promised, or obligated by the creator, issuer, or community\n\nhttps://www.dacatworld.com\n\nhttps://www.dacat.fun",
+      "excerpt": "Exclusive 1-of-1 NFT minted in recognition of WARRIORPR.ETH as a member of the DACAT 2 TRILLION CLUB. The DACAT 2 TRILLION CLUB is a recognition program create…",
       "image_url": "https://i2c.seadn.io/ethereum/0x775d54a410b9aaee2dfae6645703a2af861537ab/80be6d2af66f3846a58dcf96fa7bdc/b580be6d2af66f3846a58dcf96fa7bdc.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat2trillion",
@@ -238,41 +260,49 @@
         "top_holders": [
           {
             "address": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "warriorpr.eth"
           },
           {
             "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dacatchronicles.eth"
           },
           {
             "address": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "elons-cat.eth"
           },
           {
             "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dasheesh.eth"
           }
         ],
         "holders": [
           {
             "address": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "warriorpr.eth"
           },
           {
             "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dacatchronicles.eth"
           },
           {
             "address": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "elons-cat.eth"
           },
           {
             "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dasheesh.eth"
           }
         ]
       },
-      "minted_at": "2026-06-15T12:00:00+00:00",
+      "minted_at": "2026-05-29T00:27:23+00:00",
       "is_1_of_1": true,
       "edition_size": 4,
       "award_category": "trillion_club",
@@ -288,11 +318,11 @@
     },
     {
       "token_id": "1",
-      "name": "DACAT 3 Trillion Club Membership",
-      "display_name": "DACAT 3 Trillion Club Membership",
+      "name": "DATRAIL CAT - DACAT 3 TRILLION CLUB MEMBERSHIP",
+      "display_name": "DACAT 3 TRILLION CLUB MEMBERSHIP",
       "local_slug": "dacat-3-trillion-club",
-      "description": "DACAT 3 Trillion Club Membership \u2014 daCAT Badges series on Ethereum.",
-      "excerpt": "DACAT 3 Trillion Club Membership \u2014 daCAT Badges series on Ethereum.",
+      "description": "Exclusive 1-of-1 NFT minted in recognition of DATRAILCAT.ETH as a member of the DACAT 3 TRILLION CLUB.\n\nThe DACAT 3 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community. This exclusive digital badge commemorates ownership of at least 3,000,000,000,000 DACAT tokens in a single ENS Ethereum wallet and serves as a symbol of extraordinary commitment to the DACAT vision. Representing one of the highest membership tiers within the ecosystem, the 3 TRILLION CLUB recognizes those who have demonstrated exceptional belief in the future of DACAT and the decentralized creator movement.\n\nMore than a collectible, this badge stands as a permanent mark of support, loyalty, and participation in helping build a community-powered entertainment universe where creators, collectors, and supporters can Build Their World With DACAT.\n\nIf this NFT badge is held in an ENS Ethereum wallet together with the accompanying 3 Trillion DACAT Tokens, the holder may be eligible for future recognition initiatives, community acknowledgements, or other opportunities that may be created and voluntarily provided by members or supporters of the DACAT community.\n\nThis NFT is issued solely as a commemorative recognition badge. Ownership of this NFT does not create any contractual rights, ownership interests, revenue-sharing rights, investment rights, or entitlement to compensation of any kind. Any future recognition, benefits, or acknowledgements are entirely discretionary and are not guaranteed, promised, or obligated by the creator, issuer, or community\n\nThe extra 3,333 on the badge total is an acknowledgment of DACAT DAY ON 3-3-33 March 3, 2033\n\nhttps://www.dacatworld.com\n\nhttps://www.dacat.fun",
+      "excerpt": "Exclusive 1-of-1 NFT minted in recognition of DATRAILCAT.ETH as a member of the DACAT 3 TRILLION CLUB. The DACAT 3 TRILLION CLUB is a recognition program creat…",
       "image_url": "https://i2c.seadn.io/ethereum/0xf67a808939d7df84b85271118bf99763ca010009/86d9fa5d4f6d3c817c5c42e7251d26/c686d9fa5d4f6d3c817c5c42e7251d26.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat3trillion",
@@ -315,7 +345,7 @@
           }
         ]
       },
-      "minted_at": "2026-06-15T12:00:00+00:00",
+      "minted_at": "2026-05-29T03:11:35+00:00",
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "trillion_club",
@@ -331,11 +361,11 @@
     },
     {
       "token_id": "2",
-      "name": "DACAT 4 Trillion Club Membership",
-      "display_name": "DACAT 4 Trillion Club Membership",
+      "name": "DABEEZY - DACAT 4 TRILLION CLUB MEMBERSHIP",
+      "display_name": "DACAT 4 TRILLION CLUB MEMBERSHIP",
       "local_slug": "dacat-4-trillion-club",
-      "description": "DACAT 4 Trillion Club Membership \u2014 daCAT Badges series on Ethereum.",
-      "excerpt": "DACAT 4 Trillion Club Membership \u2014 daCAT Badges series on Ethereum.",
+      "description": "Exclusive 1-of-1 NFT minted in recognition of DABEEZY.ETH as a member of the DACAT 4 TRILLION CLUB.\n\nThe DACAT 4 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community. This exclusive digital badge commemorates ownership of at least 4,000,000,000,000 DACAT tokens in a single ENS Ethereum wallet and serves as a symbol of extraordinary commitment to the DACAT vision. Representing one of the highest membership tiers within the ecosystem, the 4 TRILLION CLUB recognizes those who have demonstrated exceptional belief in the future of DACAT and the decentralized creator movement.\n\nMore than a collectible, this badge stands as a permanent mark of support, loyalty, and participation in helping build a community-powered entertainment universe where creators, collectors, and supporters can Build Their World With DACAT.\n\nIf this NFT badge is held in an ENS Ethereum wallet together with the accompanying 4 Trillion DACAT Tokens, the holder may be eligible for future recognition initiatives, community acknowledgements, or other opportunities that may be created and voluntarily provided by members or supporters of the DACAT community.\n\nThis NFT is issued solely as a commemorative recognition badge. Ownership of this NFT does not create any contractual rights, ownership interests, revenue-sharing rights, investment rights, or entitlement to compensation of any kind. Any future recognition, benefits, or acknowledgements are entirely discretionary and are not guaranteed, promised, or obligated by the creator, issuer, or community. \n\nhttps://www.dacatworld.com\n\nhttps://www.dacat.fun",
+      "excerpt": "Exclusive 1-of-1 NFT minted in recognition of DABEEZY.ETH as a member of the DACAT 4 TRILLION CLUB. The DACAT 4 TRILLION CLUB is a recognition program created…",
       "image_url": "https://i2c.seadn.io/ethereum/0x22f1c7281f0f6f5bcebe9cc94285f9409c0661e6/715eda9296fdd733ce65179b71b345/6b715eda9296fdd733ce65179b71b345.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat4trillion",
@@ -348,25 +378,29 @@
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dabeezy.eth"
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "mozvane.eth"
           }
         ],
         "holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dabeezy.eth"
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "mozvane.eth"
           }
         ]
       },
-      "minted_at": "2026-06-15T12:00:00+00:00",
+      "minted_at": "2026-05-29T03:50:47+00:00",
       "is_1_of_1": true,
       "edition_size": 2,
       "award_category": "trillion_club",
@@ -382,14 +416,14 @@
     },
     {
       "token_id": "2",
-      "name": "DACAT 5 Trillion Club Membership",
-      "display_name": "DACAT 5 Trillion Club Membership",
+      "name": "MOZVANE - 5 TRILLION DACAT CLUB MEMBERSHIP",
+      "display_name": "5 TRILLION DACAT CLUB MEMBERSHIP",
       "local_slug": "dacat-5-trillion-club",
-      "description": "DACAT 5 Trillion Club Membership \u2014 daCAT Badges series on Ethereum.",
-      "excerpt": "DACAT 5 Trillion Club Membership \u2014 daCAT Badges series on Ethereum.",
+      "description": "Exclusive 1-of-1 NFT minted in recognition of MOZVAN..ETH as a member of the DACAT 5 TRILLION CLUB.\nThe DACAT 5 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community. This exclusive digital badge commemorates ownership of at least 5,000,000,000,000 DACAT tokens in a single ENS Ethereum wallet and serves as a symbol of extraordinary commitment to the DACAT vision. Representing one of the highest membership tiers within the ecosystem, the 5 TRILLION CLUB recognizes those who have demonstrated exceptional belief in the future of DACAT and the decentralized creator movement.\nMore than a collectible, this badge stands as a permanent mark of support, loyalty, and participation in helping build a community-powered entertainment universe where creators, collectors, and supporters can Build Their World With DACAT.. \nIf this NFT badge is held in an ENS Ethereum wallet together with the accompanying 5 Trillion DACAT Tokens, the holder may be eligible for future recognition initiatives, community acknowledgements, or other opportunities that may be created and voluntarily provided by members or supporters of the DACAT community.\nThis NFT is issued solely as a commemorative recognition badge. Ownership of this NFT does not create any contractual rights, ownership interests, revenue-sharing rights, investment rights, or entitlement to compensation of any kind. Any future recognition, benefits, or acknowledgements are entirely discretionary and are not guaranteed, promised, or obligated by the creator, issuer, or community. \n\nFollow MOZVANE on X:\n\nhttps://x.com/ericmoz_eth?s=21&t=nNBH6JVX2YUvirNakC-gCA\n\nhttps://www.dacatworld.com\n\nhttps://www.dacat.fun",
+      "excerpt": "Exclusive 1-of-1 NFT minted in recognition of MOZVAN..ETH as a member of the DACAT 5 TRILLION CLUB. The DACAT 5 TRILLION CLUB is a recognition program created…",
       "image_url": "https://i2c.seadn.io/ethereum/0x1276d1e11aa5d2cc0854b936477f4d3bc88a5df1/36c8e5432567874e0e0603d8ff1041/2536c8e5432567874e0e0603d8ff1041.png",
       "media_type": "image",
-      "opensea_url": "https://opensea.io/item/ethereum/0x1276d1e11aa5d2cc0854b936477f4d3bc88a5df1/2",
+      "opensea_url": "https://opensea.io/collection/dacat5trillion",
       "traits": [],
       "listed": false,
       "listing": null,
@@ -399,25 +433,29 @@
         "top_holders": [
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "mozvane.eth"
           },
           {
             "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dabaker.eth"
           }
         ],
         "holders": [
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "mozvane.eth"
           },
           {
             "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dabaker.eth"
           }
         ]
       },
-      "minted_at": "2026-06-15T12:00:00+00:00",
+      "minted_at": "2026-06-04T13:06:35+00:00",
       "is_1_of_1": true,
       "edition_size": 2,
       "award_category": "mozvane_-_5_trillion_dacat_club_membership",
@@ -433,11 +471,11 @@
     },
     {
       "token_id": "1",
-      "name": "DACAT 6 Trillion Club Membership",
-      "display_name": "DACAT 6 Trillion Club Membership",
+      "name": "CHADALAC666 - DACAT 6 TRILLION CLUB MEMBERSHIP",
+      "display_name": "DACAT 6 TRILLION CLUB MEMBERSHIP",
       "local_slug": "dacat-6-trillion-club",
-      "description": "DACAT 6 Trillion Club Membership \u2014 daCAT Badges series on Ethereum.",
-      "excerpt": "DACAT 6 Trillion Club Membership \u2014 daCAT Badges series on Ethereum.",
+      "description": "Exclusive 1-of-1 NFT minted in recognition of CHADALAC666.ETH as a member of the DACAT 6 TRILLION CLUB.\n\nThe DACAT 6 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community. This exclusive digital badge commemorates ownership of at least 6,000,000,000,000 DACAT tokens in a single ENS Ethereum wallet and serves as a symbol of extraordinary commitment to the DACAT vision. Representing one of the highest membership tiers within the ecosystem, the 6 TRILLION CLUB recognizes those who have demonstrated exceptional belief in the future of DACAT and the decentralized creator movement.\n\nMore than a collectible, this badge stands as a permanent mark of support, loyalty, and participation in helping build a community-powered entertainment universe where creators, collectors, and supporters can Build Their World With DACAT.\n\nIf this NFT badge is held in an ENS Ethereum wallet together with the accompanying 6 Trillion DACAT Tokens, the holder may be eligible for future recognition initiatives, community acknowledgements, or other opportunities that may be created and voluntarily provided by members or supporters of the DACAT community.\n\nThis NFT is issued solely as a commemorative recognition badge. Ownership of this NFT does not create any contractual rights, ownership interests, revenue-sharing rights, investment rights, or entitlement to compensation of any kind. Any future recognition, benefits, or acknowledgements are entirely discretionary and are not guaranteed, promised, or obligated by the creator, issuer, or community. \n\nhttps://www.dacatworld.com\n\nhttps://www.dacat.fun",
+      "excerpt": "Exclusive 1-of-1 NFT minted in recognition of CHADALAC666.ETH as a member of the DACAT 6 TRILLION CLUB. The DACAT 6 TRILLION CLUB is a recognition program crea…",
       "image_url": "https://i2c.seadn.io/ethereum/0x35c6ceb29fa4b8190d3993614082a4b0e025a815/b001d690c45405f10d1b88178ffb49/bbb001d690c45405f10d1b88178ffb49.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat6trillion",
@@ -450,17 +488,19 @@
         "top_holders": [
           {
             "address": "0x4ff3ba0c7b39f57fc934c014e8c796f1efb44043",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "chadalac666.eth"
           }
         ],
         "holders": [
           {
             "address": "0x4ff3ba0c7b39f57fc934c014e8c796f1efb44043",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "chadalac666.eth"
           }
         ]
       },
-      "minted_at": "2026-06-15T12:00:00+00:00",
+      "minted_at": "2026-05-29T13:42:35+00:00",
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "trillion_club",
@@ -476,11 +516,11 @@
     },
     {
       "token_id": "1",
-      "name": "DACAT 7 Trillion Club Membership",
-      "display_name": "DACAT 7 Trillion Club Membership",
+      "name": "LOST THE GAME - DACAT 7 TRILLION CLUB MEMBERSHIP",
+      "display_name": "DACAT 7 TRILLION CLUB MEMBERSHIP",
       "local_slug": "dacat-7-trillion-club",
-      "description": "DACAT 7 Trillion Club Membership \u2014 daCAT Badges series on Ethereum.",
-      "excerpt": "DACAT 7 Trillion Club Membership \u2014 daCAT Badges series on Ethereum.",
+      "description": "Exclusive 1-of-1 NFT minted in recognition of LOSTTHEGAME.ETH as a member of the DACAT 7 TRILLION CLUB.\n\nThe DACAT 7 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community. This exclusive digital badge commemorates ownership of at least 7,000,000,000,000 DACAT tokens in a single ENS Ethereum wallet and serves as a symbol of extraordinary commitment to the DACAT vision. Representing one of the highest membership tiers within the ecosystem, the 7 TRILLION CLUB recognizes those who have demonstrated exceptional belief in the future of DACAT and the decentralized creator movement.\n\nMore than a collectible, this badge stands as a permanent mark of support, loyalty, and participation in helping build a community-powered entertainment universe where creators, collectors, and supporters can Build Their World With DACAT.\n\nThe extra 7,426,250 on the badge total is to represent the 250th Anniversary of the United States celebrated on 7/4/2026. \n\nIf this NFT badge is held in an ENS Ethereum wallet together with the accompanying 7 Trillion DACAT Tokens, the holder may be eligible for future recognition initiatives, community acknowledgements, or other opportunities that may be created and voluntarily provided by members or supporters of the DACAT community.\n\nThis NFT is issued solely as a commemorative recognition badge. Ownership of this NFT does not create any contractual rights, ownership interests, revenue-sharing rights, investment rights, or entitlement to compensation of any kind. Any future recognition, benefits, or acknowledgements are entirely discretionary and are not guaranteed, promised, or obligated by the creator, issuer, or community. \n\nhttps://www.dacatworld.com\n\nhttps://www.dacat.fun",
+      "excerpt": "Exclusive 1-of-1 NFT minted in recognition of LOSTTHEGAME.ETH as a member of the DACAT 7 TRILLION CLUB. The DACAT 7 TRILLION CLUB is a recognition program crea…",
       "image_url": "https://i2c.seadn.io/ethereum/0x5db9dc445b8fb4f3677afefd3a611c3d158bf250/443a97285a528cbb89936c0cdc074b/45443a97285a528cbb89936c0cdc074b.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat7trillion",
@@ -493,17 +533,19 @@
         "top_holders": [
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "lostthegame.eth"
           }
         ],
         "holders": [
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "lostthegame.eth"
           }
         ]
       },
-      "minted_at": "2026-06-15T12:00:00+00:00",
+      "minted_at": "2026-05-30T01:16:23+00:00",
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "trillion_club",
@@ -519,11 +561,11 @@
     },
     {
       "token_id": "2",
-      "name": "DACAT 8 Trillion Club Membership",
-      "display_name": "DACAT 8 Trillion Club Membership",
+      "name": "JEFF ADAMS - DACAT 8 TRILLION CLUB MEMBERSHIP",
+      "display_name": "DACAT 8 TRILLION CLUB MEMBERSHIP",
       "local_slug": "dacat-8-trillion-club",
-      "description": "DACAT 8 Trillion Club Membership \u2014 daCAT Badges series on Ethereum.",
-      "excerpt": "DACAT 8 Trillion Club Membership \u2014 daCAT Badges series on Ethereum.",
+      "description": "Exclusive 1-of-1 NFT minted in recognition of JEFFADAMS.ETH as a member of the DACAT 8 TRILLION CLUB.\n\nThe DACAT 8 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community. This exclusive digital badge commemorates ownership of at least 8,000,000,000,000 DACAT tokens in a single ENS Ethereum wallet and serves as a symbol of extraordinary commitment to the DACAT vision. Representing one of the highest membership tiers within the ecosystem, the 8 TRILLION CLUB recognizes those who have demonstrated exceptional belief in the future of DACAT and the decentralized creator movement.\n\nMore than a collectible, this badge stands as a permanent mark of support, loyalty, and participation in helping build a community-powered entertainment universe where creators, collectors, and supporters can Build Their World With DACAT.\n\nThe extra 88 on the badge total is to represent the speed you need to reach in order to time travel in the movie BACK TO THE FUTURE. The DaCAT community had the vision in 2024 to look in the future and see that DACAT could be a top meme coin and dynamic brand in crypto. \n\nIf this NFT badge is held in an ENS Ethereum wallet together with the accompanying 8 Trillion DACAT Tokens, the holder may be eligible for future recognition initiatives, community acknowledgements, or other opportunities that may be created and voluntarily provided by members or supporters of the DACAT community.\n\nThis NFT is issued solely as a commemorative recognition badge. Ownership of this NFT does not create any contractual rights, ownership interests, revenue-sharing rights, investment rights, or entitlement to compensation of any kind. Any future recognition, benefits, or acknowledgements are entirely discretionary and are not guaranteed, promised, or obligated by the creator, issuer, or community. \n\nhttps://www.dacatworld.com\n\nhttps://www.dacat.fun",
+      "excerpt": "Exclusive 1-of-1 NFT minted in recognition of JEFFADAMS.ETH as a member of the DACAT 8 TRILLION CLUB. The DACAT 8 TRILLION CLUB is a recognition program create…",
       "image_url": "https://i2c.seadn.io/ethereum/0xda9dc0657bb5042fb6b2c3eb97640596b7b662f7/38803f6aa5400fbfc6a8e654c11c08/8f38803f6aa5400fbfc6a8e654c11c08.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat8trillion",
@@ -536,25 +578,29 @@
         "top_holders": [
           {
             "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "jeffadams.eth"
           },
           {
             "address": "0xe597a25c77317b361636270251dc53d36491a11d",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "mrcryptonist.eth"
           }
         ],
         "holders": [
           {
             "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "jeffadams.eth"
           },
           {
             "address": "0xe597a25c77317b361636270251dc53d36491a11d",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "mrcryptonist.eth"
           }
         ]
       },
-      "minted_at": "2026-06-15T12:00:00+00:00",
+      "minted_at": "2026-05-30T05:00:59+00:00",
       "is_1_of_1": true,
       "edition_size": 2,
       "award_category": "trillion_club",
@@ -570,11 +616,11 @@
     },
     {
       "token_id": "4",
-      "name": "DACAT 9 Trillion Club Membership",
-      "display_name": "DACAT 9 Trillion Club Membership",
+      "name": "SOUTH FLORIDA - DACAT 9 TRILLION CLUB MEMBERSHIP ",
+      "display_name": "DACAT 9 TRILLION CLUB MEMBERSHIP",
       "local_slug": "dacat-9-trillion-club",
-      "description": "DACAT 9 Trillion Club Membership \u2014 daCAT Badges series on Ethereum.",
-      "excerpt": "DACAT 9 Trillion Club Membership \u2014 daCAT Badges series on Ethereum.",
+      "description": "Exclusive 1-of-1 NFT minted in recognition of SOUTH-FLORIDA.ETH as a member of the DACAT 9 TRILLION CLUB.\n\nThe DACAT 9 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community. This exclusive digital badge commemorates ownership of at least 9,000,000,000,000 DACAT tokens in a single ENS Ethereum wallet and serves as a symbol of extraordinary commitment to the DACAT vision. Representing one of the highest membership tiers within the ecosystem, the 9 TRILLION CLUB recognizes those who have demonstrated exceptional belief in the future of DACAT and the decentralized creator movement.\n\nMore than a collectible, this badge stands as a permanent mark of support, loyalty, and participation in helping build a community-powered entertainment universe where creators, collectors, and supporters can Build Their World With DACAT.\n\nIf this NFT badge is held in an ENS Ethereum wallet together with the accompanying 9 Trillion DACAT Tokens, the holder may be eligible for future recognition initiatives, community acknowledgements, or other opportunities that may be created and voluntarily provided by members or supporters of the DACAT community.\n\nThis NFT is issued solely as a commemorative recognition badge. Ownership of this NFT does not create any contractual rights, ownership interests, revenue-sharing rights, investment rights, or entitlement to compensation of any kind. Any future recognition, benefits, or acknowledgements are entirely discretionary and are not guaranteed, promised, or obligated by the creator, issuer, or community. \n\nhttps://www.dacatworld.com\n\nhttps://www.dacat.fun",
+      "excerpt": "Exclusive 1-of-1 NFT minted in recognition of SOUTH-FLORIDA.ETH as a member of the DACAT 9 TRILLION CLUB. The DACAT 9 TRILLION CLUB is a recognition program cr…",
       "image_url": "https://i2c.seadn.io/ethereum/0x1db6cbadc3f785e1716521753f0d6f4bbf221813/48920c0047dc559cfedc329b2eea44/0548920c0047dc559cfedc329b2eea44.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat9trillion",
@@ -587,33 +633,39 @@
         "top_holders": [
           {
             "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "south-florida.eth"
           },
           {
             "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dbcrypto.eth"
           },
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "kingsi.eth"
           }
         ],
         "holders": [
           {
             "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "south-florida.eth"
           },
           {
             "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dbcrypto.eth"
           },
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "kingsi.eth"
           }
         ]
       },
-      "minted_at": "2026-06-15T12:00:00+00:00",
+      "minted_at": "2026-05-29T11:30:11+00:00",
       "is_1_of_1": true,
       "edition_size": 3,
       "award_category": "trillion_club",
@@ -629,11 +681,11 @@
     },
     {
       "token_id": "4",
-      "name": "DACAT 10 Trillion Club Membership",
-      "display_name": "DACAT 10 Trillion Club Membership",
+      "name": "DACAT STUDIOS - DACAT 10 TRILLION CLUB MEMBERSHIP",
+      "display_name": "DACAT 10 TRILLION CLUB MEMBERSHIP",
       "local_slug": "dacat-10-trillion-club",
-      "description": "DACAT 10 Trillion Club Membership \u2014 daCAT Badges series on Ethereum.",
-      "excerpt": "DACAT 10 Trillion Club Membership \u2014 daCAT Badges series on Ethereum.",
+      "description": "Exclusive 1-of-1 NFT minted in recognition of DACATSTUDIOS.ETH as a member of the DACAT 10 TRILLION CLUB.\n\nThe DACAT 10 TRILLION CLUB is an ultra-elite recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community. This exclusive digital badge commemorates ownership of at least 10,000,000,000,000 DACAT tokens in a single ENS Ethereum wallet and serves as a symbol of extraordinary commitment to the DACAT vision. Representing one of the highest membership tiers within the ecosystem, the 10 TRILLION CLUB recognizes those who have demonstrated exceptional belief in the future of DACAT and the decentralized creator movement.\n\nMore than a collectible, this badge stands as a permanent mark of support, loyalty, and participation in helping build a community-powered entertainment universe where creators, collectors, and supporters can Build Their World With DACAT.\n\nIf this NFT badge is held in an ENS Ethereum wallet together with the accompanying 10 Trillion DACAT Tokens, the holder may be eligible for future recognition initiatives, community acknowledgements, or other opportunities that may be created and voluntarily provided by members or supporters of the DACAT community.\n\nThis NFT is issued solely as a commemorative recognition badge. Ownership of this NFT does not create any contractual rights, ownership interests, revenue-sharing rights, investment rights, or entitlement to compensation of any kind. Any future recognition, benefits, or acknowledgements are entirely discretionary and are not guaranteed, promised, or obligated by the creator, issuer, or community. \n\nhttps://www.dacatworld.com\n\nhttps://www.dacat.fun",
+      "excerpt": "Exclusive 1-of-1 NFT minted in recognition of DACATSTUDIOS.ETH as a member of the DACAT 10 TRILLION CLUB. The DACAT 10 TRILLION CLUB is an ultra-elite recognit…",
       "image_url": "https://i2c.seadn.io/ethereum/0x706509485634161eb553a0e7faffa99fef20547a/efcd857ef2c621a1f142592339f2ec/b0efcd857ef2c621a1f142592339f2ec.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat10trillion",
@@ -646,41 +698,49 @@
         "top_holders": [
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dacatstudios.eth"
           },
           {
             "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "grumpyx.eth"
           },
           {
             "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "cryptlos.eth"
           },
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dagato.eth"
           }
         ],
         "holders": [
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dacatstudios.eth"
           },
           {
             "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "grumpyx.eth"
           },
           {
             "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "cryptlos.eth"
           },
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dagato.eth"
           }
         ]
       },
-      "minted_at": "2026-06-15T12:00:00+00:00",
+      "minted_at": "2026-05-28T04:58:11+00:00",
       "is_1_of_1": true,
       "edition_size": 4,
       "award_category": "trillion_club",
@@ -696,11 +756,11 @@
     },
     {
       "token_id": "1",
-      "name": "DACAT 500 Billion Club Membership",
-      "display_name": "DACAT 500 Billion Club Membership",
+      "name": "INSHIRO WETRUST - 500 BILLION CLUB MEMBERSHIP",
+      "display_name": "500 BILLION CLUB MEMBERSHIP",
       "local_slug": "dacat-500-billion-club",
-      "description": "DACAT 500 Billion Club Membership \u2014 daCAT Badges series on Ethereum.",
-      "excerpt": "DACAT 500 Billion Club Membership \u2014 daCAT Badges series on Ethereum.",
+      "description": "The DACAT 500 BILLION CLUB recognizes community members who have accumulated and held at least 500 BILLION DACAT tokens in a single wallet. This  NFT badge honors conviction, participation, and belief in the long-term vision of DACAT and the decentralized creator movement. As a member of the 500 BILLION CLUB, this holder  represents a group of supporters who have chosen to help build the foundation of the DACAT ecosystem through their commitment to the project and its future. This badge serves as a permanent digital collectible recognizing that achievement and preserving a moment in DACAT history.\n\n If this NFT badge is held in the same wallet as the accompanying 500,000,000,000 DACAT tokens, future community recognition opportunities may be possible at the discretion of the DACAT community. This NFT is issued for commemorative and recognition purposes only and does not represent ownership, equity, profit sharing, or a promise of future compensation \n\nhttps://www.dacatworld.com\n\nThe DACAT 500 BILLION CLUB recognizes community members who have accumulated and held at least 500 BILLION DACAT tokens in a single wallet. This  NFT badge honors conviction, participation, and belief in the long-term vision of DACAT and the decentralized creator movement. As a member of the 500 BILLION CLUB, this holder  represents a group of supporters who have chosen to help build the foundation of the DACAT ecosystem through their commitment to the project and its future. This badge serves as a permanent digital collectible recognizing that achievement and preserving a moment in DACAT history. If this NFT badge is held in the same wallet as the accompanying 500,000,000,000 DACAT tokens, future community recognition opportunities may be possible at the discretion of the DACAT community. This NFT is issued for commemorative and recognition purposes only and does not represent ownership, equity, profit sharing, or a promise of future compensation \n\nhttps://www.dacatworld.com",
+      "excerpt": "The DACAT 500 BILLION CLUB recognizes community members who have accumulated and held at least 500 BILLION DACAT tokens in a single wallet. This NFT badge hono…",
       "image_url": "https://i2c.seadn.io/ethereum/0x549d37c3ab6ea21c35df61a16f404f1aafc454d2/f0ffc72276b0140818d415c42af001/61f0ffc72276b0140818d415c42af001.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat500billion",
@@ -723,7 +783,7 @@
           }
         ]
       },
-      "minted_at": "2026-06-15T12:00:00+00:00",
+      "minted_at": "2026-06-04T22:02:11+00:00",
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "500_billion_club",
@@ -738,11 +798,11 @@
     },
     {
       "token_id": "1",
-      "name": "DACAT World Collector Cat",
-      "display_name": "DACAT World Collector Cat",
+      "name": "COLLECTOR CAT - FIRST APPEARANCE",
+      "display_name": "FIRST APPEARANCE",
       "local_slug": "dacat-world-collector-cat",
-      "description": "DACAT World Collector Cat \u2014 daCAT Badges series on Ethereum.",
-      "excerpt": "DACAT World Collector Cat \u2014 daCAT Badges series on Ethereum.",
+      "description": "Collector Cat makes his first appearance in the DACAT WORLD universe. A legendary explorer from the planet Cryptosphere, Collector Cat travels across the stars in search of rare artifacts, forgotten treasures, and lost pieces of history. Known for his determination, courage, and passion for collecting, he is always searching for the next great discovery hidden somewhere in the universe.\n\nThis NFT commemorates the debut appearance of Collector Cat and serves as a collectible milestone within the expanding DACAT WORLD character roster.\n\nCollector Cat is an original character created by Russell Corey and is part of the DACAT WORLD intellectual property. Any appearances of Collector Cat in third-party publications, stories, comics, or media do not transfer ownership of the character or the underlying intellectual property.\n\nhttps://www.dacatworld.com",
+      "excerpt": "Collector Cat makes his first appearance in the DACAT WORLD universe. A legendary explorer from the planet Cryptosphere, Collector Cat travels across the stars…",
       "image_url": "https://i2c.seadn.io/ethereum/0x41515a42a9f28f6c3bbbd46802b5d5aabf7b3cee/c8b2e3f0a06b0ae99277cf77ad4881/edc8b2e3f0a06b0ae99277cf77ad4881.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat-world-collector-cat",
@@ -759,19 +819,23 @@
           },
           {
             "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "jeffadams.eth"
           },
           {
             "address": "0xe597a25c77317b361636270251dc53d36491a11d",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "mrcryptonist.eth"
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dabeezy.eth"
           },
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "lostthegame.eth"
           }
         ],
         "holders": [
@@ -781,59 +845,72 @@
           },
           {
             "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "jeffadams.eth"
           },
           {
             "address": "0xe597a25c77317b361636270251dc53d36491a11d",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "mrcryptonist.eth"
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dabeezy.eth"
           },
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "lostthegame.eth"
           },
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "kingsi.eth"
           },
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dacatstudios.eth"
           },
           {
             "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dbcrypto.eth"
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "mozvane.eth"
           },
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dagato.eth"
           },
           {
             "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "cryptlos.eth"
           },
           {
             "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "south-florida.eth"
           },
           {
             "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "grumpyx.eth"
           },
           {
             "address": "0x4ff3ba0c7b39f57fc934c014e8c796f1efb44043",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "chadalac666.eth"
           }
         ]
       },
-      "minted_at": "2026-06-15T12:00:00+00:00",
+      "minted_at": "2026-05-31T12:03:35+00:00",
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "collector_cat",
@@ -848,11 +925,11 @@
     },
     {
       "token_id": "1",
-      "name": "DACAT Gem Nova Green",
-      "display_name": "DACAT Gem Nova Green",
+      "name": "DACAT GEM - NOVA GREEN #1",
+      "display_name": "NOVA GREEN #1",
       "local_slug": "dacat-gem-nova-green",
-      "description": "DACAT Gem Nova Green \u2014 daCAT Badges series on Ethereum.",
-      "excerpt": "DACAT Gem Nova Green \u2014 daCAT Badges series on Ethereum.",
+      "description": "The DACAT COMMUNITY GEM – NOVA GREEN is a digital collectible created to recognize and celebrate members of the DACAT community. These gems may be freely distributed by community leaders, creators, collectors, or other supporters as a symbol of participation, contribution, creativity, friendship, loyalty, or support of the DACAT ecosystem. Each Community Gem serves as a collectible badge of recognition and community history. Holders may choose to collect, trade, display, or simply keep their gems as a reminder of their journey within the community. From time to time, independent community members may voluntarily provide gifts, rewards, experiences, collectibles, access, recognition, or other benefits to Community Gem holders. However, ownership of a Community Gem does not guarantee any future reward, benefit, payment, value, or utility. https://www.dacatworld.com https://www.dacat.fun",
+      "excerpt": "The DACAT COMMUNITY GEM – NOVA GREEN is a digital collectible created to recognize and celebrate members of the DACAT community. These gems may be freely distr…",
       "image_url": "https://raw2.seadn.io/ethereum/0xe523f979f28405df6cb46f2047c4b303213063fe/82b04202c509ff9d3ee847bd0b8fcf/2882b04202c509ff9d3ee847bd0b8fcf.mov",
       "media_type": "video",
       "opensea_url": "https://opensea.io/collection/dacat-gem-nova-green",
@@ -869,19 +946,23 @@
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dabeezy.eth"
           },
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "lostthegame.eth"
           },
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "kingsi.eth"
           },
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dacatstudios.eth"
           }
         ],
         "holders": [
@@ -891,43 +972,52 @@
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dabeezy.eth"
           },
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "lostthegame.eth"
           },
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "kingsi.eth"
           },
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dacatstudios.eth"
           },
           {
             "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dbcrypto.eth"
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "mozvane.eth"
           },
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dagato.eth"
           },
           {
             "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "cryptlos.eth"
           },
           {
             "address": "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dabronk.eth"
           }
         ]
       },
-      "minted_at": "2026-06-15T12:00:00+00:00",
+      "minted_at": "2026-06-11T02:07:35+00:00",
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "gem_nova_green",
@@ -942,11 +1032,11 @@
     },
     {
       "token_id": "4",
-      "name": "DaGATO Award Badge",
-      "display_name": "DaGATO Award Badge",
+      "name": "DaGATO 13 TRILLION DACAT AWARD MOTION NFT",
+      "display_name": "DaGATO 13 TRILLION DACAT AWARD MOTION NFT",
       "local_slug": "dagato-dacat-award-badges",
-      "description": "DaGATO Award Badge \u2014 daCAT Badges series on Ethereum.",
-      "excerpt": "DaGATO Award Badge \u2014 daCAT Badges series on Ethereum.",
+      "description": "Forged across the ages and honored among the most dedicated holders in the DACAT community, this custom 1-of-1 recognition badge celebrates DAGATO.ETH for holding 13,000,000,000,000 DACAT tokens in a single ENS ETH wallet. \n\nInspired by the legend of DaGato, the time-traveling detective cat, the artwork features clues, artifacts, and moments drawn from across history and the future as he journeys through time uncovering mysteries and protecting the timeline. From ancient civilizations to futuristic worlds, DaGato follows the trail wherever it leads.\n\nThis motion badge serves as a commemorative symbol of conviction, loyalty, and participation in the DACAT ecosystem. It recognizes an extraordinary level of support for the community and the vision of building a decentralized entertainment universe powered by creators, collectors, and dreamers.\n\nFollow DaGato on X:\nhttps://x.com/dagato_eth?s=21&t=nNBH6JVX2YUvirNakC-gCA\n\nhttps://www.dacatworld.com\n\nhttps://www.daCAT.fun",
+      "excerpt": "Forged across the ages and honored among the most dedicated holders in the DACAT community, this custom 1-of-1 recognition badge celebrates DAGATO.ETH for hold…",
       "image_url": "https://raw2.seadn.io/ethereum/0x0c0d2012a00afcc4e1e991520fb0d40ddcfc7247/f7965daa596c34ddb5b5bff780dcd0/a8f7965daa596c34ddb5b5bff780dcd0.mp4",
       "media_type": "video",
       "opensea_url": "https://opensea.io/collection/dagatoawards",
@@ -959,25 +1049,29 @@
         "top_holders": [
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dagato.eth"
           },
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dagato.eth"
           }
         ],
         "holders": [
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dagato.eth"
           },
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dagato.eth"
           }
         ]
       },
-      "minted_at": "2026-06-15T12:00:00+00:00",
+      "minted_at": "2026-06-04T02:05:59+00:00",
       "is_1_of_1": true,
       "edition_size": 2,
       "award_category": "dagato_13_trillion_dacat_award_motion_nft",

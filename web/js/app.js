@@ -1031,7 +1031,7 @@ function clearCollectorFilters() {
   activeFilter = "all";
   searchQuery = "";
   sortKey = "token_desc";
-  // Do not force activeCollection to 'all' here — preserve badges or current collection context
+  activeCollection = "all";
   var search = $("#search");
   var sort = $("#sort-select");
   var colSel = $("#collection-select");
@@ -2505,7 +2505,11 @@ function renderBrowseMeta(filtered, total) {
       } else if (k === "collection") {
         activeCollection = "all";
         var colSel = $("#collection-select");
-        if (colSel) colSel.value = "all";
+        if (colSel) {
+          colSel.value = "all";
+          // dispatch to trigger load of merged data for all
+          colSel.dispatchEvent(new Event('change'));
+        }
       }
       refreshView();
     });
