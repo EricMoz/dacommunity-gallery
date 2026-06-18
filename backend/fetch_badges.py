@@ -490,7 +490,7 @@ def main():
 
             # series rep (use first nft for other fields; image overridden to generic PNG in catalog)
             rep_nft = nfts[0]
-            token_id = str(rep_nft.get("identifier") or rep_nft.get("token_id") or "rep")
+            token_id = "0"  # distinct from personal tokens to avoid key collision in getItemKey etc.
             contract = rep_nft.get("contract")
             if isinstance(contract, dict):
                 contract = contract.get("address", "")
@@ -580,8 +580,8 @@ def main():
                 media_type = "video" if (image or "").lower().endswith((".mp4", ".mov", ".webm")) else "image"
                 created_at = get_first_mint_timestamp("ethereum", contract, token_id, api_key) or nft.get("created_at") or nft.get("minted_at")
 
-                # Per-token owners
-                owners_list = get_owners("ethereum", contract, token_id, api_key)
+                # Per-token owners - use client for throttle
+                owners_list = client.get_nft_owners(token_id, "ethereum", contract)
                 non_issuer_holders = [o for o in owners_list if (o.get("address") or "").lower() != ISSUER_WALLET]
                 owner_stats = summarize_owners(non_issuer_holders)
 
@@ -673,7 +673,7 @@ def main():
         created_at = get_first_mint_timestamp("ethereum", contract, token_id, api_key) or nft.get("created_at") or nft.get("minted_at")
 
         if slug == "dagatoawards":
-            owners_list = get_owners("ethereum", contract, token_id, api_key)
+            owners_list = client.get_nft_owners(token_id, "ethereum", contract)
             non_issuer_holders = [o for o in owners_list if (o.get("address") or "").lower() != ISSUER_WALLET]
             owner_stats = summarize_owners(non_issuer_holders)
         else:

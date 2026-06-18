@@ -1996,6 +1996,7 @@ function buildHoldingsFromCurrentItems(address) {
       return (o.address || '').toLowerCase() === addr;
     });
     if (owns) {
+      if (item.is_series_rep && item.source_created_collection && /trillion|billion/i.test(item.source_created_collection)) return;
       seen[key] = true;
       holdings.push({
         token_id: item.token_id,
@@ -2523,11 +2524,13 @@ function getFilteredItems() {
   // Keep the series rep (is_series_rep or the one with highest holder_count) per slug.
   // Personalized 1:1s only appear in owner's portfolio.
   if (!galleryCollectorView) {
+    // Dedup trillion/billion clubs to exactly one series rep (prefer is_series_rep or highest holder count)
+    // This prevents personalized 1:1 duplicates in light/generic search while still allowing specific ones in portfolio.
     var clubItems = items.filter(function (i) {
-      return i.source_created_collection && i.is_1_of_1 && /trillion|billion/i.test(i.source_created_collection);
+      return i.source_created_collection && /trillion|billion/i.test(i.source_created_collection) && (i.is_1_of_1 || i.is_series_rep);
     });
     var otherItems = items.filter(function (i) {
-      return !(i.source_created_collection && i.is_1_of_1 && /trillion|billion/i.test(i.source_created_collection));
+      return !(i.source_created_collection && /trillion|billion/i.test(i.source_created_collection) && (i.is_1_of_1 || i.is_series_rep));
     });
     var bySlug = {};
     clubItems.forEach(function (i) {
@@ -3529,6 +3532,19 @@ async function init() {
     var hasWalletInit = !initCol || (initCol.features || []).indexOf("wallet_lookup") !== -1;
     if (hasWalletInit) {
       loadWalletIndex().then(function () {
+        // Enrich badge owners with ENS from walletIndex for display
+        if (galleryData && Array.isArray(galleryData.items)) {
+          var byAddr = (walletIndex && walletIndex.by_address) || {};
+          galleryData.items.forEach(function (item) {
+            var os = item.owners || {};
+            ["holders", "top_holders"].forEach(function (k) {
+              (os[k] || []).forEach(function (o) {
+                var e = byAddr[(o.address || "").toLowerCase()];
+                if (e && e.ens_name) o.ens_name = e.ens_name;
+              });
+            });
+          });
+        }
         renderStats(galleryData.collection);
         updateCollectorsButton();
         rebuildCollectorsForCurrentView();

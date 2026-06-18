@@ -55,7 +55,7 @@
       ]
     },
     {
-      "token_id": "25",
+      "token_id": "0",
       "name": "DACAT 1 TRILLION CLUB",
       "display_name": "DACAT 1 TRILLION CLUB",
       "local_slug": "dacat-1-trillion-club",
@@ -72,97 +72,120 @@
         "top_holders": [
           {
             "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "jeffadams.eth"
           },
           {
             "address": "0xe597a25c77317b361636270251dc53d36491a11d",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "mrcryptonist.eth"
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dabeezy.eth"
           },
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "lostthegame.eth"
           },
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "kingsi.eth"
           }
         ],
         "holders": [
           {
             "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "jeffadams.eth"
           },
           {
             "address": "0xe597a25c77317b361636270251dc53d36491a11d",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "mrcryptonist.eth"
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dabeezy.eth"
           },
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "lostthegame.eth"
           },
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "kingsi.eth"
           },
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dacatstudios.eth"
           },
           {
             "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dbcrypto.eth"
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "mozvane.eth"
           },
           {
             "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dabaker.eth"
           },
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "datrailcat.eth"
           },
           {
             "address": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "warriorpr.eth"
           },
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dagato.eth"
           },
           {
             "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "cryptlos.eth"
           },
           {
             "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "south-florida.eth"
           },
           {
             "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "grumpyx.eth"
           },
           {
             "address": "0x4ff3ba0c7b39f57fc934c014e8c796f1efb44043",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "chadalac666.eth"
           },
           {
             "address": "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dabronk.eth"
           },
           {
             "address": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "elons-cat.eth"
           },
           {
             "address": "0x1fc100b151a1ffa55d41a134a1a826a242d9c7c9",
@@ -170,11 +193,13 @@
           },
           {
             "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dacatchronicles.eth"
           },
           {
             "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dasheesh.eth"
           }
         ]
       },
@@ -208,13 +233,15 @@
         "top_holders": [
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "datrailcat.eth"
           }
         ],
         "holders": [
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "datrailcat.eth"
           }
         ]
       },
@@ -1214,7 +1241,7 @@
       ]
     },
     {
-      "token_id": "4",
+      "token_id": "0",
       "name": "DACAT 2 TRILLION CLUB",
       "display_name": "DACAT 2 TRILLION CLUB",
       "local_slug": "dacat-2-trillion-club",
@@ -1231,37 +1258,45 @@
         "top_holders": [
           {
             "address": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "warriorpr.eth"
           },
           {
             "address": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "elons-cat.eth"
           },
           {
             "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dacatchronicles.eth"
           },
           {
             "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dasheesh.eth"
           }
         ],
         "holders": [
           {
             "address": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "warriorpr.eth"
           },
           {
             "address": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "elons-cat.eth"
           },
           {
             "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dacatchronicles.eth"
           },
           {
             "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dasheesh.eth"
           }
         ]
       },
@@ -1450,7 +1485,7 @@
       ]
     },
     {
-      "token_id": "1",
+      "token_id": "0",
       "name": "DACAT 3 TRILLION CLUB",
       "display_name": "DACAT 3 TRILLION CLUB",
       "local_slug": "dacat-3-trillion-club",
@@ -1467,13 +1502,15 @@
         "top_holders": [
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "datrailcat.eth"
           }
         ],
         "holders": [
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "datrailcat.eth"
           }
         ]
       },
@@ -1521,7 +1558,7 @@
       ]
     },
     {
-      "token_id": "2",
+      "token_id": "0",
       "name": "DACAT 4 TRILLION CLUB",
       "display_name": "DACAT 4 TRILLION CLUB",
       "local_slug": "dacat-4-trillion-club",
@@ -1613,7 +1650,7 @@
       ]
     },
     {
-      "token_id": "2",
+      "token_id": "0",
       "name": "DACAT 5 TRILLION CLUB",
       "display_name": "DACAT 5 TRILLION CLUB",
       "local_slug": "dacat-5-trillion-club",
@@ -1705,7 +1742,7 @@
       ]
     },
     {
-      "token_id": "1",
+      "token_id": "0",
       "name": "DACAT 6 TRILLION CLUB",
       "display_name": "DACAT 6 TRILLION CLUB",
       "local_slug": "dacat-6-trillion-club",
@@ -1766,7 +1803,7 @@
       ]
     },
     {
-      "token_id": "1",
+      "token_id": "0",
       "name": "DACAT 7 TRILLION CLUB",
       "display_name": "DACAT 7 TRILLION CLUB",
       "local_slug": "dacat-7-trillion-club",
@@ -1827,7 +1864,7 @@
       ]
     },
     {
-      "token_id": "2",
+      "token_id": "0",
       "name": "DACAT 8 TRILLION CLUB",
       "display_name": "DACAT 8 TRILLION CLUB",
       "local_slug": "dacat-8-trillion-club",
@@ -1844,21 +1881,25 @@
         "top_holders": [
           {
             "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "jeffadams.eth"
           },
           {
             "address": "0xe597a25c77317b361636270251dc53d36491a11d",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "mrcryptonist.eth"
           }
         ],
         "holders": [
           {
             "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "jeffadams.eth"
           },
           {
             "address": "0xe597a25c77317b361636270251dc53d36491a11d",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "mrcryptonist.eth"
           }
         ]
       },
@@ -1937,7 +1978,7 @@
       ]
     },
     {
-      "token_id": "4",
+      "token_id": "0",
       "name": "DACAT 9 TRILLION CLUB",
       "display_name": "DACAT 9 TRILLION CLUB",
       "local_slug": "dacat-9-trillion-club",
@@ -1954,29 +1995,35 @@
         "top_holders": [
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "kingsi.eth"
           },
           {
             "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dbcrypto.eth"
           },
           {
             "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "south-florida.eth"
           }
         ],
         "holders": [
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "kingsi.eth"
           },
           {
             "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dbcrypto.eth"
           },
           {
             "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "south-florida.eth"
           }
         ]
       },
@@ -2005,10 +2052,22 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1,
+            "ens_name": "kingsi.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1,
+            "ens_name": "kingsi.eth"
+          }
+        ]
       },
       "minted_at": null,
       "is_1_of_1": true,
@@ -2036,10 +2095,22 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1,
+            "ens_name": "dbcrypto.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1,
+            "ens_name": "dbcrypto.eth"
+          }
+        ]
       },
       "minted_at": null,
       "is_1_of_1": true,
@@ -2067,10 +2138,22 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
+            "quantity": 1,
+            "ens_name": "south-florida.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
+            "quantity": 1,
+            "ens_name": "south-florida.eth"
+          }
+        ]
       },
       "minted_at": "2026-05-29T11:03:59+00:00",
       "is_1_of_1": true,
@@ -2086,7 +2169,7 @@
       ]
     },
     {
-      "token_id": "4",
+      "token_id": "0",
       "name": "DACAT 10 TRILLION CLUB",
       "display_name": "DACAT 10 TRILLION CLUB",
       "local_slug": "dacat-10-trillion-club",
@@ -2252,7 +2335,7 @@
       ]
     },
     {
-      "token_id": "1",
+      "token_id": "0",
       "name": "DACAT 500 BILLION CLUB",
       "display_name": "DACAT 500 BILLION CLUB",
       "local_slug": "dacat-500-billion-club",
