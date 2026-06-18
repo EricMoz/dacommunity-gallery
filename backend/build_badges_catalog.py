@@ -59,6 +59,7 @@ def slim_item(item: dict, root: Path) -> dict:
         "mystery_status": item.get("mystery_status", "approved"),
         "ens_match_detected": item.get("ens_match_detected", False),
         "source_created_collection": item.get("source_created_collection"),
+        "is_series_rep": item.get("is_series_rep", False),
         # For sub-category grouping (Trillion Club etc) and tags in light search / badges page
         "sub_category": item.get("sub_category"),
         "tags": item.get("tags", []),

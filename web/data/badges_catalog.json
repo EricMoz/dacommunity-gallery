@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-18T02:08:22.131135+00:00",
+  "generated_at": "2026-06-18T02:30:45.334831+00:00",
   "source": "badges_catalog",
   "collection": {
     "slug": "badges",
@@ -49,6 +49,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacatrookie2026",
+      "is_series_rep": false,
       "sub_category": "Rookie Card 2026",
       "tags": [
         "1_of_1"
@@ -72,120 +73,97 @@
         "top_holders": [
           {
             "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
-            "quantity": 1,
-            "ens_name": "jeffadams.eth"
+            "quantity": 1
           },
           {
             "address": "0xe597a25c77317b361636270251dc53d36491a11d",
-            "quantity": 1,
-            "ens_name": "mrcryptonist.eth"
+            "quantity": 1
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-            "quantity": 1,
-            "ens_name": "dabeezy.eth"
+            "quantity": 1
           },
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1,
-            "ens_name": "lostthegame.eth"
+            "quantity": 1
           },
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1,
-            "ens_name": "kingsi.eth"
+            "quantity": 1
           }
         ],
         "holders": [
           {
             "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
-            "quantity": 1,
-            "ens_name": "jeffadams.eth"
+            "quantity": 1
           },
           {
             "address": "0xe597a25c77317b361636270251dc53d36491a11d",
-            "quantity": 1,
-            "ens_name": "mrcryptonist.eth"
+            "quantity": 1
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-            "quantity": 1,
-            "ens_name": "dabeezy.eth"
+            "quantity": 1
           },
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1,
-            "ens_name": "lostthegame.eth"
+            "quantity": 1
           },
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1,
-            "ens_name": "kingsi.eth"
+            "quantity": 1
           },
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1,
-            "ens_name": "dacatstudios.eth"
+            "quantity": 1
           },
           {
             "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
-            "quantity": 1,
-            "ens_name": "dbcrypto.eth"
+            "quantity": 1
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1,
-            "ens_name": "mozvane.eth"
+            "quantity": 1
           },
           {
             "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
-            "quantity": 1,
-            "ens_name": "dabaker.eth"
+            "quantity": 1
           },
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1,
-            "ens_name": "datrailcat.eth"
+            "quantity": 1
           },
           {
             "address": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
-            "quantity": 1,
-            "ens_name": "warriorpr.eth"
+            "quantity": 1
           },
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-            "quantity": 1,
-            "ens_name": "dagato.eth"
+            "quantity": 1
           },
           {
             "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
-            "quantity": 1,
-            "ens_name": "cryptlos.eth"
+            "quantity": 1
           },
           {
             "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
-            "quantity": 1,
-            "ens_name": "south-florida.eth"
+            "quantity": 1
           },
           {
             "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
-            "quantity": 1,
-            "ens_name": "grumpyx.eth"
+            "quantity": 1
           },
           {
             "address": "0x4ff3ba0c7b39f57fc934c014e8c796f1efb44043",
-            "quantity": 1,
-            "ens_name": "chadalac666.eth"
+            "quantity": 1
           },
           {
             "address": "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46",
-            "quantity": 1,
-            "ens_name": "dabronk.eth"
+            "quantity": 1
           },
           {
             "address": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
-            "quantity": 1,
-            "ens_name": "elons-cat.eth"
+            "quantity": 1
           },
           {
             "address": "0x1fc100b151a1ffa55d41a134a1a826a242d9c7c9",
@@ -193,23 +171,22 @@
           },
           {
             "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
-            "quantity": 1,
-            "ens_name": "dacatchronicles.eth"
+            "quantity": 1
           },
           {
             "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
-            "quantity": 1,
-            "ens_name": "dasheesh.eth"
+            "quantity": 1
           }
         ]
       },
-      "minted_at": "2026-05-27T03:46:23+00:00",
+      "minted_at": null,
       "is_1_of_1": false,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": true,
       "sub_category": "Trillion Club",
       "tags": [
         "trillion_club"
@@ -233,15 +210,13 @@
         "top_holders": [
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1,
-            "ens_name": "datrailcat.eth"
+            "quantity": 1
           }
         ],
         "holders": [
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1,
-            "ens_name": "datrailcat.eth"
+            "quantity": 1
           }
         ]
       },
@@ -252,6 +227,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -295,6 +271,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -336,6 +313,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -379,6 +357,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -422,6 +401,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -465,6 +445,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -508,6 +489,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -551,6 +533,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -594,6 +577,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -637,6 +621,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -680,6 +665,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -723,6 +709,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -766,6 +753,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -809,6 +797,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -852,6 +841,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -895,6 +885,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -938,6 +929,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -981,6 +973,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1012,6 +1005,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1043,6 +1037,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1074,6 +1069,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1105,6 +1101,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1148,6 +1145,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1191,6 +1189,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1234,6 +1233,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat1trillionclub",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1258,55 +1258,48 @@
         "top_holders": [
           {
             "address": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
-            "quantity": 1,
-            "ens_name": "warriorpr.eth"
+            "quantity": 1
           },
           {
             "address": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
-            "quantity": 1,
-            "ens_name": "elons-cat.eth"
+            "quantity": 1
           },
           {
             "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
-            "quantity": 1,
-            "ens_name": "dacatchronicles.eth"
+            "quantity": 1
           },
           {
             "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
-            "quantity": 1,
-            "ens_name": "dasheesh.eth"
+            "quantity": 1
           }
         ],
         "holders": [
           {
             "address": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
-            "quantity": 1,
-            "ens_name": "warriorpr.eth"
+            "quantity": 1
           },
           {
             "address": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
-            "quantity": 1,
-            "ens_name": "elons-cat.eth"
+            "quantity": 1
           },
           {
             "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
-            "quantity": 1,
-            "ens_name": "dacatchronicles.eth"
+            "quantity": 1
           },
           {
             "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
-            "quantity": 1,
-            "ens_name": "dasheesh.eth"
+            "quantity": 1
           }
         ]
       },
-      "minted_at": "2026-05-29T00:27:23+00:00",
+      "minted_at": null,
       "is_1_of_1": false,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat2trillion",
+      "is_series_rep": true,
       "sub_category": "Trillion Club",
       "tags": [
         "trillion_club"
@@ -1349,6 +1342,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat2trillion",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1392,6 +1386,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat2trillion",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1435,6 +1430,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat2trillion",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1478,6 +1474,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat2trillion",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1502,15 +1499,13 @@
         "top_holders": [
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1,
-            "ens_name": "datrailcat.eth"
+            "quantity": 1
           }
         ],
         "holders": [
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1,
-            "ens_name": "datrailcat.eth"
+            "quantity": 1
           }
         ]
       },
@@ -1521,6 +1516,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat3trillion",
+      "is_series_rep": true,
       "sub_category": "Trillion Club",
       "tags": [
         "trillion_club"
@@ -1539,18 +1535,29 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
+            "quantity": 1
+          }
+        ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-29T03:11:35+00:00",
       "is_1_of_1": true,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat3trillion",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1570,10 +1577,28 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 2,
+        "circulating_copies": 2,
+        "top_holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          }
+        ]
       },
       "minted_at": null,
       "is_1_of_1": false,
@@ -1582,6 +1607,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat4trillion",
+      "is_series_rep": true,
       "sub_category": "Trillion Club",
       "tags": [
         "trillion_club"
@@ -1600,10 +1626,22 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1,
+            "ens_name": "dabeezy.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1,
+            "ens_name": "dabeezy.eth"
+          }
+        ]
       },
       "minted_at": "2026-05-29T03:50:47+00:00",
       "is_1_of_1": true,
@@ -1612,6 +1650,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat4trillion",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1631,18 +1670,31 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": "mozvane.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": "mozvane.eth"
+          }
+        ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-29T03:41:47+00:00",
       "is_1_of_1": true,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat4trillion",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1662,10 +1714,28 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 2,
+        "circulating_copies": 2,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          },
+          {
+            "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          },
+          {
+            "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
+            "quantity": 1
+          }
+        ]
       },
       "minted_at": null,
       "is_1_of_1": false,
@@ -1674,6 +1744,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat5trillion",
+      "is_series_rep": true,
       "sub_category": "Trillion Club",
       "tags": [
         "trillion_club"
@@ -1692,10 +1763,22 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": "mozvane.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": "mozvane.eth"
+          }
+        ]
       },
       "minted_at": "2026-06-04T13:06:35+00:00",
       "is_1_of_1": true,
@@ -1704,6 +1787,7 @@
       "mystery_status": "mystery_until_review",
       "ens_match_detected": false,
       "source_created_collection": "dacat5trillion",
+      "is_series_rep": false,
       "sub_category": "Mozvane - 5 Trillion Dacat Club Membership",
       "tags": [
         "1_of_1",
@@ -1723,18 +1807,31 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
+            "quantity": 1,
+            "ens_name": "dabaker.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
+            "quantity": 1,
+            "ens_name": "dabaker.eth"
+          }
+        ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-30T08:45:59+00:00",
       "is_1_of_1": true,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat5trillion",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1754,10 +1851,20 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x4ff3ba0c7b39f57fc934c014e8c796f1efb44043",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x4ff3ba0c7b39f57fc934c014e8c796f1efb44043",
+            "quantity": 1
+          }
+        ]
       },
       "minted_at": null,
       "is_1_of_1": false,
@@ -1766,6 +1873,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat6trillion",
+      "is_series_rep": true,
       "sub_category": "Trillion Club",
       "tags": [
         "trillion_club"
@@ -1784,10 +1892,22 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x4ff3ba0c7b39f57fc934c014e8c796f1efb44043",
+            "quantity": 1,
+            "ens_name": "chadalac666.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x4ff3ba0c7b39f57fc934c014e8c796f1efb44043",
+            "quantity": 1,
+            "ens_name": "chadalac666.eth"
+          }
+        ]
       },
       "minted_at": "2026-05-29T13:42:35+00:00",
       "is_1_of_1": true,
@@ -1796,6 +1916,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat6trillion",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1815,10 +1936,20 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ]
       },
       "minted_at": null,
       "is_1_of_1": false,
@@ -1827,6 +1958,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat7trillion",
+      "is_series_rep": true,
       "sub_category": "Trillion Club",
       "tags": [
         "trillion_club"
@@ -1845,18 +1977,31 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": "lostthegame.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": "lostthegame.eth"
+          }
+        ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-30T01:16:23+00:00",
       "is_1_of_1": true,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat7trillion",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1881,25 +2026,21 @@
         "top_holders": [
           {
             "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
-            "quantity": 1,
-            "ens_name": "jeffadams.eth"
+            "quantity": 1
           },
           {
             "address": "0xe597a25c77317b361636270251dc53d36491a11d",
-            "quantity": 1,
-            "ens_name": "mrcryptonist.eth"
+            "quantity": 1
           }
         ],
         "holders": [
           {
             "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
-            "quantity": 1,
-            "ens_name": "jeffadams.eth"
+            "quantity": 1
           },
           {
             "address": "0xe597a25c77317b361636270251dc53d36491a11d",
-            "quantity": 1,
-            "ens_name": "mrcryptonist.eth"
+            "quantity": 1
           }
         ]
       },
@@ -1910,6 +2051,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat8trillion",
+      "is_series_rep": true,
       "sub_category": "Trillion Club",
       "tags": [
         "trillion_club"
@@ -1928,18 +2070,31 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
+            "quantity": 1,
+            "ens_name": "jeffadams.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
+            "quantity": 1,
+            "ens_name": "jeffadams.eth"
+          }
+        ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-30T05:00:59+00:00",
       "is_1_of_1": true,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat8trillion",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1959,18 +2114,31 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xe597a25c77317b361636270251dc53d36491a11d",
+            "quantity": 1,
+            "ens_name": "mrcryptonist.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xe597a25c77317b361636270251dc53d36491a11d",
+            "quantity": 1,
+            "ens_name": "mrcryptonist.eth"
+          }
+        ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-30T04:46:11+00:00",
       "is_1_of_1": true,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat8trillion",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1995,35 +2163,29 @@
         "top_holders": [
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1,
-            "ens_name": "kingsi.eth"
+            "quantity": 1
           },
           {
             "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
-            "quantity": 1,
-            "ens_name": "dbcrypto.eth"
+            "quantity": 1
           },
           {
             "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
-            "quantity": 1,
-            "ens_name": "south-florida.eth"
+            "quantity": 1
           }
         ],
         "holders": [
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1,
-            "ens_name": "kingsi.eth"
+            "quantity": 1
           },
           {
             "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
-            "quantity": 1,
-            "ens_name": "dbcrypto.eth"
+            "quantity": 1
           },
           {
             "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
-            "quantity": 1,
-            "ens_name": "south-florida.eth"
+            "quantity": 1
           }
         ]
       },
@@ -2034,6 +2196,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat9trillion",
+      "is_series_rep": true,
       "sub_category": "Trillion Club",
       "tags": [
         "trillion_club"
@@ -2056,26 +2219,27 @@
         "circulating_copies": 1,
         "top_holders": [
           {
-            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
             "quantity": 1,
-            "ens_name": "kingsi.eth"
+            "ens_name": "south-florida.eth"
           }
         ],
         "holders": [
           {
-            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
             "quantity": 1,
-            "ens_name": "kingsi.eth"
+            "ens_name": "south-florida.eth"
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-29T11:30:11+00:00",
       "is_1_of_1": true,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat9trillion",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -2112,13 +2276,14 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-29T11:22:35+00:00",
       "is_1_of_1": true,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat9trillion",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -2142,16 +2307,16 @@
         "circulating_copies": 1,
         "top_holders": [
           {
-            "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
             "quantity": 1,
-            "ens_name": "south-florida.eth"
+            "ens_name": "kingsi.eth"
           }
         ],
         "holders": [
           {
-            "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
             "quantity": 1,
-            "ens_name": "south-florida.eth"
+            "ens_name": "kingsi.eth"
           }
         ]
       },
@@ -2162,6 +2327,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat9trillion",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -2181,10 +2347,44 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 4,
+        "circulating_copies": 4,
+        "top_holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
+          }
+        ]
       },
       "minted_at": null,
       "is_1_of_1": false,
@@ -2193,6 +2393,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat10trillion",
+      "is_series_rep": true,
       "sub_category": "Trillion Club",
       "tags": [
         "trillion_club"
@@ -2211,18 +2412,31 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1,
+            "ens_name": "dacatstudios.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1,
+            "ens_name": "dacatstudios.eth"
+          }
+        ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-28T04:58:11+00:00",
       "is_1_of_1": true,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat10trillion",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -2242,10 +2456,22 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1,
+            "ens_name": "grumpyx.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1,
+            "ens_name": "grumpyx.eth"
+          }
+        ]
       },
       "minted_at": "2026-05-28T04:46:35+00:00",
       "is_1_of_1": true,
@@ -2254,6 +2480,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat10trillion",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -2273,18 +2500,31 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1,
+            "ens_name": "cryptlos.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1,
+            "ens_name": "cryptlos.eth"
+          }
+        ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-28T04:36:23+00:00",
       "is_1_of_1": true,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat10trillion",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -2321,13 +2561,14 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-28T04:18:11+00:00",
       "is_1_of_1": true,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat10trillion",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -2369,6 +2610,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat500billion",
+      "is_series_rep": true,
       "sub_category": "500 Billion Club",
       "tags": []
     },
@@ -2385,18 +2627,29 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "quantity": 1
+          }
+        ]
       },
-      "minted_at": null,
+      "minted_at": "2026-06-04T22:02:11+00:00",
       "is_1_of_1": true,
       "award_category": "500_billion_club",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat500billion",
+      "is_series_rep": false,
       "sub_category": "500 Billion Club",
       "tags": [
         "1_of_1"
@@ -2512,13 +2765,14 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-31T12:03:35+00:00",
       "is_1_of_1": true,
       "award_category": "collector_cat",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat-world-collector-cat",
+      "is_series_rep": false,
       "sub_category": "Collector Cat",
       "tags": [
         "1_of_1"
@@ -2621,6 +2875,7 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat-gem-nova-green",
+      "is_series_rep": false,
       "sub_category": "Gem Nova Green",
       "tags": [
         "1_of_1"
@@ -2663,6 +2918,7 @@
       "mystery_status": "mystery_until_review",
       "ens_match_detected": false,
       "source_created_collection": "dagatoawards",
+      "is_series_rep": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",

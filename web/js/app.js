@@ -559,6 +559,7 @@ function buildCollectorsFromBadgeItems(items) {
   var byAddr = {};
   (items || []).forEach(function (item) {
     if (!item.source_created_collection) return; // badges only
+    var slug = item.source_created_collection;
     var os = item.owners || {};
     var list = os.holders || os.top_holders || [];
     list.forEach(function (h) {
@@ -570,10 +571,12 @@ function buildCollectorsFromBadgeItems(items) {
           ens_name: h.ens_name || null,
           username: h.username || null,
           unique_pieces: 0,
-          collection_quantity: 0
+          collection_quantity: 0,
+          _slugs: {}
         };
       }
       byAddr[a].collection_quantity += (h.quantity || 1);
+      if (slug) byAddr[a]._slugs[slug] = true;
     });
   });
   // enrich ENS from walletIndex if available (many overlap)
@@ -586,13 +589,14 @@ function buildCollectorsFromBadgeItems(items) {
   });
   return Object.values(byAddr)
     .map(function (e) {
-      // for badges, unique_pieces is number of different series owned
-      // but since one item per series, use collection_quantity as proxy, or count series
-      e.unique_pieces = e.collection_quantity; // simplistic, each series=1 for most
+      // for badges, unique_pieces = distinct series/slugs owned (ignore double count from series_rep + personal)
+      var slugCount = e._slugs ? Object.keys(e._slugs).length : 0;
+      e.unique_pieces = slugCount || e.collection_quantity;
+      delete e._slugs;
       return e;
     })
     .sort(function (a, b) {
-      return b.collection_quantity - a.collection_quantity;
+      return (b.unique_pieces || b.collection_quantity || 0) - (a.unique_pieces || a.collection_quantity || 0);
     });
 }
 
@@ -2521,27 +2525,18 @@ function getFilteredItems() {
   }
 
   // In light/generic search (no active portfolio), deduplicate multi-1of1 custom series (trillion clubs)
-  // Keep the series rep (is_series_rep or the one with highest holder_count) per slug.
-  // Personalized 1:1s only appear in owner's portfolio.
+  // ONLY the series_rep (is_series_rep) is shown for these slugs. It carries the generic title,
+  // generic image, and aggregate holder_count (e.g. 3 for 9T).
+  // Personalized 1:1s (with custom names/art) appear ONLY in the owner's portfolio view.
+  // This was the required behavior; data updates added per-1/1 items so explicit filter is needed.
   if (!galleryCollectorView) {
-    // Dedup trillion/billion clubs to exactly one series rep (prefer is_series_rep or highest holder count)
-    // This prevents personalized 1:1 duplicates in light/generic search while still allowing specific ones in portfolio.
-    var clubItems = items.filter(function (i) {
-      return i.source_created_collection && /trillion|billion/i.test(i.source_created_collection) && (i.is_1_of_1 || i.is_series_rep);
-    });
-    var otherItems = items.filter(function (i) {
-      return !(i.source_created_collection && /trillion|billion/i.test(i.source_created_collection) && (i.is_1_of_1 || i.is_series_rep));
-    });
-    var bySlug = {};
-    clubItems.forEach(function (i) {
-      var s = i.source_created_collection;
-      var currHolder = (i.owners && i.owners.holder_count) || 0;
-      var bestHolder = (bySlug[s] && bySlug[s].owners && bySlug[s].owners.holder_count) || 0;
-      if (!bySlug[s] || (i.is_series_rep && !bySlug[s].is_series_rep) || currHolder > bestHolder) {
-        bySlug[s] = i;
+    items = items.filter(function (i) {
+      if (i.source_created_collection && /trillion|billion/i.test(i.source_created_collection)) {
+        // Light view: keep only the series rep (has aggregate stats + generic presentation)
+        return !!i.is_series_rep;
       }
+      return true;
     });
-    items = otherItems.concat(Object.values(bySlug));
   }
   // Collection filter (for multi-collection future; current data defaults to dacommunity)
   if (activeCollection && activeCollection !== "all") {
@@ -2556,6 +2551,28 @@ function getFilteredItems() {
     var q = searchQuery.toLowerCase();
     items = items.filter(function (i) { return itemMatchesSearch(i, q); });
   }
+  // Final safety dedup by composite key. Prevents any random duplicate cards from
+  // state/merge timing (prefer series_rep if a collision somehow occurs for a club slug).
+  var final = [];
+  var seenKey = {};
+  items.forEach(function (i) {
+    var k = getItemKey(i);
+    if (!seenKey[k]) {
+      seenKey[k] = i;
+      final.push(i);
+    } else if (i.is_series_rep && !seenKey[k].is_series_rep) {
+      // upgrade: replace previous non-series with this series rep
+      seenKey[k] = i;
+      // find and replace in final (small list)
+      for (var fi = 0; fi < final.length; fi++) {
+        if (getItemKey(final[fi]) === k) {
+          final[fi] = i;
+          break;
+        }
+      }
+    }
+  });
+  items = final;
   items.sort(compareItems);
   return items;
 }
@@ -3045,8 +3062,10 @@ function openDetail(item) {
   var stats = $("#detail-stats");
   var chips = [];
   if (item.owners) {
+    var oc = item.owners;
     chips.push('<span class="chip"><strong>' + effectiveHolderCount(item) + "</strong> holders</span>");
-    chips.push('<span class="chip"><strong>' + item.owners.circulating_copies + "</strong> copies</span>");
+    var circ = (oc.circulating_copies != null ? oc.circulating_copies : (oc.holder_count || 0));
+    chips.push('<span class="chip"><strong>' + circ + "</strong> copies</span>");
   }
   if (item.listed && item.listing) {
     chips.push('<span class="chip">List <strong>' + formatEth(item.listing.amount_eth) + " ETH</strong></span>");
