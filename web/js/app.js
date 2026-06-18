@@ -1530,7 +1530,10 @@ function runWalletLookupFromAddress(address, lookupValue) {
   input.value = lookupValue || meta.lookupValue || meta.address;
   closeDetail();
   closeCollectorsModal();
-  renderWalletLookup(input.value, { updateUrl: true, scrollBehavior: "smooth" });
+  // Always pass the canonical 0x address (from data-address in pills etc) to lookup
+  // so synth path works directly without relying on ENS resolve (which can hang on external service).
+  // The input keeps the nice ENS name for display.
+  renderWalletLookup(address, { updateUrl: true, scrollBehavior: "smooth" });
 }
 
 function pinWalletDeepLinkScroll() {
@@ -1983,12 +1986,18 @@ function isEnsName(v) {
 
 async function resolveEnsToAddress(name) {
   var url = "https://ensdata.net/" + encodeURIComponent(name.trim());
-  var res = await fetch(url);
-  if (!res.ok) throw new Error("ENS name could not be resolved.");
-  var data = await res.json();
-  var addr = data.address || (data.wallets && data.wallets.eth);
-  if (!addr) throw new Error("No address found for this ENS name.");
-  return addr.toLowerCase();
+  const ctrl = new AbortController();
+  const timer = setTimeout(function () { ctrl.abort(); }, 10000);
+  try {
+    var res = await fetch(url, { signal: ctrl.signal });
+    if (!res.ok) throw new Error("ENS name could not be resolved.");
+    var data = await res.json();
+    var addr = data.address || (data.wallets && data.wallets.eth);
+    if (!addr) throw new Error("No address found for this ENS name.");
+    return addr.toLowerCase();
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 function buildHoldingsFromCurrentItems(address) {
