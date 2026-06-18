@@ -574,17 +574,21 @@ function buildCollectorsFromBadgeItems(items) {
           collection_quantity: 0,
           _slugs: {}
         };
+      } else if (h.ens_name && !byAddr[a].ens_name) {
+        byAddr[a].ens_name = h.ens_name;
+      } else if (h.username && !byAddr[a].username) {
+        byAddr[a].username = h.username;
       }
       byAddr[a].collection_quantity += (h.quantity || 1);
       if (slug) byAddr[a]._slugs[slug] = true;
     });
   });
-  // enrich ENS from walletIndex if available (many overlap)
+  // enrich ENS from walletIndex if available (many overlap) -- but do not clobber good values from badge owners data
   Object.keys(byAddr).forEach(function (a) {
     var e = walletIndex && walletIndex.by_address && walletIndex.by_address[a];
     if (e) {
-      byAddr[a].ens_name = e.ens_name;
-      byAddr[a].username = e.username;
+      if (!byAddr[a].ens_name && e.ens_name) byAddr[a].ens_name = e.ens_name;
+      if (!byAddr[a].username && e.username) byAddr[a].username = e.username;
     }
   });
   return Object.values(byAddr)
@@ -2359,11 +2363,9 @@ function renderStats(collection) {
       collectorsVal = Object.keys(uniq).length || "—";
     }
   } else if (activeCollection === "badges") {
-    // Badges specific: count unique collections (15 slugs), not individual 1:1 tokens
+    // Badges specific: count using same dedup logic as search grid (15 unique nfts)
     var bItems = (galleryData && galleryData.items) || [];
-    var uniqSlugs = {};
-    bItems.forEach(function (it) { if (it.source_created_collection) uniqSlugs[it.source_created_collection] = true; });
-    pieces = Object.keys(uniqSlugs).length || bItems.length;
+    pieces = getBadgePiecesCount(bItems);
     listedVal = "—"; // badges rarely listed in this data
     floorVal = "—";
     // collectors approx from owners (unique wallets across all badge NFTs)
@@ -2575,6 +2577,29 @@ function getFilteredItems() {
   items = final;
   items.sort(compareItems);
   return items;
+}
+
+/** Compute the display pieces count for badges using the exact same dedup logic
+ *  as the light/generic search view (series_rep only for clubs, unique sources).
+ *  This ensures the "Pieces" stat and browse totals match what's shown in the grid.
+ */
+function getBadgePiecesCount(allItems) {
+  if (!allItems || !allItems.length) return 0;
+  var items = allItems.slice();
+  if (!galleryCollectorView) {
+    items = items.filter(function (i) {
+      if (i.source_created_collection && /trillion|billion/i.test(i.source_created_collection)) {
+        return !!i.is_series_rep;
+      }
+      return true;
+    });
+  }
+  if (activeCollection && activeCollection !== "all") {
+    items = items.filter(function (i) {
+      return (i.collection_id || "dacommunity") === activeCollection;
+    });
+  }
+  return items.length;
 }
 
 function resetBrowseView() {
@@ -3102,6 +3127,10 @@ function closeDetail() {
 function refreshView() {
   if (!galleryData) return;
   var total = galleryData.items.length;
+  if (activeCollection === "badges" && !galleryCollectorView) {
+    // Use same dedup logic as search grid for consistent "Pieces" / total count (15 unique for badges)
+    total = getBadgePiecesCount(galleryData.items);
+  }
   var filtered = getFilteredItems();
   renderBrowseMeta(filtered.length, total);
   renderGallery(filtered);
