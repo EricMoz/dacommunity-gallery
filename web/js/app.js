@@ -2505,6 +2505,21 @@ function getFilteredItems() {
       return false;
     });
   }
+
+  // In light/generic search (no active portfolio), deduplicate multi-1of1 custom series (trillion clubs)
+  // so only one generic series rep shows per club. Specific personalized 1:1s (with custom ENS art)
+  // will only surface in their owner's portfolio via owner-match filter.
+  if (!galleryCollectorView) {
+    var seenClub = {};
+    items = items.filter(function (i) {
+      if (i.source_created_collection && i.is_1_of_1 && /trillion|billion/i.test(i.source_created_collection)) {
+        var s = i.source_created_collection;
+        if (seenClub[s]) return false;
+        seenClub[s] = true;
+      }
+      return true;
+    });
+  }
   // Collection filter (for multi-collection future; current data defaults to dacommunity)
   if (activeCollection && activeCollection !== "all") {
     items = items.filter(function (i) {

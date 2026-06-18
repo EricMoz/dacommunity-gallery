@@ -455,30 +455,122 @@ def main():
         except Exception as e:
             print(f"  Error for {slug}: {e}")
 
+    # title_map for generic series names in light view (prevents personalized ENS in search)
+    title_map = {
+        "dacatrookie2026": "DACAT ROOKIE CARD 2026",
+        "dacat1trillionclub": "DACAT 1 TRILLION CLUB",
+        "dacat2trillion": "DACAT 2 TRILLION CLUB",
+        "dacat3trillion": "DACAT 3 TRILLION CLUB",
+        "dacat4trillion": "DACAT 4 TRILLION CLUB",
+        "dacat5trillion": "DACAT 5 TRILLION CLUB",
+        "dacat6trillion": "DACAT 6 TRILLION CLUB",
+        "dacat7trillion": "DACAT 7 TRILLION CLUB",
+        "dacat8trillion": "DACAT 8 TRILLION CLUB",
+        "dacat9trillion": "DACAT 9 TRILLION CLUB",
+        "dacat10trillion": "DACAT 10 TRILLION CLUB",
+        "dacat500billion": "DACAT 500 BILLION CLUB",
+        "dacat-world-collector-cat": "DACAT WORLD - COLLECTOR CAT",
+        "dacat-gem-nova-green": "DACAT GEM - NOVA GREEN",
+        "dagatoawards": "DACAT 13 TRILLION CLUB",
+    }
+
     for slug, nfts in slug_nfts.items():
         if not nfts:
             continue
-        # take first for name/image etc (series rep), but for rookie use the specific token 1 to match bootstrap first mint
+
+        is_multi_custom_1of1 = (slug.startswith("dacat") and ("trillion" in slug.lower() or "billion" in slug.lower()))
+
+        if is_multi_custom_1of1:
+            # For trillion/billion clubs that are custom 1:1s with ENS baked into each NFT's image/name,
+            # include EVERY nft as its own item. This allows portfolio to show the *specific* owned 1:1
+            # (with correct custom art/ENS name on image). Light/generic search will dedup to one series rep.
+            for nft in nfts:
+                token_id = str(nft.get("identifier") or nft.get("token_id") or "1")
+                contract = nft.get("contract")
+                if isinstance(contract, dict):
+                    contract = contract.get("address", "")
+                elif not isinstance(contract, str):
+                    contract = ""
+                if not contract:
+                    contract = (nft.get("asset_contract") or {}).get("address") or nft.get("contract_address") or ""
+                name = nft.get("name") or f"{slug} #{token_id}"
+                if not contract or not token_id:
+                    print(f"  Skipping {slug} item - missing contract or token id")
+                    continue
+
+                rawDesc = nft.get("description") or ""
+                desc = clean_description(rawDesc)
+                if re.search(r'trillion club| \d+trillion', (slug + ' ' + name).lower()):
+                    desc = re.sub(r'^Exclusive [^\.]*?CLUB\.\s*', '', desc, flags=re.IGNORECASE)
+                    desc = re.sub(r'^1-of-1 [^\.]*?CLUB\.\s*', '', desc, flags=re.IGNORECASE)
+                    m = re.search(r'(The DACAT \d+ TRILLION CLUB is[\s\S]*?)(?=\n\n|$|\.\s+[A-Z])', desc, re.IGNORECASE)
+                    if m:
+                        desc = m.group(1).strip()
+                        if not desc.endswith('.'):
+                            desc += '.'
+                image = nft.get("image_url") or nft.get("animation_url") or ""
+                media_type = "video" if (image or "").lower().endswith((".mp4", ".mov", ".webm")) else "image"
+                created_at = get_first_mint_timestamp("ethereum", contract, token_id, api_key) or nft.get("created_at") or nft.get("minted_at")
+
+                # Per-token owners for the specific 1:1
+                owners_list = get_owners("ethereum", contract, token_id, api_key)
+                non_issuer_holders = [o for o in owners_list if (o.get("address") or "").lower() != ISSUER_WALLET]
+                owner_stats = summarize_owners(non_issuer_holders)
+
+                for holder_list in (owner_stats.get("holders", []), owner_stats.get("top_holders", [])):
+                    for h in holder_list:
+                        try:
+                            res = client.resolve_account(h["address"])
+                            if res.get("ens_name"):
+                                h["ens_name"] = res["ens_name"]
+                        except Exception:
+                            pass
+
+                supply = 1
+                is_1of1 = True
+
+                category = get_sub_category("", name).lower().replace(" ", "_")
+                unclaimed = "unclaimed" in name.lower() or "available" in (desc or "").lower()
+                mystery = not is_known_pattern(name, slug)
+
+                display_name = title_map.get(slug, name)
+
+                local_slug = SLUG_TO_LOCAL_ASSET.get(slug, slug + "-" + token_id)
+                item = {
+                    "token_id": token_id,
+                    "name": name,
+                    "display_name": display_name,
+                    "local_slug": local_slug,
+                    "description": desc,
+                    "excerpt": excerpt(desc),
+                    "image_url": image,
+                    "media_type": media_type,
+                    "opensea_url": f"https://opensea.io/collection/{slug}",
+                    "traits": nft.get("traits", []),
+                    "listed": False,
+                    "listing": None,
+                    "owners": owner_stats,
+                    "minted_at": created_at,
+                    "is_1_of_1": is_1of1,
+                    "edition_size": supply,
+                    "award_category": category,
+                    "unclaimed_or_available": unclaimed,
+                    "mystery_status": "mystery_until_review" if mystery else "approved",
+                    "source_created_collection": slug,
+                    "created_by_wallet": ISSUER_WALLET,
+                    "sub_category": get_sub_category(category, name),
+                    "tags": get_tags({"is_1_of_1": is_1of1, "award_category": category, "unclaimed_or_available": unclaimed, "name": name, "description": desc}),
+                }
+                items.append(item)
+            continue  # done all for this slug
+
+        # single rep for other slugs (rookie, gem, collector, dagato, world, etc.)
         if slug == "dacatrookie2026":
-            # Use the actual first mint token for rookie (token 3 per validation)
             nft = next((n for n in nfts if str(n.get("identifier") or n.get("token_id") or "") == "3"), nfts[0])
+        elif slug == "dagatoawards":
+            nft = next((n for n in nfts if str(n.get("identifier") or n.get("token_id") or "") == "4"), nfts[0])
         else:
             nft = nfts[0]
-
-        # Special handling for dagatoawards: treat as 13 Trillion Club 1:1 like other trillions.
-        # Generic view (grid/search) uses the local png asset on file (based on token 3 visual).
-        # Portfolio/collector view will show the specific video NFT (token 4).
-        # Pipeline uses per-token owners so only dagato is owner, edition 1.
-        use_specific_token = None
-        force_1of1 = False
-        if slug == "dagatoawards":
-            use_specific_token = "4"  # the video/personalized 1:1 for portfolio
-            force_1of1 = True
-
-        if use_specific_token:
-            specific_nft = next((n for n in nfts if str(n.get("identifier") or n.get("token_id") or "") == use_specific_token), None)
-            if specific_nft:
-                nft = specific_nft
 
         token_id = str(nft.get("identifier") or nft.get("token_id") or "1")
         contract = nft.get("contract")
@@ -487,29 +579,21 @@ def main():
         elif not isinstance(contract, str):
             contract = ""
         if not contract:
-            # try alternate fields returned by some collection responses
             contract = (nft.get("asset_contract") or {}).get("address") or nft.get("contract_address") or ""
         name = nft.get("name") or f"{slug} #{token_id}"
         if not contract or not token_id:
             print(f"  Skipping {slug} item - missing contract or token id")
             continue
 
-        # dagatoawards: force token_id "4" for the specific NFT shown in portfolio, 1:1
         if slug == "dagatoawards":
             token_id = "4"
-            display_name = "13 TRILLION CLUB"
+            display_name = "DACAT 13 TRILLION CLUB"
             category = "trillion_club"
-            force_1of1 = True
         rawDesc = nft.get("description") or ""
         desc = clean_description(rawDesc)
-        # For all trillion club series (and similar), strip the personalized first sentence
-        # so the description used in generic/light views and detail never mentions a specific ENS.
-        # Use the collection-level generic text that starts with "The DACAT X TRILLION CLUB is..."
         if re.search(r'trillion club| \d+trillion', (slug + ' ' + name).lower()):
-            # remove leading personalized sentence like "Exclusive 1-of-1 ... CLUB."
             desc = re.sub(r'^Exclusive [^\.]*?CLUB\.\s*', '', desc, flags=re.IGNORECASE)
             desc = re.sub(r'^1-of-1 [^\.]*?CLUB\.\s*', '', desc, flags=re.IGNORECASE)
-            # prefer the generic sentence if present
             m = re.search(r'(The DACAT \d+ TRILLION CLUB is[\s\S]*?)(?=\n\n|$|\.\s+[A-Z])', desc, re.IGNORECASE)
             if m:
                 desc = m.group(1).strip()
@@ -517,22 +601,17 @@ def main():
                     desc += '.'
         image = nft.get("image_url") or nft.get("animation_url") or ""
         media_type = "video" if (image or "").lower().endswith((".mp4", ".mov", ".webm")) else "image"
-        # Prefer exact first mint event timestamp (targeted per rep token)
         created_at = get_first_mint_timestamp("ethereum", contract, token_id, api_key) or nft.get("created_at") or nft.get("minted_at")
 
-        # aggregate owners from collection holders (efficient, avoids N per-nft calls)
         if slug == "dagatoawards":
-            # per-token owners for the specific 1:1 (token 4) so only dagato picked as owner
             owners_list = get_owners("ethereum", contract, token_id, api_key)
             non_issuer_holders = [o for o in owners_list if (o.get("address") or "").lower() != ISSUER_WALLET]
             owner_stats = summarize_owners(non_issuer_holders)
         else:
             all_holders = get_collection_holders(slug, api_key)
-            # filter issuer
             non_issuer_holders = [h for h in all_holders if (h.get("address") or "").lower() != ISSUER_WALLET]
             owner_stats = summarize_owners(non_issuer_holders)
 
-        # Resolve ENS for owners (like main dacommunity) so collector view shows ENS names
         for holder_list in (owner_stats.get("holders", []), owner_stats.get("top_holders", [])):
             for h in holder_list:
                 try:
@@ -542,7 +621,6 @@ def main():
                 except Exception:
                     pass
 
-        # supply / 1of1 from first or total
         supply = len(nfts) or 1
         is_1of1 = supply <= 5 or any("1/1" in str(t).lower() or "one of one" in str(t).lower() for t in nft.get("traits", []))
         if slug == "dagatoawards":
@@ -553,29 +631,9 @@ def main():
         unclaimed = "unclaimed" in name.lower() or "available" in (desc or "").lower()
         mystery = not is_known_pattern(name, slug)
 
-        # Use full collection name from dacatworld profile for generic search titles
-        # (full titles for series/copies, no personal or abbreviated like "first Round")
-        title_map = {
-            "dacatrookie2026": "DACAT ROOKIE CARD 2026",
-            "dacat1trillionclub": "DACAT 1 TRILLION CLUB",
-            "dacat2trillion": "DACAT 2 TRILLION CLUB",
-            "dacat3trillion": "DACAT 3 TRILLION CLUB",
-            "dacat4trillion": "DACAT 4 TRILLION CLUB",
-            "dacat5trillion": "DACAT 5 TRILLION CLUB",
-            "dacat6trillion": "DACAT 6 TRILLION CLUB",
-            "dacat7trillion": "DACAT 7 TRILLION CLUB",
-            "dacat8trillion": "DACAT 8 TRILLION CLUB",
-            "dacat9trillion": "DACAT 9 TRILLION CLUB",
-            "dacat10trillion": "DACAT 10 TRILLION CLUB",
-            "dacat500billion": "DACAT 500 BILLION CLUB",
-            "dacat-world-collector-cat": "DACAT WORLD - COLLECTOR CAT",
-            "dacat-gem-nova-green": "DACAT GEM - NOVA GREEN",
-            "dagatoawards": "13 TRILLION CLUB",
-        }
         display_name = title_map.get(slug, name)
         if slug == "dagatoawards":
-            name = "13 TRILLION CLUB"
-            display_name = "13 TRILLION CLUB"
+            display_name = "DACAT 13 TRILLION CLUB"
             category = "trillion_club"
         awarded_for = category.replace("_", " ").title()
 
