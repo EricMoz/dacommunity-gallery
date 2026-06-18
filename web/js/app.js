@@ -596,6 +596,46 @@ function buildCollectorsFromBadgeItems(items) {
     });
 }
 
+function rebuildCollectorsForCurrentView() {
+  if (activeCollection === "badges") {
+    collectorsList = buildCollectorsFromBadgeItems(galleryData ? galleryData.items : []);
+  } else if (!activeCollection || activeCollection === "all") {
+    var dacomCols = [];
+    if (walletIndex && walletIndex.by_address) {
+      dacomCols = buildCollectorsFromIndex(walletIndex);
+    } else if (collectorsList && collectorsList.length) {
+      dacomCols = collectorsList;
+    }
+    var badgeCols = buildCollectorsFromBadgeItems(galleryData ? galleryData.items : []);
+    var map = {};
+    dacomCols.forEach(function (c) {
+      if (c && c.address) map[c.address.toLowerCase()] = c;
+    });
+    badgeCols.forEach(function (c) {
+      if (c && c.address) {
+        var k = c.address.toLowerCase();
+        if (!map[k]) map[k] = c;
+      }
+    });
+    collectorsList = Object.values(map).sort(function (a, b) {
+      return (b.unique_pieces || b.collection_quantity || 0) - (a.unique_pieces || a.collection_quantity || 0);
+    });
+  }
+  updateCollectorsButton();
+}
+
+function syncCollectorViewToCurrentItems() {
+  if (!galleryCollectorView || !galleryCollectorView.address) return;
+  var addr = galleryCollectorView.address;
+  var holdings = buildHoldingsFromCurrentItems(addr);
+  if (holdings.length > 0) {
+    galleryCollectorView.tokenIds = collectorTokenIdSet({ holdings: holdings });
+    galleryCollectorView.pieceCount = holdings.length;
+    galleryCollectorView.uniquePieces = holdings.length;
+    renderCollectorFocusUi();
+  }
+}
+
 function formatMintDate(iso) {
   if (!iso) return "";
   var d = new Date(iso);
@@ -1068,7 +1108,8 @@ function clearCollectorFilters() {
   activeFilter = "all";
   searchQuery = "";
   sortKey = "token_desc";
-  activeCollection = "all";
+  // Do not pre-set activeCollection here -- the change handler will set it + trigger data load for the chosen collection (all / badges / etc)
+  // This ensures the portfolio grid shows the correct subset based on dropdown no matter the starting collection.
   var search = $("#search");
   var sort = $("#sort-select");
   var colSel = $("#collection-select");
@@ -1084,7 +1125,7 @@ function clearCollectorFilters() {
     btn.classList.toggle("active", on);
     btn.setAttribute("aria-selected", on ? "true" : "false");
   });
-  refreshView();
+  // handler will call refreshView + sync after data load
 }
 
 function clearGalleryCollectorView(opts) {
@@ -2218,9 +2259,13 @@ function fillMediaSlot(slot, item, opts) {
   opts = opts || {};
   slot.innerHTML = "";
   var src = imgSrc(item);
-  // In portfolio/collector view, prefer the specific/personalized opensea image (e.g. video token 4 for dagato 13T)
-  // while generic grid/browse uses the local png series asset.
-  if (galleryCollectorView && item && item.opensea_image_url && /^https?:/i.test(item.opensea_image_url)) {
+  // Prefer opensea video source for video items (e.g. gem nova green in generic search/detail)
+  // or personalized in portfolio. Fall back to current src (png for generic).
+  if (item && item.opensea_image_url && /^https?:/i.test(item.opensea_image_url) && /\.(mp4|mov|webm)/i.test(item.opensea_image_url)) {
+    if (isVideoItem(item) || galleryCollectorView || (opts && (opts.autoplay || opts.controls))) {
+      src = resolveMediaUrl(item.opensea_image_url);
+    }
+  } else if (galleryCollectorView && item && item.opensea_image_url && /^https?:/i.test(item.opensea_image_url)) {
     src = resolveMediaUrl(item.opensea_image_url);
   }
   if (!src) return;
@@ -2986,6 +3031,15 @@ function closeDetail() {
   }
   $("#collector-explore").hidden = true;
   setActivityDisclosureOpen(false);
+  // Stop any video playing in the detail slot to prevent background audio after close
+  var detailSlot = $("#detail-media-slot");
+  if (detailSlot) {
+    var vid = detailSlot.querySelector("video");
+    if (vid) {
+      vid.pause();
+      vid.currentTime = 0;
+    }
+  }
 }
 
 function refreshView() {
@@ -3143,6 +3197,7 @@ function bindUi() {
           renderStats(galleryData.collection);
           renderDataFreshness();
           refreshView();
+          syncCollectorViewToCurrentItems();
           adaptHeaderForCollection();
           applyCollectionUI();
 
@@ -3161,6 +3216,7 @@ function bindUi() {
                 });
               });
             }
+            rebuildCollectorsForCurrentView();
             // re-render owners if a detail is open, so ENS can appear
             if (activeDetailTokenId) {
               var openItem = itemsById.get(activeDetailTokenId);
@@ -3205,6 +3261,7 @@ function bindUi() {
           renderStats(galleryData.collection);
           renderDataFreshness();
           refreshView();
+          syncCollectorViewToCurrentItems();
           adaptHeaderForCollection();
           applyCollectionUI();
           // re-load wallet/collector data and background enrich for main archive
@@ -3214,6 +3271,7 @@ function bindUi() {
           if (hasWallet) {
             loadWalletIndex().then(function () {
               updateCollectorsButton();
+              rebuildCollectorsForCurrentView();
               if (activeDetailTokenId) {
                 var openItem = itemsById.get(activeDetailTokenId);
                 if (openItem) refreshDetailPanel(openItem);
@@ -3416,6 +3474,10 @@ async function init() {
       }
     }
 
+    if (!activeCollection || activeCollection === "all") {
+      rebuildCollectorsForCurrentView();
+    }
+
     if (dataSource === "catalog") {
       refreshFullDataInBackground();
     } else {
@@ -3434,6 +3496,7 @@ async function init() {
       loadWalletIndex().then(function () {
         renderStats(galleryData.collection);
         updateCollectorsButton();
+        rebuildCollectorsForCurrentView();
         if (activeDetailTokenId) {
           var openItem = itemsById.get(activeDetailTokenId);
           if (openItem) refreshDetailPanel(openItem);

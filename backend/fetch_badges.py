@@ -497,10 +497,24 @@ def main():
         # dagatoawards: force token_id "4" for the specific NFT shown in portfolio, 1:1
         if slug == "dagatoawards":
             token_id = "4"
-            display_name = "13 TRILLION CLUB MEMBERSHIP"
+            display_name = "13 TRILLION CLUB"
             category = "trillion_club"
             force_1of1 = True
-        desc = clean_description(nft.get("description") or "")
+        rawDesc = nft.get("description") or ""
+        desc = clean_description(rawDesc)
+        # For all trillion club series (and similar), strip the personalized first sentence
+        # so the description used in generic/light views and detail never mentions a specific ENS.
+        # Use the collection-level generic text that starts with "The DACAT X TRILLION CLUB is..."
+        if re.search(r'trillion club| \d+trillion', (slug + ' ' + name).lower()):
+            # remove leading personalized sentence like "Exclusive 1-of-1 ... CLUB."
+            desc = re.sub(r'^Exclusive [^\.]*?CLUB\.\s*', '', desc, flags=re.IGNORECASE)
+            desc = re.sub(r'^1-of-1 [^\.]*?CLUB\.\s*', '', desc, flags=re.IGNORECASE)
+            # prefer the generic sentence if present
+            m = re.search(r'(The DACAT \d+ TRILLION CLUB is[\s\S]*?)(?=\n\n|$|\.\s+[A-Z])', desc, re.IGNORECASE)
+            if m:
+                desc = m.group(1).strip()
+                if not desc.endswith('.'):
+                    desc += '.'
         image = nft.get("image_url") or nft.get("animation_url") or ""
         media_type = "video" if (image or "").lower().endswith((".mp4", ".mov", ".webm")) else "image"
         # Prefer exact first mint event timestamp (targeted per rep token)
@@ -556,12 +570,12 @@ def main():
             "dacat500billion": "DACAT 500 BILLION CLUB",
             "dacat-world-collector-cat": "DACAT WORLD - COLLECTOR CAT",
             "dacat-gem-nova-green": "DACAT GEM - NOVA GREEN",
-            "dagatoawards": "13 TRILLION CLUB MEMBERSHIP",
+            "dagatoawards": "13 TRILLION CLUB",
         }
         display_name = title_map.get(slug, name)
         if slug == "dagatoawards":
-            name = "13 TRILLION CLUB MEMBERSHIP"
-            display_name = "13 TRILLION CLUB MEMBERSHIP"
+            name = "13 TRILLION CLUB"
+            display_name = "13 TRILLION CLUB"
             category = "trillion_club"
         awarded_for = category.replace("_", " ").title()
 

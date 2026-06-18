@@ -35,6 +35,9 @@ def slim_item(item: dict, root: Path) -> dict:
     # Mirror main slim + keep unique badge fields + subcats/tags for light filters/grouping
     img = resolve_local_badge_image(item, root)
     orig_img = item.get("image_url") or item.get("opensea_image_url") or ""
+    # Force image for local PNG assets (generic view). Original media_type (e.g. video for dagato) is preserved
+    # via opensea_image_url and used preferentially in portfolio/collector view.
+    media_type = "image" if img.startswith("assets/badges/") else item.get("media_type", "image")
     return {
         "token_id": item.get("token_id"),
         "name": item.get("name"),
@@ -42,7 +45,7 @@ def slim_item(item: dict, root: Path) -> dict:
         "local_slug": item.get("local_slug"),
         "excerpt": item.get("excerpt", ""),
         "image_url": img,
-        "media_type": item.get("media_type", "image"),
+        "media_type": media_type,
         "opensea_url": item.get("opensea_url"),
         "opensea_image_url": orig_img if orig_img.startswith("http") else None,
         "listed": item.get("listed", False),
