@@ -1059,7 +1059,9 @@ function resetWalletLookupHub() {
 function collectorTokenIdSet(entry) {
   var ids = {};
   (entry.holdings || []).forEach(function (h) {
-    ids[String(h.token_id)] = true;
+    // Use composite key (source+token) to prevent numeric token_id collisions
+    // between dacommunity and badges collections in portfolio view.
+    ids[getItemKey(h)] = true;
   });
   return ids;
 }
@@ -2343,7 +2345,8 @@ function renderStats(collection) {
   if (!activeCollection || activeCollection === "all") {
     // Combined stats for All collections
     var allItems = (galleryData && galleryData.items) || [];
-    pieces = allItems.length;
+    // Deduped to match grid (dacom + 15 badges series, not raw badge 1/1s)
+    pieces = getDedupedPiecesCount(allItems);
 
     // listed and floor from current items
     var listed = 0;
@@ -2374,7 +2377,7 @@ function renderStats(collection) {
   } else if (activeCollection === "badges") {
     // Badges specific: count using same dedup logic as search grid (15 unique nfts)
     var bItems = (galleryData && galleryData.items) || [];
-    pieces = getBadgePiecesCount(bItems);
+    pieces = getDedupedPiecesCount(bItems);
     listedVal = "—"; // badges rarely listed in this data
     floorVal = "—";
     // collectors approx from owners (unique wallets across all badge NFTs)
@@ -2528,9 +2531,10 @@ function getFilteredItems() {
         // badges: only trust owner match (token_ids collide across series, rep tokens not unique)
         return false;
       }
-      // Fallback tid match for main dacommunity style
-      var tid = String(i.token_id);
-      if (tidSet[tid]) return true;
+      // Fallback key match for main dacommunity style (using getItemKey to avoid collisions
+      // with badge token_ids that may overlap numerically)
+      var key = getItemKey(i);
+      if (tidSet[key]) return true;
       return false;
     });
   }
@@ -2588,11 +2592,12 @@ function getFilteredItems() {
   return items;
 }
 
-/** Compute the display pieces count for badges using the exact same dedup logic
- *  as the light/generic search view (series_rep only for clubs, unique sources).
- *  This ensures the "Pieces" stat and browse totals match what's shown in the grid.
+/**
+ * Apply the exact same dedup logic used in getFilteredItems for light/generic search
+ * (keep only series_rep for trillion/billion clubs). This ensures "Pieces" stat
+ * matches exactly what's shown in the grid.
  */
-function getBadgePiecesCount(allItems) {
+function getDedupedPiecesCount(allItems) {
   if (!allItems || !allItems.length) return 0;
   var items = allItems.slice();
   if (!galleryCollectorView) {
@@ -2603,12 +2608,16 @@ function getBadgePiecesCount(allItems) {
       return true;
     });
   }
-  if (activeCollection && activeCollection !== "all") {
-    items = items.filter(function (i) {
-      return (i.collection_id || "dacommunity") === activeCollection;
-    });
-  }
   return items.length;
+}
+
+/** Compute the display pieces count for badges using the exact same dedup logic
+ *  as the light/generic search view (series_rep only for clubs, unique sources).
+ *  This ensures the "Pieces" stat and browse totals match what's shown in the grid.
+ */
+function getBadgePiecesCount(allItems) {
+  // Delegate to deduped logic (collection filter no-op when items are badges-only)
+  return getDedupedPiecesCount(allItems);
 }
 
 function resetBrowseView() {
@@ -3135,11 +3144,9 @@ function closeDetail() {
 
 function refreshView() {
   if (!galleryData) return;
-  var total = galleryData.items.length;
-  if (activeCollection === "badges" && !galleryCollectorView) {
-    // Use same dedup logic as search grid for consistent "Pieces" / total count (15 unique for badges)
-    total = getBadgePiecesCount(galleryData.items);
-  }
+  // Use deduped count so "Pieces" / "X of Y" matches exactly what's shown in the grid
+  // (dacommunity items + deduped badges = 64 + 15 when All)
+  var total = getDedupedPiecesCount(galleryData.items);
   var filtered = getFilteredItems();
   renderBrowseMeta(filtered.length, total);
   renderGallery(filtered);
