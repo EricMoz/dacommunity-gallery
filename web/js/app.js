@@ -2242,7 +2242,7 @@ function renderCollectors(filter) {
       var suffix = c.unique_pieces === 1 ? "" : "s";
       return (
         '<button type="button" class="collector-row" data-address="' + escapeHtml(c.address) + '">' +
-        '<div class="collector-info"><strong>' + escapeHtml(label) + '</strong><span class="meta">' + escapeHtml(c.address) + "</span></div>" +
+        '<div class="collector-info"><strong>' + escapeHtml(label) + '</strong><span class="meta">' + escapeHtml(c.ens_name || c.address) + "</span></div>" +
         '<span class="count">' + c.unique_pieces + " piece" + suffix + "</span></button>"
       );
     })
@@ -2354,12 +2354,14 @@ function renderStats(collection) {
       collectorsVal = Object.keys(uniq).length || "—";
     }
   } else if (activeCollection === "badges") {
-    // Badges specific
+    // Badges specific: count unique collections (15 slugs), not individual 1:1 tokens
     var bItems = (galleryData && galleryData.items) || [];
-    pieces = bItems.length;
+    var uniqSlugs = {};
+    bItems.forEach(function (it) { if (it.source_created_collection) uniqSlugs[it.source_created_collection] = true; });
+    pieces = Object.keys(uniqSlugs).length || bItems.length;
     listedVal = "—"; // badges rarely listed in this data
     floorVal = "—";
-    // collectors approx from owners
+    // collectors approx from owners (unique wallets across all badge NFTs)
     var uniqB = {};
     bItems.forEach(function (it) {
       var os = (it.owners || {}).holders || (it.owners || {}).top_holders || [];
@@ -2492,8 +2494,19 @@ function getFilteredItems() {
       // series are shown, matching OpenSea data.
       var owners = (i.owners || {});
       var holders = owners.holders || owners.top_holders || [];
+      var match = false;
       for (var j=0; j<holders.length; j++) {
-        if ((holders[j].address || "").toLowerCase() === addr) return true;
+        if ((holders[j].address || "").toLowerCase() === addr) {
+          match = true;
+          break;
+        }
+      }
+      if (match) {
+        // For multi-1of1 clubs, skip the series rep item in portfolio; only the specific personal 1:1
+        if (i.source_created_collection && /trillion|billion/i.test(i.source_created_collection) && i.is_series_rep) {
+          return false;
+        }
+        return true;
       }
       if (i.source_created_collection) {
         // badges: only trust owner match (token_ids collide across series, rep tokens not unique)
@@ -2507,18 +2520,25 @@ function getFilteredItems() {
   }
 
   // In light/generic search (no active portfolio), deduplicate multi-1of1 custom series (trillion clubs)
-  // so only one generic series rep shows per club. Specific personalized 1:1s (with custom ENS art)
-  // will only surface in their owner's portfolio via owner-match filter.
+  // Keep the series rep (is_series_rep or the one with highest holder_count) per slug.
+  // Personalized 1:1s only appear in owner's portfolio.
   if (!galleryCollectorView) {
-    var seenClub = {};
-    items = items.filter(function (i) {
-      if (i.source_created_collection && i.is_1_of_1 && /trillion|billion/i.test(i.source_created_collection)) {
-        var s = i.source_created_collection;
-        if (seenClub[s]) return false;
-        seenClub[s] = true;
-      }
-      return true;
+    var clubItems = items.filter(function (i) {
+      return i.source_created_collection && i.is_1_of_1 && /trillion|billion/i.test(i.source_created_collection);
     });
+    var otherItems = items.filter(function (i) {
+      return !(i.source_created_collection && i.is_1_of_1 && /trillion|billion/i.test(i.source_created_collection));
+    });
+    var bySlug = {};
+    clubItems.forEach(function (i) {
+      var s = i.source_created_collection;
+      var currHolder = (i.owners && i.owners.holder_count) || 0;
+      var bestHolder = (bySlug[s] && bySlug[s].owners && bySlug[s].owners.holder_count) || 0;
+      if (!bySlug[s] || (i.is_series_rep && !bySlug[s].is_series_rep) || currHolder > bestHolder) {
+        bySlug[s] = i;
+      }
+    });
+    items = otherItems.concat(Object.values(bySlug));
   }
   // Collection filter (for multi-collection future; current data defaults to dacommunity)
   if (activeCollection && activeCollection !== "all") {

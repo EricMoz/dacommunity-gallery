@@ -482,8 +482,76 @@ def main():
 
         if is_multi_custom_1of1:
             # For trillion/billion clubs that are custom 1:1s with ENS baked into each NFT's image/name,
-            # include EVERY nft as its own item. This allows portfolio to show the *specific* owned 1:1
-            # (with correct custom art/ENS name on image). Light/generic search will dedup to one series rep.
+            # 1. Add a "series rep" item with aggregate collection stats (for light view clicks to show total holders/copies)
+            # 2. Add every individual 1:1 as its own item with per-token data and custom image (for portfolio to show the specific owned art)
+            all_holders = get_collection_holders(slug, api_key)
+            non_issuer_holders = [h for h in all_holders if (h.get("address") or "").lower() != ISSUER_WALLET]
+            series_stats = summarize_owners(non_issuer_holders)
+
+            # series rep (use first nft for other fields; image overridden to generic PNG in catalog)
+            rep_nft = nfts[0]
+            token_id = str(rep_nft.get("identifier") or rep_nft.get("token_id") or "rep")
+            contract = rep_nft.get("contract")
+            if isinstance(contract, dict):
+                contract = contract.get("address", "")
+            elif not isinstance(contract, str):
+                contract = ""
+            if not contract:
+                contract = (rep_nft.get("asset_contract") or {}).get("address") or rep_nft.get("contract_address") or ""
+            name = title_map.get(slug, slug.replace("dacat", "DACAT ").replace("trillion", "TRILLION CLUB").replace("billion", "BILLION CLUB"))
+            rawDesc = rep_nft.get("description") or ""
+            desc = clean_description(rawDesc)
+            if re.search(r'trillion club| \d+trillion', (slug + ' ' + name).lower()):
+                desc = re.sub(r'^Exclusive [^\.]*?CLUB\.\s*', '', desc, flags=re.IGNORECASE)
+                desc = re.sub(r'^1-of-1 [^\.]*?CLUB\.\s*', '', desc, flags=re.IGNORECASE)
+                m = re.search(r'(The DACAT \d+ TRILLION CLUB is[\s\S]*?)(?=\n\n|$|\.\s+[A-Z])', desc, re.IGNORECASE)
+                if m:
+                    desc = m.group(1).strip()
+                    if not desc.endswith('.'):
+                        desc += '.'
+            image = rep_nft.get("image_url") or rep_nft.get("animation_url") or ""
+            media_type = "video" if (image or "").lower().endswith((".mp4", ".mov", ".webm")) else "image"
+            created_at = get_first_mint_timestamp("ethereum", contract, token_id, api_key) or rep_nft.get("created_at") or rep_nft.get("minted_at")
+
+            supply = len(nfts)
+            is_1of1 = False
+
+            category = get_sub_category("", name).lower().replace(" ", "_")
+            unclaimed = "unclaimed" in name.lower() or "available" in (desc or "").lower()
+            mystery = not is_known_pattern(name, slug)
+
+            display_name = title_map.get(slug, name)
+
+            local_slug = SLUG_TO_LOCAL_ASSET.get(slug, slug + "-" + token_id)
+            series_item = {
+                "token_id": token_id,
+                "name": name,
+                "display_name": display_name,
+                "local_slug": local_slug,
+                "description": desc,
+                "excerpt": excerpt(desc),
+                "image_url": image,
+                "media_type": media_type,
+                "opensea_url": f"https://opensea.io/collection/{slug}",
+                "traits": rep_nft.get("traits", []),
+                "listed": False,
+                "listing": None,
+                "owners": series_stats,
+                "minted_at": created_at,
+                "is_1_of_1": is_1of1,
+                "edition_size": supply,
+                "award_category": category,
+                "unclaimed_or_available": unclaimed,
+                "mystery_status": "mystery_until_review" if mystery else "approved",
+                "source_created_collection": slug,
+                "created_by_wallet": ISSUER_WALLET,
+                "sub_category": get_sub_category(category, name),
+                "tags": get_tags({"is_1_of_1": is_1of1, "award_category": category, "unclaimed_or_available": unclaimed, "name": name, "description": desc}),
+                "is_series_rep": True,
+            }
+            items.append(series_item)
+
+            # now the individual personalized 1:1s
             for nft in nfts:
                 token_id = str(nft.get("identifier") or nft.get("token_id") or "1")
                 contract = nft.get("contract")
@@ -512,7 +580,7 @@ def main():
                 media_type = "video" if (image or "").lower().endswith((".mp4", ".mov", ".webm")) else "image"
                 created_at = get_first_mint_timestamp("ethereum", contract, token_id, api_key) or nft.get("created_at") or nft.get("minted_at")
 
-                # Per-token owners for the specific 1:1
+                # Per-token owners
                 owners_list = get_owners("ethereum", contract, token_id, api_key)
                 non_issuer_holders = [o for o in owners_list if (o.get("address") or "").lower() != ISSUER_WALLET]
                 owner_stats = summarize_owners(non_issuer_holders)
@@ -536,7 +604,7 @@ def main():
                 display_name = title_map.get(slug, name)
 
                 local_slug = SLUG_TO_LOCAL_ASSET.get(slug, slug + "-" + token_id)
-                item = {
+                pers_item = {
                     "token_id": token_id,
                     "name": name,
                     "display_name": display_name,
@@ -560,9 +628,10 @@ def main():
                     "created_by_wallet": ISSUER_WALLET,
                     "sub_category": get_sub_category(category, name),
                     "tags": get_tags({"is_1_of_1": is_1of1, "award_category": category, "unclaimed_or_available": unclaimed, "name": name, "description": desc}),
+                    "is_series_rep": False,
                 }
-                items.append(item)
-            continue  # done all for this slug
+                items.append(pers_item)
+            continue  # done for this multi slug
 
         # single rep for other slugs (rookie, gem, collector, dagato, world, etc.)
         if slug == "dacatrookie2026":
@@ -677,11 +746,12 @@ def main():
     else:
         print("First mint (rookie #1) successfully validated.")
 
-    # Stats
-    total = len(items)
-    one_of_ones = sum(1 for i in items if i["is_1_of_1"])
-    mysteries = sum(1 for i in items if i["mystery_status"] == "mystery_until_review")
-    unclaimed = sum(1 for i in items if i["unclaimed_or_available"])
+    # Stats - count unique collections (slugs) for "pieces", not individual 1:1 tokens
+    slugs = set(i.get("source_created_collection", "") for i in items if i.get("source_created_collection"))
+    total = len(slugs)
+    one_of_ones = sum(1 for i in items if i.get("is_1_of_1"))
+    mysteries = sum(1 for i in items if i.get("mystery_status") == "mystery_until_review")
+    unclaimed = sum(1 for i in items if i.get("unclaimed_or_available"))
 
     # Full structure to support same UI/features as main dacommunity archive (gallery_data.json shape)
     # + unique badge fields. This is stored in the data process (fetch_badges.py produces the rich data).
