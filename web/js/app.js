@@ -567,8 +567,8 @@ function buildCollectorsFromBadgeItems(items) {
       if (!byAddr[a]) {
         byAddr[a] = {
           address: h.address,
-          ens_name: null,
-          username: null,
+          ens_name: h.ens_name || null,
+          username: h.username || null,
           unique_pieces: 0,
           collection_quantity: 0
         };

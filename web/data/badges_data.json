@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-18T01:33:14.331113+00:00",
+  "generated_at": "2026-06-18T02:08:22.131135+00:00",
   "source": "mints_created_by_wallet_on_ethereum_after_cutoff",
   "cutoff_date": "2026-05-20",
   "collection": {
@@ -9,7 +9,7 @@
     "chain": "ethereum",
     "creator_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
     "note": "Personal 1/1 and limited awards/badges created by the wallet. Issuer wallet excluded from all holder stats. Mystery items pending approval.",
-    "total_created": 50,
+    "total_created": 15,
     "one_of_ones": 50,
     "unclaimed": 0,
     "mysteries": 2
@@ -59,6 +59,145 @@
     },
     {
       "token_id": "25",
+      "name": "DACAT 1 TRILLION CLUB",
+      "display_name": "DACAT 1 TRILLION CLUB",
+      "local_slug": "dacat-1-trillion-club",
+      "description": "The DACAT 1 TRILLION CLUB is an elite NFT membership collection created to recognize the legendary diamond handed holders of at least 1,000,000,000,000 DaCAT tokens or more in a single ENS ETH wallet.",
+      "excerpt": "The DACAT 1 TRILLION CLUB is an elite NFT membership collection created to recognize the legendary diamond handed holders of at least 1,000,000,000,000 DaCAT t…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x0b5be1e2b68467afa8c371576f47b27e50f2b14f/d62af7953a0c8afb20cedcb53bd9aa/8fd62af7953a0c8afb20cedcb53bd9aa.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dacat1trillionclub",
+      "traits": [],
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 21,
+        "circulating_copies": 21,
+        "top_holders": [
+          {
+            "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
+            "quantity": 1
+          },
+          {
+            "address": "0xe597a25c77317b361636270251dc53d36491a11d",
+            "quantity": 1
+          },
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          },
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
+            "quantity": 1
+          },
+          {
+            "address": "0xe597a25c77317b361636270251dc53d36491a11d",
+            "quantity": 1
+          },
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          },
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          },
+          {
+            "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
+            "quantity": 1
+          },
+          {
+            "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
+            "quantity": 1
+          },
+          {
+            "address": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
+            "quantity": 1
+          },
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
+          },
+          {
+            "address": "0x4ff3ba0c7b39f57fc934c014e8c796f1efb44043",
+            "quantity": 1
+          },
+          {
+            "address": "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46",
+            "quantity": 1
+          },
+          {
+            "address": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
+            "quantity": 1
+          },
+          {
+            "address": "0x1fc100b151a1ffa55d41a134a1a826a242d9c7c9",
+            "quantity": 1
+          },
+          {
+            "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+            "quantity": 1
+          },
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1
+          }
+        ]
+      },
+      "minted_at": "2026-05-27T03:46:23+00:00",
+      "is_1_of_1": false,
+      "edition_size": 25,
+      "award_category": "trillion_club",
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "source_created_collection": "dacat1trillionclub",
+      "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "trillion_club"
+      ],
+      "is_series_rep": true
+    },
+    {
+      "token_id": "25",
       "name": "DATRAIL CAT - DACAT 1 TRILLION CLUB MEMBERSHIP",
       "display_name": "DACAT 1 TRILLION CLUB",
       "local_slug": "dacat-1-trillion-club",
@@ -98,7 +237,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "24",
@@ -143,7 +283,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "23",
@@ -186,7 +327,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "22",
@@ -231,7 +373,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "21",
@@ -276,7 +419,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "20",
@@ -321,7 +465,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "19",
@@ -366,7 +511,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "18",
@@ -411,7 +557,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "17",
@@ -456,7 +603,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "16",
@@ -501,7 +649,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "15",
@@ -546,7 +695,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "14",
@@ -591,7 +741,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "13",
@@ -636,7 +787,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "12",
@@ -681,7 +833,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "11",
@@ -726,7 +879,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "10",
@@ -771,7 +925,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "9",
@@ -816,7 +971,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "8",
@@ -861,7 +1017,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "7",
@@ -894,7 +1051,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "6",
@@ -927,7 +1085,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "5",
@@ -960,7 +1119,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "4",
@@ -993,7 +1153,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "3",
@@ -1038,7 +1199,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "2",
@@ -1083,7 +1245,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "1",
@@ -1128,7 +1291,75 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
+    },
+    {
+      "token_id": "4",
+      "name": "DACAT 2 TRILLION CLUB",
+      "display_name": "DACAT 2 TRILLION CLUB",
+      "local_slug": "dacat-2-trillion-club",
+      "description": "The DACAT 2 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "excerpt": "The DACAT 2 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "image_url": "https://i2c.seadn.io/ethereum/0x775d54a410b9aaee2dfae6645703a2af861537ab/80be6d2af66f3846a58dcf96fa7bdc/b580be6d2af66f3846a58dcf96fa7bdc.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dacat2trillion",
+      "traits": [],
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 4,
+        "circulating_copies": 4,
+        "top_holders": [
+          {
+            "address": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
+            "quantity": 1
+          },
+          {
+            "address": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
+            "quantity": 1
+          },
+          {
+            "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+            "quantity": 1
+          },
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
+            "quantity": 1
+          },
+          {
+            "address": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
+            "quantity": 1
+          },
+          {
+            "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+            "quantity": 1
+          },
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1
+          }
+        ]
+      },
+      "minted_at": "2026-05-29T00:27:23+00:00",
+      "is_1_of_1": false,
+      "edition_size": 4,
+      "award_category": "trillion_club",
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "source_created_collection": "dacat2trillion",
+      "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "trillion_club"
+      ],
+      "is_series_rep": true
     },
     {
       "token_id": "4",
@@ -1173,7 +1404,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "3",
@@ -1218,7 +1450,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "2",
@@ -1263,7 +1496,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "1",
@@ -1308,11 +1542,12 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "1",
-      "name": "DATRAIL CAT - DACAT 3 TRILLION CLUB MEMBERSHIP",
+      "name": "DACAT 3 TRILLION CLUB",
       "display_name": "DACAT 3 TRILLION CLUB",
       "local_slug": "dacat-3-trillion-club",
       "description": "The DACAT 3 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
@@ -1339,7 +1574,40 @@
           }
         ]
       },
-      "minted_at": "2026-05-29T03:11:35+00:00",
+      "minted_at": null,
+      "is_1_of_1": false,
+      "edition_size": 1,
+      "award_category": "trillion_club",
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "source_created_collection": "dacat3trillion",
+      "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "trillion_club"
+      ],
+      "is_series_rep": true
+    },
+    {
+      "token_id": "1",
+      "name": "DATRAIL CAT - DACAT 3 TRILLION CLUB MEMBERSHIP",
+      "display_name": "DACAT 3 TRILLION CLUB",
+      "local_slug": "dacat-3-trillion-club",
+      "description": "The DACAT 3 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "excerpt": "The DACAT 3 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "image_url": "https://i2c.seadn.io/ethereum/0xf67a808939d7df84b85271118bf99763ca010009/86d9fa5d4f6d3c817c5c42e7251d26/c686d9fa5d4f6d3c817c5c42e7251d26.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dacat3trillion",
+      "traits": [],
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": []
+      },
+      "minted_at": null,
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "trillion_club",
@@ -1351,7 +1619,41 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
+    },
+    {
+      "token_id": "2",
+      "name": "DACAT 4 TRILLION CLUB",
+      "display_name": "DACAT 4 TRILLION CLUB",
+      "local_slug": "dacat-4-trillion-club",
+      "description": "The DACAT 4 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "excerpt": "The DACAT 4 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "image_url": "https://i2c.seadn.io/ethereum/0x22f1c7281f0f6f5bcebe9cc94285f9409c0661e6/715eda9296fdd733ce65179b71b345/6b715eda9296fdd733ce65179b71b345.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dacat4trillion",
+      "traits": [],
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": []
+      },
+      "minted_at": null,
+      "is_1_of_1": false,
+      "edition_size": 2,
+      "award_category": "trillion_club",
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "source_created_collection": "dacat4trillion",
+      "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "trillion_club"
+      ],
+      "is_series_rep": true
     },
     {
       "token_id": "2",
@@ -1384,7 +1686,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "1",
@@ -1417,7 +1720,41 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
+    },
+    {
+      "token_id": "2",
+      "name": "DACAT 5 TRILLION CLUB",
+      "display_name": "DACAT 5 TRILLION CLUB",
+      "local_slug": "dacat-5-trillion-club",
+      "description": "The DACAT 5 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "excerpt": "The DACAT 5 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1276d1e11aa5d2cc0854b936477f4d3bc88a5df1/36c8e5432567874e0e0603d8ff1041/2536c8e5432567874e0e0603d8ff1041.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dacat5trillion",
+      "traits": [],
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": []
+      },
+      "minted_at": null,
+      "is_1_of_1": false,
+      "edition_size": 2,
+      "award_category": "trillion_club",
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "source_created_collection": "dacat5trillion",
+      "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "trillion_club"
+      ],
+      "is_series_rep": true
     },
     {
       "token_id": "2",
@@ -1438,7 +1775,7 @@
         "top_holders": [],
         "holders": []
       },
-      "minted_at": null,
+      "minted_at": "2026-06-04T13:06:35+00:00",
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "mozvane_-_5_trillion_dacat_club_membership",
@@ -1450,7 +1787,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "1",
@@ -1471,7 +1809,7 @@
         "top_holders": [],
         "holders": []
       },
-      "minted_at": "2026-05-30T08:45:59+00:00",
+      "minted_at": null,
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "trillion_club",
@@ -1483,7 +1821,41 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
+    },
+    {
+      "token_id": "1",
+      "name": "DACAT 6 TRILLION CLUB",
+      "display_name": "DACAT 6 TRILLION CLUB",
+      "local_slug": "dacat-6-trillion-club",
+      "description": "The DACAT 6 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "excerpt": "The DACAT 6 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "image_url": "https://i2c.seadn.io/ethereum/0x35c6ceb29fa4b8190d3993614082a4b0e025a815/b001d690c45405f10d1b88178ffb49/bbb001d690c45405f10d1b88178ffb49.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dacat6trillion",
+      "traits": [],
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": []
+      },
+      "minted_at": null,
+      "is_1_of_1": false,
+      "edition_size": 1,
+      "award_category": "trillion_club",
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "source_created_collection": "dacat6trillion",
+      "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "trillion_club"
+      ],
+      "is_series_rep": true
     },
     {
       "token_id": "1",
@@ -1504,7 +1876,7 @@
         "top_holders": [],
         "holders": []
       },
-      "minted_at": null,
+      "minted_at": "2026-05-29T13:42:35+00:00",
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "trillion_club",
@@ -1516,7 +1888,41 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
+    },
+    {
+      "token_id": "1",
+      "name": "DACAT 7 TRILLION CLUB",
+      "display_name": "DACAT 7 TRILLION CLUB",
+      "local_slug": "dacat-7-trillion-club",
+      "description": "The DACAT 7 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "excerpt": "The DACAT 7 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "image_url": "https://i2c.seadn.io/ethereum/0x5db9dc445b8fb4f3677afefd3a611c3d158bf250/443a97285a528cbb89936c0cdc074b/45443a97285a528cbb89936c0cdc074b.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dacat7trillion",
+      "traits": [],
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": []
+      },
+      "minted_at": null,
+      "is_1_of_1": false,
+      "edition_size": 1,
+      "award_category": "trillion_club",
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "source_created_collection": "dacat7trillion",
+      "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "trillion_club"
+      ],
+      "is_series_rep": true
     },
     {
       "token_id": "1",
@@ -1549,7 +1955,59 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
+    },
+    {
+      "token_id": "2",
+      "name": "DACAT 8 TRILLION CLUB",
+      "display_name": "DACAT 8 TRILLION CLUB",
+      "local_slug": "dacat-8-trillion-club",
+      "description": "The DACAT 8 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "excerpt": "The DACAT 8 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "image_url": "https://i2c.seadn.io/ethereum/0xda9dc0657bb5042fb6b2c3eb97640596b7b662f7/38803f6aa5400fbfc6a8e654c11c08/8f38803f6aa5400fbfc6a8e654c11c08.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dacat8trillion",
+      "traits": [],
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 2,
+        "top_holders": [
+          {
+            "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
+            "quantity": 1
+          },
+          {
+            "address": "0xe597a25c77317b361636270251dc53d36491a11d",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
+            "quantity": 1
+          },
+          {
+            "address": "0xe597a25c77317b361636270251dc53d36491a11d",
+            "quantity": 1
+          }
+        ]
+      },
+      "minted_at": null,
+      "is_1_of_1": false,
+      "edition_size": 2,
+      "award_category": "trillion_club",
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "source_created_collection": "dacat8trillion",
+      "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "trillion_club"
+      ],
+      "is_series_rep": true
     },
     {
       "token_id": "2",
@@ -1570,7 +2028,7 @@
         "top_holders": [],
         "holders": []
       },
-      "minted_at": "2026-05-30T05:00:59+00:00",
+      "minted_at": null,
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "trillion_club",
@@ -1582,7 +2040,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "1",
@@ -1615,7 +2074,67 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
+    },
+    {
+      "token_id": "4",
+      "name": "DACAT 9 TRILLION CLUB",
+      "display_name": "DACAT 9 TRILLION CLUB",
+      "local_slug": "dacat-9-trillion-club",
+      "description": "The DACAT 9 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "excerpt": "The DACAT 9 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1db6cbadc3f785e1716521753f0d6f4bbf221813/48920c0047dc559cfedc329b2eea44/0548920c0047dc559cfedc329b2eea44.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dacat9trillion",
+      "traits": [],
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 3,
+        "circulating_copies": 3,
+        "top_holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1
+          },
+          {
+            "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1
+          },
+          {
+            "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
+            "quantity": 1
+          }
+        ]
+      },
+      "minted_at": null,
+      "is_1_of_1": false,
+      "edition_size": 3,
+      "award_category": "trillion_club",
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "source_created_collection": "dacat9trillion",
+      "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "trillion_club"
+      ],
+      "is_series_rep": true
     },
     {
       "token_id": "4",
@@ -1648,7 +2167,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "3",
@@ -1658,39 +2178,6 @@
       "description": "The DACAT 9 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
       "excerpt": "The DACAT 9 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
       "image_url": "https://i2c.seadn.io/ethereum/0x1db6cbadc3f785e1716521753f0d6f4bbf221813/b300995cef61cb572e5447efcc0aae/f6b300995cef61cb572e5447efcc0aae.png",
-      "media_type": "image",
-      "opensea_url": "https://opensea.io/collection/dacat9trillion",
-      "traits": [],
-      "listed": false,
-      "listing": null,
-      "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
-      },
-      "minted_at": "2026-05-29T11:22:35+00:00",
-      "is_1_of_1": true,
-      "edition_size": 1,
-      "award_category": "trillion_club",
-      "unclaimed_or_available": false,
-      "mystery_status": "approved",
-      "source_created_collection": "dacat9trillion",
-      "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-      "sub_category": "Trillion Club",
-      "tags": [
-        "1_of_1",
-        "trillion_club"
-      ]
-    },
-    {
-      "token_id": "1",
-      "name": "KINGSI - 9 TRILLION CLUB MEMBERSHIP",
-      "display_name": "DACAT 9 TRILLION CLUB",
-      "local_slug": "dacat-9-trillion-club",
-      "description": "The DACAT 9 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
-      "excerpt": "The DACAT 9 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
-      "image_url": "https://i2c.seadn.io/ethereum/0x1db6cbadc3f785e1716521753f0d6f4bbf221813/92178065880cbb15c30f4c3bfd8d1e/4292178065880cbb15c30f4c3bfd8d1e.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat9trillion",
       "traits": [],
@@ -1714,7 +2201,75 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
+    },
+    {
+      "token_id": "1",
+      "name": "KINGSI - 9 TRILLION CLUB MEMBERSHIP",
+      "display_name": "DACAT 9 TRILLION CLUB",
+      "local_slug": "dacat-9-trillion-club",
+      "description": "The DACAT 9 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "excerpt": "The DACAT 9 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1db6cbadc3f785e1716521753f0d6f4bbf221813/92178065880cbb15c30f4c3bfd8d1e/4292178065880cbb15c30f4c3bfd8d1e.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dacat9trillion",
+      "traits": [],
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": []
+      },
+      "minted_at": "2026-05-29T11:03:59+00:00",
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "award_category": "trillion_club",
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "source_created_collection": "dacat9trillion",
+      "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "1_of_1",
+        "trillion_club"
+      ],
+      "is_series_rep": false
+    },
+    {
+      "token_id": "4",
+      "name": "DACAT 10 TRILLION CLUB",
+      "display_name": "DACAT 10 TRILLION CLUB",
+      "local_slug": "dacat-10-trillion-club",
+      "description": "The DACAT 10 TRILLION CLUB is an ultra-elite recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "excerpt": "The DACAT 10 TRILLION CLUB is an ultra-elite recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "image_url": "https://i2c.seadn.io/ethereum/0x706509485634161eb553a0e7faffa99fef20547a/efcd857ef2c621a1f142592339f2ec/b0efcd857ef2c621a1f142592339f2ec.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dacat10trillion",
+      "traits": [],
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": []
+      },
+      "minted_at": null,
+      "is_1_of_1": false,
+      "edition_size": 4,
+      "award_category": "trillion_club",
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "source_created_collection": "dacat10trillion",
+      "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "trillion_club"
+      ],
+      "is_series_rep": true
     },
     {
       "token_id": "4",
@@ -1747,7 +2302,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "3",
@@ -1780,7 +2336,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "2",
@@ -1813,7 +2370,8 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "1",
@@ -1829,10 +2387,22 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1,
+            "ens_name": "dagato.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1,
+            "ens_name": "dagato.eth"
+          }
+        ]
       },
       "minted_at": null,
       "is_1_of_1": true,
@@ -1846,7 +2416,49 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false
+    },
+    {
+      "token_id": "1",
+      "name": "DACAT 500 BILLION CLUB",
+      "display_name": "DACAT 500 BILLION CLUB",
+      "local_slug": "dacat-500-billion-club",
+      "description": "The DACAT 500 BILLION CLUB recognizes community members who have accumulated and held at least 500 BILLION DACAT tokens in a single wallet. This  NFT badge honors conviction, participation, and belief in the long-term vision of DACAT and the decentralized creator movement. As a member of the 500 BILLION CLUB, this holder  represents a group of supporters who have chosen to help build the foundation of the DACAT ecosystem through their commitment to the project and its future. This badge serves as a permanent digital collectible recognizing that achievement and preserving a moment in DACAT history.\n\n If this NFT badge is held in the same wallet as the accompanying 500,000,000,000 DACAT tokens, future community recognition opportunities may be possible at the discretion of the DACAT community. This NFT is issued for commemorative and recognition purposes only and does not represent ownership, equity, profit sharing, or a promise of future compensation \n\nhttps://www.dacatworld.com\n\nThe DACAT 500 BILLION CLUB recognizes community members who have accumulated and held at least 500 BILLION DACAT tokens in a single wallet. This  NFT badge honors conviction, participation, and belief in the long-term vision of DACAT and the decentralized creator movement. As a member of the 500 BILLION CLUB, this holder  represents a group of supporters who have chosen to help build the foundation of the DACAT ecosystem through their commitment to the project and its future. This badge serves as a permanent digital collectible recognizing that achievement and preserving a moment in DACAT history. If this NFT badge is held in the same wallet as the accompanying 500,000,000,000 DACAT tokens, future community recognition opportunities may be possible at the discretion of the DACAT community. This NFT is issued for commemorative and recognition purposes only and does not represent ownership, equity, profit sharing, or a promise of future compensation \n\nhttps://www.dacatworld.com",
+      "excerpt": "The DACAT 500 BILLION CLUB recognizes community members who have accumulated and held at least 500 BILLION DACAT tokens in a single wallet. This NFT badge hono…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x549d37c3ab6ea21c35df61a16f404f1aafc454d2/f0ffc72276b0140818d415c42af001/61f0ffc72276b0140818d415c42af001.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dacat500billion",
+      "traits": [],
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "quantity": 1
+          }
+        ]
+      },
+      "minted_at": null,
+      "is_1_of_1": false,
+      "edition_size": 1,
+      "award_category": "500_billion_club",
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "source_created_collection": "dacat500billion",
+      "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+      "sub_category": "500 Billion Club",
+      "tags": [],
+      "is_series_rep": true
     },
     {
       "token_id": "1",
@@ -1867,7 +2479,7 @@
         "top_holders": [],
         "holders": []
       },
-      "minted_at": "2026-06-04T22:02:11+00:00",
+      "minted_at": null,
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "500_billion_club",
@@ -1878,7 +2490,8 @@
       "sub_category": "500 Billion Club",
       "tags": [
         "1_of_1"
-      ]
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "1",
@@ -1894,10 +2507,102 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 13,
+        "circulating_copies": 13,
+        "top_holders": [
+          {
+            "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
+            "quantity": 1,
+            "ens_name": "jeffadams.eth"
+          },
+          {
+            "address": "0xe597a25c77317b361636270251dc53d36491a11d",
+            "quantity": 1,
+            "ens_name": "mrcryptonist.eth"
+          },
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1,
+            "ens_name": "dabeezy.eth"
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": "lostthegame.eth"
+          },
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1,
+            "ens_name": "kingsi.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
+            "quantity": 1,
+            "ens_name": "jeffadams.eth"
+          },
+          {
+            "address": "0xe597a25c77317b361636270251dc53d36491a11d",
+            "quantity": 1,
+            "ens_name": "mrcryptonist.eth"
+          },
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1,
+            "ens_name": "dabeezy.eth"
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": "lostthegame.eth"
+          },
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1,
+            "ens_name": "kingsi.eth"
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1,
+            "ens_name": "dacatstudios.eth"
+          },
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1,
+            "ens_name": "dbcrypto.eth"
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": "mozvane.eth"
+          },
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1,
+            "ens_name": "dagato.eth"
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1,
+            "ens_name": "cryptlos.eth"
+          },
+          {
+            "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
+            "quantity": 1,
+            "ens_name": "south-florida.eth"
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1,
+            "ens_name": "grumpyx.eth"
+          },
+          {
+            "address": "0x4ff3ba0c7b39f57fc934c014e8c796f1efb44043",
+            "quantity": 1,
+            "ens_name": "chadalac666.eth"
+          }
+        ]
       },
       "minted_at": null,
       "is_1_of_1": true,
@@ -1926,12 +2631,84 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 9,
+        "circulating_copies": 9,
+        "top_holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1,
+            "ens_name": "dabeezy.eth"
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": "lostthegame.eth"
+          },
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1,
+            "ens_name": "kingsi.eth"
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1,
+            "ens_name": "dacatstudios.eth"
+          },
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1,
+            "ens_name": "dbcrypto.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1,
+            "ens_name": "dabeezy.eth"
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": "lostthegame.eth"
+          },
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1,
+            "ens_name": "kingsi.eth"
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1,
+            "ens_name": "dacatstudios.eth"
+          },
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1,
+            "ens_name": "dbcrypto.eth"
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": "mozvane.eth"
+          },
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1,
+            "ens_name": "dagato.eth"
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1,
+            "ens_name": "cryptlos.eth"
+          },
+          {
+            "address": "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46",
+            "quantity": 1,
+            "ens_name": "dabronk.eth"
+          }
+        ]
       },
-      "minted_at": null,
+      "minted_at": "2026-06-11T02:07:35+00:00",
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "gem_nova_green",
@@ -1958,10 +2735,22 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1,
+            "ens_name": "dagato.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1,
+            "ens_name": "dagato.eth"
+          }
+        ]
       },
       "minted_at": "2026-06-04T02:05:59+00:00",
       "is_1_of_1": true,
