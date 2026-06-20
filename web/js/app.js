@@ -777,7 +777,16 @@ function addressDisplayMeta(address) {
       }
     }
   }
-  var ens = (entry && entry.ens_name) || fromDataEns;
+  // Prefer ens_name from the collectorsList (Heavy collectors) for consistency between the list
+  // and any portfolio / wallet view / chips for the same address. This ensures e.g. daforeman.eth
+  // (current) shows everywhere instead of old names like inshirowetrust.eth from stale owner records.
+  var fromList = null;
+  (collectorsList || []).forEach(function (c) {
+    if ((c.address || '').toLowerCase() === key && c.ens_name) {
+      fromList = c.ens_name;
+    }
+  });
+  var ens = fromList || (entry && entry.ens_name) || fromDataEns;
   var username = entry && entry.username;
   var lookupValue = ens || full;
   var display = ens || username || shortenAddress(full);
@@ -2074,13 +2083,22 @@ function lookupWallet(identifier) {
         }
       });
     });
+    // Prefer the ens_name used in the Heavy collectors list (collectorsList) so that
+    // clicking a name there (e.g. daforeman.eth) shows the same current ENS in the portfolio view,
+    // instead of an older name that may be stuck in badge owners data for some items.
+    var fromList = null;
+    (collectorsList || []).forEach(function (c) {
+      if ((c.address || '').toLowerCase() === address && c.ens_name) {
+        fromList = c.ens_name;
+      }
+    });
     return {
       entry: {
         address: address,
         holdings: synth,
         unique_pieces: synth.length,
         collection_quantity: synth.length,
-        ens_name: foundEns || meta.ens_name || null,
+        ens_name: fromList || foundEns || meta.ens_name || null,
         username: foundUser || meta.username || null
       }
     };
