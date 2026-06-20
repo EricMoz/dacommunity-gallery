@@ -2419,9 +2419,13 @@ function renderStats(collection) {
     strip.appendChild(el);
   });
 
-  // hero note only for main dacom
-  if (!activeCollection || activeCollection === "all" || activeCollection === "dacommunity") {
-    renderHeroNote(collection || galleryData && galleryData.collection);
+  // hero note only for explicit dacommunity collection (not bare /dacommunity/ which is "all")
+  // JSON-driven per collection via registry for unique steward message
+  if (activeCollection === "dacommunity") {
+    var col = getCurrentCollection();
+    var noteCol = collection || (galleryData && galleryData.collection) || {};
+    if (col && col.creator_ens) noteCol.creator_ens = col.creator_ens;
+    renderHeroNote(noteCol);
   }
 }
 

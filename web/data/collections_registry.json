@@ -16,6 +16,7 @@
         "wallet_index": "wallet_index.json"
       },
       "features": ["gallery", "wallet_lookup", "collector_view", "opensea_sync", "share_wallet_url"],
+      "creator_ens": "dacatworld.eth",
       "theme": {
         "accent": "#ffcc00",
         "surface": "light_archive",
