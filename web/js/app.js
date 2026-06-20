@@ -2634,13 +2634,22 @@ function resetBrowseView() {
   activeFilter = "all";
   searchQuery = "";
   sortKey = "token_desc";
-  activeCollection = "all";
   var search = $("#search");
   var sort = $("#sort-select");
   var colSel = $("#collection-select");
   if (search) search.value = "";
   if (sort) sort.value = "token_desc";
   if (colSel) colSel.value = "all";
+  // To force reload of full 'all' data (dacom + badges merge) when clearing from a collection filter,
+  // temporarily set active to something else so the change handler runs the load.
+  if (colSel) {
+    var prev = activeCollection;
+    activeCollection = (prev === "all" ? "badges" : prev); // temp different to trigger
+    colSel.dispatchEvent(new Event('change'));
+    activeCollection = "all"; // will be set again in handler
+  } else {
+    activeCollection = "all";
+  }
   document.querySelectorAll(".filter").forEach(function (btn) {
     var on = btn.dataset.filter === "all";
     btn.classList.toggle("active", on);

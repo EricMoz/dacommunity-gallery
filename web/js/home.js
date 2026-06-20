@@ -9,7 +9,6 @@
     { id: "podcast-ep1", category: "Podcast", label: "Episode 1" },
     { id: "dabeezy-rebirth", category: "daBeezy", label: "Episode 1: Rebirth" },
     { id: "shiro-fishing", category: "daCAT & Shiro", label: "Ep 1 · Fishing Trip" },
-    { id: "crossover-kizuna", category: "Crossovers", label: "Kizuna vs DaCAT" },
     { id: "multiverse-montage", category: "Crossovers", label: "Multiverse Montage" },
     { id: "mozvane-quick-stop", category: "Mozvane", label: "Mozvane (~5 min)" },
   ];
