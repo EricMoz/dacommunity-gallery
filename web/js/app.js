@@ -2334,7 +2334,7 @@ function statCollectorsValue(collection) {
 function renderHeroNote(collection) {
   var note = $("#hero-note");
   if (!note) return;
-  var steward = collection.creator_ens || "dacatdreams.base.eth";
+  var steward = (collection && collection.creator_ens) || "dacatdreams.base.eth";
   note.innerHTML =
     "Originally minted on Rodeo. Contract on Base, stewarded by " +
     '<strong class="steward-name">' + escapeHtml(steward) + "</strong>.";
@@ -2419,13 +2419,17 @@ function renderStats(collection) {
     strip.appendChild(el);
   });
 
-  // hero note only for explicit dacommunity collection (not bare /dacommunity/ which is "all")
-  // JSON-driven per collection via registry for unique steward message
-  if (activeCollection === "dacommunity") {
+  // Show steward note only for explicit collection filters (?collection=xxx).
+  // Hidden on bare /dacommunity/ (treated as "all") and after Clear all.
+  // Uses registry creator_ens (dacatworld.eth for dacommunity, dacatdreams.base.eth for badges).
+  if (activeCollection && activeCollection !== "all") {
     var col = getCurrentCollection();
     var noteCol = collection || (galleryData && galleryData.collection) || {};
     if (col && col.creator_ens) noteCol.creator_ens = col.creator_ens;
     renderHeroNote(noteCol);
+  } else {
+    var note = $("#hero-note");
+    if (note) note.hidden = true;
   }
 }
 

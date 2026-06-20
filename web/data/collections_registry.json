@@ -36,6 +36,7 @@
         "catalog": "badges_catalog.json"
       },
       "features": ["gallery", "collector_view", "wallet_lookup"],
+      "creator_ens": "dacatdreams.base.eth",
       "theme": {
         "accent": "#ffcc00",
         "surface": "light_archive",
