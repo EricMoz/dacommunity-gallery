@@ -32,13 +32,15 @@
         "top_holders": [
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": null
           }
         ],
         "holders": [
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": null
           }
         ]
       },
@@ -127,7 +129,8 @@
           },
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
           },
           {
             "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
@@ -183,7 +186,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-25T06:20:23+00:00",
       "is_1_of_1": false,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -214,13 +217,15 @@
         "top_holders": [
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
           }
         ],
         "holders": [
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
           }
         ]
       },
@@ -1304,7 +1309,8 @@
         "top_holders": [
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
           },
           {
             "address": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
@@ -1326,7 +1332,8 @@
         "holders": [
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
           },
           {
             "address": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
@@ -1346,7 +1353,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-28T19:58:23+00:00",
       "is_1_of_1": false,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -1377,13 +1384,15 @@
         "top_holders": [
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
           }
         ],
         "holders": [
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
           }
         ]
       },
@@ -1605,7 +1614,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-29T03:11:35+00:00",
       "is_1_of_1": false,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -1696,7 +1705,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-29T03:41:47+00:00",
       "is_1_of_1": false,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -1833,7 +1842,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-30T08:45:59+00:00",
       "is_1_of_1": false,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -1962,7 +1971,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-29T13:42:35+00:00",
       "is_1_of_1": false,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -2047,7 +2056,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-30T01:16:23+00:00",
       "is_1_of_1": false,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -2140,7 +2149,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-30T04:46:11+00:00",
       "is_1_of_1": false,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -2285,7 +2294,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-29T11:03:59+00:00",
       "is_1_of_1": false,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -2482,7 +2491,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-28T04:18:11+00:00",
       "is_1_of_1": false,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -2689,17 +2698,19 @@
         "top_holders": [
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "inshirowetrust.eth"
           }
         ],
         "holders": [
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "inshirowetrust.eth"
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-06-04T22:02:11+00:00",
       "is_1_of_1": false,
       "award_category": "500_billion_club",
       "unclaimed_or_available": false,
@@ -2728,13 +2739,15 @@
         "top_holders": [
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "inshirowetrust.eth"
           }
         ],
         "holders": [
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "inshirowetrust.eth"
           }
         ]
       },

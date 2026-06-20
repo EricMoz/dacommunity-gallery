@@ -228,13 +228,18 @@
   }
 
   function resolveFeaturedIds() {
+    let ids = [];
     if (catalog.featuredIds && catalog.featuredIds.length) {
-      return catalog.featuredIds.slice();
+      ids = catalog.featuredIds.slice();
+    } else {
+      ids = videos
+        .filter((v) => v.featuredPick)
+        .sort((a, b) => (a.featuredOrder || 99) - (b.featuredOrder || 99))
+        .map((v) => v.id);
     }
-    return videos
-      .filter((v) => v.featuredPick)
-      .sort((a, b) => (a.featuredOrder || 99) - (b.featuredOrder || 99))
-      .map((v) => v.id);
+    // Randomize order so not always the same (but still one per series via the list)
+    ids = ids.slice().sort(() => Math.random() - 0.5);
+    return ids;
   }
 
   function renderFeatured(visible) {

@@ -15,7 +15,9 @@
       "slowfreeze.eth": "0x93b34003169bd7cdb3e0710fedff4cb6795a32ef",
       "tibob.eth": "0x7f23f1c4be15fa3adabc821de9ef70efa5503f24",
       "ahotwallet.eth": "0x68bca5a8bdebe05fb8a6648c7316b4eb7e19a064",
-      "jiujitsu🍄.eth": "0x4a35cee6c17fcb6bc9235521bd3b7feef6680232"
+      "jiujitsu🍄.eth": "0x4a35cee6c17fcb6bc9235521bd3b7feef6680232",
+      "daforeman.eth": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+      "inshirowetrust.eth": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327"
     },
     "by_address": {
       "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684": {
@@ -2588,6 +2590,18 @@
             "name": "dacat.surge",
             "display_name": "dacat.surge"
           }
+        ]
+      },
+      "0xc553593cd4bfd114ffe80cf8a628cc12b841b327": {
+        "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+        "ens_name": "daforeman.eth",
+        "username": null,
+        "collection_quantity": 0,
+        "unique_pieces": 0,
+        "holdings": [],
+        "ens_history": [
+          "daforeman.eth",
+          "inshirowetrust.eth"
         ]
       }
     },
