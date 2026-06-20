@@ -16,7 +16,7 @@
         "wallet_index": "wallet_index.json"
       },
       "features": ["gallery", "wallet_lookup", "collector_view", "opensea_sync", "share_wallet_url"],
-      "creator_ens": "dacatworld.eth",
+      "creator_ens": "dacatdreams.base.eth",
       "theme": {
         "accent": "#ffcc00",
         "surface": "light_archive",
@@ -36,7 +36,7 @@
         "catalog": "badges_catalog.json"
       },
       "features": ["gallery", "collector_view", "wallet_lookup"],
-      "creator_ens": "dacatdreams.base.eth",
+      "creator_ens": "dacatworld.eth",
       "theme": {
         "accent": "#ffcc00",
         "surface": "light_archive",

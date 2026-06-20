@@ -2334,10 +2334,25 @@ function statCollectorsValue(collection) {
 function renderHeroNote(collection) {
   var note = $("#hero-note");
   if (!note) return;
+
+  var collId = activeCollection;
   var steward = (collection && collection.creator_ens) || "dacatdreams.base.eth";
-  note.innerHTML =
-    "Originally minted on Rodeo. Contract on Base, stewarded by " +
-    '<strong class="steward-name">' + escapeHtml(steward) + "</strong>.";
+
+  var html;
+  if (collId === "dacommunity") {
+    // Exact text for the NFT archive (Rodeo/Base)
+    html = "Originally minted on Rodeo. Contract on Base, stewarded by " +
+      '<strong class="steward-name">dacatdreams.base.eth</strong>.';
+  } else if (collId === "badges") {
+    // Exact text for badges
+    html = "Originally minted on OpenSea. Contract on Ethereum, stewarded by " +
+      '<strong class="steward-name">dacatworld.eth</strong>.';
+  } else {
+    note.hidden = true;
+    return;
+  }
+
+  note.innerHTML = html;
   note.hidden = false;
 }
 
@@ -2419,9 +2434,10 @@ function renderStats(collection) {
     strip.appendChild(el);
   });
 
-  // Show steward note only for explicit collection filters (?collection=xxx).
-  // Hidden on bare /dacommunity/ (treated as "all") and after Clear all.
-  // Uses registry creator_ens (dacatworld.eth for dacommunity, dacatdreams.base.eth for badges).
+  // Show the hero steward note ONLY when a specific collection filter is active:
+  //   ?collection=dacommunity → "Originally minted on Rodeo. Contract on Base, stewarded by dacatdreams.base.eth."
+  //   ?collection=badges      → "Originally minted on OpenSea. Contract on Ethereum, stewarded by dacatworld.eth."
+  // Hidden on bare /dacommunity/ (activeCollection "all") and after "Clear all".
   if (activeCollection && activeCollection !== "all") {
     var col = getCurrentCollection();
     var noteCol = collection || (galleryData && galleryData.collection) || {};
