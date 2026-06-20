@@ -504,7 +504,11 @@ async function refreshFullDataInBackground() {
 async function loadWalletIndex() {
   if (!galleryData || !galleryData.wallet_index_file) {
     walletIndex = (galleryData && galleryData.holders_index) || null;
-    collectorsList = buildCollectorsFromIndex(walletIndex);
+    // Do not clobber collectorsList in badges view -- badges view builds its own from badge items
+    // (wallet index is still loaded for other ENS/meta purposes, but collectors come from items).
+    if (activeCollection !== "badges") {
+      collectorsList = buildCollectorsFromIndex(walletIndex);
+    }
     return;
   }
   try {
@@ -1404,6 +1408,9 @@ function applyCollectorView(address) {
   var input = $("#wallet-input");
   if (input) input.value = meta.lookupValue || meta.address;
   // Always try synth from current items first (e.g. badges context) to show portfolio with owned from current view
+  if (activeCollection === "badges") {
+    collectorsList = buildCollectorsFromBadgeItems(galleryData ? galleryData.items : []);
+  }
   var synthHoldings = buildHoldingsFromCurrentItems(key);
   if (synthHoldings.length > 0) {
     var m = (walletIndex && walletIndex.by_address && walletIndex.by_address[key]) || {};
@@ -1417,12 +1424,21 @@ function applyCollectorView(address) {
         }
       });
     });
+    // Mirror the fromList preference from lookupWallet synth so that applyCollectorView
+    // (used e.g. from holder chips in badges grid, some collector clicks) also gets the
+    // consistent current ENS (daforeman.eth) instead of stale from item owners.
+    var fromList = null;
+    (collectorsList || []).forEach(function (c) {
+      if ((c.address || '').toLowerCase() === key && c.ens_name) {
+        fromList = c.ens_name;
+      }
+    });
     var entry = {
       address: key,
       holdings: synthHoldings,
       unique_pieces: synthHoldings.length,
       collection_quantity: synthHoldings.length,
-      ens_name: fEns || m.ens_name || null,
+      ens_name: fromList || fEns || m.ens_name || null,
       username: fUser || m.username || null
     };
     renderWalletSuccess(entry, { scrollBehavior: "smooth" });
@@ -2157,6 +2173,12 @@ async function renderWalletLookup(identifier, opts) {
   // Synth path (badges owners etc) takes priority inside lookupWallet regardless.
   if (!walletIndex) {
     try { await loadWalletIndex(); } catch (e) { /* non-fatal */ }
+  }
+
+  // In badges collection context, ensure collectorsList reflects the current badge items
+  // (loadWalletIndex may have clobbered it in the !wallet_index_file fallback path).
+  if (activeCollection === "badges") {
+    collectorsList = buildCollectorsFromBadgeItems(galleryData ? galleryData.items : []);
   }
 
   var lookup = lookupWallet(identifier);
