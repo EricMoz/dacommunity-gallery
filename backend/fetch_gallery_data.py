@@ -304,11 +304,24 @@ def build_holders_index(
     *,
     resolve_ens: bool = True,
 ) -> dict:
-    """Build wallet → holdings map for gallery lookup panel."""
+    """Build wallet → holdings map for gallery lookup panel.
+    Preserves historical ENS names per wallet address so old names continue to resolve
+    after changes. Historical names are kept in ens_aliases and ens_history per address.
+    """
     print("Building wallet lookup index from collection holders...")
     holders = client.iter_collection_holders()
     index: dict[str, dict] = {}
     ens_aliases: dict[str, str] = {}
+
+    # Load previous to preserve past ENS names (keyed by wallet address)
+    previous_by: dict[str, dict] = {}
+    try:
+        if WALLET_INDEX_PATH.exists():
+            prev = json.loads(WALLET_INDEX_PATH.read_text(encoding="utf-8"))
+            prev_hi = prev.get("holders_index", {})
+            previous_by = {k.lower(): v for k, v in prev_hi.get("by_address", {}).items()}
+    except Exception:
+        previous_by = {}
 
     for i, holder in enumerate(holders, 1):
         address = holder.get("address", "").lower()
@@ -358,6 +371,25 @@ def build_holders_index(
             "holdings": holdings,
             "unique_pieces": len(holdings),
         }
+
+        # Preserve past ENS names (keyed by wallet address)
+        if address in previous_by:
+            p = previous_by[address]
+            p_ens = p.get("ens_name")
+            hist = list(p.get("ens_history", []))
+            if p_ens and p_ens != ens_name and p_ens not in hist:
+                hist.append(p_ens)
+            if hist:
+                entry["ens_history"] = hist
+            else:
+                entry["ens_history"] = list(p.get("ens_history", []))
+            # ensure historical names remain resolvable
+            for old in entry.get("ens_history", []):
+                if old:
+                    ens_aliases[old.lower()] = address
+            if p_ens and p_ens != ens_name:
+                ens_aliases[p_ens.lower()] = address
+
         index[address] = entry
         if ens_name:
             ens_aliases[ens_name.lower()] = address
@@ -467,6 +499,7 @@ def main() -> int:
             slim["by_address"][addr] = {
                 "address": entry["address"],
                 "ens_name": entry.get("ens_name"),
+                "ens_history": entry.get("ens_history"),
                 "username": entry.get("username"),
                 "collection_quantity": entry.get("collection_quantity"),
                 "unique_pieces": entry.get("unique_pieces"),

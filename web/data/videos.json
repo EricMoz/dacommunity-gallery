@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updated": "2026-06-05",
+  "updated": "2026-06-20",
   "featuredStrategy": "Streaming-style row: one entry point per series (ep 1 or lead trailer). Mozvane stays in the row as the flagship film, not the only tile. Re-order featuredIds when you want a different front door.",
   "featuredIds": [
     "mozvane-quick-stop",
@@ -198,6 +198,22 @@
       "sortOrder": 3
     },
     {
+      "id": "multiverse-montage",
+      "title": "daCAT Multiverse Montage | daCommunity Art Collab (2025)",
+      "youtubeId": "5YXhuXug-cA",
+      "series": "Crossovers",
+      "type": "Montage",
+      "creator": "MozvaneTV",
+      "creatorChannel": "MozvaneTV",
+      "description": "A wild journey through the daCAT Multiverse featuring community-created artwork from the 'daCommunity NFTs' from 2025. This montage celebrates the art collab.",
+      "whatItIs": "daCAT Multiverse montage art collab.",
+      "releaseDate": "Community 2025",
+      "thumbnail": "https://i.ytimg.com/vi/5YXhuXug-cA/hqdefault.jpg",
+      "duration": "4:55",
+      "filterCategory": "crossovers",
+      "sortOrder": 4
+    },
+    {
       "id": "mozvane-quick-stop",
       "title": "Mozvane Episode 1: A Quick Stop",
       "youtubeId": "bHcbwUs2_ds",
@@ -230,12 +246,39 @@
     "Mozvane"
   ],
   "filters": [
-    { "id": "all", "label": "All" },
-    { "id": "chronicles", "label": "Chronicles", "matchSeries": "daCAT Chronicles" },
-    { "id": "dacatworld", "label": "DACAT WORLD", "matchSeries": "DACAT WORLD" },
-    { "id": "podcasts", "label": "Podcast", "matchSeries": "Podcast" },
-    { "id": "dabeezy", "label": "daBeezy", "matchSeries": "daBeezy" },
-    { "id": "crossovers", "label": "Crossovers", "matchSeries": "Crossovers" },
-    { "id": "mozvane", "label": "Mozvane", "matchSeries": "Mozvane" }
+    {
+      "id": "all",
+      "label": "All"
+    },
+    {
+      "id": "chronicles",
+      "label": "Chronicles",
+      "matchSeries": "daCAT Chronicles"
+    },
+    {
+      "id": "dacatworld",
+      "label": "DACAT WORLD",
+      "matchSeries": "DACAT WORLD"
+    },
+    {
+      "id": "podcasts",
+      "label": "Podcast",
+      "matchSeries": "Podcast"
+    },
+    {
+      "id": "dabeezy",
+      "label": "daBeezy",
+      "matchSeries": "daBeezy"
+    },
+    {
+      "id": "crossovers",
+      "label": "Crossovers",
+      "matchSeries": "Crossovers"
+    },
+    {
+      "id": "mozvane",
+      "label": "Mozvane",
+      "matchSeries": "Mozvane"
+    }
   ]
 }

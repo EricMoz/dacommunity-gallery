@@ -2038,10 +2038,27 @@ function lookupWallet(identifier) {
       title: "Need an address",
     };
   }
+
+  // Resolve ENS to address early so synth always gets a 0x (synth fails on ENS strings)
   var address = raw.toLowerCase();
+  var needsResolve = false;
+  if (isEnsName(raw)) {
+    var alias = (walletIndex && walletIndex.ens_aliases && walletIndex.ens_aliases[raw.toLowerCase()]) || null;
+    if (alias) {
+      address = alias.toLowerCase();
+    } else {
+      needsResolve = true;
+    }
+  } else if (!isEthAddress(raw)) {
+    return {
+      error: "That doesn't look like a valid ENS (.eth / .base.eth) or 0x address.",
+      title: "Check the format",
+      hint: "Example: mozvane.eth or 0xabc…1234",
+    };
+  }
 
   // Try synthetic holdings from whatever is currently loaded in galleryData (badges items have owners lists).
-  // This works even if walletIndex is not loaded for this view.
+  // This works even if walletIndex is not loaded for this view. Always use resolved 0x here.
   var synth = buildHoldingsFromCurrentItems(address);
   if (synth.length > 0) {
     var meta = (walletIndex && walletIndex.by_address && walletIndex.by_address[address]) || {};
@@ -2069,21 +2086,13 @@ function lookupWallet(identifier) {
     };
   }
 
+  if (needsResolve) {
+    return { needsResolve: true, ens: raw };
+  }
+
   if (!walletIndex || !walletIndex.by_address) {
     // Kick off load in background for future calls / ENS; fall through to no-pieces if none.
     loadWalletIndex().catch(function(){});
-  }
-
-  if (isEnsName(raw)) {
-    var alias = walletIndex.ens_aliases && walletIndex.ens_aliases[raw.toLowerCase()];
-    if (alias) address = alias.toLowerCase();
-    else return { needsResolve: true, ens: raw };
-  } else if (!isEthAddress(raw)) {
-    return {
-      error: "That doesn't look like a valid ENS (.eth / .base.eth) or 0x address.",
-      title: "Check the format",
-      hint: "Example: mozvane.eth or 0xabc…1234",
-    };
   }
 
   var entry = walletIndex && walletIndex.by_address && walletIndex.by_address[address];
