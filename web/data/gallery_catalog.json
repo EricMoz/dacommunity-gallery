@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-20T10:32:52.105122+00:00",
+  "generated_at": "2026-06-21T11:16:31.217209+00:00",
   "source": "gallery_catalog",
   "collection": {
     "slug": "rodeo-posts-12142",
@@ -14,7 +14,7 @@
     "contract_name": "Rodeo posts",
     "floor_eth": 0.0005,
     "floor_symbol": "ETH",
-    "num_owners": 58,
+    "num_owners": 59,
     "total_sales": 0,
     "total_volume": 0.0,
     "piece_count": 65,
@@ -425,7 +425,7 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 6,
+        "holder_count": 7,
         "circulating_copies": 24,
         "top_holders": [
           {
@@ -434,7 +434,7 @@
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 8
+            "quantity": 7
           },
           {
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
@@ -456,7 +456,7 @@
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 8
+            "quantity": 7
           },
           {
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
@@ -473,14 +473,18 @@
           {
             "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
             "quantity": 1
+          },
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1
           }
         ],
         "latest_change": {
           "type": "transfer",
-          "at": "2026-02-12T16:40:39+00:00",
-          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
-          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-          "quantity": 10
+          "at": "2026-06-21T00:31:15+00:00",
+          "from": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+          "quantity": 1
         }
       },
       "minted_at": "2025-11-21T23:58:03+00:00"
@@ -2392,7 +2396,7 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 7,
+        "holder_count": 8,
         "circulating_copies": 14,
         "top_holders": [
           {
@@ -2401,7 +2405,7 @@
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 4
+            "quantity": 3
           },
           {
             "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
@@ -2423,7 +2427,7 @@
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 4
+            "quantity": 3
           },
           {
             "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
@@ -2444,14 +2448,18 @@
           {
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
             "quantity": 1
+          },
+          {
+            "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+            "quantity": 1
           }
         ],
         "latest_change": {
           "type": "transfer",
-          "at": "2026-02-12T16:40:39+00:00",
-          "from": "0x35c36f3b63454772e13e712d172ce6063c86ec96",
-          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-          "quantity": 5
+          "at": "2026-06-21T01:13:09+00:00",
+          "from": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "to": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+          "quantity": 1
         }
       },
       "minted_at": "2025-06-22T19:17:07+00:00"

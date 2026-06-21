@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-20T10:32:52.102401+00:00",
+  "generated_at": "2026-06-21T11:16:31.214321+00:00",
   "holders_index": {
     "ens_aliases": {
       "lostthegame.eth": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
@@ -9,20 +9,20 @@
       "isumi.eth": "0x06eca6ce5f135ed9917b00630c26167de7e6a673",
       "lokho.eth": "0x1b0ca3b64719bddba0214814deb32d37634e418f",
       "wyando.eth": "0x6372d911ad7329509d683828be1bf5d4eb45bb42",
+      "dagato.eth": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
       "dao100.eth": "0x5469f22fc52ad7a5e1f430a75b1cbd542393dfb0",
       "mfer-chick.eth": "0xeeb67b2952cd04901c3c797cee44ebacb9cf0da2",
-      "dagato.eth": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
       "slowfreeze.eth": "0x93b34003169bd7cdb3e0710fedff4cb6795a32ef",
       "tibob.eth": "0x7f23f1c4be15fa3adabc821de9ef70efa5503f24",
       "ahotwallet.eth": "0x68bca5a8bdebe05fb8a6648c7316b4eb7e19a064",
       "jiujitsu🍄.eth": "0x4a35cee6c17fcb6bc9235521bd3b7feef6680232",
-      "daforeman.eth": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-      "inshirowetrust.eth": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327"
+      "dacatchronicles.eth": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1"
     },
     "by_address": {
       "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684": {
         "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
         "ens_name": "lostthegame.eth",
+        "ens_history": [],
         "username": "Saphoroth",
         "collection_quantity": 391,
         "unique_pieces": 64,
@@ -352,8 +352,9 @@
       "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe": {
         "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
         "ens_name": "mozvane.eth",
+        "ens_history": [],
         "username": null,
-        "collection_quantity": 282,
+        "collection_quantity": 280,
         "unique_pieces": 60,
         "holdings": [
           {
@@ -661,6 +662,7 @@
       "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5": {
         "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 94,
         "unique_pieces": 48,
@@ -910,6 +912,7 @@
       "0xff003d893a2600dd8a773beaeed4097e2d5c3487": {
         "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 55,
         "unique_pieces": 44,
@@ -1139,6 +1142,7 @@
       "0xa9097ae40becc77b268aabde8f3863b34e13d494": {
         "address": "0xa9097ae40becc77b268aabde8f3863b34e13d494",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 48,
         "unique_pieces": 34,
@@ -1318,6 +1322,7 @@
       "0xfb5cbd20758efc31b6a092160c004cb5c7df9266": {
         "address": "0xfb5cbd20758efc31b6a092160c004cb5c7df9266",
         "ens_name": "jadeee.eth",
+        "ens_history": [],
         "username": "Jady_art",
         "collection_quantity": 35,
         "unique_pieces": 35,
@@ -1502,6 +1507,7 @@
       "0xe008e382ed7a97ca9621597a0c37aacbea1bc105": {
         "address": "0xe008e382ed7a97ca9621597a0c37aacbea1bc105",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 22,
         "unique_pieces": 22,
@@ -1621,6 +1627,7 @@
       "0x67f3c18339ac0da29be9573d559a1291100b7c7b": {
         "address": "0x67f3c18339ac0da29be9573d559a1291100b7c7b",
         "ens_name": "doublelion.eth",
+        "ens_history": [],
         "username": "LenaMAU",
         "collection_quantity": 19,
         "unique_pieces": 11,
@@ -1685,6 +1692,7 @@
       "0x9efee4a57815240304effc71f6f65091b7e70ed6": {
         "address": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 17,
         "unique_pieces": 17,
@@ -1779,6 +1787,7 @@
       "0x06eca6ce5f135ed9917b00630c26167de7e6a673": {
         "address": "0x06eca6ce5f135ed9917b00630c26167de7e6a673",
         "ens_name": "isumi.eth",
+        "ens_history": [],
         "username": null,
         "collection_quantity": 9,
         "unique_pieces": 8,
@@ -1828,6 +1837,7 @@
       "0x011dddd5b5470d2818bffb400b4e38949fe21ac3": {
         "address": "0x011dddd5b5470d2818bffb400b4e38949fe21ac3",
         "ens_name": null,
+        "ens_history": [],
         "username": "HodLStaR",
         "collection_quantity": 9,
         "unique_pieces": 5,
@@ -1862,6 +1872,7 @@
       "0x1b0ca3b64719bddba0214814deb32d37634e418f": {
         "address": "0x1b0ca3b64719bddba0214814deb32d37634e418f",
         "ens_name": "lokho.eth",
+        "ens_history": [],
         "username": "Kuje",
         "collection_quantity": 8,
         "unique_pieces": 8,
@@ -1911,6 +1922,7 @@
       "0xaf3634c6720c2547bb0e59b040eeb2c9dbc49457": {
         "address": "0xaf3634c6720c2547bb0e59b040eeb2c9dbc49457",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 3,
         "unique_pieces": 2,
@@ -1930,6 +1942,7 @@
       "0x7bad2d296612ed6bc5d3ac3d9c09fce181434da1": {
         "address": "0x7bad2d296612ed6bc5d3ac3d9c09fce181434da1",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 3,
         "unique_pieces": 1,
@@ -1944,6 +1957,7 @@
       "0x6372d911ad7329509d683828be1bf5d4eb45bb42": {
         "address": "0x6372d911ad7329509d683828be1bf5d4eb45bb42",
         "ens_name": "wyando.eth",
+        "ens_history": [],
         "username": "Wyando",
         "collection_quantity": 3,
         "unique_pieces": 3,
@@ -1968,6 +1982,7 @@
       "0xd817981e1b319f7e6ac072cc18d2ab9d2c87b063": {
         "address": "0xd817981e1b319f7e6ac072cc18d2ab9d2c87b063",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 2,
         "unique_pieces": 2,
@@ -1987,6 +2002,7 @@
       "0xd60d9625cbb8ad201839223e2f3898e10b3d3b23": {
         "address": "0xd60d9625cbb8ad201839223e2f3898e10b3d3b23",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 2,
         "unique_pieces": 2,
@@ -2003,9 +2019,30 @@
           }
         ]
       },
+      "0x94ff0ec6ce56b65541f6a4763d35caf51db29821": {
+        "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+        "ens_name": "dagato.eth",
+        "ens_history": [],
+        "username": "daGATO_eth",
+        "collection_quantity": 2,
+        "unique_pieces": 2,
+        "holdings": [
+          {
+            "token_id": "61",
+            "name": "dacat.gaze",
+            "display_name": "dacat.gaze"
+          },
+          {
+            "token_id": "59",
+            "name": "dacat.feast",
+            "display_name": "dacat.feast"
+          }
+        ]
+      },
       "0x5469f22fc52ad7a5e1f430a75b1cbd542393dfb0": {
         "address": "0x5469f22fc52ad7a5e1f430a75b1cbd542393dfb0",
         "ens_name": "dao100.eth",
+        "ens_history": [],
         "username": "flysuperman",
         "collection_quantity": 2,
         "unique_pieces": 1,
@@ -2020,6 +2057,7 @@
       "0x4845b4ed2ae13dedace7da1616c3597a99c321a4": {
         "address": "0x4845b4ed2ae13dedace7da1616c3597a99c321a4",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 2,
         "unique_pieces": 2,
@@ -2039,6 +2077,7 @@
       "0x3b3beccab37cdd079f6a6393085c73a3adab95af": {
         "address": "0x3b3beccab37cdd079f6a6393085c73a3adab95af",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 2,
         "unique_pieces": 2,
@@ -2058,6 +2097,7 @@
       "0x2e38d965f2243916cc6869a9557200c96a257219": {
         "address": "0x2e38d965f2243916cc6869a9557200c96a257219",
         "ens_name": null,
+        "ens_history": [],
         "username": "LUCIFER-7",
         "collection_quantity": 2,
         "unique_pieces": 2,
@@ -2077,6 +2117,7 @@
       "0xffcd46f8267ea602a9a05b17027a53cae1364298": {
         "address": "0xffcd46f8267ea602a9a05b17027a53cae1364298",
         "ens_name": null,
+        "ens_history": [],
         "username": "delicatedarlings",
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2091,6 +2132,7 @@
       "0xeeb67b2952cd04901c3c797cee44ebacb9cf0da2": {
         "address": "0xeeb67b2952cd04901c3c797cee44ebacb9cf0da2",
         "ens_name": "mfer-chick.eth",
+        "ens_history": [],
         "username": "mfer-chick",
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2105,6 +2147,7 @@
       "0xebbac832fa12e8e1adaa4b08ee85c94e1011e7de": {
         "address": "0xebbac832fa12e8e1adaa4b08ee85c94e1011e7de",
         "ens_name": null,
+        "ens_history": [],
         "username": "MalteExe",
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2119,6 +2162,7 @@
       "0xe8e4cd81a0c5484e2777fa4df435e0c0c7f4c110": {
         "address": "0xe8e4cd81a0c5484e2777fa4df435e0c0c7f4c110",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2133,6 +2177,7 @@
       "0xe80e11c9f76e6f9c03fb13528877676f79431870": {
         "address": "0xe80e11c9f76e6f9c03fb13528877676f79431870",
         "ens_name": null,
+        "ens_history": [],
         "username": "mammothdump",
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2147,6 +2192,7 @@
       "0xe56de42633384a3ec4535bddc08655af99b7180d": {
         "address": "0xe56de42633384a3ec4535bddc08655af99b7180d",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2161,6 +2207,7 @@
       "0xe316b1d385d34193faaafba6f10f534401b2a888": {
         "address": "0xe316b1d385d34193faaafba6f10f534401b2a888",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2175,6 +2222,7 @@
       "0xcbd9d8505daf8c885477f144361cde24d9c10691": {
         "address": "0xcbd9d8505daf8c885477f144361cde24d9c10691",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2189,6 +2237,7 @@
       "0xc376457397395f552b428f5840c48de8dd31b310": {
         "address": "0xc376457397395f552b428f5840c48de8dd31b310",
         "ens_name": null,
+        "ens_history": [],
         "username": "Charis_AI_Art_Collection",
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2203,6 +2252,7 @@
       "0xae85b8e7b336ba3e02e3b271f08074a530506229": {
         "address": "0xae85b8e7b336ba3e02e3b271f08074a530506229",
         "ens_name": null,
+        "ens_history": [],
         "username": "choduan",
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2217,6 +2267,7 @@
       "0x9e1e84fa1070469de7d59212cc1706e8f3f0bd67": {
         "address": "0x9e1e84fa1070469de7d59212cc1706e8f3f0bd67",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2228,23 +2279,10 @@
           }
         ]
       },
-      "0x94ff0ec6ce56b65541f6a4763d35caf51db29821": {
-        "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-        "ens_name": "dagato.eth",
-        "username": "daGATO_eth",
-        "collection_quantity": 1,
-        "unique_pieces": 1,
-        "holdings": [
-          {
-            "token_id": "61",
-            "name": "dacat.gaze",
-            "display_name": "dacat.gaze"
-          }
-        ]
-      },
       "0x93b34003169bd7cdb3e0710fedff4cb6795a32ef": {
         "address": "0x93b34003169bd7cdb3e0710fedff4cb6795a32ef",
         "ens_name": "slowfreeze.eth",
+        "ens_history": [],
         "username": "Slowfreeze",
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2259,6 +2297,7 @@
       "0x8f15253e0775e1df0561a875ddf00dae70cf72a7": {
         "address": "0x8f15253e0775e1df0561a875ddf00dae70cf72a7",
         "ens_name": null,
+        "ens_history": [],
         "username": "Liquidnicl",
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2273,6 +2312,7 @@
       "0x89c021a06fd0c632e8d24adf75c0ead5ed937a42": {
         "address": "0x89c021a06fd0c632e8d24adf75c0ead5ed937a42",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2287,6 +2327,7 @@
       "0x8626caa6107f95598fa7a2d404ec798c2d6ce27e": {
         "address": "0x8626caa6107f95598fa7a2d404ec798c2d6ce27e",
         "ens_name": null,
+        "ens_history": [],
         "username": "flintOPENSEA",
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2301,6 +2342,7 @@
       "0x7f284d2167b3bb8d8f6669593f4c24e752b54812": {
         "address": "0x7f284d2167b3bb8d8f6669593f4c24e752b54812",
         "ens_name": null,
+        "ens_history": [],
         "username": "yola_yo",
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2315,6 +2357,7 @@
       "0x7f23f1c4be15fa3adabc821de9ef70efa5503f24": {
         "address": "0x7f23f1c4be15fa3adabc821de9ef70efa5503f24",
         "ens_name": "tibob.eth",
+        "ens_history": [],
         "username": "pa3gBa",
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2329,6 +2372,7 @@
       "0x77142c2ccc81d0b3dc8569b7d9f460e8b9696232": {
         "address": "0x77142c2ccc81d0b3dc8569b7d9f460e8b9696232",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2343,6 +2387,7 @@
       "0x75ab8f2cca077040932c2d4050ac66984aa64adc": {
         "address": "0x75ab8f2cca077040932c2d4050ac66984aa64adc",
         "ens_name": null,
+        "ens_history": [],
         "username": "AaronShiflett",
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2357,6 +2402,7 @@
       "0x68dc50641ceeada897519e20e8bd5282ec91c622": {
         "address": "0x68dc50641ceeada897519e20e8bd5282ec91c622",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2371,6 +2417,7 @@
       "0x68cd16cacbaaca45dfd0f0e7e2609d273a0d4083": {
         "address": "0x68cd16cacbaaca45dfd0f0e7e2609d273a0d4083",
         "ens_name": null,
+        "ens_history": [],
         "username": "Fred12582",
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2385,6 +2432,7 @@
       "0x68bca5a8bdebe05fb8a6648c7316b4eb7e19a064": {
         "address": "0x68bca5a8bdebe05fb8a6648c7316b4eb7e19a064",
         "ens_name": "ahotwallet.eth",
+        "ens_history": [],
         "username": "A_Hot_Wallet",
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2399,6 +2447,7 @@
       "0x6395aeb764163d8179e946feafb8338752437623": {
         "address": "0x6395aeb764163d8179e946feafb8338752437623",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2413,6 +2462,7 @@
       "0x60298f573aa22b5ee6affd279c88b4cfe3f7fe8b": {
         "address": "0x60298f573aa22b5ee6affd279c88b4cfe3f7fe8b",
         "ens_name": null,
+        "ens_history": [],
         "username": "Tamarisk",
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2427,6 +2477,7 @@
       "0x5b8b03f255a2acf815e59dc55847096c43335385": {
         "address": "0x5b8b03f255a2acf815e59dc55847096c43335385",
         "ens_name": null,
+        "ens_history": [],
         "username": "Jhonny88",
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2441,6 +2492,7 @@
       "0x58e5c387c541ba7c4b04f126adb778fb02715afa": {
         "address": "0x58e5c387c541ba7c4b04f126adb778fb02715afa",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2455,6 +2507,7 @@
       "0x55d5c0aa6486ccd91775f4f2e3258f5d7ceac5ce": {
         "address": "0x55d5c0aa6486ccd91775f4f2e3258f5d7ceac5ce",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2469,6 +2522,7 @@
       "0x4a35cee6c17fcb6bc9235521bd3b7feef6680232": {
         "address": "0x4a35cee6c17fcb6bc9235521bd3b7feef6680232",
         "ens_name": "jiujitsu🍄.eth",
+        "ens_history": [],
         "username": "nnbnbb",
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2483,6 +2537,7 @@
       "0x445a6fc0bf61535e7d2ef96258124fdb9a855fdc": {
         "address": "0x445a6fc0bf61535e7d2ef96258124fdb9a855fdc",
         "ens_name": null,
+        "ens_history": [],
         "username": "0x445a",
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2497,6 +2552,7 @@
       "0x3e43287a26acf9e5206f4551ccda29c7d9bea93e": {
         "address": "0x3e43287a26acf9e5206f4551ccda29c7d9bea93e",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2511,6 +2567,7 @@
       "0x356d8dac5f0da039dcc3e22c8b42fde00e79f7e6": {
         "address": "0x356d8dac5f0da039dcc3e22c8b42fde00e79f7e6",
         "ens_name": null,
+        "ens_history": [],
         "username": "Blessskateshop",
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2525,6 +2582,7 @@
       "0x2c64f2ccc998613a69b667623f65aeb75e157a24": {
         "address": "0x2c64f2ccc998613a69b667623f65aeb75e157a24",
         "ens_name": null,
+        "ens_history": [],
         "username": "CartoonMeSeries",
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2536,9 +2594,25 @@
           }
         ]
       },
+      "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1": {
+        "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+        "ens_name": "dacatchronicles.eth",
+        "ens_history": null,
+        "username": "dacatchronicles",
+        "collection_quantity": 1,
+        "unique_pieces": 1,
+        "holdings": [
+          {
+            "token_id": "36",
+            "name": "dacat.bridge",
+            "display_name": "dacat.bridge"
+          }
+        ]
+      },
       "0x1b1774064996768949294e81bea73477488ef50c": {
         "address": "0x1b1774064996768949294e81bea73477488ef50c",
         "ens_name": null,
+        "ens_history": [],
         "username": "defusionu",
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2553,6 +2627,7 @@
       "0x194409141e0a85ef84c0c8a0b026206a938e6896": {
         "address": "0x194409141e0a85ef84c0c8a0b026206a938e6896",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2567,6 +2642,7 @@
       "0x13ff77c9315dde5ac9cfdb7258f99d7d70011803": {
         "address": "0x13ff77c9315dde5ac9cfdb7258f99d7d70011803",
         "ens_name": null,
+        "ens_history": [],
         "username": "Asknights",
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2581,6 +2657,7 @@
       "0x016622b2b9e2caca189f57efb38c527d8b12eafc": {
         "address": "0x016622b2b9e2caca189f57efb38c527d8b12eafc",
         "ens_name": null,
+        "ens_history": [],
         "username": "yephuh",
         "collection_quantity": 1,
         "unique_pieces": 1,
@@ -2606,7 +2683,7 @@
         "ens_name": "mozvane.eth",
         "username": null,
         "unique_pieces": 60,
-        "collection_quantity": 282
+        "collection_quantity": 280
       },
       {
         "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
@@ -2707,6 +2784,13 @@
         "collection_quantity": 2
       },
       {
+        "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+        "ens_name": "dagato.eth",
+        "username": "daGATO_eth",
+        "unique_pieces": 2,
+        "collection_quantity": 2
+      },
+      {
         "address": "0x4845b4ed2ae13dedace7da1616c3597a99c321a4",
         "ens_name": null,
         "username": null,
@@ -2815,13 +2899,6 @@
         "address": "0x9e1e84fa1070469de7d59212cc1706e8f3f0bd67",
         "ens_name": null,
         "username": null,
-        "unique_pieces": 1,
-        "collection_quantity": 1
-      },
-      {
-        "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-        "ens_name": "dagato.eth",
-        "username": "daGATO_eth",
         "unique_pieces": 1,
         "collection_quantity": 1
       },
@@ -2969,6 +3046,13 @@
         "address": "0x2c64f2ccc998613a69b667623f65aeb75e157a24",
         "ens_name": null,
         "username": "CartoonMeSeries",
+        "unique_pieces": 1,
+        "collection_quantity": 1
+      },
+      {
+        "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+        "ens_name": "dacatchronicles.eth",
+        "username": "dacatchronicles",
         "unique_pieces": 1,
         "collection_quantity": 1
       },
