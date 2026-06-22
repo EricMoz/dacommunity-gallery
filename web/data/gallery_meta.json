@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-06-21T11:16:31.252814+00:00",
+  "updated_at": "2026-06-22T01:32:49.757925+00:00",
   "data_generated_at": "2026-06-21T11:16:31.217209+00:00",
   "listed_count": 5,
   "piece_count": 65,
   "refresh": {
-    "status": "ok",
+    "status": "failed",
     "source": "github_actions",
-    "finished_at": "2026-06-21T11:16:31.252821+00:00",
-    "error": null,
-    "error_code": null
+    "finished_at": "2026-06-22T01:32:49.757937+00:00",
+    "error": "Refresh job failed — see the log for the failing step.",
+    "error_code": "fetch_failed"
   },
   "opensea_key": {
-    "status": "ok",
-    "checked_at": "2026-06-21T11:16:31.252825+00:00",
+    "status": "unknown",
+    "checked_at": "2026-06-22T01:32:49.757940+00:00",
     "rotation_reminder_days": 30,
-    "hint": "OpenSea API key is working. Instant/dev keys typically expire in ~30 days — renew the GitHub secret OPENSEA_API_KEY before daily refresh emails report failure."
+    "hint": "Refresh job failed — see the log for the failing step."
   }
 }
