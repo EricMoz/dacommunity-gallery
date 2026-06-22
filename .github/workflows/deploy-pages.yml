@@ -31,7 +31,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       # Do not use lfs: true — it re-downloads every image each run. Materialize below.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           lfs: false
           fetch-depth: 0

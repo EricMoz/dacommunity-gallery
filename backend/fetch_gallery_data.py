@@ -14,6 +14,7 @@ import json
 import os
 import re
 import sys
+import traceback
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -618,6 +619,7 @@ if __name__ == "__main__":
         except Exception:
             pass
         print(f"OpenSea HTTP {status}: {e}{hint}", file=sys.stderr)
+        print(traceback.format_exc(), file=sys.stderr)
         sys.exit(1)
     except ValueError as e:
         code = "missing_secret" if "OPENSEA_API_KEY" in str(e) else "fetch_failed"
@@ -628,6 +630,7 @@ if __name__ == "__main__":
         except Exception:
             pass
         print(f"Error: {e}", file=sys.stderr)
+        print(traceback.format_exc(), file=sys.stderr)
         sys.exit(1)
     except Exception as e:
         try:
@@ -637,4 +640,5 @@ if __name__ == "__main__":
         except Exception:
             pass
         print(f"Error: {e}", file=sys.stderr)
+        print(traceback.format_exc(), file=sys.stderr)
         sys.exit(1)

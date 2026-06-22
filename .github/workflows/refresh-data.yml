@@ -13,6 +13,7 @@ on:
   workflow_dispatch:
 
 env:
+  # Force Node 24 for any lingering old actions (checkout@v5+ is native node24)
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 permissions:
@@ -30,7 +31,7 @@ jobs:
     steps:
       # Skip LFS: fetch_gallery_data.py only writes JSON; images rarely change and are
       # not needed here. Use lfs: true only in deploy/build jobs that serve web/assets/.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           lfs: false
           fetch-depth: 0
@@ -102,18 +103,10 @@ jobs:
           git add web/data/gallery_meta.json
           if ! git diff --staged --quiet; then
             git commit -m "chore: record failed gallery refresh"
-            # Robust push (same as success path)
-            for attempt in 1 2 3; do
-              if git pull --rebase --autostash origin main; then
-                if git push origin main; then
-                  echo "Failure meta pushed on attempt $attempt"
-                  break
-                fi
-              else
-                git rebase --abort || true
-              fi
-              [ $attempt -lt 3 ] && sleep 10 || echo "::warning::Failure meta push exhausted"
-            done
+            # Simple push for failure meta; avoid complex rebase to prevent exhaustion
+            git push origin main || echo "::warning::Failure meta push exhausted (will rely on next successful run)"
+          else
+            echo "No meta change to record"
           fi
 
       - name: Commit updated data
