@@ -377,15 +377,15 @@ def build_holders_index(
         if address in previous_by:
             p = previous_by[address]
             p_ens = p.get("ens_name")
-            hist = list(p.get("ens_history", []))
+            hist = list(p.get("ens_history") or [])
             if p_ens and p_ens != ens_name and p_ens not in hist:
                 hist.append(p_ens)
             if hist:
                 entry["ens_history"] = hist
             else:
-                entry["ens_history"] = list(p.get("ens_history", []))
+                entry["ens_history"] = list(p.get("ens_history") or [])
             # ensure historical names remain resolvable
-            for old in entry.get("ens_history", []):
+            for old in (entry.get("ens_history") or []):
                 if old:
                     ens_aliases[old.lower()] = address
             if p_ens and p_ens != ens_name:
@@ -500,7 +500,7 @@ def main() -> int:
             slim["by_address"][addr] = {
                 "address": entry["address"],
                 "ens_name": entry.get("ens_name"),
-                "ens_history": entry.get("ens_history"),
+                "ens_history": entry.get("ens_history") or [],
                 "username": entry.get("username"),
                 "collection_quantity": entry.get("collection_quantity"),
                 "unique_pieces": entry.get("unique_pieces"),

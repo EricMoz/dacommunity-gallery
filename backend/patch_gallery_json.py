@@ -37,7 +37,7 @@ def patch_wallet_index(items_by_id: dict[str, dict]) -> None:
             {
                 "address": e["address"],
                 "ens_name": e.get("ens_name"),
-                "ens_history": e.get("ens_history"),
+                "ens_history": e.get("ens_history") or [],
                 "username": e.get("username"),
                 "unique_pieces": e.get("unique_pieces") or 0,
                 "collection_quantity": e.get("collection_quantity") or 0,
