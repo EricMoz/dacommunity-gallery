@@ -40,21 +40,49 @@ class OpenSeaClient:
             time.sleep(self.delay - elapsed)
         self._last_request = time.monotonic()
 
-    def _get(self, path: str, params: dict | None = None) -> dict[str, Any]:
-        self._throttle()
+    def _request(self, method: str, path: str, **kwargs: Any) -> dict[str, Any]:
+        """Internal request with retry for rate limits (429) and transient server errors."""
         url = f"{OPENSEA_BASE}{path}"
-        resp = self.session.get(url, params=params, timeout=45)
-        if resp.status_code == 404:
-            return {}
-        resp.raise_for_status()
-        return resp.json()
+        last_exc = None
+        for attempt in range(5):  # up to 5 attempts
+            self._throttle()
+            try:
+                if method.lower() == "get":
+                    resp = self.session.get(url, timeout=45, **kwargs)
+                else:
+                    resp = self.session.post(url, timeout=30, **kwargs)
+                if resp.status_code == 404:
+                    return {}
+                if resp.status_code == 429:
+                    retry_after = int(resp.headers.get("Retry-After", 60))
+                    sleep_time = retry_after + (attempt * 5) + 1
+                    print(f"Rate limited (429), sleeping {sleep_time}s (attempt {attempt+1})")
+                    time.sleep(sleep_time)
+                    continue
+                if resp.status_code in (500, 502, 503, 504) and attempt < 4:
+                    sleep_time = (2 ** attempt) + 1
+                    print(f"Server error {resp.status_code}, retrying in {sleep_time}s")
+                    time.sleep(sleep_time)
+                    continue
+                resp.raise_for_status()
+                return resp.json()
+            except requests.exceptions.RequestException as e:
+                last_exc = e
+                if attempt < 4:
+                    sleep_time = (2 ** attempt) + 2
+                    print(f"Request error {e}, retry {attempt+1}/5 in {sleep_time}s")
+                    time.sleep(sleep_time)
+                    continue
+                raise
+        if last_exc:
+            raise last_exc
+        raise RuntimeError("Request failed after retries")
+
+    def _get(self, path: str, params: dict | None = None) -> dict[str, Any]:
+        return self._request("get", path, params=params)
 
     def _post(self, path: str, json_body: dict | None = None) -> dict[str, Any]:
-        self._throttle()
-        url = f"{OPENSEA_BASE}{path}"
-        resp = self.session.post(url, json=json_body or {}, timeout=30)
-        resp.raise_for_status()
-        return resp.json()
+        return self._request("post", path, json=json_body or {})
 
     def create_instant_api_key(self) -> str:
         saved = dict(self.session.headers)

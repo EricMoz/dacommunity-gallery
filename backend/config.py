@@ -29,5 +29,5 @@ COLLECTION_NOTE = (
 )
 CREATOR_ENS = "dacatdreams.base.eth"
 
-# Rate limit: free tier ~60 reads/min
-REQUEST_DELAY_SEC = 1.05
+# Rate limit: free tier ~60 reads/min. Use 2s for headroom on long runs (holders + per-token owners/events).
+REQUEST_DELAY_SEC = 2.0
