@@ -1188,13 +1188,21 @@
        old perfect layout where bar was always visible and video centered. */
     var bottomReserve = 95;
     if (els.upnext && !els.upnext.hidden) {
-      // Ensure the player leaves enough vertical room for the actual rendered bottom bar.
-      // (Discovered via zoom-out revealing the bar; at 100% the prior reserves were
-      // just short after other elements shifted the budget.)
       var barH = els.upnext.offsetHeight || 0;
       if (barH > bottomReserve) bottomReserve = barH + 18;
     }
+    // Always guarantee enough room for the bar in lights-up so it is visible
+    // without needing to zoom out (prior reserves became insufficient due to
+    // other layout elements).
+    if (!isLightsDown()) {
+      bottomReserve = Math.max(bottomReserve, 115);
+    }
     var maxAvailH = vh - topReserve - bottomReserve - 20;
+    if (!isLightsDown()) {
+      // cap using viewport to leave room
+      var maxAvailFromBar = vh - topReserve - 115;
+      if (maxAvailH > maxAvailFromBar) maxAvailH = maxAvailFromBar;
+    }
     if (totalH > maxAvailH) {
       totalH = Math.max(360, maxAvailH);
       w = Math.round((totalH - chromeExtra) * 16 / 9);
