@@ -4069,6 +4069,7 @@ body:not(.film-theatre-lights-down) .film-theatre-player {
      bar visible below, no cutoff on YT chrome. */
   max-width: 1080px;
   min-width: 0;
+  margin-bottom: 10px; /* ensure space past the gold frame so the bar sits below, not inside/within the player area */
 }
 
 .film-theatre-player {

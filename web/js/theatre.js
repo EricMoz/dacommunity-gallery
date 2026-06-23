@@ -1169,13 +1169,18 @@
     // so the gold-bordered video + player is more comfortable on screen. The frac + safety keep
     // it nicely proportioned and with breathing room. The mount min-width and upnext caps keep
     // the size stable and independent of the Up Next title/series bar. Lights-up only.
-    var stageW = (stage && stage.clientWidth) || els.player.getBoundingClientRect().width || window.innerWidth * 0.9;
+    // Measure from the screen (parent of stage) which has the max-width cap in CSS; this makes the
+    // computed player width independent of the upnext bar's current content (title length).
+    // The bar is then forced to the same width via maxWidth. This restores the fixed-width behavior
+    // from the prior stable state.
+    var screenEl = stage && stage.parentElement;
+    var baseW = (screenEl && screenEl.clientWidth) || (stage && stage.clientWidth) || els.player.getBoundingClientRect().width || window.innerWidth * 0.9;
     /* Exact prior frac 0.80 and cap 1080px to match the lights-up player max-width 1080px
        and stage padding from the perfect previous state (~20 commits ago).
        This ensures the computed size + bar fits perfectly centered without shift or missing bar. */
     var frac = 0.80;
-    var maxW = Math.min(stageW * frac, 1080);
-    var w = Math.max(640, Math.min(maxW, stageW - 80));  // slightly more safety for padding + border + inset on first load
+    var maxW = Math.min(baseW * frac, 1080);
+    var w = Math.max(640, Math.min(maxW, baseW - 80));  // slightly more safety for padding + border + inset on first load
 
     var videoH = w * 9 / 16;
     var chromeExtra = 62;
@@ -1206,7 +1211,7 @@
     if (totalH > maxAvailH) {
       totalH = Math.max(360, maxAvailH);
       w = Math.round((totalH - chromeExtra) * 16 / 9);
-      w = Math.max(500, Math.min(w, stageW - 60));
+      w = Math.max(500, Math.min(w, baseW - 60));
       totalH = Math.round((w * 9 / 16) + chromeExtra);
     }
 
@@ -1217,13 +1222,15 @@
       var stageEl = els.stage || document.querySelector('.film-theatre-stage');
       if (stageEl) {
         var stageTop = stageEl.getBoundingClientRect().top || 120;
+        var actionH = (els.actionBar && !els.actionBar.hidden) ? (els.actionBar.offsetHeight || 40) : 40;
         var barH = (els.upnext && !els.upnext.hidden) ? (els.upnext.offsetHeight || 70) : 70;
         var safety = 25;
-        var maxFromLayout = vh - stageTop - barH - safety;
+        // leave room for action + player + bar within the viewport from stage top
+        var maxFromLayout = vh - stageTop - actionH - barH - safety;
         if (totalH > maxFromLayout) {
           totalH = Math.max(360, maxFromLayout);
           w = Math.round((totalH - chromeExtra) * 16 / 9);
-          w = Math.max(500, Math.min(w, stageW - 60));
+          w = Math.max(500, Math.min(w, baseW - 60));
           totalH = Math.round((w * 9 / 16) + chromeExtra);
         }
       }
