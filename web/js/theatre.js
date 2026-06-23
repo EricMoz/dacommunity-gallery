@@ -1175,25 +1175,23 @@
     var mainEl = document.querySelector('.film-theatre-main');
     var baseW = (screenEl && screenEl.clientWidth) || (mainEl && mainEl.clientWidth) || (stage && stage.clientWidth) || window.innerWidth * 0.8;
 
-    /* Lights-up: make the video frame smaller (more shrink) so the gold frame does NOT touch the footer
-       and there is clear space for the up-next bar to sit directly below the frame at 100% view.
-       Width locking (improved last time) is preserved so the bar stays fixed and titles get cut off. */
-    var frac = 0.66;
-    var maxW = Math.min(baseW * frac, 780);
-    var w = Math.max(560, Math.min(maxW, baseW - 25));
+    /* Lights-up: further shrink to guarantee the gold frame is fully visible (no bottom cutoff) at 100% and the up-next bar has space to sit right below it without the frame touching the footer or being clipped by overflow. The bar will be below the frame in normal flow. */
+    var frac = 0.58;
+    var maxW = Math.min(baseW * frac, 680);
+    var w = Math.max(500, Math.min(maxW, baseW - 15));
 
     var videoH = w * 9 / 16;
-    var chromeExtra = 55;
+    var chromeExtra = 48;
     var totalH = Math.round(videoH + chromeExtra);
 
     var vh = window.innerHeight || 800;
-    var topReserve = 90;
-    var bottomReserve = 175; // leave explicit room so upnext bar is visible below frame and above footer
+    var topReserve = 80;
+    var bottomReserve = 210; // ensure room for bar below frame at 100%
     var maxAvailH = vh - topReserve - bottomReserve;
     if (totalH > maxAvailH) {
-      totalH = Math.max(300, maxAvailH);
+      totalH = Math.max(260, maxAvailH);
       w = Math.round((totalH - chromeExtra) * 16 / 9);
-      w = Math.max(440, Math.min(w, baseW - 15));
+      w = Math.max(400, Math.min(w, baseW - 5));
       totalH = Math.round((w * 9 / 16) + chromeExtra);
     }
 

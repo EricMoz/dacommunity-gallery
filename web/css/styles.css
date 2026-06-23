@@ -4011,9 +4011,9 @@ body:not(.film-theatre-lights-down) .film-theatre-player-mount {
   max-width: 100%;
   box-sizing: border-box;
   display: flex;
-  align-items: flex-end;   /* place the (smaller) player at the bottom of the available space so the gold frame bottom is right above the up-next bar */
+  align-items: center;   /* center the player in the mount so its bottom is not pushed to the very edge; the up-next bar flows below the mount right under the gold frame */
   justify-content: center;
-  /* flex:1 is handled by the base or stage; this keeps the mount taking the space between action-bar and upnext */
+  /* the mount takes the flexible space between action-bar and upnext; player size controlled by JS to fit with room for bar at 100% */
 }
 
 /* Desktop / wide PC: give the entire gold-bordered theatre player generous horizontal space from the
