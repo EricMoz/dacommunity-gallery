@@ -1169,46 +1169,58 @@
     // so the gold-bordered video + player is more comfortable on screen. The frac + safety keep
     // it nicely proportioned and with breathing room. The mount min-width and upnext caps keep
     // the size stable and independent of the Up Next title/series bar. Lights-up only.
-    var stageW = (stage && stage.clientWidth) || els.player.getBoundingClientRect().width || window.innerWidth * 0.9;
-    /* Lights-up player sized noticeably smaller than lights-down to leave room for the full
-       bottom up-next bar (Random/Series) at 100% zoom. Also base measurement + explicit max-width
-       on upnext after sizing so title length never affects player or bar width (restores stable
-       fixed width + title cutoff). */
-    var frac = 0.75;
-    var maxW = Math.min(stageW * frac, 920);
-    var w = Math.max(640, Math.min(maxW, stageW - 50));
+    // Use a stable base for width measurement (screen or main) so the upnext bar/title below
+    // cannot influence the stage.clientWidth and cause the player to "move" or resize on refresh.
+    var screenEl = document.querySelector('.film-theatre-screen');
+    var mainEl = document.querySelector('.film-theatre-main');
+    var baseW = (screenEl && screenEl.clientWidth) || (mainEl && mainEl.clientWidth) || (stage && stage.clientWidth) || window.innerWidth * 0.8;
+
+    /* Lights-up: noticeably smaller player so the up-next bar (with Random/Series) is always visible
+       right under the gold frame at 100% zoom and "rests" above the footer area. Title must truncate. */
+    var frac = 0.72;
+    var maxW = Math.min(baseW * frac, 880);
+    var w = Math.max(600, Math.min(maxW, baseW - 40));
 
     var videoH = w * 9 / 16;
     var chromeExtra = 62;
     var totalH = Math.round(videoH + chromeExtra);
 
     var vh = window.innerHeight || 800;
-    var topReserve = 105;
-    var bottomReserve = 125;  // extra room for upnext bar + margins so it stays visible below gold frame
-    var maxAvailH = vh - topReserve - bottomReserve - 10;
+    var topReserve = 100;
+    var bottomReserve = 140; // generous room for the full upnext bar so it doesn't get pushed off at 100%
+    var maxAvailH = vh - topReserve - bottomReserve - 5;
     if (totalH > maxAvailH) {
-      totalH = Math.max(360, maxAvailH);
+      totalH = Math.max(340, maxAvailH);
       w = Math.round((totalH - chromeExtra) * 16 / 9);
-      w = Math.max(500, Math.min(w, stageW - 50));
+      w = Math.max(480, Math.min(w, baseW - 30));
       totalH = Math.round((w * 9 / 16) + chromeExtra);
     }
 
     applySize(w, totalH);
 
-    /* Lights-up only: make the top action bar AND the bottom upnext bar exactly match the final
-       rendered gold frame width. This makes width 100% stable (no video "move" on refresh) and
-       forces long titles to truncate inside the bar instead of expanding it or the stage. */
+    /* Lock BOTH action bar and upnext bar to the exact final player width using !important.
+       This guarantees the bar cannot expand based on title length and cannot cause reflow/shift
+       of the video frame above it. Long titles will be cut off by the existing clamp on .film-upnext-title. */
     var actual = els.player.offsetWidth || Math.round(w);
-    var wPx = actual + 'px';
-    if (els.actionBar && els.player) {
-      els.actionBar.style.width = '100%';
-      els.actionBar.style.maxWidth = wPx;
-      els.actionBar.style.marginLeft = 'auto';
-      els.actionBar.style.marginRight = 'auto';
+    var lockW = actual + 'px';
+
+    if (els.actionBar) {
+      els.actionBar.style.setProperty('width', '100%', 'important');
+      els.actionBar.style.setProperty('max-width', lockW, 'important');
+      els.actionBar.style.setProperty('margin-left', 'auto', 'important');
+      els.actionBar.style.setProperty('margin-right', 'auto', 'important');
     }
+
     if (els.upnext) {
-      els.upnext.style.maxWidth = wPx;
-      if (els.upnextBar) els.upnextBar.style.maxWidth = wPx;
+      els.upnext.style.setProperty('max-width', lockW, 'important');
+      els.upnext.style.setProperty('width', lockW, 'important');
+    }
+    if (els.upnextBar) {
+      els.upnextBar.style.setProperty('max-width', lockW, 'important');
+      els.upnextBar.style.setProperty('width', lockW, 'important');
+    }
+    if (els.upnextPreview) {
+      els.upnextPreview.style.maxWidth = '100%';
     }
   }
 

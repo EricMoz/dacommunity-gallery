@@ -4032,6 +4032,12 @@ body:not(.film-theatre-lights-down) .film-theatre-stage {
   min-width: 100%; /* strongly prevent the upnext content below from causing shrink-to-fit on the stage */
 }
 
+/* Force the screen (which contains titles + stage) to full available width in lights-up.
+   This breaks any min-content sizing from the upnext bar/title below from propagating up to affect the player frame. */
+body:not(.film-theatre-lights-down) .film-theatre-screen {
+  width: 100%;
+}
+
 /* Lights Up only: make the top action bar (Film hub + Lights down buttons) align to the video player frame.
    Cap its width to match the player so buttons stay fixed in position relative to the gold border,
    independent of the Up Next section below. */
