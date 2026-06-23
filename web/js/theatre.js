@@ -1170,12 +1170,12 @@
     // it nicely proportioned and with breathing room. The mount min-width and upnext caps keep
     // the size stable and independent of the Up Next title/series bar. Lights-up only.
     var stageW = (stage && stage.clientWidth) || els.player.getBoundingClientRect().width || window.innerWidth * 0.9;
-    /* Exact prior frac 0.80 and cap 1080px to match the lights-up player max-width 1080px
-       and stage padding from the perfect previous state (~20 commits ago).
-       This ensures the computed size + bar fits perfectly centered without shift or missing bar. */
-    var frac = 0.80;
-    var maxW = Math.min(stageW * frac, 1080);
-    var w = Math.max(640, Math.min(maxW, stageW - 80));  // slightly more safety for padding + border + inset on first load
+    /* Slightly smaller target for lights-up ( ~13-15% headroom ) so the gold frame + full YT chrome
+       + action bar + bottom up-next bar fit at 100% zoom without needing to zoom out.
+       Reduced frac + lower cap + a bit more bottom reserve. */
+    var frac = 0.78;
+    var maxW = Math.min(stageW * frac, 980);
+    var w = Math.max(640, Math.min(maxW, stageW - 60));  // slightly tighter safety
 
     var videoH = w * 9 / 16;
     var chromeExtra = 62;
@@ -1183,11 +1183,10 @@
 
     var vh = window.innerHeight || 800;
     var topReserve = 110;
-    /* Exact prior bottomReserve 95 (from pre-audit state) with the larger player size.
-       The stage padding 1.25rem + player max 1080 + JS calc + upnext max 1080 now match the
-       old perfect layout where bar was always visible and video centered. */
-    var bottomReserve = 95;
-    var maxAvailH = vh - topReserve - bottomReserve - 20;
+    /* Slightly higher bottom reserve to guarantee room for the Random/Series up-next bar
+       (plus its margins) below the frame. */
+    var bottomReserve = 108;
+    var maxAvailH = vh - topReserve - bottomReserve - 15;
     if (totalH > maxAvailH) {
       totalH = Math.max(360, maxAvailH);
       w = Math.round((totalH - chromeExtra) * 16 / 9);
