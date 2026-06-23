@@ -1187,6 +1187,13 @@
        The stage padding 1.25rem + player max 1080 + JS calc + upnext max 1080 now match the
        old perfect layout where bar was always visible and video centered. */
     var bottomReserve = 95;
+    if (els.upnext && !els.upnext.hidden) {
+      // Ensure the player leaves enough vertical room for the actual rendered bottom bar.
+      // (Discovered via zoom-out revealing the bar; at 100% the prior reserves were
+      // just short after other elements shifted the budget.)
+      var barH = els.upnext.offsetHeight || 0;
+      if (barH > bottomReserve) bottomReserve = barH + 18;
+    }
     var maxAvailH = vh - topReserve - bottomReserve - 20;
     if (totalH > maxAvailH) {
       totalH = Math.max(360, maxAvailH);
