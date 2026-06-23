@@ -1210,6 +1210,25 @@
       totalH = Math.round((w * 9 / 16) + chromeExtra);
     }
 
+    // Additional layout-aware cap for lights-up: use actual stage position + bar height
+    // to ensure the explicit player height always leaves room for the bottom bar at 100%
+    // zoom (no scrollbar). This is why it only appeared when zoomed out.
+    if (!isLightsDown()) {
+      var stageEl = els.stage || document.querySelector('.film-theatre-stage');
+      if (stageEl) {
+        var stageTop = stageEl.getBoundingClientRect().top || 120;
+        var barH = (els.upnext && !els.upnext.hidden) ? (els.upnext.offsetHeight || 70) : 70;
+        var safety = 25;
+        var maxFromLayout = vh - stageTop - barH - safety;
+        if (totalH > maxFromLayout) {
+          totalH = Math.max(360, maxFromLayout);
+          w = Math.round((totalH - chromeExtra) * 16 / 9);
+          w = Math.max(500, Math.min(w, stageW - 60));
+          totalH = Math.round((w * 9 / 16) + chromeExtra);
+        }
+      }
+    }
+
     applySize(w, totalH);
 
     /* Lights-up only: make the top action bar (Previous film / Lights up) *exactly* match the *final

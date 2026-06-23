@@ -4006,6 +4006,7 @@ body:not(.film-theatre-lights-down) .film-theatre-player-mount {
   container-type: none;
   max-width: 100%;
   box-sizing: border-box;
+  min-height: 0; /* prevent forcing extra vertical space that can push the upnext bar out of view at 100% */
   /* Use the base grid + place-items: center for exact prior centering of the gold frame.
      This matches the layout from before the flex override in the audit. Combined with
      no min-width forcing and player max 1080px, the video is dead-center with bar visible. */
