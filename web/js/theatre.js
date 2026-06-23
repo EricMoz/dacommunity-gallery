@@ -1397,6 +1397,9 @@
       initWatchStack(video.id);
       writeTheatreHistory(video, "replace");
       fillCopy(video, entry);
+      // Force the up next bar (Random/Series) to show immediately in lights-up for the initial thumbnail state.
+      // Previously the call was only in pending path, which could miss showing the bar on first load.
+      refreshUpNextUi();
 
       /* Force lights-on on every full page load / refresh (including when the URL is
          reloaded while the user was previously in lights-down). This matches the
