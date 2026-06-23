@@ -1175,24 +1175,25 @@
     var mainEl = document.querySelector('.film-theatre-main');
     var baseW = (screenEl && screenEl.clientWidth) || (mainEl && mainEl.clientWidth) || (stage && stage.clientWidth) || window.innerWidth * 0.8;
 
-    /* Lights-up: noticeably smaller player so the up-next bar (with Random/Series) is always visible
-       right under the gold frame at 100% zoom and "rests" above the footer area. Title must truncate. */
-    var frac = 0.72;
-    var maxW = Math.min(baseW * frac, 880);
-    var w = Math.max(600, Math.min(maxW, baseW - 40));
+    /* Lights-up: make the video frame smaller (more shrink) so the gold frame does NOT touch the footer
+       and there is clear space for the up-next bar to sit directly below the frame at 100% view.
+       Width locking (improved last time) is preserved so the bar stays fixed and titles get cut off. */
+    var frac = 0.66;
+    var maxW = Math.min(baseW * frac, 780);
+    var w = Math.max(560, Math.min(maxW, baseW - 25));
 
     var videoH = w * 9 / 16;
-    var chromeExtra = 62;
+    var chromeExtra = 55;
     var totalH = Math.round(videoH + chromeExtra);
 
     var vh = window.innerHeight || 800;
-    var topReserve = 100;
-    var bottomReserve = 140; // generous room for the full upnext bar so it doesn't get pushed off at 100%
-    var maxAvailH = vh - topReserve - bottomReserve - 5;
+    var topReserve = 90;
+    var bottomReserve = 175; // leave explicit room so upnext bar is visible below frame and above footer
+    var maxAvailH = vh - topReserve - bottomReserve;
     if (totalH > maxAvailH) {
-      totalH = Math.max(340, maxAvailH);
+      totalH = Math.max(300, maxAvailH);
       w = Math.round((totalH - chromeExtra) * 16 / 9);
-      w = Math.max(480, Math.min(w, baseW - 30));
+      w = Math.max(440, Math.min(w, baseW - 15));
       totalH = Math.round((w * 9 / 16) + chromeExtra);
     }
 

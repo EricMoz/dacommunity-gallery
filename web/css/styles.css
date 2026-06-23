@@ -4010,9 +4010,11 @@ body:not(.film-theatre-lights-down) .film-theatre-player-mount {
   container-type: none;
   max-width: 100%;
   box-sizing: border-box;
-  /* Use the base grid + place-items: center for exact prior centering of the gold frame.
-     This matches the layout from before the flex override in the audit. Combined with
-     no min-width forcing and player max 1080px, the video is dead-center with bar visible. */
+  /* Size the mount tightly to the player (no flex:1 expansion) so the up-next bar sits
+     immediately below the gold frame instead of being pushed to the bottom of the viewport.
+     The player itself is centered inside via grid. */
+  flex: 0 0 auto;
+  min-height: 0;   /* let the explicit player height control it */
 }
 
 /* Desktop / wide PC: give the entire gold-bordered theatre player generous horizontal space from the
