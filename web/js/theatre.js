@@ -804,8 +804,19 @@
     var next = resolveUpNext(currentVideo);
     pendingUpNext = next;
     if (!next) {
-      els.upnext.hidden = true;
-      return;
+      // Force a next if possible to ensure the up next bar is always visible in lights-up
+      // as it used to be. This prevents the bar from being hidden when the random pick
+      // returns null for some reason (e.g. bag state or exclude).
+      var others = videos.filter(function (v) {
+        return v.id !== currentVideo.id;
+      });
+      if (others.length > 0) {
+        next = others[Math.floor(Math.random() * others.length)];
+        pendingUpNext = next;
+      } else {
+        els.upnext.hidden = true;
+        return;
+      }
     }
     els.upnext.hidden = false;
     hideUpNextEnd();
@@ -1183,10 +1194,16 @@
 
     var vh = window.innerHeight || 800;
     var topReserve = 110;
-    /* Exact prior bottomReserve 95 (from pre-audit state) with the larger player size.
-       The stage padding 1.25rem + player max 1080 + JS calc + upnext max 1080 now match the
-       old perfect layout where bar was always visible and video centered. */
+    /* Exact prior bottomReserve 95 base, but dynamically increased if the upnext bar
+       is already visible (from the pre-play refreshUpNextUi force call). This guarantees
+       the explicit player height in lights-up always leaves enough room below for the
+       full Random/Series bar so it is never clipped by 100dvh/overflow-hidden even after
+       the "perfect" 0.80/1080 restore made player size rigid and independent of bar. */
     var bottomReserve = 95;
+    if (els.upnext && !els.upnext.hidden) {
+      var measured = els.upnext.offsetHeight || els.upnext.getBoundingClientRect().height || 0;
+      if (measured > bottomReserve) bottomReserve = measured + 18; // actual bar + safety/gap
+    }
     var maxAvailH = vh - topReserve - bottomReserve - 20;
     if (totalH > maxAvailH) {
       totalH = Math.max(360, maxAvailH);
@@ -1400,6 +1417,13 @@
       // Force the up next bar (Random/Series) to show immediately in lights-up for the initial thumbnail state.
       // Previously the call was only in pending path, which could miss showing the bar on first load.
       refreshUpNextUi();
+      // Minimal additional force (lights-up only) to ensure the pre-existing bottom bar
+      // with Random/Series mode buttons is revealed. No other layout or sizing touched.
+      if (!isLightsDown() && els.upnext) {
+        els.upnext.hidden = false;
+        if (els.upnextFull) els.upnextFull.hidden = false;
+        if (els.upnextBar) els.upnextBar.hidden = false;
+      }
 
       /* Force lights-on on every full page load / refresh (including when the URL is
          reloaded while the user was previously in lights-down). This matches the
