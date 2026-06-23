@@ -1170,48 +1170,45 @@
     // it nicely proportioned and with breathing room. The mount min-width and upnext caps keep
     // the size stable and independent of the Up Next title/series bar. Lights-up only.
     var stageW = (stage && stage.clientWidth) || els.player.getBoundingClientRect().width || window.innerWidth * 0.9;
-    /* Slightly smaller target for lights-up ( ~13-15% headroom ) so the gold frame + full YT chrome
-       + action bar + bottom up-next bar fit at 100% zoom without needing to zoom out.
-       Reduced frac + lower cap + a bit more bottom reserve. */
-    var frac = 0.78;
-    var maxW = Math.min(stageW * frac, 980);
-    var w = Math.max(640, Math.min(maxW, stageW - 60));  // slightly tighter safety
+    /* Lights-up player sized noticeably smaller than lights-down to leave room for the full
+       bottom up-next bar (Random/Series) at 100% zoom. Also base measurement + explicit max-width
+       on upnext after sizing so title length never affects player or bar width (restores stable
+       fixed width + title cutoff). */
+    var frac = 0.75;
+    var maxW = Math.min(stageW * frac, 920);
+    var w = Math.max(640, Math.min(maxW, stageW - 50));
 
     var videoH = w * 9 / 16;
     var chromeExtra = 62;
     var totalH = Math.round(videoH + chromeExtra);
 
     var vh = window.innerHeight || 800;
-    var topReserve = 110;
-    /* Slightly higher bottom reserve to guarantee room for the Random/Series up-next bar
-       (plus its margins) below the frame. */
-    var bottomReserve = 108;
-    var maxAvailH = vh - topReserve - bottomReserve - 15;
+    var topReserve = 105;
+    var bottomReserve = 125;  // extra room for upnext bar + margins so it stays visible below gold frame
+    var maxAvailH = vh - topReserve - bottomReserve - 10;
     if (totalH > maxAvailH) {
       totalH = Math.max(360, maxAvailH);
       w = Math.round((totalH - chromeExtra) * 16 / 9);
-      w = Math.max(500, Math.min(w, stageW - 60));
+      w = Math.max(500, Math.min(w, stageW - 50));
       totalH = Math.round((w * 9 / 16) + chromeExtra);
     }
 
     applySize(w, totalH);
 
-    /* Lights-up only: make the top action bar (Previous film / Lights up) *exactly* match the *final
-       rendered* width of the gold video border (the .film-theatre-player after mount min-width,
-       player max-width, the explicit JS style.width, centering, and all layout).
-       We measure els.player.offsetWidth (the actual gold frame border box) instead of the pre-layout
-       calc `w`. This completely breaks the dependency on the Up Next series bar — the buttons will
-       always hug the left and right edges of the actual video gold frame (via space-between on the
-       bar), even if the upnext is narrow or the stage measurement had races.
-       Multiple sync calls + ResizeObserver on the player guarantee we re-sync the bar to the final size.
-       We also reinforce width + auto margins for reliable centering of the bar at the frame width. */
+    /* Lights-up only: make the top action bar AND the bottom upnext bar exactly match the final
+       rendered gold frame width. This makes width 100% stable (no video "move" on refresh) and
+       forces long titles to truncate inside the bar instead of expanding it or the stage. */
+    var actual = els.player.offsetWidth || Math.round(w);
+    var wPx = actual + 'px';
     if (els.actionBar && els.player) {
-      var actual = els.player.offsetWidth || Math.round(w);
-      var barW = actual + 'px';
       els.actionBar.style.width = '100%';
-      els.actionBar.style.maxWidth = barW;
+      els.actionBar.style.maxWidth = wPx;
       els.actionBar.style.marginLeft = 'auto';
       els.actionBar.style.marginRight = 'auto';
+    }
+    if (els.upnext) {
+      els.upnext.style.maxWidth = wPx;
+      if (els.upnextBar) els.upnextBar.style.maxWidth = wPx;
     }
   }
 

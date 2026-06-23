@@ -3930,6 +3930,7 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--theatre-accent);
+  min-width: 0; /* ensure long text doesn't expand containers and affect player size */
 }
 
 .film-theatre-series {
@@ -3939,6 +3940,7 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #888;
+  min-width: 0;
 }
 
 .film-theatre-title {
@@ -3948,12 +3950,14 @@ body.film-theatre-awaiting-lights .film-theatre-lights-btn {
   line-height: 1.1;
   color: #f8f8f8;
   text-shadow: 0 0 40px rgba(255, 204, 0, 0.15);
+  min-width: 0; /* prevent long titles from expanding the stage/flex and affecting player width */
 }
 
 .film-theatre-meta {
   margin: 0 0 0.35rem;
   font-size: 0.78rem;
   color: #9a9a9a;
+  min-width: 0;
 }
 
 .film-theatre-stage {
@@ -4024,6 +4028,8 @@ body:not(.film-theatre-lights-down) .film-theatre-stage {
   padding-right: 1.25rem;
   box-sizing: border-box;
   --theatre-video-max: 1080px;
+  width: 100%;
+  min-width: 100%; /* strongly prevent the upnext content below from causing shrink-to-fit on the stage */
 }
 
 /* Lights Up only: make the top action bar (Film hub + Lights down buttons) align to the video player frame.
