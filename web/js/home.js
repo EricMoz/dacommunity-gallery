@@ -8,7 +8,7 @@
     { id: "chronicles-trailer-1", category: "daCAT Chronicles", label: "Comic Trailer #1" },
     { id: "podcast-ep1", category: "Podcast", label: "Episode 1" },
     { id: "dabeezy-rebirth", category: "daBeezy", label: "Episode 1: Rebirth" },
-    { id: "shiro-fishing", category: "daCAT & Shiro", label: "Ep 1 · Fishing Trip" },
+    { id: "defectors-awakening", category: "Crossovers", label: "Part 1 · The Awakening" },
     { id: "multiverse-montage", category: "Crossovers", label: "Multiverse Montage" },
     { id: "mozvane-quick-stop", category: "Mozvane", label: "Mozvane (~5 min)" },
   ];
