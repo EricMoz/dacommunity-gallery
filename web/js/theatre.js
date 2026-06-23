@@ -1170,8 +1170,11 @@
     // it nicely proportioned and with breathing room. The mount min-width and upnext caps keep
     // the size stable and independent of the Up Next title/series bar. Lights-up only.
     var stageW = (stage && stage.clientWidth) || els.player.getBoundingClientRect().width || window.innerWidth * 0.9;
+    /* Exact prior frac 0.80 and cap 1080px to match the lights-up player max-width 1080px
+       and stage padding from the perfect previous state (~20 commits ago).
+       This ensures the computed size + bar fits perfectly centered without shift or missing bar. */
     var frac = 0.80;
-    var maxW = Math.min(stageW * frac, 900);
+    var maxW = Math.min(stageW * frac, 1080);
     var w = Math.max(640, Math.min(maxW, stageW - 80));  // slightly more safety for padding + border + inset on first load
 
     var videoH = w * 9 / 16;
@@ -1180,6 +1183,9 @@
 
     var vh = window.innerHeight || 800;
     var topReserve = 110;
+    /* Exact prior bottomReserve 95 (from pre-audit state) with the larger player size.
+       The stage padding 1.25rem + player max 1080 + JS calc + upnext max 1080 now match the
+       old perfect layout where bar was always visible and video centered. */
     var bottomReserve = 95;
     var maxAvailH = vh - topReserve - bottomReserve - 20;
     if (totalH > maxAvailH) {

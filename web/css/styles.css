@@ -4006,29 +4006,9 @@ body:not(.film-theatre-lights-down) .film-theatre-player-mount {
   container-type: none;
   max-width: 100%;
   box-sizing: border-box;
-  /* full width so the flex centering perfectly centers the gold frame + video with no deduction bias.
-     The stage padding (1.25rem) provides the surround space around the frame on PC without clipping the border.
-     This keeps the cutoff fix and the breathing room while making the player box dead-center (as it used to be). */
-
-  /* Reinforce perfect horizontal + vertical centering of the gold frame inside the mount for lights-on.
-     Combined with the player's own margin auto this keeps the video dead-center even after multiple
-     JS syncPlayerSize passes and during lights transitions. */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* Ensure the mount (player container) stretches to the full stage width (now forced stable by stage min-width:100%).
-     This isolates the player size from up-next content below. */
-  /* Mount audit (lights-up only): flex centering positions the .film-theatre-player (gold-bordered frame)
-     in the middle of available space. The player (scoped rule) + its iframe (inset:0 scoped rule) ensure
-     the YouTube content fills snugly inside the 4px-padded gold frame with no excess frame size or BR cutoff. */
-
-  /* Lights-up only: give the centering mount a stable min-width. This forces the stage/mount area
-     wide enough for a premium large player (so JS stage.clientWidth measurements and the frac calc
-     produce a good expanded size instead of shrinking to the upnext series box min-content).
-     The *player* itself is still capped by its max-width + the JS explicit size, so it won't go
-     "super wide" beyond the intended design. The actual rendered player border width is then used
-     for the action bar (via JS measurement) so the buttons always hug the gold video frame exactly. */
-  min-width: 900px;
+  /* Use the base grid + place-items: center for exact prior centering of the gold frame.
+     This matches the layout from before the flex override in the audit. Combined with
+     no min-width forcing and player max 1080px, the video is dead-center with bar visible. */
 }
 
 /* Desktop / wide PC: give the entire gold-bordered theatre player generous horizontal space from the
@@ -4036,17 +4016,14 @@ body:not(.film-theatre-lights-down) .film-theatre-player-mount {
    surround the youtube video" without shrinking the player mount or causing the recent cutoff/centering
    regressions. Lights-down mode overrides the stage to fixed inset 0 with its own centering paddings. */
 body:not(.film-theatre-lights-down) .film-theatre-stage {
-  /* Reduced padding from 1.25rem to 0.75rem to fix right-side cutoff of player and iframe
-     (YouTube logo/edge was clipped by tight containers + padding + border + inset).
-     Still provides some letterbox/breathing around the gold frame without causing cutoff.
-     The player max ~900px + its padding/border now fits fully inside the stage/screen/main. */
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  /* Exact prior perfect state from ~20 commits ago: padding 1.25rem for breathing room around gold frame,
+     allowing perfect centering of the player and full visibility of the upnext bar below.
+     Player uses 1080px max (the original stable size before the 15-20% smaller audit).
+     This matches the layout that was "perfect and hard to get that way". */
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
   box-sizing: border-box;
-  /* Lights-up only: smaller target size for the video frame (15-20% reduction from previous 1080px design)
-     so the gold-bordered player is more comfortable on screen while remaining the dominant element.
-     The JS calc caps to this value; the mount min-width keeps the area stable (independent of upnext). */
-  --theatre-video-max: 900px;
+  --theatre-video-max: 1080px;
 }
 
 /* Lights Up only: make the top action bar (Film hub + Lights down buttons) align to the video player frame.
@@ -4064,7 +4041,9 @@ body:not(.film-theatre-lights-down) .film-theatre-action-bar {
 body:not(.film-theatre-lights-down) .film-theatre-upnext,
 body:not(.film-theatre-lights-down) .film-upnext-bar,
 body:not(.film-theatre-lights-down) .film-upnext-end {
-  max-width: 850px;
+  /* Exact prior max-width 1080px to match the player frame width for perfect alignment.
+     The bar sits directly under the centered gold player as it used to. */
+  max-width: 1080px;
   margin: 0 auto;
   width: 100%;
 }
@@ -4082,11 +4061,10 @@ body:not(.film-theatre-lights-down) .film-upnext-end {
 body:not(.film-theatre-lights-down) .film-theatre-player {
   box-sizing: border-box;
   padding: 4px;
-  /* Lights-up only: 15-20% smaller target frame (900px max). The box size is driven by the JS
-     explicit width (from syncPlayerSize calc) + this max-width. No hard min on the player (see mount
-     for stability). This makes the gold-bordered video more comfortable while keeping the snug 4px
-     matte (inset:0 + padding) and proper fill/centering of the YT content inside the frame. */
-  max-width: 900px;
+  /* Exact prior: max-width 1080px as it was before the smaller frame audit. Combined with
+     stage padding 1.25rem and mount flex centering, the gold frame is dead-center with the upnext
+     bar visible below, no cutoff on YT chrome. */
+  max-width: 1080px;
   min-width: 0;
 }
 
@@ -4107,7 +4085,10 @@ body:not(.film-theatre-lights-down) .film-theatre-player {
      Up Next title (in .film-upnext-title) can wrap or ellipsis within its own capped bar.
      Lights Down rules override width/max-width so unaffected. */
   width: 100%;
-  min-width: 1080px;
+  /* min-width removed to restore proper centering of the gold frame inside the mount/stage.
+     The max-width + JS syncPlayerSize + stage --theatre-video-max keep the size stable and
+     break shrink-to-fit from upnext title without making the box too wide for the padded stage.
+     This restores the previous perfect dead-center layout without cutoff or shift. */
   height: auto;
   flex-shrink: 1;
   border-radius: 12px;
