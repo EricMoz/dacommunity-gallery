@@ -1248,6 +1248,14 @@
       els.actionBar.style.marginLeft = 'auto';
       els.actionBar.style.marginRight = 'auto';
     }
+
+    // Make the up next bar exactly the same width as the player (fixed, independent of title length).
+    // This ensures long or short titles in the bar preview do not affect the bar width or cause
+    // the stage/player measurement to shift on random/next. Matches the prior stable state.
+    if (els.upnext && els.player) {
+      var actual = els.player.offsetWidth || Math.round(w);
+      els.upnext.style.maxWidth = actual + 'px';
+    }
   }
 
   function tryPendingLightsRestore() {

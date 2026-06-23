@@ -4024,6 +4024,7 @@ body:not(.film-theatre-lights-down) .film-theatre-stage {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
   box-sizing: border-box;
+  width: 100%; /* force full width from parent so upnext title length does not affect stage/player width */
   --theatre-video-max: 1080px;
 }
 
@@ -4047,6 +4048,7 @@ body:not(.film-theatre-lights-down) .film-upnext-end {
   max-width: 1080px;
   margin: 0 auto;
   width: 100%;
+  margin-top: 8px; /* ensure the bar sits below the gold frame bottom, not within the player area */
 }
 
 /* Lights Up only reinforcement for .film-theatre-player (audit per requirements).
@@ -5702,6 +5704,7 @@ body.film-modal-open {
   font-weight: 700;
   color: #f2f2f2;
   line-height: 1.25;
+  min-width: 0; /* prevent long titles from expanding the bar width beyond the fixed player width */
   /* Allow wrap to multiple lines (up to 2) or truncate with ellipsis if too long.
      The bar is capped to the video player width, so the title never affects the player size.
      The video/gold frame size is independent of the Up Next title length. */
