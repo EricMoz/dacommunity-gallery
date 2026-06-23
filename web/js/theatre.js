@@ -1169,18 +1169,10 @@
     // so the gold-bordered video + player is more comfortable on screen. The frac + safety keep
     // it nicely proportioned and with breathing room. The mount min-width and upnext caps keep
     // the size stable and independent of the Up Next title/series bar. Lights-up only.
-    // Measure from the screen (parent of stage) which has the max-width cap in CSS; this makes the
-    // computed player width independent of the upnext bar's current content (title length).
-    // The bar is then forced to the same width via maxWidth. This restores the fixed-width behavior
-    // from the prior stable state.
-    var screenEl = stage && stage.parentElement;
-    var baseW = (screenEl && screenEl.clientWidth) || (stage && stage.clientWidth) || els.player.getBoundingClientRect().width || window.innerWidth * 0.9;
-    /* Exact prior frac 0.80 and cap 1080px to match the lights-up player max-width 1080px
-       and stage padding from the perfect previous state (~20 commits ago).
-       This ensures the computed size + bar fits perfectly centered without shift or missing bar. */
+    var stageW = (stage && stage.clientWidth) || els.player.getBoundingClientRect().width || window.innerWidth * 0.9;
     var frac = 0.80;
-    var maxW = Math.min(baseW * frac, 1080);
-    var w = Math.max(640, Math.min(maxW, baseW - 80));  // slightly more safety for padding + border + inset on first load
+    var maxW = Math.min(stageW * frac, 900);
+    var w = Math.max(640, Math.min(maxW, stageW - 80));  // slightly more safety for padding + border + inset on first load
 
     var videoH = w * 9 / 16;
     var chromeExtra = 62;
@@ -1188,52 +1180,13 @@
 
     var vh = window.innerHeight || 800;
     var topReserve = 110;
-    /* Exact prior bottomReserve 95 (from pre-audit state) with the larger player size.
-       The stage padding 1.25rem + player max 1080 + JS calc + upnext max 1080 now match the
-       old perfect layout where bar was always visible and video centered. */
     var bottomReserve = 95;
-    if (els.upnext && !els.upnext.hidden) {
-      var barH = els.upnext.offsetHeight || 0;
-      if (barH > bottomReserve) bottomReserve = barH + 18;
-    }
-    // Always guarantee enough room for the bar in lights-up so it is visible
-    // without needing to zoom out (prior reserves became insufficient due to
-    // other layout elements).
-    if (!isLightsDown()) {
-      bottomReserve = Math.max(bottomReserve, 115);
-    }
     var maxAvailH = vh - topReserve - bottomReserve - 20;
-    if (!isLightsDown()) {
-      // cap using viewport to leave room
-      var maxAvailFromBar = vh - topReserve - 115;
-      if (maxAvailH > maxAvailFromBar) maxAvailH = maxAvailFromBar;
-    }
     if (totalH > maxAvailH) {
       totalH = Math.max(360, maxAvailH);
       w = Math.round((totalH - chromeExtra) * 16 / 9);
-      w = Math.max(500, Math.min(w, baseW - 60));
+      w = Math.max(500, Math.min(w, stageW - 60));
       totalH = Math.round((w * 9 / 16) + chromeExtra);
-    }
-
-    // Additional layout-aware cap for lights-up: use actual stage position + bar height
-    // to ensure the explicit player height always leaves room for the bottom bar at 100%
-    // zoom (no scrollbar). This is why it only appeared when zoomed out.
-    if (!isLightsDown()) {
-      var stageEl = els.stage || document.querySelector('.film-theatre-stage');
-      if (stageEl) {
-        var stageTop = stageEl.getBoundingClientRect().top || 120;
-        var actionH = (els.actionBar && !els.actionBar.hidden) ? (els.actionBar.offsetHeight || 40) : 40;
-        var barH = (els.upnext && !els.upnext.hidden) ? (els.upnext.offsetHeight || 70) : 70;
-        var safety = 25;
-        // leave room for action + player + bar within the viewport from stage top
-        var maxFromLayout = vh - stageTop - actionH - barH - safety;
-        if (totalH > maxFromLayout) {
-          totalH = Math.max(360, maxFromLayout);
-          w = Math.round((totalH - chromeExtra) * 16 / 9);
-          w = Math.max(500, Math.min(w, baseW - 60));
-          totalH = Math.round((w * 9 / 16) + chromeExtra);
-        }
-      }
     }
 
     applySize(w, totalH);
@@ -1254,14 +1207,6 @@
       els.actionBar.style.maxWidth = barW;
       els.actionBar.style.marginLeft = 'auto';
       els.actionBar.style.marginRight = 'auto';
-    }
-
-    // Make the up next bar exactly the same width as the player (fixed, independent of title length).
-    // This ensures long or short titles in the bar preview do not affect the bar width or cause
-    // the stage/player measurement to shift on random/next. Matches the prior stable state.
-    if (els.upnext && els.player) {
-      var actual = els.player.offsetWidth || Math.round(w);
-      els.upnext.style.maxWidth = actual + 'px';
     }
   }
 
