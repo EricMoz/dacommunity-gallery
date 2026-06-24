@@ -4712,10 +4712,11 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   position: fixed;
   left: 1rem;
   bottom: 1rem;
-  /* Slightly wider to give the long up-next title room before ellipsis + skip button;
-     prevents text collision in the dim bar on smaller viewports or long titles. */
-  width: min(17rem, calc(100vw - 2rem));
-  max-width: 17rem;
+  /* Compact fixed width for the bottom-left "up next / skip" dim bar in lights-down.
+     Keeps it small and consistent (matches desired ~300px). Long titles are handled
+     with ellipsis inside; do not let content or lights-up JS sizing widen it. */
+  width: 300px;
+  max-width: 300px;
   z-index: 25;  /* ensure the bottom-left UP NEXT bar (with SKIP) is always above the video player chrome in lights-down */
   margin: 0;
   border-radius: 8px;

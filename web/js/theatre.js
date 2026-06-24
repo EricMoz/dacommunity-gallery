@@ -1073,12 +1073,22 @@
       startChromeIdleWatch();
       /* When entering lights-down, immediately clear any lights-up bar sizing so the
          fixed glass action bar (left/right + no max cap) takes over cleanly without
-         a narrow maxWidth left over from lights-up. This ensures no skew/short bar in down mode. */
+         a narrow maxWidth left over from lights-up. This ensures no skew/short bar in down mode.
+         Also clear upnext sizing so the compact bottom-left dim bar doesn't inherit the
+         wide player width from lights-up mode. */
       if (els.actionBar) {
         els.actionBar.style.width = '';
         els.actionBar.style.maxWidth = '';
         els.actionBar.style.marginLeft = '';
         els.actionBar.style.marginRight = '';
+      }
+      if (els.upnext) {
+        els.upnext.style.width = '';
+        els.upnext.style.maxWidth = '';
+      }
+      if (els.upnextBar) {
+        els.upnextBar.style.width = '';
+        els.upnextBar.style.maxWidth = '';
       }
     } else {
       stopChromeIdleWatch();
