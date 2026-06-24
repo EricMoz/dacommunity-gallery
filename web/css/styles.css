@@ -5715,11 +5715,10 @@ body.film-modal-open {
   font-weight: 700;
   color: #f2f2f2;
   line-height: 1.25;
-  /* Allow wrap to multiple lines (up to 2) or truncate with ellipsis if too long.
-     The bar is capped to the video player width, so the title never affects the player size.
-     The video/gold frame size is independent of the Up Next title length. */
+  /* Single line only. Truncate with ellipsis if too long so the up-next bar height stays stable
+     (no vertical growth/shrink). The bar is capped to the video player width. */
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   max-width: 100%;
