@@ -4014,6 +4014,7 @@ body:not(.film-theatre-lights-down) .film-theatre-player-mount {
   align-items: center;   /* center the player in the mount so its bottom is not pushed to the very edge; the up-next bar flows below the mount right under the gold frame */
   justify-content: center;
   /* the mount takes the flexible space between action-bar and upnext; player size controlled by JS to fit with room for bar at 100% */
+  min-height: 400px;  /* reduced from base 520px (per devtools test) so up-next bar fits and is visible at 100% zoom without the player mount eating too much vertical space */
 }
 
 /* Desktop / wide PC: give the entire gold-bordered theatre player generous horizontal space from the
