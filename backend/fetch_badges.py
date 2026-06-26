@@ -537,23 +537,36 @@ def main():
             series_stats = summarize_owners(non_issuer_holders)
 
             # Attach ENS to series holders (for general search collectors list)
+            # with retry to handle rate limits during long runs
             for holder_list in (series_stats.get("holders", []), series_stats.get("top_holders", [])):
                 for h in holder_list:
-                    try:
-                        res = client.resolve_account(h["address"])
-                        if res.get("ens_name"):
-                            h["ens_name"] = res["ens_name"]
-                    except Exception:
-                        pass
+                    ens = None
+                    for attempt in range(3):
+                        try:
+                            res = client.resolve_account(h["address"])
+                            ens = res.get("ens_name")
+                            if ens:
+                                break
+                            time.sleep(1 + attempt)
+                        except Exception:
+                            time.sleep(2 ** attempt)
+                    if ens:
+                        h["ens_name"] = ens
 
             # also attach to raw current_holders for the series item
             for h in non_issuer_holders:
-                try:
-                    res = client.resolve_account(h["address"])
-                    if res.get("ens_name"):
-                        h["ens_name"] = res["ens_name"]
-                except Exception:
-                    pass
+                ens = None
+                for attempt in range(3):
+                    try:
+                        res = client.resolve_account(h["address"])
+                        ens = res.get("ens_name")
+                        if ens:
+                            break
+                        time.sleep(1 + attempt)
+                    except Exception:
+                        time.sleep(2 ** attempt)
+                if ens:
+                    h["ens_name"] = ens
 
             # series rep (use first nft for other fields; image overridden to generic PNG in catalog)
             rep_nft = nfts[0]
@@ -662,12 +675,18 @@ def main():
 
                 for holder_list in (owner_stats.get("holders", []), owner_stats.get("top_holders", [])):
                     for h in holder_list:
-                        try:
-                            res = client.resolve_account(h["address"])
-                            if res.get("ens_name"):
-                                h["ens_name"] = res["ens_name"]
-                        except Exception:
-                            pass
+                        ens = None
+                        for attempt in range(3):
+                            try:
+                                res = client.resolve_account(h["address"])
+                                ens = res.get("ens_name")
+                                if ens:
+                                    break
+                                time.sleep(1 + attempt)
+                            except Exception:
+                                time.sleep(2 ** attempt)
+                        if ens:
+                            h["ens_name"] = ens
 
                 supply = 1
                 is_1of1 = True
@@ -758,12 +777,18 @@ def main():
 
         for holder_list in (owner_stats.get("holders", []), owner_stats.get("top_holders", [])):
             for h in holder_list:
-                try:
-                    res = client.resolve_account(h["address"])
-                    if res.get("ens_name"):
-                        h["ens_name"] = res["ens_name"]
-                except Exception:
-                    pass
+                ens = None
+                for attempt in range(3):
+                    try:
+                        res = client.resolve_account(h["address"])
+                        ens = res.get("ens_name")
+                        if ens:
+                            break
+                        time.sleep(1 + attempt)
+                    except Exception:
+                        time.sleep(2 ** attempt)
+                if ens:
+                    h["ens_name"] = ens
 
         supply = len(nfts) or 1
         is_1of1 = supply <= 5 or any("1/1" in str(t).lower() or "one of one" in str(t).lower() for t in nft.get("traits", []))
@@ -820,6 +845,25 @@ def main():
         print("Note: Could not validate first mint (rookie #1) - check data.")
     else:
         print("First mint (rookie #1) successfully validated.")
+
+    # Backfill ENS into badge item holders from previous wallet_index if this run didn't get it
+    # (helps with rate limits / flaky resolves during long fetch; once set, persists)
+    try:
+        prev_wallet = {}
+        wpath = ROOT / "web" / "data" / "wallet_index.json"
+        if wpath.exists():
+            prev = json.loads(wpath.read_text(encoding="utf-8"))
+            prev_wallet = prev.get("holders_index", {}).get("by_address", {})
+        for it in items:
+            for hlist in [it.get("current_holders", []), (it.get("owners") or {}).get("holders", []), (it.get("owners") or {}).get("top_holders", []) ]:
+                for h in hlist:
+                    a = (h.get("address") or "").lower()
+                    if a and not h.get("ens_name") and a in prev_wallet:
+                        e = prev_wallet[a]
+                        if e.get("ens_name"):
+                            h["ens_name"] = e["ens_name"]
+    except Exception as ex:
+        print("Note: backfill ens from prev wallet skipped:", ex)
 
     # Stats - count unique collections (slugs) for "pieces", not individual 1:1 tokens
     slugs = set(i.get("source_created_collection", "") for i in items if i.get("source_created_collection"))
@@ -890,19 +934,17 @@ def main():
             if addr in updated_by:
                 # already have from gallery; still refresh latest ENS if possible
                 try:
-                    r = requests.get(f"https://api.opensea.io/api/v2/accounts/resolve/{addr}", headers=headers, timeout=15)
-                    if r.status_code == 200:
-                        rj = r.json() or {}
-                        new_ens = rj.get("ens_name")
-                        old_ens = updated_by[addr].get("ens_name")
-                        if new_ens and new_ens != old_ens:
-                            hist = list(updated_by[addr].get("ens_history") or [])
-                            if old_ens and old_ens not in hist:
-                                hist.append(old_ens)
-                            updated_by[addr]["ens_name"] = new_ens
-                            updated_by[addr]["ens_history"] = hist
-                            if old_ens:
-                                updated_aliases[old_ens.lower()] = addr
+                    rj = client.resolve_account(addr)
+                    new_ens = rj.get("ens_name")
+                    old_ens = updated_by[addr].get("ens_name")
+                    if new_ens and new_ens != old_ens:
+                        hist = list(updated_by[addr].get("ens_history") or [])
+                        if old_ens and old_ens not in hist:
+                            hist.append(old_ens)
+                        updated_by[addr]["ens_name"] = new_ens
+                        updated_by[addr]["ens_history"] = hist
+                        if old_ens:
+                            updated_aliases[old_ens.lower()] = addr
                 except Exception:
                     pass
                 continue
@@ -911,13 +953,15 @@ def main():
             ens_name = None
             username = None
             try:
-                r = requests.get(f"https://api.opensea.io/api/v2/accounts/resolve/{addr}", headers=headers, timeout=15)
-                if r.status_code == 200:
-                    rj = r.json() or {}
-                    ens_name = rj.get("ens_name")
-                    username = rj.get("username")
+                rj = client.resolve_account(addr)
+                ens_name = rj.get("ens_name")
+                username = rj.get("username")
             except Exception:
                 pass
+
+            # If resolve gave no ENS this run, keep previous if we had one (for flaky resolves)
+            if not ens_name and addr in prev_by:
+                ens_name = prev_by[addr].get("ens_name")
 
             entry = {
                 "address": addr,
