@@ -521,6 +521,8 @@ async function loadWalletIndex() {
     walletIndex = null;
     collectorsList = [];
   }
+  enrichHoldersAndCollectorsWithENS();
+  rebuildCollectorsForCurrentView();
 }
 
 /* Registry loader (Part 1 multi-col support).
@@ -561,11 +563,26 @@ function buildCollectorsFromIndex(idx) {
 
 function buildCollectorsFromBadgeItems(items) {
   var byAddr = {};
+  var ensCandidates = {}; // addr -> [{ens, date}]
   (items || []).forEach(function (item) {
     if (!item.source_created_collection) return; // badges only
     var slug = item.source_created_collection;
     var os = item.owners || {};
     var list = os.holders || os.top_holders || [];
+    // Extract ENS from personalized item name if present (e.g. "daforeman.eth - ...")
+    var itemName = item.name || item.display_name || '';
+    var m = itemName.match(/([a-z0-9-]+\.eth)/i);
+    var ensFromName = m ? m[1].toLowerCase() : null;
+    var itemDate = item.minted_at || '0';
+    if (ensFromName) {
+      list.forEach(function (h) {
+        var a = (h.address || '').toLowerCase();
+        if (a) {
+          if (!ensCandidates[a]) ensCandidates[a] = [];
+          ensCandidates[a].push({ens: ensFromName, date: itemDate});
+        }
+      });
+    }
     list.forEach(function (h) {
       var a = (h.address || '').toLowerCase();
       if (!a) return;
@@ -587,6 +604,19 @@ function buildCollectorsFromBadgeItems(items) {
       if (slug) byAddr[a]._slugs[slug] = true;
     });
   });
+  // Pick most recent ENS from names (for cases where resolve didn't populate ens_name)
+  Object.keys(ensCandidates).forEach(function (a) {
+    var list = ensCandidates[a];
+    if (list.length > 0) {
+      list.sort(function (x, y) { return y.date.localeCompare(x.date); });
+      var best = list[0].ens;
+      if (!byAddr[a]) {
+        byAddr[a] = { address: a, ens_name: best, username: null, unique_pieces: 0, collection_quantity: 0, _slugs: {} };
+      } else if (!byAddr[a].ens_name) {
+        byAddr[a].ens_name = best;
+      }
+    }
+  });
   // enrich ENS from walletIndex if available (many overlap) -- but do not clobber good values from badge owners data
   Object.keys(byAddr).forEach(function (a) {
     var e = walletIndex && walletIndex.by_address && walletIndex.by_address[a];
@@ -606,6 +636,50 @@ function buildCollectorsFromBadgeItems(items) {
     .sort(function (a, b) {
       return (b.unique_pieces || b.collection_quantity || 0) - (a.unique_pieces || a.collection_quantity || 0);
     });
+}
+
+function enrichHoldersAndCollectorsWithENS() {
+  if (!galleryData || !galleryData.items) return;
+  var addrToBest = {};
+  galleryData.items.forEach(function (item) {
+    var nm = item.name || item.display_name || '';
+    var m = nm.match(/([a-z0-9-]+\.eth)/i);
+    if (m) {
+      var ens = m[1].toLowerCase();
+      var d = item.minted_at || '0';
+      var hs = [];
+      if (item.owners) {
+        hs = hs.concat(item.owners.holders || []);
+        hs = hs.concat(item.owners.top_holders || []);
+      }
+      hs = hs.concat(item.current_holders || []);
+      hs.forEach(function (h) {
+        var a = (h.address || '').toLowerCase();
+        if (a) {
+          if (!addrToBest[a] || d > (addrToBest[a].d || '0')) {
+            addrToBest[a] = { ens: ens, d: d };
+          }
+          if (!h.ens_name) h.ens_name = ens;
+        }
+      });
+    }
+  });
+  // from wallet
+  if (walletIndex && walletIndex.by_address) {
+    Object.keys(walletIndex.by_address).forEach(function (a) {
+      var e = walletIndex.by_address[a];
+      if (e && e.ens_name) {
+        if (!addrToBest[a]) addrToBest[a] = { ens: e.ens_name, d: '9999' };
+      }
+    });
+  }
+  // apply to collectorsList if built
+  collectorsList.forEach(function (c) {
+    var a = (c.address || '').toLowerCase();
+    if (a && !c.ens_name && addrToBest[a]) {
+      c.ens_name = addrToBest[a].ens;
+    }
+  });
 }
 
 function rebuildCollectorsForCurrentView() {
