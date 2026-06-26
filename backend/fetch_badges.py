@@ -536,6 +536,25 @@ def main():
             non_issuer_holders = [h for h in all_holders if (h.get("address") or "").lower() != ISSUER_WALLET]
             series_stats = summarize_owners(non_issuer_holders)
 
+            # Attach ENS to series holders (for general search collectors list)
+            for holder_list in (series_stats.get("holders", []), series_stats.get("top_holders", [])):
+                for h in holder_list:
+                    try:
+                        res = client.resolve_account(h["address"])
+                        if res.get("ens_name"):
+                            h["ens_name"] = res["ens_name"]
+                    except Exception:
+                        pass
+
+            # also attach to raw current_holders for the series item
+            for h in non_issuer_holders:
+                try:
+                    res = client.resolve_account(h["address"])
+                    if res.get("ens_name"):
+                        h["ens_name"] = res["ens_name"]
+                except Exception:
+                    pass
+
             # series rep (use first nft for other fields; image overridden to generic PNG in catalog)
             rep_nft = nfts[0]
             token_id = "0"  # distinct from personal tokens to avoid key collision in getItemKey etc.
@@ -559,7 +578,15 @@ def main():
                         desc += '.'
             image = rep_nft.get("image_url") or rep_nft.get("animation_url") or ""
             media_type = "video" if (image or "").lower().endswith((".mp4", ".mov", ".webm")) else "image"
-            created_at = get_first_mint_timestamp("ethereum", contract, token_id, api_key) or rep_nft.get("created_at") or rep_nft.get("minted_at")
+
+            # series minted_at = earliest mint date in the collection (not token 0)
+            min_mint = None
+            for n in nfts:
+                tid = str(n.get("identifier") or n.get("token_id") or "")
+                ca = get_first_mint_timestamp("ethereum", contract, tid, api_key) or n.get("created_at") or n.get("minted_at")
+                if ca and (min_mint is None or ca < min_mint):
+                    min_mint = ca
+            created_at = min_mint or rep_nft.get("created_at") or rep_nft.get("minted_at")
 
             supply = len(nfts)
             is_1of1 = False
