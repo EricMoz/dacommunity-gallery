@@ -158,12 +158,29 @@ def get_nft_details(chain: str, contract: str, token_id: str, api_key: str) -> d
     return {}
 
 def get_owners(chain: str, contract: str, token_id: str, api_key: str) -> list:
+    """Paginated owners fetch for a token (supports full list for ERC1155 etc)."""
     headers = {"X-API-KEY": api_key}
-    url = f"https://api.opensea.io/api/v2/chain/{chain}/contract/{contract}/nfts/{token_id}/owners"
-    resp = requests.get(url, headers=headers, timeout=30)
-    if resp.status_code == 200:
-        return resp.json().get("owners", [])
-    return []
+    owners = []
+    cursor = None
+    while True:
+        params = {"limit": 100}
+        if cursor:
+            params["next"] = cursor
+            params["cursor"] = cursor
+        url = f"https://api.opensea.io/api/v2/chain/{chain}/contract/{contract}/nfts/{token_id}/owners"
+        try:
+            resp = requests.get(url, headers=headers, params=params, timeout=30)
+            if resp.status_code != 200:
+                break
+            data = resp.json()
+            batch = data.get("owners", [])
+            owners.extend(batch)
+            cursor = data.get("next") or data.get("cursor")
+            if not cursor or len(batch) == 0:
+                break
+        except Exception:
+            break
+    return owners
 
 def get_collection_stats(slug: str, api_key: str) -> dict:
     headers = {"X-API-KEY": api_key}
@@ -324,6 +341,37 @@ def enrich_badge(raw_event: dict, api_key: str) -> dict | None:
     holder_count = len(non_issuer)
     unclaimed = holder_count == 0
 
+    # Resolve current ENS for holders (logical query, stores latest; history handled in wallet merge)
+    resolved_holders = []
+    for o in non_issuer:
+        addr = (o.get("address") or "").lower()
+        entry = dict(o)
+        if addr:
+            try:
+                headers = {"X-API-KEY": api_key, "Accept": "application/json"}
+                rurl = f"https://api.opensea.io/api/v2/accounts/resolve/{addr}"
+                rresp = requests.get(rurl, headers=headers, timeout=20)
+                if rresp.status_code == 200:
+                    rj = rresp.json() or {}
+                    if rj.get("ens_name"):
+                        entry["ens_name"] = rj.get("ens_name")
+                    if rj.get("username"):
+                        entry["username"] = rj.get("username")
+            except Exception:
+                pass
+        resolved_holders.append(entry)
+    non_issuer = resolved_holders
+
+    # Reliable first mint date (ISO) - use targeted event or fallback
+    minted_at = get_first_mint_timestamp(chain, contract, token_id, api_key)
+    if not minted_at:
+        ts = raw_event.get("event_timestamp")
+        if ts:
+            try:
+                minted_at = datetime.fromtimestamp(int(ts), tz=timezone.utc).isoformat()
+            except Exception:
+                minted_at = None
+
     # Get collection supply for edition logic
     stats = get_collection_stats(collection_slug, api_key) if collection_slug else {}
     supply = stats.get("total", {}).get("supply", 0) or 0
@@ -398,7 +446,7 @@ def enrich_badge(raw_event: dict, api_key: str) -> dict | None:
             "holders": non_issuer[:5] if non_issuer else []  # limited for size
         },
         "recent_activity": [],  # can populate from events in future
-        "minted_at": raw_event.get("event_timestamp"),
+        "minted_at": minted_at,
 
         # Unique badge fields (make it feel like a personalized award/badge collection)
         "id": f"{chain}:{contract}:{token_id}",
@@ -784,6 +832,125 @@ def main():
     print(f"Total items: {total} | 1:1s: {one_of_ones} | Mysteries: {mysteries} | Unclaimed: {unclaimed}")
     print("Review the JSON + regenerate the Excel for easy viewing.")
     print("Update CUTOFF_DATE in this script as needed for the 'certain date'.")
+
+    # === Merge badge holders into wallet_index (for ENS display + collectors across all views) ===
+    # Logically collects current owners from badges, resolves latest ENS via OpenSea,
+    # preserves any previous ENS names in ens_history (from prior runs), prefers latest.
+    # This ensures badge-only holders (e.g. daforeman) appear with correct current ENS
+    # in wallet_index used by collectors/search, without special cases.
+    try:
+        WALLET_PATH = ROOT / "web" / "data" / "wallet_index.json"
+        prev_by = {}
+        prev_aliases = {}
+        if WALLET_PATH.exists():
+            prev = json.loads(WALLET_PATH.read_text(encoding="utf-8"))
+            phi = prev.get("holders_index", {})
+            prev_by = {k.lower(): v for k, v in phi.get("by_address", {}).items()}
+            prev_aliases = phi.get("ens_aliases", {})
+
+        new_addresses = set()
+        for it in items:
+            for h in (it.get("current_holders") or []) + (it.get("owners", {}).get("holders", []) or []):
+                a = (h.get("address") or "").lower()
+                if a and a != ISSUER_WALLET:
+                    new_addresses.add(a)
+
+        updated_by = dict(prev_by)
+        updated_aliases = dict(prev_aliases)
+        headers = {"X-API-KEY": api_key, "Accept": "application/json"}
+
+        for addr in sorted(new_addresses):
+            if addr in updated_by:
+                # already have from gallery; still refresh latest ENS if possible
+                try:
+                    r = requests.get(f"https://api.opensea.io/api/v2/accounts/resolve/{addr}", headers=headers, timeout=15)
+                    if r.status_code == 200:
+                        rj = r.json() or {}
+                        new_ens = rj.get("ens_name")
+                        old_ens = updated_by[addr].get("ens_name")
+                        if new_ens and new_ens != old_ens:
+                            hist = list(updated_by[addr].get("ens_history") or [])
+                            if old_ens and old_ens not in hist:
+                                hist.append(old_ens)
+                            updated_by[addr]["ens_name"] = new_ens
+                            updated_by[addr]["ens_history"] = hist
+                            if old_ens:
+                                updated_aliases[old_ens.lower()] = addr
+                except Exception:
+                    pass
+                continue
+
+            # new address from badges: resolve current ENS + start entry
+            ens_name = None
+            username = None
+            try:
+                r = requests.get(f"https://api.opensea.io/api/v2/accounts/resolve/{addr}", headers=headers, timeout=15)
+                if r.status_code == 200:
+                    rj = r.json() or {}
+                    ens_name = rj.get("ens_name")
+                    username = rj.get("username")
+            except Exception:
+                pass
+
+            entry = {
+                "address": addr,
+                "ens_name": ens_name,
+                "username": username,
+                "collection_quantity": 0,
+                "unique_pieces": 0,
+                "holdings": [],
+                "ens_history": [],
+            }
+            # preserve if somehow in prev
+            if addr in prev_by:
+                p = prev_by[addr]
+                p_ens = p.get("ens_name")
+                hist = list(p.get("ens_history") or [])
+                if p_ens and p_ens != ens_name and p_ens not in hist:
+                    hist.append(p_ens)
+                entry["ens_history"] = hist
+                for old in hist:
+                    if old:
+                        updated_aliases[old.lower()] = addr
+            if ens_name:
+                updated_aliases[ens_name.lower()] = addr
+            updated_by[addr] = entry
+
+        # rebuild slim collectors etc like gallery
+        collectors = sorted(
+            [
+                {
+                    "address": e["address"],
+                    "ens_name": e.get("ens_name"),
+                    "username": e.get("username"),
+                    "unique_pieces": e.get("unique_pieces") or 0,
+                    "collection_quantity": e.get("collection_quantity") or 0,
+                }
+                for e in updated_by.values()
+            ],
+            key=lambda c: (-c.get("unique_pieces", 0), -c.get("collection_quantity", 0)),
+        )
+
+        slim = {
+            "ens_aliases": updated_aliases,
+            "by_address": updated_by,
+            "collectors": collectors,
+        }
+
+        WALLET_PATH.write_text(
+            json.dumps(
+                {
+                    "generated_at": datetime.now(timezone.utc).isoformat(),
+                    "holders_index": slim,
+                },
+                indent=2,
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+        print(f"  Merged {len(new_addresses)} badge holder addresses into wallet_index (ENS + history preserved)")
+    except Exception as ex:
+        print(f"  Note: could not merge badge holders to wallet_index ({ex})")
 
 if __name__ == "__main__":
     main()

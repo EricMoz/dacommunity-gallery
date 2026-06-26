@@ -304,10 +304,12 @@ def build_holders_index(
     items_by_id: dict[str, dict],
     *,
     resolve_ens: bool = True,
+    holdings_by_addr: dict | None = None,
 ) -> dict:
     """Build wallet → holdings map for gallery lookup panel.
     Preserves historical ENS names per wallet address so old names continue to resolve
     after changes. Historical names are kept in ens_aliases and ens_history per address.
+    If holdings_by_addr provided, use it to avoid per-holder get_account_collection_nfts calls.
     """
     print("Building wallet lookup index from collection holders...")
     holders = client.iter_collection_holders()
@@ -340,27 +342,10 @@ def build_holders_index(
             except requests.HTTPError:
                 pass
 
-        holdings = []
-        try:
-            account_nfts = client.get_account_collection_nfts(holder["address"])
-            for nft in account_nfts:
-                tid = str(nft.get("identifier", ""))
-                ref = items_by_id.get(tid, {})
-                holdings.append(
-                    {
-                        "token_id": tid,
-                        "name": ref.get("display_name")
-                        or ref.get("name")
-                        or nft.get("name"),
-                        "image_url": nft.get("display_image_url")
-                        or nft.get("image_url")
-                        or ref.get("image_url"),
-                        "opensea_url": nft.get("opensea_url") or ref.get("opensea_url"),
-                    }
-                )
-        except requests.HTTPError:
-            holdings = []
-
+        # Use prebuilt holdings (from per-NFT owners data) instead of per-holder API call.
+        # Same result, far fewer API requests.
+        hmap = holdings_by_addr or {}
+        holdings = hmap.get(address, [])
         holdings.sort(key=lambda h: int(h["token_id"]), reverse=True)
 
         entry = {
@@ -458,6 +443,10 @@ def main() -> int:
         except Exception as exc:
             print(f"  Warning: could not load collection listings ({exc})")
 
+    # Pre-build holdings by address from owners we fetch anyway.
+    # This avoids expensive per-holder get_account_collection_nfts calls later (major perf win).
+    from collections import defaultdict
+    holdings_by_addr: dict[str, list] = defaultdict(list)
     for i, nft in enumerate(nfts, 1):
         token_id = str(nft.get("identifier"))
         print(f"  [{i}/{len(nfts)}] token #{token_id}", end="", flush=True)
@@ -487,11 +476,22 @@ def main() -> int:
             listed_count += 1
         items.append(item)
         items_by_id[token_id] = item
+
+        # Accumulate for holdings
+        for h in (item.get("owners", {}) or {}).get("holders", []) or []:
+            a = (h.get("address") or "").lower()
+            if a:
+                holdings_by_addr[a].append({
+                    "token_id": token_id,
+                    "name": item.get("display_name") or item.get("name"),
+                    "image_url": item.get("image_url"),
+                    "opensea_url": item.get("opensea_url"),
+                })
         print(" ✓")
 
     holders_index = None
     if not args.quick and not args.skip_wallet_index:
-        holders_index = build_holders_index(client, items_by_id)
+        holders_index = build_holders_index(client, items_by_id, holdings_by_addr=holdings_by_addr)
 
     # Slim holdings in wallet index (no duplicate image URLs)
     if holders_index:
