@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-  "generated_at": "2026-06-26T02:47:22.786439+00:00",
-=======
-  "generated_at": "2026-06-26T21:29:15.028298+00:00",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+  "generated_at": "2026-06-26T22:19:21.891559+00:00",
   "source": "opensea_api_v2",
   "collection": {
     "slug": "rodeo-posts-12142",
@@ -36,11 +32,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/65",
       "metadata_url": "ipfs://QmRRSQxYbJr6m7pfuu5f7Jo9gQ2zRvtZoAw9i6hFs7gFTu/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656726",
-=======
-      "updated_at": "2026-06-26T21:20:51.501967",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388509",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -162,11 +154,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/64",
       "metadata_url": "ipfs://QmYqd2qfHWenNHEHqgFnMoXM1hSnoKAaAVoE2U581RrwWX/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656735",
-=======
-      "updated_at": "2026-06-26T21:20:51.501979",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388521",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -229,11 +217,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/63",
       "metadata_url": "ipfs://QmVYMY5QdJYrb9aApvc2eVyRzNXHUsBHbuPii2Z9yATeAg/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656741",
-=======
-      "updated_at": "2026-06-26T21:20:51.501985",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388528",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -370,11 +354,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/62",
       "metadata_url": "ipfs://QmNNnA66RKZxiJRruhmrJXnk8fh3cHG94xH4YYEbZN9K2q/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656747",
-=======
-      "updated_at": "2026-06-26T21:20:51.501994",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388535",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -546,11 +526,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/61",
       "metadata_url": "ipfs://QmPmpjytDgg2jnuFb7shBsKSsgRsiLxDnq1VW5X5fb2V7Z/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656757",
-=======
-      "updated_at": "2026-06-26T21:20:51.502003",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388541",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -738,11 +714,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/60",
       "metadata_url": "ipfs://QmWhv3ddmxjQNq2d5fEEKGNgrNrpKnbNsypqVM27UEhwBz/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656763",
-=======
-      "updated_at": "2026-06-26T21:20:51.502009",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388548",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -900,11 +872,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/59",
       "metadata_url": "ipfs://QmTTrvxM8ZPPJXcyicueZer5dYoCyPD1BA4ySEfP5pymW2/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656771",
-=======
-      "updated_at": "2026-06-26T21:20:51.502015",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388554",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1056,11 +1024,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/58",
       "metadata_url": "ipfs://QmSEAvEDnLjsUNmr1D5Wt2CAzc2ht6Mu5HGP7HJGsG166K/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656778",
-=======
-      "updated_at": "2026-06-26T21:20:51.502021",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388560",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1230,11 +1194,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/57",
       "metadata_url": "ipfs://QmQJ3T6Po3vs4raNz4nqK2f9HbUzKf8Tnb2Gg6UTYft6p3/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656784",
-=======
-      "updated_at": "2026-06-26T21:20:51.502027",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388566",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1371,11 +1331,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/56",
       "metadata_url": "ipfs://QmUekPR1JT6jZvm41e7mCALXALnQQQ66FpKEPko3xVYseN/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656791",
-=======
-      "updated_at": "2026-06-26T21:20:51.502032",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388571",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1556,11 +1512,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/55",
       "metadata_url": "ipfs://QmdE3Fkr5tjvMkoYAXGTWuQGqyjwevjAvvGDzKSaMgTipn/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656799",
-=======
-      "updated_at": "2026-06-26T21:20:51.502038",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388577",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1719,11 +1671,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/54",
       "metadata_url": "ipfs://QmZMG94JF5czpv2BAhYTq2Z9v8tpmG9f2x5ayW2oRdhw9u/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656807",
-=======
-      "updated_at": "2026-06-26T21:20:51.502043",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388583",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1919,11 +1867,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/53",
       "metadata_url": "ipfs://QmVhgcjPwNkuZ2nH6daHCdYXogDvXSWgRfXnoJmZEypzcs/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656815",
-=======
-      "updated_at": "2026-06-26T21:20:51.502049",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388588",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -2053,11 +1997,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/52",
       "metadata_url": "ipfs://QmY3jEkrBkoL5xSawfT5E8wb1jnJbVKfeuZ4GejYyvpLVy/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656822",
-=======
-      "updated_at": "2026-06-26T21:20:51.502055",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388594",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -2205,11 +2145,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/51",
       "metadata_url": "ipfs://QmedBb1dN97vjt1VN9Qxo3ToJZMAqhYzkHpSsB3ovMuWZ8/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656830",
-=======
-      "updated_at": "2026-06-26T21:20:51.502062",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388601",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -2368,11 +2304,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/50",
       "metadata_url": "ipfs://QmaNJmQkhoNFh1zijJgxRTZoEvpJPeHdgdyJhU5FAiSC9d/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656838",
-=======
-      "updated_at": "2026-06-26T21:20:51.502068",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388606",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -2572,11 +2504,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/49",
       "metadata_url": "ipfs://QmXqiN7oZxt796j5fZJmvLfh98cB6iDfg7DSY7uHkL8ekc/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656846",
-=======
-      "updated_at": "2026-06-26T21:20:51.502073",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388612",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -2772,11 +2700,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/48",
       "metadata_url": "ipfs://QmXUyEMGrHeQp31iPBFbVA3jTd3pJPZ2s6E5AGVbtUy3ng/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656854",
-=======
-      "updated_at": "2026-06-26T21:20:51.502081",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388618",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -2956,11 +2880,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/47",
       "metadata_url": "ipfs://QmfFQkQ9v12ov5CriyycTkgdZ51RyQpPtHyfgG485yMJcP/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656862",
-=======
-      "updated_at": "2026-06-26T21:20:51.502090",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388624",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -3184,11 +3104,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/46",
       "metadata_url": "ipfs://QmcJhVqCdntMbn7wZELgdcbeWzDdzRng2XCZDE3azkrCRF/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656869",
-=======
-      "updated_at": "2026-06-26T21:20:51.502098",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388630",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -3376,11 +3292,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/45",
       "metadata_url": "ipfs://QmasE8v9tHfkAXgzVXD6PSXNnVjkJZ7qZschSxfL6ZUfQd/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656875",
-=======
-      "updated_at": "2026-06-26T21:20:51.502106",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388635",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -3592,11 +3504,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/44",
       "metadata_url": "ipfs://QmQFXxKZZAXuJQp18yJkrAcpepBCDWJ5Z399gFoYKx164u/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656881",
-=======
-      "updated_at": "2026-06-26T21:20:51.502115",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388641",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -3812,11 +3720,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/43",
       "metadata_url": "ipfs://QmWLdcnupJ1R14JWzVDNNSw4McMhqv129um36NmaawxALw/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656887",
-=======
-      "updated_at": "2026-06-26T21:20:51.502124",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388647",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -4016,11 +3920,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/42",
       "metadata_url": "ipfs://QmSHU7QV7a6eohwHBMekVsreVYVirNnKXEpkrhBCnaQS9U/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656895",
-=======
-      "updated_at": "2026-06-26T21:20:51.502133",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388653",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -4212,11 +4112,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/41",
       "metadata_url": "ipfs://QmSgrJPmBcj2GsnicvZt9cVLyeTewjHuG4Ze5kucfBuYpy/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656902",
-=======
-      "updated_at": "2026-06-26T21:20:51.502142",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388659",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -4386,11 +4282,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/40",
       "metadata_url": "ipfs://QmQ6PPewZGU3a94rz4F87FDGWprXeNoXzBymqW2BWnUkFM/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656908",
-=======
-      "updated_at": "2026-06-26T21:20:51.502151",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388665",
       "traits": [
         {
           "trait_type": "category",
@@ -4554,11 +4446,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/39",
       "metadata_url": "ipfs://QmYT9WzwA3yugoYkALr1LemGdJzLyeyza6XqS56p2PoC3v/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656913",
-=======
-      "updated_at": "2026-06-26T21:20:51.502159",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388671",
       "traits": [
         {
           "trait_type": "category",
@@ -4722,11 +4610,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/38",
       "metadata_url": "ipfs://QmS5oWm1E7dvn6zj8Us7SpamGp3aB9trjyVbkPZy2LvA5k/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656921",
-=======
-      "updated_at": "2026-06-26T21:20:51.502165",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388677",
       "traits": [
         {
           "trait_type": "tool",
@@ -4896,11 +4780,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/37",
       "metadata_url": "ipfs://QmfBHa5jqzNEivjYseajMxdK9QCPh3aAHwLRd3DcmJN25Z/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656928",
-=======
-      "updated_at": "2026-06-26T21:20:51.502171",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388683",
       "traits": [
         {
           "trait_type": "category",
@@ -5057,11 +4937,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/36",
       "metadata_url": "ipfs://QmUvbte92wsUitDsPg98W1uxifhiq59zrp8fmi5vFizfbY/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656936",
-=======
-      "updated_at": "2026-06-26T21:20:51.502178",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388688",
       "traits": [
         {
           "trait_type": "tool",
@@ -5242,11 +5118,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/35",
       "metadata_url": "ipfs://QmUfRHXL646qC3snLNunLPiYfaYXcL6KY5rQkSW5CAZBS4/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656942",
-=======
-      "updated_at": "2026-06-26T21:20:51.502183",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388694",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -5397,11 +5269,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/34",
       "metadata_url": "ipfs://QmdscJboNcv6zNe7cuPwPrDNWdcJP9z2VxuCrxBqjj6d5b/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656948",
-=======
-      "updated_at": "2026-06-26T21:20:51.502190",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388700",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -5560,11 +5428,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/33",
       "metadata_url": "ipfs://QmbZYJncvPUGcHjfZHuCBt5E9kLzmNP6HVwebkhzpwjrDn/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656954",
-=======
-      "updated_at": "2026-06-26T21:20:51.502195",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388706",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -5741,11 +5605,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/32",
       "metadata_url": "ipfs://QmYLQAU5W2mMmwDrpurE5r1Q22kCgdzdqcF7pYnSvF6AXg/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656960",
-=======
-      "updated_at": "2026-06-26T21:20:51.502201",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388712",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -5933,11 +5793,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/31",
       "metadata_url": "ipfs://QmXUSxL2mwkySZbMX54zZaag2SAcq8ihkUPeVoPm8RuZnA/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656965",
-=======
-      "updated_at": "2026-06-26T21:20:51.502207",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388718",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -6129,11 +5985,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/30",
       "metadata_url": "ipfs://QmTe2S68UPYyNpfgNHteQ1tYqWUSUfQxfa4wBCtSBf7p9W/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656971",
-=======
-      "updated_at": "2026-06-26T21:20:51.502212",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388723",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -6321,11 +6173,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/29",
       "metadata_url": "ipfs://QmUTtPZhQXCyMvRS7tDdWnNQ8GSD4gjVuUWDM2aQf4nPpj/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656976",
-=======
-      "updated_at": "2026-06-26T21:20:51.502218",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388729",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -6509,11 +6357,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/28",
       "metadata_url": "ipfs://QmVYiS79tE12FNLWDVsw1JTAJZLzH5j8SmkW25u5Ft98Sy/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656982",
-=======
-      "updated_at": "2026-06-26T21:20:51.502224",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388735",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -6689,11 +6533,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/27",
       "metadata_url": "ipfs://QmZEwE2dxEUaaBLbgAnoThgXoqZCjvbm4mo7YUu6f3jKCe/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656988",
-=======
-      "updated_at": "2026-06-26T21:20:51.502230",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388741",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -6852,11 +6692,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/26",
       "metadata_url": "ipfs://QmWfXnqtaykHwedisyhwLjHZdEruDwSPTQTZCkjbTQdRRd/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656993",
-=======
-      "updated_at": "2026-06-26T21:20:51.502235",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388746",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -6985,11 +6821,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/25",
       "metadata_url": "ipfs://Qmccrw7jbxAT7oF2LFrQH2inXVwHwLsqPAnvB5EW8ope6Z/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.656999",
-=======
-      "updated_at": "2026-06-26T21:20:51.502241",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388752",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -7155,11 +6987,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/24",
       "metadata_url": "ipfs://QmVV17F1RWwattCYzsoZk52f6MZkM6ecVUyNZqfSvEkZdJ/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657004",
-=======
-      "updated_at": "2026-06-26T21:20:51.502246",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388757",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -7296,11 +7124,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/23",
       "metadata_url": "ipfs://QmUDjLPUbZK2PRrCSMwCxWTnDWMd9BdexZHkyDKkdrdLHZ/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657010",
-=======
-      "updated_at": "2026-06-26T21:20:51.502252",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388763",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -7455,11 +7279,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/22",
       "metadata_url": "ipfs://Qmce5v1jT7uiWSPXQUMk2L1kJg23A8aJfo8pb5WcSioehk/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657015",
-=======
-      "updated_at": "2026-06-26T21:20:51.502258",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388768",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -7655,11 +7475,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/21",
       "metadata_url": "ipfs://QmbsKJMFGKaASBSkjNCCMhX8YPEaajukWLUMPQxgpJBAtP/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657021",
-=======
-      "updated_at": "2026-06-26T21:20:51.502264",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388774",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -7752,11 +7568,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/20",
       "metadata_url": "ipfs://QmRuNepgeLJWEUnorMErFQTG5MEG1AvqzWTFdEjPw8n15V/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657027",
-=======
-      "updated_at": "2026-06-26T21:20:51.502269",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388780",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -7871,11 +7683,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/19",
       "metadata_url": "ipfs://QmTCTMPGEXMLqAcuBRAuDgix851a1WRUCXch6Qs7JYusee/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657033",
-=======
-      "updated_at": "2026-06-26T21:20:51.502275",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388785",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -7976,11 +7784,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/18",
       "metadata_url": "ipfs://QmQik9HJ1MKbv3SNKWfYqhDZhRNibsrihDYe8sjzXaHPHE/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657039",
-=======
-      "updated_at": "2026-06-26T21:20:51.502280",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388791",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -8073,11 +7877,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/17",
       "metadata_url": "ipfs://QmRxxxLKBaxo1VktshfeKVSXbSrGC2v9B6GJA2xTSLMsj7/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657045",
-=======
-      "updated_at": "2026-06-26T21:20:51.502286",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388797",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -8184,11 +7984,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/16",
       "metadata_url": "ipfs://QmPVA3F9GtzzvrByuZKvxTaaQEVbDWDbNgdfxa734Ubx4F/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657051",
-=======
-      "updated_at": "2026-06-26T21:20:51.502293",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388803",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -8295,11 +8091,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/15",
       "metadata_url": "ipfs://QmQ22LvopgXUucY5TtugEDUwFdcSrYzGVyKQHeKnEB1fRb/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657056",
-=======
-      "updated_at": "2026-06-26T21:20:51.502300",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388808",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -8399,11 +8191,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/14",
       "metadata_url": "ipfs://QmWN2LAL1eNKPQ6KuvipBDU7TFeQQ2KGAHsXqzCVbvGKG2/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657062",
-=======
-      "updated_at": "2026-06-26T21:20:51.502307",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388814",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -8488,11 +8276,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/13",
       "metadata_url": "ipfs://QmcTz7bksVrkek7zsGHE5Zx9SYP2gWCpmXDVoNkZTay5Dq/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657068",
-=======
-      "updated_at": "2026-06-26T21:20:51.502313",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388820",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -8577,11 +8361,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/12",
       "metadata_url": "ipfs://QmYNrGWPSLaVWFm2dzYwLfVVpGqK1vSWxCt3QutA1fqK7i/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657074",
-=======
-      "updated_at": "2026-06-26T21:20:51.502318",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388825",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -8666,11 +8446,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/11",
       "metadata_url": "ipfs://Qma45UubpZSMq2mxw9YBzbg4sm5goX2iJTPtXhhu7YyikZ/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657079",
-=======
-      "updated_at": "2026-06-26T21:20:51.502324",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388831",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -8770,11 +8546,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/10",
       "metadata_url": "ipfs://QmSBErnZD5eGW3f7RfzbnjDPv1oqNkrwNSvqeU6iXrjX2z/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657085",
-=======
-      "updated_at": "2026-06-26T21:20:51.502329",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388836",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -8874,11 +8646,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/9",
       "metadata_url": "ipfs://Qme1uts6Cx4J36yG5x8GW3vbiSpM1mpxpaRw6AbP9BMWF4/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657090",
-=======
-      "updated_at": "2026-06-26T21:20:51.502335",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388842",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -8978,11 +8746,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/8",
       "metadata_url": "ipfs://QmZUogiUSUG7US5hubT8T8NMQ8VL7ibJL7Hmq2nXXEa2KS/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657096",
-=======
-      "updated_at": "2026-06-26T21:20:51.502340",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388847",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -9053,11 +8817,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/7",
       "metadata_url": "ipfs://Qmd2epV4ft3tGm98cJsJnNampawbQ5jKiAfZQ7UYfyUePP/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657101",
-=======
-      "updated_at": "2026-06-26T21:20:51.502346",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388853",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -9164,11 +8924,7 @@
       "media_type": "video",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/6",
       "metadata_url": "ipfs://Qmb6feYrsRFcgTVyw6VCF8kPsmhbSzqW51jwtvwKLaynUP/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657112",
-=======
-      "updated_at": "2026-06-26T21:20:51.502357",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388864",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -9239,11 +8995,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/5",
       "metadata_url": "ipfs://QmNv4DJzmz1rys96zqCEsgK6UWWhDeKvgaGiT19zwv1GmQ/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657118",
-=======
-      "updated_at": "2026-06-26T21:20:51.502363",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388870",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -9373,11 +9125,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/4",
       "metadata_url": "ipfs://QmRnp1ZioSxSWB86XGUJSdonjJvXHULSJE539S9arMbnyz/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657124",
-=======
-      "updated_at": "2026-06-26T21:20:51.502368",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388876",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -9459,11 +9207,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/3",
       "metadata_url": "ipfs://QmaoezqDJgyEhxLv99ESCYLjkqGf8h5o96MvHzDxKqw7Nx/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657129",
-=======
-      "updated_at": "2026-06-26T21:20:51.502374",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388882",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -9589,11 +9333,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/2",
       "metadata_url": "ipfs://QmNPxZpX93esGmaSQA1gjQz8cZjqGcXVro8uLCpLVuZjHi/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657135",
-=======
-      "updated_at": "2026-06-26T21:20:51.502380",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388888",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -9701,11 +9441,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/1",
       "metadata_url": "ipfs://QmUKis6srrQ7dHa5WaWtSwQ2qTXjadtEogEgDxpM3sbaBB/metadata.json",
-<<<<<<< HEAD
-      "updated_at": "2026-06-26T02:39:00.657140",
-=======
-      "updated_at": "2026-06-26T21:20:51.502385",
->>>>>>> f6273a4 (fix(backend): targeted owners pagination + ISO minted_at + ENS merge for badge holders into wallet_index (latest name + history); perf win (prebuild holdings, eliminate per-holder get_account calls); site build bump 20260626-1)
+      "updated_at": "2026-06-26T22:12:56.388893",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
