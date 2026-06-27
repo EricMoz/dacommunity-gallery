@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-26T22:59:25.926979+00:00",
+  "generated_at": "2026-06-27T01:58:31.644556+00:00",
   "holders_index": {
     "ens_aliases": {
       "lostthegame.eth": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
@@ -26,6 +26,7 @@
       "cryptlos.eth": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
       "warriorpr.eth": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
       "dabaker.eth": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
+      "daforeman.eth": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
       "dbcrypto.eth": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
       "dacatstudios.eth": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
       "kingsi.eth": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
@@ -2794,7 +2795,7 @@
       },
       "0xc553593cd4bfd114ffe80cf8a628cc12b841b327": {
         "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-        "ens_name": null,
+        "ens_name": "DAFOREMAN.ETH",
         "username": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
@@ -3356,7 +3357,7 @@
       },
       {
         "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-        "ens_name": null,
+        "ens_name": "DAFOREMAN.ETH",
         "username": null,
         "unique_pieces": 0,
         "collection_quantity": 0
