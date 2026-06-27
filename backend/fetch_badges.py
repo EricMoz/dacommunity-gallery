@@ -866,6 +866,32 @@ def main():
     else:
         print("First mint (rookie #1) successfully validated.")
 
+    # Enrich holders with ENS from personalized names (for club holders etc.)
+    # This captures ENS from the name (e.g. "datrailcat.eth - ...") reliably and fast.
+    # Picks most recent by minted_at.
+    addr_to_ens = {}
+    for it in items:
+        nm = it.get('name', '') or it.get('display_name', '')
+        m = re.search(r'([a-z0-9.-]+\.eth)', nm, re.IGNORECASE)
+        if m:
+            ens = m.group(1)
+            hs = it.get('current_holders', []) or []
+            if it.get('owners'):
+                hs += it['owners'].get('holders', []) or []
+                hs += it['owners'].get('top_holders', []) or []
+            for h in hs:
+                a = (h.get('address') or '').lower()
+                if a:
+                    d = it.get('minted_at', '') or ''
+                    if a not in addr_to_ens or d > addr_to_ens[a].get('date', ''):
+                        addr_to_ens[a] = {'ens': ens, 'date': d}
+    for it in items:
+        for hlist in [it.get('current_holders', []), (it.get('owners') or {}).get('holders', []), (it.get('owners') or {}).get('top_holders', []) ]:
+            for h in hlist:
+                a = (h.get('address') or '').lower()
+                if a and not h.get('ens_name') and a in addr_to_ens:
+                    h['ens_name'] = addr_to_ens[a]['ens']
+
     # Backfill ENS into badge item holders from previous wallet_index if this run didn't get it
     # (helps with rate limits / flaky resolves during long fetch; once set, persists)
     try:
@@ -940,11 +966,14 @@ def main():
             prev_aliases = phi.get("ens_aliases", {})
 
         new_addresses = set()
+        item_ens = {}
         for it in items:
             for h in (it.get("current_holders") or []) + (it.get("owners", {}).get("holders", []) or []):
                 a = (h.get("address") or "").lower()
                 if a and a != ISSUER_WALLET:
                     new_addresses.add(a)
+                    if h.get('ens_name'):
+                        item_ens[a] = h['ens_name']
 
         updated_by = dict(prev_by)
         updated_aliases = dict(prev_aliases)
@@ -970,14 +999,15 @@ def main():
                 continue
 
             # new address from badges: resolve current ENS + start entry
-            ens_name = None
+            ens_name = item_ens.get(addr) or None
             username = None
-            try:
-                rj = client.resolve_account(addr)
-                ens_name = rj.get("ens_name")
-                username = rj.get("username")
-            except Exception:
-                pass
+            if not ens_name:
+                try:
+                    rj = client.resolve_account(addr)
+                    ens_name = rj.get("ens_name")
+                    username = rj.get("username")
+                except Exception:
+                    pass
 
             # If resolve gave no ENS this run, keep previous if we had one (for flaky resolves)
             if not ens_name and addr in prev_by:

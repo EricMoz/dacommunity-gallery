@@ -22,7 +22,7 @@ permissions:
 
 concurrency:
   group: refresh-gallery-data
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   refresh:
@@ -124,23 +124,8 @@ jobs:
           fi
           git commit -m "chore: daily refresh from OpenSea ($(date -u +%Y-%m-%d))"
           # Robust push with limited retries (handles transient remote changes / rebase races)
-          for attempt in 1 2 3; do
-            if git pull --rebase --autostash origin main; then
-              if git push origin main; then
-                echo "Successfully pushed on attempt $attempt"
-                break
-              fi
-            else
-              echo "Rebase failed on attempt $attempt, aborting rebase"
-              git rebase --abort || true
-            fi
-            if [ $attempt -lt 3 ]; then
-              echo "Retrying in 10s..."
-              sleep 10
-            else
-              echo "::warning::Push attempts exhausted. Data may not be on remote (concurrent edit or protected branch?)."
-            fi
-          done
+          git pull --rebase --autostash origin main || git pull --autostash origin main || true
+            git push origin main --force-with-lease || git push origin main || echo "::warning::Push may have issues. Data update attempted (concurrent edit or protected branch?)."
           echo "changed=true" >> $GITHUB_OUTPUT
 
       - name: Trigger Deploy gallery to GitHub Pages
