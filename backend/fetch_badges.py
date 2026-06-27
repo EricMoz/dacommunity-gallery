@@ -32,6 +32,10 @@ from dotenv import load_dotenv
 
 from opensea_client import OpenSeaClient
 
+# Caches for speed (mint dates and ENS resolves are idempotent per run)
+mint_cache = {}
+ens_cache = {}
+
 ROOT = Path(__file__).resolve().parent.parent
 REVIEW_DIR = ROOT / "backend" / "review"
 REVIEW_DIR.mkdir(parents=True, exist_ok=True)
@@ -258,6 +262,9 @@ def get_first_mint_timestamp(chain: str, contract: str, token_id: str, api_key: 
     This gives accurate first-minted date for the representative NFT without clogging the pipeline.
     Falls back to NFT created_at if events not available.
     """
+    key = (chain, contract, token_id)
+    if key in mint_cache:
+        return mint_cache[key]
     headers = {"X-API-KEY": api_key}
     url = f"https://api.opensea.io/api/v2/events/chain/{chain}/contract/{contract}/nfts/{token_id}"
     params = {"event_type": "mint", "limit": 1}
@@ -268,9 +275,12 @@ def get_first_mint_timestamp(chain: str, contract: str, token_id: str, api_key: 
             if events:
                 ts = events[0].get("event_timestamp")
                 if ts:
-                    return datetime.fromtimestamp(int(ts), tz=timezone.utc).isoformat()
+                    result = datetime.fromtimestamp(int(ts), tz=timezone.utc).isoformat()
+                    mint_cache[key] = result
+                    return result
     except Exception as e:
         print(f"  Note: could not fetch mint event for {token_id} ({e})")
+    mint_cache[key] = None
     return None
 
 def get_sub_category(award_cat: str, name: str) -> str:
@@ -540,31 +550,41 @@ def main():
             # with retry to handle rate limits during long runs
             for holder_list in (series_stats.get("holders", []), series_stats.get("top_holders", [])):
                 for h in holder_list:
+                    addr = h["address"]
+                    if addr in ens_cache:
+                        ens = ens_cache[addr]
+                    else:
+                        ens = None
+                        for attempt in range(3):
+                            try:
+                                res = client.resolve_account(addr)
+                                ens = res.get("ens_name")
+                                if ens:
+                                    break
+                                time.sleep(1 + attempt)
+                            except Exception:
+                                time.sleep(2 ** attempt)
+                        ens_cache[addr] = ens
+                    if ens:
+                        h["ens_name"] = ens
+
+            # also attach to raw current_holders for the series item
+            for h in non_issuer_holders:
+                addr = h["address"]
+                if addr in ens_cache:
+                    ens = ens_cache[addr]
+                else:
                     ens = None
                     for attempt in range(3):
                         try:
-                            res = client.resolve_account(h["address"])
+                            res = client.resolve_account(addr)
                             ens = res.get("ens_name")
                             if ens:
                                 break
                             time.sleep(1 + attempt)
                         except Exception:
                             time.sleep(2 ** attempt)
-                    if ens:
-                        h["ens_name"] = ens
-
-            # also attach to raw current_holders for the series item
-            for h in non_issuer_holders:
-                ens = None
-                for attempt in range(3):
-                    try:
-                        res = client.resolve_account(h["address"])
-                        ens = res.get("ens_name")
-                        if ens:
-                            break
-                        time.sleep(1 + attempt)
-                    except Exception:
-                        time.sleep(2 ** attempt)
+                    ens_cache[addr] = ens
                 if ens:
                     h["ens_name"] = ens
 

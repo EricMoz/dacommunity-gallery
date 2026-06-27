@@ -521,6 +521,35 @@ async function loadWalletIndex() {
     walletIndex = null;
     collectorsList = [];
   }
+
+  // Enrich wallet by_address with ENS from badge item names if missing (most recent by minted_at).
+  // This ensures wallet panel, heavy collectors, etc. show ENS even if resolve didn't populate in data.
+  if (walletIndex && walletIndex.by_address && galleryData && galleryData.items) {
+    var nameEns = {};
+    galleryData.items.forEach(function (item) {
+      var nm = item.name || item.display_name || '';
+      var m = nm.match(/([a-z0-9-]+\.eth)/i);
+      if (m) {
+        var ens = m[1].toLowerCase();
+        var d = item.minted_at || '0';
+        var hs = (item.current_holders || []).concat( (item.owners ? (item.owners.holders || []).concat(item.owners.top_holders || []) : []) );
+        hs.forEach(function (h) {
+          var a = (h.address || '').toLowerCase();
+          if (a) {
+            if (!nameEns[a] || d > (nameEns[a].d || '0')) {
+              nameEns[a] = {ens: ens, d: d};
+            }
+          }
+        });
+      }
+    });
+    Object.keys(nameEns).forEach(function (a) {
+      if (walletIndex.by_address[a] && !walletIndex.by_address[a].ens_name) {
+        walletIndex.by_address[a].ens_name = nameEns[a].ens;
+      }
+    });
+  }
+
   enrichHoldersAndCollectorsWithENS();
   rebuildCollectorsForCurrentView();
 }
