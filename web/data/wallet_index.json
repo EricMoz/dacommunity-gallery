@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-27T10:14:28.927145+00:00",
+  "generated_at": "2026-06-28T10:38:42.354106+00:00",
   "holders_index": {
     "ens_aliases": {
       "lostthegame.eth": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
@@ -2434,7 +2434,7 @@
         "address": "0x68cd16cacbaaca45dfd0f0e7e2609d273a0d4083",
         "ens_name": null,
         "ens_history": [],
-        "username": "Fred12582",
+        "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
         "holdings": [
@@ -3155,7 +3155,7 @@
       {
         "address": "0x68cd16cacbaaca45dfd0f0e7e2609d273a0d4083",
         "ens_name": null,
-        "username": "Fred12582",
+        "username": null,
         "unique_pieces": 1,
         "collection_quantity": 1
       },

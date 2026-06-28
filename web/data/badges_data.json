@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-27T10:14:14.928812+00:00",
+  "generated_at": "2026-06-28T10:38:28.356876+00:00",
   "source": "mints_created_by_wallet_on_ethereum_after_cutoff",
   "cutoff_date": "2026-05-20",
   "collection": {
@@ -29,9 +29,14 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 2,
-        "circulating_copies": 2,
+        "holder_count": 3,
+        "circulating_copies": 3,
         "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": "lostthegame.eth"
+          },
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1,
@@ -43,6 +48,11 @@
           }
         ],
         "holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": "lostthegame.eth"
+          },
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1,
