@@ -181,6 +181,63 @@ class OpenSeaClient:
         encoded = quote(identifier, safe="")
         return self._get(f"/accounts/resolve/{encoded}")
 
+    def resolve_ens_name(
+        self,
+        address: str,
+        *,
+        last_resolved: float | None = None,
+        cache_days: int = 14,
+        previous_ens: str | None = None,
+    ) -> str | None:
+        """Primary ENS resolver for wallet_index / badge owners.
+
+        Strategy (per requirements):
+        1. Primary: ensdata.net/{address} (free, no key, fast). Uses "ens_primary" or "ens".
+        2. Fallback: self.resolve_account(address) from OpenSea.
+        3. Cache: Skip network if last_resolved (unix timestamp seconds) is < cache_days old (default 14).
+           This prevents re-resolving every address on every daily run, keeping the ~15min pipeline fast.
+        4. Always normalize to .lower() on any new resolution. This permanently fixes
+           ALL-CAPS issues (e.g. "DAFOREMAN.ETH" -> "daforeman.eth") for storage, aliases, history, and display.
+        5. On skip or transient failure: return previous_ens (never wipe good data on flaky days).
+        6. Called for both gallery holders (via build_holders_index) and badge owner addresses (via merge).
+
+        last_resolved and previous_ens are passed from prior wallet_index.json entries.
+        """
+        addr = (address or "").lower().strip()
+        if not addr:
+            return None
+
+        now = time.time()
+        if last_resolved is not None and (now - last_resolved) < (cache_days * 86400):
+            # Fast path: recently resolved, reuse previous value. No API calls.
+            # Always lower to guarantee no caps ever make it to wallet (even if legacy data had caps).
+            return previous_ens.lower() if previous_ens else None
+
+        # Primary resolver: ensdata.net (public, no auth, returns ens_primary or ens)
+        try:
+            r = requests.get(f"https://ensdata.net/{addr}", timeout=6)
+            if r.status_code == 200:
+                data = r.json() or {}
+                ens = data.get("ens_primary") or data.get("ens")
+                if ens:
+                    return str(ens).lower().strip()
+        except Exception:
+            # Network/JSON error etc. -> fall through to OpenSea fallback
+            pass
+
+        # Fallback to existing OpenSea account resolver
+        try:
+            resolved = self.resolve_account(addr)
+            ens = resolved.get("ens_name") if isinstance(resolved, dict) else None
+            if ens:
+                return str(ens).lower().strip()
+        except Exception:
+            pass
+
+        # Transient failure this run: preserve previous ENS (if any) so we don't lose it
+        # (and normalize lower for safety)
+        return previous_ens.lower() if previous_ens else None
+
     def get_nft_events(
         self,
         token_id: str,

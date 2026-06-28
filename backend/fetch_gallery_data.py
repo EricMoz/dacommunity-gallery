@@ -14,6 +14,7 @@ import json
 import os
 import re
 import sys
+import time
 import traceback
 from datetime import datetime, timezone
 from pathlib import Path
@@ -307,9 +308,22 @@ def build_holders_index(
     holdings_by_addr: dict | None = None,
 ) -> dict:
     """Build wallet → holdings map for gallery lookup panel.
+
     Preserves historical ENS names per wallet address so old names continue to resolve
     after changes. Historical names are kept in ens_aliases and ens_history per address.
     If holdings_by_addr provided, use it to avoid per-holder get_account_collection_nfts calls.
+
+    ENS resolution (new):
+    - Uses client.resolve_ens_name() which prefers the free ensdata.net API first
+      (https://ensdata.net/{addr} -> ens_primary or ens), then falls back to
+      the existing client.resolve_account().
+    - Caches via last_ens_resolved (unix seconds) stored per wallet entry.
+      Only resolves addresses that are new OR last resolved > ~14 days ago.
+      This keeps the daily pipeline fast/lightweight (target: minimal added time).
+    - ALWAYS stores/returns ENS in lowercase. This permanently fixes the
+      daforeman.eth / DAFOREMAN.ETH (and similar) issue. Normalization happens
+      on every actual resolution; a one-time pass also lowercases prior entries.
+    - History/aliases logic below is kept EXACTLY as before.
     """
     print("Building wallet lookup index from collection holders...")
     holders = client.iter_collection_holders()
@@ -326,6 +340,15 @@ def build_holders_index(
     except Exception:
         previous_by = {}
 
+    # One-time normalization pass: ensure any pre-existing ENS (including old ALL-CAPS)
+    # are lowercased in memory before we build. This + new resolver guarantees
+    # lowercase forever in wallet_index.json, aliases, and ens_history.
+    for p in previous_by.values():
+        if p.get("ens_name"):
+            p["ens_name"] = str(p["ens_name"]).lower()
+        if p.get("ens_history"):
+            p["ens_history"] = [str(h).lower() for h in (p.get("ens_history") or []) if h]
+
     for i, holder in enumerate(holders, 1):
         address = holder.get("address", "").lower()
         if not address:
@@ -334,13 +357,39 @@ def build_holders_index(
 
         ens_name = None
         username = None
+        last_res_ts = None
+        resolved_at = None
         if resolve_ens:
-            try:
-                resolved = client.resolve_account(holder["address"])
-                ens_name = resolved.get("ens_name")
-                username = resolved.get("username")
-            except requests.HTTPError:
-                pass
+            p = previous_by.get(address, {})
+            last_res_ts = p.get("last_ens_resolved")
+            prev_ens = p.get("ens_name")
+
+            # NEW: use shared resolver (ensdata.net primary + OS fallback + 14d cache + lowercase)
+            # Skip cost if recently resolved; returns prev_ens on skip/failure.
+            ens_name = client.resolve_ens_name(
+                holder.get("address"),
+                last_resolved=last_res_ts,
+                cache_days=14,
+                previous_ens=prev_ens,
+            )
+
+            # Only pay for full resolve_account (for username + possible ens fallback) when we actually decided to hit network.
+            # last_res_ts None or old => fresh attempt this run.
+            do_fresh_resolve = not last_res_ts or (time.time() - last_res_ts) >= (14 * 86400)
+            if do_fresh_resolve:
+                try:
+                    resolved = client.resolve_account(holder["address"])
+                    # If the new ensdata path returned nothing but OpenSea did, take it (already lowered inside helper too).
+                    if not ens_name:
+                        ens_name = resolved.get("ens_name")
+                        if ens_name:
+                            ens_name = str(ens_name).lower()
+                    username = resolved.get("username")
+                except requests.HTTPError:
+                    pass
+                resolved_at = time.time()
+            else:
+                resolved_at = last_res_ts
 
         # Use prebuilt holdings (from per-NFT owners data) instead of per-holder API call.
         # Same result, far fewer API requests.
@@ -356,9 +405,11 @@ def build_holders_index(
             "ownership_pct": holder.get("percentage"),
             "holdings": holdings,
             "unique_pieces": len(holdings),
+            "last_ens_resolved": resolved_at,
         }
 
         # Preserve past ENS names (keyed by wallet address)
+        # >>> THIS BLOCK IS UNCHANGED from original (exact history + aliases logic preserved) <<<
         if address in previous_by:
             p = previous_by[address]
             p_ens = p.get("ens_name")
@@ -504,6 +555,9 @@ def main() -> int:
                 "username": entry.get("username"),
                 "collection_quantity": entry.get("collection_quantity"),
                 "unique_pieces": entry.get("unique_pieces"),
+                # Persist the last resolution timestamp so future runs can skip re-resolving this address
+                # for the configured cache window (see resolve_ens_name + build_holders_index).
+                "last_ens_resolved": entry.get("last_ens_resolved"),
                 "holdings": [
                     {
                         "token_id": h["token_id"],

@@ -352,21 +352,25 @@ def enrich_badge(raw_event: dict, api_key: str) -> dict | None:
     unclaimed = holder_count == 0
 
     # Resolve current ENS for holders (logical query, stores latest; history handled in wallet merge)
+    # Route through the shared improved resolver (ensdata.net first + lowercase) so badge
+    # owner addresses benefit from the better reliability even at item level.
     resolved_holders = []
     for o in non_issuer:
         addr = (o.get("address") or "").lower()
         entry = dict(o)
         if addr:
             try:
-                headers = {"X-API-KEY": api_key, "Accept": "application/json"}
-                rurl = f"https://api.opensea.io/api/v2/accounts/resolve/{addr}"
-                rresp = requests.get(rurl, headers=headers, timeout=20)
-                if rresp.status_code == 200:
-                    rj = rresp.json() or {}
-                    if rj.get("ens_name"):
-                        entry["ens_name"] = rj.get("ens_name")
-                    if rj.get("username"):
-                        entry["username"] = rj.get("username")
+                ens = client.resolve_ens_name(addr)  # uses cache_days but no last => will resolve; always lower
+                if ens:
+                    entry["ens_name"] = ens
+                # username still useful; fall back to a resolve_account only if needed (kept light)
+                if not entry.get("username"):
+                    try:
+                        rj = client.resolve_account(addr)
+                        if rj.get("username"):
+                            entry["username"] = rj.get("username")
+                    except Exception:
+                        pass
             except Exception:
                 pass
         resolved_holders.append(entry)
@@ -547,7 +551,9 @@ def main():
             series_stats = summarize_owners(non_issuer_holders)
 
             # Attach ENS to series holders (for general search collectors list)
-            # with retry to handle rate limits during long runs
+            # Route badge owner addresses through the improved resolve_ens_name helper
+            # (ensdata.net primary, lowercase). Keep per-run ens_cache + simple retry wrapper
+            # for reliability inside the badges run (same as before).
             for holder_list in (series_stats.get("holders", []), series_stats.get("top_holders", [])):
                 for h in holder_list:
                     addr = h["address"]
@@ -557,8 +563,7 @@ def main():
                         ens = None
                         for attempt in range(3):
                             try:
-                                res = client.resolve_account(addr)
-                                ens = res.get("ens_name")
+                                ens = client.resolve_ens_name(addr)  # primary ensdata + fallback; always lower
                                 if ens:
                                     break
                                 time.sleep(1 + attempt)
@@ -568,7 +573,7 @@ def main():
                     if ens:
                         h["ens_name"] = ens
 
-            # also attach to raw current_holders for the series item
+            # also attach to raw current_holders for the series item (via improved resolver)
             for h in non_issuer_holders:
                 addr = h["address"]
                 if addr in ens_cache:
@@ -577,8 +582,7 @@ def main():
                     ens = None
                     for attempt in range(3):
                         try:
-                            res = client.resolve_account(addr)
-                            ens = res.get("ens_name")
+                            ens = client.resolve_ens_name(addr)
                             if ens:
                                 break
                             time.sleep(1 + attempt)
@@ -698,8 +702,7 @@ def main():
                         ens = None
                         for attempt in range(3):
                             try:
-                                res = client.resolve_account(h["address"])
-                                ens = res.get("ens_name")
+                                ens = client.resolve_ens_name(h["address"])
                                 if ens:
                                     break
                                 time.sleep(1 + attempt)
@@ -800,8 +803,7 @@ def main():
                 ens = None
                 for attempt in range(3):
                     try:
-                        res = client.resolve_account(h["address"])
-                        ens = res.get("ens_name")
+                        ens = client.resolve_ens_name(h["address"])
                         if ens:
                             break
                         time.sleep(1 + attempt)
@@ -867,14 +869,15 @@ def main():
         print("First mint (rookie #1) successfully validated.")
 
     # Enrich holders with ENS from personalized names (for club holders etc.)
-    # This captures ENS from the name (e.g. "datrailcat.eth - ...") reliably and fast.
+    # This captures ENS from the name (e.g. "DAFOREMAN.ETH - ..." or "datrailcat.eth - ...") reliably and fast.
     # Picks most recent by minted_at.
+    # NOTE: Force .lower() here so we never store ALL-CAPS ENS from item titles into holders/wallet.
     addr_to_ens = {}
     for it in items:
         nm = it.get('name', '') or it.get('display_name', '')
         m = re.search(r'([a-z0-9.-]+\.eth)', nm, re.IGNORECASE)
         if m:
-            ens = m.group(1)
+            ens = (m.group(1) or "").lower()
             hs = it.get('current_holders', []) or []
             if it.get('owners'):
                 hs += it['owners'].get('holders', []) or []
@@ -951,10 +954,12 @@ def main():
     print("Update CUTOFF_DATE in this script as needed for the 'certain date'.")
 
     # === Merge badge holders into wallet_index (for ENS display + collectors across all views) ===
-    # Logically collects current owners from badges, resolves latest ENS via OpenSea,
-    # preserves any previous ENS names in ens_history (from prior runs), prefers latest.
-    # This ensures badge-only holders (e.g. daforeman) appear with correct current ENS
+    # Logically collects current owners from badges, resolves latest ENS (now via the improved
+    # client.resolve_ens_name helper), preserves any previous ENS names in ens_history (from prior runs),
+    # prefers latest. This ensures badge-only holders (e.g. daforeman) appear with correct current ENS
     # in wallet_index used by collectors/search, without special cases.
+    #
+    # Badge owners now benefit from the same ensdata.net primary + cache + lowercase logic.
     try:
         WALLET_PATH = ROOT / "web" / "data" / "wallet_index.json"
         prev_by = {}
@@ -965,6 +970,13 @@ def main():
             prev_by = {k.lower(): v for k, v in phi.get("by_address", {}).items()}
             prev_aliases = phi.get("ens_aliases", {})
 
+        # One-time normalization for any legacy ALL-CAPS ENS from old runs
+        for p in prev_by.values():
+            if p.get("ens_name"):
+                p["ens_name"] = str(p["ens_name"]).lower()
+            if p.get("ens_history"):
+                p["ens_history"] = [str(h).lower() for h in (p.get("ens_history") or []) if h]
+
         new_addresses = set()
         item_ens = {}
         for it in items:
@@ -973,6 +985,7 @@ def main():
                 if a and a != ISSUER_WALLET:
                     new_addresses.add(a)
                     if h.get('ens_name'):
+                        # already lowered by the name-parse step above
                         item_ens[a] = h['ens_name']
 
         updated_by = dict(prev_by)
@@ -980,11 +993,17 @@ def main():
         headers = {"X-API-KEY": api_key, "Accept": "application/json"}
 
         for addr in sorted(new_addresses):
+            p_entry = prev_by.get(addr, {})
+            last_res = p_entry.get("last_ens_resolved")
+            prev_ens = p_entry.get("ens_name")
+
             if addr in updated_by:
-                # already have from gallery; still refresh latest ENS if possible
+                # already have from gallery; still refresh latest ENS if needed (cache-aware)
                 try:
-                    rj = client.resolve_account(addr)
-                    new_ens = rj.get("ens_name")
+                    # Route through shared helper for ensdata.net primary, cache skip, lowercase, preserve-on-fail
+                    new_ens = client.resolve_ens_name(
+                        addr, last_resolved=last_res, cache_days=14, previous_ens=prev_ens
+                    )
                     old_ens = updated_by[addr].get("ens_name")
                     if new_ens and new_ens != old_ens:
                         hist = list(updated_by[addr].get("ens_history") or [])
@@ -994,24 +1013,27 @@ def main():
                         updated_by[addr]["ens_history"] = hist
                         if old_ens:
                             updated_aliases[old_ens.lower()] = addr
+                    # Record/refresh timestamp only on actual fresh resolve attempt
+                    now_ts = time.time()
+                    if not last_res or (now_ts - last_res) >= (14 * 86400):
+                        updated_by[addr]["last_ens_resolved"] = now_ts
+                    elif last_res:
+                        updated_by[addr].setdefault("last_ens_resolved", last_res)
                 except Exception:
                     pass
                 continue
 
-            # new address from badges: resolve current ENS + start entry
-            ens_name = item_ens.get(addr) or None
+            # new address from badges: resolve current ENS (via helper) + start entry
+            ens_name = (item_ens.get(addr) or None)
             username = None
             if not ens_name:
-                try:
-                    rj = client.resolve_account(addr)
-                    ens_name = rj.get("ens_name")
-                    username = rj.get("username")
-                except Exception:
-                    pass
-
-            # If resolve gave no ENS this run, keep previous if we had one (for flaky resolves)
-            if not ens_name and addr in prev_by:
-                ens_name = prev_by[addr].get("ens_name")
+                # will use ensdata first + fallback; respects last_res if present (rare for truly new)
+                ens_name = client.resolve_ens_name(
+                    addr, last_resolved=last_res, cache_days=14, previous_ens=prev_ens
+                )
+            # If still no ENS, keep previous if we had one (for flaky resolves / badge-only that resolve later)
+            if not ens_name and prev_ens:
+                ens_name = prev_ens
 
             entry = {
                 "address": addr,
@@ -1022,7 +1044,7 @@ def main():
                 "holdings": [],
                 "ens_history": [],
             }
-            # preserve if somehow in prev
+            # preserve if somehow in prev (history/aliases unchanged logic)
             if addr in prev_by:
                 p = prev_by[addr]
                 p_ens = p.get("ens_name")
@@ -1035,6 +1057,10 @@ def main():
                         updated_aliases[old.lower()] = addr
             if ens_name:
                 updated_aliases[ens_name.lower()] = addr
+
+            # Mark resolution time for this address (name parse counts as authoritative this run;
+            # API calls inside helper already decided whether network happened).
+            entry["last_ens_resolved"] = time.time()
             updated_by[addr] = entry
 
         # rebuild slim collectors etc like gallery
