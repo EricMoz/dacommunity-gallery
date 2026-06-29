@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-29T00:54:47.462447+00:00",
+  "generated_at": "2026-06-29T01:23:53.242300+00:00",
   "source": "badges_catalog",
   "collection": {
     "slug": "badges",
@@ -8,8 +8,8 @@
     "chain": "ethereum",
     "creator_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
     "note": "Personal 1/1 and limited awards/badges created by the wallet. Issuer wallet excluded from all holder stats. Mystery items pending approval.",
-    "total_created": 15,
-    "one_of_ones": 54,
+    "total_created": 16,
+    "one_of_ones": 55,
     "unclaimed": 0,
     "mysteries": 2
   },
@@ -3194,6 +3194,119 @@
       "source_created_collection": "dacat-gem-nova-green",
       "is_series_rep": false,
       "sub_category": "Gem Nova Green",
+      "tags": [
+        "1_of_1"
+      ]
+    },
+    {
+      "token_id": "1",
+      "name": "DACAT daLEGEND LINE AWARD",
+      "display_name": "DACAT DALEGEND LINE",
+      "local_slug": "dacat-dalegend-line",
+      "excerpt": "Exclusive NFT minted to honor a DACAT holder who has crossed the daLEGEND LINE within the DaCAT ecosystem of holding 6,732,506,437,536 DaCAT Tokens in one ETH…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xe8827dab8fe3c5092431a993b9e17f8401675d7d/82bda824fa22324abaafa1f28ceeb0/0482bda824fa22324abaafa1f28ceeb0.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dacat-dalegend-line",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xe8827dab8fe3c5092431a993b9e17f8401675d7d/82bda824fa22324abaafa1f28ceeb0/0482bda824fa22324abaafa1f28ceeb0.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 11,
+        "circulating_copies": 11,
+        "top_holders": [
+          {
+            "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
+            "quantity": 1,
+            "ens_name": "jeffadams.eth"
+          },
+          {
+            "address": "0xe597a25c77317b361636270251dc53d36491a11d",
+            "quantity": 1,
+            "ens_name": "mrcryptonist.eth"
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": "lostthegame.eth"
+          },
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1,
+            "ens_name": "kingsi.eth"
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1,
+            "ens_name": "dacatstudios.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
+            "quantity": 1,
+            "ens_name": "jeffadams.eth"
+          },
+          {
+            "address": "0xe597a25c77317b361636270251dc53d36491a11d",
+            "quantity": 1,
+            "ens_name": "mrcryptonist.eth"
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": "lostthegame.eth"
+          },
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1,
+            "ens_name": "kingsi.eth"
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1,
+            "ens_name": "dacatstudios.eth"
+          },
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1,
+            "ens_name": "dbcrypto.eth"
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": "mozvane.eth"
+          },
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1,
+            "ens_name": "dagato.eth"
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1,
+            "ens_name": "cryptlos.eth"
+          },
+          {
+            "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
+            "quantity": 1,
+            "ens_name": "south-florida.eth"
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1,
+            "ens_name": "grumpyx.eth"
+          }
+        ]
+      },
+      "minted_at": "2026-06-21T05:35:47+00:00",
+      "is_1_of_1": true,
+      "award_category": "dalegend_line",
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "ens_match_detected": false,
+      "source_created_collection": "dacat-dalegend-line",
+      "is_series_rep": false,
+      "sub_category": "DaLegend Line",
       "tags": [
         "1_of_1"
       ]

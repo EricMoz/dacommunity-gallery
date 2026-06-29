@@ -52,7 +52,7 @@ CUTOFF_DATE = "2026-05-20"  # Edit to match when your badges actually started (~
 # These are used to seed categories and to decide if something is "known good" or mystery.
 KNOWN_GOOD_PATTERNS = [
     "trillion club", "rookie card", "award badges", "collector cat", "gem", "nova",
-    "billion club"
+    "billion club", "dalegend", "da legend line", "dalegend line"
 ]
 
 # Known badge collection slugs from the initial bootstrap / user's table.
@@ -74,6 +74,7 @@ KNOWN_BADGE_COLLECTION_SLUGS = [
     "dacat500billion",
     "dacat-world-collector-cat",  # verify slug if needed
     "dacat-gem-nova-green",
+    "dacat-dalegend-line",
     "dagatoawards",
 ]
 
@@ -93,6 +94,7 @@ SLUG_TO_LOCAL_ASSET = {
     "dacat500billion": "dacat-500-billion-club",
     "dacat-world-collector-cat": "dacat-world-collector-cat",
     "dacat-gem-nova-green": "dacat-gem-nova-green",
+    "dacat-dalegend-line": "dacat-dalegend-line",
     "dagatoawards": "dagato-dacat-award-badges",
 }
 
@@ -303,6 +305,8 @@ def get_sub_category(award_cat: str, name: str) -> str:
         return 'Collector Cat'
     if 'gem_nova_green' in n or 'gem' in n:
         return 'Gem Nova Green'
+    if 'dalegend' in n or 'da legend' in n or 'dalegend line' in n:
+        return 'DaLegend Line'
     if '500_billion_club' in n or 'billion club' in n:
         return '500 Billion Club'
     # Fallback to cleaned collection name from OpenSea for most part.
@@ -533,6 +537,7 @@ def main():
         "dacat500billion": "DACAT 500 BILLION CLUB",
         "dacat-world-collector-cat": "DACAT WORLD - COLLECTOR CAT",
         "dacat-gem-nova-green": "DACAT GEM - NOVA GREEN",
+        "dacat-dalegend-line": "DACAT DALEGEND LINE",
         "dagatoawards": "DACAT 13 TRILLION CLUB",
     }
 
