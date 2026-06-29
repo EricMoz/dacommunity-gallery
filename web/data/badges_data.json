@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-28T10:38:28.356876+00:00",
+  "generated_at": "2026-06-29T00:19:16.260707+00:00",
   "source": "mints_created_by_wallet_on_ethereum_after_cutoff",
   "cutoff_date": "2026-05-20",
   "collection": {
@@ -40,7 +40,7 @@
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1,
-            "ens_name": "DAFOREMAN.ETH"
+            "ens_name": "daforeman.eth"
           },
           {
             "address": "0xbd0c0b2943eae1b97e4d0e6b18df3faa5fb14a10",
@@ -56,7 +56,7 @@
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1,
-            "ens_name": "DAFOREMAN.ETH"
+            "ens_name": "daforeman.eth"
           },
           {
             "address": "0xbd0c0b2943eae1b97e4d0e6b18df3faa5fb14a10",
@@ -164,7 +164,7 @@
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1,
-            "ens_name": "DAFOREMAN.ETH"
+            "ens_name": "daforeman.eth"
           },
           {
             "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
@@ -173,7 +173,8 @@
           },
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "datrailcat.eth"
           },
           {
             "address": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
@@ -217,7 +218,8 @@
           },
           {
             "address": "0x1fc100b151a1ffa55d41a134a1a826a242d9c7c9",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dachromeclaw.eth"
           },
           {
             "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
@@ -265,14 +267,14 @@
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1,
-            "ens_name": "DAFOREMAN.ETH"
+            "ens_name": "daforeman.eth"
           }
         ],
         "holders": [
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1,
-            "ens_name": "DAFOREMAN.ETH"
+            "ens_name": "daforeman.eth"
           }
         ]
       },
@@ -310,13 +312,15 @@
         "top_holders": [
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "datrailcat.eth"
           }
         ],
         "holders": [
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "datrailcat.eth"
           }
         ]
       },
@@ -400,13 +404,15 @@
         "top_holders": [
           {
             "address": "0x1fc100b151a1ffa55d41a134a1a826a242d9c7c9",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dachromeclaw.eth"
           }
         ],
         "holders": [
           {
             "address": "0x1fc100b151a1ffa55d41a134a1a826a242d9c7c9",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dachromeclaw.eth"
           }
         ]
       },
@@ -1409,7 +1415,7 @@
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1,
-            "ens_name": "DAFOREMAN.ETH"
+            "ens_name": "daforeman.eth"
           },
           {
             "address": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
@@ -1436,7 +1442,7 @@
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1,
-            "ens_name": "DAFOREMAN.ETH"
+            "ens_name": "daforeman.eth"
           },
           {
             "address": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
@@ -1494,14 +1500,14 @@
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1,
-            "ens_name": "DAFOREMAN.ETH"
+            "ens_name": "daforeman.eth"
           }
         ],
         "holders": [
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1,
-            "ens_name": "DAFOREMAN.ETH"
+            "ens_name": "daforeman.eth"
           }
         ]
       },
@@ -1723,13 +1729,15 @@
         "top_holders": [
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "datrailcat.eth"
           }
         ],
         "holders": [
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "datrailcat.eth"
           }
         ]
       },
@@ -1766,13 +1774,15 @@
         "top_holders": [
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "datrailcat.eth"
           }
         ],
         "holders": [
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "datrailcat.eth"
           }
         ]
       },
@@ -1821,7 +1831,7 @@
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1,
-            "ens_name": "DAFOREMAN.ETH"
+            "ens_name": "daforeman.eth"
           }
         ],
         "holders": [
@@ -1838,7 +1848,7 @@
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1,
-            "ens_name": "DAFOREMAN.ETH"
+            "ens_name": "daforeman.eth"
           }
         ]
       },
@@ -1876,14 +1886,14 @@
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1,
-            "ens_name": "DAFOREMAN.ETH"
+            "ens_name": "daforeman.eth"
           }
         ],
         "holders": [
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1,
-            "ens_name": "DAFOREMAN.ETH"
+            "ens_name": "daforeman.eth"
           }
         ]
       },
@@ -3008,14 +3018,14 @@
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1,
-            "ens_name": "DAFOREMAN.ETH"
+            "ens_name": "daforeman.eth"
           }
         ],
         "holders": [
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1,
-            "ens_name": "DAFOREMAN.ETH"
+            "ens_name": "daforeman.eth"
           }
         ]
       },
@@ -3051,14 +3061,14 @@
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1,
-            "ens_name": "DAFOREMAN.ETH"
+            "ens_name": "daforeman.eth"
           }
         ],
         "holders": [
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1,
-            "ens_name": "DAFOREMAN.ETH"
+            "ens_name": "daforeman.eth"
           }
         ]
       },
@@ -3090,8 +3100,8 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 13,
-        "circulating_copies": 13,
+        "holder_count": 14,
+        "circulating_copies": 14,
         "top_holders": [
           {
             "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
@@ -3159,6 +3169,11 @@
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1,
             "ens_name": "mozvane.eth"
+          },
+          {
+            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
           },
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
@@ -3214,8 +3229,8 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 9,
-        "circulating_copies": 9,
+        "holder_count": 10,
+        "circulating_copies": 10,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -3273,6 +3288,11 @@
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1,
             "ens_name": "mozvane.eth"
+          },
+          {
+            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
           },
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",

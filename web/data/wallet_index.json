@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-28T10:38:42.354106+00:00",
+  "generated_at": "2026-06-29T00:19:17.835854+00:00",
   "holders_index": {
     "ens_aliases": {
       "lostthegame.eth": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
@@ -18,6 +18,7 @@
       "jiujitsu🍄.eth": "0x4a35cee6c17fcb6bc9235521bd3b7feef6680232",
       "dacatchronicles.eth": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
       "dasheesh.eth": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+      "dachromeclaw.eth": "0x1fc100b151a1ffa55d41a134a1a826a242d9c7c9",
       "elons-cat.eth": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
       "dabronk.eth": "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46",
       "chadalac666.eth": "0x4ff3ba0c7b39f57fc934c014e8c796f1efb44043",
@@ -25,6 +26,7 @@
       "south-florida.eth": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
       "cryptlos.eth": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
       "warriorpr.eth": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
+      "datrailcat.eth": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
       "dabaker.eth": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
       "daforeman.eth": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
       "dbcrypto.eth": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
@@ -42,6 +44,7 @@
         "username": "Saphoroth",
         "collection_quantity": 391,
         "unique_pieces": 64,
+        "last_ens_resolved": 1782691825.7473357,
         "holdings": [
           {
             "token_id": "65",
@@ -372,6 +375,7 @@
         "username": null,
         "collection_quantity": 280,
         "unique_pieces": 60,
+        "last_ens_resolved": 1782691833.8260212,
         "holdings": [
           {
             "token_id": "65",
@@ -682,6 +686,7 @@
         "username": null,
         "collection_quantity": 94,
         "unique_pieces": 48,
+        "last_ens_resolved": 1782691841.9059317,
         "holdings": [
           {
             "token_id": "65",
@@ -932,6 +937,7 @@
         "username": null,
         "collection_quantity": 55,
         "unique_pieces": 44,
+        "last_ens_resolved": 1782691845.9061856,
         "holdings": [
           {
             "token_id": "61",
@@ -1162,6 +1168,7 @@
         "username": null,
         "collection_quantity": 48,
         "unique_pieces": 34,
+        "last_ens_resolved": 1782691849.904088,
         "holdings": [
           {
             "token_id": "63",
@@ -1342,6 +1349,7 @@
         "username": "Jady_art",
         "collection_quantity": 35,
         "unique_pieces": 35,
+        "last_ens_resolved": 1782691857.981428,
         "holdings": [
           {
             "token_id": "61",
@@ -1527,6 +1535,7 @@
         "username": null,
         "collection_quantity": 22,
         "unique_pieces": 22,
+        "last_ens_resolved": 1782691866.0609865,
         "holdings": [
           {
             "token_id": "63",
@@ -1647,6 +1656,7 @@
         "username": "LenaMAU",
         "collection_quantity": 19,
         "unique_pieces": 11,
+        "last_ens_resolved": 1782691874.1414368,
         "holdings": [
           {
             "token_id": "58",
@@ -1712,6 +1722,7 @@
         "username": null,
         "collection_quantity": 17,
         "unique_pieces": 17,
+        "last_ens_resolved": 1782691878.1407576,
         "holdings": [
           {
             "token_id": "62",
@@ -1807,6 +1818,7 @@
         "username": null,
         "collection_quantity": 9,
         "unique_pieces": 8,
+        "last_ens_resolved": 1782691886.2228165,
         "holdings": [
           {
             "token_id": "50",
@@ -1857,6 +1869,7 @@
         "username": "HodLStaR",
         "collection_quantity": 9,
         "unique_pieces": 5,
+        "last_ens_resolved": 1782691890.2261367,
         "holdings": [
           {
             "token_id": "65",
@@ -1892,6 +1905,7 @@
         "username": "Kuje",
         "collection_quantity": 8,
         "unique_pieces": 8,
+        "last_ens_resolved": 1782691892.9136188,
         "holdings": [
           {
             "token_id": "50",
@@ -1942,6 +1956,7 @@
         "username": null,
         "collection_quantity": 3,
         "unique_pieces": 2,
+        "last_ens_resolved": 1782691901.004875,
         "holdings": [
           {
             "token_id": "30",
@@ -1962,6 +1977,7 @@
         "username": null,
         "collection_quantity": 3,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782691905.0020692,
         "holdings": [
           {
             "token_id": "44",
@@ -1977,6 +1993,7 @@
         "username": "Wyando",
         "collection_quantity": 3,
         "unique_pieces": 3,
+        "last_ens_resolved": 1782691913.0816195,
         "holdings": [
           {
             "token_id": "55",
@@ -2002,6 +2019,7 @@
         "username": null,
         "collection_quantity": 2,
         "unique_pieces": 2,
+        "last_ens_resolved": 1782691917.0817006,
         "holdings": [
           {
             "token_id": "49",
@@ -2022,6 +2040,7 @@
         "username": null,
         "collection_quantity": 2,
         "unique_pieces": 2,
+        "last_ens_resolved": 1782691921.0792713,
         "holdings": [
           {
             "token_id": "44",
@@ -2042,6 +2061,7 @@
         "username": "daGATO_eth",
         "collection_quantity": 2,
         "unique_pieces": 2,
+        "last_ens_resolved": 1782691923.8994768,
         "holdings": [
           {
             "token_id": "61",
@@ -2062,6 +2082,7 @@
         "username": "flysuperman",
         "collection_quantity": 2,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782691931.9773517,
         "holdings": [
           {
             "token_id": "58",
@@ -2077,6 +2098,7 @@
         "username": null,
         "collection_quantity": 2,
         "unique_pieces": 2,
+        "last_ens_resolved": 1782691935.9778087,
         "holdings": [
           {
             "token_id": "58",
@@ -2097,6 +2119,7 @@
         "username": null,
         "collection_quantity": 2,
         "unique_pieces": 2,
+        "last_ens_resolved": 1782691939.9764025,
         "holdings": [
           {
             "token_id": "54",
@@ -2117,6 +2140,7 @@
         "username": "LUCIFER-7",
         "collection_quantity": 2,
         "unique_pieces": 2,
+        "last_ens_resolved": 1782691943.9771175,
         "holdings": [
           {
             "token_id": "46",
@@ -2137,6 +2161,7 @@
         "username": "delicatedarlings",
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782691947.979353,
         "holdings": [
           {
             "token_id": "46",
@@ -2152,6 +2177,7 @@
         "username": "mfer-chick",
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782691956.0558875,
         "holdings": [
           {
             "token_id": "42",
@@ -2167,6 +2193,7 @@
         "username": "MalteExe",
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782691960.0579321,
         "holdings": [
           {
             "token_id": "35",
@@ -2182,6 +2209,7 @@
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782691968.1351125,
         "holdings": [
           {
             "token_id": "50",
@@ -2197,6 +2225,7 @@
         "username": "mammothdump",
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782691972.1357453,
         "holdings": [
           {
             "token_id": "1",
@@ -2212,6 +2241,7 @@
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782691980.218371,
         "holdings": [
           {
             "token_id": "48",
@@ -2227,6 +2257,7 @@
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782691984.2177062,
         "holdings": [
           {
             "token_id": "44",
@@ -2242,6 +2273,7 @@
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782691988.2172692,
         "holdings": [
           {
             "token_id": "44",
@@ -2257,6 +2289,7 @@
         "username": "Charis_AI_Art_Collection",
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782691992.2183127,
         "holdings": [
           {
             "token_id": "31",
@@ -2272,6 +2305,7 @@
         "username": "choduan",
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782691996.2199688,
         "holdings": [
           {
             "token_id": "54",
@@ -2287,6 +2321,7 @@
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692000.2162995,
         "holdings": [
           {
             "token_id": "31",
@@ -2302,6 +2337,7 @@
         "username": "Slowfreeze",
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692008.2966795,
         "holdings": [
           {
             "token_id": "61",
@@ -2317,6 +2353,7 @@
         "username": "Liquidnicl",
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692012.294466,
         "holdings": [
           {
             "token_id": "42",
@@ -2332,6 +2369,7 @@
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692016.295402,
         "holdings": [
           {
             "token_id": "47",
@@ -2347,6 +2385,7 @@
         "username": "flintOPENSEA",
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692024.3741398,
         "holdings": [
           {
             "token_id": "47",
@@ -2362,6 +2401,7 @@
         "username": "yola_yo",
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692028.3737762,
         "holdings": [
           {
             "token_id": "47",
@@ -2377,6 +2417,7 @@
         "username": "pa3gBa",
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692036.4483337,
         "holdings": [
           {
             "token_id": "54",
@@ -2392,6 +2433,7 @@
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692040.4502954,
         "holdings": [
           {
             "token_id": "42",
@@ -2407,6 +2449,7 @@
         "username": "AaronShiflett",
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692044.4475322,
         "holdings": [
           {
             "token_id": "45",
@@ -2422,6 +2465,7 @@
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692048.4485996,
         "holdings": [
           {
             "token_id": "41",
@@ -2437,6 +2481,7 @@
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692052.448392,
         "holdings": [
           {
             "token_id": "22",
@@ -2452,6 +2497,7 @@
         "username": "A_Hot_Wallet",
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692060.5250072,
         "holdings": [
           {
             "token_id": "32",
@@ -2467,6 +2513,7 @@
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692068.6004186,
         "holdings": [
           {
             "token_id": "43",
@@ -2482,6 +2529,7 @@
         "username": "Tamarisk",
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692072.6016896,
         "holdings": [
           {
             "token_id": "47",
@@ -2497,6 +2545,7 @@
         "username": "Jhonny88",
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692076.6039054,
         "holdings": [
           {
             "token_id": "45",
@@ -2512,6 +2561,7 @@
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692080.602096,
         "holdings": [
           {
             "token_id": "49",
@@ -2527,6 +2577,7 @@
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692084.6011932,
         "holdings": [
           {
             "token_id": "30",
@@ -2542,6 +2593,7 @@
         "username": "nnbnbb",
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692086.7678535,
         "holdings": [
           {
             "token_id": "42",
@@ -2557,6 +2609,7 @@
         "username": "0x445a",
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692090.6002893,
         "holdings": [
           {
             "token_id": "45",
@@ -2572,6 +2625,7 @@
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692094.602996,
         "holdings": [
           {
             "token_id": "47",
@@ -2587,6 +2641,7 @@
         "username": "Blessskateshop",
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692098.603254,
         "holdings": [
           {
             "token_id": "47",
@@ -2602,6 +2657,7 @@
         "username": "CartoonMeSeries",
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692106.681004,
         "holdings": [
           {
             "token_id": "56",
@@ -2617,6 +2673,7 @@
         "username": "dacatchronicles",
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692114.7574282,
         "holdings": [
           {
             "token_id": "36",
@@ -2632,6 +2689,7 @@
         "username": "defusionu",
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692118.7604635,
         "holdings": [
           {
             "token_id": "54",
@@ -2647,6 +2705,7 @@
         "username": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692126.8821943,
         "holdings": [
           {
             "token_id": "44",
@@ -2662,6 +2721,7 @@
         "username": "Asknights",
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692134.9671855,
         "holdings": [
           {
             "token_id": "54",
@@ -2677,6 +2737,7 @@
         "username": "yephuh",
         "collection_quantity": 1,
         "unique_pieces": 1,
+        "last_ens_resolved": 1782692138.9672344,
         "holdings": [
           {
             "token_id": "27",
@@ -2692,16 +2753,18 @@
         "collection_quantity": 0,
         "unique_pieces": 0,
         "holdings": [],
-        "ens_history": []
+        "ens_history": [],
+        "last_ens_resolved": 1782692356.264822
       },
       "0x1fc100b151a1ffa55d41a134a1a826a242d9c7c9": {
         "address": "0x1fc100b151a1ffa55d41a134a1a826a242d9c7c9",
-        "ens_name": null,
+        "ens_name": "dachromeclaw.eth",
         "username": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
         "holdings": [],
-        "ens_history": []
+        "ens_history": [],
+        "last_ens_resolved": 1782692356.2648296
       },
       "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e": {
         "address": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
@@ -2710,7 +2773,8 @@
         "collection_quantity": 0,
         "unique_pieces": 0,
         "holdings": [],
-        "ens_history": []
+        "ens_history": [],
+        "last_ens_resolved": 1782692356.2648313
       },
       "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46": {
         "address": "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46",
@@ -2719,7 +2783,8 @@
         "collection_quantity": 0,
         "unique_pieces": 0,
         "holdings": [],
-        "ens_history": []
+        "ens_history": [],
+        "last_ens_resolved": 1782692356.2648323
       },
       "0x4ff3ba0c7b39f57fc934c014e8c796f1efb44043": {
         "address": "0x4ff3ba0c7b39f57fc934c014e8c796f1efb44043",
@@ -2728,7 +2793,8 @@
         "collection_quantity": 0,
         "unique_pieces": 0,
         "holdings": [],
-        "ens_history": []
+        "ens_history": [],
+        "last_ens_resolved": 1782692356.264833
       },
       "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa": {
         "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
@@ -2737,7 +2803,8 @@
         "collection_quantity": 0,
         "unique_pieces": 0,
         "holdings": [],
-        "ens_history": []
+        "ens_history": [],
+        "last_ens_resolved": 1782692356.2648337
       },
       "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da": {
         "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
@@ -2746,7 +2813,8 @@
         "collection_quantity": 0,
         "unique_pieces": 0,
         "holdings": [],
-        "ens_history": []
+        "ens_history": [],
+        "last_ens_resolved": 1782692356.264835
       },
       "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91": {
         "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
@@ -2755,7 +2823,8 @@
         "collection_quantity": 0,
         "unique_pieces": 0,
         "holdings": [],
-        "ens_history": []
+        "ens_history": [],
+        "last_ens_resolved": 1782692356.2648356
       },
       "0xa3b61e2076ca08a8021e2f48906be8123bd536b2": {
         "address": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
@@ -2764,16 +2833,18 @@
         "collection_quantity": 0,
         "unique_pieces": 0,
         "holdings": [],
-        "ens_history": []
+        "ens_history": [],
+        "last_ens_resolved": 1782692356.26484
       },
       "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92": {
         "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-        "ens_name": null,
+        "ens_name": "datrailcat.eth",
         "username": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
         "holdings": [],
-        "ens_history": []
+        "ens_history": [],
+        "last_ens_resolved": 1782692356.2648406
       },
       "0xb7150ba28ddf3680975fae75ac493559d05f784a": {
         "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
@@ -2782,25 +2853,28 @@
         "collection_quantity": 0,
         "unique_pieces": 0,
         "holdings": [],
-        "ens_history": []
+        "ens_history": [],
+        "last_ens_resolved": 1782692356.2648416
       },
       "0xbd0c0b2943eae1b97e4d0e6b18df3faa5fb14a10": {
         "address": "0xbd0c0b2943eae1b97e4d0e6b18df3faa5fb14a10",
         "ens_name": null,
-        "username": "Yheeee",
-        "collection_quantity": 0,
-        "unique_pieces": 0,
-        "holdings": [],
-        "ens_history": []
-      },
-      "0xc553593cd4bfd114ffe80cf8a628cc12b841b327": {
-        "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-        "ens_name": "DAFOREMAN.ETH",
         "username": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
         "holdings": [],
-        "ens_history": []
+        "ens_history": [],
+        "last_ens_resolved": 1782692357.8357759
+      },
+      "0xc553593cd4bfd114ffe80cf8a628cc12b841b327": {
+        "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+        "ens_name": "daforeman.eth",
+        "username": null,
+        "collection_quantity": 0,
+        "unique_pieces": 0,
+        "holdings": [],
+        "ens_history": [],
+        "last_ens_resolved": 1782692357.8357792
       },
       "0xd0c8c2761882b314b1d552747167189f8f0a5b38": {
         "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
@@ -2809,7 +2883,8 @@
         "collection_quantity": 0,
         "unique_pieces": 0,
         "holdings": [],
-        "ens_history": []
+        "ens_history": [],
+        "last_ens_resolved": 1782692357.8357859
       },
       "0xd307f028d96ab495c41440ca20730feb8ab8b0f9": {
         "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
@@ -2818,7 +2893,8 @@
         "collection_quantity": 0,
         "unique_pieces": 0,
         "holdings": [],
-        "ens_history": []
+        "ens_history": [],
+        "last_ens_resolved": 1782692357.8357873
       },
       "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3": {
         "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
@@ -2827,7 +2903,8 @@
         "collection_quantity": 0,
         "unique_pieces": 0,
         "holdings": [],
-        "ens_history": []
+        "ens_history": [],
+        "last_ens_resolved": 1782692357.8357887
       },
       "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868": {
         "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -2836,7 +2913,8 @@
         "collection_quantity": 0,
         "unique_pieces": 0,
         "holdings": [],
-        "ens_history": []
+        "ens_history": [],
+        "last_ens_resolved": 1782692357.8357918
       },
       "0xe597a25c77317b361636270251dc53d36491a11d": {
         "address": "0xe597a25c77317b361636270251dc53d36491a11d",
@@ -2845,7 +2923,8 @@
         "collection_quantity": 0,
         "unique_pieces": 0,
         "holdings": [],
-        "ens_history": []
+        "ens_history": [],
+        "last_ens_resolved": 1782692357.8357925
       },
       "0xf6c9b6b8b700906d43281ec485bee2139026cb27": {
         "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
@@ -2854,7 +2933,8 @@
         "collection_quantity": 0,
         "unique_pieces": 0,
         "holdings": [],
-        "ens_history": []
+        "ens_history": [],
+        "last_ens_resolved": 1782692357.8357935
       }
     },
     "collectors": [
@@ -3280,7 +3360,7 @@
       },
       {
         "address": "0x1fc100b151a1ffa55d41a134a1a826a242d9c7c9",
-        "ens_name": null,
+        "ens_name": "dachromeclaw.eth",
         "username": null,
         "unique_pieces": 0,
         "collection_quantity": 0
@@ -3336,7 +3416,7 @@
       },
       {
         "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-        "ens_name": null,
+        "ens_name": "datrailcat.eth",
         "username": null,
         "unique_pieces": 0,
         "collection_quantity": 0
@@ -3351,13 +3431,13 @@
       {
         "address": "0xbd0c0b2943eae1b97e4d0e6b18df3faa5fb14a10",
         "ens_name": null,
-        "username": "Yheeee",
+        "username": null,
         "unique_pieces": 0,
         "collection_quantity": 0
       },
       {
         "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-        "ens_name": "DAFOREMAN.ETH",
+        "ens_name": "daforeman.eth",
         "username": null,
         "unique_pieces": 0,
         "collection_quantity": 0
