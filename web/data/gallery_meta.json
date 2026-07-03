@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-07-02T10:36:17.498258+00:00",
+  "updated_at": "2026-07-03T10:29:15.896507+00:00",
   "data_generated_at": "2026-07-02T10:36:17.461541+00:00",
   "listed_count": 4,
   "piece_count": 65,
   "refresh": {
-    "status": "ok",
+    "status": "failed",
     "source": "github_actions",
-    "finished_at": "2026-07-02T10:36:17.498272+00:00",
-    "error": null,
-    "error_code": null
+    "finished_at": "2026-07-03T10:29:15.896519+00:00",
+    "error": "Repository secret OPENSEA_API_KEY is not set.",
+    "error_code": "missing_secret"
   },
   "opensea_key": {
-    "status": "ok",
-    "checked_at": "2026-07-02T10:36:17.498275+00:00",
+    "status": "expired_or_invalid",
+    "checked_at": "2026-07-03T10:29:15.896522+00:00",
     "rotation_reminder_days": 30,
-    "hint": "OpenSea API key is working. Instant/dev keys typically expire in ~30 days — renew the GitHub secret OPENSEA_API_KEY before daily refresh emails report failure."
+    "hint": "GitHub secret OPENSEA_API_KEY is not set. Add it under Settings → Secrets and variables → Actions, then re-run 'Refresh gallery data (daily)'."
   }
 }
