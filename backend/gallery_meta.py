@@ -67,9 +67,9 @@ def record_success(
                 "checked_at": _now(),
                 "rotation_reminder_days": DEFAULT_KEY_ROTATION_DAYS,
                 "hint": (
-                    "OpenSea API key is working. Instant/dev keys typically expire in "
-                    f"~{DEFAULT_KEY_ROTATION_DAYS} days — renew the GitHub secret "
-                    "OPENSEA_API_KEY before daily refresh emails report failure."
+                    "OpenSea API key auto-generated fresh each run via workflow "
+                    "(no manual secret rotation needed). Instant keys last ~30 days; "
+                    "fallback to repository secret if generation fails."
                 ),
             },
         }
@@ -113,15 +113,15 @@ def record_failure(
 def _failure_hint(error_code: str, error: str) -> str:
     if error_code == "missing_secret":
         return (
-            "GitHub secret OPENSEA_API_KEY is not set. Add it under "
-            "Settings → Secrets and variables → Actions, then re-run "
-            "'Refresh gallery data (daily)'."
+            "Failed to auto-generate fresh OpenSea API key (workflow step) and no "
+            "fallback repository secret was available. The daily refresh will now "
+            "attempt to create a temporary key automatically each run."
         )
     if error_code == "opensea_unauthorized":
         return (
-            "OpenSea rejected the API key (expired or invalid). Create a new key at "
-            "https://docs.opensea.io/reference/api-keys and update the "
-            "OPENSEA_API_KEY repository secret. Instant keys last ~30 days."
+            "OpenSea rejected the API key (expired or invalid). The workflow now "
+            "auto-generates a fresh temporary key each run via the public endpoint. "
+            "If this persists, the fallback secret may need updating."
         )
     return error or "Daily refresh failed. Check the latest Actions run log."
 

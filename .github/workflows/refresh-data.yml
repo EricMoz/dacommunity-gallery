@@ -1,4 +1,6 @@
-# Fetches OpenSea data and commits JSON. Requires repository secret OPENSEA_API_KEY.
+# Fetches OpenSea data and commits JSON. 
+# OpenSea key is auto-generated fresh each run via /auth/keys endpoint (with secret as fallback).
+# No manual long-term secret rotation required.
 #
 # LFS optimization: this workflow only updates web/data/*.json — it does not read or
 # write NFT images under web/assets/. Checkout uses lfs: false so the daily run does not
@@ -69,7 +71,7 @@ jobs:
         run: |
           set -e
           if [ -z "$OPENSEA_API_KEY" ]; then
-            echo "::error::Repository secret OPENSEA_API_KEY is missing. Add it under Settings → Secrets and variables → Actions (see README)."
+            echo "::error::No OpenSea API key available (auto-generate step failed and no fallback secret). Check the 'Generate fresh OpenSea API key' step logs."
             exit 1
           fi
           echo "OpenSea API key is set. Testing with lightweight call..."

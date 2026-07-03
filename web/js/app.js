@@ -334,7 +334,7 @@ function applyGalleryMeta(meta) {
     showStaleBanner(
       "Gallery data is about " +
         Math.round(ageH) +
-        " hours old. Listings and transfers may be outdated until the daily refresh succeeds (check GitHub Actions and OPENSEA_API_KEY).",
+        " hours old. Listings and transfers may be outdated until the daily refresh succeeds (check GitHub Actions).",
       "warn"
     );
   }
@@ -348,12 +348,10 @@ function updateFooterMaintenance(meta) {
   var updated = span && span.textContent !== "—" ? span.textContent : "—";
   var extra = "";
   if (meta.refresh && meta.refresh.status === "failed") {
-    extra = " · refresh failed: renew OPENSEA_API_KEY secret";
+    extra = " · refresh failed (check GitHub Actions for key generation step)";
   } else if (meta.opensea_key && meta.opensea_key.rotation_reminder_days) {
     extra =
-      " · renew API key secret about every " +
-      meta.opensea_key.rotation_reminder_days +
-      " days";
+      " · auto-generated key per run (fallback secret if needed)";
   }
   footer.innerHTML = base + '<span id="footer-updated">' + escapeHtml(updated) + "</span>" + escapeHtml(extra);
 }

@@ -48,11 +48,10 @@ def load_api_key(create_if_missing: bool = False) -> str:
     if not create_if_missing:
         if os.getenv("GITHUB_ACTIONS"):
             raise ValueError(
-                "OPENSEA_API_KEY is not set for this workflow. "
-                "Add repository secret: GitHub repo → Settings → Secrets and variables → Actions → "
-                "New repository secret named OPENSEA_API_KEY. "
-                "Create a key at https://docs.opensea.io/reference/api-keys "
-                "(instant/dev keys expire ~30 days — renew the secret when refresh starts failing)."
+                "OPENSEA_API_KEY not available. The workflow attempts to auto-generate a fresh "
+                "temporary key each run via the public OpenSea /auth/keys endpoint. "
+                "If this fails, ensure a fallback repository secret OPENSEA_API_KEY exists. "
+                "See recent Actions run for the generate-key step logs."
             )
         raise ValueError(
             "OPENSEA_API_KEY not set. Copy backend/.env.example to .env or run with --create-key (local dev only)."
@@ -663,8 +662,8 @@ if __name__ == "__main__":
         if status in (401, 403):
             code = "opensea_unauthorized"
             hint = (
-                " Check OPENSEA_API_KEY — expired or invalid keys must be replaced "
-                "in backend/.env (local) or the GitHub Actions secret (daily refresh)."
+                " Check the 'Generate fresh OpenSea API key' step in the Actions log. "
+                "The workflow auto-generates a temporary key; fallback secret may be invalid."
             )
         try:
             import gallery_meta

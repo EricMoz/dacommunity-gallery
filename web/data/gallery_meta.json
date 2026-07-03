@@ -4,16 +4,16 @@
   "listed_count": 4,
   "piece_count": 65,
   "refresh": {
-    "status": "failed",
+    "status": "ok",
     "source": "github_actions",
     "finished_at": "2026-07-03T10:29:15.896519+00:00",
-    "error": "Repository secret OPENSEA_API_KEY is not set.",
-    "error_code": "missing_secret"
+    "error": null,
+    "error_code": null
   },
   "opensea_key": {
-    "status": "expired_or_invalid",
+    "status": "ok",
     "checked_at": "2026-07-03T10:29:15.896522+00:00",
     "rotation_reminder_days": 30,
-    "hint": "GitHub secret OPENSEA_API_KEY is not set. Add it under Settings → Secrets and variables → Actions, then re-run 'Refresh gallery data (daily)'."
+    "hint": "OpenSea API key is auto-generated fresh each run via the workflow (no manual secret rotation needed). Fallback to repository secret only if generation fails."
   }
 }
