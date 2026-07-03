@@ -2220,6 +2220,19 @@ button.stat:focus-visible {
   border-bottom: 3px solid var(--black);
 }
 
+#collections .home-section-head > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+}
+
+#collections .home-section-head > div .home-section-title {
+  margin-bottom: 0;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
 .home-section-title {
   font-family: var(--font-display);
   font-size: clamp(1.25rem, 3.5vw, 1.5rem);
