@@ -207,14 +207,14 @@ body[data-base] .nav-btn-wallet:not(.is-active):hover {
   border-color: #555;
 }
 
-/* Universe button: subtle on desktop, clear access to dacat.fun + full nav sheet */
-.nav-btn-universe {
+/* story button: subtle on desktop, direct link to dacat.fun */
+.nav-btn-story {
   font-size: 0.76rem;
   color: var(--blue-accent);
   border-color: rgba(42, 127, 212, 0.3);
   background: transparent;
 }
-.nav-btn-universe:hover {
+.nav-btn-story:hover {
   background: rgba(42, 127, 212, 0.08);
   border-color: var(--blue-accent);
   color: var(--blue-accent);
@@ -8535,9 +8535,9 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
      - has-collector-view: Home + Film + Collections (pride bar provides context)
      - film pages: Home + Film (+Collections on hub)
      Use :not() + !important to lock visible set. */
-  .film-theatre-page .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-collections):not(.nav-btn-film):not(.nav-btn-universe),
-  body[data-base]:not(.has-collector-view) .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-wallet):not(.nav-btn-collections):not(.nav-btn-universe),
-  .film-hub-page .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-collections):not(.nav-btn-film):not(.nav-btn-universe) {
+  .film-theatre-page .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-collections):not(.nav-btn-film):not(.nav-btn-story),
+  body[data-base]:not(.has-collector-view) .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-wallet):not(.nav-btn-collections):not(.nav-btn-story),
+  .film-hub-page .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-collections):not(.nav-btn-film):not(.nav-btn-story) {
     display: none !important;
   }
 
@@ -8549,15 +8549,15 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   body.has-collector-view .header-nav .nav-btn-home,
   body.has-collector-view .header-nav .nav-btn-film,
   body.has-collector-view .header-nav .nav-btn-collections,
-  body.has-collector-view .header-nav .nav-btn-universe {
+  body.has-collector-view .header-nav .nav-btn-story {
     display: inline-flex !important;
   }
-  body.has-collector-view .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-film):not(.nav-btn-collections):not(.nav-btn-universe) {
+  body.has-collector-view .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-film):not(.nav-btn-collections):not(.nav-btn-story) {
     display: none !important;
   }
 
-  /* Always show Universe button on mobile for global dacat.fun access (per requirements) */
-  .header-nav .nav-btn-universe {
+  /* Always show story button on mobile for global dacat.fun access (per requirements) */
+  .header-nav .nav-btn-story {
     display: inline-flex !important;
   }
 
