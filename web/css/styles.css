@@ -2942,14 +2942,16 @@ button.stat:focus-visible {
 
 .hub-more-card-shop {
   display: block;
-  background: #fffef5;
+  background: linear-gradient(180deg, #fffef5 0%, #fffaf0 100%);
   border: 3px solid var(--black);
+  border-top: 4px solid var(--yellow);
   border-radius: 12px;
   padding: 1.1rem 1.25rem 1.15rem;
   color: inherit;
   text-decoration: none;
   box-shadow: 5px 5px 0 var(--black);
   transition: transform 0.12s, box-shadow 0.12s, border-color 0.12s;
+  position: relative;
 }
 
 .hub-more-card-shop:hover {
@@ -3005,11 +3007,13 @@ button.stat:focus-visible {
   background: #fffef5;
   border: 3px solid var(--black);
   border-radius: var(--radius);
-  padding: 1.15rem 1.2rem 1.1rem;
+  padding: 1.15rem 1.2rem 1.4rem;
   color: inherit;
   text-decoration: none;
   box-shadow: 5px 5px 0 var(--black);
   transition: transform 0.12s, box-shadow 0.12s, border-color 0.12s;
+  position: relative;
+  overflow: hidden;
 }
 
 .hub-more-card-impact:hover {
@@ -3049,6 +3053,63 @@ button.stat:focus-visible {
   font-size: 0.82rem;
   font-weight: 700;
   color: var(--black);
+}
+
+/* Subtle ocean wave animation at bottom for Project Interrupt card - lightweight CSS gradient, low opacity, slow calm movement, thematic for marine project */
+.hub-more-card-impact::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 18px;
+  background: linear-gradient(
+    90deg,
+    rgba(66, 153, 225, 0.22) 0%,
+    rgba(66, 153, 225, 0.32) 25%,
+    rgba(66, 153, 225, 0.22) 50%,
+    rgba(66, 153, 225, 0.32) 75%,
+    rgba(66, 153, 225, 0.22) 100%
+  );
+  background-size: 200% 100%;
+  opacity: 0.28;
+  pointer-events: none;
+  animation: ocean-wave 7s ease-in-out infinite;
+}
+
+@keyframes ocean-wave {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Subtle animated track/line for Track & Shop section - thin moving dashes at bottom of section for restrained life, matching MC race spirit but minimal */
+#track-shop {
+  position: relative;
+}
+
+#track-shop::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--black) 0px,
+    var(--black) 3px,
+    transparent 3px,
+    transparent 10px
+  );
+  opacity: 0.18;
+  pointer-events: none;
+  animation: subtle-track 2.8s linear infinite;
+}
+
+@keyframes subtle-track {
+  0% { background-position: 0 0; }
+  100% { background-position: 20px 0; }
 }
 
 .home-stories-layout {
