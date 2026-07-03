@@ -207,6 +207,107 @@ body[data-base] .nav-btn-wallet:not(.is-active):hover {
   border-color: #555;
 }
 
+/* Universe button: subtle on desktop, clear access to dacat.fun + full nav sheet */
+.nav-btn-universe {
+  font-size: 0.76rem;
+  color: var(--blue-accent);
+  border-color: rgba(42, 127, 212, 0.3);
+  background: transparent;
+}
+.nav-btn-universe:hover {
+  background: rgba(42, 127, 212, 0.08);
+  border-color: var(--blue-accent);
+  color: var(--blue-accent);
+}
+
+/* Universe bottom sheet - modern, lightweight, reuses site card language */
+.universe-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: none;
+}
+.universe-sheet.open {
+  display: block;
+}
+.universe-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.55);
+  backdrop-filter: blur(4px);
+}
+.universe-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  border: 3px solid var(--black);
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 -8px 0 var(--black);
+  max-height: 65vh;
+  overflow-y: auto;
+  padding: 0.75rem 1rem 1rem;
+  font-size: 0.95rem;
+}
+.universe-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #eee;
+}
+.universe-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+}
+.universe-close {
+  background: var(--black);
+  color: var(--yellow);
+  border: 2px solid var(--black);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.universe-group {
+  margin-bottom: 0.25rem;
+}
+.universe-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue-accent);
+  margin: 0.4rem 0 0.15rem;
+}
+.universe-link {
+  display: block;
+  padding: 0.35rem 0.1rem;
+  color: var(--black);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px solid #f0f0f0;
+}
+.universe-link:last-child {
+  border-bottom: none;
+}
+.universe-dacat {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 2px solid var(--black);
+}
+.universe-divider {
+  height: 2px;
+  background: var(--black);
+  margin: 0.5rem 0;
+}
+
 .header-nav {
   align-items: center;
 }
@@ -8434,9 +8535,9 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
      - has-collector-view: Home + Film + Collections (pride bar provides context)
      - film pages: Home + Film (+Collections on hub)
      Use :not() + !important to lock visible set. */
-  .film-theatre-page .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-collections):not(.nav-btn-film),
-  body[data-base]:not(.has-collector-view) .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-wallet):not(.nav-btn-collections),
-  .film-hub-page .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-collections):not(.nav-btn-film) {
+  .film-theatre-page .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-collections):not(.nav-btn-film):not(.nav-btn-universe),
+  body[data-base]:not(.has-collector-view) .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-wallet):not(.nav-btn-collections):not(.nav-btn-universe),
+  .film-hub-page .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-collections):not(.nav-btn-film):not(.nav-btn-universe) {
     display: none !important;
   }
 
@@ -8447,11 +8548,17 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
      This is the balanced "add film and collections too" while still removing the extras. */
   body.has-collector-view .header-nav .nav-btn-home,
   body.has-collector-view .header-nav .nav-btn-film,
-  body.has-collector-view .header-nav .nav-btn-collections {
+  body.has-collector-view .header-nav .nav-btn-collections,
+  body.has-collector-view .header-nav .nav-btn-universe {
     display: inline-flex !important;
   }
-  body.has-collector-view .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-film):not(.nav-btn-collections) {
+  body.has-collector-view .header-nav .nav-btn:not(.nav-btn-home):not(.nav-btn-film):not(.nav-btn-collections):not(.nav-btn-universe) {
     display: none !important;
+  }
+
+  /* Always show Universe button on mobile for global dacat.fun access (per requirements) */
+  .header-nav .nav-btn-universe {
+    display: inline-flex !important;
   }
 
   .nav-btn {
@@ -9397,4 +9504,89 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     font-size: 0.78rem;
   }
   /* Site header: normal mobile sizes (no collector-specific ultra shrink). */
+}
+
+/* Universe bottom sheet - clean, modern, lightweight. Reuses card patterns, shadows, colors. */
+.universe-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: none;
+}
+.universe-sheet.open {
+  display: block;
+}
+.universe-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(3px);
+}
+.universe-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  border: 3px solid var(--black);
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 -6px 0 var(--black);
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 0.75rem 1rem 1.25rem;
+}
+.universe-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid var(--black);
+}
+.universe-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+}
+.universe-close {
+  font-size: 1.4rem;
+  line-height: 1;
+  background: none;
+  border: none;
+  color: var(--black);
+  cursor: pointer;
+  padding: 0 0.25rem;
+}
+.universe-group {
+  margin: 0.4rem 0;
+}
+.universe-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue-accent);
+  margin-bottom: 0.2rem;
+}
+.universe-link {
+  display: block;
+  padding: 0.35rem 0.1rem;
+  color: var(--black);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+}
+.universe-link:last-child {
+  border-bottom: none;
+}
+.universe-dacat {
+  border-top: 2px solid var(--black);
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+}
+.universe-divider {
+  height: 2px;
+  background: var(--black);
+  margin: 0.5rem 0;
 }
