@@ -7,7 +7,7 @@ A fully static GitHub Pages site delivering a rich NFT gallery, collector portfo
 - **Global archive** of the daCAT daCommunity (Base) + coming attractions (Badges on Ethereum)
 - **Find your daCATs** instantly via ENS or 0x (shareable `?wallet=` links)
 - **Theatre Mode** — lights-down immersive player for desktop
-- **Daily fresh data** via pre-fetched OpenSea pipeline + aggressive cache-busting
+- **Fully automated daily data** — fresh OpenSea key generated on every run (no secrets), pre-fetched into JSON, aggressive cache-busting on deploy.
 
 **Live:** https://ericmoz.github.io/dacommunity-gallery/ (or the official mirror once promoted)
 
@@ -15,12 +15,14 @@ A fully static GitHub Pages site delivering a rich NFT gallery, collector portfo
 
 ## Why this project stands out
 
-- **True static hosting** — GitHub Pages + CDN. $0 ongoing cost, instant deploys, no server to maintain.
-- **Pre-fetched + bulletproof cache-busting** — Backend (Python) pulls OpenSea once per day into JSON. Every deploy bumps `?v=`, service worker `CACHE`, `<meta name="site-build">`, and all asset links so browsers/SW/CDN never serve old data or shell.
-- **Vanilla JS doing "impossible" UX** — Complex gallery + dark cinema portfolio + sticky theatre player + share state + multi-collection awareness, all in a few small files. No frameworks, no build step for the frontend.
-- **Zero-friction collector experience** — Look up any wallet, get a beautiful shareable link, no connect, no gas, works on mobile.
-- **Thoughtful details everywhere** — Theatre lights, flying popcorn, precise safe-area padding, collector header that never gaps, price badges that never clip, smooth grid that respects min/max columns.
-- **Registry-driven multi-collection ready** — `collections_registry.json` + status flags mean new live collections light up automatically in filters, pre-links, and share URLs (see Part 1 of recent updates).
+- **Fully automated OpenSea data pipeline** — No secrets to rotate. Every run auto-generates a fresh temporary API key via the public endpoint (`/auth/keys`). Daily refresh (`.github/workflows/refresh-data.yml`) + badges + meta update → commit → deploy. Zero manual key management.
+- **True static hosting** — GitHub Pages + CDN. $0 ongoing cost, instant deploys, no server runtime ever. All OpenSea work happens in CI only.
+- **Pre-fetched + bulletproof cache-busting** — Backend pulls OpenSea into JSON once per day. Every deploy runs `scripts/bump_deploy_version.py` to touch `?v=`, SW `CACHE`, `VERSION.txt`, `<meta name="site-build">`, and footers. Browsers/SW/CDN get fresh content reliably.
+- **Vanilla JS doing "impossible" UX** — Rich gallery, collector portfolios, sticky Theatre player, share links, multi-collection filters — all client-side with no frameworks or build step. Instant first paint from tiny `gallery_catalog.json`.
+- **Zero-friction collector experience** — ENS or 0x lookup, beautiful shareable `?wallet=` links, no wallet connect or gas. Works everywhere.
+- **Thoughtful details & polish** — Theatre "lights down" mode, flying popcorn, safe-area handling, pride bars, price badges, smooth grids, network-first SW for JSON.
+- **Registry-driven & multi-collection ready** — `collections_registry.json` + `backend/collections_registry.py` make new live collections light up automatically in filters and links. Badges use the same archive patterns.
+- **What makes the architecture notable** — Pre-computed static JSON from daily CI + vanilla frontend = premium feel with zero ongoing cost or live dependencies in the browser. Great model for other community archives.
 
 ## Routes
 
@@ -47,27 +49,33 @@ A fully static GitHub Pages site delivering a rich NFT gallery, collector portfo
 
 ## Honest limitations
 
-- **Not live data** — Gallery, ownership, listings, and transfers update once per day via GitHub Action (see `.github/workflows/refresh-data.yml`). Great for a premium static feel; not a real-time on-chain explorer.
-- **Single primary collection today** — daCommunity is the only fully live gallery. Badges and future drops use the registry + "coming soon" pattern so nothing breaks when we flip the switch.
-- **No wallet signing** — By design. This is a read-only community archive and discovery tool.
-- **Desktop-heavy Theatre** — Full lights experience is 769px+. Mobile gets the excellent hub player instead.
+- **Not live data** — Everything is pre-fetched daily via GitHub Action (see `.github/workflows/refresh-data.yml`). Premium static feel with aggressive staleness banners. Not a real-time explorer.
+- **Single primary collection today** — daCommunity (Base) is fully live. Badges (Ethereum) and future drops use `collections_registry.json` + "coming soon" so the UI lights them up cleanly.
+- **No wallet signing** — By design. Pure read-only community archive.
+- **Desktop-heavy Theatre** — Full "lights down" experience is 769px+. Mobile falls back gracefully to the hub player.
 
 ## Architecture at a glance
 
 ```
-OpenSea (daily)  →  backend/*.py  →  web/data/*.json  (catalog + full + wallet index + videos + registry)
-                                                    ↓
-                                          GitHub Pages (web/)
-                                          (HTML + vanilla JS + CSS + SW)
+OpenSea (public /auth/keys + data) 
+  ↓ (auto-generated fresh key every run)
+GitHub Action (refresh-data.yml)
+  → backend/*.py (fetch + enrich + badges)
+  → web/data/*.json (catalog + full + wallet + meta + badges)
+  → git commit + bump_deploy_version.py
+  ↓
+GitHub Pages (pure static: HTML + vanilla JS + CSS + SW)
 ```
 
-- **Registry first** (`web/data/collections_registry.json` + `backend/collections_registry.py`) — single source for what is live vs preview.
-- **Two-tier data** — `gallery_catalog.json` (tiny, instant paint) + `gallery_data.json` (rich, loaded in background).
-- **Frontend** — `app.js` (gallery + collector), `film.js` + `theatre.js` (film), tiny page-specific scripts.
-- **Cache discipline** — Every deploy runs `scripts/bump_deploy_version.py` which touches `?v=`, meta, SW `CACHE`, `VERSION.txt`, footers.
-- **No build** for the web shell (pure static). Python only for data pipeline.
+**Key strengths that make this repo stand out to devs**:
+- **Zero secret maintenance** — Daily pipeline auto-creates a short-lived OpenSea key via public endpoint. No long-lived tokens in repo or Actions.
+- **Registry-driven** (`collections_registry.json`) — Adding a new live collection is mostly data + registry entry; UI lights up automatically.
+- **Two-tier data + aggressive cache-busting** — Tiny catalog for instant paint, rich data loaded in background. Every deploy invalidates caches at browser/SW/CDN level.
+- **Vanilla everything on the client** — No frameworks, no server, no live API calls. Complex UX (portfolios, Theatre, filters) all in small JS files.
+- **Pre-computed static wins** — Daily CI does the heavy lifting. Site is fast, cheap, and delightful with almost zero runtime dependencies.
+- See `docs/MAINTENANCE.md` for deeper notes, `docs/COLLECTIONS.md` for adding collections.
 
-See `docs/MAINTENANCE.md`, `docs/COLLECTIONS.md`, `docs/THEATRE.md` for deeper maintainer notes.
+See `docs/MAINTENANCE.md` (especially the automated data pipeline section), `docs/COLLECTIONS.md`, `docs/THEATRE.md` for deeper maintainer notes.
 
 ## Local development
 
@@ -85,7 +93,8 @@ For data work:
 ```bash
 cd backend
 python -m pip install -r requirements.txt
-# See refresh.ps1 / .github/workflows for the real daily path
+# The real daily path is fully automated in .github/workflows/refresh-data.yml
+# (no secrets needed — key is generated fresh each run)
 ```
 
 ## Contributing
@@ -113,22 +122,32 @@ Enjoy the gallery. Find your daCATs. Share the link.
 
 Enjoy the gallery. Find your daCATs. Shop the store. Share the stories.
 
-## Refresh data from OpenSea
+## Refresh data from OpenSea (fully automated)
+
+The daily data pipeline is **completely hands-off**:
+
+- GitHub Actions auto-generates a fresh temporary OpenSea key every run (public `/auth/keys` endpoint).
+- No repository secrets to create or rotate.
+- Runs on schedule + manual dispatch.
+- Updates all `web/data/*.json` (gallery + badges + meta).
+
+Local dev (for testing changes):
 
 ```powershell
 cd backend
 pip install -r requirements.txt
-copy .env.example .env   # OPENSEA_API_KEY from https://docs.opensea.io/reference/api-keys
 python fetch_gallery_data.py
-python merge_local_images.py   # optional
+# (badges, etc. optional)
 ```
 
-Or: `.\scripts\refresh.ps1` (fetch + merge + local server).
+Use `.\scripts\refresh.ps1` for convenience.
 
-- `--quick` skips listings, owners, and wallet index (~faster).
-- Full run ~5–8 minutes.
+- `--quick` skips listings/owners/wallet (~faster for iteration).
+- Full run usually 5–15 min depending on collection size.
 
-After a transfer, run a full fetch so `recent_activity` and holders update. QA one token:
+After a transfer or new drop, a full fetch populates `recent_activity`, holders, etc.
+
+QA a specific change:
 
 ```powershell
 cd backend
@@ -158,12 +177,12 @@ git push origin main
 
 **If the site looks stale:** Compare footer build id to [latest commit](https://github.com/EricMoz/dacommunity-gallery). Hard-refresh, or DevTools → Application → clear site data once. CI may bump the id again on deploy (e.g. local `20260605-8` → live `20260605-9`); any id higher than yours is current.
 
-## Security
+## Security & API Keys
 
-- **Never commit** `backend/.env` (gitignored). Use GitHub secret `OPENSEA_API_KEY` for CI.
-- [Repository secrets](https://github.com/EricMoz/dacommunity-gallery/settings/secrets/actions) — missing/expired keys fail refresh quickly; staleness shows in `gallery_meta.json` banner.
-- **New listing today?** `cd backend && python patch_listings.py` until the nightly job runs.
-- API keys are not used in the browser; the public site only reads static JSON.
+- **No long-lived secrets required.** The CI workflow (`refresh-data.yml`) auto-generates a fresh temporary OpenSea key on every run using the public endpoint.
+- `.env` (if used locally) is gitignored — never commit.
+- All OpenSea calls happen only in the backend during the daily job. The live site is pure static JSON + vanilla JS — zero API keys or secrets ever reach the browser.
+- Stale data or refresh problems surface clearly in `gallery_meta.json` (visible banner on site) and GitHub Actions logs.
 
 ## Repo layout
 

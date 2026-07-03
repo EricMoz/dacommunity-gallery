@@ -164,16 +164,28 @@ Panels are full-width white blocks — cars only show in the **side gutters** an
 
 ---
 
-## CI — LFS bandwidth (refresh + deploy)
+## CI & Automated Data Pipeline (the standout part)
 
-| Workflow | LFS | When images download |
-|----------|-----|----------------------|
-| `refresh-data.yml` | `lfs: false` | Never — JSON only |
-| `deploy-pages.yml` | `lfs: false` at checkout | Cache restore first; `git lfs pull` only on cache miss, missing materialized files, or `web/assets/` changed in push |
+The daily refresh is **fully automated and secret-free**:
 
-Daily OpenSea refresh → push JSON → deploy reuses cached images. New collection art committed under `web/assets/` triggers an incremental LFS pull.
+- `refresh-data.yml` generates a fresh temporary OpenSea key every single run using the public `POST /api/v2/auth/keys` endpoint.
+- No `OPENSEA_API_KEY` secret is required (we cleaned up the old fallback).
+- Runs on cron + manual dispatch.
+- Fetches main gallery + badges, promotes data, commits JSONs, and triggers deploy.
+- On failure it records details into `gallery_meta.json` (visible staleness banner on the live site).
 
-**Manual QA after workflow changes:** run **Refresh gallery data** once, confirm deploy succeeds without LFS errors, footer build id updates on live site.
+This is one of the nicest parts of the project: zero ongoing key rotation or secret management while still getting fresh on-chain data daily.
+
+| Workflow | LFS | Notes |
+|----------|-----|-------|
+| `refresh-data.yml` | `lfs: false` | JSON-only. Auto key gen. |
+| `deploy-pages.yml` | `lfs: false` at checkout + smart cache + conditional `lfs pull` | Reuses previous assets heavily. Only pulls when needed. |
+
+**Manual QA after workflow or key-related changes:**
+- Trigger **Refresh gallery data (daily)** manually.
+- Confirm the "Generate fresh OpenSea API key" step succeeds and masks the key.
+- Verify deploy succeeds and the live site footer shows a new build id.
+- Check `gallery_meta.json` on site shows recent `data_generated_at` and `status: ok`.
 
 ---
 

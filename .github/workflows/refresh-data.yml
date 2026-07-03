@@ -1,6 +1,6 @@
 # Fetches OpenSea data and commits JSON. 
-# OpenSea key is auto-generated fresh each run via /auth/keys endpoint (with secret as fallback).
-# No manual long-term secret rotation required.
+# OpenSea key is **automatically generated fresh every run** via the public /auth/keys endpoint.
+# No repository secrets or manual key rotation required at all.
 #
 # LFS optimization: this workflow only updates web/data/*.json — it does not read or
 # write NFT images under web/assets/. Checkout uses lfs: false so the daily run does not
@@ -39,9 +39,8 @@ jobs:
           fetch-depth: 0
 
       # Generate a fresh instant OpenSea API key on every run using the public /auth/keys endpoint.
-      # This removes the need for long-lived manually-rotated repository secrets.
-      # The generated key is short-lived (~30 days for instant keys) but fresh each run.
-      # We mask it immediately and fall back to the old secret during transition.
+      # No secrets needed — fully automated. The key is short-lived (~30 days) but generated fresh each run.
+      # Masked immediately for log safety.
       - name: Generate fresh OpenSea API key
         id: generate_key
         run: |
@@ -49,7 +48,7 @@ jobs:
           echo "Generating fresh instant OpenSea API key via public endpoint (no manual secret rotation)..."
           KEY=$(curl -s -X POST https://api.opensea.io/api/v2/auth/keys | jq -r '.api_key')
           if [ -z "$KEY" ] || [ "$KEY" = "null" ]; then
-            echo "::warning::Failed to auto-generate fresh OpenSea key. Will fall back to repository secret (if present)."
+            echo "::warning::Failed to auto-generate fresh OpenSea key (public endpoint issue?)."
           else
             echo "::add-mask::$KEY"
             echo "key=$KEY" >> $GITHUB_OUTPUT
@@ -62,16 +61,14 @@ jobs:
           cache: pip
           cache-dependency-path: backend/requirements.txt
 
-      - name: Verify OpenSea API key secret
+      - name: Verify generated OpenSea API key
         id: verify_secret
         env:
-          # Prefer freshly generated key (from the step above); fall back to the old secret
-          # during the transition period so nothing breaks if generation fails.
-          OPENSEA_API_KEY: ${{ steps.generate_key.outputs.key || secrets.OPENSEA_API_KEY }}
+          OPENSEA_API_KEY: ${{ steps.generate_key.outputs.key }}
         run: |
           set -e
           if [ -z "$OPENSEA_API_KEY" ]; then
-            echo "::error::No OpenSea API key available (auto-generate step failed and no fallback secret). Check the 'Generate fresh OpenSea API key' step logs."
+            echo "::error::Failed to generate fresh OpenSea API key. Check the 'Generate fresh OpenSea API key' step logs."
             exit 1
           fi
           echo "OpenSea API key is set. Testing with lightweight call..."
@@ -81,7 +78,7 @@ jobs:
             -H "Accept: application/json" \
             "https://api.opensea.io/api/v2/collections/rodeo-posts-12142/stats" || echo "000")
           if [ "$HTTP_CODE" != "200" ]; then
-            echo "::error::OpenSea key test failed with HTTP $HTTP_CODE. Key may be expired/invalid (instant keys ~30d lifetime) or rate limited. Check secret and renew at https://docs.opensea.io/reference/api-keys"
+            echo "::error::OpenSea key test failed with HTTP $HTTP_CODE. The key is auto-generated each run. Check the generate step logs for details."
             cat /tmp/opensea_test.json || true
             exit 1
           fi
@@ -90,9 +87,7 @@ jobs:
       - name: Fetch from OpenSea
         id: fetch
         env:
-          # Prefer freshly generated key (from the step above); fall back to the old secret
-          # during the transition period so nothing breaks if generation fails.
-          OPENSEA_API_KEY: ${{ steps.generate_key.outputs.key || secrets.OPENSEA_API_KEY }}
+          OPENSEA_API_KEY: ${{ steps.generate_key.outputs.key }}
         run: |
           set -e
           pip install -r backend/requirements.txt
@@ -102,9 +97,7 @@ jobs:
       - name: Fetch badges (for owners/dates)
         if: success()
         env:
-          # Prefer freshly generated key (from the step above); fall back to the old secret
-          # during the transition period so nothing breaks if generation fails.
-          OPENSEA_API_KEY: ${{ steps.generate_key.outputs.key || secrets.OPENSEA_API_KEY }}
+          OPENSEA_API_KEY: ${{ steps.generate_key.outputs.key }}
         run: |
           set -e
           cd backend
@@ -120,8 +113,8 @@ jobs:
           CODE="fetch_failed"
           ERROR="Refresh job failed — see the log for the failing step."
           if [ "${{ steps.verify_secret.outcome }}" = "failure" ]; then
-            CODE="missing_secret"
-            ERROR="Repository secret OPENSEA_API_KEY is not set."
+            CODE="key_generation_failed"
+            ERROR="Failed to auto-generate OpenSea API key. See the 'Generate fresh OpenSea API key' step logs."
           fi
           python backend/gallery_meta.py --record-failure --error "$ERROR" --error-code "$CODE"
           git config user.name "github-actions[bot]"
