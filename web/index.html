@@ -6,7 +6,7 @@
      Vanilla static + minimal home.js. See app.js for the heavy gallery logic. -->
 <html lang="en">
 <head>
-  <meta name="site-build" content="20260703-8" />
+  <meta name="site-build" content="20260703-10" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>daCAT · Home</title>
@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20260703-8" />
+  <link rel="stylesheet" href="css/styles.css?v=20260703-10" />
 </head>
 <body class="home-page">
   <header class="site-header">
@@ -40,6 +40,7 @@
   <main class="site-home">
     <section class="home-hero">
       <div class="home-hero-inner">
+        <canvas id="hero-universe" class="hero-universe-canvas" width="720" height="180" aria-hidden="true"></canvas>
         <p class="eyebrow">Legendary crypto culture</p>
         <h1>daCAT Universe</h1>
         <p class="home-lead">The interactive archive and cinematic hub of the daCAT Universe.</p>
@@ -160,9 +161,89 @@
 
   <footer class="site-footer">
     <p><a href="https://www.dacat.fun/" target="_blank" rel="noopener noreferrer">dacat.fun</a> · <a href="https://www.dacatworld.com/" target="_blank" rel="noopener noreferrer">dacatworld</a> · <a href="https://dacat.store/" target="_blank" rel="noopener noreferrer">dacat.store</a></p>
-    <p class="site-version">Site build 20260703-8</p>
+    <p class="site-version">Site build 20260703-10</p>
   </footer>
-  <script src="js/pwa-register.js?v=20260703-8" defer></script>
-  <script src="js/home.js?v=20260703-8" defer></script>
+  <script src="js/pwa-register.js?v=20260703-10" defer></script>
+  <script src="js/home.js?v=20260703-10" defer></script>
+
+  <!-- Premium lightweight hero universe particles (canvas + tiny config object for direction & presence).
+       Pure modern vanilla, ~12 particles, very low perf cost, fits the cinematic vibe. -->
+  <script>
+    (function () {
+      const canvas = document.getElementById('hero-universe');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d', { alpha: true });
+      if (!ctx) return;
+
+      // Small JSON-like config for easy tuning (purpose + direction)
+      const cfg = {
+        count: 11,
+        speed: 0.18,
+        size: [1.2, 2.4],
+        opacity: [0.35, 0.7],
+        drift: 0.6
+      };
+
+      let particles = [];
+      const W = canvas.width;
+      const H = canvas.height;
+
+      function createParticle() {
+        return {
+          x: Math.random() * W,
+          y: Math.random() * H * 0.9,
+          vx: (Math.random() - 0.5) * cfg.speed,
+          vy: (Math.random() - 0.3) * cfg.speed * 0.6,
+          size: cfg.size[0] + Math.random() * (cfg.size[1] - cfg.size[0]),
+          alpha: cfg.opacity[0] + Math.random() * (cfg.opacity[1] - cfg.opacity[0]),
+          phase: Math.random() * Math.PI * 2
+        };
+      }
+
+      for (let i = 0; i < cfg.count; i++) particles.push(createParticle());
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        ctx.fillStyle = '#111';
+
+        for (let p of particles) {
+          p.x += p.vx;
+          p.y += p.vy + Math.sin(p.phase) * 0.04; // gentle vertical breath
+          p.phase += 0.018;
+
+          // wrap softly
+          if (p.x < -5) p.x = W + 5;
+          if (p.x > W + 5) p.x = -5;
+          if (p.y < -3) p.y = H * 0.95;
+          if (p.y > H * 0.98) p.y = -3;
+
+          ctx.globalAlpha = p.alpha;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+
+          // very subtle connection lines for "universe" constellation feel (premium, low cost)
+          for (let q of particles) {
+            const dx = p.x - q.x;
+            const dy = p.y - q.y;
+            const dist = Math.hypot(dx, dy);
+            if (dist > 38 && dist < 92) {
+              ctx.globalAlpha = (p.alpha + q.alpha) * 0.12;
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(q.x, q.y);
+              ctx.strokeStyle = '#222';
+              ctx.lineWidth = 0.6;
+              ctx.stroke();
+            }
+          }
+        }
+        ctx.globalAlpha = 1;
+        requestAnimationFrame(draw);
+      }
+
+      draw();
+    })();
+  </script>
 </body>
 </html>

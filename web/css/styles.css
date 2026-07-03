@@ -2092,6 +2092,20 @@ button.stat:focus-visible {
   border: 3px solid var(--black);
   border-radius: var(--radius);
   box-shadow: 8px 8px 0 var(--black);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-universe-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.26;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: multiply;
 }
 
 .home-page .home-hero .eyebrow {
@@ -2149,6 +2163,23 @@ button.stat:focus-visible {
   font-size: clamp(1.9rem, 5vw, 2.65rem);
   margin: 0.35rem 0 0.65rem;
   line-height: 1.08;
+  position: relative;
+  display: inline-block;
+}
+
+/* Premium modern hero title treatment: subtle directional gradient + soft glow for presence */
+.home-hero h1 {
+  background: linear-gradient(92deg, #111 20%, #2a2a2a 48%, #111 78%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 220% 100%;
+  animation: hero-title-flow 9s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+}
+
+@keyframes hero-title-flow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 220% 50%; }
 }
 
 .home-lead,
@@ -2910,6 +2941,34 @@ button.stat:focus-visible {
   color: var(--black);
   box-shadow: 6px 6px 0 var(--black);
   border-top: 5px solid var(--black);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle internal life for the MC race box – restrained directional highlight at bottom (premium, no cars) */
+.hub-more-card-chart::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 10%,
+    rgba(10, 10, 10, 0.22) 35%,
+    rgba(255, 204, 0, 0.35) 50%,
+    rgba(10, 10, 10, 0.22) 65%,
+    transparent 90%
+  );
+  background-size: 220% 100%;
+  animation: mc-race-flow 5.5s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes mc-race-flow {
+  0% { background-position: 0% 0; }
+  100% { background-position: -220% 0; }
 }
 
 .hub-more-card-chart:hover {
@@ -2954,18 +3013,47 @@ button.stat:focus-visible {
   position: relative;
 }
 
-/* Subtle left accent for stronger hierarchy and intentional feel (no animation) */
+/* Stronger left accent + subtle premium vertical light for intentional hierarchy */
 .hub-more-card-shop::before {
   content: '';
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
-  width: 5px;
-  background: var(--yellow);
-  opacity: 0.65;
-  border-top-left-radius: 9px;
-  border-bottom-left-radius: 9px;
+  width: 6px;
+  background: linear-gradient(
+    to bottom,
+    var(--yellow) 0%,
+    #f5d24d 45%,
+    var(--yellow) 100%
+  );
+  opacity: 0.82;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+/* Very subtle top-edge shine sweep on shop for premium life (no heavy animation) */
+.hub-more-card-shop::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.7),
+    transparent
+  );
+  opacity: 0.6;
+  pointer-events: none;
+  animation: shop-shine 7s ease-in-out infinite;
+}
+
+@keyframes shop-shine {
+  0%, 100% { transform: translateX(-60%); }
+  50% { transform: translateX(160%); }
 }
 
 .hub-more-card-shop:hover {
@@ -3084,20 +3172,20 @@ button.stat:focus-visible {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 220%;
-  height: 16px;
+  width: 240%;
+  height: 18px;
   background: linear-gradient(
-    92deg,
-    rgba(74, 155, 224, 0.18) 0%,
-    rgba(74, 155, 224, 0.30) 22%,
-    rgba(74, 155, 224, 0.18) 45%,
-    rgba(74, 155, 224, 0.30) 68%,
-    rgba(74, 155, 224, 0.18) 100%
+    90deg,
+    rgba(74, 155, 224, 0.22) 0%,
+    rgba(74, 155, 224, 0.42) 20%,
+    rgba(74, 155, 224, 0.22) 42%,
+    rgba(74, 155, 224, 0.42) 62%,
+    rgba(74, 155, 224, 0.22) 100%
   );
-  background-size: 220% 100%;
-  opacity: 0.24;
+  background-size: 240% 100%;
+  opacity: 0.32;
   pointer-events: none;
-  animation: ocean-wave 9.5s ease-in-out infinite;
+  animation: ocean-wave 8s ease-in-out infinite;
 }
 
 @keyframes ocean-wave {
@@ -3117,20 +3205,43 @@ button.stat:focus-visible {
 #track-shop::after {
   content: '';
   position: absolute;
-  bottom: -3px;
+  bottom: -4px;
   left: 0;
   width: 100%;
-  height: 3px;
+  height: 4px;
   background: repeating-linear-gradient(
     90deg,
     var(--black) 0px,
-    var(--black) 2.5px,
-    transparent 2.5px,
-    transparent 11px
+    var(--black) 4px,
+    transparent 4px,
+    transparent 14px
   );
-  opacity: 0.16;
+  opacity: 0.28;
   pointer-events: none;
-  animation: subtle-track 3.2s linear infinite;
+  animation: subtle-track 2.6s linear infinite;
+}
+
+/* Premium moving highlight on the track for direction and life (lightweight) */
+#track-shop::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 22%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 204, 0, 0.55),
+    transparent
+  );
+  pointer-events: none;
+  animation: track-highlight 3.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes track-highlight {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(520%); }
 }
 
 @keyframes subtle-track {
