@@ -47,6 +47,12 @@
         return;
       }
 
+      // Dynamic video count for the film hub badge on homepage
+      var countEl = document.getElementById('film-video-count');
+      if (countEl && catalog.videos) {
+        countEl.textContent = catalog.videos.length + ' videos on-site';
+      }
+
       rail.hidden = false;
       track.innerHTML = "";
       cards.forEach(function (entry) {
