@@ -3,7 +3,7 @@
  * Gallery JSON uses network-first so listings stay current when online.
  * CACHE name is bumped by scripts/bump_deploy_version.py on each Pages deploy.
  */
-const CACHE = "dacat-gallery-v20260703-5";
+const CACHE = "dacat-gallery-v20260703-7";
 const SHELL = [
   "./",
   "./dacommunity/",

@@ -2942,16 +2942,30 @@ button.stat:focus-visible {
 
 .hub-more-card-shop {
   display: block;
-  background: linear-gradient(180deg, #fffef5 0%, #fffaf0 100%);
+  background: linear-gradient(175deg, #fffdf7 0%, #fffaf0 100%);
   border: 3px solid var(--black);
-  border-top: 4px solid var(--yellow);
+  border-top: 5px solid var(--yellow);
   border-radius: 12px;
-  padding: 1.1rem 1.25rem 1.15rem;
+  padding: 1.15rem 1.25rem 1.2rem;
   color: inherit;
   text-decoration: none;
   box-shadow: 5px 5px 0 var(--black);
   transition: transform 0.12s, box-shadow 0.12s, border-color 0.12s;
   position: relative;
+}
+
+/* Subtle left accent for stronger hierarchy and intentional feel (no animation) */
+.hub-more-card-shop::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 5px;
+  background: var(--yellow);
+  opacity: 0.65;
+  border-top-left-radius: 9px;
+  border-bottom-left-radius: 9px;
 }
 
 .hub-more-card-shop:hover {
@@ -2970,21 +2984,22 @@ button.stat:focus-visible {
   background: rgba(42, 127, 212, 0.12);
   padding: 0.15rem 0.55rem;
   border-radius: 999px;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.35rem;
 }
 
 .hub-more-card-shop .hub-more-card-title {
   font-family: var(--font-display);
-  font-size: 1.1rem;
-  margin: 0 0 0.25rem;
+  font-size: 1.12rem;
+  margin: 0 0 0.2rem;
   color: #111;
+  letter-spacing: -0.01em;
 }
 
 .hub-more-card-shop .hub-more-card-desc {
   font-size: 0.9rem;
-  color: #444;
+  color: #3a3a3a;
   line-height: 1.45;
-  margin: 0 0 0.65rem;
+  margin: 0 0 0.6rem;
 }
 
 .hub-more-card-shop .hub-more-card-cta {
@@ -2995,10 +3010,10 @@ button.stat:focus-visible {
 
 @media (max-width: 480px) {
   .hub-more-card-shop {
-    padding: 0.9rem 1rem 1rem;
+    padding: 1rem 1rem 1.05rem;
   }
   .hub-more-card-shop .hub-more-card-title {
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
 }
 
@@ -3055,35 +3070,46 @@ button.stat:focus-visible {
   color: var(--black);
 }
 
-/* Subtle ocean wave animation at bottom for Project Interrupt card - lightweight CSS gradient, low opacity, slow calm movement, thematic for marine project */
+/* Ocean wave at bottom of Community Impact card.
+   Lightweight CSS-only (animated background-position on ::after).
+   Calm, slow horizontal flow using soft blue gradient. Very low opacity (22-26%) so it never distracts.
+   Positioned tight to the bottom edge inside the card (overflow hidden on card).
+*/
+.hub-more-card-impact {
+  overflow: hidden;
+}
+
 .hub-more-card-impact::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 200%;
-  height: 18px;
+  width: 220%;
+  height: 16px;
   background: linear-gradient(
-    90deg,
-    rgba(66, 153, 225, 0.22) 0%,
-    rgba(66, 153, 225, 0.32) 25%,
-    rgba(66, 153, 225, 0.22) 50%,
-    rgba(66, 153, 225, 0.32) 75%,
-    rgba(66, 153, 225, 0.22) 100%
+    92deg,
+    rgba(74, 155, 224, 0.18) 0%,
+    rgba(74, 155, 224, 0.30) 22%,
+    rgba(74, 155, 224, 0.18) 45%,
+    rgba(74, 155, 224, 0.30) 68%,
+    rgba(74, 155, 224, 0.18) 100%
   );
-  background-size: 200% 100%;
-  opacity: 0.28;
+  background-size: 220% 100%;
+  opacity: 0.24;
   pointer-events: none;
-  animation: ocean-wave 7s ease-in-out infinite;
+  animation: ocean-wave 9.5s ease-in-out infinite;
 }
 
 @keyframes ocean-wave {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* Subtle animated track/line for Track & Shop section - thin moving dashes at bottom of section for restrained life, matching MC race spirit but minimal */
+/* Subtle animated track line — bottom border treatment for the entire Track & Shop section.
+   Thin, elegant, restrained dash that moves slowly. Inspired by the MC race energy but minimal and premium.
+   No elements inside the individual cards.
+*/
 #track-shop {
   position: relative;
 }
@@ -3091,25 +3117,25 @@ button.stat:focus-visible {
 #track-shop::after {
   content: '';
   position: absolute;
-  bottom: -2px;
+  bottom: -3px;
   left: 0;
   width: 100%;
-  height: 2px;
+  height: 3px;
   background: repeating-linear-gradient(
     90deg,
     var(--black) 0px,
-    var(--black) 3px,
-    transparent 3px,
-    transparent 10px
+    var(--black) 2.5px,
+    transparent 2.5px,
+    transparent 11px
   );
-  opacity: 0.18;
+  opacity: 0.16;
   pointer-events: none;
-  animation: subtle-track 2.8s linear infinite;
+  animation: subtle-track 3.2s linear infinite;
 }
 
 @keyframes subtle-track {
-  0% { background-position: 0 0; }
-  100% { background-position: 20px 0; }
+  0%   { background-position: 0 0; }
+  100% { background-position: 22px 0; }
 }
 
 .home-stories-layout {
