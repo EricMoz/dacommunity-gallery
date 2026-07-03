@@ -36,6 +36,24 @@ jobs:
           lfs: false
           fetch-depth: 0
 
+      # Generate a fresh instant OpenSea API key on every run using the public /auth/keys endpoint.
+      # This removes the need for long-lived manually-rotated repository secrets.
+      # The generated key is short-lived (~30 days for instant keys) but fresh each run.
+      # We mask it immediately and fall back to the old secret during transition.
+      - name: Generate fresh OpenSea API key
+        id: generate_key
+        run: |
+          set -e
+          echo "Generating fresh instant OpenSea API key via public endpoint (no manual secret rotation)..."
+          KEY=$(curl -s -X POST https://api.opensea.io/api/v2/auth/keys | jq -r '.api_key')
+          if [ -z "$KEY" ] || [ "$KEY" = "null" ]; then
+            echo "::warning::Failed to auto-generate fresh OpenSea key. Will fall back to repository secret (if present)."
+          else
+            echo "::add-mask::$KEY"
+            echo "key=$KEY" >> $GITHUB_OUTPUT
+            echo "Fresh OpenSea key generated and masked."
+          fi
+
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
@@ -45,7 +63,9 @@ jobs:
       - name: Verify OpenSea API key secret
         id: verify_secret
         env:
-          OPENSEA_API_KEY: ${{ secrets.OPENSEA_API_KEY }}
+          # Prefer freshly generated key (from the step above); fall back to the old secret
+          # during the transition period so nothing breaks if generation fails.
+          OPENSEA_API_KEY: ${{ steps.generate_key.outputs.key || secrets.OPENSEA_API_KEY }}
         run: |
           set -e
           if [ -z "$OPENSEA_API_KEY" ]; then
@@ -68,7 +88,9 @@ jobs:
       - name: Fetch from OpenSea
         id: fetch
         env:
-          OPENSEA_API_KEY: ${{ secrets.OPENSEA_API_KEY }}
+          # Prefer freshly generated key (from the step above); fall back to the old secret
+          # during the transition period so nothing breaks if generation fails.
+          OPENSEA_API_KEY: ${{ steps.generate_key.outputs.key || secrets.OPENSEA_API_KEY }}
         run: |
           set -e
           pip install -r backend/requirements.txt
@@ -78,7 +100,9 @@ jobs:
       - name: Fetch badges (for owners/dates)
         if: success()
         env:
-          OPENSEA_API_KEY: ${{ secrets.OPENSEA_API_KEY }}
+          # Prefer freshly generated key (from the step above); fall back to the old secret
+          # during the transition period so nothing breaks if generation fails.
+          OPENSEA_API_KEY: ${{ steps.generate_key.outputs.key || secrets.OPENSEA_API_KEY }}
         run: |
           set -e
           cd backend
