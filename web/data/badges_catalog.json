@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-02T10:40:43.708504+00:00",
+  "generated_at": "2026-07-03T15:22:46.974491+00:00",
   "source": "badges_catalog",
   "collection": {
     "slug": "badges",
@@ -27,13 +27,18 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 3,
-        "circulating_copies": 3,
+        "holder_count": 4,
+        "circulating_copies": 4,
         "top_holders": [
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1,
             "ens_name": "lostthegame.eth"
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": "mozvane.eth"
           },
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
@@ -50,6 +55,11 @@
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1,
             "ens_name": "lostthegame.eth"
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": "mozvane.eth"
           },
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
