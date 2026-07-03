@@ -89,6 +89,16 @@ jobs:
           done
           echo "LFS assets OK"
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: backend/requirements.txt
+
+      - name: Install backend dependencies
+        run: pip install -r backend/requirements.txt
+
       - name: Bump deploy build stamp
         run: python scripts/bump_deploy_version.py
 
@@ -118,8 +128,8 @@ jobs:
           test -f web/manifest.webmanifest || (echo "Missing web/manifest.webmanifest" && exit 1)
           test -f web/sw.js || (echo "Missing web/sw.js" && exit 1)
           test -f web/data/gallery_catalog.json || (echo "Missing gallery_catalog.json — run: cd backend && python build_catalog.py" && exit 1)
-          python backend/enrich_gallery_json.py || (echo "enrich_gallery_json failed — check owner_stats import" && exit 1)
-          python backend/build_catalog.py || (echo "build_catalog failed" && exit 1)
+          PYTHONPATH=backend python backend/enrich_gallery_json.py || (echo "enrich_gallery_json failed — check owner_stats import" && exit 1)
+          PYTHONPATH=backend python backend/build_catalog.py || (echo "build_catalog failed" && exit 1)
           test -f web/data/gallery_data.json || (echo "Missing gallery_data.json — run fetch locally first" && exit 1)
           echo "Site files OK"
 
