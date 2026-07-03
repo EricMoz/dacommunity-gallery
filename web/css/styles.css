@@ -2896,7 +2896,7 @@ button.stat:focus-visible {
   background: var(--white);
   color: var(--black);
   box-shadow: 6px 6px 0 var(--black);
-  border-top: 5px solid var(--yellow);
+  border-top: 5px solid var(--black);
 }
 
 .hub-more-card-chart:hover {
