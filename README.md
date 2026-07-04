@@ -1,134 +1,86 @@
-# daCAT Gallery & World
+# daCAT Universe Hub
 
-**Zero-cost, zero-friction, premium-feel static experience for the daCAT universe.**
+This is a static site that serves as the interactive hub for the daCAT community. You can browse the full NFT archive, look up any collector's pieces by wallet or ENS, watch films in an immersive player, and follow live market cap races — all without connecting a wallet or talking to a server from your browser.
 
-A fully static GitHub Pages site delivering a rich NFT gallery, collector portfolio view, immersive Theatre Mode, film hub, and live analytics — all without a backend at runtime or any wallet connect.
+Everything runs on GitHub Pages. The site pulls data once a day through automated scripts, turns it into small JSON files, and serves a polished experience that feels dynamic even though it's just files. It exists because the community has real stories, films, and collectibles spread across chains, and we wanted one reliable place to explore them that doesn't require setup or cost anything to keep running.
 
-- **Global archive** of the daCAT daCommunity (Base) + coming attractions (Badges on Ethereum)
-- **Find your daCATs** instantly via ENS or 0x (shareable `?wallet=` links)
-- **Theatre Mode** — lights-down immersive player for desktop
-- **Fully automated daily data** — fresh OpenSea key generated on every run (no secrets), pre-fetched into JSON, aggressive cache-busting on deploy.
+## What makes this different
 
-**Live:** https://ericmoz.github.io/dacommunity-gallery/ (or the official mirror once promoted)
+- It's completely static. No backend, no database, no server costs after deployment.
+- Data updates are fully automated and happen daily in CI. You don't babysit anything.
+- We avoid the usual security headaches around API keys by generating fresh temporary ones for every data pull instead of storing long-lived secrets.
+- The whole thing is deliberately lightweight so it stays fast, cheap, and low-risk.
 
-> Check any page footer for the **Site build** stamp (e.g. `20260613-6`). After a deploy, hard-refresh (`Ctrl+Shift+R` / `Cmd+Shift+R`) or use a private window if you see stale content.
+## Key features
 
-## Why this project stands out
+- Full archive of the main daCommunity collection with search, filters, sorting, and price info.
+- Collector lookup: type an ENS or address and instantly see their portfolio (with shareable links).
+- Theatre Mode for desktop: lights-down immersive video player with up-next.
+- Film hub with series filters and in-page playback.
+- Live market cap race chart.
+- PWA support for install and basic offline use.
+- Clean mobile experience with the important navigation always available.
 
-- **Fully automated OpenSea data pipeline** — No secrets to rotate. Every run auto-generates a fresh temporary API key via the public endpoint (`/auth/keys`). Daily refresh (`.github/workflows/refresh-data.yml`) + badges + meta update → commit → deploy. Zero manual key management.
-- **True static hosting** — GitHub Pages + CDN. $0 ongoing cost, instant deploys, no server runtime ever. All OpenSea work happens in CI only.
-- **Pre-fetched + bulletproof cache-busting** — Backend pulls OpenSea into JSON once per day. Every deploy runs `scripts/bump_deploy_version.py` to touch `?v=`, SW `CACHE`, `VERSION.txt`, `<meta name="site-build">`, and footers. Browsers/SW/CDN get fresh content reliably.
-- **Vanilla JS doing "impossible" UX** — Rich gallery, collector portfolios, sticky Theatre player, share links, multi-collection filters — all client-side with no frameworks or build step. Instant first paint from tiny `gallery_catalog.json`.
-- **Zero-friction collector experience** — ENS or 0x lookup, beautiful shareable `?wallet=` links, no wallet connect or gas. Works everywhere.
-- **Thoughtful details & polish** — Theatre "lights down" mode, flying popcorn, safe-area handling, pride bars, price badges, smooth grids, network-first SW for JSON.
-- **Registry-driven & multi-collection ready** — `collections_registry.json` + `backend/collections_registry.py` make new live collections light up automatically in filters and links. Badges use the same archive patterns.
-- **What makes the architecture notable** — Pre-computed static JSON from daily CI + vanilla frontend = premium feel with zero ongoing cost or live dependencies in the browser. Great model for other community archives.
+## How it works (high level)
 
-## Routes
+A daily GitHub Action fetches the latest data from OpenSea, builds a few JSON files, and commits them. When anything changes on main, another workflow deploys the `web/` folder to GitHub Pages and bumps version stamps so browsers and the service worker pick up fresh content.
 
-| Route                  | Experience |
-|------------------------|------------|
-| `/`                    | Home hub — quick cards to everything + subtle store promo |
-| `/collections/`        | Collection picker (live gallery + coming-soon teasers) |
-| `/dacommunity/`        | Main gallery + search/filters/sort + "Find your daCATs" wallet lookup + collector portfolio (`?wallet=...`) |
-| `/badges/`             | Cosmic "Coming soon" teaser (static + starfield) |
-| `/analytics/`          | MC race — Flourish bar chart + animated track cars |
-| `/film/`               | Film hub — sticky search + series filters + in-page YT player + Theatre links |
-| `/film/mozvane/`       | Dedicated Theatre Mode (desktop immersive) |
-| `/film/theatre/?v=ID`  | Generic theatre route for any catalog video |
+On the client, a small catalog file loads immediately for the first view. Richer data comes in afterward. All the UI logic (search, portfolios, player controls, filters) is vanilla JavaScript. No frameworks, no live API calls from the browser.
 
-## Key Features (current)
+## Security model
 
-- **Gallery** — Fast catalog first-paint, background full-data enrichment, live "for sale" / "recent transfers" filters, price sorting, search across name/story/token.
-- **Collector Portfolio** — Dark cinema grid scoped to one wallet. Same filters work inside it. Clean "Back to Archive" escape in profile card + pride bar (works for direct ?wallet= links from NFTs too).
-- **Wallet deep links** — `?wallet=0x...#wallet-panel` or `?ens=...` — opens lookup + portfolio instantly. Share buttons copy the full URL. Mobile nav on collection pages includes Collections for easy navigation.
-- **Multi-collection filter** (new) — Dropdown in the archive (only shows `status: "live"` entries from `collections_registry.json`). Pre-filter links from `/collections/` (`?collection=dacommunity`). "Find your daCATs" + share links respect the active collection.
-- **Theatre Mode** — Lights-down experience, up-next, full controls when lights up, persistent preferences via sessionStorage. Mobile gracefully falls back to hub player.
-- **Strong data freshness** — Daily OpenSea sync (see backend). Visible "last pull" + staleness banners. Network-first for JSON in SW.
-- **PWA** — Installable, offline shell, versioned cache.
+The standout part is how we handle OpenSea access.
 
-## Honest limitations
+Most projects store a permanent API key in their repo or CI secrets. We don't. Every data refresh calls a public endpoint to get a short-lived key for that run only. The key is used once in the Action and then gone.
 
-- **Not live data** — Everything is pre-fetched daily via GitHub Action (see `.github/workflows/refresh-data.yml`). Premium static feel with aggressive staleness banners. Not a real-time explorer.
-- **Single primary collection today** — daCommunity (Base) is fully live. Badges (Ethereum) and future drops use `collections_registry.json` + "coming soon" so the UI lights them up cleanly.
-- **No wallet signing** — By design. Pure read-only community archive.
-- **Desktop-heavy Theatre** — Full "lights down" experience is 769px+. Mobile falls back gracefully to the hub player.
+All the fetching and processing happens exclusively in GitHub Actions. The published site contains only static files — HTML, CSS, JS, and pre-built JSON. No keys, no secrets, and no external calls ever reach the user's browser.
 
-## Architecture at a glance
+This removes whole categories of risk: no key rotation problems, no chance of a leaked long-lived token, and a very small attack surface on the live site. Data freshness issues are clearly surfaced with banners so people know what they're looking at.
 
-```
-OpenSea (public /auth/keys + data) 
-  ↓ (auto-generated fresh key every run)
-GitHub Action (refresh-data.yml)
-  → backend/*.py (fetch + enrich + badges)
-  → web/data/*.json (catalog + full + wallet + meta + badges)
-  → git commit + bump_deploy_version.py
-  ↓
-GitHub Pages (pure static: HTML + vanilla JS + CSS + SW)
-```
+## Technical details
 
-**Key strengths that make this repo stand out to devs**:
-- **Zero secret maintenance** — Daily pipeline auto-creates a short-lived OpenSea key via public endpoint. No long-lived tokens in repo or Actions.
-- **Registry-driven** (`collections_registry.json`) — Adding a new live collection is mostly data + registry entry; UI lights up automatically.
-- **Two-tier data + aggressive cache-busting** — Tiny catalog for instant paint, rich data loaded in background. Every deploy invalidates caches at browser/SW/CDN level.
-- **Vanilla everything on the client** — No frameworks, no server, no live API calls. Complex UX (portfolios, Theatre, filters) all in small JS files.
-- **Pre-computed static wins** — Daily CI does the heavy lifting. Site is fast, cheap, and delightful with almost zero runtime dependencies.
-- See `docs/MAINTENANCE.md` for deeper notes, `docs/COLLECTIONS.md` for adding collections.
-
-See `docs/MAINTENANCE.md` (especially the automated data pipeline section), `docs/COLLECTIONS.md`, `docs/THEATRE.md` for deeper maintainer notes.
+- Hosting: GitHub Pages with CDN.
+- Data pipeline: Daily CI job produces a tiny catalog for instant paint plus richer data files.
+- Cache busting: Every deploy updates `?v=` on assets, service worker cache name, version files, and meta tags.
+- Client code: Vanilla JS + CSS. No build step required for the frontend itself.
+- Adding collections: Mostly a registry entry in `collections_registry.json` plus data. Live ones appear automatically in filters.
+- See the `docs/` folder for maintenance notes, collection setup, and Theatre specifics.
 
 ## Local development
 
+Serve from the web directory (file:// won't work for fetches):
+
 ```bash
-# Serve the web root (required — fetch() is blocked on file://)
 cd web
 python -m http.server 8080
-# or
-npx serve .
+# or npx serve
 ```
 
-Open http://localhost:8080 (or the dacommunity subpath). Use `start-gallery.bat` on Windows for the same.
+Open http://localhost:8080.
 
-For data work:
+For backend data work (the real pipeline runs in CI):
+
 ```bash
 cd backend
-python -m pip install -r requirements.txt
-# The real daily path is fully automated in .github/workflows/refresh-data.yml
-# (no secrets needed — key is generated fresh each run)
+pip install -r requirements.txt
+python fetch_gallery_data.py
 ```
 
 ## Contributing
 
-PRs welcome for:
-- Polish, accessibility, mobile edge cases
-- New "live" entries in the registry + corresponding data
-- Theatre / film enhancements
-- Documentation
+PRs for polish, accessibility, new live collections (via the registry), film features, or docs are welcome.
 
-Please keep the "static first, zero ongoing cost, delightful details" spirit. Run the bump script locally before pushing if you changed shell assets so the build stamp advances.
+Keep the focus on static-first, low ongoing cost, and nice details. Run the bump script locally before pushing changes that touch assets.
 
 ## Credits
 
-Built with love for the daCAT community by the same folks who bring you the comics, films, and chaos.
+Made for the daCAT community.
 
-- Data pipeline & static discipline: the daCAT engineering crew
-- Art & lore: Randy Chavez, DaKingsi, and the wider world
-- Special thanks to everyone who minted, held, and created the stories that made an archive worth building.
+Art, stories, and films by Randy Chavez, DaKingsi, and everyone who's contributed to the universe.
 
-Enjoy the gallery. Find your daCATs. Share the link. 
+The real home is at dacat.fun, along with the films and the community itself.
 
 **dacat.fun · dacatworld · dacat.store**
-```
-
-Enjoy the gallery. Find your daCATs. Shop the store. Share the stories.
-
-## Refresh data from OpenSea (fully automated)
-
-The daily data pipeline is **completely hands-off**:
-
-- GitHub Actions auto-generates a fresh temporary OpenSea key every run (public `/auth/keys` endpoint).
-- No repository secrets to create or rotate.
-- Runs on schedule + manual dispatch.
 - Updates all `web/data/*.json` (gallery + badges + meta).
 
 Local dev (for testing changes):
