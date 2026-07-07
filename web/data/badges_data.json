@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T12:07:10.721820+00:00",
+  "generated_at": "2026-07-07T10:57:15.091589+00:00",
   "source": "mints_created_by_wallet_on_ethereum_after_cutoff",
   "cutoff_date": "2026-05-20",
   "collection": {
@@ -29,8 +29,8 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 5,
-        "circulating_copies": 6,
+        "holder_count": 6,
+        "circulating_copies": 7,
         "top_holders": [
           {
             "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
@@ -80,6 +80,10 @@
           },
           {
             "address": "0xbd0c0b2943eae1b97e4d0e6b18df3faa5fb14a10",
+            "quantity": 1
+          },
+          {
+            "address": "0x82c1e9798451e9cf1ea6ba5e7c1983e80a7e1ba5",
             "quantity": 1
           }
         ]
@@ -3465,8 +3469,8 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 11,
-        "circulating_copies": 11,
+        "holder_count": 12,
+        "circulating_copies": 12,
         "top_holders": [
           {
             "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
@@ -3549,6 +3553,11 @@
             "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
             "quantity": 1,
             "ens_name": "grumpyx.eth"
+          },
+          {
+            "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
+            "quantity": 1,
+            "ens_name": "msgato.eth"
           }
         ]
       },
