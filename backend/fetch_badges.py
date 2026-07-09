@@ -864,6 +864,10 @@ def main():
         awarded_for = category.replace("_", " ").title()
 
         local_slug = SLUG_TO_LOCAL_ASSET.get(slug, slug + "-" + token_id)
+        # Edition clubs need is_series_rep so light/search view keeps them (app.js filters
+        # trillion|billion to series_rep only). edition_club lets portfolio still show them
+        # for real holders (unlike multi-1:1 series reps which are search-only).
+        is_edition_club = slug in EDITION_CLUB_SLUGS
         item = {
             "token_id": token_id,
             "name": name,
@@ -888,6 +892,8 @@ def main():
             "created_by_wallet": ISSUER_WALLET,
             "sub_category": get_sub_category(category, name),
             "tags": get_tags({"is_1_of_1": is_1of1, "award_category": category, "unclaimed_or_available": unclaimed, "name": name, "description": desc}),
+            "is_series_rep": True if is_edition_club else False,
+            "edition_club": is_edition_club,
         }
         items.append(item)
 

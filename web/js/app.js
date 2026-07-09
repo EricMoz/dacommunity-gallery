@@ -2141,7 +2141,9 @@ function buildHoldingsFromCurrentItems(address) {
       return (o.address || '').toLowerCase() === addr;
     });
     if (owns) {
-      if (item.is_series_rep && item.source_created_collection && /trillion|billion/i.test(item.source_created_collection)) return;
+      // Multi 1:1 clubs: series_rep is search-only. Edition clubs (e.g. 100 Billion) use
+      // series_rep as the real collectible card and must still appear for holders.
+      if (item.is_series_rep && item.source_created_collection && /trillion|billion/i.test(item.source_created_collection) && !item.edition_club) return;
       seen[key] = true;
       holdings.push({
         token_id: item.token_id,
@@ -2695,8 +2697,9 @@ function getFilteredItems() {
         }
       }
       if (match) {
-        // For multi-1of1 clubs, skip the series rep item in portfolio; only the specific personal 1:1
-        if (i.source_created_collection && /trillion|billion/i.test(i.source_created_collection) && i.is_series_rep) {
+        // For multi-1of1 clubs, skip the series rep in portfolio; only the personal 1:1.
+        // Edition clubs (identical copies, e.g. 100 Billion) keep the series card for holders.
+        if (i.source_created_collection && /trillion|billion/i.test(i.source_created_collection) && i.is_series_rep && !i.edition_club) {
           return false;
         }
         return true;

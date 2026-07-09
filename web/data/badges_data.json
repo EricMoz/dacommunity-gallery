@@ -3260,7 +3260,9 @@
       "source_created_collection": "dacat100billion",
       "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
       "sub_category": "100 Billion Club",
-      "tags": []
+      "tags": [],
+      "is_series_rep": true,
+      "edition_club": true
     },
     {
       "token_id": "1",

@@ -3129,9 +3129,10 @@
       "mystery_status": "approved",
       "ens_match_detected": false,
       "source_created_collection": "dacat100billion",
-      "is_series_rep": false,
+      "is_series_rep": true,
       "sub_category": "100 Billion Club",
-      "tags": []
+      "tags": [],
+      "edition_club": true
     },
     {
       "token_id": "1",
