@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-08T10:18:40.211679+00:00",
+  "generated_at": "2026-07-09T03:05:20.301138+00:00",
   "source": "mints_created_by_wallet_on_ethereum_after_cutoff",
   "cutoff_date": "2026-05-20",
   "collection": {
@@ -9,7 +9,7 @@
     "chain": "ethereum",
     "creator_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
     "note": "Personal 1/1 and limited awards/badges created by the wallet. Issuer wallet excluded from all holder stats. Mystery items pending approval.",
-    "total_created": 16,
+    "total_created": 17,
     "one_of_ones": 57,
     "unclaimed": 0,
     "mysteries": 2
@@ -29,14 +29,9 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 6,
+        "holder_count": 7,
         "circulating_copies": 7,
         "top_holders": [
-          {
-            "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
-            "quantity": 2,
-            "ens_name": "msgato.eth"
-          },
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1,
@@ -55,15 +50,15 @@
           {
             "address": "0xbd0c0b2943eae1b97e4d0e6b18df3faa5fb14a10",
             "quantity": 1
+          },
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1,
+            "ens_name": "dagato.eth"
           }
         ],
         "holders": [
           {
-            "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
-            "quantity": 2,
-            "ens_name": "msgato.eth"
-          },
-          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1,
             "ens_name": "lostthegame.eth"
@@ -83,8 +78,18 @@
             "quantity": 1
           },
           {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1,
+            "ens_name": "dagato.eth"
+          },
+          {
             "address": "0x82c1e9798451e9cf1ea6ba5e7c1983e80a7e1ba5",
             "quantity": 1
+          },
+          {
+            "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
+            "quantity": 1,
+            "ens_name": "msgato.eth"
           }
         ]
       },
@@ -3216,6 +3221,46 @@
         "1_of_1"
       ],
       "is_series_rep": false
+    },
+    {
+      "token_id": "1",
+      "name": "DACAT 100 BILLION CLUB",
+      "display_name": "DACAT 100 BILLION CLUB",
+      "local_slug": "dacat-100-billion-club",
+      "description": "The DACAT 100 BILLION CLUB recognizes community members who have accumulated and held at least 100 BILLION DACAT tokens in a single wallet. This  NFT badge honors conviction, participation, and belief in the long-term vision of DACAT and the decentralized creator movement. As a member of the 100 BILLION CLUB, this holder  represents a group of supporters who have chosen to help build the foundation of the DACAT ecosystem through their commitment to the project and its future. This badge serves as a permanent digital collectible recognizing that achievement and preserving a moment in DACAT history.\n If this NFT badge is held in the same wallet as the accompanying 100,000,000,000 DACAT tokens, future community recognition opportunities may be possible at the discretion of the DACAT community. This NFT is issued for commemorative and recognition purposes only and does not represent ownership, equity, profit sharing, or a promise of future compensation\nhttps://www.dacatworld.com",
+      "excerpt": "The DACAT 100 BILLION CLUB recognizes community members who have accumulated and held at least 100 BILLION DACAT tokens in a single wallet. This NFT badge hono…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xbda1706f9260a2a9e03aec274921f30b4def67fb/7bd8a279dc3a64b8321c7e8439387e/827bd8a279dc3a64b8321c7e8439387e.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dacat100billion",
+      "traits": [],
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x82c1e9798451e9cf1ea6ba5e7c1983e80a7e1ba5",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x82c1e9798451e9cf1ea6ba5e7c1983e80a7e1ba5",
+            "quantity": 1
+          }
+        ]
+      },
+      "minted_at": "2026-07-07T10:23:23+00:00",
+      "is_1_of_1": false,
+      "edition_size": 333,
+      "award_category": "100_billion_club",
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "source_created_collection": "dacat100billion",
+      "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+      "sub_category": "100 Billion Club",
+      "tags": []
     },
     {
       "token_id": "1",

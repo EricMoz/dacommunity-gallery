@@ -72,6 +72,7 @@ KNOWN_BADGE_COLLECTION_SLUGS = [
     "dacat9trillion",
     "dacat10trillion",
     "dacat500billion",
+    "dacat100billion",
     "dacat-world-collector-cat",  # verify slug if needed
     "dacat-gem-nova-green",
     "dacat-dalegend-line",
@@ -92,6 +93,7 @@ SLUG_TO_LOCAL_ASSET = {
     "dacat9trillion": "dacat-9-trillion-club",
     "dacat10trillion": "dacat-10-trillion-club",
     "dacat500billion": "dacat-500-billion-club",
+    "dacat100billion": "dacat-100-billion-club",
     "dacat-world-collector-cat": "dacat-world-collector-cat",
     "dacat-gem-nova-green": "dacat-gem-nova-green",
     "dacat-dalegend-line": "dacat-dalegend-line",
@@ -307,8 +309,13 @@ def get_sub_category(award_cat: str, name: str) -> str:
         return 'Gem Nova Green'
     if 'dalegend' in n or 'da legend' in n or 'dalegend line' in n:
         return 'DaLegend Line'
-    if '500_billion_club' in n or 'billion club' in n:
+    # Specific billion clubs before the generic "billion club" match
+    if '100_billion' in n or '100 billion' in n or '100billion' in n:
+        return '100 Billion Club'
+    if '500_billion' in n or '500 billion' in n or '500billion' in n:
         return '500 Billion Club'
+    if 'billion_club' in n or 'billion club' in n:
+        return 'Billion Club'
     # Fallback to cleaned collection name from OpenSea for most part.
     return (award_cat or name or 'Other').replace('_', ' ').title()
 
@@ -535,17 +542,29 @@ def main():
         "dacat9trillion": "DACAT 9 TRILLION CLUB",
         "dacat10trillion": "DACAT 10 TRILLION CLUB",
         "dacat500billion": "DACAT 500 BILLION CLUB",
+        "dacat100billion": "DACAT 100 BILLION CLUB",
         "dacat-world-collector-cat": "DACAT WORLD - COLLECTOR CAT",
         "dacat-gem-nova-green": "DACAT GEM - NOVA GREEN",
         "dacat-dalegend-line": "DACAT DALEGEND LINE",
         "dagatoawards": "DACAT 13 TRILLION CLUB",
     }
 
+    # Edition-style clubs: many identical copies (not personalized 1:1 memberships).
+    # Use single collection rep + /holders so issuer inventory is excluded and future
+    # distributions show up as holder/transfer updates on daily refresh.
+    EDITION_CLUB_SLUGS = {
+        "dacat100billion",  # 333 copies minted by dacatworld.eth, distributed over time
+    }
+
     for slug, nfts in slug_nfts.items():
         if not nfts:
             continue
 
-        is_multi_custom_1of1 = (slug.startswith("dacat") and ("trillion" in slug.lower() or "billion" in slug.lower()))
+        is_multi_custom_1of1 = (
+            slug.startswith("dacat")
+            and ("trillion" in slug.lower() or "billion" in slug.lower())
+            and slug not in EDITION_CLUB_SLUGS
+        )
 
         if is_multi_custom_1of1:
             # For trillion/billion clubs that are custom 1:1s with ENS baked into each NFT's image/name,
@@ -798,10 +817,13 @@ def main():
             owners_list = client.get_nft_owners(token_id, "ethereum", contract)
             non_issuer_holders = [o for o in owners_list if (o.get("address") or "").lower() != ISSUER_WALLET]
             owner_stats = summarize_owners(non_issuer_holders)
+            total_minted = None
         else:
             all_holders = get_collection_holders(slug, api_key)
+            # Issuer (dacatworld.eth / ISSUER_WALLET) is creator inventory only — never a "holder" in stats
             non_issuer_holders = [h for h in all_holders if (h.get("address") or "").lower() != ISSUER_WALLET]
             owner_stats = summarize_owners(non_issuer_holders)
+            total_minted = sum(int(h.get("quantity", 0) or 0) for h in all_holders) if all_holders else None
 
         for holder_list in (owner_stats.get("holders", []), owner_stats.get("top_holders", [])):
             for h in holder_list:
@@ -822,6 +844,10 @@ def main():
         if slug == "dagatoawards":
             supply = 1
             is_1of1 = True
+        elif slug in EDITION_CLUB_SLUGS and total_minted and total_minted > 0:
+            # e.g. DACAT 100 BILLION CLUB: 333 identical copies; holders exclude creator inventory
+            supply = total_minted
+            is_1of1 = False
 
         category = get_sub_category("", name).lower().replace(" ", "_")
         unclaimed = "unclaimed" in name.lower() or "available" in (desc or "").lower()
@@ -831,6 +857,10 @@ def main():
         if slug == "dagatoawards":
             display_name = "DACAT 13 TRILLION CLUB"
             category = "trillion_club"
+        if slug == "dacat100billion":
+            display_name = "DACAT 100 BILLION CLUB"
+            name = display_name
+            category = "100_billion_club"
         awarded_for = category.replace("_", " ").title()
 
         local_slug = SLUG_TO_LOCAL_ASSET.get(slug, slug + "-" + token_id)
