@@ -709,30 +709,109 @@ function enrichHoldersAndCollectorsWithENS() {
   });
 }
 
+/**
+ * Build collectors list from currently loaded gallery items.
+ * Uses the same per-item ownership rules as buildHoldingsFromCurrentItems so the
+ * collectors-modal "N pieces" count matches the collector wallet view when both
+ * daCommunity + badges are loaded ("All collections").
+ */
+function buildCollectorsFromLoadedItems(items) {
+  var byAddr = {};
+  (items || []).forEach(function (item) {
+    // Match buildHoldingsFromCurrentItems: multi 1:1 series_rep is search-only
+    if (
+      item.is_series_rep &&
+      item.source_created_collection &&
+      /trillion|billion/i.test(item.source_created_collection) &&
+      !item.edition_club
+    ) {
+      return;
+    }
+    var os = item.owners || {};
+    var list = os.holders || os.top_holders || [];
+    var itemKey = (item.source_created_collection || "dacommunity") + ":" + item.token_id;
+    list.forEach(function (h) {
+      var a = (h.address || "").toLowerCase();
+      if (!a) return;
+      if (!byAddr[a]) {
+        byAddr[a] = {
+          address: h.address || a,
+          ens_name: h.ens_name || null,
+          username: h.username || null,
+          unique_pieces: 0,
+          collection_quantity: 0,
+          _keys: {},
+        };
+      } else {
+        if (h.ens_name && !byAddr[a].ens_name) byAddr[a].ens_name = h.ens_name;
+        if (h.username && !byAddr[a].username) byAddr[a].username = h.username;
+      }
+      if (byAddr[a]._keys[itemKey]) return;
+      byAddr[a]._keys[itemKey] = true;
+      byAddr[a].unique_pieces += 1;
+      byAddr[a].collection_quantity += Number(h.quantity || 1) || 1;
+    });
+  });
+  // Enrich ENS / username from wallet index when item owners lack them
+  Object.keys(byAddr).forEach(function (a) {
+    var e = walletIndex && walletIndex.by_address && walletIndex.by_address[a];
+    if (e) {
+      if (!byAddr[a].ens_name && e.ens_name) byAddr[a].ens_name = e.ens_name;
+      if (!byAddr[a].username && e.username) byAddr[a].username = e.username;
+    }
+    delete byAddr[a]._keys;
+  });
+  return Object.values(byAddr).sort(function (a, b) {
+    return (b.unique_pieces || b.collection_quantity || 0) - (a.unique_pieces || a.collection_quantity || 0);
+  });
+}
+
 function rebuildCollectorsForCurrentView() {
   if (activeCollection === "badges") {
     collectorsList = buildCollectorsFromBadgeItems(galleryData ? galleryData.items : []);
   } else if (!activeCollection || activeCollection === "all") {
-    var dacomCols = [];
-    if (walletIndex && walletIndex.by_address) {
-      dacomCols = buildCollectorsFromIndex(walletIndex);
-    } else if (collectorsList && collectorsList.length) {
-      dacomCols = collectorsList;
-    }
-    var badgeCols = buildCollectorsFromBadgeItems(galleryData ? galleryData.items : []);
-    var map = {};
-    dacomCols.forEach(function (c) {
-      if (c && c.address) map[c.address.toLowerCase()] = c;
-    });
-    badgeCols.forEach(function (c) {
-      if (c && c.address) {
-        var k = c.address.toLowerCase();
-        if (!map[k]) map[k] = c;
+    // "All collections": count pieces across currently loaded dacommunity + badges items.
+    // Previous merge kept only the first list's unique_pieces, so badge holdings were dropped
+    // for anyone already in the daCommunity wallet index — modal under-counted vs wallet view.
+    var fromItems = buildCollectorsFromLoadedItems(galleryData ? galleryData.items : []);
+    if (fromItems.length) {
+      collectorsList = fromItems;
+    } else {
+      // Fallback if items not loaded yet: sum dacommunity index + badge collectors
+      var dacomCols = [];
+      if (walletIndex && walletIndex.by_address) {
+        dacomCols = buildCollectorsFromIndex(walletIndex);
       }
-    });
-    collectorsList = Object.values(map).sort(function (a, b) {
-      return (b.unique_pieces || b.collection_quantity || 0) - (a.unique_pieces || a.collection_quantity || 0);
-    });
+      var badgeCols = buildCollectorsFromBadgeItems(galleryData ? galleryData.items : []);
+      var map = {};
+      function mergeRow(c) {
+        if (!c || !c.address) return;
+        var k = c.address.toLowerCase();
+        var pieces = Number(c.unique_pieces) || 0;
+        var qty = Number(c.collection_quantity) || 0;
+        if (!map[k]) {
+          map[k] = {
+            address: c.address,
+            ens_name: c.ens_name || null,
+            username: c.username || null,
+            unique_pieces: pieces,
+            collection_quantity: qty,
+          };
+        } else {
+          map[k].unique_pieces += pieces;
+          map[k].collection_quantity += qty;
+          if (!map[k].ens_name && c.ens_name) map[k].ens_name = c.ens_name;
+          if (!map[k].username && c.username) map[k].username = c.username;
+        }
+      }
+      dacomCols.forEach(mergeRow);
+      badgeCols.forEach(mergeRow);
+      collectorsList = Object.values(map).sort(function (a, b) {
+        return (b.unique_pieces || b.collection_quantity || 0) - (a.unique_pieces || a.collection_quantity || 0);
+      });
+    }
+  } else if (activeCollection === "dacommunity") {
+    collectorsList = buildCollectorsFromIndex(walletIndex);
   }
   updateCollectorsButton();
 }
