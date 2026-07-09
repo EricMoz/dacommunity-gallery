@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-09T03:05:20.301138+00:00",
+  "generated_at": "2026-07-09T10:56:06.644694+00:00",
   "source": "mints_created_by_wallet_on_ethereum_after_cutoff",
   "cutoff_date": "2026-05-20",
   "collection": {
@@ -104,7 +104,9 @@
       "sub_category": "Rookie Card 2026",
       "tags": [
         "1_of_1"
-      ]
+      ],
+      "is_series_rep": false,
+      "edition_club": false
     },
     {
       "token_id": "0",
@@ -3391,7 +3393,9 @@
       "sub_category": "Collector Cat",
       "tags": [
         "1_of_1"
-      ]
+      ],
+      "is_series_rep": false,
+      "edition_club": false
     },
     {
       "token_id": "1",
@@ -3500,7 +3504,9 @@
       "sub_category": "Gem Nova Green",
       "tags": [
         "1_of_1"
-      ]
+      ],
+      "is_series_rep": false,
+      "edition_club": false
     },
     {
       "token_id": "1",
@@ -3619,7 +3625,9 @@
       "sub_category": "DaLegend Line",
       "tags": [
         "1_of_1"
-      ]
+      ],
+      "is_series_rep": false,
+      "edition_club": false
     },
     {
       "token_id": "4",
@@ -3664,7 +3672,9 @@
       "tags": [
         "1_of_1",
         "trillion_club"
-      ]
+      ],
+      "is_series_rep": false,
+      "edition_club": false
     }
   ]
 }
