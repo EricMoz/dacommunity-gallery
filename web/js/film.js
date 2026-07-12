@@ -923,13 +923,9 @@
   }
 
   function playInModal(videoId, autoplay) {
+    // Callers must not pass Shorts (openModal / openFromQuery / up-next use mainVideos)
     const video = findVideo(videoId);
     if (!video) return;
-    // Defense in depth: never load a Short into the YT iframe player
-    if (isShort(video)) {
-      window.open(shortExternalUrl(video), "_blank", "noopener,noreferrer");
-      return;
-    }
     currentVideoId = videoId;
     setPlayerLoading(true);
 
