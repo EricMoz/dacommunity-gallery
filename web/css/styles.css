@@ -5773,16 +5773,6 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   box-sizing: border-box;
 }
 
-/* Bottom Theatre CTA — after catalog, above Shop/Home */
-.film-bottom-theatre-cta {
-  margin: 1.5rem 0 0.5rem;
-  text-align: center;
-}
-
-.film-bottom-theatre-cta.film-series-theatre-cta {
-  display: block;
-}
-
 .film-short-badge {
   position: absolute;
   top: 0.45rem;
@@ -8985,10 +8975,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     display: none !important;
   }
 
-  /* Hero theatre chip can hide on small screens; bottom CTA + foot pill stay visible */
-  .film-hub-theatre-quick {
-    display: none !important;
-  }
+  /* Keep top + bottom Theatre · Shop · Home trios visible on mobile */
 
   .film-theatre-popcorn-field {
     display: none;

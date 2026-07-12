@@ -17,7 +17,6 @@
     shorts: document.getElementById("film-shorts"),
     shortsTrack: document.getElementById("film-shorts-track"),
     shortsCount: document.getElementById("film-shorts-count"),
-    bottomTheatre: document.getElementById("film-bottom-theatre"),
     search: document.getElementById("film-search"),
     filters: document.getElementById("film-filters"),
     stats: document.getElementById("film-stats"),
@@ -203,16 +202,37 @@
     return withTheatre.length ? theatreHref(withTheatre[0]) : null;
   }
 
-  function syncHeroTheatreLink() {
-    const el = document.getElementById("film-hero-theatre");
-    if (!el) return;
+  /** Theatre href for nav pills (top + bottom trio) — always available. */
+  function resolveNavTheatreHref() {
+    const dedicated = sortVideos(
+      (videos || []).filter(
+        (v) =>
+          !isShort(v) &&
+          v.theatre &&
+          v.theatre.route &&
+          v.theatre.enabled !== false
+      )
+    );
+    if (dedicated.length) return dedicated[0].theatre.route;
     const href = resolveHeroTheatreHref();
-    if (!href || !isTheatrePc()) {
-      el.hidden = true;
-      return;
-    }
-    el.href = href;
-    el.hidden = false;
+    return href || "mozvane/";
+  }
+
+  /** Keep hero + foot "Theatre · Shop · Home" pills in sync (no full-screen CTA pill). */
+  function syncTheatreNavLinks() {
+    const href = resolveNavTheatreHref();
+    document
+      .querySelectorAll("#film-hero-theatre, .film-hub-foot-theatre")
+      .forEach(function (el) {
+        if (!el) return;
+        el.href = href;
+        el.hidden = false;
+        el.removeAttribute("hidden");
+      });
+  }
+
+  function syncHeroTheatreLink() {
+    syncTheatreNavLinks();
   }
 
   function createCard(video, opts) {
@@ -290,73 +310,6 @@
     target.appendChild(section);
   }
 
-  /** Dedicated theatre route from catalog (e.g. mozvane/) — always available. */
-  function resolveBottomTheatreHref() {
-    const dedicated = sortVideos(
-      (videos || []).filter(
-        (v) =>
-          !isShort(v) &&
-          v.theatre &&
-          v.theatre.route &&
-          v.theatre.enabled !== false
-      )
-    );
-    if (dedicated.length) return dedicated[0].theatre.route;
-    const any = sortVideos(
-      (videos || []).filter(
-        (v) => !isShort(v) && v.theatre && v.theatre.enabled !== false
-      )
-    );
-    if (any.length) return "theatre/?v=" + encodeURIComponent(any[0].id);
-    // Hard fallback so the hub CTA never vanishes if data is incomplete
-    return "mozvane/";
-  }
-
-  /**
-   * "Theatre mode · full screen" pill directly above Shop/Home foot links.
-   * Always mounted and visible (classic hub placement after the catalog).
-   */
-  function renderBottomTheatreCta() {
-    const foot = document.querySelector(".film-hub-foot-links");
-    let el = document.getElementById("film-bottom-theatre");
-    if (!el) {
-      el = document.createElement("p");
-      el.id = "film-bottom-theatre";
-      el.className = "film-bottom-theatre-cta film-series-theatre-cta";
-      if (foot && foot.parentNode) {
-        foot.parentNode.insertBefore(el, foot);
-      } else if (els.rows && els.rows.parentNode) {
-        els.rows.parentNode.appendChild(el);
-      }
-    } else if (foot && el.nextElementSibling !== foot) {
-      // Keep order: catalog/shorts → theatre CTA → foot links
-      foot.parentNode.insertBefore(el, foot);
-    }
-    els.bottomTheatre = el;
-    if (!el) return;
-
-    const href = resolveBottomTheatreHref();
-    el.hidden = false;
-    el.removeAttribute("hidden");
-    el.style.display = "";
-    el.innerHTML =
-      '<a class="film-theatre-cta-link" href="' +
-      escapeHtml(href) +
-      '"><span class="film-theatre-cta-icon" aria-hidden="true">🍿</span> Theatre mode · full screen</a>';
-
-    // Also pin a compact link as the first foot pill (above/before Shop)
-    if (foot) {
-      let footTheatre = foot.querySelector(".film-hub-foot-theatre");
-      if (!footTheatre) {
-        footTheatre = document.createElement("a");
-        footTheatre.className = "page-quick-link film-hub-foot-theatre";
-        foot.insertBefore(footTheatre, foot.firstChild);
-      }
-      footTheatre.href = href;
-      footTheatre.textContent = "🍿 Theatre mode";
-    }
-  }
-
   function resolveFeaturedIds() {
     let ids = [];
     if (catalog.featuredIds && catalog.featuredIds.length) {
@@ -412,7 +365,6 @@
     if (els.rows && on) els.rows.hidden = true;
     if (els.featured && on) els.featured.hidden = true;
     if (els.shorts && on) els.shorts.hidden = true;
-    if (els.bottomTheatre && on) els.bottomTheatre.hidden = true;
   }
 
   /**
@@ -500,9 +452,9 @@
       if (!order.includes(name)) renderSection(name, list, els.rows);
     });
 
-    // After all series (Crossovers last in seriesOrder) → Shorts → bottom Theatre
+    // After all series (Crossovers last in seriesOrder) → Shorts
     renderShorts();
-    renderBottomTheatreCta();
+    syncTheatreNavLinks();
 
     const anyVisible =
       (els.featured && !els.featured.hidden) || els.rows.children.length > 0;
@@ -1181,8 +1133,7 @@
     loadYouTubeApi();
     bindEvents();
     THEATRE_PC_MQ.addEventListener("change", function () {
-      syncHeroTheatreLink();
-      renderBottomTheatreCta();
+      syncTheatreNavLinks();
     });
     setLoading(true);
     try {
