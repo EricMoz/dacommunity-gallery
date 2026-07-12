@@ -310,13 +310,22 @@
     return href || "mozvane/";
   }
 
-  /** Keep hero + foot "Theatre · Shop · Home" pills in sync (no full-screen CTA pill). */
+  /**
+   * Keep hero + foot Theatre pills in sync with Shop/Home.
+   * Same breakpoint as theatre.js (min-width: 769px): hide on smaller screens
+   * so users never hit the desktop-only Theatre error from the hub nav.
+   */
   function syncTheatreNavLinks() {
-    const href = resolveNavTheatreHref();
+    const show = isTheatrePc();
+    const href = show ? resolveNavTheatreHref() : "mozvane/";
     document
       .querySelectorAll("#film-hero-theatre, .film-hub-foot-theatre")
       .forEach(function (el) {
         if (!el) return;
+        if (!show) {
+          el.hidden = true;
+          return;
+        }
         el.href = href;
         el.hidden = false;
         el.removeAttribute("hidden");

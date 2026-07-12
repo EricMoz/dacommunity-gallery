@@ -5237,6 +5237,15 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   background: rgba(255, 204, 0, 0.1);
 }
 
+/* Match theatre.js desktop gate (min-width: 769px) — hide Theatre nav under that */
+@media (max-width: 768px) {
+  .film-hub-theatre-quick,
+  .film-hub-foot-theatre,
+  #film-hero-theatre {
+    display: none !important;
+  }
+}
+
 .film-hub-foot-links {
   margin: 1.35rem 0 0.35rem;
 }
