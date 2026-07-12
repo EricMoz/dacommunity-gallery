@@ -138,14 +138,12 @@ a:hover { color: var(--blue-accent); }
   color: var(--yellow);
 }
 
-/* My daCATs — emphasized on home + gallery, still no dash unless active */
-.home-page .nav-btn-wallet:not(.is-active),
+/* My daCATs — yellow emphasis on gallery only (home matches film hub quiet wallet pill) */
 body[data-base] .nav-btn-wallet:not(.is-active) {
   color: var(--yellow);
   border-color: rgba(255, 204, 0, 0.35);
 }
 
-.home-page .nav-btn-wallet:not(.is-active):hover,
 body[data-base] .nav-btn-wallet:not(.is-active):hover {
   background: rgba(255, 204, 0, 0.08);
   border-color: var(--yellow);

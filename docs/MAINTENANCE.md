@@ -81,12 +81,13 @@ Nav markup is **duplicated** in each `web/**/index.html` (no shared partial yet)
 | Analytics | `web/analytics/index.html` |
 | Badges | `web/badges/index.html` |
 
-### Visual hierarchy (2026-06)
+### Visual hierarchy (2026-07)
 
 | Tier | Items | Style |
 |------|-------|-------|
 | Hubs | Collections, Film | Slightly larger; yellow hover border |
-| Contextual | My daCATs | Yellow text on Home + gallery when inactive |
+| Universe | Label for this site hub (`nav-btn-home`); brand logo → dacat.fun | Quiet entry (like former Home) |
+| Contextual | My daCATs | Yellow text on gallery when inactive (not on Universe home) |
 | Current page | One item only | `is-active` → dashed yellow border (not solid fill) |
 | Demoted | MC race | Small, muted; omitted on `/film/` pages |
 | Utility | OpenSea (home/gallery), TG | Quiet gray pills |
