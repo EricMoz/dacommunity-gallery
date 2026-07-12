@@ -5,7 +5,7 @@
   "featuredIds": [
     "mozvane-quick-stop",
     "chronicles-trailer-1",
-    "dacatworld-paperhands",
+    "dacatworld-scamurai-paperhands",
     "podcast-ep1",
     "multiverse-montage",
     "defectors-awakening"
@@ -80,7 +80,9 @@
       "thumbnail": "https://i.ytimg.com/vi/fCybybHqd3o/hqdefault.jpg",
       "duration": "4:05",
       "filterCategory": "dacatworld",
-      "sortOrder": 2
+      "sortOrder": 2,
+      "featuredPick": true,
+      "featuredOrder": 5
     },
     {
       "id": "podcast-ep1",
@@ -185,9 +187,7 @@
       "thumbnail": "https://i.ytimg.com/vi/roepEUbqn6U/hqdefault.jpg",
       "duration": "5:12",
       "filterCategory": "characters",
-      "sortOrder": 2,
-      "featuredPick": true,
-      "featuredOrder": 5
+      "sortOrder": 2
     },
     {
       "id": "shiro-fishing",
