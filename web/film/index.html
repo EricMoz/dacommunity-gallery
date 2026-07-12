@@ -84,7 +84,7 @@
 
     <div id="film-rows" class="film-catalog"></div>
 
-    <!-- Shorts: bottom horizontal rail only (opens YouTube; no modal). Hidden until 2+ shorts. -->
+    <!-- Shorts: after all series (e.g. Crossovers). Visible from 1 short; scroll at 2+. -->
     <section
       id="film-shorts"
       class="film-series-section film-shorts-section"
@@ -98,8 +98,12 @@
       <div id="film-shorts-track" class="film-shorts-track" role="list"></div>
     </section>
 
+    <!-- Theatre CTA once at bottom (after Shorts, above foot Home/Shop) — not under Characters -->
+    <p id="film-bottom-theatre" class="film-bottom-theatre-cta film-series-theatre-cta" hidden></p>
+
     <nav class="film-hub-foot-links page-quick-links" aria-label="Also explore">
       <a class="page-quick-link" href="https://dacat.store/" target="_blank" rel="noopener noreferrer">Shop</a>
+      <a class="page-quick-link" href="../">Home</a>
     </nav>
 
     <p id="film-empty" class="film-empty" hidden>No titles match your search or filter.</p>

@@ -10,7 +10,8 @@
     "multiverse-montage",
     "defectors-awakening"
   ],
-  "shortsMinVisible": 2,
+  "shortsMinVisible": 1,
+  "shortsScrollMin": 2,
   "videos": [
     {
       "id": "chronicles-trailer-1",

@@ -17,6 +17,7 @@
     shorts: document.getElementById("film-shorts"),
     shortsTrack: document.getElementById("film-shorts-track"),
     shortsCount: document.getElementById("film-shorts-count"),
+    bottomTheatre: document.getElementById("film-bottom-theatre"),
     search: document.getElementById("film-search"),
     filters: document.getElementById("film-filters"),
     stats: document.getElementById("film-stats"),
@@ -279,20 +280,28 @@
     `;
     const grid = section.querySelector(".film-vgrid");
     sortVideos(list).forEach((v) => grid.appendChild(createCard(v)));
-
-    const theatreVideo = sortVideos(list).find((v) => hasDedicatedTheatreRoute(v));
-    if (theatreVideo) {
-      const href = theatreHref(theatreVideo);
-      const cta = document.createElement("p");
-      cta.className = "film-series-theatre-cta";
-      cta.innerHTML =
-        '<a class="film-theatre-cta-link" href="' +
-        escapeHtml(href) +
-        '"><span class="film-theatre-cta-icon" aria-hidden="true">🍿</span> Theatre mode · full screen</a>';
-      section.appendChild(cta);
-    }
-
+    // Theatre CTA is rendered once at the bottom of the hub (not under Characters)
     target.appendChild(section);
+  }
+
+  /**
+   * Single "Theatre mode · full screen" CTA at the bottom of the catalog
+   * (after series rows + Shorts, above foot links). PC only — same rules as hero CTA.
+   */
+  function renderBottomTheatreCta() {
+    const el = els.bottomTheatre;
+    if (!el) return;
+    const href = resolveHeroTheatreHref();
+    if (!href || !isTheatrePc()) {
+      el.hidden = true;
+      el.innerHTML = "";
+      return;
+    }
+    el.hidden = false;
+    el.innerHTML =
+      '<a class="film-theatre-cta-link" href="' +
+      escapeHtml(href) +
+      '"><span class="film-theatre-cta-icon" aria-hidden="true">🍿</span> Theatre mode · full screen</a>';
   }
 
   function resolveFeaturedIds() {
@@ -350,27 +359,35 @@
     if (els.rows && on) els.rows.hidden = true;
     if (els.featured && on) els.featured.hidden = true;
     if (els.shorts && on) els.shorts.hidden = true;
+    if (els.bottomTheatre && on) els.bottomTheatre.hidden = true;
   }
 
   /**
-   * Bottom Shorts rail: horizontal scroll, newest first.
-   * Hidden until shortsMinVisible (default 2) so a single short doesn't look sparse.
-   * Only on "All" filter (no Shorts chip). Search narrows the rail when active.
+   * Bottom Shorts section (after series rows, before bottom Theatre CTA).
+   * Visible from 1 short; horizontal scroll only when 2+ (shortsScrollMin).
+   * Only on "All" filter. Search narrows the list when active.
    */
   function renderShorts() {
     if (!els.shorts || !els.shortsTrack) return;
     const minVisible =
       catalog && catalog.shortsMinVisible != null
         ? Number(catalog.shortsMinVisible)
+        : 1;
+    const scrollMin =
+      catalog && catalog.shortsScrollMin != null
+        ? Number(catalog.shortsScrollMin)
         : 2;
     let list = videos.filter(isShort);
     if (searchQuery) list = list.filter(matchesSearch);
     list = sortShorts(list);
 
-    // Shorts are never a filter chip — only show under All when enough content
     const canShow = activeFilter === "all" && list.length >= minVisible;
 
     els.shortsTrack.innerHTML = "";
+    els.shortsTrack.classList.remove(
+      "film-shorts-track--single",
+      "film-shorts-track--scroll"
+    );
     if (!canShow) {
       els.shorts.hidden = true;
       return;
@@ -379,6 +396,12 @@
     if (els.shortsCount) {
       els.shortsCount.textContent =
         list.length + (list.length === 1 ? " short" : " shorts");
+    }
+    // 1 short: static row (no scroll chrome). 2+: horizontal scroll rail.
+    if (list.length >= scrollMin) {
+      els.shortsTrack.classList.add("film-shorts-track--scroll");
+    } else {
+      els.shortsTrack.classList.add("film-shorts-track--single");
     }
     els.shorts.hidden = false;
   }
@@ -409,7 +432,9 @@
       if (!order.includes(name)) renderSection(name, list, els.rows);
     });
 
+    // Page order: series rows → Shorts → bottom Theatre CTA → foot links
     renderShorts();
+    renderBottomTheatreCta();
 
     const anyVisible =
       (els.featured && !els.featured.hidden) ||
@@ -1089,7 +1114,10 @@
 
     loadYouTubeApi();
     bindEvents();
-    THEATRE_PC_MQ.addEventListener("change", syncHeroTheatreLink);
+    THEATRE_PC_MQ.addEventListener("change", function () {
+      syncHeroTheatreLink();
+      renderBottomTheatreCta();
+    });
     setLoading(true);
     try {
       const res = await fetch(DATA_URL, { cache: "no-store" });

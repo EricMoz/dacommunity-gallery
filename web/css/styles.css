@@ -5718,7 +5718,7 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   text-underline-offset: 2px;
 }
 
-/* —— Shorts bottom rail (horizontal scroll; external YouTube links) —— */
+/* —— Shorts section (after series rows; external YouTube links) —— */
 .film-shorts-section {
   margin-top: 0.5rem;
   margin-bottom: 0.25rem;
@@ -5732,9 +5732,20 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   gap: 1rem;
   width: 100%;
   max-width: 100%;
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: hidden;
   padding: 0.15rem 0.1rem 0.65rem;
+}
+
+/* 1 short: no horizontal scroll chrome */
+.film-shorts-track--single {
+  overflow-x: hidden;
+  scroll-snap-type: none;
+}
+
+/* 2+ shorts: horizontal scroll rail */
+.film-shorts-track--scroll {
+  overflow-x: auto;
   scroll-snap-type: x proximity;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
@@ -5742,11 +5753,11 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   scrollbar-color: rgba(255, 204, 0, 0.35) transparent;
 }
 
-.film-shorts-track::-webkit-scrollbar {
+.film-shorts-track--scroll::-webkit-scrollbar {
   height: 6px;
 }
 
-.film-shorts-track::-webkit-scrollbar-thumb {
+.film-shorts-track--scroll::-webkit-scrollbar-thumb {
   background: rgba(255, 204, 0, 0.35);
   border-radius: 4px;
 }
@@ -5759,6 +5770,12 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   text-decoration: none;
   color: inherit;
   box-sizing: border-box;
+}
+
+/* Bottom Theatre CTA — after Shorts, above foot Home/Shop */
+.film-bottom-theatre-cta {
+  margin: 1.25rem 0 0.35rem;
+  text-align: center;
 }
 
 .film-short-badge {
@@ -8936,6 +8953,7 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 
   .film-modal-theatre,
   .film-series-theatre-cta,
+  .film-bottom-theatre-cta,
   .film-hub-theatre-quick {
     display: none !important;
   }
