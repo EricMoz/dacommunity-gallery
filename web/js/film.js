@@ -137,12 +137,15 @@
 
   function matchesFilter(video) {
     if (activeFilter === "all") return true;
+    if (activeFilter === "shorts") return isShort(video);
     const def = getFilterDef(activeFilter);
     if (def && def.matchSeries) return video.series === def.matchSeries;
     return video.filterCategory === activeFilter;
   }
 
   function visibleVideos() {
+    // Shorts use their own rail; main rows only list non-short titles
+    if (activeFilter === "shorts") return [];
     return mainVideos().filter((v) => matchesFilter(v) && matchesSearch(v));
   }
 
@@ -287,57 +290,71 @@
     target.appendChild(section);
   }
 
-  /** Dedicated theatre route from catalog (e.g. mozvane/) — no viewport gate. */
+  /** Dedicated theatre route from catalog (e.g. mozvane/) — always available. */
   function resolveBottomTheatreHref() {
     const dedicated = sortVideos(
-      mainVideos().filter(
+      (videos || []).filter(
         (v) =>
+          !isShort(v) &&
           v.theatre &&
           v.theatre.route &&
           v.theatre.enabled !== false
       )
     );
     if (dedicated.length) return dedicated[0].theatre.route;
-    // Fallback: generic theatre player for any theatre-enabled video
     const any = sortVideos(
-      mainVideos().filter((v) => v.theatre && v.theatre.enabled !== false)
+      (videos || []).filter(
+        (v) => !isShort(v) && v.theatre && v.theatre.enabled !== false
+      )
     );
     if (any.length) return "theatre/?v=" + encodeURIComponent(any[0].id);
-    return null;
+    // Hard fallback so the hub CTA never vanishes if data is incomplete
+    return "mozvane/";
   }
 
   /**
-   * Single "Theatre mode · full screen" CTA after Shorts / series, above foot links.
-   * Creates the mount node if missing so layout still works after partial deploys.
+   * "Theatre mode · full screen" pill directly above Shop/Home foot links.
+   * Always mounted and visible (classic hub placement after the catalog).
    */
   function renderBottomTheatreCta() {
+    const foot = document.querySelector(".film-hub-foot-links");
     let el = document.getElementById("film-bottom-theatre");
-    if (!el && els.rows && els.rows.parentNode) {
+    if (!el) {
       el = document.createElement("p");
       el.id = "film-bottom-theatre";
       el.className = "film-bottom-theatre-cta film-series-theatre-cta";
-      const foot = document.querySelector(".film-hub-foot-links");
       if (foot && foot.parentNode) {
         foot.parentNode.insertBefore(el, foot);
-      } else {
-        els.rows.parentNode.insertBefore(el, els.rows.nextSibling);
+      } else if (els.rows && els.rows.parentNode) {
+        els.rows.parentNode.appendChild(el);
       }
+    } else if (foot && el.nextElementSibling !== foot) {
+      // Keep order: catalog/shorts → theatre CTA → foot links
+      foot.parentNode.insertBefore(el, foot);
     }
     els.bottomTheatre = el;
     if (!el) return;
 
     const href = resolveBottomTheatreHref();
-    if (!href) {
-      el.hidden = true;
-      el.innerHTML = "";
-      return;
-    }
     el.hidden = false;
     el.removeAttribute("hidden");
+    el.style.display = "";
     el.innerHTML =
       '<a class="film-theatre-cta-link" href="' +
       escapeHtml(href) +
       '"><span class="film-theatre-cta-icon" aria-hidden="true">🍿</span> Theatre mode · full screen</a>';
+
+    // Also pin a compact link as the first foot pill (above/before Shop)
+    if (foot) {
+      let footTheatre = foot.querySelector(".film-hub-foot-theatre");
+      if (!footTheatre) {
+        footTheatre = document.createElement("a");
+        footTheatre.className = "page-quick-link film-hub-foot-theatre";
+        foot.insertBefore(footTheatre, foot.firstChild);
+      }
+      footTheatre.href = href;
+      footTheatre.textContent = "🍿 Theatre mode";
+    }
   }
 
   function resolveFeaturedIds() {
@@ -400,16 +417,15 @@
 
   /**
    * Append Shorts as the last catalog section (after Crossovers, etc.).
-   * Built in JS so it always appears even if static #film-shorts HTML is stale.
-   * Visible from 1 short; horizontal scroll class only when 2+ (shortsScrollMin).
+   * Built in JS into #film-rows so spacing matches other series (catalog gap).
+   * Shown on All + Shorts filter; horizontal scroll only when 2+ shorts.
    */
   function renderShorts() {
     if (!els.rows) return;
-    // Hide static mount if present — we render into the catalog instead
-    const staticMount = document.getElementById("film-shorts");
-    if (staticMount && staticMount.parentNode !== els.rows) {
-      staticMount.hidden = true;
-    }
+    // Remove stale static mount outside the catalog (avoids duplicate ids / spacing)
+    document.querySelectorAll("#film-shorts").forEach(function (node) {
+      if (node.parentNode !== els.rows) node.remove();
+    });
 
     const minVisible =
       catalog && catalog.shortsMinVisible != null
@@ -423,11 +439,13 @@
     if (searchQuery) list = list.filter(matchesSearch);
     list = sortShorts(list);
 
-    if (activeFilter !== "all" || list.length < minVisible) return;
+    const filterOk =
+      activeFilter === "all" || activeFilter === "shorts";
+    if (!filterOk || list.length < minVisible) return;
 
     const section = document.createElement("section");
     section.className = "film-series-section film-shorts-section";
-    section.id = "film-shorts";
+    section.id = "film-shorts-row";
     section.dataset.series = "Shorts";
     section.setAttribute("aria-labelledby", "film-shorts-heading");
 

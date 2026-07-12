@@ -312,6 +312,11 @@
       "id": "crossovers",
       "label": "Crossovers",
       "matchSeries": "Crossovers"
+    },
+    {
+      "id": "shorts",
+      "label": "Shorts",
+      "matchSeries": "Shorts"
     }
   ]
 }

@@ -6,7 +6,7 @@
      See film.js + docs/COLLECTIONS.md for structure. -->
 <html lang="en">
 <head>
-  <meta name="site-build" content="20260712-1" />
+  <meta name="site-build" content="20260712-2" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>daCAT Films · Community theater</title>
@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/styles.css?v=20260712-1" />
+  <link rel="stylesheet" href="../css/styles.css?v=20260712-2" />
 </head>
 <body class="film-page film-hub-page film-theater">
   <div class="film-theater-vignette" aria-hidden="true"></div>
@@ -84,24 +84,11 @@
 
     <div id="film-rows" class="film-catalog"></div>
 
-    <!-- Shorts: after all series (e.g. Crossovers). Visible from 1 short; scroll at 2+. -->
-    <section
-      id="film-shorts"
-      class="film-series-section film-shorts-section"
-      hidden
-      aria-labelledby="film-shorts-heading"
-    >
-      <header class="film-series-head">
-        <h2 id="film-shorts-heading" class="film-series-title">Shorts</h2>
-        <span id="film-shorts-count" class="film-series-count"></span>
-      </header>
-      <div id="film-shorts-track" class="film-shorts-track" role="list"></div>
-    </section>
-
-    <!-- Theatre CTA once at bottom (after Shorts, above foot Home/Shop) — not under Characters -->
-    <p id="film-bottom-theatre" class="film-bottom-theatre-cta film-series-theatre-cta" hidden></p>
+    <!-- Theatre CTA filled by film.js — always above Shop/Home -->
+    <p id="film-bottom-theatre" class="film-bottom-theatre-cta film-series-theatre-cta"></p>
 
     <nav class="film-hub-foot-links page-quick-links" aria-label="Also explore">
+      <a class="page-quick-link film-hub-foot-theatre" href="mozvane/">🍿 Theatre mode</a>
       <a class="page-quick-link" href="https://dacat.store/" target="_blank" rel="noopener noreferrer">Shop</a>
       <a class="page-quick-link" href="../">Home</a>
     </nav>
@@ -185,10 +172,10 @@
 
   <footer class="site-footer film-footer">
     <p><a href="https://www.dacat.fun/" target="_blank" rel="noopener noreferrer">dacat.fun</a> · <a href="https://www.dacatworld.com/" target="_blank" rel="noopener noreferrer">dacatworld</a> · <a href="https://dacat.store/" target="_blank" rel="noopener noreferrer">dacat.store</a></p>
-    <p class="site-version">Site build 20260712-1</p>
+    <p class="site-version">Site build 20260712-2</p>
   </footer>
 
-  <script src="../js/film.js?v=20260712-1" defer></script>
+  <script src="../js/film.js?v=20260712-2" defer></script>
   <script src="../js/universe-nav.js" defer></script>
 </body>
 </html>

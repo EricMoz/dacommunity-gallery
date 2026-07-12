@@ -5718,10 +5718,11 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   text-underline-offset: 2px;
 }
 
-/* —— Shorts section (after series rows; external YouTube links) —— */
+/* —— Shorts section (last catalog row; same spacing as other series via .film-catalog gap) —— */
 .film-shorts-section {
-  margin-top: 0.5rem;
-  margin-bottom: 0.25rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
   min-width: 0;
   width: 100%;
 }
@@ -5734,7 +5735,7 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   max-width: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
-  padding: 0.15rem 0.1rem 0.65rem;
+  padding: 0;
 }
 
 /* 1 short: no horizontal scroll chrome */
@@ -5772,10 +5773,14 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   box-sizing: border-box;
 }
 
-/* Bottom Theatre CTA — after Shorts, above foot Home/Shop */
+/* Bottom Theatre CTA — after catalog, above Shop/Home */
 .film-bottom-theatre-cta {
-  margin: 1.25rem 0 0.35rem;
+  margin: 1.5rem 0 0.5rem;
   text-align: center;
+}
+
+.film-bottom-theatre-cta.film-series-theatre-cta {
+  display: block;
 }
 
 .film-short-badge {
@@ -8979,13 +8984,12 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     font-size: clamp(1.45rem, 7vw, 2rem);
   }
 
-  .film-modal-theatre,
-  .film-hub-theatre-quick {
+  .film-modal-theatre {
     display: none !important;
   }
 
-  /* Keep bottom Theatre link available on mobile (hub-only series CTA still hidden) */
-  .film-series-theatre-cta:not(.film-bottom-theatre-cta) {
+  /* Hero theatre chip can hide on small screens; bottom CTA + foot pill stay visible */
+  .film-hub-theatre-quick {
     display: none !important;
   }
 
