@@ -314,6 +314,7 @@
    * Keep hero + foot Theatre pills in sync with Shop/Home.
    * Same breakpoint as theatre.js (min-width: 769px): hide on smaller screens
    * so users never hit the desktop-only Theatre error from the hub nav.
+   * Links start with HTML `hidden`; we only reveal them on desktop.
    */
   function syncTheatreNavLinks() {
     const show = isTheatrePc();
@@ -324,11 +325,14 @@
         if (!el) return;
         if (!show) {
           el.hidden = true;
+          el.setAttribute("hidden", "");
+          el.style.display = "none";
           return;
         }
         el.href = href;
         el.hidden = false;
         el.removeAttribute("hidden");
+        el.style.display = "";
       });
   }
 

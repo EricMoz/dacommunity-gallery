@@ -5237,12 +5237,17 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   background: rgba(255, 204, 0, 0.1);
 }
 
-/* Match theatre.js desktop gate (min-width: 769px) — hide Theatre nav under that */
+/* Match theatre.js desktop gate (min-width: 769px) — hide Theatre nav under that.
+   Use !important so .page-quick-link { display: inline-flex } cannot win. */
 @media (max-width: 768px) {
-  .film-hub-theatre-quick,
-  .film-hub-foot-theatre,
-  #film-hero-theatre {
+  a.film-hub-theatre-quick,
+  a.film-hub-foot-theatre,
+  a#film-hero-theatre,
+  .page-quick-links a.film-hub-theatre-quick,
+  .page-quick-links a.film-hub-foot-theatre {
     display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
   }
 }
 
