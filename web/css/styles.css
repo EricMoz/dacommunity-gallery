@@ -5794,6 +5794,30 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   z-index: 1;
 }
 
+/* Leave-site arrow (same idea as home hub cards: "Visit chronicles ↗") */
+.film-short-external {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.45rem;
+  z-index: 1;
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1;
+  padding: 0.2rem 0.4rem;
+  color: var(--yellow);
+  background: rgba(0, 0, 0, 0.82);
+  border: 1px solid rgba(255, 204, 0, 0.5);
+  border-radius: 4px;
+}
+
+.film-short-cta {
+  margin-top: 0.25rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--yellow);
+}
+
 a.film-short-card:hover,
 a.film-short-card:focus-visible {
   transform: translateY(-4px);
@@ -5802,6 +5826,10 @@ a.film-short-card:focus-visible {
     0 14px 36px rgba(0, 0, 0, 0.6),
     0 0 32px rgba(255, 204, 0, 0.12);
   outline: none;
+}
+
+.film-bottom-theatre-cta[hidden] {
+  display: none !important;
 }
 .film-vcard-world-note a:hover {
   color: #f0c000;
@@ -8952,9 +8980,12 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
 
   .film-modal-theatre,
-  .film-series-theatre-cta,
-  .film-bottom-theatre-cta,
   .film-hub-theatre-quick {
+    display: none !important;
+  }
+
+  /* Keep bottom Theatre link available on mobile (hub-only series CTA still hidden) */
+  .film-series-theatre-cta:not(.film-bottom-theatre-cta) {
     display: none !important;
   }
 

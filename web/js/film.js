@@ -236,7 +236,7 @@
     return btn;
   }
 
-  /** Shorts rail card — opens YouTube in a new tab (no film modal / theatre). */
+  /** Shorts card — same shell as film cards; opens YouTube (↗ = leaves site). */
   function createShortCard(video) {
     const a = document.createElement("a");
     a.className = "film-vcard film-short-card";
@@ -246,7 +246,9 @@
     a.dataset.videoId = video.id;
     a.setAttribute(
       "aria-label",
-      "Open short on YouTube: " + video.title + (video.duration ? ", " + video.duration : "")
+      "Open short on YouTube (leaves site): " +
+        video.title +
+        (video.duration ? ", " + video.duration : "")
     );
     const duration = video.duration || "—";
     a.innerHTML = `
@@ -255,11 +257,13 @@
         <span class="film-vcard-play" aria-hidden="true"></span>
         <span class="film-vcard-duration">${escapeHtml(duration)}</span>
         <span class="film-short-badge">Short</span>
+        <span class="film-short-external" aria-hidden="true" title="Opens YouTube">↗</span>
       </span>
       <span class="film-vcard-body">
         <span class="film-vcard-series">Shorts</span>
         <span class="film-vcard-title">${escapeHtml(video.title)}</span>
         <span class="film-vcard-creator">${escapeHtml(video.creator || "")}</span>
+        <span class="film-short-cta">Watch on YouTube ↗</span>
       </span>
     `;
     return a;
@@ -280,24 +284,56 @@
     `;
     const grid = section.querySelector(".film-vgrid");
     sortVideos(list).forEach((v) => grid.appendChild(createCard(v)));
-    // Theatre CTA is rendered once at the bottom of the hub (not under Characters)
     target.appendChild(section);
   }
 
+  /** Dedicated theatre route from catalog (e.g. mozvane/) — no viewport gate. */
+  function resolveBottomTheatreHref() {
+    const dedicated = sortVideos(
+      mainVideos().filter(
+        (v) =>
+          v.theatre &&
+          v.theatre.route &&
+          v.theatre.enabled !== false
+      )
+    );
+    if (dedicated.length) return dedicated[0].theatre.route;
+    // Fallback: generic theatre player for any theatre-enabled video
+    const any = sortVideos(
+      mainVideos().filter((v) => v.theatre && v.theatre.enabled !== false)
+    );
+    if (any.length) return "theatre/?v=" + encodeURIComponent(any[0].id);
+    return null;
+  }
+
   /**
-   * Single "Theatre mode · full screen" CTA at the bottom of the catalog
-   * (after series rows + Shorts, above foot links). PC only — same rules as hero CTA.
+   * Single "Theatre mode · full screen" CTA after Shorts / series, above foot links.
+   * Creates the mount node if missing so layout still works after partial deploys.
    */
   function renderBottomTheatreCta() {
-    const el = els.bottomTheatre;
+    let el = document.getElementById("film-bottom-theatre");
+    if (!el && els.rows && els.rows.parentNode) {
+      el = document.createElement("p");
+      el.id = "film-bottom-theatre";
+      el.className = "film-bottom-theatre-cta film-series-theatre-cta";
+      const foot = document.querySelector(".film-hub-foot-links");
+      if (foot && foot.parentNode) {
+        foot.parentNode.insertBefore(el, foot);
+      } else {
+        els.rows.parentNode.insertBefore(el, els.rows.nextSibling);
+      }
+    }
+    els.bottomTheatre = el;
     if (!el) return;
-    const href = resolveHeroTheatreHref();
-    if (!href || !isTheatrePc()) {
+
+    const href = resolveBottomTheatreHref();
+    if (!href) {
       el.hidden = true;
       el.innerHTML = "";
       return;
     }
     el.hidden = false;
+    el.removeAttribute("hidden");
     el.innerHTML =
       '<a class="film-theatre-cta-link" href="' +
       escapeHtml(href) +
@@ -363,12 +399,18 @@
   }
 
   /**
-   * Bottom Shorts section (after series rows, before bottom Theatre CTA).
-   * Visible from 1 short; horizontal scroll only when 2+ (shortsScrollMin).
-   * Only on "All" filter. Search narrows the list when active.
+   * Append Shorts as the last catalog section (after Crossovers, etc.).
+   * Built in JS so it always appears even if static #film-shorts HTML is stale.
+   * Visible from 1 short; horizontal scroll class only when 2+ (shortsScrollMin).
    */
   function renderShorts() {
-    if (!els.shorts || !els.shortsTrack) return;
+    if (!els.rows) return;
+    // Hide static mount if present — we render into the catalog instead
+    const staticMount = document.getElementById("film-shorts");
+    if (staticMount && staticMount.parentNode !== els.rows) {
+      staticMount.hidden = true;
+    }
+
     const minVisible =
       catalog && catalog.shortsMinVisible != null
         ? Number(catalog.shortsMinVisible)
@@ -381,29 +423,38 @@
     if (searchQuery) list = list.filter(matchesSearch);
     list = sortShorts(list);
 
-    const canShow = activeFilter === "all" && list.length >= minVisible;
+    if (activeFilter !== "all" || list.length < minVisible) return;
 
-    els.shortsTrack.innerHTML = "";
-    els.shortsTrack.classList.remove(
-      "film-shorts-track--single",
-      "film-shorts-track--scroll"
-    );
-    if (!canShow) {
-      els.shorts.hidden = true;
-      return;
-    }
-    list.forEach((v) => els.shortsTrack.appendChild(createShortCard(v)));
-    if (els.shortsCount) {
-      els.shortsCount.textContent =
-        list.length + (list.length === 1 ? " short" : " shorts");
-    }
-    // 1 short: static row (no scroll chrome). 2+: horizontal scroll rail.
-    if (list.length >= scrollMin) {
-      els.shortsTrack.classList.add("film-shorts-track--scroll");
-    } else {
-      els.shortsTrack.classList.add("film-shorts-track--single");
-    }
-    els.shorts.hidden = false;
+    const section = document.createElement("section");
+    section.className = "film-series-section film-shorts-section";
+    section.id = "film-shorts";
+    section.dataset.series = "Shorts";
+    section.setAttribute("aria-labelledby", "film-shorts-heading");
+
+    const countLabel =
+      list.length + (list.length === 1 ? " short" : " shorts");
+    section.innerHTML =
+      '<header class="film-series-head">' +
+      '<h2 id="film-shorts-heading" class="film-series-title">Shorts</h2>' +
+      '<span class="film-series-count" id="film-shorts-count">' +
+      escapeHtml(countLabel) +
+      "</span></header>";
+
+    const track = document.createElement("div");
+    track.id = "film-shorts-track";
+    track.className =
+      "film-shorts-track " +
+      (list.length >= scrollMin
+        ? "film-shorts-track--scroll"
+        : "film-shorts-track--single");
+    track.setAttribute("role", "list");
+    list.forEach((v) => track.appendChild(createShortCard(v)));
+    section.appendChild(track);
+
+    els.rows.appendChild(section);
+    els.shorts = section;
+    els.shortsTrack = track;
+    els.shortsCount = section.querySelector("#film-shorts-count");
   }
 
   function render() {
@@ -415,7 +466,6 @@
     renderFeatured(visible);
 
     const bySeries = new Map();
-    // Never mix Shorts into regular series rows
     const order = (catalog.seriesOrder || []).filter((n) => n !== "Shorts");
 
     visible.forEach((v) => {
@@ -432,14 +482,12 @@
       if (!order.includes(name)) renderSection(name, list, els.rows);
     });
 
-    // Page order: series rows → Shorts → bottom Theatre CTA → foot links
+    // After all series (Crossovers last in seriesOrder) → Shorts → bottom Theatre
     renderShorts();
     renderBottomTheatreCta();
 
     const anyVisible =
-      (els.featured && !els.featured.hidden) ||
-      els.rows.children.length > 0 ||
-      (els.shorts && !els.shorts.hidden);
+      (els.featured && !els.featured.hidden) || els.rows.children.length > 0;
     els.empty.hidden = anyVisible;
     if (els.rows) els.rows.hidden = !els.rows.children.length;
   }
