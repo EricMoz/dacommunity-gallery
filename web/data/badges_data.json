@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-11T09:28:50.412503+00:00",
+  "generated_at": "2026-07-12T09:53:38.070756+00:00",
   "source": "mints_created_by_wallet_on_ethereum_after_cutoff",
   "cutoff_date": "2026-05-20",
   "collection": {
@@ -10,7 +10,7 @@
     "creator_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
     "note": "Personal 1/1 and limited awards/badges created by the wallet. Issuer wallet excluded from all holder stats. Mystery items pending approval.",
     "total_created": 17,
-    "one_of_ones": 57,
+    "one_of_ones": 58,
     "unclaimed": 0,
     "mysteries": 2
   },
@@ -2534,15 +2534,15 @@
       "local_slug": "dacat-8-trillion-club",
       "description": "The DACAT 8 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
       "excerpt": "The DACAT 8 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
-      "image_url": "https://i2c.seadn.io/ethereum/0xda9dc0657bb5042fb6b2c3eb97640596b7b662f7/38803f6aa5400fbfc6a8e654c11c08/8f38803f6aa5400fbfc6a8e654c11c08.png",
+      "image_url": "https://i2c.seadn.io/ethereum/0xda9dc0657bb5042fb6b2c3eb97640596b7b662f7/0f102ca8c15171ebd6c35d4a517e57/820f102ca8c15171ebd6c35d4a517e57.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat8trillion",
       "traits": [],
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 2,
-        "circulating_copies": 2,
+        "holder_count": 3,
+        "circulating_copies": 3,
         "top_holders": [
           {
             "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
@@ -2553,6 +2553,11 @@
             "address": "0xe597a25c77317b361636270251dc53d36491a11d",
             "quantity": 1,
             "ens_name": "mrcryptonist.eth"
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": "mozvane.eth"
           }
         ],
         "holders": [
@@ -2565,12 +2570,17 @@
             "address": "0xe597a25c77317b361636270251dc53d36491a11d",
             "quantity": 1,
             "ens_name": "mrcryptonist.eth"
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": "mozvane.eth"
           }
         ]
       },
       "minted_at": "2026-05-30T04:46:11+00:00",
       "is_1_of_1": false,
-      "edition_size": 2,
+      "edition_size": 3,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
@@ -2581,6 +2591,52 @@
         "trillion_club"
       ],
       "is_series_rep": true
+    },
+    {
+      "token_id": "3",
+      "name": "MOZVANE - DACAT 8 TRILLION CLUB MEMBERSHIP",
+      "display_name": "DACAT 8 TRILLION CLUB",
+      "local_slug": "dacat-8-trillion-club",
+      "description": "The DACAT 8 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "excerpt": "The DACAT 8 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "image_url": "https://i2c.seadn.io/ethereum/0xda9dc0657bb5042fb6b2c3eb97640596b7b662f7/0f102ca8c15171ebd6c35d4a517e57/820f102ca8c15171ebd6c35d4a517e57.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dacat8trillion",
+      "traits": [],
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": "mozvane.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": "mozvane.eth"
+          }
+        ]
+      },
+      "minted_at": "2026-07-12T04:08:23+00:00",
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "award_category": "trillion_club",
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "source_created_collection": "dacat8trillion",
+      "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "1_of_1",
+        "trillion_club"
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "2",
