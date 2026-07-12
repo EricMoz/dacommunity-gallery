@@ -4,10 +4,75 @@
 (function () {
   "use strict";
 
-  const DATA_URL = new URL("../data/videos.json", window.location.href).href;
   const YT_ORIGIN = window.location.origin;
   const UPNEXT_COUNTDOWN_SEC = 8;
   const UPNEXT_MODE_KEY = "dacat-film-upnext-mode";
+
+  /** Match meta site-build so videos.json / assets never stick on a stale deploy. */
+  function getBuildStamp() {
+    const m = document.querySelector('meta[name="site-build"]');
+    return (m && m.getAttribute("content")) || "0";
+  }
+
+  function videosDataUrl() {
+    return (
+      new URL("../data/videos.json", window.location.href).href +
+      "?v=" +
+      encodeURIComponent(getBuildStamp())
+    );
+  }
+
+  /** Always ensure Shorts exists in filter chips even if an old videos.json is cached. */
+  const REQUIRED_FILTERS = [
+    { id: "all", label: "All" },
+    { id: "chronicles", label: "Chronicles", matchSeries: "daCAT Chronicles" },
+    { id: "dacatworld", label: "DACAT WORLD", matchSeries: "DACAT WORLD" },
+    { id: "podcasts", label: "Podcast", matchSeries: "Podcast" },
+    { id: "characters", label: "Characters", matchSeries: "Characters" },
+    { id: "crossovers", label: "Crossovers", matchSeries: "Crossovers" },
+    { id: "shorts", label: "Shorts", matchSeries: "Shorts" },
+  ];
+
+  function normalizeCatalogFilters(list) {
+    const byId = {};
+    (list || []).forEach(function (f) {
+      if (f && f.id) byId[f.id] = f;
+    });
+    REQUIRED_FILTERS.forEach(function (req) {
+      if (!byId[req.id]) byId[req.id] = req;
+    });
+    // Preserve preferred order from REQUIRED_FILTERS, then any extras
+    const ordered = [];
+    const seen = {};
+    REQUIRED_FILTERS.forEach(function (req) {
+      ordered.push(byId[req.id]);
+      seen[req.id] = true;
+    });
+    Object.keys(byId).forEach(function (id) {
+      if (!seen[id]) ordered.push(byId[id]);
+    });
+    return ordered;
+  }
+
+  /** Strip legacy "Theatre mode · full screen" pill if an old script left it in the DOM. */
+  function removeLegacyFullScreenTheatrePill() {
+    document
+      .querySelectorAll(
+        "#film-bottom-theatre, .film-bottom-theatre-cta, p.film-series-theatre-cta, a.film-theatre-cta-link"
+      )
+      .forEach(function (el) {
+        el.remove();
+      });
+    // Text fallback (in case class names differ)
+    document.querySelectorAll("a, p, button").forEach(function (el) {
+      const t = (el.textContent || "").replace(/\s+/g, " ").trim().toLowerCase();
+      if (t.indexOf("theatre mode") !== -1 && t.indexOf("full screen") !== -1) {
+        const wrap = el.closest("p, div, section") || el;
+        if (wrap && !wrap.classList.contains("film-hub-main")) wrap.remove();
+        else el.remove();
+      }
+    });
+  }
 
   const els = {
     rows: document.getElementById("film-rows"),
@@ -101,7 +166,9 @@
   }
 
   function getFilterDef(id) {
-    return (catalog.filters || []).find((f) => f.id === id);
+    const list =
+      (catalog && catalog.filters) || REQUIRED_FILTERS;
+    return list.find((f) => f.id === id);
   }
 
   /** YouTube Shorts rail only — never enters modal / series rows / filter chips. */
@@ -428,6 +495,7 @@
   }
 
   function render() {
+    removeLegacyFullScreenTheatrePill();
     const visible = visibleVideos();
 
     els.rows.innerHTML = "";
@@ -992,9 +1060,13 @@
   }
 
   function renderFilters() {
-    if (!catalog || !els.filters) return;
+    if (!els.filters) return;
+    const filters = normalizeCatalogFilters(
+      (catalog && catalog.filters) || []
+    );
+    if (catalog) catalog.filters = filters;
     els.filters.innerHTML = "";
-    catalog.filters.forEach((f, i) => {
+    filters.forEach((f, i) => {
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "film-filter-chip";
@@ -1132,19 +1204,23 @@
 
     loadYouTubeApi();
     bindEvents();
+    removeLegacyFullScreenTheatrePill();
     THEATRE_PC_MQ.addEventListener("change", function () {
       syncTheatreNavLinks();
     });
     setLoading(true);
     try {
-      const res = await fetch(DATA_URL, { cache: "no-store" });
+      const res = await fetch(videosDataUrl(), { cache: "no-store" });
       if (!res.ok) throw new Error(String(res.status));
       catalog = await res.json();
       videos = catalog.videos || [];
+      catalog.filters = normalizeCatalogFilters(catalog.filters || []);
       updateStats();
+      // Paint filter chips immediately (includes Shorts even if JSON was stale)
       renderFilters();
       setLoading(false);
       render();
+      removeLegacyFullScreenTheatrePill();
       syncHeroTheatreLink();
       syncSiteHeaderHeight();
       requestAnimationFrame(syncSiteHeaderHeight);
@@ -1153,6 +1229,11 @@
     } catch (err) {
       console.error("Film hub: failed to load videos.json", err);
       setLoading(false);
+      // Still show filter chips (with Shorts) so the toolbar isn't empty
+      catalog = catalog || { filters: REQUIRED_FILTERS, videos: [] };
+      catalog.filters = normalizeCatalogFilters(catalog.filters || []);
+      renderFilters();
+      removeLegacyFullScreenTheatrePill();
       if (els.empty) {
         els.empty.hidden = false;
         els.empty.textContent =
