@@ -2,7 +2,7 @@
 <!-- Generic theatre mode — ?v=<videoId> from videos.json (theatre.enabled) -->
 <html lang="en">
 <head>
-  <meta name="site-build" content="20260712-9" />
+  <meta name="site-build" content="20260712-10" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Theatre mode · daCAT Films</title>
@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../../css/styles.css?v=20260712-9" />
+  <link rel="stylesheet" href="../../css/styles.css?v=20260712-10" />
 </head>
 <body class="film-page film-theater film-theatre-page">
   <div class="film-theater-vignette" aria-hidden="true"></div>
@@ -21,14 +21,16 @@
 
   <header class="site-header film-theatre-header">
     <div class="header-inner">
-      <a class="brand" href="https://www.dacat.fun/" target="_blank" rel="noopener" aria-label="daCAT.fun">
-        <img class="brand-mascot" src="../../assets/brand/dacat-mascot.png" alt="" width="56" height="56" />
-        <span class="brand-tag">Theatre</span>
-      </a>
+      <div class="brand">
+        <a class="brand-logo" href="https://www.dacat.fun/" target="_blank" rel="noopener" aria-label="daCAT.fun">
+          <img class="brand-mascot" src="../../assets/brand/dacat-mascot.png" alt="" width="56" height="56" />
+        </a>
+        <a class="brand-tag" href="../" aria-label="Film Hub">Theatre</a>
+      </div>
       <nav class="header-nav" aria-label="Main">
+        <a class="nav-btn nav-btn-film is-active" href="../" aria-current="page">Film Hub</a>
         <a class="nav-btn nav-btn-home" href="../../">Universe</a>
         <a class="nav-btn nav-btn-collections" href="../../collections/">collection hub</a>
-        <a class="nav-btn nav-btn-film is-active" href="../" aria-current="page">Film Hub</a>
         <a class="nav-btn nav-btn-wallet" href="../../dacommunity/#wallet-panel">my dacats</a>
         <a class="nav-btn nav-btn-utility" href="https://t.me/daCat_token" target="_blank" rel="noopener">TG</a>
         <a class="nav-btn nav-btn-story" href="https://www.dacat.fun/" target="_blank" rel="noopener">story</a>
@@ -120,9 +122,9 @@
 
   <footer class="site-footer film-footer film-theatre-footer">
     <p><a href="https://www.dacat.fun/" target="_blank" rel="noopener noreferrer">dacat.fun</a> · <a href="https://www.dacatworld.com/" target="_blank" rel="noopener noreferrer">dacatworld</a> · <a href="https://dacat.store/" target="_blank" rel="noopener noreferrer">dacat.store</a></p>
-    <p class="site-version">Site build 20260712-9</p>
+    <p class="site-version">Site build 20260712-10</p>
   </footer>
 
-  <script src="../../js/theatre.js?v=20260712-9" defer></script>
+  <script src="../../js/theatre.js?v=20260712-10" defer></script>
 </body>
 </html>

@@ -69,7 +69,7 @@ a:hover { color: var(--blue-accent); }
   flex-wrap: wrap;
 }
 
-/* Header brand: mascot + page label (text logo removed — label carries context). */
+/* Header brand: mascot (→ dacat.fun) + page title (→ this hub section). */
 .brand {
   display: flex;
   align-items: center;
@@ -77,9 +77,21 @@ a:hover { color: var(--blue-accent); }
   text-decoration: none;
   color: var(--white);
   min-width: 0;
+  flex: 0 1 auto;
+  max-width: min(42%, 16rem);
 }
 
-.brand:hover { text-decoration: none; opacity: 0.95; }
+.brand-logo {
+  display: flex;
+  flex-shrink: 0;
+  text-decoration: none;
+  line-height: 0;
+}
+
+.brand-logo:hover {
+  opacity: 0.95;
+  text-decoration: none;
+}
 
 .brand-mascot {
   width: 52px;
@@ -98,12 +110,49 @@ a:hover { color: var(--blue-accent); }
   font-weight: 700;
   line-height: 1.15;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  text-decoration: none;
+}
+
+a.brand-tag:hover {
+  color: #ffe566;
+  text-decoration: none;
+  opacity: 0.95;
+}
+
+/* Drop page title when the bar is tight so nav chips keep breathing room */
+@media (max-width: 900px) {
+  .brand-tag {
+    display: none;
+  }
+
+  .brand {
+    max-width: none;
+  }
 }
 
 .header-nav {
   display: flex;
   gap: 0.45rem;
   flex-wrap: wrap;
+  justify-content: flex-end;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Current page (dashed yellow) first, then Universe, then the rest */
+.header-nav > .nav-btn {
+  order: 10;
+}
+
+.header-nav > .nav-btn-home {
+  order: 1;
+}
+
+.header-nav > .nav-btn.is-active {
+  order: 0;
 }
 
 .nav-btn {
@@ -8620,18 +8669,15 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
 
   .brand-tag {
+    /* Title already hidden under 900px; keep ellipsis if re-enabled later */
     max-width: 5.5rem;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
   .header-nav {
-    /* Mobile top bar nav UX: left-aligned (flex-start) so Home is first, followed
-       immediately by the current site/context as second (dynamically via the visible
-       active or context-specific button). Other nav links hidden on mobile in theatre
-       + dacommunity views to keep it to exactly the two requested items without
-       wrapping or scrolling clutter. Desktop (>768) and light archive unaffected.
-       Builds directly on prior mobile header + collector escape work. */
+    /* Mobile: current page (is-active) is first in markup, then Universe, then hubs.
+       Other links hidden on film/gallery mobile to avoid wrap. */
     flex: 1 1 auto;
     min-width: 0;
     width: auto;
