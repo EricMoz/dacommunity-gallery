@@ -1,5 +1,14 @@
 /**
- * daCAT Film theater — catalog grid, filters, modal player, up-next (random or series).
+ * daCAT Film hub — catalog grid, filters, modal player, up-next (random or series).
+ *
+ * Shorts vs modal vs Theatre (intentional product design — do not “unify” these paths):
+ * - Shorts: bottom rail only; always open externally on YouTube Shorts (never the hub modal).
+ * - Main catalog: landscape films/episodes use the in-hub modal + Series/Random up-next.
+ * - Theatre Mode: desktop lights-down stage sized for real landscape playback.
+ * Vertical Shorts do not belong in the modal or Theatre player; keeping them external
+ * preserves Theatre for longer landscape content. See README + docs/THEATRE.md
+ * (“Shorts & video sizing”). When adding shorts to videos.json, set series/filterCategory
+ * Shorts (or openExternal: true) so isShort() keeps them out of modal/theatre pools.
  */
 (function () {
   "use strict";
@@ -171,7 +180,12 @@
     return list.find((f) => f.id === id);
   }
 
-  /** YouTube Shorts rail only — never enters modal / series rows / filter chips. */
+  /**
+   * True for YouTube Shorts catalog entries.
+   * Intentional: Shorts stay on the external rail and must never enter the hub modal,
+   * modal up-next bags, series rows, or Theatre nav resolution. Prefer marking new
+   * shorts with series "Shorts" / filterCategory "shorts" and openExternal: true.
+   */
   function isShort(video) {
     if (!video) return false;
     if (video.openExternal === true) return true;
@@ -180,7 +194,10 @@
     return false;
   }
 
-  /** Main catalog pool (excludes Shorts). */
+  /**
+   * Main catalog pool for grids, modal playback, and up-next (Random/Series).
+   * Excludes Shorts so portrait clips never feed the landscape modal/theatre pipeline.
+   */
   function mainVideos() {
     return videos.filter((v) => !isShort(v));
   }
@@ -210,7 +227,7 @@
   }
 
   function visibleVideos() {
-    // Shorts use their own rail; main rows only list non-short titles
+    // Shorts filter: empty main rows; renderShorts() paints the external rail only
     if (activeFilter === "shorts") return [];
     return mainVideos().filter((v) => matchesFilter(v) && matchesSearch(v));
   }
@@ -251,7 +268,12 @@
     return THEATRE_PC_MQ.matches;
   }
 
+  /**
+   * Theatre deep-link for a catalog video (desktop only). Call only for non-shorts;
+   * Shorts never get theatre.route and are excluded from mainVideos/nav resolution.
+   */
   function theatreHref(video) {
+    if (!video || isShort(video)) return null;
     if (!isTheatrePc()) return null;
     if (video.theatre && video.theatre.enabled === false) return null;
     if (video.theatre && video.theatre.route) return video.theatre.route;
@@ -269,7 +291,10 @@
     return withTheatre.length ? theatreHref(withTheatre[0]) : null;
   }
 
-  /** Theatre href for nav pills (top + bottom trio) — always available. */
+  /**
+   * Theatre href for hub nav pills (top + bottom). Explicitly skips Shorts so
+   * portrait clips never become the default Theatre entry point.
+   */
   function resolveNavTheatreHref() {
     const dedicated = sortVideos(
       (videos || []).filter(
@@ -326,7 +351,10 @@
     return btn;
   }
 
-  /** Shorts card — same shell as film cards; opens YouTube (↗ = leaves site). */
+  /**
+   * Shorts rail card: same visual shell as film cards, but always an external
+   * <a> to YouTube Shorts (↗). Never wire these to openModal().
+   */
   function createShortCard(video) {
     const a = document.createElement("a");
     a.className = "film-vcard film-short-card";
@@ -435,9 +463,10 @@
   }
 
   /**
-   * Append Shorts as the last catalog section (after Crossovers, etc.).
-   * Built in JS into #film-rows so spacing matches other series (catalog gap).
-   * Shown on All + Shorts filter; horizontal scroll only when 2+ shorts.
+   * Shorts rail (last catalog block after series rows).
+   * Intentional: this is the only hub surface for shorts. Cards open YouTube
+   * externally; they are not series rows and do not use the modal player.
+   * Shown on All + Shorts filter; horizontal scroll when 2+ items.
    */
   function renderShorts() {
     if (!els.rows) return;
@@ -535,7 +564,7 @@
   }
 
   function seriesList(current) {
-    // Characters series (and all others): cycle every main-catalog video in the same series
+    // Modal Series up-next: main catalog only (mainVideos already excludes Shorts)
     return sortVideos(
       mainVideos().filter((v) => v.series === current.series)
     );
@@ -553,6 +582,7 @@
   }
 
   function refillRandomBag(exclude) {
+    // mainVideos() only — never put Shorts in the modal Random bag
     const blocked = exclude || new Set();
     const pool = mainVideos();
     let ids = pool.map((v) => v.id).filter((id) => !blocked.has(id));
@@ -560,7 +590,7 @@
     randomBag = shuffleIds(ids);
   }
 
-  /** Fair shuffle bag — every title in the pool before repeats (covers single-video series). */
+  /** Fair shuffle bag over main catalog only (excludes Shorts via mainVideos). */
   function pickRandomNext(current, extraExclude) {
     const pool = mainVideos();
     if (!pool.length) return null;
@@ -895,6 +925,11 @@
   function playInModal(videoId, autoplay) {
     const video = findVideo(videoId);
     if (!video) return;
+    // Defense in depth: never load a Short into the YT iframe player
+    if (isShort(video)) {
+      window.open(shortExternalUrl(video), "_blank", "noopener,noreferrer");
+      return;
+    }
     currentVideoId = videoId;
     setPlayerLoading(true);
 
@@ -1017,7 +1052,7 @@
   function openModal(videoId, opts) {
     const video = findVideo(videoId);
     if (!video) return;
-    // Shorts never use the hub modal — open YouTube instead
+    // Guard: Shorts must not enter the hub modal / iframe player (external only)
     if (isShort(video)) {
       window.open(shortExternalUrl(video), "_blank", "noopener,noreferrer");
       return;
@@ -1148,8 +1183,8 @@
     const id = new URLSearchParams(window.location.search).get("v");
     const video = id ? findVideo(id) : null;
     if (!video) return;
+    // ?v= short id must not open the hub modal — send users to YouTube Shorts
     if (isShort(video)) {
-      // Deep link to a short → YouTube (do not trap in modal)
       window.open(shortExternalUrl(video), "_blank", "noopener,noreferrer");
       return;
     }

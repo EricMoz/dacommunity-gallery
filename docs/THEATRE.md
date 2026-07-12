@@ -61,6 +61,25 @@ Both load `web/js/theatre.js` + `theatre_registry.json` for theme.
 - Series row CTA only for titles with a dedicated `theatre.route` (e.g. Mozvane)
 - `theatreHref(video)` builds route from `theatre.route` or generic `theatre/?v=`
 - Mobile: hub modal player only; theatre URLs show a desktop-only message
+- **Shorts never enter Theatre or the hub modal** — see below
+
+---
+
+## Shorts & video sizing
+
+**Intentional product design** (not a bug). Locked in during the July 2026 film hub work.
+
+| Surface | Content | Player |
+|---------|---------|--------|
+| Shorts rail (hub bottom) | Portrait YouTube Shorts | External YouTube only |
+| Film hub modal | Landscape films / episodes | In-page YT iframe + up-next |
+| Theatre Mode | Same main catalog | Lights-down desktop stage |
+
+**Why:** Theatre Mode sizes and dims for **landscape** playback. Feeding vertical Shorts into the modal or Theatre breaks that experience and removes a natural reason to use Theatre for longer films. Shorts stay on their own rail (`openExternal` / `series: "Shorts"`) and always leave the site with a ↗ cue.
+
+**When adding a short:** mark it in `videos.json` so `isShort()` in `web/js/film.js` matches (`series`/`filterCategory` Shorts and/or `openExternal: true`). Do not attach `theatre` blocks to shorts. Do not route shorts through `openModal` or Theatre up-next.
+
+Implementation comments live at the top of `film.js` and on `isShort` / `mainVideos` / `openModal` / `renderShorts`. README also notes video format as a first-class design input.
 
 ---
 
