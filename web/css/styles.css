@@ -5717,6 +5717,75 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+
+/* —— Shorts bottom rail (horizontal scroll; external YouTube links) —— */
+.film-shorts-section {
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+  min-width: 0;
+  width: 100%;
+}
+
+.film-shorts-track {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.15rem 0.1rem 0.65rem;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 204, 0, 0.35) transparent;
+}
+
+.film-shorts-track::-webkit-scrollbar {
+  height: 6px;
+}
+
+.film-shorts-track::-webkit-scrollbar-thumb {
+  background: rgba(255, 204, 0, 0.35);
+  border-radius: 4px;
+}
+
+.film-shorts-track .film-short-card {
+  flex: 0 0 min(240px, 72vw);
+  width: min(240px, 72vw);
+  max-width: 280px;
+  scroll-snap-align: start;
+  text-decoration: none;
+  color: inherit;
+  box-sizing: border-box;
+}
+
+.film-short-badge {
+  position: absolute;
+  top: 0.45rem;
+  left: 0.45rem;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.18rem 0.45rem;
+  background: rgba(0, 0, 0, 0.82);
+  color: var(--yellow);
+  border: 1px solid rgba(255, 204, 0, 0.5);
+  border-radius: 4px;
+  z-index: 1;
+}
+
+a.film-short-card:hover,
+a.film-short-card:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--yellow);
+  box-shadow:
+    0 14px 36px rgba(0, 0, 0, 0.6),
+    0 0 32px rgba(255, 204, 0, 0.12);
+  outline: none;
+}
 .film-vcard-world-note a:hover {
   color: #f0c000;
 }
@@ -8900,6 +8969,16 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     flex: 0 0 min(72vw, 240px);
     width: auto;
     scroll-snap-align: start;
+  }
+
+  .film-shorts-track {
+    gap: 0.75rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .film-shorts-track .film-short-card {
+    flex: 0 0 min(70vw, 220px);
+    width: min(70vw, 220px);
   }
 
   .film-series-head {

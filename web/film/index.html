@@ -10,7 +10,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>daCAT Films · Community theater</title>
-  <meta name="description" content="Watch daCAT community film — Chronicles, DACAT WORLD, podcasts, daBeezy, crossovers, and Mozvane." />
+  <meta name="description" content="Watch daCAT community film — Chronicles, DACAT WORLD, podcasts, Characters, crossovers, and Shorts." />
   <link rel="icon" href="../assets/brand/dacat-icon-64.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -83,6 +83,20 @@
     </section>
 
     <div id="film-rows" class="film-catalog"></div>
+
+    <!-- Shorts: bottom horizontal rail only (opens YouTube; no modal). Hidden until 2+ shorts. -->
+    <section
+      id="film-shorts"
+      class="film-series-section film-shorts-section"
+      hidden
+      aria-labelledby="film-shorts-heading"
+    >
+      <header class="film-series-head">
+        <h2 id="film-shorts-heading" class="film-series-title">Shorts</h2>
+        <span id="film-shorts-count" class="film-series-count"></span>
+      </header>
+      <div id="film-shorts-track" class="film-shorts-track" role="list"></div>
+    </section>
 
     <nav class="film-hub-foot-links page-quick-links" aria-label="Also explore">
       <a class="page-quick-link" href="https://dacat.store/" target="_blank" rel="noopener noreferrer">Shop</a>

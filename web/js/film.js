@@ -14,6 +14,9 @@
     featured: document.getElementById("film-featured"),
     featuredGrid: document.getElementById("film-featured-grid"),
     featuredCount: document.getElementById("film-featured-count"),
+    shorts: document.getElementById("film-shorts"),
+    shortsTrack: document.getElementById("film-shorts-track"),
+    shortsCount: document.getElementById("film-shorts-count"),
     search: document.getElementById("film-search"),
     filters: document.getElementById("film-filters"),
     stats: document.getElementById("film-stats"),
@@ -101,6 +104,20 @@
     return (catalog.filters || []).find((f) => f.id === id);
   }
 
+  /** YouTube Shorts rail only — never enters modal / series rows / filter chips. */
+  function isShort(video) {
+    if (!video) return false;
+    if (video.openExternal === true) return true;
+    if (video.series === "Shorts") return true;
+    if (video.filterCategory === "shorts") return true;
+    return false;
+  }
+
+  /** Main catalog pool (excludes Shorts). */
+  function mainVideos() {
+    return videos.filter((v) => !isShort(v));
+  }
+
   function matchesSearch(video) {
     if (!searchQuery) return true;
     const hay = [
@@ -125,7 +142,7 @@
   }
 
   function visibleVideos() {
-    return videos.filter((v) => matchesFilter(v) && matchesSearch(v));
+    return mainVideos().filter((v) => matchesFilter(v) && matchesSearch(v));
   }
 
   function sortVideos(list) {
@@ -134,6 +151,28 @@
       if (so !== 0) return so;
       return a.title.localeCompare(b.title);
     });
+  }
+
+  /** Newest first via ISO releasedAt, then sortOrder descending. */
+  function sortShorts(list) {
+    return list.slice().sort((a, b) => {
+      const da = a.releasedAt || "";
+      const db = b.releasedAt || "";
+      if (da && db && da !== db) return db.localeCompare(da);
+      if (da && !db) return -1;
+      if (!da && db) return 1;
+      const so = (b.sortOrder || 0) - (a.sortOrder || 0);
+      if (so !== 0) return so;
+      return a.title.localeCompare(b.title);
+    });
+  }
+
+  function shortExternalUrl(video) {
+    if (video.externalUrl) return video.externalUrl;
+    if (video.youtubeId) {
+      return "https://www.youtube.com/shorts/" + encodeURIComponent(video.youtubeId);
+    }
+    return "https://www.youtube.com/";
   }
 
   const THEATRE_PC_MQ = window.matchMedia("(min-width: 769px)");
@@ -194,6 +233,35 @@
     `;
     btn.addEventListener("click", () => openModal(video.id));
     return btn;
+  }
+
+  /** Shorts rail card — opens YouTube in a new tab (no film modal / theatre). */
+  function createShortCard(video) {
+    const a = document.createElement("a");
+    a.className = "film-vcard film-short-card";
+    a.href = shortExternalUrl(video);
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.dataset.videoId = video.id;
+    a.setAttribute(
+      "aria-label",
+      "Open short on YouTube: " + video.title + (video.duration ? ", " + video.duration : "")
+    );
+    const duration = video.duration || "—";
+    a.innerHTML = `
+      <span class="film-vcard-thumb">
+        <img src="${escapeHtml(video.thumbnail)}" alt="" loading="lazy" width="480" height="360" />
+        <span class="film-vcard-play" aria-hidden="true"></span>
+        <span class="film-vcard-duration">${escapeHtml(duration)}</span>
+        <span class="film-short-badge">Short</span>
+      </span>
+      <span class="film-vcard-body">
+        <span class="film-vcard-series">Shorts</span>
+        <span class="film-vcard-title">${escapeHtml(video.title)}</span>
+        <span class="film-vcard-creator">${escapeHtml(video.creator || "")}</span>
+      </span>
+    `;
+    return a;
   }
 
   function renderSection(seriesName, list, target) {
@@ -263,15 +331,56 @@
   }
 
   function updateStats() {
-    if (!els.stats || !videos.length) return;
-    const seriesCount = new Set(videos.map((v) => v.series)).size;
-    els.stats.textContent = `${videos.length} titles · ${seriesCount} series · tap a poster to watch`;
+    if (!els.stats) return;
+    const main = mainVideos();
+    if (!main.length) {
+      els.stats.textContent = "";
+      return;
+    }
+    const seriesCount = new Set(main.map((v) => v.series)).size;
+    els.stats.textContent =
+      main.length +
+      " titles · " +
+      seriesCount +
+      " series · tap a poster to watch";
   }
 
   function setLoading(on) {
     if (els.loading) els.loading.hidden = !on;
     if (els.rows && on) els.rows.hidden = true;
     if (els.featured && on) els.featured.hidden = true;
+    if (els.shorts && on) els.shorts.hidden = true;
+  }
+
+  /**
+   * Bottom Shorts rail: horizontal scroll, newest first.
+   * Hidden until shortsMinVisible (default 2) so a single short doesn't look sparse.
+   * Only on "All" filter (no Shorts chip). Search narrows the rail when active.
+   */
+  function renderShorts() {
+    if (!els.shorts || !els.shortsTrack) return;
+    const minVisible =
+      catalog && catalog.shortsMinVisible != null
+        ? Number(catalog.shortsMinVisible)
+        : 2;
+    let list = videos.filter(isShort);
+    if (searchQuery) list = list.filter(matchesSearch);
+    list = sortShorts(list);
+
+    // Shorts are never a filter chip — only show under All when enough content
+    const canShow = activeFilter === "all" && list.length >= minVisible;
+
+    els.shortsTrack.innerHTML = "";
+    if (!canShow) {
+      els.shorts.hidden = true;
+      return;
+    }
+    list.forEach((v) => els.shortsTrack.appendChild(createShortCard(v)));
+    if (els.shortsCount) {
+      els.shortsCount.textContent =
+        list.length + (list.length === 1 ? " short" : " shorts");
+    }
+    els.shorts.hidden = false;
   }
 
   function render() {
@@ -283,9 +392,11 @@
     renderFeatured(visible);
 
     const bySeries = new Map();
-    const order = catalog.seriesOrder || [];
+    // Never mix Shorts into regular series rows
+    const order = (catalog.seriesOrder || []).filter((n) => n !== "Shorts");
 
     visible.forEach((v) => {
+      if (isShort(v)) return;
       if (!bySeries.has(v.series)) bySeries.set(v.series, []);
       bySeries.get(v.series).push(v);
     });
@@ -294,11 +405,16 @@
       if (bySeries.has(name)) renderSection(name, bySeries.get(name), els.rows);
     });
     bySeries.forEach((list, name) => {
+      if (name === "Shorts") return;
       if (!order.includes(name)) renderSection(name, list, els.rows);
     });
 
+    renderShorts();
+
     const anyVisible =
-      (els.featured && !els.featured.hidden) || els.rows.children.length > 0;
+      (els.featured && !els.featured.hidden) ||
+      els.rows.children.length > 0 ||
+      (els.shorts && !els.shorts.hidden);
     els.empty.hidden = anyVisible;
     if (els.rows) els.rows.hidden = !els.rows.children.length;
   }
@@ -308,7 +424,10 @@
   }
 
   function seriesList(current) {
-    return sortVideos(videos.filter((v) => v.series === current.series));
+    // Characters series (and all others): cycle every main-catalog video in the same series
+    return sortVideos(
+      mainVideos().filter((v) => v.series === current.series)
+    );
   }
 
   function shuffleIds(ids) {
@@ -324,16 +443,18 @@
 
   function refillRandomBag(exclude) {
     const blocked = exclude || new Set();
-    let ids = videos.map((v) => v.id).filter((id) => !blocked.has(id));
-    if (!ids.length) ids = videos.map((v) => v.id);
+    const pool = mainVideos();
+    let ids = pool.map((v) => v.id).filter((id) => !blocked.has(id));
+    if (!ids.length) ids = pool.map((v) => v.id);
     randomBag = shuffleIds(ids);
   }
 
   /** Fair shuffle bag — every title in the pool before repeats (covers single-video series). */
   function pickRandomNext(current, extraExclude) {
-    if (!videos.length) return null;
-    if (videos.length === 1) {
-      return videos[0].id === current.id ? null : videos[0];
+    const pool = mainVideos();
+    if (!pool.length) return null;
+    if (pool.length === 1) {
+      return pool[0].id === current.id ? null : pool[0];
     }
 
     const exclude = new Set([current.id]);
@@ -348,9 +469,9 @@
     if (!randomBag.length) refillRandomBag(exclude);
 
     if (!randomBag.length) {
-      const pool = videos.filter((v) => !exclude.has(v.id));
-      if (!pool.length) return null;
-      return pool[Math.floor(Math.random() * pool.length)];
+      const rest = pool.filter((v) => !exclude.has(v.id));
+      if (!rest.length) return null;
+      return rest[Math.floor(Math.random() * rest.length)];
     }
 
     return findVideo(randomBag.shift());
@@ -785,6 +906,11 @@
   function openModal(videoId, opts) {
     const video = findVideo(videoId);
     if (!video) return;
+    // Shorts never use the hub modal — open YouTube instead
+    if (isShort(video)) {
+      window.open(shortExternalUrl(video), "_blank", "noopener,noreferrer");
+      return;
+    }
     const isChain =
       opts && (opts.autoplayNext === true || opts.isUpNext === true);
 
@@ -905,7 +1031,14 @@
 
   function openFromQuery() {
     const id = new URLSearchParams(window.location.search).get("v");
-    if (id && findVideo(id)) openModal(id);
+    const video = id ? findVideo(id) : null;
+    if (!video) return;
+    if (isShort(video)) {
+      // Deep link to a short → YouTube (do not trap in modal)
+      window.open(shortExternalUrl(video), "_blank", "noopener,noreferrer");
+      return;
+    }
+    openModal(id);
   }
 
   function keepPageAtTopUnlessDeepLink() {

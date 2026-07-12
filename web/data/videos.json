@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "updated": "2026-06-22",
-  "featuredStrategy": "Streaming-style row: one entry point per series (ep 1 or lead trailer). Mozvane stays in the row as the flagship film, not the only tile. Re-order featuredIds when you want a different front door.",
+  "updated": "2026-07-12",
+  "featuredStrategy": "Streaming-style row: one entry point per series (ep 1 or lead trailer). Characters (Mozvane + daBeezy) share one series for Series up-next. Shorts are a separate bottom rail and never enter the modal pool.",
   "featuredIds": [
     "mozvane-quick-stop",
     "chronicles-trailer-1",
@@ -10,6 +10,7 @@
     "multiverse-montage",
     "defectors-awakening"
   ],
+  "shortsMinVisible": 2,
   "videos": [
     {
       "id": "chronicles-trailer-1",
@@ -130,10 +131,33 @@
       "sortOrder": 4
     },
     {
+      "id": "mozvane-quick-stop",
+      "title": "Mozvane Episode 1: A Quick Stop",
+      "youtubeId": "bHcbwUs2_ds",
+      "series": "Characters",
+      "type": "Episode",
+      "creator": "daBeezy",
+      "creatorChannel": "daBeezy1",
+      "description": "Sora-era daCAT anime starring Mozvane — the community’s most complete early film, with creative help from daBeezy.",
+      "whatItIs": "Mozvane anime film — community flagship.",
+      "releaseDate": "Community 2026",
+      "thumbnail": "https://i.ytimg.com/vi/bHcbwUs2_ds/hqdefault.jpg",
+      "duration": "5:01",
+      "filterCategory": "characters",
+      "sortOrder": 1,
+      "featuredPick": true,
+      "featuredOrder": 1,
+      "theatre": {
+        "slug": "mozvane",
+        "enabled": true,
+        "route": "mozvane/"
+      }
+    },
+    {
       "id": "dabeezy-rebirth",
       "title": "daBeezy Episode 1: Rebirth",
       "youtubeId": "roepEUbqn6U",
-      "series": "daBeezy",
+      "series": "Characters",
       "type": "Episode",
       "creator": "daBeezy",
       "creatorChannel": "daBeezy1",
@@ -142,8 +166,8 @@
       "releaseDate": "Community 2026",
       "thumbnail": "https://i.ytimg.com/vi/roepEUbqn6U/hqdefault.jpg",
       "duration": "5:12",
-      "filterCategory": "dabeezy",
-      "sortOrder": 1,
+      "filterCategory": "characters",
+      "sortOrder": 2,
       "featuredPick": true,
       "featuredOrder": 5
     },
@@ -232,36 +256,31 @@
       "featuredOrder": 6
     },
     {
-      "id": "mozvane-quick-stop",
-      "title": "Mozvane Episode 1: A Quick Stop",
-      "youtubeId": "bHcbwUs2_ds",
-      "series": "Mozvane",
-      "type": "Episode",
-      "creator": "daBeezy",
+      "id": "short-dacat-souls",
+      "title": "DaCAT Souls",
+      "youtubeId": "PAlhs9zh-jo",
+      "series": "Shorts",
+      "type": "Short",
+      "creator": "DaBeezy",
       "creatorChannel": "daBeezy1",
-      "description": "Sora-era daCAT anime starring Mozvane — the community’s most complete early film, with creative help from daBeezy.",
-      "whatItIs": "Mozvane anime film — community flagship.",
-      "releaseDate": "Community 2026",
-      "thumbnail": "https://i.ytimg.com/vi/bHcbwUs2_ds/hqdefault.jpg",
-      "duration": "5:01",
-      "filterCategory": "mozvane",
+      "description": "DaCAT Souls — short-form animation (#animation #soulslike #storytelling). Opens on YouTube Shorts.",
+      "whatItIs": "YouTube Short by DaBeezy.",
+      "releaseDate": "July 2026",
+      "releasedAt": "2026-07-10",
+      "thumbnail": "https://i.ytimg.com/vi/PAlhs9zh-jo/hqdefault.jpg",
+      "duration": "1:47",
+      "filterCategory": "shorts",
       "sortOrder": 1,
-      "featuredPick": true,
-      "featuredOrder": 1,
-      "theatre": {
-        "slug": "mozvane",
-        "enabled": true,
-        "route": "mozvane/"
-      }
+      "openExternal": true,
+      "externalUrl": "https://www.youtube.com/shorts/PAlhs9zh-jo"
     }
   ],
   "seriesOrder": [
     "daCAT Chronicles",
     "DACAT WORLD",
     "Podcast",
-    "daBeezy",
-    "Crossovers",
-    "Mozvane"
+    "Characters",
+    "Crossovers"
   ],
   "filters": [
     {
@@ -284,19 +303,14 @@
       "matchSeries": "Podcast"
     },
     {
-      "id": "dabeezy",
-      "label": "daBeezy",
-      "matchSeries": "daBeezy"
+      "id": "characters",
+      "label": "Characters",
+      "matchSeries": "Characters"
     },
     {
       "id": "crossovers",
       "label": "Crossovers",
       "matchSeries": "Crossovers"
-    },
-    {
-      "id": "mozvane",
-      "label": "Mozvane",
-      "matchSeries": "Mozvane"
     }
   ]
 }
