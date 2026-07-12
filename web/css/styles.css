@@ -5833,9 +5833,6 @@ a.film-short-card:focus-visible {
   outline: none;
 }
 
-.film-bottom-theatre-cta[hidden] {
-  display: none !important;
-}
 .film-vcard-world-note a:hover {
   color: #f0c000;
 }
