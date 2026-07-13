@@ -64,11 +64,11 @@ a:hover { color: var(--blue-accent); }
   padding: 0.65rem clamp(0.75rem, 2.2vw, 1.25rem);
   display: flex;
   align-items: center;
-  /* flex-start + fixed gap = consistent logo→nav distance (no mid-width “indent”) */
+  /* flex-start + fixed gap only — same logo→nav space at every width (no space-between indent) */
   justify-content: flex-start;
-  /* ~40% tighter than earlier large gutters; still clear separation */
-  gap: clamp(0.4rem, 1.2vw, 0.7rem);
+  gap: 0.7rem;
   flex-wrap: nowrap;
+  column-gap: 0.7rem;
 }
 
 /* Header brand: mascot (→ dacat.fun) + page title (→ this hub section). */
@@ -8746,7 +8746,9 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding: 0.55rem 0.7rem;
     flex-wrap: nowrap;
     align-items: center;
-    gap: clamp(0.4rem, 1.3vw, 0.65rem);
+    /* Match desktop gutter — do not shrink to zero on phones */
+    gap: 0.7rem;
+    column-gap: 0.7rem;
   }
 
   .brand {
