@@ -1450,9 +1450,13 @@ function renderCollectorFocusUi() {
   var browseRibbon = $("#collector-browse-ribbon");
   if (browseRibbon) browseRibbon.hidden = !active;
 
+  // Gallery page identity is "my dacats" — dashed race border + first in nav order
+  // (with Universe always second). Also true while a collector portfolio is open.
+  var onGallery = document.body.hasAttribute("data-base");
+  var walletIsCurrent = active || onGallery;
   document.querySelectorAll(".nav-btn-wallet").forEach(function (el) {
-    el.classList.toggle("is-active", active);
-    if (active) el.setAttribute("aria-current", "page");
+    el.classList.toggle("is-active", walletIsCurrent);
+    if (walletIsCurrent) el.setAttribute("aria-current", "page");
     else el.removeAttribute("aria-current");
   });
 

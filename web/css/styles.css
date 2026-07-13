@@ -145,7 +145,13 @@ a.brand-tag:hover {
   margin-left: 0; /* gap on .header-inner is the only logo→nav gutter */
 }
 
-/* Current page (dashed yellow) first, then Universe, then explore priority 3/4… */
+/*
+ * Nav order (all pages / widths):
+ *  0 = current page (.is-active) — dashed yellow race border
+ *  1 = Universe (way home)
+ *  2+ = next explore hubs
+ * Never let page-specific rules override .is-active to a higher order.
+ */
 .header-nav > .nav-btn {
   order: 10;
 }
@@ -155,23 +161,23 @@ a.brand-tag:hover {
 }
 
 .header-nav > .nav-btn.is-active {
-  order: 0;
+  order: 0 !important;
 }
 
-/* Priority 3 / 4 order (visible when space allows) */
-.header-nav > .nav-btn-film {
+/* Priority 3 / 4 when not the active page */
+.header-nav > .nav-btn-film:not(.is-active) {
   order: 2;
 }
 
-.header-nav > .nav-btn-collections {
+.header-nav > .nav-btn-collections:not(.is-active) {
   order: 3;
 }
 
-.header-nav > .nav-btn-wallet {
+.header-nav > .nav-btn-wallet:not(.is-active) {
   order: 4;
 }
 
-.header-nav > .nav-btn-chart {
+.header-nav > .nav-btn-chart:not(.is-active) {
   order: 5;
 }
 
@@ -180,32 +186,31 @@ a.brand-tag:hover {
   order: 6;
 }
 
-/* When Film Hub is current, Collections is next explore after Universe */
-.header-nav > .nav-btn-film.is-active ~ .nav-btn-collections,
-.film-hub-page .header-nav > .nav-btn-collections,
-.film-theatre-page .header-nav > .nav-btn-collections {
+/* Film hub: after Universe → Collections → my dacats */
+.film-hub-page .header-nav > .nav-btn-collections:not(.is-active),
+.film-theatre-page .header-nav > .nav-btn-collections:not(.is-active) {
   order: 2;
 }
 
-.film-hub-page .header-nav > .nav-btn-wallet,
-.film-theatre-page .header-nav > .nav-btn-wallet {
+.film-hub-page .header-nav > .nav-btn-wallet:not(.is-active),
+.film-theatre-page .header-nav > .nav-btn-wallet:not(.is-active) {
   order: 3;
 }
 
-/* Gallery: my dacats is primary context after active ordering */
-body[data-base] .header-nav > .nav-btn-wallet {
+/* Gallery: my dacats is section identity (often .is-active); when not, still high priority */
+body[data-base] .header-nav > .nav-btn-wallet:not(.is-active) {
   order: 2;
 }
 
-body[data-base] .header-nav > .nav-btn-film {
+body[data-base] .header-nav > .nav-btn-film:not(.is-active) {
   order: 3;
 }
 
-body[data-base] .header-nav > .nav-btn-collections {
+body[data-base] .header-nav > .nav-btn-collections:not(.is-active) {
   order: 4;
 }
 
-/* Universe chip: quiet yellow frame when not the current page (like old my-dacats emphasis) */
+/* Universe chip: quiet yellow frame when not the current page */
 .nav-btn-home:not(.is-active) {
   color: var(--yellow);
   border: 2px solid rgba(255, 204, 0, 0.4);
@@ -216,6 +221,16 @@ body[data-base] .header-nav > .nav-btn-collections {
   color: #fff;
   background: rgba(255, 204, 0, 0.12);
   border-color: var(--yellow);
+}
+
+/* my dacats current: same dashed race border as every other active page chip */
+.nav-btn-wallet.is-active,
+body[data-base] .nav-btn-wallet.is-active,
+body.has-collector-view .nav-btn-wallet.is-active {
+  background: transparent;
+  color: var(--yellow);
+  border: 2px dashed var(--yellow);
+  cursor: default;
 }
 
 .nav-btn {
