@@ -61,12 +61,12 @@ a:hover { color: var(--blue-accent); }
 .header-inner {
   max-width: 1140px;
   margin: 0 auto;
-  padding: 0.65rem 1.25rem;
+  padding: 0.65rem clamp(0.85rem, 2.5vw, 1.25rem);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  /* Never jam logo against nav chips — keep a clear gutter at every width */
-  gap: clamp(1rem, 3.5vw, 2rem);
+  /* flex-start + fixed gap = consistent logo→nav distance (no mid-width “indent”) */
+  justify-content: flex-start;
+  gap: clamp(0.55rem, 1.6vw, 0.95rem);
   flex-wrap: nowrap;
 }
 
@@ -74,12 +74,12 @@ a:hover { color: var(--blue-accent); }
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.5rem;
   text-decoration: none;
   color: var(--white);
   min-width: 0;
   flex: 0 0 auto;
-  max-width: min(36%, 14rem);
+  max-width: min(34%, 13rem);
 }
 
 .brand-logo {
@@ -137,16 +137,15 @@ a.brand-tag:hover {
 
 .header-nav {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.45rem;
   flex-wrap: wrap;
   justify-content: flex-end;
   flex: 1 1 auto;
   min-width: 0;
-  /* Extra inset from the logo cluster */
-  margin-left: 0.25rem;
+  margin-left: 0; /* gap on .header-inner is the only logo→nav gutter */
 }
 
-/* Current page (dashed yellow) first, then Universe, then the rest */
+/* Current page (dashed yellow) first, then Universe, then explore priority 3/4… */
 .header-nav > .nav-btn {
   order: 10;
 }
@@ -157,6 +156,53 @@ a.brand-tag:hover {
 
 .header-nav > .nav-btn.is-active {
   order: 0;
+}
+
+/* Priority 3 / 4 order (visible when space allows) */
+.header-nav > .nav-btn-film {
+  order: 2;
+}
+
+.header-nav > .nav-btn-collections {
+  order: 3;
+}
+
+.header-nav > .nav-btn-wallet {
+  order: 4;
+}
+
+.header-nav > .nav-btn-chart {
+  order: 5;
+}
+
+.header-nav > .nav-btn-utility,
+.header-nav > .nav-btn-story {
+  order: 6;
+}
+
+/* When Film Hub is current, Collections is next explore after Universe */
+.header-nav > .nav-btn-film.is-active ~ .nav-btn-collections,
+.film-hub-page .header-nav > .nav-btn-collections,
+.film-theatre-page .header-nav > .nav-btn-collections {
+  order: 2;
+}
+
+.film-hub-page .header-nav > .nav-btn-wallet,
+.film-theatre-page .header-nav > .nav-btn-wallet {
+  order: 3;
+}
+
+/* Gallery: my dacats is primary context after active ordering */
+body[data-base] .header-nav > .nav-btn-wallet {
+  order: 2;
+}
+
+body[data-base] .header-nav > .nav-btn-film {
+  order: 3;
+}
+
+body[data-base] .header-nav > .nav-btn-collections {
+  order: 4;
 }
 
 /* Universe chip: quiet yellow frame when not the current page (like old my-dacats emphasis) */
@@ -8669,17 +8715,17 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
 
   .header-inner {
-    padding: 0.55rem 0.85rem;
+    padding: 0.55rem 0.75rem;
     flex-wrap: nowrap;
     align-items: center;
-    /* Keep logo and nav chips from sitting flush */
-    gap: 1rem;
+    /* Same relative gutter as desktop formula (no extra mobile indent) */
+    gap: clamp(0.5rem, 1.6vw, 0.85rem);
   }
 
   .brand {
     flex: 0 0 auto;
     min-width: 0;
-    margin-right: 0.15rem;
+    margin-right: 0;
   }
 
   .brand-mascot {
@@ -8692,7 +8738,6 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
 
   .header-nav {
-    /* Mobile: current page first, Universe second (CSS order). Always ≥2 chips. */
     flex: 1 1 auto;
     min-width: 0;
     width: auto;
@@ -8702,8 +8747,8 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     padding-bottom: 0.1rem;
-    gap: 0.4rem;
-    margin-left: 0.35rem;
+    gap: 0.35rem;
+    margin-left: 0;
   }
 
   .header-nav::-webkit-scrollbar {
@@ -8711,9 +8756,10 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
 
   /*
-   * Mobile nav: always show at least current page + Universe (way home).
-   * Hide everything else. On Universe home (Universe is active), also show Film Hub
-   * so there are still two chips.
+   * Progressive mobile nav (never feel lost):
+   *  1) current page (is-active)
+   *  2) Universe (always — way home)
+   *  3–4) best next explore targets by page, revealed as width grows
    */
   .header-nav > .nav-btn {
     display: none !important;
@@ -8724,20 +8770,59 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     display: inline-flex !important;
   }
 
-  /* Universe page: active is Universe — keep Film Hub as second destination */
+  /* —— Priority 3 (narrow phones+) —— */
+  /* Universe home: Film is the main explore path when Universe is current */
   .home-page .header-nav > .nav-btn-film {
     display: inline-flex !important;
-    order: 2;
   }
 
-  /* Gallery archive: keep my dacats + Universe always available */
+  /* Film / theatre: Collections next after Universe */
+  .film-hub-page .header-nav > .nav-btn-collections,
+  .film-theatre-page .header-nav > .nav-btn-collections {
+    display: inline-flex !important;
+  }
+
+  /* Collections hub: Film next */
+  .collections-page .header-nav > .nav-btn-film {
+    display: inline-flex !important;
+  }
+
+  /* Gallery: my dacats is primary context + Universe */
   body[data-base] .header-nav > .nav-btn-wallet {
     display: inline-flex !important;
   }
 
-  /* Collector portfolio: active wallet + Universe + Film (escape paths) */
-  body.has-collector-view .header-nav > .nav-btn-film {
+  /* Analytics: Film as next cultural hub */
+  body.analytics-page .header-nav > .nav-btn-film {
     display: inline-flex !important;
+  }
+
+  /* —— Priority 4 (slightly wider phones / small tablets) —— */
+  @media (min-width: 420px) {
+    .home-page .header-nav > .nav-btn-collections {
+      display: inline-flex !important;
+    }
+
+    .film-hub-page .header-nav > .nav-btn-wallet,
+    .film-theatre-page .header-nav > .nav-btn-wallet {
+      display: inline-flex !important;
+    }
+
+    .collections-page .header-nav > .nav-btn-wallet {
+      display: inline-flex !important;
+    }
+
+    body[data-base] .header-nav > .nav-btn-film {
+      display: inline-flex !important;
+    }
+
+    body.analytics-page .header-nav > .nav-btn-collections {
+      display: inline-flex !important;
+    }
+
+    body.has-collector-view .header-nav > .nav-btn-film {
+      display: inline-flex !important;
+    }
   }
 
   .nav-btn {
@@ -8749,7 +8834,6 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     align-items: center;
   }
 
-  /* Mobile header polish: brand (logo + name) never squishes or wraps awkwardly; nav scrolls if needed. */
   .brand {
     flex-shrink: 0;
   }
