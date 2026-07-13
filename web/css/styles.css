@@ -61,12 +61,13 @@ a:hover { color: var(--blue-accent); }
 .header-inner {
   max-width: 1140px;
   margin: 0 auto;
-  padding: 0.65rem clamp(0.85rem, 2.5vw, 1.25rem);
+  padding: 0.65rem clamp(0.75rem, 2.2vw, 1.25rem);
   display: flex;
   align-items: center;
   /* flex-start + fixed gap = consistent logo→nav distance (no mid-width “indent”) */
   justify-content: flex-start;
-  gap: clamp(0.55rem, 1.6vw, 0.95rem);
+  /* ~40% tighter than earlier large gutters; still clear separation */
+  gap: clamp(0.4rem, 1.2vw, 0.7rem);
   flex-wrap: nowrap;
 }
 
@@ -137,12 +138,24 @@ a.brand-tag:hover {
 
 .header-nav {
   display: flex;
-  gap: 0.45rem;
-  flex-wrap: wrap;
+  gap: 0.4rem;
+  /* Never wrap chips to a second row — swipe/scroll horizontally instead */
+  flex-wrap: nowrap;
   justify-content: flex-end;
   flex: 1 1 auto;
   min-width: 0;
   margin-left: 0; /* gap on .header-inner is the only logo→nav gutter */
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  overscroll-behavior-x: contain;
+}
+
+.header-nav::-webkit-scrollbar {
+  display: none; /* Chrome / Safari / iOS */
+  width: 0;
+  height: 0;
 }
 
 /*
@@ -8730,22 +8743,22 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
 
   .header-inner {
-    padding: 0.55rem 0.75rem;
+    padding: 0.55rem 0.7rem;
     flex-wrap: nowrap;
     align-items: center;
-    /* Same relative gutter as desktop formula (no extra mobile indent) */
-    gap: clamp(0.5rem, 1.6vw, 0.85rem);
+    gap: clamp(0.4rem, 1.3vw, 0.65rem);
   }
 
   .brand {
     flex: 0 0 auto;
     min-width: 0;
     margin-right: 0;
+    flex-shrink: 0;
   }
 
   .brand-mascot {
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
   }
 
   .brand-tag {
@@ -8756,25 +8769,29 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     flex: 1 1 auto;
     min-width: 0;
     width: auto;
-    justify-content: flex-end;
+    justify-content: flex-start;
     overflow-x: auto;
+    overflow-y: hidden;
     flex-wrap: nowrap;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    padding-bottom: 0.1rem;
-    gap: 0.35rem;
+    padding-bottom: 0;
+    gap: 0.32rem;
     margin-left: 0;
+    touch-action: pan-x;
   }
 
   .header-nav::-webkit-scrollbar {
     display: none;
+    width: 0;
+    height: 0;
   }
 
   /*
-   * Progressive mobile nav (never feel lost):
-   *  1) current page (is-active)
-   *  2) Universe (always — way home)
-   *  3–4) best next explore targets by page, revealed as width grows
+   * Mobile / narrow nav — always:
+   *  1) current page  2) Universe
+   * Universe home also always shows Film + Collections (core explore set).
+   * Extra chips (my dacats, story, …) stay in the row for swipe; no wrap.
    */
   .header-nav > .nav-btn {
     display: none !important;
@@ -8785,9 +8802,9 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     display: inline-flex !important;
   }
 
-  /* —— Priority 3 (narrow phones+) —— */
-  /* Universe home: Film is the main explore path when Universe is current */
-  .home-page .header-nav > .nav-btn-film {
+  /* Universe home (vertical phone): Universe + Film Hub + Collection hub */
+  .home-page .header-nav > .nav-btn-film,
+  .home-page .header-nav > .nav-btn-collections {
     display: inline-flex !important;
   }
 
@@ -8802,36 +8819,24 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     display: inline-flex !important;
   }
 
-  /* Gallery: my dacats is primary context + Universe */
-  body[data-base] .header-nav > .nav-btn-wallet {
+  /* Gallery: my dacats + Universe (+ Film as 3rd) */
+  body[data-base] .header-nav > .nav-btn-wallet,
+  body[data-base] .header-nav > .nav-btn-film {
     display: inline-flex !important;
   }
 
-  /* Analytics: Film as next cultural hub */
-  body.analytics-page .header-nav > .nav-btn-film {
+  /* Analytics: Film + Collections */
+  body.analytics-page .header-nav > .nav-btn-film,
+  body.analytics-page .header-nav > .nav-btn-collections {
     display: inline-flex !important;
   }
 
-  /* —— Priority 4 (slightly wider phones / small tablets) —— */
-  @media (min-width: 420px) {
-    .home-page .header-nav > .nav-btn-collections {
-      display: inline-flex !important;
-    }
-
+  /* Slightly wider phones: my dacats on film/collections too */
+  @media (min-width: 400px) {
     .film-hub-page .header-nav > .nav-btn-wallet,
-    .film-theatre-page .header-nav > .nav-btn-wallet {
-      display: inline-flex !important;
-    }
-
-    .collections-page .header-nav > .nav-btn-wallet {
-      display: inline-flex !important;
-    }
-
-    body[data-base] .header-nav > .nav-btn-film {
-      display: inline-flex !important;
-    }
-
-    body.analytics-page .header-nav > .nav-btn-collections {
+    .film-theatre-page .header-nav > .nav-btn-wallet,
+    .collections-page .header-nav > .nav-btn-wallet,
+    .home-page .header-nav > .nav-btn-wallet {
       display: inline-flex !important;
     }
 
@@ -8840,17 +8845,23 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     }
   }
 
+  /* Landscape / mid widths: show more hubs; still single row + swipe, never wrap */
+  @media (min-width: 560px), (orientation: landscape) {
+    .header-nav > .nav-btn-film,
+    .header-nav > .nav-btn-collections,
+    .header-nav > .nav-btn-wallet {
+      display: inline-flex !important;
+    }
+  }
+
   .nav-btn {
     flex-shrink: 0;
     min-height: 40px;
-    padding: 0.4rem 0.65rem;
-    font-size: 0.76rem;
+    padding: 0.38rem 0.58rem;
+    font-size: 0.74rem;
     display: inline-flex;
     align-items: center;
-  }
-
-  .brand {
-    flex-shrink: 0;
+    white-space: nowrap;
   }
 
   #app {
