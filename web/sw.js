@@ -3,18 +3,12 @@
  * Gallery JSON uses network-first so listings stay current when online.
  * CACHE name is bumped by scripts/bump_deploy_version.py on each Pages deploy.
  */
-const CACHE = "dacat-gallery-v20260712-10";
+const CACHE = "dacat-gallery-v20260713-1";
+/* Precache only stable brand/shell assets — never pin CSS/JS/HTML here (network-first below). */
 const SHELL = [
-  "./",
-  "./dacommunity/",
-  "./dacommunity/index.html",
-  "./css/styles.css",
-  "./js/app.js",
-  "./js/pwa-register.js",
   "./manifest.webmanifest",
   "./assets/brand/dacat-icon-64.png",
   "./assets/brand/dacat-mascot.png",
-  "./data/gallery_catalog.json",
 ];
 
 self.addEventListener("install", function (event) {

@@ -26,6 +26,20 @@
     var buildMeta = document.querySelector('meta[name="site-build"]');
     var build = buildMeta && buildMeta.getAttribute("content");
     var swUrl = root + "sw.js" + (build ? "?v=" + encodeURIComponent(build) : "");
-    navigator.serviceWorker.register(swUrl, { scope: root }).catch(function () {});
+    navigator.serviceWorker
+      .register(swUrl, { scope: root })
+      .then(function (reg) {
+        // Force update check so mobile (which often keeps SW alive) picks new CSS/HTML
+        if (reg && reg.update) reg.update();
+        if (navigator.serviceWorker.controller) {
+          navigator.serviceWorker.addEventListener("controllerchange", function () {
+            /* one-time reload after new SW claims — helps sticky mobile caches */
+            if (sessionStorage.getItem("sw-reloaded-" + (build || "")) === "1") return;
+            sessionStorage.setItem("sw-reloaded-" + (build || ""), "1");
+            window.location.reload();
+          });
+        }
+      })
+      .catch(function () {});
   });
 })();
