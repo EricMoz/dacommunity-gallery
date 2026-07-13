@@ -1,10 +1,10 @@
 /**
- * Minimal PWA service worker — offline shell + cached catalog.
- * Gallery JSON uses network-first so listings stay current when online.
+ * Minimal PWA service worker — offline brand assets only.
+ * HTML / CSS / JS / data always prefer the network so deploy bumps reach mobile.
  * CACHE name is bumped by scripts/bump_deploy_version.py on each Pages deploy.
  */
-const CACHE = "dacat-gallery-v20260713-3";
-/* Precache only stable brand/shell assets — never pin CSS/JS/HTML here (network-first below). */
+const CACHE = "dacat-gallery-v20260713-4";
+/* Precache only stable brand assets — never pin HTML/CSS/JS (they go stale). */
 const SHELL = [
   "./manifest.webmanifest",
   "./assets/brand/dacat-icon-64.png",
@@ -26,25 +26,44 @@ self.addEventListener("activate", function (event) {
   event.waitUntil(
     caches.keys().then(function (keys) {
       return Promise.all(
-        keys.filter(function (k) { return k !== CACHE; }).map(function (k) {
-          return caches.delete(k);
-        })
+        keys
+          .filter(function (k) {
+            return k !== CACHE;
+          })
+          .map(function (k) {
+            return caches.delete(k);
+          })
       );
+    }).then(function () {
+      return self.clients.claim();
     })
   );
-  self.clients.claim();
 });
 
 function isDataJson(url) {
-  // Include all dynamic gallery JSONs (catalog too) so they use network-first (with ?v= busting)
-  // and don't get stale cached versions across deploys. Catalog was previously in SHELL precache
-  // (bare URL) but versioned requests now go through here for freshness after refresh.
-  return /\/data\/(gallery_(data|meta|catalog|wallet_index)|videos)\.json/i.test(url.pathname);
+  return /\/data\/(gallery_(data|meta|catalog|wallet_index)|videos)\.json/i.test(
+    url.pathname
+  );
 }
 
-/** HTML/CSS/JS must be network-first so deploy bumps reach users (avoid stale SW cache). */
-function isMutableShell(url) {
-  return /\.(html|js|css)$/i.test(url.pathname);
+/** CSS/JS with optional ?v= stamps */
+function isAssetShell(url) {
+  return /\.(js|css)$/i.test(url.pathname);
+}
+
+/**
+ * HTML documents including directory indexes (/ and /film/).
+ * These previously fell through to cache-first and stuck mobile on old builds.
+ */
+function isHtmlDocument(request, url) {
+  if (request.mode === "navigate") return true;
+  if (/\.html$/i.test(url.pathname)) return true;
+  // GitHub Pages serves index.html for trailing-slash paths
+  if (url.pathname.endsWith("/")) return true;
+  var last = url.pathname.split("/").pop() || "";
+  // No file extension → treat as document navigation
+  if (last && last.indexOf(".") === -1) return true;
+  return false;
 }
 
 self.addEventListener("fetch", function (event) {
@@ -52,11 +71,19 @@ self.addEventListener("fetch", function (event) {
   var url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
 
-  if (isDataJson(url) || isMutableShell(url)) {
+  // Pages/HTML: always network, do not write into SW cache (fixes sticky mobile shells)
+  if (isHtmlDocument(event.request, url)) {
+    event.respondWith(networkOnlyHtml(event.request));
+    return;
+  }
+
+  // Data + CSS/JS: network-first, may cache for offline fallback
+  if (isDataJson(url) || isAssetShell(url)) {
     event.respondWith(networkFirstData(event.request));
     return;
   }
 
+  // Images etc.: cache-first
   event.respondWith(
     caches.match(event.request).then(function (cached) {
       return (
@@ -64,7 +91,9 @@ self.addEventListener("fetch", function (event) {
         fetch(event.request).then(function (res) {
           if (!res || res.status !== 200 || res.type === "opaque") return res;
           var copy = res.clone();
-          caches.open(CACHE).then(function (c) { c.put(event.request, copy); });
+          caches.open(CACHE).then(function (c) {
+            c.put(event.request, copy);
+          });
           return res;
         })
       );
@@ -72,12 +101,29 @@ self.addEventListener("fetch", function (event) {
   );
 });
 
+function networkOnlyHtml(request) {
+  return fetch(request, { cache: "no-store" }).catch(function () {
+    return caches.match(request).then(function (cached) {
+      return (
+        cached ||
+        new Response("Offline — reconnect to load the latest site build.", {
+          status: 503,
+          statusText: "Offline",
+          headers: { "Content-Type": "text/plain; charset=utf-8" },
+        })
+      );
+    });
+  });
+}
+
 function networkFirstData(request) {
-  return fetch(request)
+  return fetch(request, { cache: "no-store" })
     .then(function (res) {
       if (res && res.ok) {
         var copy = res.clone();
-        caches.open(CACHE).then(function (c) { c.put(request, copy); });
+        caches.open(CACHE).then(function (c) {
+          c.put(request, copy);
+        });
       }
       return res;
     })
