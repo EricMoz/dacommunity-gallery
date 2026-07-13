@@ -1,45 +1,139 @@
 /**
- * Register service worker from any page under the site root.
+ * Service worker registration + safe force-refresh for everyone.
+ *
+ * Why mobile got stuck:
+ * - Directory URLs (/ and /film/) were cached by older SWs
+ * - Registering sw.js?v=<build> made update checks flaky
+ * - Scope was sometimes set under /film/ instead of the site root
+ *
+ * Safe force path (no data loss — only browser caches for this origin):
+ * 1) Register a single stable SW at the site root (no ?v= on the SW URL)
+ * 2) Fetch VERSION.txt with no-store; if it disagrees with <meta name="site-build">,
+ *    unregister all SWs, delete Cache Storage, hard-reload once
  */
 (function () {
   if (!("serviceWorker" in navigator)) return;
   if (window.location.protocol === "file:") return;
 
-  var path = window.location.pathname || "/";
-  var root = "/";
-  var idx = path.indexOf("/dacommunity/");
-  if (idx >= 0) {
-    root = path.slice(0, idx + 1);
-  } else if (path.indexOf("/collections/") >= 0) {
-    root = path.slice(0, path.indexOf("/collections/") + 1);
-  } else if (path.indexOf("/film/") >= 0) {
-    root = path.slice(0, path.indexOf("/film/") + 1);
-  } else if (path.indexOf("/analytics/") >= 0) {
-    root = path.slice(0, path.indexOf("/analytics/") + 1);
-  } else if (path.indexOf("/badges/") >= 0) {
-    root = path.slice(0, path.indexOf("/badges/") + 1);
-  } else if (!path.endsWith("/")) {
-    root = path.slice(0, path.lastIndexOf("/") + 1);
+  /** Site root: /dacommunity-gallery/ on github.io, / on custom domains. */
+  function siteRoot() {
+    var host = location.hostname || "";
+    if (host.endsWith("github.io")) {
+      var parts = (location.pathname || "/").split("/").filter(Boolean);
+      if (parts.length) return "/" + parts[0] + "/";
+    }
+    return "/";
   }
 
-  window.addEventListener("load", function () {
-    var buildMeta = document.querySelector('meta[name="site-build"]');
-    var build = buildMeta && buildMeta.getAttribute("content");
-    var swUrl = root + "sw.js" + (build ? "?v=" + encodeURIComponent(build) : "");
-    navigator.serviceWorker
+  var root = siteRoot();
+  var buildMeta = document.querySelector('meta[name="site-build"]');
+  var pageBuild = (buildMeta && buildMeta.getAttribute("content")) || "";
+  var reloadKey = "dacat-force-reload-" + pageBuild;
+
+  function clearOriginCaches() {
+    if (!window.caches || !caches.keys) return Promise.resolve();
+    return caches.keys().then(function (keys) {
+      return Promise.all(
+        keys.map(function (k) {
+          return caches.delete(k);
+        })
+      );
+    });
+  }
+
+  function unregisterAllWorkers() {
+    return navigator.serviceWorker.getRegistrations().then(function (regs) {
+      return Promise.all(
+        regs.map(function (r) {
+          return r.unregister();
+        })
+      );
+    });
+  }
+
+  /** One hard reload with cache-bypass query — only once per stale shell. */
+  function forceReloadTo(remoteBuild) {
+    if (sessionStorage.getItem(reloadKey) === "1") return;
+    sessionStorage.setItem(reloadKey, "1");
+    var u = new URL(window.location.href);
+    u.searchParams.set("_cb", remoteBuild || String(Date.now()));
+    window.location.replace(u.href);
+  }
+
+  /**
+   * Compare live VERSION.txt to this document's meta stamp.
+   * If HTML is stale (common on mobile SW), wipe SW/caches and reload once.
+   */
+  function checkRemoteBuildAndHeal() {
+    var url = root + "VERSION.txt?_=" + Date.now();
+    return fetch(url, { cache: "no-store", credentials: "same-origin" })
+      .then(function (res) {
+        if (!res || !res.ok) return null;
+        return res.text();
+      })
+      .then(function (text) {
+        if (!text) return;
+        var remote = String(text).trim().split(/\s+/)[0];
+        if (!remote || !pageBuild) return;
+        if (remote === pageBuild) return;
+        // Stale HTML shell vs fresh deploy — safe cleanup + one reload
+        return unregisterAllWorkers()
+          .then(clearOriginCaches)
+          .then(function () {
+            forceReloadTo(remote);
+          });
+      })
+      .catch(function () {
+        /* offline or blocked — leave user alone */
+      });
+  }
+
+  function registerWorker() {
+    // Stable URL (no ?v=) so the browser always revalidates the same SW script
+    var swUrl = root + "sw.js";
+    return navigator.serviceWorker
       .register(swUrl, { scope: root })
       .then(function (reg) {
-        // Force update check so mobile (which often keeps SW alive) picks new CSS/HTML
         if (reg && reg.update) reg.update();
-        if (navigator.serviceWorker.controller) {
-          navigator.serviceWorker.addEventListener("controllerchange", function () {
-            /* one-time reload after new SW claims — helps sticky mobile caches */
-            if (sessionStorage.getItem("sw-reloaded-" + (build || "")) === "1") return;
-            sessionStorage.setItem("sw-reloaded-" + (build || ""), "1");
-            window.location.reload();
+
+        // When a new SW takes control, reload once so CSS/JS stamps apply
+        var refreshing = false;
+        navigator.serviceWorker.addEventListener("controllerchange", function () {
+          if (refreshing) return;
+          if (sessionStorage.getItem("sw-ctrl-" + pageBuild) === "1") return;
+          sessionStorage.setItem("sw-ctrl-" + pageBuild, "1");
+          refreshing = true;
+          window.location.reload();
+        });
+
+        // Ask waiting worker to activate immediately if present
+        if (reg.waiting) {
+          reg.waiting.postMessage({ type: "SKIP_WAITING" });
+        }
+        if (reg.installing) {
+          reg.installing.addEventListener("statechange", function () {
+            if (reg.waiting) reg.waiting.postMessage({ type: "SKIP_WAITING" });
           });
         }
+        return reg;
       })
       .catch(function () {});
+  }
+
+  // Reload once when a newly activated SW announces itself
+  navigator.serviceWorker.addEventListener("message", function (event) {
+    if (!event.data || event.data.type !== "DACAT_SW_ACTIVATED") return;
+    if (sessionStorage.getItem("sw-activated-reload") === "1") return;
+    sessionStorage.setItem("sw-activated-reload", "1");
+    window.location.reload();
+  });
+
+  // Run ASAP (not only on load) so stale shells heal quickly
+  checkRemoteBuildAndHeal();
+
+  window.addEventListener("load", function () {
+    registerWorker().then(function () {
+      checkRemoteBuildAndHeal();
+    });
   });
 })();
