@@ -56,8 +56,11 @@ a:hover { color: var(--blue-accent); }
   z-index: 100;
   background: var(--black);
   border-bottom: 4px solid var(--yellow);
-  /* One gutter token: logo/mascot → first nav chip (all pages / widths) */
-  --header-brand-nav-gap: 1rem;
+  /*
+   * Logo → first nav chip when chips sit next to the mascot (tablet/phone).
+   * On wide PC, chips are right-aligned so this is just brand breathing room.
+   */
+  --header-brand-nav-gap: 1.3rem;
 }
 
 .header-inner {
@@ -88,8 +91,8 @@ a:hover { color: var(--blue-accent); }
   flex: 0 0 auto;
   flex-shrink: 0;
   min-width: 0;
-  max-width: min(34%, 13rem);
-  /* Fixed air between mascot (or title) and the first nav chip */
+  max-width: none;
+  /* Fixed air between mascot (or title) and the nav track */
   margin-inline-end: var(--header-brand-nav-gap);
 }
 
@@ -114,6 +117,8 @@ a:hover { color: var(--blue-accent); }
 }
 
 .brand-tag {
+  /* Hidden until the bar is truly wide — see min-width query below */
+  display: none;
   font-family: var(--font-display);
   font-size: clamp(0.72rem, 2.2vw, 0.82rem);
   text-transform: uppercase;
@@ -125,6 +130,7 @@ a:hover { color: var(--blue-accent); }
   overflow: hidden;
   text-overflow: ellipsis;
   min-width: 0;
+  max-width: 11rem;
   text-decoration: none;
 }
 
@@ -134,17 +140,17 @@ a.brand-tag:hover {
   opacity: 0.95;
 }
 
-/* Drop page title when the bar is tight so nav chips keep breathing room */
-@media (max-width: 960px) {
+/*
+ * Page title only on wide desktops — logo + title + right-aligned chips all fit.
+ * Below this, mascot alone keeps the bar clean (phones, tablets, mid laptops).
+ */
+@media (min-width: 1120px) {
   .brand-tag {
-    display: none !important;
+    display: block;
   }
 
   .brand {
-    max-width: none;
-    flex: 0 0 auto;
-    flex-shrink: 0;
-    margin-inline-end: var(--header-brand-nav-gap);
+    max-width: min(34%, 13rem);
   }
 }
 
@@ -155,7 +161,8 @@ a.brand-tag:hover {
   /* Single row forever — swipe/scroll for overflow; scrollbar hidden */
   flex-wrap: nowrap !important;
   flex: 1 1 auto;
-  justify-content: flex-start;
+  /* PC / wide: chips hug the right edge */
+  justify-content: flex-end;
   min-width: 0; /* required so flex child can shrink + scroll */
   max-width: 100%;
   margin-left: 0;
@@ -167,6 +174,23 @@ a.brand-tag:hover {
   overscroll-behavior-x: contain;
   touch-action: pan-x;
   white-space: nowrap;
+}
+
+/*
+ * Narrower than desktop: pack chips next to the logo with the fixed gap,
+ * then swipe/scroll for the rest (no wrap, no mid-width “indent” hole).
+ */
+@media (max-width: 1024px) {
+  .header-nav {
+    justify-content: flex-start;
+  }
+
+  .brand {
+    max-width: none;
+    flex: 0 0 auto;
+    flex-shrink: 0;
+    margin-inline-end: var(--header-brand-nav-gap);
+  }
 }
 
 .header-nav::-webkit-scrollbar {
