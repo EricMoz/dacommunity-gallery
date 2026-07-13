@@ -56,6 +56,8 @@ a:hover { color: var(--blue-accent); }
   z-index: 100;
   background: var(--black);
   border-bottom: 4px solid var(--yellow);
+  /* One gutter token: logo/mascot → first nav chip (all pages / widths) */
+  --header-brand-nav-gap: 1rem;
 }
 
 .header-inner {
@@ -64,11 +66,15 @@ a:hover { color: var(--blue-accent); }
   padding: 0.65rem clamp(0.75rem, 2.2vw, 1.25rem);
   display: flex;
   align-items: center;
-  /* flex-start + fixed gap only — same logo→nav space at every width (no space-between indent) */
+  /* Never wrap brand + nav to two rows — nav scrolls instead */
   justify-content: flex-start;
-  gap: 0.7rem;
-  flex-wrap: nowrap;
-  column-gap: 0.7rem;
+  flex-wrap: nowrap !important;
+  /* Gap alone can collapse in some flex + overflow cases; brand margin is the source of truth */
+  gap: 0;
+  column-gap: 0;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 /* Header brand: mascot (→ dacat.fun) + page title (→ this hub section). */
@@ -78,9 +84,13 @@ a:hover { color: var(--blue-accent); }
   gap: 0.5rem;
   text-decoration: none;
   color: var(--white);
-  min-width: 0;
+  /* Never let the logo row squeeze — gutter stays predictable */
   flex: 0 0 auto;
+  flex-shrink: 0;
+  min-width: 0;
   max-width: min(34%, 13rem);
+  /* Fixed air between mascot (or title) and the first nav chip */
+  margin-inline-end: var(--header-brand-nav-gap);
 }
 
 .brand-logo {
@@ -133,29 +143,37 @@ a.brand-tag:hover {
   .brand {
     max-width: none;
     flex: 0 0 auto;
+    flex-shrink: 0;
+    margin-inline-end: var(--header-brand-nav-gap);
   }
 }
 
 .header-nav {
   display: flex;
+  align-items: center;
   gap: 0.4rem;
-  /* Never wrap chips to a second row — swipe/scroll horizontally instead */
-  flex-wrap: nowrap;
-  justify-content: flex-end;
+  /* Single row forever — swipe/scroll for overflow; scrollbar hidden */
+  flex-wrap: nowrap !important;
   flex: 1 1 auto;
-  min-width: 0;
-  margin-left: 0; /* gap on .header-inner is the only logo→nav gutter */
+  justify-content: flex-start;
+  min-width: 0; /* required so flex child can shrink + scroll */
+  max-width: 100%;
+  margin-left: 0;
+  margin-inline-start: 0;
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none; /* Firefox */
   overscroll-behavior-x: contain;
+  touch-action: pan-x;
+  white-space: nowrap;
 }
 
 .header-nav::-webkit-scrollbar {
   display: none; /* Chrome / Safari / iOS */
   width: 0;
   height: 0;
+  background: transparent;
 }
 
 /*
@@ -247,6 +265,17 @@ body.has-collector-view .nav-btn-wallet.is-active {
 }
 
 .nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* Never shrink or wrap label text — chip stays one line; row scrolls instead */
+  flex: 0 0 auto;
+  flex-shrink: 0;
+  white-space: nowrap !important;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  hyphens: none;
+  line-height: 1.2;
   padding: 0.45rem 0.9rem;
   border-radius: 6px;
   font-size: 0.82rem;
@@ -255,15 +284,14 @@ body.has-collector-view .nav-btn-wallet.is-active {
   text-decoration: none;
   border: 2px solid transparent;
   transition: transform 0.15s;
-}
-
-.nav-btn:hover { transform: translateY(-1px); text-decoration: none; }
-
-.nav-btn {
   background: var(--black-soft);
   color: var(--white);
   border-color: #333;
+  box-sizing: border-box;
+  max-width: none;
 }
+
+.nav-btn:hover { transform: translateY(-1px); text-decoration: none; }
 
 /* Hub links — collections & film get primary weight */
 .nav-btn-collections,
@@ -444,10 +472,6 @@ body[data-base] .nav-btn-wallet:not(.is-active):hover {
   height: 2px;
   background: var(--black);
   margin: 0.5rem 0;
-}
-
-.header-nav {
-  align-items: center;
 }
 
 /* Main layout */
@@ -8744,18 +8768,19 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
 
   .header-inner {
     padding: 0.55rem 0.7rem;
-    flex-wrap: nowrap;
+    flex-wrap: nowrap !important;
     align-items: center;
-    /* Match desktop gutter — do not shrink to zero on phones */
-    gap: 0.7rem;
-    column-gap: 0.7rem;
+    /* Same logo→nav gutter as desktop (token on .site-header) */
+    gap: 0;
+    column-gap: 0;
   }
 
   .brand {
     flex: 0 0 auto;
     min-width: 0;
-    margin-right: 0;
     flex-shrink: 0;
+    margin-right: 0;
+    margin-inline-end: var(--header-brand-nav-gap);
   }
 
   .brand-mascot {
@@ -8771,22 +8796,26 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     flex: 1 1 auto;
     min-width: 0;
     width: auto;
+    max-width: 100%;
     justify-content: flex-start;
     overflow-x: auto;
     overflow-y: hidden;
-    flex-wrap: nowrap;
+    flex-wrap: nowrap !important;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     padding-bottom: 0;
     gap: 0.32rem;
     margin-left: 0;
+    margin-inline-start: 0;
     touch-action: pan-x;
+    white-space: nowrap;
   }
 
   .header-nav::-webkit-scrollbar {
     display: none;
     width: 0;
     height: 0;
+    background: transparent;
   }
 
   /*
@@ -8857,13 +8886,17 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
 
   .nav-btn {
+    flex: 0 0 auto;
     flex-shrink: 0;
     min-height: 40px;
     padding: 0.38rem 0.58rem;
     font-size: 0.74rem;
     display: inline-flex;
     align-items: center;
-    white-space: nowrap;
+    justify-content: center;
+    white-space: nowrap !important;
+    word-break: keep-all;
+    overflow-wrap: normal;
   }
 
   #app {
