@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updated": "2026-07-12",
+  "updated": "2026-07-14",
   "featuredStrategy": "Streaming-style row: one entry point per series (ep 1 or lead trailer). Characters (Mozvane + daBeezy) share one series for Series up-next. Shorts are a separate bottom rail and never enter the modal pool.",
   "featuredIds": [
     "mozvane-quick-stop",
@@ -291,6 +291,25 @@
       "sortOrder": 1,
       "openExternal": true,
       "externalUrl": "https://www.youtube.com/shorts/PAlhs9zh-jo"
+    },
+    {
+      "id": "short-dacat-souls-pt2",
+      "title": "daCAT Souls pt 2",
+      "youtubeId": "TTKPRLSlF1I",
+      "series": "Shorts",
+      "type": "Short",
+      "creator": "DaBeezy",
+      "creatorChannel": "daBeezy1",
+      "description": "daCAT continues his journey through the Nova Lands (#animation #darksouls). Opens on YouTube Shorts.",
+      "whatItIs": "YouTube Short by DaBeezy.",
+      "releaseDate": "July 2026",
+      "releasedAt": "2026-07-14",
+      "thumbnail": "https://i.ytimg.com/vi/TTKPRLSlF1I/hqdefault.jpg",
+      "duration": "2:08",
+      "filterCategory": "shorts",
+      "sortOrder": 2,
+      "openExternal": true,
+      "externalUrl": "https://www.youtube.com/shorts/TTKPRLSlF1I"
     }
   ],
   "seriesOrder": [
