@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updated": "2026-07-14",
+  "updated": "2026-07-15",
   "featuredStrategy": "Streaming-style row: one entry point per series (ep 1 or lead trailer). Characters (Mozvane + daBeezy) share one series for Series up-next. Shorts are a separate bottom rail and never enter the modal pool.",
   "featuredIds": [
     "mozvane-quick-stop",
@@ -83,6 +83,27 @@
       "sortOrder": 2,
       "featuredPick": true,
       "featuredOrder": 5
+    },
+    {
+      "id": "dacatworld-collector-cat",
+      "title": "Collector Cat Teaser Trailer",
+      "youtubeId": "oUTBEuAOvyU",
+      "series": "DACAT WORLD",
+      "type": "Trailer",
+      "creator": "DACAT WORLD",
+      "creatorChannel": "DacatWorld",
+      "description": "COLLECTOR CAT is an adventurous explorer who travels the farthest reaches of the galaxy in search of ancient relics, lost civilizations, and priceless treasures. First-appearance teaser for the DACAT WORLD character.",
+      "whatItIs": "DACAT WORLD teaser trailer — Collector Cat first appearance.",
+      "releaseDate": "July 2026",
+      "releasedAt": "2026-07-15",
+      "thumbnail": "https://i.ytimg.com/vi/oUTBEuAOvyU/hqdefault.jpg",
+      "duration": "0:52",
+      "filterCategory": "dacatworld",
+      "sortOrder": 3,
+      "relatedNft": {
+        "href": "../dacommunity/?collection=badges&piece=dacat-world-collector-cat",
+        "label": "View Collector Cat NFT"
+      }
     },
     {
       "id": "podcast-ep1",

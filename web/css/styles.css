@@ -6463,7 +6463,7 @@ body.film-modal-open {
   color: #9a9a9a;
 }
 
-/* Tasteful daCAT World merch note — only inside player modal (Part 2), not in list */
+/* Tasteful daCAT World merch / related-NFT note — only inside player modal, not in list */
 .film-modal-world-promo {
   margin: 0.6rem 0 0;
   font-size: 0.76rem;
@@ -6476,6 +6476,10 @@ body.film-modal-open {
 }
 .film-modal-world-promo a:hover {
   color: #fff;
+}
+.film-modal-promo-sep {
+  color: #555;
+  font-weight: 400;
 }
 
 .film-modal-links {

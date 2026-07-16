@@ -349,10 +349,8 @@ function updateFooterMaintenance(meta) {
   var extra = "";
   if (meta.refresh && meta.refresh.status === "failed") {
     extra = " · refresh failed (check GitHub Actions for key generation step)";
-  } else if (meta.opensea_key && meta.opensea_key.rotation_reminder_days) {
-    extra =
-      " · auto-generated key per run (fallback secret if needed)";
   }
+  // Intentionally omit internal key-rotation / fallback-secret notes from production footer.
   footer.innerHTML = base + '<span id="footer-updated">' + escapeHtml(updated) + "</span>" + escapeHtml(extra);
 }
 
@@ -3820,6 +3818,9 @@ async function init() {
     bootGallery(galleryData);
     adaptHeaderForCollection();
     applyCollectionUI();
+    // Open ?piece= detail as soon as catalog is ready (film hub NFT deep-links, share URLs).
+    // Wallet index path re-calls this after enrichment; safe to run twice.
+    applyPieceFromUrl();
     if (activeCollection === 'badges') {
       collectorsList = buildCollectorsFromBadgeItems(galleryData.items);
       updateCollectorsButton();
