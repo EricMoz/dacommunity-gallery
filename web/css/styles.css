@@ -6537,15 +6537,14 @@ body.film-modal-open {
   font-weight: 400;
 }
 
-/* Detail panel → film hub (light archive surface; inverse of film modal NFT pill).
-   Reuses .btn offset-shadow + .page-quick-link pill shape. Own row above OpenSea. */
+/* Detail panel → film hub: sits right under holders/copies chips (above story). */
 .detail-related-film {
   display: flex;
   align-items: center;
   width: fit-content;
   max-width: 100%;
   gap: 0.4rem;
-  margin: 0.15rem 0 1rem;
+  margin: 0 0 0.85rem;
   min-height: 2.15rem;
   padding: 0.4rem 0.9rem;
   font-size: 0.8rem;
