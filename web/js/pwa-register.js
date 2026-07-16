@@ -28,7 +28,6 @@
   var root = siteRoot();
   var buildMeta = document.querySelector('meta[name="site-build"]');
   var pageBuild = (buildMeta && buildMeta.getAttribute("content")) || "";
-  var reloadKey = "dacat-force-reload-" + pageBuild;
 
   function clearOriginCaches() {
     if (!window.caches || !caches.keys) return Promise.resolve();
@@ -51,18 +50,27 @@
     });
   }
 
-  /** One hard reload with cache-bypass query — only once per stale shell. */
+  /**
+   * Hard reload with cache-bypass query.
+   * Keyed by *remote* build so a new deploy can heal even if an earlier
+   * attempt still received a stale HTML shell (e.g. edge cache on /film/).
+   * Allow up to 2 attempts per remote stamp, then stop (avoid loops).
+   */
   function forceReloadTo(remoteBuild) {
-    if (sessionStorage.getItem(reloadKey) === "1") return;
-    sessionStorage.setItem(reloadKey, "1");
+    var target = remoteBuild || String(Date.now());
+    var attemptKey = "dacat-heal-to-" + target;
+    var attempts = parseInt(sessionStorage.getItem(attemptKey) || "0", 10);
+    if (attempts >= 2) return;
+    sessionStorage.setItem(attemptKey, String(attempts + 1));
     var u = new URL(window.location.href);
-    u.searchParams.set("_cb", remoteBuild || String(Date.now()));
+    u.searchParams.set("_cb", target);
+    u.searchParams.set("_r", String(attempts + 1));
     window.location.replace(u.href);
   }
 
   /**
    * Compare live VERSION.txt to this document's meta stamp.
-   * If HTML is stale (common on mobile SW), wipe SW/caches and reload once.
+   * If HTML is stale (common on mobile SW / partial CDN), wipe SW/caches and reload.
    */
   function checkRemoteBuildAndHeal() {
     var url = root + "VERSION.txt?_=" + Date.now();
@@ -76,7 +84,7 @@
         var remote = String(text).trim().split(/\s+/)[0];
         if (!remote || !pageBuild) return;
         if (remote === pageBuild) return;
-        // Stale HTML shell vs fresh deploy — safe cleanup + one reload
+        // Stale HTML shell vs fresh deploy — safe cleanup + reload
         return unregisterAllWorkers()
           .then(clearOriginCaches)
           .then(function () {
