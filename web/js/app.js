@@ -8,6 +8,22 @@
  * No wallet connect needed.
  */
 
+/* === Film ↔ NFT deep links (static; survives OpenSea badge refresh) === */
+/** Piece local_slug → film hub player. Inverse of videos.json relatedNft. */
+var RELATED_FILM_BY_PIECE_SLUG = {
+  "dacat-world-collector-cat": {
+    href: "../film/?v=dacatworld-collector-cat",
+    label: "Watch Collector Cat teaser"
+  }
+};
+
+function relatedFilmForItem(item) {
+  if (!item) return null;
+  var slug = (item.local_slug || "").toLowerCase();
+  if (slug && RELATED_FILM_BY_PIECE_SLUG[slug]) return RELATED_FILM_BY_PIECE_SLUG[slug];
+  return null;
+}
+
 /* === Data URL Resolution & Build Stamp (cache busting) === */
 /** Parent path prefix when gallery is not at site root (e.g. /dacommunity/). */
 function getDataPrefix() {
@@ -3360,6 +3376,21 @@ function openDetail(item) {
   var story = cleanStoryText(item);
   $("#detail-description").textContent = story || "No description.";
   $("#detail-opensea").href = item.opensea_url || "#";
+
+  // Optional film hub link (e.g. Collector Cat badge ↔ teaser trailer)
+  var relatedFilmEl = $("#detail-related-film");
+  if (relatedFilmEl) {
+    var filmLink = relatedFilmForItem(item);
+    if (filmLink && filmLink.href) {
+      relatedFilmEl.href = filmLink.href;
+      relatedFilmEl.textContent = filmLink.label || "Watch related film";
+      relatedFilmEl.hidden = false;
+    } else {
+      relatedFilmEl.removeAttribute("href");
+      relatedFilmEl.textContent = "";
+      relatedFilmEl.hidden = true;
+    }
+  }
 
   var badge = $("#detail-badge");
   if (item.listed) {

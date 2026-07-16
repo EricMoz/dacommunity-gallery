@@ -1025,8 +1025,8 @@
     if (oldPromo) oldPromo.remove();
 
     // Modal promo line (below Watch on YT / Theatre / Share):
-    // - Optional per-video relatedNft (e.g. Collector Cat → badges detail popup)
-    // - daCAT World / podcast: "Shop merch & free comics" after any NFT link
+    // - Optional per-video relatedNft as a bordered premium pill (Collector Cat → badge)
+    // - daCAT World / podcast: quieter "Shop merch" after the NFT link
     const isWorld =
       video.creator === "DACAT WORLD" ||
       video.filterCategory === "dacatworld" ||
@@ -1036,12 +1036,16 @@
     if (nft && nft.href) {
       const nftLabel = escapeHtml(nft.label || "View related NFT");
       promoParts.push(
-        `<a href="${escapeHtml(nft.href)}">` + nftLabel + `</a>`
+        `<a class="film-modal-nft-link" href="${escapeHtml(nft.href)}">` +
+          `<span class="film-modal-nft-link-kicker" aria-hidden="true">NFT</span>` +
+          `<span class="film-modal-nft-link-label">` +
+          nftLabel +
+          `</span></a>`
       );
     }
     if (isWorld) {
       promoParts.push(
-        `<a href="https://dacat.store/" target="_blank" rel="noopener noreferrer">Shop merch &amp; free comics</a>`
+        `<a class="film-modal-store-link" href="https://dacat.store/" target="_blank" rel="noopener noreferrer">Shop merch &amp; free comics</a>`
       );
     }
     if (promoParts.length) {
@@ -1049,12 +1053,10 @@
         ? els.modal.querySelector(".film-modal-links")
         : document.querySelector(".film-modal-links");
       if (modalLinks && modalLinks.parentNode) {
-        const promo = document.createElement("p");
+        const promo = document.createElement("div");
         promo.id = "film-modal-world-promo";
         promo.className = "film-modal-world-promo";
-        promo.innerHTML = promoParts.join(
-          '<span class="film-modal-promo-sep" aria-hidden="true"> · </span>'
-        );
+        promo.innerHTML = promoParts.join("");
         modalLinks.parentNode.insertBefore(promo, modalLinks.nextSibling);
       }
     }

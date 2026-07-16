@@ -6463,23 +6463,121 @@ body.film-modal-open {
   color: #9a9a9a;
 }
 
-/* Tasteful daCAT World merch / related-NFT note — only inside player modal, not in list */
+/* Tasteful daCAT World merch / related-NFT — only inside player modal, not in list.
+   NFT pill reuses the soft yellow frame language from .page-quick-link (dark theater). */
 .film-modal-world-promo {
-  margin: 0.6rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem 0.85rem;
+  margin: 0.7rem 0 0;
   font-size: 0.76rem;
   color: #777;
   line-height: 1.4;
 }
-.film-modal-world-promo a {
+.film-modal-nft-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2rem;
+  padding: 0.28rem 0.7rem 0.28rem 0.35rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
   color: var(--yellow);
-  font-weight: 500;
+  text-decoration: none;
+  background: rgba(255, 204, 0, 0.06);
+  border: 1px solid rgba(255, 204, 0, 0.38);
+  border-radius: 999px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25) inset;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
-.film-modal-world-promo a:hover {
+.film-modal-nft-link:hover {
   color: #fff;
+  background: rgba(255, 204, 0, 0.14);
+  border-color: rgba(255, 204, 0, 0.75);
+  box-shadow: 0 0 0 1px rgba(255, 204, 0, 0.12);
+  text-decoration: none;
+}
+.film-modal-nft-link-kicker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.85rem;
+  padding: 0.12rem 0.35rem;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #111;
+  background: var(--yellow);
+  border-radius: 999px;
+  line-height: 1.2;
+}
+.film-modal-nft-link-label {
+  padding-right: 0.15rem;
+}
+.film-modal-store-link {
+  color: #9a9a9a;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.film-modal-store-link:hover {
+  color: var(--yellow);
+  border-bottom-color: rgba(255, 204, 0, 0.45);
 }
 .film-modal-promo-sep {
   color: #555;
   font-weight: 400;
+}
+
+/* Detail panel → film hub (light archive surface; inverse of film modal NFT pill).
+   Reuses .btn offset-shadow + .page-quick-link pill shape. Own row above OpenSea. */
+.detail-related-film {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  gap: 0.4rem;
+  margin: 0.15rem 0 1rem;
+  min-height: 2.15rem;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #111;
+  text-decoration: none;
+  background: linear-gradient(180deg, #fffef5 0%, #fff8d6 100%);
+  border: 2px solid rgba(0, 0, 0, 0.88);
+  border-radius: 999px;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.12);
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    background 0.15s ease;
+}
+.detail-related-film:hover {
+  text-decoration: none;
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.16);
+  background: linear-gradient(180deg, #fffef8 0%, #ffe566 100%);
+}
+.detail-related-film[hidden] {
+  display: none !important;
+}
+body.has-collector-view .detail-related-film {
+  color: #111;
+  border-color: var(--black);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.85);
+}
+body.has-collector-view .detail-related-film:hover {
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.9);
 }
 
 .film-modal-links {
