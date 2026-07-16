@@ -19,9 +19,11 @@ permissions:
   pages: write
   id-token: write
 
+# Only the latest main deploy should win. Overlapping runs previously left
+# /film/ and /dacommunity/ on different Site build stamps at the edge.
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   deploy:
