@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<!-- Site home — collections · film & comics · track (analytics).
-     - Promotional store banner (Part 1) near bottom before footer.
-     - Links to dacommunity (global gallery + collector), film hub, etc.
-     - Footer updated with dacat.store.
+<!-- Site home — collections · film & comics · merch · impact · track.
+     - Merch: dacat.store + dagato.store (above Community Impact).
+     - Track: market cap race only (bottom).
      Vanilla static + minimal home.js. See app.js for the heavy gallery logic. -->
 <html lang="en">
 <head>
-  <meta name="site-build" content="20260719-4" />
+  <meta name="site-build" content="20260719-5" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>daCAT · Universe</title>
@@ -17,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20260719-4" />
+  <link rel="stylesheet" href="css/styles.css?v=20260719-5" />
 </head>
 <body class="home-page">
   <header class="site-header">
@@ -127,6 +126,28 @@
       </div>
     </section>
 
+    <section id="merch" class="home-section home-merch" aria-labelledby="merch-heading">
+      <header class="home-section-head">
+        <h2 id="merch-heading" class="home-section-title">Merch</h2>
+        <p class="home-section-lead">Official gear and creator drops — support the crew and the artists who build the universe.</p>
+      </header>
+      <div class="hub-more-grid hub-more-grid-pair" aria-label="Community stores">
+        <a class="hub-more-card hub-more-card-shop" href="https://dacat.store/" target="_blank" rel="noopener noreferrer">
+          <span class="hub-more-kicker">Official Store</span>
+          <h3 class="hub-more-card-title">dacat.store</h3>
+          <p class="hub-more-card-desc">Stickers, mugs, shirts, hats and more. Support the crew and grab the free comic.</p>
+          <span class="hub-more-card-cta">Shop now ↗</span>
+        </a>
+        <a class="hub-more-card hub-more-card-shop hub-more-card-shop-dark" href="https://dagato.store/" target="_blank" rel="noopener noreferrer">
+          <span class="hub-more-status hub-more-status-new" aria-label="New store">New</span>
+          <span class="hub-more-kicker">Artist store</span>
+          <h3 class="hub-more-card-title">dagato.store</h3>
+          <p class="hub-more-card-desc">Merch and drops from daGATO’s world — vision, story, and gear for the detective cat era.</p>
+          <span class="hub-more-card-cta">Visit store ↗</span>
+        </a>
+      </div>
+    </section>
+
     <section id="community-impact" class="home-section" aria-labelledby="impact-heading">
       <header class="home-section-head">
         <h2 id="impact-heading" class="home-section-title">Community Impact</h2>
@@ -139,34 +160,28 @@
       </a>
     </section>
 
-    <section id="track-shop" class="home-section" aria-labelledby="track-shop-heading">
+    <section id="track" class="home-section home-track" aria-labelledby="track-heading">
       <header class="home-section-head">
-        <h2 id="track-shop-heading" class="home-section-title">Track &amp; Shop</h2>
-        <p class="home-section-lead">Follow the live MC race and grab official merch to support the crew.</p>
+        <h2 id="track-heading" class="home-section-title">Track</h2>
+        <p class="home-section-lead">Follow the live market cap race on the leaderboard.</p>
       </header>
-      <div class="hub-more-grid hub-more-grid-pair">
-        <a class="hub-more-card hub-more-card-chart" href="analytics/">
+      <div class="hub-more-grid">
+        <a class="hub-more-card hub-more-card-chart hub-more-card-solo" href="analytics/">
           <span class="hub-more-kicker">Analytics</span>
           <h3 class="hub-more-card-title">Market cap race</h3>
           <p class="hub-more-card-desc">Watch tokens climb the leaderboard in a live bar chart race.</p>
           <span class="hub-more-card-cta">View chart →</span>
-        </a>
-        <a class="hub-more-card hub-more-card-shop" href="https://dacat.store/" target="_blank" rel="noopener noreferrer">
-          <span class="hub-more-kicker">Official Store</span>
-          <h3 class="hub-more-card-title">dacat.store</h3>
-          <p class="hub-more-card-desc">Stickers, mugs, shirts, hats and more. Support the crew and grab the free comic.</p>
-          <span class="hub-more-card-cta">Shop now ↗</span>
         </a>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p><a href="https://www.dacat.fun/" target="_blank" rel="noopener noreferrer">dacat.fun</a> · <a href="https://www.dacatworld.com/" target="_blank" rel="noopener noreferrer">dacatworld</a> · <a href="https://dacat.store/" target="_blank" rel="noopener noreferrer">dacat.store</a></p>
-    <p class="site-version">Site build 20260719-4</p>
+    <p><a href="https://www.dacat.fun/" target="_blank" rel="noopener noreferrer">dacat.fun</a> · <a href="https://www.dacatworld.com/" target="_blank" rel="noopener noreferrer">dacatworld</a> · <a href="https://dacat.store/" target="_blank" rel="noopener noreferrer">dacat.store</a> · <a href="https://dagato.store/" target="_blank" rel="noopener noreferrer">dagato.store</a></p>
+    <p class="site-version">Site build 20260719-5</p>
   </footer>
-  <script src="js/pwa-register.js?v=20260719-4" defer></script>
-  <script src="js/home.js?v=20260719-4" defer></script>
+  <script src="js/pwa-register.js?v=20260719-5" defer></script>
+  <script src="js/home.js?v=20260719-5" defer></script>
   <script src="js/universe-nav.js" defer></script>
 </body>
 </html>

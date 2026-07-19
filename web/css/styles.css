@@ -3218,12 +3218,12 @@ button.stat:focus-visible {
   color: var(--black);
 }
 
-/* Elevated home shop section (Part 3) — matches TRACK/FILM structure, premium light/yellow feel */
-.home-shop {
+/* Merch section — official + creator stores (above Community Impact) */
+.home-merch {
   scroll-margin-top: 5.5rem;
 }
 
-.home-shop .home-section-head {
+.home-merch .home-section-head {
   margin-bottom: 0.9rem;
   padding-bottom: 0.5rem;
   border-bottom: 3px solid var(--black);
@@ -3297,12 +3297,84 @@ button.stat:focus-visible {
   color: var(--black);
 }
 
+/* dagato.store — cinema-dark contrast tile (same structure as dacat.store) */
+.hub-more-card-shop-dark {
+  background: linear-gradient(155deg, #121212 0%, #2a2a2a 100%);
+  color: var(--white);
+  border-color: rgba(255, 204, 0, 0.32);
+  border-top-color: rgba(255, 204, 0, 0.55);
+  box-shadow: 6px 6px 0 var(--black);
+}
+
+.hub-more-card-shop-dark::before {
+  background: var(--yellow);
+  opacity: 0.85;
+}
+
+.hub-more-card-shop-dark:hover {
+  color: var(--white);
+  border-color: rgba(255, 204, 0, 0.6);
+  box-shadow:
+    9px 9px 0 var(--black),
+    0 0 24px rgba(255, 204, 0, 0.12);
+}
+
+.hub-more-card-shop-dark .hub-more-kicker {
+  color: rgba(255, 204, 0, 0.9);
+  background: rgba(255, 204, 0, 0.1);
+}
+
+.hub-more-card-shop-dark .hub-more-card-title {
+  color: var(--yellow);
+}
+
+.hub-more-card-shop-dark .hub-more-card-desc {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.hub-more-card-shop-dark .hub-more-card-cta {
+  color: var(--yellow);
+}
+
+/* Premium corner mark for newly listed stores */
+.hub-more-status {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.75rem;
+  z-index: 1;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  line-height: 1.2;
+}
+
+.hub-more-status-new {
+  color: #111;
+  background: var(--yellow);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 1px rgba(255, 204, 0, 0.25);
+}
+
+.hub-more-card-shop-dark .hub-more-status-new {
+  color: #111;
+  background: var(--yellow);
+  border-color: rgba(255, 204, 0, 0.5);
+  box-shadow: 0 0 12px rgba(255, 204, 0, 0.25);
+}
+
 @media (max-width: 480px) {
   .hub-more-card-shop {
     padding: 1rem 1rem 1.05rem;
   }
   .hub-more-card-shop .hub-more-card-title {
     font-size: 1.05rem;
+  }
+  .hub-more-status {
+    top: 0.55rem;
+    right: 0.55rem;
   }
 }
 
