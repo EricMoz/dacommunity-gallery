@@ -309,7 +309,16 @@
       "filterCategory": "crossovers",
       "sortOrder": 6,
       "featuredPick": true,
-      "featuredOrder": 1
+      "featuredOrder": 1,
+      "relatedCta": {
+        "href": "https://dagato.store/products/blessless-time-power-destiny-limited-edition-poster",
+        "label": "Blessless limited edition poster",
+        "kicker": "Poster"
+      },
+      "shopLink": {
+        "href": "https://dagato.store/",
+        "label": "Shop merch on dagato.store"
+      }
     },
     {
       "id": "short-dacat-souls",

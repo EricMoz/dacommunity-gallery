@@ -1202,27 +1202,53 @@
     if (oldPromo) oldPromo.remove();
 
     // Modal promo line (below Watch on YT / Theatre / Share):
-    // - Optional per-video relatedNft as a bordered premium pill (Collector Cat → badge)
-    // - daCAT World / podcast: quieter "Shop merch" after the NFT link
+    // - relatedNft / relatedCta: bordered premium pill (NFT badge, poster product, …)
+    // - shopLink override, else daCAT World / podcast → dacat.store merch line
     const isWorld =
       video.creator === "DACAT WORLD" ||
       video.filterCategory === "dacatworld" ||
       video.filterCategory === "podcasts";
-    const nft = video.relatedNft;
+    const related = video.relatedNft || video.relatedCta;
     const promoParts = [];
-    if (nft && nft.href) {
-      const nftLabel = escapeHtml(nft.label || "View related NFT");
+    if (related && related.href) {
+      const kicker = escapeHtml(
+        related.kicker || (video.relatedNft ? "NFT" : "Link")
+      );
+      const relLabel = escapeHtml(
+        related.label ||
+          (video.relatedNft ? "View related NFT" : "Related link")
+      );
+      const abs =
+        /^https?:\/\//i.test(related.href) ||
+        related.href.indexOf("//") === 0;
+      const extAttrs = abs
+        ? ' target="_blank" rel="noopener noreferrer"'
+        : "";
       promoParts.push(
-        `<a class="film-modal-nft-link" href="${escapeHtml(nft.href)}">` +
-          `<span class="film-modal-nft-link-kicker" aria-hidden="true">NFT</span>` +
+        `<a class="film-modal-nft-link" href="${escapeHtml(related.href)}"${extAttrs}>` +
+          `<span class="film-modal-nft-link-kicker" aria-hidden="true">` +
+          kicker +
+          `</span>` +
           `<span class="film-modal-nft-link-label">` +
-          nftLabel +
+          relLabel +
           `</span></a>`
       );
     }
-    if (isWorld) {
+    const shop =
+      video.shopLink && video.shopLink.href
+        ? video.shopLink
+        : isWorld
+          ? {
+              href: "https://dacat.store/",
+              label: "Shop merch & free comics",
+            }
+          : null;
+    if (shop && shop.href) {
+      const shopLabel = escapeHtml(shop.label || "Shop merch");
       promoParts.push(
-        `<a class="film-modal-store-link" href="https://dacat.store/" target="_blank" rel="noopener noreferrer">Shop merch &amp; free comics</a>`
+        `<a class="film-modal-store-link" href="${escapeHtml(shop.href)}" target="_blank" rel="noopener noreferrer">` +
+          shopLabel +
+          `</a>`
       );
     }
     if (promoParts.length) {
