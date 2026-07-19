@@ -3467,15 +3467,15 @@ button.stat:focus-visible {
   100% { background-position: 0% 50%; }
 }
 
-/* Subtle animated track line — bottom border treatment for the entire Track & Shop section.
-   Thin, elegant, restrained dash that moves slowly. Inspired by the MC race energy but minimal and premium.
-   No elements inside the individual cards.
-*/
-#track-shop {
+/* Subtle animated track line — Track section (MC race energy, minimal). */
+#track,
+.home-track {
   position: relative;
+  scroll-margin-top: 5.5rem;
 }
 
-#track-shop::after {
+#track::after,
+.home-track::after {
   content: '';
   position: absolute;
   bottom: -2px;
