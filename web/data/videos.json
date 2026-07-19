@@ -272,7 +272,12 @@
       "thumbnail": "https://i.ytimg.com/vi/5YXhuXug-cA/hqdefault.jpg",
       "duration": "4:55",
       "filterCategory": "crossovers",
-      "sortOrder": 4
+      "sortOrder": 4,
+      "relatedCta": {
+        "href": "../dacommunity/?sort=token_asc#wallet-panel",
+        "label": "Browse daCommunity NFT archive",
+        "kicker": "NFT"
+      }
     },
     {
       "id": "defectors-awakening",
