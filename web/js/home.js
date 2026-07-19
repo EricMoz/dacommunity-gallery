@@ -6,7 +6,7 @@
 
   // Keep in lockstep with videos.json featuredIds (max 6 community doorways).
   var HIGHLIGHTS = [
-    { id: "dagato-blessless", category: "Crossovers", label: "daGATO · Blessless" },
+    { id: "dagato-blessless", category: "Crossovers", label: "daGATO · Blessless (vision)" },
     { id: "chronicles-trailer-1", category: "daCAT Chronicles", label: "Comic Trailer #1" },
     { id: "podcast-ep1", category: "Podcast", label: "Episode 1" },
     {
