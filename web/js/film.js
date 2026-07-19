@@ -662,10 +662,23 @@
         : 2;
     let list = videos.filter(isShort);
     if (searchQuery) list = list.filter(matchesSearch);
+    // Honor type chips (e.g. Episode) so short-form episodes still filter in
+    if (activeFilter !== "all" && activeFilter !== "shorts") {
+      list = list.filter(matchesFilter);
+    }
     list = sortShorts(list);
 
+    const def = getFilterDef(activeFilter);
+    const typeOnlyChip =
+      def &&
+      def.matchType &&
+      !def.matchSeries &&
+      def.id !== "all" &&
+      def.id !== "shorts";
     const filterOk =
-      activeFilter === "all" || activeFilter === "shorts";
+      activeFilter === "all" ||
+      activeFilter === "shorts" ||
+      !!typeOnlyChip;
     if (!filterOk || list.length < minVisible) return;
 
     const section = document.createElement("section");
