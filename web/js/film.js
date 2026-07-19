@@ -31,7 +31,11 @@
     );
   }
 
-  /** Always ensure Shorts exists in filter chips even if an old videos.json is cached. */
+  /**
+   * Series chips (hardcoded catalog rows). Types from video.type are merged in
+   * buildCatalogFilters() so Music Video / Trailer / etc. are filterable without
+   * adding extra vertical series sections.
+   */
   const REQUIRED_FILTERS = [
     { id: "all", label: "All" },
     { id: "chronicles", label: "Chronicles", matchSeries: "daCAT Chronicles" },
@@ -42,13 +46,28 @@
     { id: "shorts", label: "Shorts", matchSeries: "Shorts" },
   ];
 
+  /** Preferred order for type-only chips (after series; Music Video near Podcast feel). */
+  const TYPE_CHIP_ORDER = [
+    "Music Video",
+    "Trailer",
+    "Episode",
+    "Montage",
+    "Crossover",
+  ];
+
   function normalizeCatalogFilters(list) {
     const byId = {};
     (list || []).forEach(function (f) {
-      if (f && f.id) byId[f.id] = f;
+      if (f && f.id) byId[f.id] = Object.assign({}, f);
     });
     REQUIRED_FILTERS.forEach(function (req) {
-      if (!byId[req.id]) byId[req.id] = req;
+      if (!byId[req.id]) byId[req.id] = Object.assign({}, req);
+      else {
+        // Keep required series matching if JSON omitted it
+        if (req.matchSeries && !byId[req.id].matchSeries) {
+          byId[req.id].matchSeries = req.matchSeries;
+        }
+      }
     });
     // Preserve preferred order from REQUIRED_FILTERS, then any extras
     const ordered = [];
@@ -60,6 +79,128 @@
     Object.keys(byId).forEach(function (id) {
       if (!seen[id]) ordered.push(byId[id]);
     });
+    return ordered;
+  }
+
+  function slugifyFilterId(label) {
+    return String(label || "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "");
+  }
+
+  function typeSlugId(typeName) {
+    return "type-" + slugifyFilterId(typeName);
+  }
+
+  /** Rough singular/plural + label equality so Podcast/Crossover blend into series chips. */
+  function seriesFilterAliasesType(filter, typeName) {
+    if (!filter || !typeName) return false;
+    const t = String(typeName).toLowerCase().trim();
+    if (!t) return false;
+    const label = String(filter.label || "")
+      .toLowerCase()
+      .trim();
+    const series = String(filter.matchSeries || "")
+      .toLowerCase()
+      .trim();
+    const candidates = [label, series].filter(Boolean);
+    for (let i = 0; i < candidates.length; i++) {
+      const c = candidates[i];
+      if (c === t) return true;
+      if (c === t + "s" || c === t + "es") return true;
+      if (t === c + "s" || t === c + "es") return true;
+      if (c.replace(/s$/, "") === t || t.replace(/s$/, "") === c) return true;
+    }
+    return false;
+  }
+
+  /**
+   * Series chips + distinct type chips from the catalog.
+   * - Podcast type folds into Podcast series chip (OR match)
+   * - Crossover type folds into Crossovers
+   * - Short type folds into Shorts
+   * - Music Video / Trailer / Episode become extra chips (no new vertical sections)
+   */
+  function buildCatalogFilters(baseList, videoList) {
+    const seriesFilters = normalizeCatalogFilters(baseList || []);
+    const typeCounts = {};
+    (videoList || []).forEach(function (v) {
+      const t = (v && v.type && String(v.type).trim()) || "";
+      if (!t) return;
+      typeCounts[t] = (typeCounts[t] || 0) + 1;
+    });
+    const types = Object.keys(typeCounts);
+
+    // Attach matchType onto series chips when names alias
+    types.forEach(function (typeName) {
+      for (let i = 0; i < seriesFilters.length; i++) {
+        const f = seriesFilters[i];
+        if (f.id === "all") continue;
+        if (!seriesFilterAliasesType(f, typeName)) continue;
+        if (!f.matchType) f.matchType = typeName;
+        else if (Array.isArray(f.matchType)) {
+          if (f.matchType.indexOf(typeName) === -1) f.matchType.push(typeName);
+        } else if (f.matchType !== typeName) {
+          f.matchType = [f.matchType, typeName];
+        }
+        // mark type as absorbed so we don't add a duplicate chip
+        typeCounts[typeName] = -1;
+        break;
+      }
+    });
+
+    // Type-only chips for remaining distinct types
+    const typeOnly = types.filter(function (t) {
+      return typeCounts[t] > 0;
+    });
+    typeOnly.sort(function (a, b) {
+      const ia = TYPE_CHIP_ORDER.indexOf(a);
+      const ib = TYPE_CHIP_ORDER.indexOf(b);
+      if (ia !== -1 || ib !== -1) {
+        if (ia === -1) return 1;
+        if (ib === -1) return -1;
+        return ia - ib;
+      }
+      return a.localeCompare(b);
+    });
+
+    const typeFilters = typeOnly.map(function (typeName) {
+      return {
+        id: typeSlugId(typeName),
+        label: typeName,
+        matchType: typeName,
+        kind: "type",
+      };
+    });
+
+    // Insert type chips after Podcast (or after series core if Podcast missing)
+    const ordered = [];
+    let typesInserted = false;
+    seriesFilters.forEach(function (f) {
+      ordered.push(f);
+      if (f.id === "podcasts" && typeFilters.length) {
+        typeFilters.forEach(function (tf) {
+          ordered.push(tf);
+        });
+        typesInserted = true;
+      }
+    });
+    if (!typesInserted) {
+      // Before Shorts if present, else append
+      const shortsIdx = ordered.findIndex(function (f) {
+        return f.id === "shorts";
+      });
+      if (shortsIdx >= 0) {
+        typeFilters.forEach(function (tf, i) {
+          ordered.splice(shortsIdx + i, 0, tf);
+        });
+      } else {
+        typeFilters.forEach(function (tf) {
+          ordered.push(tf);
+        });
+      }
+    }
     return ordered;
   }
 
@@ -222,7 +363,30 @@
     if (activeFilter === "all") return true;
     if (activeFilter === "shorts") return isShort(video);
     const def = getFilterDef(activeFilter);
-    if (def && def.matchSeries) return video.series === def.matchSeries;
+    if (!def) {
+      return (
+        video.filterCategory === activeFilter ||
+        typeSlugId(video.type || "") === activeFilter
+      );
+    }
+
+    // Blended OR: series chip may also match type; type chips match type only.
+    const hits = [];
+    if (def.matchSeries) {
+      hits.push(video.series === def.matchSeries);
+    }
+    if (def.matchType) {
+      const types = Array.isArray(def.matchType)
+        ? def.matchType
+        : [def.matchType];
+      hits.push(types.indexOf(video.type) !== -1);
+    }
+    if (def.matchFilterCategory) {
+      hits.push(video.filterCategory === def.matchFilterCategory);
+    }
+    if (hits.length) return hits.some(Boolean);
+
+    // Legacy id === filterCategory
     return video.filterCategory === activeFilter;
   }
 
@@ -1126,17 +1290,36 @@
 
   function renderFilters() {
     if (!els.filters) return;
-    const filters = normalizeCatalogFilters(
-      (catalog && catalog.filters) || []
+    const filters = buildCatalogFilters(
+      (catalog && catalog.filters) || REQUIRED_FILTERS,
+      (catalog && catalog.videos) || videos || []
     );
     if (catalog) catalog.filters = filters;
+    // Drop active filter if a type disappeared after reload
+    if (
+      activeFilter !== "all" &&
+      !filters.some(function (f) {
+        return f.id === activeFilter;
+      })
+    ) {
+      activeFilter = "all";
+    }
     els.filters.innerHTML = "";
     filters.forEach((f, i) => {
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = "film-filter-chip";
+      btn.className =
+        "film-filter-chip" +
+        (f.kind === "type" || (f.matchType && !f.matchSeries)
+          ? " film-filter-chip--type"
+          : "");
       btn.dataset.filter = f.id;
       btn.textContent = f.label;
+      if (f.kind === "type" || (f.matchType && !f.matchSeries)) {
+        btn.title = "Filter by type: " + f.label;
+      } else if (f.matchSeries && f.matchType) {
+        btn.title = "Series or type: " + f.label;
+      }
       if (f.id === activeFilter) {
         btn.classList.add("is-active");
         btn.setAttribute("aria-pressed", "true");
@@ -1279,9 +1462,12 @@
       if (!res.ok) throw new Error(String(res.status));
       catalog = await res.json();
       videos = catalog.videos || [];
-      catalog.filters = normalizeCatalogFilters(catalog.filters || []);
+      catalog.filters = buildCatalogFilters(
+        catalog.filters || REQUIRED_FILTERS,
+        videos
+      );
       updateStats();
-      // Paint filter chips immediately (includes Shorts even if JSON was stale)
+      // Paint filter chips: series + distinct types (Music Video, Trailer, …)
       renderFilters();
       setLoading(false);
       render();
@@ -1296,7 +1482,10 @@
       setLoading(false);
       // Still show filter chips (with Shorts) so the toolbar isn't empty
       catalog = catalog || { filters: REQUIRED_FILTERS, videos: [] };
-      catalog.filters = normalizeCatalogFilters(catalog.filters || []);
+      catalog.filters = buildCatalogFilters(
+        catalog.filters || REQUIRED_FILTERS,
+        catalog.videos || []
+      );
       renderFilters();
       removeLegacyFullScreenTheatrePill();
       if (els.empty) {
