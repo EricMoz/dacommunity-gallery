@@ -3467,41 +3467,10 @@ button.stat:focus-visible {
   100% { background-position: 0% 50%; }
 }
 
-/* Subtle animated track line — Track section (MC race energy, minimal). */
+/* Track section (MC race tile only — no full-width gimmick border). */
 #track,
 .home-track {
-  position: relative;
   scroll-margin-top: 5.5rem;
-}
-
-#track::after,
-.home-track::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: repeating-linear-gradient(
-    90deg,
-    var(--black) 0px,
-    var(--black) 3px,
-    transparent 3px,
-    transparent 10px
-  );
-  opacity: 0.18;
-  pointer-events: none;
-  animation: subtle-track 2.8s linear infinite;
-}
-
-@keyframes subtle-track {
-  0% { background-position: 0 0; }
-  100% { background-position: 20px 0; }
-}
-
-@keyframes subtle-track {
-  0%   { background-position: 0 0; }
-  100% { background-position: 22px 0; }
 }
 
 .home-stories-layout {
