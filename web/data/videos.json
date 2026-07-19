@@ -274,7 +274,7 @@
       "filterCategory": "crossovers",
       "sortOrder": 4,
       "relatedCta": {
-        "href": "../dacommunity/?sort=token_asc#wallet-panel",
+        "href": "../dacommunity/?sort=token_asc&collection=dacommunity#wallet-panel",
         "label": "Browse daCommunity NFT archive",
         "kicker": "NFT"
       }
