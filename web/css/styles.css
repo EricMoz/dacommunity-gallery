@@ -10219,9 +10219,9 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding: 0.08rem 0.26rem;
     font-size: 0.62rem;
   }
-  body.has-collector-view .collector-escape-rank-badge {
-    padding: 0.06rem 0.2rem;
-    font-size: 0.58rem;
+  body.has-collector-view .collector-rank-pill {
+    padding: 0.06rem 0.22rem;
+    font-size: 0.54rem;
   }
   body.has-collector-view .gallery-list.holdings-grid,
   body.has-collector-view .gallery-focus-zone.is-collector-grid {
