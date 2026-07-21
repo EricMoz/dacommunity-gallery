@@ -7230,20 +7230,74 @@ body.has-collector-view .collector-theater-vignette {
   text-shadow: 0 0 48px rgba(255, 204, 0, 0.12);
 }
 
-.collector-escape-rank-badge {
+.collector-escape-rank-badge,
+.collector-escape-ranks {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+  max-width: min(100%, 22rem);
+}
+
+.collector-rank-pill {
   display: inline-flex;
   align-items: center;
-  padding: 0.22rem 0.6rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 2px solid var(--black);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.75);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* daCommunity — classic yellow */
+.rank-badge-dacommunity,
+.rank-badge-archive {
+  color: var(--black);
+  background: var(--yellow);
+}
+
+/* BIG KIX — electric cyan */
+.rank-badge-bigkix {
+  color: #041018;
+  background: linear-gradient(135deg, #5eead4 0%, #22d3ee 55%, #67e8f9 100%);
+  border-color: #0e7490;
+  box-shadow: 2px 2px 0 rgba(8, 47, 73, 0.85);
+}
+
+/* Badges — emerald */
+.rank-badge-badges {
+  color: #052e16;
+  background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
+  border-color: #166534;
+  box-shadow: 2px 2px 0 rgba(20, 83, 45, 0.85);
+}
+
+.collector-profile-ranks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.45rem 0 0;
+}
+
+.collector-profile-badge {
+  /* legacy single badge — keep yellow default if still emitted */
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
   border-radius: 4px;
   font-size: 0.68rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--black);
   background: var(--yellow);
   border: 2px solid var(--black);
-  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.85);
-  flex-shrink: 0;
 }
 
 .collector-pride-meta {
@@ -10032,9 +10086,13 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding: 0.08rem 0.28rem;
     font-size: 0.62rem;
   }
-  body.has-collector-view .collector-escape-rank-badge {
-    padding: 0.06rem 0.22rem;
-    font-size: 0.58rem;
+  body.has-collector-view .collector-escape-rank-badge,
+  body.has-collector-view .collector-escape-ranks {
+    max-width: 100%;
+  }
+  body.has-collector-view .collector-rank-pill {
+    padding: 0.06rem 0.28rem;
+    font-size: 0.56rem;
   }
   body.has-collector-view #browse-controls.is-portfolio-browse {
     padding: 0.28rem 0.35rem 0.32rem;

@@ -904,14 +904,8 @@ function rebuildCollectorsForCurrentView() {
 
 function syncCollectorViewToCurrentItems() {
   if (!galleryCollectorView || !galleryCollectorView.address) return;
-  var addr = galleryCollectorView.address;
-  var holdings = buildHoldingsFromCurrentItems(addr);
-  if (holdings.length > 0) {
-    galleryCollectorView.tokenIds = collectorTokenIdSet({ holdings: holdings });
-    galleryCollectorView.pieceCount = holdings.length;
-    galleryCollectorView.uniquePieces = holdings.length;
-    renderCollectorFocusUi();
-  }
+  expandCollectorHoldingsFromLoadedData();
+  renderCollectorFocusUi();
 }
 
 function formatMintDate(iso) {
@@ -1435,19 +1429,62 @@ function setGalleryCollectorView(entry, opts) {
   opts = opts || {};
   if (!entry) return;
   var label = entry.ens_name || entry.username || shortenAddress(entry.address);
+  var addr = entry.address.toLowerCase();
+  // Ensure collectorsList matches active collection so primary rank is meaningful
+  rebuildCollectorsForCurrentView();
   galleryCollectorView = {
-    address: entry.address.toLowerCase(),
+    address: addr,
     label: label,
     tokenIds: collectorTokenIdSet(entry),
     pieceCount: nvl(entry.unique_pieces, (entry.holdings || []).length),
     uniquePieces: nvl(entry.unique_pieces, (entry.holdings || []).length),
     collectionQuantity: nvl(entry.collection_quantity, "—"),
-    rank: collectorRank(entry.address),
+    rank: collectorRank(addr),
+    ranks: collectorRankBadges(addr, 10),
   };
   renderCollectorFocusUi();
   refreshView();
   if (opts.scroll === false) return;
   scrollToCollectorTheaterTop({ behavior: opts.scrollBehavior || "smooth" });
+}
+
+/** After data load / clear-filters: expand portfolio to every piece this wallet holds. */
+function expandCollectorHoldingsFromLoadedData() {
+  if (!galleryCollectorView || !galleryCollectorView.address) return;
+  var addr = galleryCollectorView.address;
+  rebuildCollectorsForCurrentView();
+  var holdings = buildHoldingsFromCurrentItems(addr);
+  // Merge wallet-index holdings when on all/dacommunity so Base pieces appear too
+  if (
+    (!activeCollection || activeCollection === "all" || activeCollection === "dacommunity") &&
+    walletIndex &&
+    walletIndex.by_address &&
+    walletIndex.by_address[addr]
+  ) {
+    var wi = walletIndex.by_address[addr];
+    var have = {};
+    holdings.forEach(function (h) {
+      have[getItemKey(h)] = true;
+    });
+    (wi.holdings || []).forEach(function (h) {
+      var k = getItemKey(h);
+      if (!have[k]) {
+        holdings.push(h);
+        have[k] = true;
+      }
+    });
+  }
+  if (!holdings.length) return;
+  galleryCollectorView.tokenIds = collectorTokenIdSet({ holdings: holdings });
+  galleryCollectorView.pieceCount = holdings.length;
+  galleryCollectorView.uniquePieces = holdings.length;
+  var qty = 0;
+  holdings.forEach(function () {
+    qty += 1;
+  });
+  galleryCollectorView.collectionQuantity = qty;
+  galleryCollectorView.rank = collectorRank(addr);
+  galleryCollectorView.ranks = collectorRankBadges(addr, 10);
 }
 
 /**
@@ -1477,30 +1514,78 @@ function scrollToCollectorTheaterTop(opts) {
   });
 }
 
-/** Reset search/filter/sort inside an active collector view (stay in theater mode). */
+/** Reset search/filter/sort inside an active collector view (stay in theater mode).
+ *  Always reloads "All collections" data so holdings outside the prior filter reappear.
+ */
 function clearCollectorFilters() {
   if (!galleryCollectorView) return;
+  var addr = galleryCollectorView.address;
   activeFilter = "all";
   searchQuery = "";
   sortKey = "token_desc";
-  // Do not pre-set activeCollection here -- the change handler will set it + trigger data load for the chosen collection (all / badges / etc)
-  // This ensures the portfolio grid shows the correct subset based on dropdown no matter the starting collection.
   var search = $("#search");
   var sort = $("#sort-select");
   var colSel = $("#collection-select");
   if (search) search.value = "";
   if (sort) sort.value = "token_desc";
-  if (colSel) {
-    colSel.value = "all";
-    // dispatch to ensure data for all is loaded while keeping portfolio
-    colSel.dispatchEvent(new Event('change'));
-  }
   document.querySelectorAll(".filter").forEach(function (btn) {
     var on = btn.dataset.filter === "all";
     btn.classList.toggle("active", on);
     btn.setAttribute("aria-selected", on ? "true" : "false");
   });
-  // handler will call refreshView + sync after data load
+
+  function afterAllDataReady() {
+    expandCollectorHoldingsFromLoadedData();
+    renderCollectorFocusUi();
+    refreshView();
+    syncBrowseParamsToUrl();
+  }
+
+  // Already on all: just clear filters and expand holdings (change handler may no-op)
+  if (!activeCollection || activeCollection === "all") {
+    if (colSel) colSel.value = "all";
+    afterAllDataReady();
+    return;
+  }
+
+  // Need full multi-collection catalog so portfolio is not stuck on one collection
+  activeCollection = "all";
+  if (colSel) colSel.value = "all";
+  syncBrowseParamsToUrl();
+  var loadEl = $("#load-state");
+  if (loadEl) loadEl.hidden = false;
+  (async function () {
+    try {
+      initDataUrls();
+      var newData = await loadCatalogFirst();
+      galleryData = newData;
+      if (galleryData && Array.isArray(galleryData.items)) {
+        galleryData.items.forEach(function (item) {
+          if (!item.collection_id) item.collection_id = "dacommunity";
+        });
+      }
+      indexItems(galleryData);
+      await mergeSecondaryCatalogsIntoGallery();
+      rebuildCollectorsForCurrentView();
+      renderStats((galleryData && galleryData.collection) || null);
+      adaptHeaderForCollection();
+      applyCollectionUI();
+      afterAllDataReady();
+      if (dataSource === "catalog" || (galleryData && galleryData.source === "gallery_catalog")) {
+        refreshFullDataInBackground();
+      }
+      loadWalletIndex().then(function () {
+        expandCollectorHoldingsFromLoadedData();
+        renderCollectorFocusUi();
+        refreshView();
+      });
+    } catch (err) {
+      console.error("clearCollectorFilters failed", err);
+      afterAllDataReady();
+    } finally {
+      if (loadEl) loadEl.hidden = true;
+    }
+  })();
 }
 
 function clearGalleryCollectorView(opts) {
@@ -1657,13 +1742,39 @@ function renderCollectorFocusUi() {
 
     var escapeRank = $("#collector-escape-rank");
     if (escapeRank) {
-      var rank = galleryCollectorView.rank;
-      if (rank && rank <= 10) {
-        escapeRank.textContent = "#" + rank + " in the archive";
+      var ranks =
+        galleryCollectorView.ranks && galleryCollectorView.ranks.length
+          ? galleryCollectorView.ranks
+          : null;
+      if (!ranks || !ranks.length) {
+        // Fallback: single rank for active collection list
+        var rOne = galleryCollectorView.rank;
+        if (rOne && rOne <= 10) {
+          ranks = [
+            {
+              id: activeCollection && activeCollection !== "all" ? activeCollection : "dacommunity",
+              rank: rOne,
+              short:
+                activeCollection === "bigkix"
+                  ? "BIG KIX"
+                  : activeCollection === "badges"
+                    ? "Badges"
+                    : activeCollection === "dacommunity"
+                      ? "daCommunity"
+                      : "Archive",
+            },
+          ];
+        }
+      }
+      if (ranks && ranks.length) {
         escapeRank.hidden = false;
+        escapeRank.className = "collector-escape-ranks";
+        escapeRank.innerHTML = formatRankBadgesHtml(ranks, { short: true });
       } else {
         escapeRank.hidden = true;
         escapeRank.textContent = "";
+        escapeRank.innerHTML = "";
+        escapeRank.className = "collector-escape-rank-badge";
       }
     }
 
@@ -1763,10 +1874,8 @@ function applyCollectorView(address) {
   closeCollectorsModal();
   var input = $("#wallet-input");
   if (input) input.value = meta.lookupValue || meta.address;
-  // Always try synth from current items first (e.g. badges context) to show portfolio with owned from current view
-  if (activeCollection === "badges") {
-    collectorsList = buildCollectorsFromBadgeItems(galleryData ? galleryData.items : []);
-  }
+  // Rank + holdings from current loaded collection (badges / BIG KIX / all)
+  rebuildCollectorsForCurrentView();
   var synthHoldings = buildHoldingsFromCurrentItems(key);
   if (synthHoldings.length > 0) {
     var m = (walletIndex && walletIndex.by_address && walletIndex.by_address[key]) || {};
@@ -1938,11 +2047,125 @@ async function applyWalletFromUrl() {
 }
 
 function collectorRank(address) {
+  return collectorRankInList(address, collectorsList);
+}
+
+function collectorRankInList(address, list) {
   var key = (address || "").toLowerCase();
-  for (var i = 0; i < collectorsList.length; i++) {
-    if (collectorsList[i].address.toLowerCase() === key) return i + 1;
+  if (!key || !list || !list.length) return null;
+  for (var i = 0; i < list.length; i++) {
+    if ((list[i].address || "").toLowerCase() === key) return i + 1;
   }
   return null;
+}
+
+/** Collectors ranking list for one collection id (from currently loaded items / index). */
+function getCollectorsRankingList(colId) {
+  var items = (galleryData && galleryData.items) || [];
+  if (colId && colId !== "all") {
+    items = items.filter(function (i) {
+      return (i.collection_id || "dacommunity") === colId;
+    });
+  }
+  if (colId === "badges") {
+    return buildCollectorsFromBadgeItems(items);
+  }
+  if (colId === "dacommunity") {
+    // Prefer live item owners when present; fall back to wallet index
+    var fromItems = buildCollectorsFromLoadedItems(items);
+    if (fromItems.length) return fromItems;
+    return buildCollectorsFromIndex(walletIndex);
+  }
+  if (!colId || colId === "all") {
+    return buildCollectorsFromLoadedItems((galleryData && galleryData.items) || []);
+  }
+  // BIG KIX and other secondary galleries
+  return buildCollectorsFromLoadedItems(items);
+}
+
+/**
+ * Top ranks (default top 10) across live collections for one wallet.
+ * Used for multi-color rank badges in portfolio / wallet profile.
+ */
+function collectorRankBadges(address, topN) {
+  topN = topN || 10;
+  var key = (address || "").toLowerCase();
+  if (!key) return [];
+  var out = [];
+  var seen = {};
+  var live = getLiveCollections();
+  live.forEach(function (col) {
+    if (!col || !col.id) return;
+    var list = getCollectorsRankingList(col.id);
+    var r = collectorRankInList(key, list);
+    if (r && r <= topN && !seen[col.id]) {
+      seen[col.id] = true;
+      out.push({
+        id: col.id,
+        rank: r,
+        name: col.name || col.id,
+        short:
+          col.id === "bigkix"
+            ? "BIG KIX"
+            : col.id === "badges"
+              ? "Badges"
+              : col.id === "dacommunity"
+                ? "daCommunity"
+                : col.name || col.id,
+      });
+    }
+  });
+  // If only one collection is loaded (e.g. cold ?collection=bigkix), still surface that rank
+  if (!out.length && activeCollection && activeCollection !== "all") {
+    var r0 = collectorRankInList(key, collectorsList);
+    if (r0 && r0 <= topN) {
+      out.push({
+        id: activeCollection,
+        rank: r0,
+        name: getCollectionName(activeCollection),
+        short:
+          activeCollection === "bigkix"
+            ? "BIG KIX"
+            : activeCollection === "badges"
+              ? "Badges"
+              : activeCollection === "dacommunity"
+                ? "daCommunity"
+                : getCollectionName(activeCollection),
+      });
+    }
+  }
+  out.sort(function (a, b) {
+    return a.rank - b.rank;
+  });
+  return out;
+}
+
+function rankBadgeClass(colId) {
+  if (colId === "bigkix") return "rank-badge-bigkix";
+  if (colId === "badges") return "rank-badge-badges";
+  if (colId === "dacommunity") return "rank-badge-dacommunity";
+  return "rank-badge-archive";
+}
+
+function formatRankBadgesHtml(ranks, opts) {
+  opts = opts || {};
+  if (!ranks || !ranks.length) return "";
+  return ranks
+    .map(function (r) {
+      var label = opts.short
+        ? "#" + r.rank + " " + r.short
+        : "#" + r.rank + " in " + r.short;
+      return (
+        '<span class="collector-rank-pill ' +
+        rankBadgeClass(r.id) +
+        '" title="' +
+        escapeHtml("#" + r.rank + " among " + (r.name || r.short) + " collectors") +
+        '">' +
+        escapeHtml(label) +
+        "</span>"
+      );
+    })
+    .join("");
 }
 
 function renderTopCollectors() {
@@ -2279,11 +2502,13 @@ function renderWalletSuccess(entry, opts) {
   var holdings = entry.holdings || [];
   var uq = nvl(entry.unique_pieces, holdings.length);
   var qty = nvl(entry.collection_quantity, "—");
-  var rank = collectorRank(entry.address);
-  var rankHtml =
-    rank && rank <= 10
-      ? '<span class="collector-profile-badge">#' + rank + " in the archive</span>"
-      : "";
+  rebuildCollectorsForCurrentView();
+  var ranks = collectorRankBadges(entry.address, 10);
+  var rankHtml = ranks.length
+    ? '<div class="collector-profile-ranks">' +
+      formatRankBadgesHtml(ranks, { short: true }) +
+      "</div>"
+    : "";
 
   resultEl.hidden = false;
   resultEl.innerHTML =
