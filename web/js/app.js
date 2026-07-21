@@ -243,7 +243,8 @@ function adaptHeaderForCollection() {
       lead.textContent = "Personal 1:1 awards. Series images shown in the grid (generic photos to keep discovery clean, no 1:1 dupes). Your specific named copy appears in the collector wallet lookup when you hold it.";
     } else if (isBigKix) {
       h1.innerHTML = 'BIG <span class="accent">KIX</span>';
-      lead.textContent = "Season 1 First Edition on Ethereum — character kicks with live owners, listings, and transfer activity. Creator wallet is excluded from holder counts.";
+      lead.textContent =
+        "Season 1 First Edition on Ethereum — a character-driven series of kicks born from meme culture and crypto lore. Browse every piece, live listings, and recent transfers in one place.";
     } else {
       h1.innerHTML = originalHeroTitle || h1.innerHTML;
       lead.textContent = originalHeroLead || lead.textContent;
@@ -476,7 +477,7 @@ async function fetchJson(url, timeoutMs) {
     // the browser always gets the absolute latest bytes from the server (bypassing any
     // HTTP/browser cache). The ?v=BUILD stamp (from meta) still provides build-coherent
     // long-term caching keys per release, and the SW network-first layer provides offline.
-    const isOurData = /\/data\/(gallery_(data|meta|catalog|wallet_index)|videos)\.json(\?|$)/i.test(url);
+    const isOurData = /\/data\/(gallery_(data|meta|catalog|wallet_index)|videos|badges_(data|catalog)|bigkix_(data|catalog)|collections_registry)\.json(\?|$)/i.test(url);
     const res = await fetch(url, {
       signal: ctrl.signal,
       cache: isOurData ? "no-store" : "default"
@@ -564,23 +565,19 @@ async function refreshFullDataInBackground() {
 async function loadWalletIndex() {
   if (!galleryData || !galleryData.wallet_index_file) {
     walletIndex = (galleryData && galleryData.holders_index) || null;
-    // Do not clobber collectorsList in badges view -- badges view builds its own from badge items
-    // (wallet index is still loaded for other ENS/meta purposes, but collectors come from items).
-    if (activeCollection !== "badges") {
-      collectorsList = buildCollectorsFromIndex(walletIndex);
-    }
+    // Never clobber secondary collections (badges / BIG KIX) — rebuild for current view.
+    rebuildCollectorsForCurrentView();
     return;
   }
   try {
     const w = await fetchJson(WALLET_URL, 20000);
     walletIndex = w.holders_index || null;
-    collectorsList =
-      (walletIndex && walletIndex.collectors) || buildCollectorsFromIndex(walletIndex);
   } catch (e) {
     console.warn("Wallet index load failed:", e);
     walletIndex = null;
-    collectorsList = [];
   }
+  // Always rebuild for active collection (all / dacommunity / bigkix / badges)
+  rebuildCollectorsForCurrentView();
 
   // Enrich wallet by_address with ENS from badge item names if missing (most recent by minted_at).
   // This ensures wallet panel, heavy collectors, etc. show ENS even if resolve didn't populate in data.
@@ -829,22 +826,32 @@ function buildCollectorsFromLoadedItems(items) {
 }
 
 function rebuildCollectorsForCurrentView() {
-  if (activeCollection === "badges") {
-    collectorsList = buildCollectorsFromBadgeItems(galleryData ? galleryData.items : []);
-  } else if (!activeCollection || activeCollection === "all") {
-    // "All collections": count pieces across currently loaded dacommunity + badges items.
+  // Secondary collections (badges, BIG KIX, …): always derive from item owners
+  if (
+    activeCollection &&
+    activeCollection !== "all" &&
+    activeCollection !== "dacommunity"
+  ) {
+    collectorsList = buildCollectorsFromBadgeItems(
+      galleryData ? galleryData.items : []
+    );
+    updateCollectorsButton();
+    return;
+  }
+  if (!activeCollection || activeCollection === "all") {
+    // "All collections": count pieces across currently loaded dacommunity + secondaries.
     // Previous merge kept only the first list's unique_pieces, so badge holdings were dropped
     // for anyone already in the daCommunity wallet index — modal under-counted vs wallet view.
     var fromItems = buildCollectorsFromLoadedItems(galleryData ? galleryData.items : []);
     if (fromItems.length) {
       collectorsList = fromItems;
     } else {
-      // Fallback if items not loaded yet: sum dacommunity index + badge collectors
+      // Fallback if items not loaded yet: sum dacommunity index + item-based collectors
       var dacomCols = [];
       if (walletIndex && walletIndex.by_address) {
         dacomCols = buildCollectorsFromIndex(walletIndex);
       }
-      var badgeCols = buildCollectorsFromBadgeItems(galleryData ? galleryData.items : []);
+      var itemCols = buildCollectorsFromBadgeItems(galleryData ? galleryData.items : []);
       var map = {};
       function mergeRow(c) {
         if (!c || !c.address) return;
@@ -867,7 +874,7 @@ function rebuildCollectorsForCurrentView() {
         }
       }
       dacomCols.forEach(mergeRow);
-      badgeCols.forEach(mergeRow);
+      itemCols.forEach(mergeRow);
       collectorsList = Object.values(map).sort(function (a, b) {
         return (b.unique_pieces || b.collection_quantity || 0) - (a.unique_pieces || a.collection_quantity || 0);
       });
@@ -2637,7 +2644,7 @@ function renderHeroNote(collection) {
       '<strong class="steward-name">dacatworld.eth</strong>.';
   } else if (collId === "bigkix") {
     html = "Season 1 First Edition on Ethereum · OpenSea <strong>bigkix</strong>. Stewarded by " +
-      '<strong class="steward-name">dacatworld.eth</strong> (creator excluded from holder stats).';
+      '<strong class="steward-name">dacatworld.eth</strong>.';
   } else {
     note.hidden = true;
     return;
@@ -3672,8 +3679,7 @@ function bindUi() {
           }
           dataSource = (galleryData.source || "").indexOf("badges") === 0 ? "catalog" : "full";
           indexItems(galleryData);
-          collectorsList = buildCollectorsFromBadgeItems(galleryData.items);
-          updateCollectorsButton();
+          rebuildCollectorsForCurrentView();
           renderStats(galleryData.collection);
           renderDataFreshness();
           refreshView();
@@ -3681,9 +3687,8 @@ function bindUi() {
           adaptHeaderForCollection();
           applyCollectionUI();
 
-          // Load wallet index anyway (for ENS names in owner lists for badges, even if no full wallet_lookup panel)
+          // Load wallet index for ENS on owner chips (do not clobber collectors for bigkix/badges)
           loadWalletIndex().then(function () {
-            // Enrich badge owners with ENS from walletIndex for display
             if (galleryData && Array.isArray(galleryData.items)) {
               var byAddr = (walletIndex && walletIndex.by_address) || {};
               galleryData.items.forEach(function (item) {
@@ -3697,7 +3702,8 @@ function bindUi() {
               });
             }
             rebuildCollectorsForCurrentView();
-            // re-render owners if a detail is open, so ENS can appear
+            renderStats(galleryData.collection);
+            refreshView();
             if (activeDetailTokenId) {
               var openItem = itemsById.get(activeDetailTokenId);
               if (openItem) refreshDetailPanel(openItem);
@@ -3720,7 +3726,16 @@ function bindUi() {
           if (!activeCollection || activeCollection === "all") {
             await mergeSecondaryCatalogsIntoGallery();
           }
-          renderStats(galleryData.collection);
+          // Keep filter/sort chips in sync (e.g. stay on "For sale" when leaving BIG KIX)
+          document.querySelectorAll(".filter").forEach(function (btn) {
+            var on = btn.dataset.filter === activeFilter;
+            btn.classList.toggle("active", on);
+            btn.setAttribute("aria-selected", on ? "true" : "false");
+          });
+          rebuildCollectorsForCurrentView();
+          renderStats(
+            (galleryData && galleryData.collection) || null
+          );
           renderDataFreshness();
           refreshView();
           syncCollectorViewToCurrentItems();
@@ -3732,8 +3747,11 @@ function bindUi() {
           }
           if (hasWallet) {
             loadWalletIndex().then(function () {
-              updateCollectorsButton();
               rebuildCollectorsForCurrentView();
+              renderStats(
+                (galleryData && galleryData.collection) || null
+              );
+              refreshView();
               if (activeDetailTokenId) {
                 var openItem = itemsById.get(activeDetailTokenId);
                 if (openItem) refreshDetailPanel(openItem);

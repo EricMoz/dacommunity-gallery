@@ -93,6 +93,7 @@ def build_active_listings_map(client: OpenSeaClient) -> dict[str, dict]:
 
 
 def parse_listing_price(listing: dict) -> dict | None:
+    """Parse listing price as **per-unit** ETH (ERC-1155 batch totals ÷ quantity)."""
     price = listing.get("price") or {}
     current = price.get("current") or {}
     raw = current.get("value")
@@ -100,11 +101,36 @@ def parse_listing_price(listing: dict) -> dict | None:
         return None
     decimals = int(current.get("decimals", 18))
     currency = current.get("currency", "ETH")
-    return {
-        "amount_eth": wei_to_eth(str(raw), decimals),
+    total_eth = wei_to_eth(str(raw), decimals)
+
+    qty = 1
+    rem = listing.get("remaining_quantity")
+    if rem is not None:
+        try:
+            qty = max(1, int(rem))
+        except (TypeError, ValueError):
+            qty = 1
+    if qty <= 1:
+        params = (listing.get("protocol_data") or {}).get("parameters") or {}
+        offer = params.get("offer") or []
+        if offer:
+            try:
+                sa = int(offer[0].get("startAmount") or 1)
+                if sa > 1:
+                    qty = sa
+            except (TypeError, ValueError):
+                pass
+
+    unit_eth = total_eth / qty if qty > 1 else total_eth
+    out = {
+        "amount_eth": unit_eth,
         "currency": currency,
         "status": listing.get("status"),
     }
+    if qty > 1:
+        out["quantity"] = qty
+        out["total_eth"] = total_eth
+    return out
 
 
 def clean_description(text: str | None) -> str:
