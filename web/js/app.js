@@ -984,6 +984,16 @@ function cleanStoryText(item) {
       lines.shift();
       continue;
     }
+    // BIG KIX OpenSea titles often lead the body: "BIG KIX #014 – EAGLE 250 - Season…"
+    if (/^big\s*kix\s*#\s*\d+/i.test(head)) {
+      lines.shift();
+      continue;
+    }
+    // Drop pure OpenSea name line when present
+    if (item.opensea_name && head === String(item.opensea_name).trim().toLowerCase()) {
+      lines.shift();
+      continue;
+    }
     break;
   }
   while (lines.length && !lines[0].trim()) lines.shift();
