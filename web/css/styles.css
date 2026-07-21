@@ -10162,13 +10162,11 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding: 0.08rem 0.28rem;
     font-size: 0.62rem;
   }
-  body.has-collector-view .collector-escape-rank-badge,
-  body.has-collector-view .collector-escape-ranks {
-    max-width: 100%;
-  }
-  body.has-collector-view .collector-rank-pill {
-    padding: 0.06rem 0.28rem;
-    font-size: 0.56rem;
+  /* Rank strip already handled in shared ≤768 rules — only size tweak here */
+  body.has-collector-view .collector-rank-pill,
+  body.has-collector-view .collector-rank-pill--compact {
+    padding: 0.08rem 0.28rem;
+    font-size: 0.5rem;
   }
   body.has-collector-view #browse-controls.is-portfolio-browse {
     padding: 0.28rem 0.35rem 0.32rem;
@@ -10295,9 +10293,10 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     padding: 0.08rem 0.26rem;
     font-size: 0.62rem;
   }
-  body.has-collector-view .collector-rank-pill {
+  body.has-collector-view .collector-rank-pill,
+  body.has-collector-view .collector-rank-pill--compact {
     padding: 0.06rem 0.22rem;
-    font-size: 0.54rem;
+    font-size: 0.48rem;
   }
   body.has-collector-view .gallery-list.holdings-grid,
   body.has-collector-view .gallery-focus-zone.is-collector-grid {
