@@ -838,15 +838,20 @@ async function loadSecondaryCollectionData(urls) {
 }
 
 function rebuildCollectorsForCurrentView() {
-  // Secondary collections (badges, BIG KIX, …): always derive from item owners
+  // Secondary collections: derive from item owners (badges need series-slug logic)
   if (
     activeCollection &&
     activeCollection !== "all" &&
     activeCollection !== "dacommunity"
   ) {
-    collectorsList = buildCollectorsFromBadgeItems(
-      galleryData ? galleryData.items : []
-    );
+    var items = galleryData ? galleryData.items : [];
+    // CRITICAL: buildCollectorsFromBadgeItems skips items without source_created_collection
+    // (badges only). BIG KIX and similar collections must use loaded-item owners.
+    if (activeCollection === "badges") {
+      collectorsList = buildCollectorsFromBadgeItems(items);
+    } else {
+      collectorsList = buildCollectorsFromLoadedItems(items);
+    }
     updateCollectorsButton();
     return;
   }

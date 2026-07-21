@@ -2255,6 +2255,48 @@ button.stat:focus-visible {
   border-bottom: 2px dashed #ddd;
 }
 
+.detail-description .detail-story-preview,
+.detail-description .detail-story-full {
+  margin: 0 0 0.5rem;
+  white-space: pre-wrap;
+}
+
+.detail-story-toggle {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 0.35rem;
+  padding: 0.2rem 0.55rem;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #111;
+  background: #f3f3f3;
+  border: 1px solid #ccc;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.detail-story-toggle:hover {
+  background: #fff8d6;
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+.detail-story-more {
+  margin: 0.15rem 0 0;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.detail-story-more a {
+  color: var(--blue-accent, #2a7fd4);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.detail-story-more a:hover {
+  text-decoration: underline;
+}
+
 .btn {
   display: inline-block;
   padding: 0.7rem 1.25rem;
