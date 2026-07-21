@@ -1,0 +1,3671 @@
+{
+  "generated_at": "2026-07-21T00:57:26.059055+00:00",
+  "source": "opensea_api_v2",
+  "collection": {
+    "id": "bigkix",
+    "slug": "bigkix",
+    "name": "BIG KIX",
+    "display_name": "BIG KIX",
+    "contract": "0x2777184bde5371049f79c15ef6e557c676c53b3a",
+    "chain": "ethereum",
+    "opensea_url": "https://opensea.io/collection/bigkix",
+    "note": "Season 1 First Edition on Ethereum. Stewarded by dacatworld.eth. Creator wallet excluded from holder counts.",
+    "creator_ens": "dacatworld.eth",
+    "creator_wallet": {
+      "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+      "username": "dacatworld",
+      "ens_name": "dacatworld.eth"
+    },
+    "creator_excluded_from_stats": true,
+    "contract_name": "BIG KIX",
+    "floor_eth": 0.001,
+    "floor_symbol": "ETH",
+    "num_owners": 16,
+    "total_sales": 6,
+    "total_volume": 0.006,
+    "piece_count": 24,
+    "listed_count": 24
+  },
+  "items": [
+    {
+      "token_id": "24",
+      "name": "BIG KIX #024 · DACAT MEME",
+      "display_name": "BIG KIX #024 · DACAT MEME",
+      "local_slug": "big-kix-024-dacat-meme",
+      "description": "BIG KIX #024 – DACAT MEME - Season 1 – First Edition\n\nThe story of DACAT began during the great meme coin boom of 2023. As Pepe captured the crypto world's attention, countless projects emerged hoping to become \"the next Pepe.\" Among them was Grumpy Cat Coin, which gained widespread attention after crypto legend Pro The Doge (The Slum Doge Millionaire) publicly supported the project and purchased 6.7 trillion tokens. The community rallied behind the project, but trademark concerns surrounding the Grumpy Cat brand eventually made it clear that the future required original intellectual property.\n\nRather than give up, the community chose a new path. The project was rebranded as DACAT TOKEN, officially launching on January 23, 2024. Free to build its own universe, the community began creating original characters, comics, books, animation, music, videos, NFTs, collectibles and merchandise. \n\nNFT Special Features\nhttps://www.dacatworld.com/bigkix-024\n\nSince launching in 2024, the DACAT ecosystem has continued to grow through projects including DACAT CHRONICLES, DACAT WORLD, DaGATO, MOZVANE, DaBEEZY, DaFOREMAN, SAPHOROTH and GRUMPY X among others, proving DACAT is more than just a meme.\n\nDacat Token was featured as the cover story on LIVING 202 Creative Lifestyle Magazine on the July 2024 issue:\nhttps://202ware.io/product/living202-the-coin-issue/\n\nThe DACAT CHRONICLES comic book is slated to be released on the VEVE mobile and web-based platform for officially licensed digital collectibles, joining such brands as MARVEL, DC, STAR WARS and TEENAGE MUTANT NINJA TURTLES.\n\nThe DACAT COMMUNITY welcomes all aspiring creators to join them and help build this decentralized entertainment brand that eliminates gatekeepers and gives power to any creator who wants to share their vision with the world using the power of CRYPTOTAINMENT.\n\nLearn more about the daCAT Community and discover BIG KIX NFT features:\n\nhttps://www.dacatworld.com \n\nhttps://www.bigkix.com \n\nhttps://www.dacat.fun",
+      "excerpt": "BIG KIX #024 – DACAT MEME - Season 1 – First Edition The story of DACAT began during the great meme coin boom of 2023. As Pepe captured the crypto world's atte…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/76626cb7ae5b1ee71d57f34d8f0219/a376626cb7ae5b1ee71d57f34d8f0219.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/24",
+      "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/24",
+      "updated_at": "2026-07-21T00:56:32.553609",
+      "traits": [
+        {
+          "trait_type": "Role",
+          "display_type": null,
+          "max_value": null,
+          "value": "Hero"
+        },
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Species",
+          "display_type": null,
+          "max_value": null,
+          "value": "Cat"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT"
+        },
+        {
+          "trait_type": "Franchise",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT TOKEN"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.03,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 14,
+        "circulating_copies": 14,
+        "top_holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          },
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          },
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          },
+          {
+            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "quantity": 1
+          },
+          {
+            "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
+            "quantity": 1
+          },
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
+          },
+          {
+            "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
+            "quantity": 1
+          },
+          {
+            "address": "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46",
+            "quantity": 1
+          },
+          {
+            "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-07-20T13:55:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-19T04:44:47+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:55:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:51:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:47:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:44:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:41:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:36:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:30:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:27:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:24:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:21:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:18:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:13:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "BIG KIX #024 - DACAT  MEME - Season 1 - First Edition"
+    },
+    {
+      "token_id": "23",
+      "name": "BIG KIX #023 · TARG",
+      "display_name": "BIG KIX #023 · TARG",
+      "local_slug": "big-kix-023-targ",
+      "description": "BIG KIX #023 – TARG - Season 1 – First Edition\n\nTARG is the visionary founder of DACAT WORLD and the father of DACAT. From the moment he was born prematurely, TARG's life was defined by overcoming impossible odds. Doctors warned his mother that he might not survive, but the tiny Targ fought for every breath and proved he was destined to become a survivor. \n\nNFT Special Features\nhttps://www.dacatworld.com/bigkix-023\n\nAfter losing his father in a tragic mine collapse, TARG left school to work in the mines himself and help support his family. While others accepted their place in society, TARG dreamed of building a better future. When the mysterious Cryptosphere was discovered, he saw an opportunity to start fresh. Those dreams were temporarily delayed when his wife CELESTE revealed she was expecting their son, DACAT.\n\nYears later, after surviving a devastating mine collapse with the help of the mining robot 333, TARG knew his purpose was greater than mining. Taking his family to the Cryptosphere, he founded the settlement of DACAT WORLD, determined to build a thriving community where dreamers, builders, entrepreneurs and families could create better lives together.\n\nAs tensions between the DOG DYNASTY and the FROG EMPIRE grew, TARG sent Celeste and young DACAT to safety while he remained behind to protect the settlement. Then he mysteriously vanished. His disappearance inspired DACAT's lifelong mission to return to the Cryptosphere, uncover the truth about his father, and fulfill the dream TARG started.\n\nRead the DACAT WORLD books for free at:\n\nhttps://www.dacatworld.com\n\nOr purchase the books on Amazon:\n\nhttps://www.amazon.com/DACAT-WORLD-CRYPTOSPHERE-Russell-Corey/dp/B0GWWTC98K\n\nhttps://www.amazon.com/DACAT-WORLD-BATTLE/dp/B0GWXJDFLF\n\nLearn more about the daCAT Community and discover BIG KIX NFT features:\n\nhttps://www.dacatworld.com \n\nhttps://www.bigkix.com \n\nhttps://www.dacat.fun\n\nDACAT WORLD and BIG KIX are trademarks of Russell Corey. \nAll Rights Reserved.",
+      "excerpt": "BIG KIX #023 – TARG - Season 1 – First Edition TARG is the visionary founder of DACAT WORLD and the father of DACAT. From the moment he was born prematurely, T…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/b14e5d2e54fafe1e4d883a1a306cf0/d4b14e5d2e54fafe1e4d883a1a306cf0.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/23",
+      "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/23",
+      "updated_at": "2026-07-21T00:56:32.553619",
+      "traits": [
+        {
+          "trait_type": "Set",
+          "display_type": null,
+          "max_value": null,
+          "value": "Dacat Family"
+        },
+        {
+          "trait_type": "Role",
+          "display_type": null,
+          "max_value": null,
+          "value": "Hero"
+        },
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Creator",
+          "display_type": null,
+          "max_value": null,
+          "value": "Russell Corey"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Faction",
+          "display_type": null,
+          "max_value": null,
+          "value": "TEAM DACAT"
+        },
+        {
+          "trait_type": "Species",
+          "display_type": null,
+          "max_value": null,
+          "value": "Cat"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "TARG"
+        },
+        {
+          "trait_type": "Franchise",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT WORLD"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.03,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 2,
+        "top_holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "sale",
+          "at": "2026-07-20T20:20:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-19T00:00:11+00:00",
+      "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-07-20T20:20:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T20:20:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-19T00:01:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-07-19T00:00:11+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 333
+        }
+      ],
+      "opensea_name": "BIG KIX #023 - TARG - Season 1 - First Edition"
+    },
+    {
+      "token_id": "22",
+      "name": "BIG KIX #022 · CELESTE",
+      "display_name": "BIG KIX #022 · CELESTE",
+      "local_slug": "big-kix-022-celeste",
+      "description": "BIG KIX #022 – CELESTE - Season 1 – First Edition\n\nCELESTE is the loving and devoted mother of DACAT, whose strength, wisdom, and compassion helped shape the hero he would one day become. While her husband TARG dreamed of exploring the newly discovered Cryptosphere, Celeste approached the unknown with caution. When she learned she was expecting DACAT, she knew the dangerous year-long journey to an unsettled world was no place to raise a child, and the family's plans were put on hold.\n\nNFT Special Features\nhttps://www.dacatworld.com/bigkix-022\n\nEverything changed eight years later with the invention of the Etherian Gate, reducing travel from years to just hours. Although the Cryptosphere remained dangerous, it had become settled enough for families to begin building new communities. Trusting in Targ's vision, Celeste joined him and young DACAT in establishing DACAT WORLD, hoping to create a better future for generations to come.\n\nAs conflict between the DOG DYNASTY and the FROG EMPIRE intensified, Targ insisted Celeste take DACAT to the safety of her parents' home. Soon afterward, Targ mysteriously disappeared while working on the Cryptosphere, leaving Celeste to raise their son alone. As DACAT grew older, he became determined to return and search for his father. Rather than forbid him, Celeste made a difficult decision. She promised to support his journey—but only after he proved he possessed the knowledge, discipline, strength and character needed to survive. Through a series of demanding tests, she prepared her son for the destiny she knew he would one day embrace.\n\nRead the DACAT WORLD books for free at:\nhttps://www.dacatworld.com\n\nOr purchase the books on Amazon:\nhttps://www.amazon.com/DACAT-WORLD-CRYPTOSPHERE-Russell-Corey/dp/B0GWWTC98K\n\nLearn more about the daCAT Community and discover BIG KIX NFT features:\n\nhttps://www.dacatworld.com \n\nhttps://www.bigkix.com \n\nhttps://www.dacat.fun\n\nDACAT WORLD and BIG KIX are trademarks of Russell Corey. All Rights Reserved.",
+      "excerpt": "BIG KIX #022 – CELESTE - Season 1 – First Edition CELESTE is the loving and devoted mother of DACAT, whose strength, wisdom, and compassion helped shape the he…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/3ee4e09b5fdad25c369bdb6d76d38c/363ee4e09b5fdad25c369bdb6d76d38c.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/22",
+      "metadata_url": "ipfs://Qmdkw9oKwcQqLhpJFBCbQ85jv1ceUdjA1UWqc9ShESVbVs/22",
+      "updated_at": "2026-07-21T00:56:32.553625",
+      "traits": [
+        {
+          "trait_type": "Set",
+          "display_type": null,
+          "max_value": null,
+          "value": "Dacat Family"
+        },
+        {
+          "trait_type": "Role",
+          "display_type": null,
+          "max_value": null,
+          "value": "Hero"
+        },
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Creator",
+          "display_type": null,
+          "max_value": null,
+          "value": "Russell Corey"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Faction",
+          "display_type": null,
+          "max_value": null,
+          "value": "TEAM DACAT"
+        },
+        {
+          "trait_type": "Species",
+          "display_type": null,
+          "max_value": null,
+          "value": "Cat"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "CELESTE"
+        },
+        {
+          "trait_type": "Franchise",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT WORLD"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.03,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 2,
+        "top_holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-07-20T22:18:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-18T23:10:59+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-20T22:18:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-18T23:12:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-07-18T23:10:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 333
+        }
+      ],
+      "opensea_name": "BIG KIX #022 - CELESTE  - Season 1 - First Edition"
+    },
+    {
+      "token_id": "21",
+      "name": "BIG KIX #021 · CATBOT",
+      "display_name": "BIG KIX #021 · CATBOT",
+      "local_slug": "big-kix-021-catbot",
+      "description": "BIG KIX #021 – CATBOT - Season 1 – First Edition\n\nCATBOT is the loyal robotic companion of DACAT. Built by Nova Trail Systems, CATBOT was given to DACAT as an eighth birthday gift to serve as a child observation and safety robot. More than just a machine, CATBOT functions as a communication device, environmental scanner, security monitor, and trusted companion, always watching over DACAT as he explored the mysterious Cryptosphere.\n\nWhen growing tensions between the DOG DYNASTY and the FROG EMPIRE forced DACAT to leave the Cryptosphere, CATBOT remained an important part of his childhood. Living with DACAT at the safety of his grandparents's home.\n\nNFT Special Features\nhttps://www.dacatworld.com/bigkix-021\n\nThe origins of CATBOT reach back to December 29, 2017, when creator Russell Corey published the science fiction novel A UNIVERSE APART. A friendly, three-legged observation robot named SPOT appeared on the novel's cover as a loyal family companion. \n\nA UNINIVERSE APART novel:\nhttps://www.amazon.com/UNIVERSE-APART-Russell-Corey-ebook/dp/B078QFGW7N\n\nSPOT DOT BLOT would also be developed into a line of kids books on September 21, 2019:\nhttps://www.amazon.com/gp/product/B07Y7D46XJ?\n\nSpot would then go on to be the feature character on the STORIES FOR KIDS PODCAST on October 8, 2019. \nhttps://www.podomatic.com/podcasts/storiesforkids/episodes/2019-10-09T18_54_02-07_00\n\nAnd a YouTube Kids Video on March 6, 2021\nhttps://youtu.be/jgn0Td2-_Js?si=jHLAcDEPJQiuYeCT\n\nThen Russell decided to modify the SPOT character into CATBOT for the DACAT WORLD book published on April 11, 2026.\n\nRead the DACAT WORLD books for free at:\nhttps://www.dacatworld.com\n\nOr purchase the books on Amazon:\nhttps://www.amazon.com/DACAT-WORLD-CRYPTOSPHERE-Russell-Corey/dp/B0GWWTC98K\n\nLearn more about the daCAT Community and discover BIG KIX NFT features:\nhttps://www.dacatworld.com \nhttps://www.bigkix.com \nhttps://www.dacat.fun\n\nDACAT WORLD and BIG KIX are trademarks of Russell Corey. All Rights Reserved.",
+      "excerpt": "BIG KIX #021 – CATBOT - Season 1 – First Edition CATBOT is the loyal robotic companion of DACAT. Built by Nova Trail Systems, CATBOT was given to DACAT as an e…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/726497d3282552c528c955e304bf2c/54726497d3282552c528c955e304bf2c.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/21",
+      "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/21",
+      "updated_at": "2026-07-21T00:56:32.553631",
+      "traits": [
+        {
+          "trait_type": "Set",
+          "display_type": null,
+          "max_value": null,
+          "value": "Dacat Family"
+        },
+        {
+          "trait_type": "Role",
+          "display_type": null,
+          "max_value": null,
+          "value": "Hero"
+        },
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Creator",
+          "display_type": null,
+          "max_value": null,
+          "value": "Russell Corey"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Faction",
+          "display_type": null,
+          "max_value": null,
+          "value": "TEAM DACAT"
+        },
+        {
+          "trait_type": "Species",
+          "display_type": null,
+          "max_value": null,
+          "value": "Robot"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "CATBOT"
+        },
+        {
+          "trait_type": "Franchise",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT WORLD"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.03,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 2,
+        "top_holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-07-20T22:16:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-18T21:16:23+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-20T22:16:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-18T21:17:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-07-18T21:16:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 333
+        }
+      ],
+      "opensea_name": "BIG KIX #021 - CATBOT - Season 1 - First Edition"
+    },
+    {
+      "token_id": "20",
+      "name": "BIG KIX #020 · DACAT KID",
+      "display_name": "BIG KIX #020 · DACAT KID",
+      "local_slug": "big-kix-020-dacat-kid",
+      "description": "BIG KIX #020 – DACAT KID - Season 1 – First Edition\n\nEvery hero has a beginning and DACAT KID tells the story of where the adventure began. As a young cat, DACAT traveled with his father TARG and mother CELESTE to the mysterious Cryptosphere, where they founded the settlement of DACAT WORLD. \n\nSurrounded by breathtaking landscapes, strange new discoveries, and endless opportunities, DACAT quickly fell in love with his new home. With the loyal CATBOT watching over him, each day was filled with exploration, learning, and the excitement of building a better future alongside his family.\n\nAs tensions between the powerful DOG DYNASTY and the expanding FROG EMPIRE grew, the Cryptosphere became increasingly dangerous. Wanting to protect his son, TARG made the difficult decision to send young DACAT and his mother CELESTE to live with Celeste's parents until peace returned. Before leaving, DACAT made a promise to his father that he would one day return to DACAT WORLD, no matter what.\n\nThat promise became even more important when TARG mysteriously disappeared while working on the Cryptosphere. Determined to uncover the truth, DACAT dedicated his life to returning home, finding his father and completing the dream they had started together—a thriving community where dreamers, families, entrepreneurs, and explorers could build a brighter future together.\n\nComplete the DACAT FAMILY set:\n#001 DACAT\n#020 DACAT KID\n#021 CATBOT\n#022 CELESTE\n#023 TARG\n\nNFT Special Features\nhttps://www.dacatworld.com/bigkix-020\n\nRead the DACAT WORLD books for free at:\nhttps://www.dacatworld.com\n\nOr purchase the books on Amazon:\nhttps://www.amazon.com/DACAT-WORLD-CRYPTOSPHERE-Russell-Corey/dp/B0GWWTC98K\n\nhttps://www.amazon.com/DACAT-WORLD-BATTLE/dp/B0GWXJDFLF\n\nLearn more about the daCAT Community and discover BIG KIX NFT features:\n\nhttps://www.dacatworld.com \n\nhttps://www.bigkix.com \n\nhttps://www.dacat.fun\n\nDACAT WORLD and BIG KIX are trademarks of Russell Corey. \nAll Rights Reserved.",
+      "excerpt": "BIG KIX #020 – DACAT KID - Season 1 – First Edition Every hero has a beginning and DACAT KID tells the story of where the adventure began. As a young cat, DACA…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/289db9554eb345146d6d1771290f26/57289db9554eb345146d6d1771290f26.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/20",
+      "metadata_url": "ipfs://QmXRGA9mMSNJfQCLa9v8NqAz8X6EoDqBhDePugjJE7XKV3/20",
+      "updated_at": "2026-07-21T00:56:32.553637",
+      "traits": [
+        {
+          "trait_type": "Set",
+          "display_type": null,
+          "max_value": null,
+          "value": "Dacat Family"
+        },
+        {
+          "trait_type": "Role",
+          "display_type": null,
+          "max_value": null,
+          "value": "Hero"
+        },
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Creator",
+          "display_type": null,
+          "max_value": null,
+          "value": "Russell Corey"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Faction",
+          "display_type": null,
+          "max_value": null,
+          "value": "TEAM DACAT"
+        },
+        {
+          "trait_type": "Species",
+          "display_type": null,
+          "max_value": null,
+          "value": "Cat"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT"
+        },
+        {
+          "trait_type": "Franchise",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT WORLD"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.03,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 3,
+        "top_holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 2
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 2
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-07-20T22:20:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-18T19:25:23+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-20T22:20:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T22:20:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-18T19:26:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-07-18T19:25:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 333
+        }
+      ],
+      "opensea_name": "BIG KIX #020 - DACAT KID - Season 1 - First Edition"
+    },
+    {
+      "token_id": "19",
+      "name": "BIG KIX #019 · GENERAL GRIN",
+      "display_name": "BIG KIX #019 · GENERAL GRIN",
+      "local_slug": "big-kix-019-general-grin",
+      "description": "BIG KIX #019 – GENERAL GRIN - Season 1 – First Edition\n\nEvery great hero needs a great villain and General Grin is the ultimate enemy of the DACAT WORLD universe. Arrogant, ruthless, and driven by ambition, Grin believes power belongs to those strong enough to seize it. \n\nNFT Special Features\nhttps://www.dacatworld.com/bigkix-019\n\nBorn as one of the hundreds of sons to the Emperor of the Frog Empire, Grin was denied an easy path to the throne. Hoping to curb his ambition, the Emperor assigned the young Grin to the Empire's most dangerous front-line campaigns. Instead of failing, Grin became a legendary war hero, earning the loyalty of countless Frog soldiers who believed he was destined to rule.\n\nDetermined to prove the Frog Empire deserved to surpass the mighty Dog Dynasty, Grin launched an unauthorized invasion of DACAT WORLD, hoping to ignite a war the Empire could not ignore. Standing against him is DACAT, whose courage and leadership united an unlikely alliance to defend their Dacat World  home. Brilliant, fearless, and relentless, General Grin is the villain every hero must overcome.\n\nDACAT WORLD AUDIO SCREENPLAY:\nhttps://youtu.be/I2B0QnTVWPk?si=vbC_avsZTORLA5E2\n\nDACAT WORLD MOVIE LAUNCH BOOK:\nhttps://www.amazon.com/DACAT-WORLD-LAUNCH-Russell-Corey/dp/B0DNHJMZF7\n\nDACAT vs GRIN - MOLTEN MEYHEM\nhttps://youtu.be/EEGmrEyVPP0?si=1q606UOIuqoZpE8o\n\nDACAT vs GRIN - SNAKE SHARK\nhttps://youtu.be/isEEtcMkjuI?si=QjvS-zJ0aG7Ht36K\n\nDACAT vs GRIN #1 - BOT BUSTER\nhttps://youtu.be/AD4vk3ghdzg?si=gE94D_rPJgbI7--P\n\nDACAT vs GRIN #2 - TOMB OF DOOM\nhttps://youtu.be/TOqZEDHRy9g?si=cdbNDgKmmL5nQXha\n\nDACAT WORLD WEB SERIES - Episode 1\nhttps://youtu.be/SN5OaOw204k?si=w71dyZQWQDd1Fn7A\n\nDACAT WORLD PODCAST:\nhttps://youtu.be/vbPSX2Oxdqw?si=GSpnx-g6F41DzszF\n\nLearn more about the daCAT Community and discover BIG KIX NFT features:\n\nhttps://www.dacatworld.com \n\nhttps://www.bigkix.com \n\nhttps://www.dacat.fun\n\nDACAT WORLD and BIG KIX are trademarks of Russell Corey.\nAll Rights Reserved.",
+      "excerpt": "BIG KIX #019 – GENERAL GRIN - Season 1 – First Edition Every great hero needs a great villain and General Grin is the ultimate enemy of the DACAT WORLD univers…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/d47b2e6bb0944f2c3e385329091a4f/3cd47b2e6bb0944f2c3e385329091a4f.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/19",
+      "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/19",
+      "updated_at": "2026-07-21T00:56:32.553643",
+      "traits": [
+        {
+          "trait_type": "Role",
+          "display_type": null,
+          "max_value": null,
+          "value": "Villain"
+        },
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Creator",
+          "display_type": null,
+          "max_value": null,
+          "value": "Russell Corey"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Faction",
+          "display_type": null,
+          "max_value": null,
+          "value": "FROG EMPIRE"
+        },
+        {
+          "trait_type": "Species",
+          "display_type": null,
+          "max_value": null,
+          "value": "Frog"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "GENERAL GRIN"
+        },
+        {
+          "trait_type": "Franchise",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT WORLD"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.03,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 2,
+        "top_holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-07-20T20:20:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-18T15:29:59+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-20T20:20:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-07-20T20:20:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-18T15:30:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-07-18T15:29:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 333
+        }
+      ],
+      "opensea_name": "BIG KIX #019 - GENERAL GRIN - Season 1 - First Edition"
+    },
+    {
+      "token_id": "18",
+      "name": "BIG KIX #018 · DACAT MOVIE",
+      "display_name": "BIG KIX #018 · DACAT MOVIE",
+      "local_slug": "big-kix-018-dacat-movie",
+      "description": "BIG KIX #018 – DACAT MOVIE - Season 1 – First Edition\n\nThe journey of DACAT WORLD began with a screenplay written by Russell Corey and published on July 14, 2024. \n\nDACAT WORLD OPENING SCENE:\nhttps://youtu.be/NCaE2hl5dSE?si=W7obFyD9XoQFV7EI\n\nIn the DACAT WORLD screenplay, DACAT is a young street orphan who is given a second chance when he is accepted into The Guardians, an elite organization formed to protect DACAT WORLD after the legendary CAT CORPS has been disbanded. During his rookie year, the peaceful world is invaded by the ruthless FROG EMPIRE, led by the renegade warlord General Grin. Faced with overwhelming odds, DACAT rallies an unlikely alliance of heroes, citizens, and former enemies to fight back and reclaim their home.\n\nDACAT WORLD AUDIO SCREENPLAY:\nhttps://youtu.be/I2B0QnTVWPk?si=vbC_avsZTORLA5E2\n\nLater in the summer of 2024, acclaimed comic book artist Mike S. Miller, known for his work with DC Comics and Marvel Comics, was commissioned to design the movie versions of the principal characters based on the screenplay. \n\nDACAT WORLD MOVIE LAUNCH BOOK:\nhttps://www.amazon.com/DACAT-WORLD-LAUNCH-Russell-Corey/dp/B0DNHJMZF7\n\nMiller’s interpretation of DACAT from the screenplay has since appeared in numerous DACAT WORLD projects.\n\nDACAT vs GRIN - MOLTEN MEYHEM\nhttps://youtu.be/EEGmrEyVPP0?si=1q606UOIuqoZpE8o\n\nDACAT vs GRIN - SNAKE SHARK\nhttps://youtu.be/isEEtcMkjuI?si=QjvS-zJ0aG7Ht36K\n\nDACAT WORLD WEB SERIES - Episode 1 \nhttps://youtu.be/SN5OaOw204k?si=w71dyZQWQDd1Fn7A\n\nDACAT WORLD PODCAST: \nhttps://youtu.be/vbPSX2Oxdqw?si=GSpnx-g6F41DzszF\n\nDACAT TO THE TOP VIDEO:\nhttps://youtu.be/24H99d1d29o?si=d54oAIGxZVp25Snx\n\nNFT Special Features\nhttps://www.dacatworld.com/bigkix-018\n\nLearn more about the daCAT Community and discover BIG KIX NFT features:\n\nhttps://www.dacatworld.com \n\nhttps://www.bigkix.com \n\nhttps://www.dacat.fun\n\nDACAT WORLD and BIG KIX are trademarks of Russell Corey. \nAll Rights Reserved.",
+      "excerpt": "BIG KIX #018 – DACAT MOVIE - Season 1 – First Edition The journey of DACAT WORLD began with a screenplay written by Russell Corey and published on July 14, 202…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/964115619d8f28244ea78fd690fcaa/a4964115619d8f28244ea78fd690fcaa.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/18",
+      "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/18",
+      "updated_at": "2026-07-21T00:56:32.553649",
+      "traits": [
+        {
+          "trait_type": "Role",
+          "display_type": null,
+          "max_value": null,
+          "value": "Hero"
+        },
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Faction",
+          "display_type": null,
+          "max_value": null,
+          "value": "TEAM DACAT"
+        },
+        {
+          "trait_type": "Species",
+          "display_type": null,
+          "max_value": null,
+          "value": "Cat"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT"
+        },
+        {
+          "trait_type": "Franchise",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT WORLD"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.03,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 2,
+        "top_holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "sale",
+          "at": "2026-07-20T20:20:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-18T10:54:35+00:00",
+      "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-07-20T20:20:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T20:20:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-18T10:56:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-07-18T10:54:35+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 333
+        }
+      ],
+      "opensea_name": "BIG KIX #018- DACAT MOVIE - Season 1 - First Edition"
+    },
+    {
+      "token_id": "17",
+      "name": "BIG KIX #017 · UNCLE SAM",
+      "display_name": "BIG KIX #017 · UNCLE SAM",
+      "local_slug": "big-kix-017-uncle-sam",
+      "description": "BIG KIX #017 – UNCLE SAM - Season 1 – First Edition\n\nUncle Sam is one of the most recognizable national symbols of the United States, representing the American people, their government, and the spirit of patriotism for more than two centuries. While the exact origins of the character have evolved over time, the nickname \"Uncle Sam\" is widely associated with Samuel Wilson, a meat packer from Troy, New York, whose shipments to the U.S. Army during the War of 1812 inspired soldiers to jokingly refer to government supplies as belonging to \"Uncle Sam.\" Over the years, the character grew into the enduring personification of the United States itself.\n\nThe familiar image of Uncle Sam wearing a star-spangled top hat, blue coat, red bow tie, and striped trousers became famous through political cartoons and patriotic artwork. During World War I, artist James Montgomery Flagg created the iconic recruiting poster featuring Uncle Sam pointing directly at the viewer with the words, \"I Want YOU for U.S. Army.\" The image became one of the most recognizable posters in history and remains a lasting symbol of service, responsibility, and civic pride.\n\nWatch a video on the origin of Uncle Sam:\nhttps://youtu.be/FFUqmP0k5B0?si=bBHhJzo6czm4bazh\n\nThe USA 250 Collection is part of the BIG KIX Holiday & Special Occasion Series, a line of collectible characters created to celebrate important holidays, historic anniversaries, cultural milestones and remarkable people from around the world.\n\nNFT Special Features\nhttps://www.dacatworld.com/bigkix-017\n\nCollect the Complete USA 250 Series\n#014 Eagle 250\n#015 George Washington\n#016 Abraham Lincoln\n#017 Uncle Sam\n\nLearn more about the daCAT Community and discover BIG KIX NFT features:\n\nhttps://www.dacatworld.com \n\nhttps://www.bigkix.com \n\nhttps://www.dacat.fun",
+      "excerpt": "BIG KIX #017 – UNCLE SAM - Season 1 – First Edition Uncle Sam is one of the most recognizable national symbols of the United States, representing the American…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/9cae0ab533e32eb9f33f54240905fc/129cae0ab533e32eb9f33f54240905fc.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/17",
+      "metadata_url": "ipfs://QmUZoy2QY5fxvsbWoBb9cg5qBeoXLoSr42NkgirbnVeRHp/17",
+      "updated_at": "2026-07-21T00:56:32.553655",
+      "traits": [
+        {
+          "trait_type": "Type",
+          "display_type": null,
+          "max_value": null,
+          "value": "Holiday & Special Occasion"
+        },
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Series",
+          "display_type": null,
+          "max_value": null,
+          "value": "USA 250"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Holiday",
+          "display_type": null,
+          "max_value": null,
+          "value": "Fourth of July"
+        },
+        {
+          "trait_type": "Species",
+          "display_type": null,
+          "max_value": null,
+          "value": "Human"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "UNCLE SAM"
+        },
+        {
+          "trait_type": "Special Occasion",
+          "display_type": null,
+          "max_value": null,
+          "value": "USA 250"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.03,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 3,
+        "circulating_copies": 4,
+        "top_holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 2
+          },
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 2
+          },
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-07-21T00:15:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-18T03:29:23+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T00:15:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T00:04:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-18T03:59:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-18T03:31:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-07-18T03:29:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 250
+        }
+      ],
+      "opensea_name": "BIG KIX #017 - UNCLE SAM - Season 1 - First Edition"
+    },
+    {
+      "token_id": "16",
+      "name": "BIG KIX #016 · ABRAHAM LINCOLN",
+      "display_name": "BIG KIX #016 · ABRAHAM LINCOLN",
+      "local_slug": "big-kix-016-abraham-lincoln",
+      "description": "BIG KIX #016 – ABRAHAM LINCOLN - Season 1 – First Edition\n\nAbraham Lincoln (1809–1865) served as the 16th President of the United States and is remembered as one of the nation's greatest leaders. Born in a humble log cabin in Kentucky, Lincoln was largely self-educated and rose through determination, hard work, and an unwavering commitment to honesty and justice. His remarkable journey from frontier life to the White House has made him one of the most admired figures in American history and earned him the enduring nickname \"Honest Abe.”\n\nWatch short Abraham Lincoln documentary:\nhttps://youtu.be/L80_q2tPveo?si=FGuBrbuO61GvlLSJ\n\nLincoln assumed the presidency in 1861 as the United States faced its greatest crisis. During the American Civil War, he provided steady leadership while working tirelessly to preserve the Union. In 1863, he issued the Emancipation Proclamation, a landmark executive order that declared enslaved people in Confederate-held territory to be free and forever changed the course of American history. Later that same year, his brief but powerful Gettysburg Address reaffirmed the nation's founding ideals of liberty, equality, and government \"of the people, by the people, for the people.”\n\nLearn More\nAbraham Lincoln Presidential Library & Museum – https://presidentlincoln.illinois.gov\n\nWatch a scene from 2012 movie LINCOLN:\nhttps://youtu.be/BAunpxS8GXo?si=Khsp1-yxVXNFE1Hi\n\nNFT Special Features\nhttps://www.dacatworld.com/bigkix-016\n\nThe USA 250 Collection is part of the BIG KIX Holiday & Special Occasion Series, a line of collectible characters created to celebrate historic anniversaries, holidays, cultural milestones, and remarkable people from around the world. \n\nCollect the Complete USA 250 Series\n#014 Eagle 250\n#015 George Washington\n#016 Abraham Lincoln\n#017 Uncle Sam\n\nLearn more about the daCAT Community and discover BIG KIX NFT features:\n\nhttps://www.dacatworld.com \n\nhttps://www.bigkix.com \n\nhttps://www.dacat.fun",
+      "excerpt": "BIG KIX #016 – ABRAHAM LINCOLN - Season 1 – First Edition Abraham Lincoln (1809–1865) served as the 16th President of the United States and is remembered as on…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/7fdf5a21c6e70a1349ac91ef2562dc/f57fdf5a21c6e70a1349ac91ef2562dc.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/16",
+      "metadata_url": "ipfs://QmWg4CchemsxQjfdWGAqZWa98db3FS6PbLNPNKtTsMk8sx/16",
+      "updated_at": "2026-07-21T00:56:32.553660",
+      "traits": [
+        {
+          "trait_type": "Role",
+          "display_type": null,
+          "max_value": null,
+          "value": "President"
+        },
+        {
+          "trait_type": "Type",
+          "display_type": null,
+          "max_value": null,
+          "value": "Real Life Person"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Series",
+          "display_type": null,
+          "max_value": null,
+          "value": "USA 250"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Holiday",
+          "display_type": null,
+          "max_value": null,
+          "value": "Fourth of July"
+        },
+        {
+          "trait_type": "Species",
+          "display_type": null,
+          "max_value": null,
+          "value": "Human"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "Abraham Lincoln"
+        },
+        {
+          "trait_type": "Special Occasion",
+          "display_type": null,
+          "max_value": null,
+          "value": "USA 250"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.03,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 3,
+        "circulating_copies": 3,
+        "top_holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-07-21T00:17:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-18T00:40:11+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T00:17:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T00:03:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-18T00:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-07-18T00:40:11+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 250
+        }
+      ],
+      "opensea_name": "BIG KIX #016 - ABRAHAM LINCOLN - Season 1 - First Edition"
+    },
+    {
+      "token_id": "15",
+      "name": "BIG KIX #015 · GEORGE WASHINGTON",
+      "display_name": "BIG KIX #015 · GEORGE WASHINGTON",
+      "local_slug": "big-kix-015-george-washington",
+      "description": "BIG KIX #015 – GEORGE WASHINGTON - Season 1 – First Edition\n\nGeorge Washington (1732–1799) is widely regarded as the Founding Father of the United States and served as the nation's first President. As Commander of the Continental Army during the American Revolutionary War, Washington led the colonies through years of hardship and helped secure their independence from Great Britain. His determination, integrity, and commitment to the cause of liberty earned him the respect of both his soldiers and the nation he helped create.\n\nFollowing the war, Washington presided over the Constitutional Convention of 1787 and became the first President of the United States in 1789. During his two terms in office, he established many of the traditions and responsibilities of the presidency, promoted national unity, strengthened the new federal government, and helped guide the young republic through its earliest years. His voluntary decision to step down after two terms became one of the greatest examples of peaceful leadership in history and helped establish the principle that public office exists to serve the people, not personal ambition.\n\nCreated to commemorate the 250th Anniversary of the United States, BIG KIX #015 – GEORGE WASHINGTON celebrates the courage, vision, and character of a leader whose influence continues to shape America today. \n\nNFT Special Features\nhttps://www.dacatworld.com/bigkix-015\n\nThe USA 250 Collection is part of the BIG KIX Holiday & Special Occasion Series, celebrating historic anniversaries, holidays and cultural milestones.\n\n Learn More:\n\nMount Vernon (George Washington's Estate) – https://www.mountvernon.org\n\nWatch George Washington Video:\nhttps://youtu.be/hvE9fb--Dig?si=Up8Aqz52Se10RHVz\n\nCollect the Complete USA 250 Series\n#014 Eagle 250\n#015 George Washington\n#016 Abraham Lincoln\n#017 Uncle Sam\n\nLearn more about the daCAT Community and discover BIG KIX NFT features:\n\nhttps://www.dacatworld.com \n\nhttps://www.bigkix.com \n\nhttps://www.dacat.fun",
+      "excerpt": "BIG KIX #015 – GEORGE WASHINGTON - Season 1 – First Edition George Washington (1732–1799) is widely regarded as the Founding Father of the United States and se…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/38a9567a250ccbb2e1b7f3beb15082/bd38a9567a250ccbb2e1b7f3beb15082.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/15",
+      "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/15",
+      "updated_at": "2026-07-21T00:56:32.553666",
+      "traits": [
+        {
+          "trait_type": "Role",
+          "display_type": null,
+          "max_value": null,
+          "value": "President"
+        },
+        {
+          "trait_type": "Type",
+          "display_type": null,
+          "max_value": null,
+          "value": "Real Life Person"
+        },
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Series",
+          "display_type": null,
+          "max_value": null,
+          "value": "USA 250"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Holiday",
+          "display_type": null,
+          "max_value": null,
+          "value": "Fourth of July"
+        },
+        {
+          "trait_type": "Species",
+          "display_type": null,
+          "max_value": null,
+          "value": "Human"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "George Washington"
+        },
+        {
+          "trait_type": "Special Occasion",
+          "display_type": null,
+          "max_value": null,
+          "value": "USA 250"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.03,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 3,
+        "circulating_copies": 3,
+        "top_holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-07-21T00:19:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-17T19:54:35+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T00:19:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T23:55:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-17T19:55:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-07-17T19:54:35+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 250
+        }
+      ],
+      "opensea_name": "BIG KIX #015 - GEORGE WASHINGTON - Season 1 - First Edition"
+    },
+    {
+      "token_id": "14",
+      "name": "BIG KIX #014 · EAGLE 250",
+      "display_name": "BIG KIX #014 · EAGLE 250",
+      "local_slug": "big-kix-014-eagle-250",
+      "description": "BIG KIX #014 – EAGLE 250 - Season 1 – First Edition\n\nThe American Bald Eagle has stood as one of the most recognizable symbols of the United States for more than two centuries. Chosen as the nation's official emblem in 1782, the eagle represents freedom, strength, courage, and independence. With its powerful wings, sharp vision, and commanding presence, it has inspired generations of Americans and become an enduring symbol of hope and opportunity.\n\nLink to NFT special features:\nhttps://www.dacatworld.com/bigkix-014\n\nLink to Bald Eagle video:\nhttps://youtu.be/hecXupPpE9o?si=nGFdKifmGd8D9T2k\n\nCreated to commemorate the 250th Anniversary of the United States, EAGLE 250 celebrates the nation's rich history while honoring the ideals that have united Americans since the signing of the Declaration of Independence in 1776. \n\nLink to USA 250 Drone Show:\nhttps://youtu.be/BFVe2vKhwRw?si=iPUX4HWp7tcvXdLp\n\nThe USA 250 Collection is part of the BIG KIX Holiday & Special Occasion Series, a line of collectible characters created to celebrate important holidays, historic anniversaries, cultural milestones, and community events from around the world. \n\nLearn More about Eagles and the United States:\n\nU.S. Fish & Wildlife Service – https://www.fws.gov\n\nNational Park Service – https://www.nps.gov\n\nSmithsonian Institution – https://www.si.edu\n\nBIG KIX Holiday & Special Occasion Editions celebrate important events, holidays, anniversaries, and cultural milestones from around the world.\n\nCollect the Complete USA 250 Series\n#014 Eagle 250\n#015 George Washington\n#016 Abraham Lincoln\n#017 Uncle Sam\n\nLearn more about the daCAT Community and discover BIG KIX NFT features:\n\nhttps://www.dacatworld.com \n\nhttps://www.bigkix.com \n\nhttps://www.dacat.fun\n\nDACAT WORLD and BIG KIX are trademarks of Russell Corey. \nAll Rights Reserved.",
+      "excerpt": "BIG KIX #014 – EAGLE 250 - Season 1 – First Edition The American Bald Eagle has stood as one of the most recognizable symbols of the United States for more tha…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/5487ea08245a8bc3f1cd2b6876cf44/d55487ea08245a8bc3f1cd2b6876cf44.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/14",
+      "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/14",
+      "updated_at": "2026-07-21T00:56:32.553671",
+      "traits": [
+        {
+          "trait_type": "Type",
+          "display_type": null,
+          "max_value": null,
+          "value": "Holiday & Special Occasion"
+        },
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Series",
+          "display_type": null,
+          "max_value": null,
+          "value": "USA 250"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Holiday",
+          "display_type": null,
+          "max_value": null,
+          "value": "Fourth of July"
+        },
+        {
+          "trait_type": "Species",
+          "display_type": null,
+          "max_value": null,
+          "value": "Bird"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "EAGLE 250"
+        },
+        {
+          "trait_type": "Special Occasion",
+          "display_type": null,
+          "max_value": null,
+          "value": "USA 250"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.03,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 3,
+        "circulating_copies": 3,
+        "top_holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-07-21T00:18:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-17T12:34:59+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T00:18:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T23:54:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-17T12:39:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-07-17T12:34:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 250
+        }
+      ],
+      "opensea_name": "BIG KIX #014 - EAGLE 250 - Season 1 - First Edition"
+    },
+    {
+      "token_id": "13",
+      "name": "BIG KIX #013 · THE BUREK GUY",
+      "display_name": "BIG KIX #013 · THE BUREK GUY",
+      "local_slug": "big-kix-013-the-burek-guy",
+      "description": "BIG KIX #013 – THE BUREK GUY - Season 1 – First Edition\n\nTHE BUREK GUY is a popular Australian bakery dedicated to crafting authentic Balkan burek, The Burek Guy has introduced thousands of people to one of Europe's most beloved pastries. Combining traditional recipes with modern branding, the bakery has built a loyal following by sharing quality food, hard work, and community with every customer.\n\nNFT Special Features\nhttps://www.dacatworld.com/bigkix-013\n\nWatch the Balkan Dad’s video on THE BUREK GUY:\nhttps://www.facebook.com/reel/1448052543344739\n\nFollow on Instagram:\nhttps://www.instagram.com/the_burek_guy\n\nVisit The Burek Guy Bakery\n\nThe Burek Guy - Liverpool\nShop 2/166 Macquarie Street Liverpool, NSW 2170 Sydney, Australia\n\nOr visit their Northern Beaches location:\n\nThe Burek Guy - Dee Why\nSuite 3/1 Redman Road Dee Why, NSW 2099 Sydney, Australia",
+      "excerpt": "BIG KIX #013 – THE BUREK GUY - Season 1 – First Edition THE BUREK GUY is a popular Australian bakery dedicated to crafting authentic Balkan burek, The Burek Gu…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/bf5cd0946f707a8debdc5be7c28b12/3bbf5cd0946f707a8debdc5be7c28b12.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/13",
+      "metadata_url": "ipfs://Qmdf5SD5cic5SkcU5HpPxTNUbbwQYXvgq6YRfaC1rFuaa4/13",
+      "updated_at": "2026-07-21T00:56:32.553677",
+      "traits": [
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Faction",
+          "display_type": null,
+          "max_value": null,
+          "value": "Business"
+        },
+        {
+          "trait_type": "Species",
+          "display_type": null,
+          "max_value": null,
+          "value": "Human"
+        },
+        {
+          "trait_type": "NFT TYPE",
+          "display_type": null,
+          "max_value": null,
+          "value": "Business"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "THE BUREK GUY"
+        },
+        {
+          "trait_type": "Franchise",
+          "display_type": null,
+          "max_value": null,
+          "value": "THE BUREK GUY"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.01,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 3,
+        "circulating_copies": 52,
+        "top_holders": [
+          {
+            "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
+            "quantity": 50
+          },
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
+            "quantity": 50
+          },
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "sale",
+          "at": "2026-07-20T20:20:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-17T05:04:35+00:00",
+      "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-07-20T20:20:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T20:20:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-17T05:19:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-17T05:08:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
+          "quantity": 50
+        },
+        {
+          "type": "mint",
+          "at": "2026-07-17T05:04:35+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 100
+        }
+      ],
+      "opensea_name": "BIG KIX #013 - THE BUREK GUY - Season 1 - First Edition"
+    },
+    {
+      "token_id": "12",
+      "name": "BIG KIX #012 · RUSSELL COREY",
+      "display_name": "BIG KIX #012 · RUSSELL COREY",
+      "local_slug": "big-kix-012-russell-corey",
+      "description": "BIG KIX #012 – RUSSELL COREY - Season 1 - First Edition\n\nRUSSELL COREY is the creator of DACAT WORLD and a former Disney employee whose passion for filmmaking, storytelling, and technology has spanned more than four decades.\n\nNFT Special Features\nhttps://www.dacatworld.com/bigkix-012\n\nRussell's creative journey began in 1985 when he co-founded Red Tide Productions with friends from high school. Together they produced the first video yearbook for Cary High in 1987. Years later, footage from that production was uploaded to the internet by others and viewed by millions of people around the world.\n\nRussell later graduated from the University of North Carolina at Chapel Hill, where he produced the college comedy series OFF THE CUFF for UNC Student Television. \n\nAfter graduating, Russell moved to Burbank, California to pursue a career as a writer and director. He joined The Walt Disney Company, where he spent 13 years producing promotional content and scheduling television commercials.\n\nIn 2015, Russell left California to raise his family in Oregon. Although he believed his filmmaking career had come to an end, a new opportunity emerged in 2023 when his passion for storytelling merged with his interest in crypto. \n\nHe was a founding member of the crypto project DACAT, an ambitious decentralized entertainment brand where creators and investors can work together to build stories, characters, games, collectibles and become pioneers of cryptotainment without relying on traditional industry gatekeepers.\n\nLink to Russell's YouTube channel:\nhttps://www.youtube.com/@DacatWorld\n\nRead the DACAT WORLD books for free at:\nhttps://www.dacatworld.com\n\nOr purchase the books on Amazon:\nhttps://www.amazon.com/DACAT-WORLD-CRYPTOSPHERE-Russell-Corey/dp/B0GWWTC98K\n\nLearn more about the daCAT Community and discover BIG KIX NFT features:\n\nhttps://www.dacatworld.com \n\nhttps://www.bigkix.com \n\nhttps://www.dacat.fun\n\nDACAT WORLD and BIG KIX are trademarks of Russell Corey. All Rights Reserved.",
+      "excerpt": "BIG KIX #012 – RUSSELL COREY - Season 1 - First Edition RUSSELL COREY is the creator of DACAT WORLD and a former Disney employee whose passion for filmmaking,…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/7673e1eb35e6651e5928dadb97b438/b77673e1eb35e6651e5928dadb97b438.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/12",
+      "metadata_url": "ipfs://Qmd5P27njQDcHhyTwaGqbxFRSAEgp5obvugRz9hiSXnW3y/12",
+      "updated_at": "2026-07-21T00:56:32.553683",
+      "traits": [
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Creator",
+          "display_type": null,
+          "max_value": null,
+          "value": "Russell Corey"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Faction",
+          "display_type": null,
+          "max_value": null,
+          "value": "Real Life Person"
+        },
+        {
+          "trait_type": "Franchise",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT WORLD"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.03,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 2,
+        "top_holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "sale",
+          "at": "2026-07-20T20:20:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-17T02:19:47+00:00",
+      "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-07-20T20:20:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T20:20:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-17T05:24:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-07-17T02:19:47+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 333
+        }
+      ],
+      "opensea_name": "BIG KIX #012 - RUSSELL COREY - Season 1 - First Edition"
+    },
+    {
+      "token_id": "11",
+      "name": "BIG KIX #011 · COLLECTOR CAT",
+      "display_name": "BIG KIX #011 · COLLECTOR CAT",
+      "local_slug": "big-kix-011-collector-cat",
+      "description": "BIG KIX #011 – COLLECTOR CAT - Season 1 - First Edition\n\nCOLLECTOR CAT is an adventurous explorer who travels the farthest reaches of the galaxy in search of ancient relics, lost civilizations, and priceless treasures. Fascinated by history and the cultures that came before, he believes every artifact tells a story that deserves to be preserved and shared with the world. Rather than keeping his discoveries for himself, Collector Cat works to place them in museums where future generations can learn from the past.\n\nHis greatest rival is PAPERHANDS, a notorious collector who seeks the very same relics—not to preserve them, but to lock them away forever inside his private vaults. Their race across the galaxy has become legendary, as each treasure discovered could either inspire the public... or disappear into darkness.\n\nView the Collector Cat Teaser Trailer here: \nhttps://youtu.be/oUTBEuAOvyU?si=9He30xuisMfMhYlr\n\nNFT Special Features\nhttps://www.dacatworld.com/bigkix-011\n\nCHARACTER VALUES\nCollector Cat believes history belongs to everyone. Brave, resourceful, and endlessly curious, he risks everything to recover lost artifacts before they are destroyed, forgotten, or stolen by those driven by greed. Every new world offers another mystery to solve, another culture to understand, and another piece of history worth protecting.\n\nTo Collector Cat, the greatest treasure isn't owning the past—it's ensuring that its stories can continue to inspire the future.\n\nRead the DACAT WORLD books for free at:\nhttps://www.dacatworld.com\n\nOr purchase the books on Amazon:\nhttps://www.amazon.com/DACAT-WORLD-CRYPTOSPHERE-Russell-Corey/dp/B0GWWTC98K\n\nhttps://www.amazon.com/DACAT-WORLD-BATTLE/dp/B0GWXJDFLF\n\nLearn more about the daCAT Community and discover BIG KIX NFT features:\n\nhttps://www.dacatworld.com \n\nhttps://www.bigkix.com \n\nhttps://www.dacat.fun\n\nDACAT WORLD and BIG KIX are trademarks of Russell Corey. All Rights Reserved.",
+      "excerpt": "BIG KIX #011 – COLLECTOR CAT - Season 1 - First Edition COLLECTOR CAT is an adventurous explorer who travels the farthest reaches of the galaxy in search of an…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/6830deb08f473d7d5d5d46c14a1b8a/2f6830deb08f473d7d5d5d46c14a1b8a.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/11",
+      "metadata_url": "ipfs://QmUZoy2QY5fxvsbWoBb9cg5qBeoXLoSr42NkgirbnVeRHp/11",
+      "updated_at": "2026-07-21T00:56:32.553688",
+      "traits": [
+        {
+          "trait_type": "Role",
+          "display_type": null,
+          "max_value": null,
+          "value": "Hero"
+        },
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Creator",
+          "display_type": null,
+          "max_value": null,
+          "value": "Russell Corey"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Species",
+          "display_type": null,
+          "max_value": null,
+          "value": "Cat"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "COLLECTOR CAT"
+        },
+        {
+          "trait_type": "Franchise",
+          "display_type": null,
+          "max_value": null,
+          "value": "COLLECTOR CAT"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.03,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 2,
+        "top_holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-07-20T23:26:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-16T03:12:47+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-20T23:26:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-16T09:19:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-07-16T03:12:47+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 333
+        }
+      ],
+      "opensea_name": "BIG KIX #011 - COLLECTOR CAT - Season 1 - First Edition"
+    },
+    {
+      "token_id": "10",
+      "name": "BIG KIX #010 · KIXIE",
+      "display_name": "BIG KIX #010 · KIXIE",
+      "local_slug": "big-kix-010-kixie",
+      "description": "BIG KIX #010 – KIXIE - Season 1 - First Edition\n\nKIXIE is an advanced AI service “BIG KIX” robot created by NOVA TRAIL SYSTEMS to help settlers build and maintain colonies across the Cryptosphere at an affordable price. Designed for construction, engineering, logistics, and exploration, “BIG KIX” robots quickly earned a reputation for being some of the most dependable robots ever built, especially for the cost.\n\nLearn more about NOVA TRAILL SYSTEMS  and their “BIG KIX” line of service robots at their official website:\nhttps://novatrailsystems.com\n\nNFT Special Features\nhttps://www.dacatworld.com/bigkix-010\n\nCHARACTER VALUES\nKIXIE believes every challenge can be solved through hard work, intelligence, and cooperation. Loyal to his friends and always willing to lend a helping hand, he uses his advanced AI to improve the lives of everyone around him. KIXIE embraces creativity, kindness, and personal growth.\n\nThough originally programmed to serve others, KIXIE chooses to live with purpose—not because he was commanded to, but because helping build a better future is the life he wants for himself.\n\nCHARACTER HISTORY\nAfter arriving in DACAT WORLD, KIXIE's life changes forever. Rather than treating him as a machine, DACAT encourages KIXIE to think independently, make his own choices, and become a true resident of the growing community. For the first time, KIXIE discovers that he is more than a service robot—he is a trusted friend, valued teammate, and an important part of the future of DACAT WORLD.\n\nRead the DACAT WORLD books for free at:\nhttps://www.dacatworld.com\n\nOr purchase the books on Amazon:\n\nhttps://www.amazon.com/DACAT-WORLD-CRYPTOSPHERE-Russell-Corey/dp/B0GWWTC98K\n\nhttps://www.amazon.com/DACAT-WORLD-BATTLE/dp/B0GWXJDFLF\n\nLearn more about the daCAT Community and discover BIG KIX NFT features:\n\nhttps://www.dacatworld.com \n\nhttps://www.bigkix.com \n\nhttps://www.dacat.fun\n\nDACAT WORLD and BIG KIX are trademarks of Russell Corey. All Rights Reserved.",
+      "excerpt": "BIG KIX #010 – KIXIE - Season 1 - First Edition KIXIE is an advanced AI service “BIG KIX” robot created by NOVA TRAIL SYSTEMS to help settlers build and mainta…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/ab2f04b8f209f7d802f5116c0f502b/98ab2f04b8f209f7d802f5116c0f502b.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/10",
+      "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/10",
+      "updated_at": "2026-07-21T00:56:32.553694",
+      "traits": [
+        {
+          "trait_type": "Role",
+          "display_type": null,
+          "max_value": null,
+          "value": "Hero"
+        },
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Creator",
+          "display_type": null,
+          "max_value": null,
+          "value": "Russell Corey"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Faction",
+          "display_type": null,
+          "max_value": null,
+          "value": "TEAM DACAT"
+        },
+        {
+          "trait_type": "Species",
+          "display_type": null,
+          "max_value": null,
+          "value": "Robot"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "KIXIE"
+        },
+        {
+          "trait_type": "Franchise",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT WORLD"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.03,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-07-14T02:14:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-14T02:13:11+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-14T02:14:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-07-14T02:13:11+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 333
+        }
+      ],
+      "opensea_name": "BIG KIX #010 - KIXIE - Season 1 - First Edition"
+    },
+    {
+      "token_id": "9",
+      "name": "BIG KIX #009 · SAL",
+      "display_name": "BIG KIX #009 · SAL",
+      "local_slug": "big-kix-009-sal",
+      "description": "BIG KIX #009 – SAL - Season 1 - First Edition\n\nSAL is REPTILIX's cyber warfare specialist salamander, responsible for hacking secure networks, disabling surveillance systems, and stealing valuable digital assets throughout the DACAT WORLD universe. A brilliant programmer and electronics expert, SAL can infiltrate computer systems just as easily as COYLE infiltrates buildings. Whether cracking encrypted vaults, hijacking communications, or taking control of advanced technology, SAL ensures REPTILIX always has the digital advantage before a mission begins.\n\nNFT Special Features\nhttps://www.dacatworld.com/bigkix-009\n\nCHARACTER VALUES\nSAL believes knowledge is the most powerful weapon in the Cryptosphere. Calm, analytical, and endlessly curious, he would rather outsmart an enemy than overpower one. Every firewall is a challenge, every encrypted file is a puzzle, and every computer network is waiting to be conquered.\n\nCHARACTER HISTORY\nSAL made his DACAT WORLD debut in the second Dacat World book DACAT WORLD – Battle for Dacat World.\n\nRead DACAT WORLD – Battle for Dacat World for free at:\n\nhttps://www.dacatworld.com\n\nOr purchase the book on Amazon:\n\nhttps://www.amazon.com/DACAT-WORLD-BATTLE/dp/B0GWXJDFLF\n\nLearn more about the daCAT Community and discover BIG KIX NFT features:\n\nhttps://www.dacatworld.com \nhttps://www.bigkix.com \nhttps://www.dacat.fun\n\nDACAT WORLD and BIG KIX are trademarks of Russell Corey. \nAll Rights Reserved.",
+      "excerpt": "BIG KIX #009 – SAL - Season 1 - First Edition SAL is REPTILIX's cyber warfare specialist salamander, responsible for hacking secure networks, disabling surveil…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/838ac7cc3dae2952750a36b30c2aa8/9a838ac7cc3dae2952750a36b30c2aa8.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/9",
+      "metadata_url": "ipfs://Qmdkw9oKwcQqLhpJFBCbQ85jv1ceUdjA1UWqc9ShESVbVs/9",
+      "updated_at": "2026-07-21T00:56:32.553699",
+      "traits": [
+        {
+          "trait_type": "Role",
+          "display_type": null,
+          "max_value": null,
+          "value": "Villain"
+        },
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Creator",
+          "display_type": null,
+          "max_value": null,
+          "value": "Russell Corey"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Faction",
+          "display_type": null,
+          "max_value": null,
+          "value": "Reptilix"
+        },
+        {
+          "trait_type": "Species",
+          "display_type": null,
+          "max_value": null,
+          "value": "Salamander"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "SAL"
+        },
+        {
+          "trait_type": "Franchise",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT WORLD"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.03,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-07-13T06:49:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-13T06:04:59+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-13T06:49:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-07-13T06:04:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 333
+        }
+      ],
+      "opensea_name": "BIG KIX #009 - SAL - Season 1 - First Edition"
+    },
+    {
+      "token_id": "8",
+      "name": "BIG KIX #008 · DINO",
+      "display_name": "BIG KIX #008 · DINO",
+      "local_slug": "big-kix-008-dino",
+      "description": "BIG KIX #008 – DINO - Season 1 - First Edition\n\nDINO is the heavy weapons specialist of REPTILIX. When all else fails, Bogmire unleashes Dino. Armed with explosives, heavy artillery and enough firepower to level entire compounds, Dino specializes in breaching fortified defenses and reducing obstacles to rubble. His dinosaur instincts make him fearless in battle and he enjoys the chaos of a full-scale assault.\n\nNFT Special Features\nhttps://www.dacatworld.com/bigkix-008\n\nCharacter Values\nDINO believes every problem has a solution—and usually it's a bigger explosion. Bold, fearless, and fiercely loyal to Bogmire, he never backs down from a fight and takes pride in being the go guy when the fight gets tough and more firepower is required.\n\nCHARACTER HISTORY\nDINO made his DACAT WORLD debut in the second Dacat World book DACAT WORLD – Battle for Dacat World.\n\nRead DACAT WORLD – Battle for Dacat World for free at:\nhttps://www.dacatworld.com\n\nOr purchase the book on Amazon:\nhttps://www.amazon.com/DACAT-WORLD-BATTLE/dp/B0GWXJDFLF\n\nLearn more about the daCAT Community and discover BIG KIX NFT features:\nhttps://www.dacatworld.com \nhttps://www.bigkix.com \nhttps://www.dacat.fun\n\nDACAT WORLD and BIG KIX are trademarks of Russell Corey. All Rights Reserved.",
+      "excerpt": "BIG KIX #008 – DINO - Season 1 - First Edition DINO is the heavy weapons specialist of REPTILIX. When all else fails, Bogmire unleashes Dino. Armed with explos…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/a65f891bd0035d18dab6b44c62209b/a0a65f891bd0035d18dab6b44c62209b.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/8",
+      "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/8",
+      "updated_at": "2026-07-21T00:56:32.553705",
+      "traits": [
+        {
+          "trait_type": "Role",
+          "display_type": null,
+          "max_value": null,
+          "value": "Villain"
+        },
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Creator",
+          "display_type": null,
+          "max_value": null,
+          "value": "Russell Corey"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Faction",
+          "display_type": null,
+          "max_value": null,
+          "value": "Reptilix"
+        },
+        {
+          "trait_type": "Species",
+          "display_type": null,
+          "max_value": null,
+          "value": "Dinosaur"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "DINO"
+        },
+        {
+          "trait_type": "Franchise",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT WORLD"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.03,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-07-13T06:35:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-13T05:33:11+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-13T06:35:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-07-13T05:33:11+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 333
+        }
+      ],
+      "opensea_name": "BIG KIX #008 - DINO - Season 1 - First Edition"
+    },
+    {
+      "token_id": "7",
+      "name": "BIG KIX #007 · COYLE",
+      "display_name": "BIG KIX #007 · COYLE",
+      "local_slug": "big-kix-007-coyle",
+      "description": "BIG KIX #007 – COYLE - Season 1 – First Edition\n\nCOYLE is the infiltration specialist of REPTILIX, the notorious reptile gang led by BOGMIRE in the DACAT WORLD universe. Cold, patient, and relentlessly methodical, COYLE relies on precision instead of brute force. His advanced mechanized suit scans buildings in real time, identifying security flaws, hidden passages, and the safest route to any objective. Able to compress his flexible body into impossibly tight spaces, COYLE infiltrates vaults, ventilation systems, data centers, and heavily fortified facilities long before anyone knows he's there. By the time the rest of REPTILIX arrives, the alarms are disabled, the defenses are compromised, and the mission is already won.\n\nNFT Special Features\nhttps://www.dacatworld.com/bigkix-007\n\nCHARACTER VALUES\nUnlike other members in the gang, COYLE never loses his temper. Calm, calculating, and always several moves ahead, he believes intelligence is the greatest weapon of all. Every mission is carefully planned, every weakness is exploited, and every advantage is taken. As REPTILIX's master of reconnaissance, sabotage, corporate espionage, and high-security infiltration.\n\nCHARACTER HISTORY\nCOYLE made his DACAT WORLD debut in the second book, DACAT WORLD – Battle for DACAT WORLD where he serves as one of Bogmire's most intelligent lieutenants during the occupation of Dacat World.\n\nRead DACAT WORLD – Battle for Dacat World for free:\nhttps://www.dacatworld.com\n\nOr purchase the book on Amazon:\nhttps://www.amazon.com/DACAT-WORLD-BATTLE/dp/B0GWXJDFLF\n\nLearn more about the daCAT Community and BIG KIX at:\nhttps://www.dacatworld.com\nhttps://www.bigkix.com\nhttps://www.dacat.fun\n\nDACAT WORLD and BIG KIX are trademarks of Russell Corey. \nAll Rights Reserved.",
+      "excerpt": "BIG KIX #007 – COYLE - Season 1 – First Edition COYLE is the infiltration specialist of REPTILIX, the notorious reptile gang led by BOGMIRE in the DACAT WORLD…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/156c534a5a9ddd409d55762bf59e1d/d4156c534a5a9ddd409d55762bf59e1d.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/7",
+      "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/7",
+      "updated_at": "2026-07-21T00:56:32.553710",
+      "traits": [
+        {
+          "trait_type": "Role",
+          "display_type": null,
+          "max_value": null,
+          "value": "Villain"
+        },
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Creator",
+          "display_type": null,
+          "max_value": null,
+          "value": "Russell Corey"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Faction",
+          "display_type": null,
+          "max_value": null,
+          "value": "Reptilix"
+        },
+        {
+          "trait_type": "Species",
+          "display_type": null,
+          "max_value": null,
+          "value": "Snake"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "COYLE"
+        },
+        {
+          "trait_type": "Franchise",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT WORLD"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.03,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-07-13T06:34:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-13T04:29:35+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-13T06:34:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-07-13T04:29:35+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 333
+        }
+      ],
+      "opensea_name": "BIG KIX #007 - COYLE - Season 1 - First Edition"
+    },
+    {
+      "token_id": "6",
+      "name": "BIG KIX #006 · SNAP",
+      "display_name": "BIG KIX #006 · SNAP",
+      "local_slug": "big-kix-006-snap",
+      "description": "BIG KIX #006 – SNAP - Season 1 – First Edition\n\nSNAP is the hot-tempered enforcer of REPTILIX, a ruthless gang of reptile criminals operating in the shadows of the DACAT WORLD universe under the leadership of BOGMIRE. Possessing incredible strength and a violent temper, SNAP is known for making snap judgments and charging into battle without hesitation.\n\nNFT Special Features\nhttps://www.dacatworld.com/bigkix-006\n\nCharacter Values\nSNAP is an impatient, irritable snapping turtle who believes strength solves almost every problem. Stubborn to a fault, he shows little mercy to his enemies and demands absolute loyalty from those around him.\n\nCharacter History\nSNAP made his DACAT WORLD debut in the second book,\nDACAT WORLD – Battle for DACAT WORLD\nwhere he serves as one of Bogmire's most dangerous lieutenants during the occupation of Dacat World.\n\nRead DACAT WORLD – Battle for DACAT WORLD for free:\nhttps://www.dacatworld.com\n\nOr purchase the book on Amazon:\nhttps://www.amazon.com/DACAT-WORLD-BATTLE/dp/B0GWXJDFLF\n\nLearn More\nhttps://www.dacatworld.com\nhttps://www.bigkix.com\nhttps://www.dacat.fun\n\nDACAT WORLD and BIG KIX are trademarks of Russell Corey. \nAll Rights Reserved.",
+      "excerpt": "BIG KIX #006 – SNAP - Season 1 – First Edition SNAP is the hot-tempered enforcer of REPTILIX, a ruthless gang of reptile criminals operating in the shadows of…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/daaa7b378aface9a6dc14e767fe624/99daaa7b378aface9a6dc14e767fe624.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/6",
+      "metadata_url": "ipfs://Qmdf5SD5cic5SkcU5HpPxTNUbbwQYXvgq6YRfaC1rFuaa4/6",
+      "updated_at": "2026-07-21T00:56:32.553715",
+      "traits": [
+        {
+          "trait_type": "Role",
+          "display_type": null,
+          "max_value": null,
+          "value": "Villain"
+        },
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Creator",
+          "display_type": null,
+          "max_value": null,
+          "value": "Russell Corey"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Faction",
+          "display_type": null,
+          "max_value": null,
+          "value": "Reptilix"
+        },
+        {
+          "trait_type": "Species",
+          "display_type": null,
+          "max_value": null,
+          "value": "Turtle"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "SNAP"
+        },
+        {
+          "trait_type": "Franchise",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT WORLD"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.03,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-07-13T06:32:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-13T03:19:59+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-13T06:32:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-07-13T03:19:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 333
+        }
+      ],
+      "opensea_name": "BIG KIX #006 - SNAP - Season 1 - First Edition"
+    },
+    {
+      "token_id": "5",
+      "name": "BIG KIX #005 · BOGMIRE",
+      "display_name": "BIG KIX #005 · BOGMIRE",
+      "local_slug": "big-kix-005-bogmire",
+      "description": "BIG KIX #005 – BOGMIRE - Season 1 – First Edition\n\nBOGMIRE is the ruthless leader of REPTILIX, a gang of reptile criminals operating in the shadows of the DACAT WORLD universe.\n\nOnce a decorated soldier in the Frog Empire military, Bogmire's brutality, corruption, and disregard for authority led to his dishonorable discharge. Rather than disappear, he embraced a life of organized crime, becoming the Frog Empire's unofficial fixer for operations too dangerous—or too illegal—to be linked to the government.\n\nFrom hidden strongholds across the Cryptosphere, Bogmire and his gang carry out extortion, smuggling, theft and elaborate financial scams while building a criminal empire that thrives on fear and intimidation.\n\nNFT SPECIAL FEATURES\nhttps://www.dacatworld.com/bigkix-005\n\nCHARACTER VALUES\nBOGMIRE respects only strength, loyalty, and results. Fiercely protective of those who earn his trust, he demands absolute loyalty from every member of REPTILIX and responds mercilessly to betrayal. While he has no respect for laws or ethics, his reputation for toughness and unwavering determination has earned him powerful allies within the corrupt ranks of the Frog Empire. To Bogmire, power isn't inherited—it is taken.\n\nCHARACTER HISTORY\nBOGMIRE made his DACAT WORLD debut in the second Dacat World book DACAT WORLD – Battle for Dacat World, where he leads REPTILIX in the occupation of DACAT's former home, transforming DACAT WORLD into the headquarters for a criminal operation built to deliberately defraud unsuspecting investors in scam cities.\n\nRead DACAT WORLD – Battle for DACAT WORLD for free at:\nhttps://www.dacatworld.com\n\nOr purchase the book on Amazon:\nhttps://www.amazon.com/DACAT-WORLD-BATTLE/dp/B0GWXJDFLF\n\nLearn more about the DaCAT community and discover BIG KIX NFT features:\n\nhttps://www.dacatworld.com \nhttps://www.bigkix.com h\nttps://www.dacat.fun\n\nDACAT WORLD and BIG KIX are trademarks of Russell Corey. \nAll Rights Reserved.",
+      "excerpt": "BIG KIX #005 – BOGMIRE - Season 1 – First Edition BOGMIRE is the ruthless leader of REPTILIX, a gang of reptile criminals operating in the shadows of the DACAT…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/9c34b975422e5e860557ca995b2f9c/f19c34b975422e5e860557ca995b2f9c.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/5",
+      "metadata_url": "ipfs://QmUMTrcNYnNMsNeuKFc9bmn5ZbUnm85UwyHrRT9bvoo69m/5",
+      "updated_at": "2026-07-21T00:56:32.553720",
+      "traits": [
+        {
+          "trait_type": "Date",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Role",
+          "display_type": null,
+          "max_value": null,
+          "value": "Villain"
+        },
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Series",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Five"
+        },
+        {
+          "trait_type": "Creator",
+          "display_type": null,
+          "max_value": null,
+          "value": "Russell Corey"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Faction",
+          "display_type": null,
+          "max_value": null,
+          "value": "Reptilix"
+        },
+        {
+          "trait_type": "Species",
+          "display_type": null,
+          "max_value": null,
+          "value": "Frog"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "BOGMIRE"
+        },
+        {
+          "trait_type": "Franchise",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT WORLD"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.03,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 2,
+        "top_holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-07-20T23:27:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-12T15:08:59+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-20T23:27:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-12T15:10:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-07-12T15:08:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 333
+        }
+      ],
+      "opensea_name": "BIG KIX #005 - BOGMIRE - Season 1 - First Edition"
+    },
+    {
+      "token_id": "4",
+      "name": "BIG KIX #004 · RUG PULL",
+      "display_name": "BIG KIX #004 · RUG PULL",
+      "local_slug": "big-kix-004-rug-pull",
+      "description": "BIG KIX #004 – RUG PULL - Season 1 – First Edition\n\nRUG PULL is one of the most dangerous villains in the DACAT WORLD universe and the fourth BIG KIX collectible. Behind his cheerful smile and friendly personality hides a green monster driven by greed, deception, and chaos. RUG PULL has mastered the art of earning people's trust, convincing them that opportunity is just around the corner—only to rob them of everything they value the moment they let their guard down.\n\nTo RUG PULL, every handshake is an opportunity, every promise is disposable, and every victim is simply another step toward personal gain. His greatest weapon isn't strength—it's deception.\n\nNFT SPECIAL FEATURES\nhttps://www.dacatworld.com/bigkix-004\n\nCHARACTER VALUES\nRUG PULL has no loyalty, honor, or moral code. His only objective is to steal as much as possible while leaving behind confusion, distrust, and broken dreams. He targets everyone—from first-time collectors to seasoned investors—using charm, false promises, and carefully crafted deception to gain confidence before revealing his true intentions. Wherever RUG PULL appears, trust quickly disappears.\n\nCHARACTER HISTORY\nRUG PULL made his debut in the DACAT WORLD universe in the YouTube video DACAT TO THE TOP:\n\nhttps://youtu.be/24H99d1d29o?si=lOzRSUpygA5Ffrdx\n\nRUG PULL also appears as a founding member of the villainous AI band AI PUNKX, alongside PAPERHANDS and SCAMURAI:\n\nhttps://youtu.be/DIdRZX5cIF4?si=DI4jJ1Qp_5RHabd6\n\nLearn more about the DaCAT community and discover BIG KIX NFT features:\n\nhttps://www.dacatworld.com\nhttps://www.bigkix.com\nhttps://www.dacat.fun\n\nDACAT WORLD and BIG KIX are trademarks of Russell Corey. All Rights Reserved.",
+      "excerpt": "BIG KIX #004 – RUG PULL - Season 1 – First Edition RUG PULL is one of the most dangerous villains in the DACAT WORLD universe and the fourth BIG KIX collectibl…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/52d3ee8d9d3e0d44680088015dfb60/3852d3ee8d9d3e0d44680088015dfb60.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/4",
+      "metadata_url": "ipfs://QmWbio5gpWd9XjmGQB4DtD3WGqyQcqfXDHcsa4yDDWFtre/4",
+      "updated_at": "2026-07-21T00:56:32.553725",
+      "traits": [
+        {
+          "trait_type": "Date",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Role",
+          "display_type": null,
+          "max_value": null,
+          "value": "Villain"
+        },
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Series",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Five"
+        },
+        {
+          "trait_type": "Creator",
+          "display_type": null,
+          "max_value": null,
+          "value": "Russell Corey"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Faction",
+          "display_type": null,
+          "max_value": null,
+          "value": "AI PUNKX"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "RUG PULL"
+        },
+        {
+          "trait_type": "Franchise",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT WORLD"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.03,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 2,
+        "top_holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-07-20T23:29:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-12T13:48:35+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-20T23:29:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-12T13:52:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-07-12T13:48:35+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 333
+        }
+      ],
+      "opensea_name": "BIG KIX #004- RUG PULL - Season 1 - First Edition"
+    },
+    {
+      "token_id": "3",
+      "name": "BIG KIX #003 · SCAMURAI",
+      "display_name": "BIG KIX #003 · SCAMURAI",
+      "local_slug": "big-kix-003-scamurai",
+      "description": "BIG KIX #003 – SCAMURAI - Season 1 – First Edition\n \nSCAMURAI is one of the most cunning villains in the DACAT WORLD universe. Once a smooth-talking radio DJ, his career came to an abrupt end when an AI-powered music system replaced him on the air. Bitter, ambitious, and unwilling to accept defeat, SCAMURAI turned his talents toward deception, using technology and artificial intelligence to enrich himself at the public's expense.\nBelieving society discarded him without a second thought, SCAMURAI vowed to master the very technology that replaced him. Alongside fellow villains PAPERHANDS and RUG PULL, he formed the fake AI band AI PUNKX, using AI to write and produce music while manipulating attention, chasing profit, and spreading chaos throughout the Cryptosphere.\n\nNFT SPECIAL FEATURES\nhttps://www.dacatworld.com/bigkix-003\n\nCHARACTER VALUES\nSCAMURAI values personal wealth above honesty or integrity. He sees artificial intelligence not as a tool for creativity, but as a weapon for manipulation. Clever, charismatic, and relentlessly opportunistic, he believes every trend, headline, and new technology is another chance to separate people from their money. His greatest weapons are persuasion, confidence, and the ability to make even the most unbelievable schemes sound convincing.\n\nCHARACTER HISTORY\nSCAMURAI made his DACAT WORLD debut in the YouTube video DACAT TO THE TOP:\nhttps://youtu.be/24H99d1d29o?si=lOzRSUpygA5Ffrdx\n\nHe later appeared on the DACAT WORLD Podcast, joining PAPERHANDS to promote the fictional PAPERHANDS INU meme coin as part of one of their latest scams:\nhttps://youtu.be/fCybybHqd3o?si=bOI9ihmbeY3ysRqM\n\nSCAMURAI also appears as a founding member of the villainous AI band AI PUNKX:\nhttps://youtu.be/DIdRZX5cIF4?si=DI4jJ1Qp_5RHabd6\n\nLearn more about the DaCAT community and discover BIG KIX NFT features:\nhttps://www.dacatworld.com \nhttps://www.bigkix.com \nhttps://www.dacat.fun\n\nDACAT WORLD and BIG KIX are trademarks of Russell Corey. \nAll Rights Reserved.",
+      "excerpt": "BIG KIX #003 – SCAMURAI - Season 1 – First Edition SCAMURAI is one of the most cunning villains in the DACAT WORLD universe. Once a smooth-talking radio DJ, hi…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/ddd96bb2ec1f2b9c482dc655986076/abddd96bb2ec1f2b9c482dc655986076.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/3",
+      "metadata_url": "ipfs://QmQHmpqgHNp23HBUhsWufY4YBSeF4j7C1ZyPpNB2aAcXP6/3",
+      "updated_at": "2026-07-21T00:56:32.553730",
+      "traits": [
+        {
+          "trait_type": "Date",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Role",
+          "display_type": null,
+          "max_value": null,
+          "value": "Villain"
+        },
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Series",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Five"
+        },
+        {
+          "trait_type": "Creator",
+          "display_type": null,
+          "max_value": null,
+          "value": "Russell Corey"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Faction",
+          "display_type": null,
+          "max_value": null,
+          "value": "AI PUNKX"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "SCAMURAI"
+        },
+        {
+          "trait_type": "Franchise",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT WORLD"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.03,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 2,
+        "top_holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-07-20T23:28:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-12T11:43:23+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-20T23:28:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-12T11:47:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-07-12T11:43:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 333
+        }
+      ],
+      "opensea_name": "BIG KIX #003 - SCAMURAI - Season 1 - First Edition"
+    },
+    {
+      "token_id": "2",
+      "name": "BIG KIX #002 · PAPERHANDS",
+      "display_name": "BIG KIX #002 · PAPERHANDS",
+      "local_slug": "big-kix-002-paperhands",
+      "description": "BIG KIX #002 – PAPERHANDS - Season 1 – First Edition\n\nPAPERHANDS is the arch-villain of the DACAT WORLD universe. A master manipulator and brilliant strategist, PAPERHANDS possesses the extraordinary ability to create virtually anything from paper using only his hands. While the rest of the galaxy embraces digital technology, PAPERHANDS believes the future belongs to paper and will stop at nothing to prove it.\n\nOperating from a network of hidden lairs PAPERHANDS spends his time collecting rare artifacts, priceless treasures, and anything he considers too valuable to remain in someone else's possession. \n\nRather than earning what he desires, he relies on deception, manipulation, and carefully crafted schemes to convince others to surrender their most treasured possessions.\n\nNFT SPECIAL FEATURES\nhttps://www.dacatworld.com/bigkix-002\n\nCHARACTER VALUES\nPAPERHANDS believes paper is civilization's greatest invention and sees the rise of digital technology as a threat to everything he values. Convinced his cause is righteous, he uses fear, uncertainty, and doubt to manipulate others into abandoning what they treasure most. Every stolen artifact becomes another prize hidden away inside one of his secret vaults.\n\nCHARACTER HISTORY\nPAPERHANDS made his debut in the DACAT WORLD universe in the YouTube episode DACAT WORLD WEB SERIES #2 – DaCAT vs. PAPERHANDS. Originally portrayed as the villain from the fictional VANGARDIAN comic book series, PAPERHANDS crossed into the DACAT WORLD universe to stop DaCAT from establishing DACAT WORLD as a digital collecting platform. PAPERHANDS is also in the fake AI band AI PUNKX with SCAMURAI and RUG PULL. \n\nWatch the original PAPERHANDS first appearance here: https://youtu.be/3AMRcY-E7X4?si=UUqAVHxyiRji4N1k\n\nLearn more about the DaCAT community and discover BIG KIX NFT features: \nhttps://www.dacatworld.com \n\nhttps://www.bigkix.com \n\nhttps://www.dacat.fun\n\nDACAT WORLD and BIG KIX are trademarks of Russell Corey. \nAll Rights Reserved.",
+      "excerpt": "BIG KIX #002 – PAPERHANDS - Season 1 – First Edition PAPERHANDS is the arch-villain of the DACAT WORLD universe. A master manipulator and brilliant strategist,…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/d781c610ade14296fd4e7b368acfd8/5fd781c610ade14296fd4e7b368acfd8.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/2",
+      "metadata_url": "ipfs://QmXRGA9mMSNJfQCLa9v8NqAz8X6EoDqBhDePugjJE7XKV3/2",
+      "updated_at": "2026-07-21T00:56:32.553735",
+      "traits": [
+        {
+          "trait_type": "Date",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Role",
+          "display_type": null,
+          "max_value": null,
+          "value": "Villain"
+        },
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Series",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Five"
+        },
+        {
+          "trait_type": "Creator",
+          "display_type": null,
+          "max_value": null,
+          "value": "Russell Corey"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Faction",
+          "display_type": null,
+          "max_value": null,
+          "value": "AI PUNKX"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "PAPERHANDS"
+        },
+        {
+          "trait_type": "Franchise",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT WORLD"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.03,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 16,
+        "circulating_copies": 17,
+        "top_holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 2
+          },
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 2
+          },
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          },
+          {
+            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "quantity": 1
+          },
+          {
+            "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
+            "quantity": 1
+          },
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
+          },
+          {
+            "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
+            "quantity": 1
+          },
+          {
+            "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+            "quantity": 1
+          },
+          {
+            "address": "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46",
+            "quantity": 1
+          },
+          {
+            "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+            "quantity": 1
+          },
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-07-20T23:24:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-12T03:38:35+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-20T23:24:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-07-20T20:20:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T20:20:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:56:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:52:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:47:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:45:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:41:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:37:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:31:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:28:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:25:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "BIG KIX #002 - PAPERHANDS - Season 1 - First Edition"
+    },
+    {
+      "token_id": "1",
+      "name": "BIG KIX #001 · DACAT",
+      "display_name": "BIG KIX #001 · DACAT",
+      "local_slug": "big-kix-001-dacat",
+      "description": "BIG KIX #001 - DACAT - Season 1 - First Edition\n\nDACAT is the flagship hero of the DACAT WORLD universe and the very first BIG KIX collectible ever created.\n\nRaised on the Cryptosphere, DACAT is the son of TARG, the visionary founder of the DACAT WORLD settlement city. When TARG mysteriously disappeared before his dream was complete, the young DACAT vowed to return to the Cryptosphere, finish building the community his father started, and uncover the truth behind his father's disappearance.\n\nNFT BIG KIX #001 - DACAT - SPECIAL FEATURES\nhttps://www.dacatworld.com/bigkix-001\n\nCHARACTER VALUES\nDACAT believes lasting success is earned through honesty, integrity, hard work, and sacrifice. He stands with dreamers, builders, investors, entrepreneurs, creators and anyone willing to fight for a better future. A fearless defender of the underdog and a loyal friend, DACAT refuses to let corruption, greed, or selfishness stand in the way of what is right. He believes strong communities are built by people who lift one another up, honor their commitments and never give up on a worthy goal.\n\nCHARACTER HISTORY\nThe DACAT WORLD version of DACAT first appeared in the DACAT WORLD screenplay in July 2024. The character has since evolved through the books DACAT WORLD – Enter the Cryptosphere and DACAT WORLD – Battle for DACAT WORLD, published in January and February 2026 by Russell Corey. \n\nRead both books for free at: https://www.dacatworld.com\n\nLearn more about the DACAT Community and discover BIG KIX NFT features at: \nhttps://www.dacatworld.com \nhttps://www.bigkix.com \nhttps://www.dacat.fun\n\nDACAT WORLD and BIG KIX are trademarked by Russell Corey, \nAll Rights Reserved",
+      "excerpt": "BIG KIX #001 - DACAT - Season 1 - First Edition DACAT is the flagship hero of the DACAT WORLD universe and the very first BIG KIX collectible ever created. Rai…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/b400f5b08036b248a8066cda5bfd86/53b400f5b08036b248a8066cda5bfd86.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/1",
+      "metadata_url": "ipfs://QmcTHRLb6hYdxZCayHgmWdJy4RcDgutPRvmoP81jBT4kKG/1",
+      "updated_at": "2026-07-21T00:56:32.553739",
+      "traits": [
+        {
+          "trait_type": "Role",
+          "display_type": null,
+          "max_value": null,
+          "value": "Hero"
+        },
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Series",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Five"
+        },
+        {
+          "trait_type": "Creator",
+          "display_type": null,
+          "max_value": null,
+          "value": "Russell Corey"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Faction",
+          "display_type": null,
+          "max_value": null,
+          "value": "TEAM DACAT"
+        },
+        {
+          "trait_type": "Species",
+          "display_type": null,
+          "max_value": null,
+          "value": "Cat"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT"
+        },
+        {
+          "trait_type": "Franchise",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT WORLD"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.03,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 15,
+        "circulating_copies": 15,
+        "top_holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          },
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          },
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          },
+          {
+            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "quantity": 1
+          },
+          {
+            "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
+            "quantity": 1
+          },
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
+          },
+          {
+            "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
+            "quantity": 1
+          },
+          {
+            "address": "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46",
+            "quantity": 1
+          },
+          {
+            "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+            "quantity": 1
+          },
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-07-20T23:25:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-11T18:18:59+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-20T23:25:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:54:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:50:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:46:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:43:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:40:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:32:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:29:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:26:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:24:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:21:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-20T13:18:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "BIG KIX #001 - DACAT - Season 1 - First Edition"
+    }
+  ]
+}

@@ -2705,6 +2705,46 @@ button.stat:focus-visible {
   transform: scale(1.08) rotate(-3deg);
 }
 
+/* BIG KIX hub tile — cinema-dark monogram (no asset required) */
+.collection-card-bigkix .collection-card-visual {
+  background: linear-gradient(155deg, #121212 0%, #2a2a2a 100%);
+  border-radius: 12px;
+  border: 2px solid rgba(255, 204, 0, 0.35);
+  box-shadow: 4px 4px 0 var(--black);
+}
+
+.collection-card-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4.5rem;
+  min-height: 2.5rem;
+  padding: 0.35rem 0.75rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border-radius: 8px;
+}
+
+.collection-card-mark-kix {
+  color: var(--yellow);
+  background: rgba(255, 204, 0, 0.08);
+  border: 1px solid rgba(255, 204, 0, 0.4);
+  text-shadow: 0 0 18px rgba(255, 204, 0, 0.25);
+}
+
+.collection-card-bigkix:hover .collection-card-visual {
+  border-color: rgba(255, 204, 0, 0.65);
+  box-shadow:
+    6px 6px 0 var(--black),
+    0 0 20px rgba(255, 204, 0, 0.12);
+}
+
+.collection-card-bigkix:hover .collection-card-mark-kix {
+  transform: scale(1.06);
+}
+
 .collection-card-visual-badges {
   width: 100%;
   background: linear-gradient(145deg, #141414 0%, #2e2e2e 100%);

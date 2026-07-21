@@ -74,7 +74,20 @@ CSS maps `surface` to body classes (e.g. `badges-page` ↔ `cosmic_soon`). Futur
 | Collection | Route | Experience |
 |------------|-------|------------|
 | daCommunity | `/dacommunity/` | `app.js` + `gallery_*.json` |
-| Badges | `/badges/` | Static coming-soon + `badges-soon.js` starfield |
+| BIG KIX | `/dacommunity/?collection=bigkix` | `app.js` + `bigkix_*.json` (Ethereum, single-slug fetch) |
+| Badges | `/dacommunity/?collection=badges` | `app.js` + `badges_*.json` |
+
+### BIG KIX pipeline
+
+```bash
+cd backend
+python fetch_bigkix.py          # writes web/data/bigkix_data.json + catalog
+# Daily: refresh-data.yml runs after daCommunity fetch
+```
+
+- Creator `dacatworld.eth` / `0xa6d5…` excluded from holder counts
+- Titles normalized to `BIG KIX #014 · EAGLE 250` (`opensea_name` keeps full OpenSea title)
+- Activity + listings via same collection-events + best-listings pattern as daCommunity
 
 Do **not** duplicate gallery logic for preview pages — use `preview_only` + themed static HTML until data exists.
 

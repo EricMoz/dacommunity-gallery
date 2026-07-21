@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-06-06",
+  "updated": "2026-07-19",
   "collections": [
     {
       "id": "dacommunity",
@@ -17,6 +17,26 @@
       },
       "features": ["gallery", "wallet_lookup", "collector_view", "opensea_sync", "share_wallet_url"],
       "creator_ens": "dacatdreams.base.eth",
+      "theme": {
+        "accent": "#ffcc00",
+        "surface": "light_archive",
+        "collector_surface": "dark_cinema"
+      }
+    },
+    {
+      "id": "bigkix",
+      "name": "BIG KIX",
+      "status": "live",
+      "chain": "ethereum",
+      "contract": "0x2777184bde5371049f79c15ef6e557c676c53b3a",
+      "opensea_slug": "bigkix",
+      "route": "/dacommunity/?collection=bigkix",
+      "data": {
+        "gallery": "bigkix_data.json",
+        "catalog": "bigkix_catalog.json"
+      },
+      "features": ["gallery", "collector_view", "wallet_lookup", "opensea_sync"],
+      "creator_ens": "dacatworld.eth",
       "theme": {
         "accent": "#ffcc00",
         "surface": "light_archive",

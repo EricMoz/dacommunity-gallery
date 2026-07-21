@@ -98,10 +98,17 @@ let activeDetailTokenId = null;
 let activeCollection = "all";
 
 function getItemKey(item) {
-  if (item && item.source_created_collection) {
-    return item.source_created_collection + '-' + item.token_id;
+  if (!item) return "";
+  // Badges multi-slug 1:1s
+  if (item.source_created_collection) {
+    return item.source_created_collection + "-" + item.token_id;
   }
-  return item ? item.token_id : '';
+  // Secondary collections (BIG KIX, etc.) — avoid token_id collisions with daCommunity
+  var cid = item.collection_id || "dacommunity";
+  if (cid && cid !== "dacommunity" && cid !== "all") {
+    return cid + "-" + item.token_id;
+  }
+  return String(item.token_id);
 }
 
 /* Browse labels (used for chips + resets). Extended for multi-col in Part 1. */
@@ -156,6 +163,42 @@ function getCollectionDataUrls(colId) {
   };
 }
 
+/** Merge live secondary collections (badges, BIG KIX, …) into galleryData for "All". */
+async function mergeSecondaryCatalogsIntoGallery() {
+  if (!galleryData) return;
+  var list = getLiveCollections();
+  var prefix = getDataPrefix();
+  var stamp = getBuildStamp();
+  var q = "?v=" + stamp;
+  var have = {};
+  (galleryData.items || []).forEach(function (ii) {
+    have[getItemKey(ii)] = true;
+  });
+  for (var i = 0; i < list.length; i++) {
+    var col = list[i];
+    if (!col || !col.id || col.id === "dacommunity") continue;
+    if (!col.data || !col.data.catalog) continue;
+    try {
+      var url = prefix + "data/" + col.data.catalog + q;
+      var res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) continue;
+      var data = await res.json();
+      if (!data || !data.items || !data.items.length) continue;
+      data.items.forEach(function (item) {
+        if (!item.collection_id) item.collection_id = col.id;
+        var k = getItemKey(item);
+        if (!have[k]) {
+          galleryData.items.push(item);
+          have[k] = true;
+        }
+      });
+    } catch (e) {
+      console.warn("Could not merge catalog for " + col.id, e);
+    }
+  }
+  indexItems(galleryData);
+}
+
 function getCurrentCollection() {
   if (!collectionsRegistry || !activeCollection || activeCollection === "all") return null;
   var list = (collectionsRegistry && collectionsRegistry.collections) || [];
@@ -180,11 +223,13 @@ function applyCollectionUI() {
 }
 
 /** Light adaptation so the host gallery page feels like the selected collection
- *  without inventing a whole new page. Only touches the hero area when badges (or future collections) is active.
+ *  without inventing a whole new page. Touches hero when badges / BIG KIX / etc.
  */
 function adaptHeaderForCollection() {
   var isBadges = activeCollection === "badges";
+  var isBigKix = activeCollection === "bigkix";
   document.body.classList.toggle("is-badges-view", isBadges);
+  document.body.classList.toggle("is-bigkix-view", isBigKix);
   try {
     var h1 = document.querySelector(".hero-band h1");
     var lead = document.querySelector(".hero-lead");
@@ -196,6 +241,9 @@ function adaptHeaderForCollection() {
     if (isBadges) {
       h1.innerHTML = 'daCAT <span class="accent">Badges</span>';
       lead.textContent = "Personal 1:1 awards. Series images shown in the grid (generic photos to keep discovery clean, no 1:1 dupes). Your specific named copy appears in the collector wallet lookup when you hold it.";
+    } else if (isBigKix) {
+      h1.innerHTML = 'BIG <span class="accent">KIX</span>';
+      lead.textContent = "Season 1 First Edition on Ethereum — character kicks with live owners, listings, and transfer activity. Creator wallet is excluded from holder counts.";
     } else {
       h1.innerHTML = originalHeroTitle || h1.innerHTML;
       lead.textContent = originalHeroLead || lead.textContent;
@@ -2377,7 +2425,7 @@ async function renderWalletLookup(identifier, opts) {
 
   // In badges collection context, ensure collectorsList reflects the current badge items
   // (loadWalletIndex may have clobbered it in the !wallet_index_file fallback path).
-  if (activeCollection === "badges") {
+  if (activeCollection === "badges" || activeCollection === "bigkix") {
     collectorsList = buildCollectorsFromBadgeItems(galleryData ? galleryData.items : []);
   }
 
@@ -2587,6 +2635,9 @@ function renderHeroNote(collection) {
     // Exact text for badges
     html = "Originally minted on OpenSea. Contract on Ethereum, stewarded by " +
       '<strong class="steward-name">dacatworld.eth</strong>.';
+  } else if (collId === "bigkix") {
+    html = "Season 1 First Edition on Ethereum · OpenSea <strong>bigkix</strong>. Stewarded by " +
+      '<strong class="steward-name">dacatworld.eth</strong> (creator excluded from holder stats).';
   } else {
     note.hidden = true;
     return;
@@ -2651,6 +2702,35 @@ function renderStats(collection) {
       os.forEach(function (o) { if (o.address) uniqB[o.address.toLowerCase()] = true; });
     });
     collectorsVal = Object.keys(uniqB).length || nvl(collection && collection.num_owners, "—");
+  } else if (activeCollection === "bigkix") {
+    var kItems = (galleryData && galleryData.items) || [];
+    pieces = kItems.length || nvl(collection && collection.piece_count, "—");
+    var listedK = 0;
+    var minFloorK = null;
+    var uniqK = {};
+    kItems.forEach(function (it) {
+      if (it.listed) {
+        listedK++;
+        if (it.listing && it.listing.amount_eth != null) {
+          var pk = Number(it.listing.amount_eth);
+          if (!isNaN(pk) && (minFloorK === null || pk < minFloorK)) minFloorK = pk;
+        }
+      }
+      var osk = (it.owners || {}).holders || (it.owners || {}).top_holders || [];
+      osk.forEach(function (o) {
+        if (o.address) uniqK[o.address.toLowerCase()] = true;
+      });
+    });
+    listedVal = listedK > 0 ? listedK : nvl(collection && collection.listed_count, "—");
+    floorVal =
+      minFloorK != null
+        ? formatEth(minFloorK) + " ETH"
+        : collection && collection.floor_eth != null
+          ? formatEth(collection.floor_eth) + " " + (collection.floor_symbol || "ETH")
+          : "—";
+    collectorsVal =
+      Object.keys(uniqK).length ||
+      nvl(collection && collection.num_owners, "—");
   }
 
   var defs = [
@@ -3636,27 +3716,9 @@ function bindUi() {
           }
           dataSource = galleryData.source === "gallery_catalog" ? "catalog" : "full";
           indexItems(galleryData);
-          // For "all" after switch: merge badges so both collections visible unfiltered
+          // For "all" after switch: merge badges + BIG KIX (+ future secondaries)
           if (!activeCollection || activeCollection === "all") {
-            try {
-              const bq = "?v=" + getBuildStamp();
-              const bprefix = getDataPrefix();
-              const bres = await fetch(bprefix + "data/badges_catalog.json" + bq, {cache: "no-store"});
-              if (bres.ok) {
-                const bdata = await bres.json();
-                if (bdata && bdata.items && bdata.items.length) {
-                  bdata.items.forEach(i => { if (!i.collection_id) i.collection_id = "badges"; });
-                  var have = new Set((galleryData.items || []).map(function(ii){ return (ii.source_created_collection || 'dacommunity') + ':' + ii.token_id; }));
-                  (bdata.items || []).forEach(function(bi){
-                    var k = (bi.source_created_collection || 'badges') + ':' + bi.token_id;
-                    if (!have.has(k)) {
-                      galleryData.items.push(bi);
-                    }
-                  });
-                  indexItems(galleryData);
-                }
-              }
-            } catch(e){ console.warn('badges merge on all switch failed', e); }
+            await mergeSecondaryCatalogsIntoGallery();
           }
           renderStats(galleryData.collection);
           renderDataFreshness();
@@ -3842,7 +3904,7 @@ async function init() {
 
     galleryData = await loadCatalogFirst();
     dataSource = galleryData.source === "gallery_catalog" ? "catalog" : "full";
-    if (activeCollection === "badges") {
+    if (activeCollection === "badges" || activeCollection === "bigkix") {
       collectorsList = buildCollectorsFromBadgeItems(galleryData.items);
       updateCollectorsButton();
     }
@@ -3852,29 +3914,14 @@ async function init() {
     // Open ?piece= detail as soon as catalog is ready (film hub NFT deep-links, share URLs).
     // Wallet index path re-calls this after enrichment; safe to run twice.
     applyPieceFromUrl();
-    if (activeCollection === 'badges') {
+    if (activeCollection === "badges" || activeCollection === "bigkix") {
       collectorsList = buildCollectorsFromBadgeItems(galleryData.items);
       updateCollectorsButton();
     }
 
-    // For "all collections", merge in badges items so both are visible in the search grid when no collection filter
+    // For "all collections", merge secondary catalogs (badges + BIG KIX) into the grid
     if (!activeCollection || activeCollection === "all") {
-      try {
-        const bq = "?v=" + getBuildStamp();
-        const bprefix = getDataPrefix();
-        const bres = await fetch(bprefix + "data/badges_catalog.json" + bq, {cache: "no-store"});
-        if (bres.ok) {
-          const bdata = await bres.json();
-          if (bdata && bdata.items && bdata.items.length) {
-            bdata.items.forEach(i => { if (!i.collection_id) i.collection_id = "badges"; });
-            galleryData.items = (galleryData.items || []).concat(bdata.items);
-            // reindex after merge
-            indexItems(galleryData);
-          }
-        }
-      } catch (e) {
-        console.warn("Could not merge badges into all view", e);
-      }
+      await mergeSecondaryCatalogsIntoGallery();
     }
 
     if (!activeCollection || activeCollection === "all") {

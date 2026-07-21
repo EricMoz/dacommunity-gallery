@@ -94,6 +94,15 @@ jobs:
           cd backend
           python fetch_gallery_data.py
 
+      - name: Fetch BIG KIX (Ethereum single collection)
+        if: success()
+        env:
+          OPENSEA_API_KEY: ${{ steps.generate_key.outputs.key }}
+        run: |
+          set -e
+          cd backend
+          python fetch_bigkix.py
+
       - name: Fetch badges (for owners/dates)
         if: success()
         env:
@@ -135,7 +144,7 @@ jobs:
           set -e
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add web/data/gallery_data.json web/data/gallery_catalog.json web/data/wallet_index.json web/data/gallery_meta.json web/data/badges_data.json web/data/badges_catalog.json
+          git add web/data/gallery_data.json web/data/gallery_catalog.json web/data/wallet_index.json web/data/gallery_meta.json web/data/badges_data.json web/data/badges_catalog.json web/data/bigkix_data.json web/data/bigkix_catalog.json
           if git diff --staged --quiet; then
             echo "No JSON changes — OpenSea data already up to date."
             echo "changed=false" >> $GITHUB_OUTPUT

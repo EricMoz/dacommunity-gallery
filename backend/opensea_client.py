@@ -27,12 +27,24 @@ from config import (
 
 
 class OpenSeaClient:
-    def __init__(self, api_key: str, delay: float = REQUEST_DELAY_SEC):
+    def __init__(
+        self,
+        api_key: str,
+        delay: float = REQUEST_DELAY_SEC,
+        *,
+        chain: str | None = None,
+        contract: str | None = None,
+        collection_slug: str | None = None,
+    ):
         self.session = requests.Session()
         self.session.headers["x-api-key"] = api_key
         self.session.headers["Accept"] = "application/json"
         self.delay = delay
         self._last_request = 0.0
+        # Per-instance collection context (defaults: primary daCommunity from config)
+        self.chain = chain or CHAIN
+        self.contract = contract or CONTRACT_ADDRESS
+        self.collection_slug = collection_slug or COLLECTION_SLUG
 
     def _throttle(self) -> None:
         elapsed = time.monotonic() - self._last_request
@@ -95,14 +107,14 @@ class OpenSeaClient:
             self.session.headers.update(saved)
 
     def get_collection_stats(self) -> dict[str, Any]:
-        return self._get(f"/collections/{COLLECTION_SLUG}/stats")
+        return self._get(f"/collections/{self.collection_slug}/stats")
 
     def get_contract(self) -> dict[str, Any]:
-        return self._get(f"/chain/{CHAIN}/contract/{CONTRACT_ADDRESS}")
+        return self._get(f"/chain/{self.chain}/contract/{self.contract}")
 
     def iter_collection_nfts(self, collection_slug: str = None, limit: int = 200) -> list[dict[str, Any]]:
         if collection_slug is None:
-            collection_slug = COLLECTION_SLUG
+            collection_slug = self.collection_slug
         nfts: list[dict[str, Any]] = []
         next_cursor: str | None = None
         while True:
@@ -118,7 +130,7 @@ class OpenSeaClient:
 
     def get_best_listing(self, token_id: str) -> dict[str, Any] | None:
         data = self._get(
-            f"/listings/collection/{COLLECTION_SLUG}/nfts/{token_id}/best"
+            f"/listings/collection/{self.collection_slug}/nfts/{token_id}/best"
         )
         if not data or data.get("status") != "ACTIVE":
             return None
@@ -133,7 +145,7 @@ class OpenSeaClient:
             if next_cursor:
                 params["next"] = next_cursor
             data = self._get(
-                f"/listings/collection/{COLLECTION_SLUG}/best", params
+                f"/listings/collection/{self.collection_slug}/best", params
             )
             batch = data.get("listings") or []
             listings.extend(batch)
@@ -144,9 +156,9 @@ class OpenSeaClient:
 
     def get_nft_owners(self, token_id: str, chain: str = None, contract: str = None) -> list[dict[str, Any]]:
         if chain is None:
-            chain = CHAIN
+            chain = self.chain
         if contract is None:
-            contract = CONTRACT_ADDRESS
+            contract = self.contract
         owners: list[dict[str, Any]] = []
         next_cursor: str | None = None
         while True:
@@ -170,7 +182,7 @@ class OpenSeaClient:
             params: dict[str, Any] = {"limit": limit, "sort_direction": "desc"}
             if cursor:
                 params["cursor"] = cursor
-            data = self._get(f"/collections/{COLLECTION_SLUG}/holders", params)
+            data = self._get(f"/collections/{self.collection_slug}/holders", params)
             holders.extend(data.get("holders") or [])
             cursor = data.get("next")
             if not cursor:
@@ -249,7 +261,7 @@ class OpenSeaClient:
         if event_types:
             params["event_type"] = event_types
         data = self._get(
-            f"/events/chain/{CHAIN}/contract/{CONTRACT_ADDRESS}/nfts/{token_id}",
+            f"/events/chain/{self.chain}/contract/{self.contract}/nfts/{token_id}",
             params,
         )
         return list(data.get("asset_events") or [])
@@ -267,7 +279,7 @@ class OpenSeaClient:
                 params["event_type"] = event_types
             if next_cursor:
                 params["next"] = next_cursor
-            data = self._get(f"/events/collection/{COLLECTION_SLUG}", params)
+            data = self._get(f"/events/collection/{self.collection_slug}", params)
             for event in data.get("asset_events") or []:
                 yield event
             next_cursor = data.get("next")
@@ -279,12 +291,12 @@ class OpenSeaClient:
         next_cursor: str | None = None
         while True:
             params: dict[str, Any] = {
-                "collection": COLLECTION_SLUG,
+                "collection": self.collection_slug,
                 "limit": 200,
             }
             if next_cursor:
                 params["next"] = next_cursor
-            data = self._get(f"/chain/{CHAIN}/account/{address}/nfts", params)
+            data = self._get(f"/chain/{self.chain}/account/{address}/nfts", params)
             nfts.extend(data.get("nfts") or [])
             next_cursor = data.get("next")
             if not next_cursor:
