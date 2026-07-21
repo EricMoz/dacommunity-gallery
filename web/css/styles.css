@@ -596,6 +596,13 @@ button.stat:disabled:hover {
   transform: none;
 }
 
+/* Collectors tile stays interactive for secondary collections (rebuild on click) */
+button.stat.stat-collectors:disabled {
+  cursor: pointer;
+  opacity: 0.85;
+  pointer-events: auto;
+}
+
 .stats-strip {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -2261,6 +2268,13 @@ button.stat:focus-visible {
   white-space: pre-wrap;
 }
 
+/* Force hide when collapsed (some browsers/CSS resets ignore [hidden] on flex kids) */
+.detail-description .detail-story-full[hidden],
+.detail-description .detail-story-preview[hidden],
+.detail-description .detail-story-full[style*="display: none"] {
+  display: none !important;
+}
+
 .detail-story-toggle {
   display: inline-flex;
   align-items: center;
@@ -2295,6 +2309,15 @@ button.stat:focus-visible {
 
 .detail-story-more a:hover {
   text-decoration: underline;
+}
+
+button.stat.stat-collectors {
+  cursor: pointer;
+}
+button.stat.stat-collectors:disabled {
+  /* keep clickable for rebuild-on-click; only visual dim if empty */
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 .btn {

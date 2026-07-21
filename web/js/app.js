@@ -563,38 +563,38 @@ async function refreshFullDataInBackground() {
 }
 
 async function loadWalletIndex() {
-  if (!galleryData || !galleryData.wallet_index_file) {
-    walletIndex = (galleryData && galleryData.holders_index) || null;
-    // Never clobber secondary collections (badges / BIG KIX) — rebuild for current view.
-    rebuildCollectorsForCurrentView();
-    return;
-  }
+  // Always load the main daCommunity wallet index for ENS enrichment — even when viewing
+  // BIG KIX / badges (those collections do not ship their own wallet_index_file).
+  // Collectors for the active collection are rebuilt after, so the main index never clobbers them.
   try {
-    const w = await fetchJson(WALLET_URL, 20000);
-    walletIndex = w.holders_index || null;
+    if (!walletIndex) {
+      var w = await fetchJson(WALLET_URL, 20000);
+      walletIndex = (w && w.holders_index) || w || null;
+    }
   } catch (e) {
     console.warn("Wallet index load failed:", e);
-    walletIndex = null;
+    if (!walletIndex) walletIndex = (galleryData && galleryData.holders_index) || null;
   }
-  // Always rebuild for active collection (all / dacommunity / bigkix / badges)
-  rebuildCollectorsForCurrentView();
 
   // Enrich wallet by_address with ENS from badge item names if missing (most recent by minted_at).
-  // This ensures wallet panel, heavy collectors, etc. show ENS even if resolve didn't populate in data.
   if (walletIndex && walletIndex.by_address && galleryData && galleryData.items) {
     var nameEns = {};
     galleryData.items.forEach(function (item) {
-      var nm = item.name || item.display_name || '';
+      var nm = item.name || item.display_name || "";
       var m = nm.match(/([a-z0-9-]+\.eth)/i);
       if (m) {
         var ens = m[1].toLowerCase();
-        var d = item.minted_at || '0';
-        var hs = (item.current_holders || []).concat( (item.owners ? (item.owners.holders || []).concat(item.owners.top_holders || []) : []) );
+        var d = item.minted_at || "0";
+        var hs = (item.current_holders || []).concat(
+          item.owners
+            ? (item.owners.holders || []).concat(item.owners.top_holders || [])
+            : []
+        );
         hs.forEach(function (h) {
-          var a = (h.address || '').toLowerCase();
+          var a = (h.address || "").toLowerCase();
           if (a) {
-            if (!nameEns[a] || d > (nameEns[a].d || '0')) {
-              nameEns[a] = {ens: ens, d: d};
+            if (!nameEns[a] || d > (nameEns[a].d || "0")) {
+              nameEns[a] = { ens: ens, d: d };
             }
           }
         });
@@ -1004,47 +1004,74 @@ var DETAIL_STORY_CUT = 160;
 function renderDetailDescription(item) {
   var el = $("#detail-description");
   if (!el) return;
-  var story = cleanStoryText(item) || "";
+  // Clear any previous full dump (textContent or nodes)
+  el.textContent = "";
   el.innerHTML = "";
+  el.classList.add("detail-description-clamped");
+
+  var story = cleanStoryText(item) || "";
   if (!story) {
     el.textContent = "No description.";
     return;
   }
+  // Prefer flat text for length; keep original newlines only in expanded view
   var flat = story.replace(/\s+/g, " ").trim();
   if (flat.length <= DETAIL_STORY_CUT) {
-    el.textContent = story;
+    el.textContent = flat;
     return;
   }
-  var preview = flat.slice(0, DETAIL_STORY_CUT - 1).trim() + "…";
+
+  var preview = flat.slice(0, DETAIL_STORY_CUT - 1).replace(/\s+\S*$/, "").trim() + "…";
+  if (preview.length < 40) preview = flat.slice(0, DETAIL_STORY_CUT - 1).trim() + "…";
+
   var shortP = document.createElement("p");
   shortP.className = "detail-story-preview";
   shortP.textContent = preview;
+
   var fullP = document.createElement("p");
   fullP.className = "detail-story-full";
-  fullP.hidden = true;
+  fullP.setAttribute("hidden", "");
+  fullP.style.display = "none";
   fullP.textContent = story;
+
   var toggle = document.createElement("button");
   toggle.type = "button";
   toggle.className = "detail-story-toggle";
   toggle.setAttribute("aria-expanded", "false");
   toggle.textContent = "Show more";
-  toggle.addEventListener("click", function () {
-    var open = fullP.hidden;
-    fullP.hidden = !open;
-    shortP.hidden = open;
-    toggle.setAttribute("aria-expanded", open ? "true" : "false");
-    toggle.textContent = open ? "Show less" : "Show more";
+  toggle.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    var open = fullP.style.display === "none";
+    if (open) {
+      fullP.removeAttribute("hidden");
+      fullP.style.display = "";
+      shortP.style.display = "none";
+      shortP.setAttribute("hidden", "");
+      toggle.setAttribute("aria-expanded", "true");
+      toggle.textContent = "Show less";
+    } else {
+      fullP.setAttribute("hidden", "");
+      fullP.style.display = "none";
+      shortP.removeAttribute("hidden");
+      shortP.style.display = "";
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.textContent = "Show more";
+    }
   });
-  var more = document.createElement("p");
-  more.className = "detail-story-more";
-  more.innerHTML =
-    'Full lore on <a href="' +
-    escapeHtml(item.opensea_url || "#") +
-    '" target="_blank" rel="noopener noreferrer">OpenSea ↗</a>';
+
   el.appendChild(shortP);
   el.appendChild(fullP);
   el.appendChild(toggle);
-  if (item.opensea_url) el.appendChild(more);
+  if (item.opensea_url) {
+    var more = document.createElement("p");
+    more.className = "detail-story-more";
+    more.innerHTML =
+      'Full lore on <a href="' +
+      escapeHtml(item.opensea_url) +
+      '" target="_blank" rel="noopener noreferrer">OpenSea ↗</a>';
+    el.appendChild(more);
+  }
 }
 
 function isVideoItem(item) {
@@ -2547,16 +2574,33 @@ async function renderWalletLookup(identifier, opts) {
 
 function updateCollectorsButton() {
   var btn = $("#view-collectors-btn");
-  if (btn) btn.hidden = !collectorsList.length;
+  var n = (collectorsList && collectorsList.length) || 0;
+  if (btn) btn.hidden = !n;
+  // Never permanently disable: cold loads of ?collection=bigkix can race before owners
+  // are indexed. Click handler always rebuilds; only dim when truly empty after rebuild.
   document.querySelectorAll(".stat-collectors").forEach(function (el) {
-    el.disabled = !collectorsList.length;
-    el.style.opacity = collectorsList.length ? "1" : "0.55";
+    el.disabled = false;
+    el.style.opacity = n ? "1" : "0.75";
+    el.style.cursor = "pointer";
+    el.setAttribute("aria-disabled", n ? "false" : "true");
   });
   renderTopCollectors();
 }
 
 function openCollectorsModal() {
   rebuildCollectorsForCurrentView();
+  updateCollectorsButton();
+  if (!collectorsList.length) {
+    // Last-chance rebuild from raw item owners (BIG KIX / secondary cold load)
+    if (galleryData && galleryData.items && galleryData.items.length) {
+      if (activeCollection === "badges") {
+        collectorsList = buildCollectorsFromBadgeItems(galleryData.items);
+      } else if (activeCollection && activeCollection !== "dacommunity") {
+        collectorsList = buildCollectorsFromLoadedItems(galleryData.items);
+      }
+      updateCollectorsButton();
+    }
+  }
   if (!collectorsList.length) return;
   var modal = $("#collectors-modal");
   renderCollectors($("#collectors-search") ? $("#collectors-search").value : "");
@@ -3526,6 +3570,7 @@ function renderDetailOwners(item) {
 
 function refreshDetailPanel(item) {
   if (!item) return;
+  renderDetailDescription(item);
   renderDetailActivity(item);
   renderDetailOwners(item);
 }
@@ -3937,18 +3982,28 @@ function bootGallery(data) {
   galleryData = data;
   // Tag items with collection_id for multi-collection filtering (future-proof; current data is dacommunity)
   if (galleryData && Array.isArray(galleryData.items)) {
-    var cid = activeCollection || (galleryData.collection && galleryData.collection.slug) || "dacommunity";
+    var cid =
+      activeCollection ||
+      (galleryData.collection && galleryData.collection.id) ||
+      (galleryData.collection && galleryData.collection.slug) ||
+      "dacommunity";
+    if (cid === "all") cid = "dacommunity";
     galleryData.items.forEach(function (item) {
       if (!item.collection_id) item.collection_id = cid;
     });
   }
   indexItems(galleryData);
+  // Secondary collections: collectors before first paint of stats tiles
+  if (activeCollection && activeCollection !== "all" && activeCollection !== "dacommunity") {
+    rebuildCollectorsForCurrentView();
+  }
   var loadEl = $("#load-state");
   if (loadEl) loadEl.hidden = true;
   renderStats(galleryData.collection);
   renderDataFreshness();
   bindUi();
   refreshView();
+  updateCollectorsButton();
 }
 
 function syncSiteHeaderHeight() {
@@ -4054,7 +4109,7 @@ async function init() {
     var hasWalletInit = !initCol || (initCol.features || []).indexOf("wallet_lookup") !== -1;
     if (hasWalletInit) {
       loadWalletIndex().then(function () {
-        // Enrich badge owners with ENS from walletIndex for display
+        // Enrich owners with ENS from walletIndex for display
         if (galleryData && Array.isArray(galleryData.items)) {
           var byAddr = (walletIndex && walletIndex.by_address) || {};
           galleryData.items.forEach(function (item) {
@@ -4067,21 +4122,32 @@ async function init() {
             });
           });
         }
+        // Force collectors for active collection (esp. ?collection=bigkix cold load)
+        rebuildCollectorsForCurrentView();
         renderStats(galleryData.collection);
         updateCollectorsButton();
-        rebuildCollectorsForCurrentView();
         if (activeDetailTokenId) {
           var openItem = itemsById.get(activeDetailTokenId);
           if (openItem) refreshDetailPanel(openItem);
         }
         applyWalletFromUrl();
         applyPieceFromUrl();
+      }).catch(function () {
+        rebuildCollectorsForCurrentView();
+        renderStats(galleryData && galleryData.collection);
+        updateCollectorsButton();
       });
     } else {
       clearGalleryCollectorView({ clearResult: true });
-      if (typeof collectorsList !== "undefined") collectorsList = [];
-      var btnInit = $("#view-collectors-btn");
-      if (btnInit) btnInit.hidden = true;
+      rebuildCollectorsForCurrentView();
+      updateCollectorsButton();
+    }
+
+    // Guarantee collectors rail/tile after paint for secondary collections (no wallet required)
+    if (activeCollection && activeCollection !== "all" && activeCollection !== "dacommunity") {
+      rebuildCollectorsForCurrentView();
+      updateCollectorsButton();
+      renderTopCollectors();
     }
 
     if (window.location.hash === "#wallet-panel" && !parseWalletFromUrl()) {
