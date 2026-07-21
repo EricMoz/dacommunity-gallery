@@ -2248,14 +2248,29 @@ function rankBadgeClass(colId) {
 function formatRankBadgesHtml(ranks, opts) {
   opts = opts || {};
   if (!ranks || !ranks.length) return "";
+  // Compact mobile labels keep the escape-bar single-line (avoid stacked tall pills)
+  var compact =
+    opts.compact === true ||
+    (opts.compact !== false &&
+      typeof window !== "undefined" &&
+      window.matchMedia &&
+      window.matchMedia("(max-width: 640px)").matches);
   return ranks
     .map(function (r) {
-      var label = opts.short
-        ? "#" + r.rank + " " + r.short
-        : "#" + r.rank + " in " + r.short;
+      var short = r.short;
+      if (compact) {
+        if (r.id === "bigkix") short = "KIX";
+        else if (r.id === "badges") short = "BDG";
+        else if (r.id === "dacommunity") short = "COM";
+        else short = String(r.short || r.id || "").slice(0, 4);
+      }
+      var label = opts.short || compact
+        ? "#" + r.rank + " " + short
+        : "#" + r.rank + " in " + (r.short || short);
       return (
         '<span class="collector-rank-pill ' +
         rankBadgeClass(r.id) +
+        (compact ? " collector-rank-pill--compact" : "") +
         '" title="' +
         escapeHtml("#" + r.rank + " among " + (r.name || r.short) + " collectors") +
         '">' +
