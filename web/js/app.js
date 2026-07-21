@@ -244,7 +244,7 @@ function adaptHeaderForCollection() {
     } else if (isBigKix) {
       h1.innerHTML = 'BIG <span class="accent">KIX</span>';
       lead.textContent =
-        "BIG KIX celebrates characters, creativity, and community. Collect what you love in a collector-first experience with no blind boxes and no forced rarity.";
+        "Ridiculously BIG sneakers and original DACAT WORLD characters. Collect what you love, connect with fellow fans and creators, and enjoy a collector-first experience where every mint matters.";
     } else {
       h1.innerHTML = originalHeroTitle || h1.innerHTML;
       lead.textContent = originalHeroLead || lead.textContent;
@@ -2777,7 +2777,7 @@ function renderHeroNote(collection) {
       '<strong class="steward-name">dacatworld.eth</strong>.';
   } else if (collId === "bigkix") {
     html =
-      "Character kicks on Ethereum · celebration over speculation. Stewarded by " +
+      "Character kicks from DACAT WORLD on Ethereum. Stewarded by " +
       '<strong class="steward-name">dacatworld.eth</strong>.';
   } else {
     note.hidden = true;
