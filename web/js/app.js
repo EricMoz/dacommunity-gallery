@@ -244,7 +244,7 @@ function adaptHeaderForCollection() {
     } else if (isBigKix) {
       h1.innerHTML = 'BIG <span class="accent">KIX</span>';
       lead.textContent =
-        "Season 1 First Edition on Ethereum — a character-driven series of kicks born from meme culture and crypto lore. Browse every piece, live listings, and recent transfers in one place.";
+        "BIG KIX celebrates characters, creativity, and community. Collect what you love in a collector-first experience with no blind boxes and no forced rarity.";
     } else {
       h1.innerHTML = originalHeroTitle || h1.innerHTML;
       lead.textContent = originalHeroLead || lead.textContent;
@@ -996,6 +996,55 @@ function displayExcerpt(item) {
   var flat = text.replace(/\s+/g, " ").trim();
   if (flat.length <= 160) return flat;
   return flat.slice(0, 159).trim() + "…";
+}
+
+/** Detail drawer story: same short cut as list excerpts (~160), expandable in place. */
+var DETAIL_STORY_CUT = 160;
+
+function renderDetailDescription(item) {
+  var el = $("#detail-description");
+  if (!el) return;
+  var story = cleanStoryText(item) || "";
+  el.innerHTML = "";
+  if (!story) {
+    el.textContent = "No description.";
+    return;
+  }
+  var flat = story.replace(/\s+/g, " ").trim();
+  if (flat.length <= DETAIL_STORY_CUT) {
+    el.textContent = story;
+    return;
+  }
+  var preview = flat.slice(0, DETAIL_STORY_CUT - 1).trim() + "…";
+  var shortP = document.createElement("p");
+  shortP.className = "detail-story-preview";
+  shortP.textContent = preview;
+  var fullP = document.createElement("p");
+  fullP.className = "detail-story-full";
+  fullP.hidden = true;
+  fullP.textContent = story;
+  var toggle = document.createElement("button");
+  toggle.type = "button";
+  toggle.className = "detail-story-toggle";
+  toggle.setAttribute("aria-expanded", "false");
+  toggle.textContent = "Show more";
+  toggle.addEventListener("click", function () {
+    var open = fullP.hidden;
+    fullP.hidden = !open;
+    shortP.hidden = open;
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    toggle.textContent = open ? "Show less" : "Show more";
+  });
+  var more = document.createElement("p");
+  more.className = "detail-story-more";
+  more.innerHTML =
+    'Full lore on <a href="' +
+    escapeHtml(item.opensea_url || "#") +
+    '" target="_blank" rel="noopener noreferrer">OpenSea ↗</a>';
+  el.appendChild(shortP);
+  el.appendChild(fullP);
+  el.appendChild(toggle);
+  if (item.opensea_url) el.appendChild(more);
 }
 
 function isVideoItem(item) {
@@ -2673,7 +2722,8 @@ function renderHeroNote(collection) {
     html = "Originally minted on OpenSea. Contract on Ethereum, stewarded by " +
       '<strong class="steward-name">dacatworld.eth</strong>.';
   } else if (collId === "bigkix") {
-    html = "Season 1 First Edition on Ethereum · OpenSea <strong>bigkix</strong>. Stewarded by " +
+    html =
+      "Character kicks on Ethereum · celebration over speculation. Stewarded by " +
       '<strong class="steward-name">dacatworld.eth</strong>.';
   } else {
     note.hidden = true;
@@ -2762,9 +2812,11 @@ function renderStats(collection) {
         : collection && collection.floor_eth != null
           ? formatEth(collection.floor_eth) + " " + (collection.floor_symbol || "ETH")
           : "—";
+    // Must match modal list length (never show num_owners while list is empty → greyed tile)
     collectorsVal =
-      (collectorsList && collectorsList.length) ||
-      nvl(collection && collection.num_owners, "—");
+      collectorsList && collectorsList.length
+        ? collectorsList.length
+        : "—";
   }
 
   var defs = [
@@ -2781,14 +2833,21 @@ function renderStats(collection) {
       el.type = "button";
       el.title = "View all collectors";
       el.setAttribute("aria-label", "View collectors");
+      el.disabled = false;
+      el.style.opacity = "1";
       el.addEventListener("click", function () {
         // Always rebuild for current collection filter, then open (dynamic like daCommunity)
         rebuildCollectorsForCurrentView();
-        if (collectorsList && collectorsList.length) openCollectorsModal();
+        updateCollectorsButton();
+        if (collectorsList && collectorsList.length) {
+          openCollectorsModal();
+        }
       });
     }
     strip.appendChild(el);
   });
+  // Sync enabled state with live list (after rebuild above for bigkix path)
+  updateCollectorsButton();
 
   // Show the hero steward note ONLY when a specific collection filter is active:
   //   ?collection=dacommunity → "Originally minted on Rodeo. Contract on Base, stewarded by dacatdreams.base.eth."
@@ -3489,8 +3548,7 @@ function openDetail(item) {
     mintEl.hidden = true;
     mintEl.textContent = "";
   }
-  var story = cleanStoryText(item);
-  $("#detail-description").textContent = story || "No description.";
+  renderDetailDescription(item);
   $("#detail-opensea").href = item.opensea_url || "#";
 
   // Optional film hub link (e.g. Collector Cat badge ↔ teaser trailer)
