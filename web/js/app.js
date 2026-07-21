@@ -788,7 +788,7 @@ function buildCollectorsFromLoadedItems(items) {
     }
     var os = item.owners || {};
     var list = os.holders || os.top_holders || [];
-    var itemKey = (item.source_created_collection || "dacommunity") + ":" + item.token_id;
+    var itemKey = getItemKey(item);
     list.forEach(function (h) {
       var a = (h.address || "").toLowerCase();
       if (!a) return;
@@ -823,6 +823,18 @@ function buildCollectorsFromLoadedItems(items) {
   return Object.values(byAddr).sort(function (a, b) {
     return (b.unique_pieces || b.collection_quantity || 0) - (a.unique_pieces || a.collection_quantity || 0);
   });
+}
+
+/** Prefer full JSON for secondary collections (activity + complete owners). */
+async function loadSecondaryCollectionData(urls) {
+  if (!urls) return loadCatalogFirst();
+  try {
+    var full = await fetchJson(urls.full, 45000);
+    if (full && full.items && full.items.length) return full;
+  } catch (e) {
+    console.warn("Full secondary collection load failed, falling back to catalog", e);
+  }
+  return await fetchJson(urls.catalog, 20000);
 }
 
 function rebuildCollectorsForCurrentView() {
@@ -1851,6 +1863,18 @@ function renderTopCollectors() {
     return;
   }
   wrap.hidden = false;
+  var labelEl = wrap.querySelector(".top-collectors-label");
+  if (labelEl) {
+    if (activeCollection === "bigkix") {
+      labelEl.textContent = "Heavy collectors in BIG KIX";
+    } else if (activeCollection === "badges") {
+      labelEl.textContent = "Heavy collectors in Badges";
+    } else if (activeCollection === "dacommunity") {
+      labelEl.textContent = "Heavy collectors in daCommunity";
+    } else {
+      labelEl.textContent = "Heavy collectors in the archive";
+    }
+  }
   var top = collectorsList.slice(0, 8);
   track.innerHTML = top
     .map(function (c) {
@@ -2478,6 +2502,7 @@ function updateCollectorsButton() {
 }
 
 function openCollectorsModal() {
+  rebuildCollectorsForCurrentView();
   if (!collectorsList.length) return;
   var modal = $("#collectors-modal");
   renderCollectors($("#collectors-search") ? $("#collectors-search").value : "");
@@ -2711,10 +2736,11 @@ function renderStats(collection) {
     collectorsVal = Object.keys(uniqB).length || nvl(collection && collection.num_owners, "—");
   } else if (activeCollection === "bigkix") {
     var kItems = (galleryData && galleryData.items) || [];
+    // Prefer live list so stats match the grid + collectors modal
+    rebuildCollectorsForCurrentView();
     pieces = kItems.length || nvl(collection && collection.piece_count, "—");
     var listedK = 0;
     var minFloorK = null;
-    var uniqK = {};
     kItems.forEach(function (it) {
       if (it.listed) {
         listedK++;
@@ -2723,10 +2749,6 @@ function renderStats(collection) {
           if (!isNaN(pk) && (minFloorK === null || pk < minFloorK)) minFloorK = pk;
         }
       }
-      var osk = (it.owners || {}).holders || (it.owners || {}).top_holders || [];
-      osk.forEach(function (o) {
-        if (o.address) uniqK[o.address.toLowerCase()] = true;
-      });
     });
     listedVal = listedK > 0 ? listedK : nvl(collection && collection.listed_count, "—");
     floorVal =
@@ -2736,7 +2758,7 @@ function renderStats(collection) {
           ? formatEth(collection.floor_eth) + " " + (collection.floor_symbol || "ETH")
           : "—";
     collectorsVal =
-      Object.keys(uniqK).length ||
+      (collectorsList && collectorsList.length) ||
       nvl(collection && collection.num_owners, "—");
   }
 
@@ -2755,6 +2777,8 @@ function renderStats(collection) {
       el.title = "View all collectors";
       el.setAttribute("aria-label", "View collectors");
       el.addEventListener("click", function () {
+        // Always rebuild for current collection filter, then open (dynamic like daCommunity)
+        rebuildCollectorsForCurrentView();
         if (collectorsList && collectorsList.length) openCollectorsModal();
       });
     }
@@ -3666,18 +3690,19 @@ function bindUi() {
 
       try {
         if (urls) {
-          // badges or other secondary collection: load its data files
+          // badges / BIG KIX: prefer full JSON so activity + holders match daCommunity detail UX
           CATALOG_URL = urls.catalog;
           FULL_DATA_URL = urls.full;
-          var newData = await loadCatalogFirst();
+          var newData = await loadSecondaryCollectionData(urls);
           galleryData = newData;
           if (galleryData && Array.isArray(galleryData.items)) {
-            var cid = activeCollection || (galleryData.collection && galleryData.collection.slug) || "dacommunity";
+            var cid = activeCollection || (galleryData.collection && galleryData.collection.id) || (galleryData.collection && galleryData.collection.slug) || "dacommunity";
             galleryData.items.forEach(function (item) {
               if (!item.collection_id) item.collection_id = cid;
             });
           }
-          dataSource = (galleryData.source || "").indexOf("badges") === 0 ? "catalog" : "full";
+          dataSource =
+            (galleryData.source || "").indexOf("catalog") >= 0 ? "catalog" : "full";
           indexItems(galleryData);
           rebuildCollectorsForCurrentView();
           renderStats(galleryData.collection);
@@ -3913,18 +3938,23 @@ async function init() {
     populateCollectionSelect();
 
     // If URL asked for a different live collection that has its own data files (e.g. ?collection=badges),
-    // switch the globals *before* the first fetch so the existing loadCatalogFirst / boot path just works.
+    // switch the globals *before* the first fetch so the existing load path just works.
     var initialColUrls = getCollectionDataUrls(activeCollection);
     if (initialColUrls) {
       CATALOG_URL = initialColUrls.catalog;
       FULL_DATA_URL = initialColUrls.full;
+      // Prefer full JSON for secondaries so transfers/holders work on first paint
+      galleryData = await loadSecondaryCollectionData(initialColUrls);
+    } else {
+      galleryData = await loadCatalogFirst();
     }
-
-    galleryData = await loadCatalogFirst();
-    dataSource = galleryData.source === "gallery_catalog" ? "catalog" : "full";
-    if (activeCollection === "badges" || activeCollection === "bigkix") {
-      collectorsList = buildCollectorsFromBadgeItems(galleryData.items);
-      updateCollectorsButton();
+    dataSource =
+      galleryData.source === "gallery_catalog" ||
+      (galleryData.source || "").indexOf("catalog") >= 0
+        ? "catalog"
+        : "full";
+    if (activeCollection && activeCollection !== "all" && activeCollection !== "dacommunity") {
+      rebuildCollectorsForCurrentView();
     }
     bootGallery(galleryData);
     adaptHeaderForCollection();
@@ -3932,9 +3962,8 @@ async function init() {
     // Open ?piece= detail as soon as catalog is ready (film hub NFT deep-links, share URLs).
     // Wallet index path re-calls this after enrichment; safe to run twice.
     applyPieceFromUrl();
-    if (activeCollection === "badges" || activeCollection === "bigkix") {
-      collectorsList = buildCollectorsFromBadgeItems(galleryData.items);
-      updateCollectorsButton();
+    if (activeCollection && activeCollection !== "all" && activeCollection !== "dacommunity") {
+      rebuildCollectorsForCurrentView();
     }
 
     // For "all collections", merge secondary catalogs (badges + BIG KIX) into the grid

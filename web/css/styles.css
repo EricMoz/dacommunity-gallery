@@ -2542,23 +2542,41 @@ button.stat:focus-visible {
 }
 
 .collection-card h3.collection-card-title,
+.collection-card h2.collection-card-title,
 .collection-card h2 {
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   margin: 0;
+  line-height: 1.2;
 }
 
 .collection-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.1rem;
   align-items: stretch;
+}
+
+/* Home: compact premium tiles */
+.collection-grid-home {
+  gap: 0.95rem;
+}
+
+/* Collections hub: roomier cards */
+.collection-grid-hub {
+  gap: 1.35rem;
+}
+
+@media (max-width: 900px) {
+  .collection-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 640px) {
   .collection-grid {
     grid-template-columns: 1fr;
-    max-width: 400px;
+    max-width: 420px;
     margin: 0 auto;
     width: 100%;
   }
@@ -2569,19 +2587,19 @@ button.stat:focus-visible {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 0.55rem;
-  padding: 3.1rem 1.3rem 1.2rem;
+  gap: 0;
+  padding: 0;
   background: var(--white);
   border: 3px solid var(--black);
   border-radius: var(--radius);
-  box-shadow: 8px 8px 0 var(--black);
+  box-shadow: 6px 6px 0 var(--black);
   text-decoration: none;
   color: var(--black);
   transition:
     transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.2s cubic-bezier(0.22, 1, 0.36, 1),
     border-color 0.2s ease;
-  min-height: 300px;
+  min-height: 0;
   overflow: hidden;
   isolation: isolate;
 }
@@ -2603,8 +2621,8 @@ button.stat:focus-visible {
 }
 
 .collection-card:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 11px 11px 0 var(--black);
+  transform: translate(-2px, -2px);
+  box-shadow: 9px 9px 0 var(--black);
   text-decoration: none;
   color: var(--black);
 }
@@ -2615,7 +2633,7 @@ button.stat:focus-visible {
 
 .collection-card:active {
   transform: translate(-1px, -1px);
-  box-shadow: 7px 7px 0 var(--black);
+  box-shadow: 6px 6px 0 var(--black);
 }
 
 .collection-card:focus-visible {
@@ -2623,20 +2641,44 @@ button.stat:focus-visible {
   outline-offset: 4px;
 }
 
-.collection-card h2 {
-  font-family: var(--font-display);
-  font-size: 1.18rem;
-  margin: 0;
-  line-height: 1.2;
-  padding-right: 0.25rem;
+/* Media band — balanced image vs copy (home compact / hub larger) */
+.collection-card-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 7.25rem;
+  padding: 0.85rem;
+  background: linear-gradient(160deg, #f7f7f7 0%, #ececec 100%);
+  border-bottom: 2px solid var(--black);
+  flex-shrink: 0;
+}
+
+.collection-card-media img {
+  width: 5.5rem;
+  height: 5.5rem;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.18));
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.collection-card:hover .collection-card-media img {
+  transform: scale(1.06);
+}
+
+.collection-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.9rem 1rem 1rem;
+  flex: 1;
 }
 
 .collection-card p {
   margin: 0;
-  font-size: 0.86rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
   flex: 1;
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 .collection-card p code {
@@ -2652,26 +2694,26 @@ button.stat:focus-visible {
   align-items: center;
   gap: 0.15rem;
   font-weight: 700;
-  font-size: 0.88rem;
-  margin-top: 0.15rem;
+  font-size: 0.84rem;
+  margin-top: 0.2rem;
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .collection-card:hover .collection-card-cta {
-  transform: translateX(5px);
+  transform: translateX(4px);
   color: var(--blue-accent);
 }
 
 .collection-card-status {
   position: absolute;
-  top: 0.9rem;
-  right: 0.9rem;
+  top: 0.65rem;
+  right: 0.65rem;
   z-index: 2;
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 0.22rem 0.55rem;
+  padding: 0.2rem 0.5rem;
   background: var(--listed);
   color: var(--white);
   border: 2px solid var(--black);
@@ -2684,6 +2726,61 @@ button.stat:focus-visible {
   color: var(--yellow);
 }
 
+/* Hub page: larger media + breathing room */
+.collection-card-hub .collection-card-media {
+  height: 9.5rem;
+  padding: 1.1rem;
+}
+
+.collection-card-hub .collection-card-media img {
+  width: 7rem;
+  height: 7rem;
+}
+
+.collection-card-hub .collection-card-body {
+  padding: 1.1rem 1.2rem 1.2rem;
+  gap: 0.5rem;
+}
+
+.collection-card-hub .collection-card-title {
+  font-size: 1.28rem;
+}
+
+.collection-card-hub p {
+  font-size: 0.9rem;
+}
+
+/* BIG KIX — cinema-dark media band */
+.collection-card-bigkix {
+  border-top: 4px solid var(--yellow);
+}
+
+.collection-card-bigkix .collection-card-media {
+  background: linear-gradient(155deg, #121212 0%, #2a2a2a 100%);
+}
+
+.collection-card-bigkix .collection-card-media img {
+  border-radius: 12px;
+  border: 1px solid rgba(255, 204, 0, 0.35);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.collection-card-eyebrow {
+  display: inline-block;
+  align-self: flex-start;
+  margin: 0;
+  padding: 0.12rem 0.5rem;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #111;
+  background: var(--yellow);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 999px;
+}
+
+/* Legacy visual hooks (if any cards still use them) */
 .collection-card-visual {
   display: flex;
   align-items: center;
@@ -2699,92 +2796,6 @@ button.stat:focus-visible {
   object-fit: contain;
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.22));
   transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.collection-card:hover .collection-card-visual img {
-  transform: scale(1.08) rotate(-3deg);
-}
-
-/* BIG KIX hub tile — cinema-dark frame + piece art (cohesive with site yellow/black) */
-.collection-card-bigkix {
-  border-top: 4px solid var(--yellow);
-  background: linear-gradient(180deg, #fffef8 0%, #fff 55%);
-}
-
-.collection-card-eyebrow {
-  display: inline-block;
-  align-self: flex-start;
-  margin: -0.15rem 0 0.35rem;
-  padding: 0.12rem 0.5rem;
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #111;
-  background: var(--yellow);
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 999px;
-}
-
-.collection-card-visual-kix {
-  position: relative;
-  background: linear-gradient(155deg, #121212 0%, #2a2a2a 100%);
-  border-radius: 12px;
-  border: 2px solid rgba(255, 204, 0, 0.35);
-  box-shadow: 4px 4px 0 var(--black);
-  overflow: hidden;
-}
-
-.collection-card-visual-kix img {
-  width: 72px;
-  height: 72px;
-  border-radius: 10px;
-  object-fit: cover;
-  border: 1px solid rgba(255, 204, 0, 0.25);
-}
-
-.collection-card-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 2.4rem;
-  min-height: 1.35rem;
-  padding: 0.18rem 0.4rem;
-  font-family: var(--font-display);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  border-radius: 6px;
-}
-
-.collection-card-mark-kix {
-  position: absolute;
-  right: 0.45rem;
-  bottom: 0.4rem;
-  color: #111;
-  background: var(--yellow);
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 12px rgba(255, 204, 0, 0.35);
-}
-
-.collection-card-bigkix:hover .collection-card-visual-kix {
-  border-color: rgba(255, 204, 0, 0.7);
-  box-shadow:
-    6px 6px 0 var(--black),
-    0 0 20px rgba(255, 204, 0, 0.14);
-}
-
-.collection-card-bigkix:hover .collection-card-visual-kix img {
-  transform: scale(1.06);
-}
-
-.collection-card-bigkix code {
-  font-size: 0.82em;
-  font-weight: 600;
-  color: #222;
-  background: rgba(255, 204, 0, 0.15);
-  padding: 0.05rem 0.3rem;
-  border-radius: 4px;
 }
 
 .collection-card-visual-badges {

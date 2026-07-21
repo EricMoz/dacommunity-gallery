@@ -353,7 +353,8 @@ def build_item(
 
 
 def slim_item(item: dict) -> dict:
-    return {
+    # Keep activity in catalog: BIG KIX is small (~24) and the modal needs it on first paint
+    out = {
         "token_id": item.get("token_id"),
         "name": item.get("name"),
         "display_name": item.get("display_name"),
@@ -375,6 +376,10 @@ def slim_item(item: dict) -> dict:
         "collection_id": COLLECTION_ID,
         "opensea_name": item.get("opensea_name"),
     }
+    activity = item.get("recent_activity") or []
+    if activity:
+        out["recent_activity"] = activity[:12]
+    return out
 
 
 def write_catalog(payload: dict) -> None:

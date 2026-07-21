@@ -2,7 +2,7 @@
 <!-- NFT collections picker — daCommunity gallery + Badges. Add new collection cards here. -->
 <html lang="en">
 <head>
-  <meta name="site-build" content="20260721-3" />
+  <meta name="site-build" content="20260721-4" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- Prefer revalidation so this hub does not stick on an older shell after deploys -->
@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/styles.css?v=20260721-3" />
+  <link rel="stylesheet" href="../css/styles.css?v=20260721-4" />
 </head>
 <body class="home-page collections-page">
   <header class="site-header">
@@ -41,62 +41,67 @@
     <section class="collections-intro">
       <a class="page-back" href="../">← Universe</a>
       <h1 class="collections-intro-title">NFT <span class="accent">collections</span></h1>
-      <p class="collections-intro-lead">Pick a collection — daCommunity archive, BIG KIX Season 1, or personal badges &amp; awards.</p>
+      <p class="collections-intro-lead">Pick a collection — BIG KIX Season 1, personal badges, or daCommunity NFTs on Base.</p>
     </section>
 
     <a class="collector-spotlight-card collector-spotlight-card-inline" href="../dacommunity/#wallet-panel">
-      <span class="collector-spotlight-kicker">daCommunity</span>
+      <span class="collector-spotlight-kicker">Collector lookup</span>
       <span class="collector-spotlight-title">Find your daCATs</span>
-      <span class="collector-spotlight-lead">Look up any collector wallet in the archive — shareable link included.</span>
+      <span class="collector-spotlight-lead">Look up any collector wallet across the archive — shareable link included.</span>
       <span class="collector-spotlight-cta">Collector lookup →</span>
     </a>
 
-    <section class="collection-grid" aria-label="NFT collections">
-      <a class="collection-card collection-card-live" href="../dacommunity/?collection=dacommunity">
+    <section class="collection-grid collection-grid-hub" aria-label="NFT collections">
+      <a class="collection-card collection-card-live collection-card-bigkix collection-card-hub" href="../dacommunity/?collection=bigkix">
         <span class="collection-card-status">Live</span>
-        <div class="collection-card-visual" aria-hidden="true">
-          <img src="../assets/brand/dacat-mascot.png" alt="" width="88" height="88" />
-        </div>
-        <h2 class="collection-card-title">daCommunity NFT Archive</h2>
-        <p>Telegram-born <code>dacat.*</code> stories on Base — find your pieces and share your collection link.</p>
-        <span class="collection-card-cta">Open gallery · lookup →</span>
-      </a>
-
-      <a class="collection-card collection-card-live collection-card-bigkix" href="../dacommunity/?collection=bigkix">
-        <span class="collection-card-status">Live</span>
-        <span class="collection-card-eyebrow">Season 1 · First Edition</span>
-        <div class="collection-card-visual collection-card-visual-kix" aria-hidden="true">
+        <div class="collection-card-media">
           <img
-            src="https://i2c.seadn.io/collection/big-kix/image_type_logo/ce9e5b65e30531c9b8a792a2653bd7/bbce9e5b65e30531c9b8a792a2653bd7.png?h=400&w=400"
+            src="https://i2c.seadn.io/collection/big-kix/image_type_logo/ce9e5b65e30531c9b8a792a2653bd7/bbce9e5b65e30531c9b8a792a2653bd7.png?h=600&w=600"
             alt=""
-            width="88"
-            height="88"
+            width="160"
+            height="160"
             loading="lazy"
             decoding="async"
           />
-          <span class="collection-card-mark collection-card-mark-kix">KIX</span>
         </div>
-        <h2 class="collection-card-title">BIG KIX</h2>
-        <p>24 character kicks on Ethereum. Titles like <code>BIG KIX #014 · EAGLE 250</code> — live holders, listings &amp; transfers. Stewarded by dacatworld.eth.</p>
-        <span class="collection-card-cta">Open BIG KIX →</span>
+        <div class="collection-card-body">
+          <span class="collection-card-eyebrow">Season 1 · First Edition</span>
+          <h2 class="collection-card-title">BIG KIX</h2>
+          <p>Character kicks on Ethereum — live holders, listings &amp; transfers. Titles like <code>BIG KIX #014 · EAGLE 250</code>.</p>
+          <span class="collection-card-cta">Open BIG KIX →</span>
+        </div>
       </a>
 
-      <a class="collection-card collection-card-live" href="../dacommunity/?collection=badges">
+      <a class="collection-card collection-card-live collection-card-hub" href="../dacommunity/?collection=badges">
         <span class="collection-card-status">Live</span>
-        <div class="collection-card-visual" aria-hidden="true">
-          <img src="../assets/badges/dacat-gem-nova-green.png" alt="" width="88" height="88" />
+        <div class="collection-card-media">
+          <img src="../assets/badges/dacat-gem-nova-green.png" alt="" width="160" height="160" />
         </div>
-        <h2 class="collection-card-title">daCAT Badges</h2>
-        <p>Personal 1:1 awards on Ethereum — Trillion Club (custom named), Rookie Card 2026, Collector Cat, Gem Nova &amp; more. Generic series shown in search; your personalized copy appears in wallet view.</p>
-        <span class="collection-card-cta">Browse in archive search →</span>
+        <div class="collection-card-body">
+          <h2 class="collection-card-title">daCAT Badges</h2>
+          <p>Personal 1:1 awards — Trillion Club, Rookie Card 2026, Collector Cat, Gem Nova &amp; more.</p>
+          <span class="collection-card-cta">Browse badges →</span>
+        </div>
+      </a>
+
+      <a class="collection-card collection-card-live collection-card-hub" href="../dacommunity/?collection=dacommunity">
+        <span class="collection-card-status">Live</span>
+        <div class="collection-card-media">
+          <img src="../assets/brand/dacat-mascot.png" alt="" width="160" height="160" />
+        </div>
+        <div class="collection-card-body">
+          <h2 class="collection-card-title">daCommunity NFTs</h2>
+          <p>Telegram-born <code>dacat.*</code> stories on Base — find your pieces and share a collector link.</p>
+          <span class="collection-card-cta">Open collection →</span>
+        </div>
       </a>
     </section>
   </main>
 
   <footer class="site-footer">
     <p><a href="https://www.dacat.fun/" target="_blank" rel="noopener noreferrer">dacat.fun</a> · <a href="https://www.dacatworld.com/" target="_blank" rel="noopener noreferrer">dacatworld</a> · <a href="https://dacat.store/" target="_blank" rel="noopener noreferrer">dacat.store</a></p>
-    <p class="site-version">Site build 20260721-3</p>
+    <p class="site-version">Site build 20260721-4</p>
   </footer>
-  <script src="../js/pwa-register.js?v=20260721-3" defer></script>
+  <script src="../js/pwa-register.js?v=20260721-4" defer></script>
 </body>
 </html>

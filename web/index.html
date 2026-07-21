@@ -5,7 +5,7 @@
      Vanilla static + minimal home.js. See app.js for the heavy gallery logic. -->
 <html lang="en">
 <head>
-  <meta name="site-build" content="20260721-3" />
+  <meta name="site-build" content="20260721-4" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>daCAT · Universe</title>
@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20260721-3" />
+  <link rel="stylesheet" href="css/styles.css?v=20260721-4" />
 </head>
 <body class="home-page">
   <header class="site-header">
@@ -72,44 +72,49 @@
           <h2 id="collections-heading" class="home-section-title">Collections</h2>
           <a class="home-hero-pill" href="dacommunity/#wallet-panel">Find your daCATs</a>
         </div>
-        <p class="home-section-lead">Step into the daCAT Universe. Browse the live NFT archive, discover personal Badges and awards, and look up any collector.</p>
+        <p class="home-section-lead">Step into the daCAT Universe. Browse live collections, badges, and look up any collector.</p>
       </header>
-      <div class="collection-grid" aria-label="NFT collections">
-        <a class="collection-card collection-card-live" href="dacommunity/#wallet-panel">
-          <span class="collection-card-status">Live</span>
-          <div class="collection-card-visual" aria-hidden="true">
-            <img src="assets/brand/dacat-mascot.png" alt="" width="88" height="88" />
-          </div>
-          <h3 class="collection-card-title">daCommunity NFT Archive</h3>
-          <p>Telegram-born <code>dacat.*</code> stories. Browse the archive or look up your wallet to share your collection.</p>
-          <span class="collection-card-cta">Open gallery · find your pieces →</span>
-        </a>
+      <div class="collection-grid collection-grid-home" aria-label="NFT collections">
         <a class="collection-card collection-card-live collection-card-bigkix" href="dacommunity/?collection=bigkix">
           <span class="collection-card-status">Live</span>
-          <span class="collection-card-eyebrow">Season 1 · First Edition</span>
-          <div class="collection-card-visual collection-card-visual-kix" aria-hidden="true">
+          <div class="collection-card-media">
             <img
               src="https://i2c.seadn.io/collection/big-kix/image_type_logo/ce9e5b65e30531c9b8a792a2653bd7/bbce9e5b65e30531c9b8a792a2653bd7.png?h=400&w=400"
               alt=""
-              width="88"
-              height="88"
+              width="120"
+              height="120"
               loading="lazy"
               decoding="async"
             />
-            <span class="collection-card-mark collection-card-mark-kix">KIX</span>
           </div>
-          <h3 class="collection-card-title">BIG KIX</h3>
-          <p>24 character kicks on Ethereum. Clean titles like <code>BIG KIX #014 · EAGLE 250</code> — live owners, listings &amp; activity.</p>
-          <span class="collection-card-cta">Open BIG KIX →</span>
+          <div class="collection-card-body">
+            <span class="collection-card-eyebrow">Season 1 · First Edition</span>
+            <h3 class="collection-card-title">BIG KIX</h3>
+            <p>Character kicks on Ethereum — live listings &amp; transfers.</p>
+            <span class="collection-card-cta">Open BIG KIX →</span>
+          </div>
         </a>
         <a class="collection-card collection-card-live" href="dacommunity/?collection=badges">
           <span class="collection-card-status">Live</span>
-          <div class="collection-card-visual" aria-hidden="true">
-            <img src="assets/badges/dacat-gem-nova-green.png" alt="" width="88" height="88" />
+          <div class="collection-card-media">
+            <img src="assets/badges/dacat-gem-nova-green.png" alt="" width="120" height="120" />
           </div>
-          <h3 class="collection-card-title">daCAT Badges</h3>
-          <p>Personal 1:1 awards on Ethereum. Trillion Club (custom named), Rookie Card 2026, Collector Cat, Gem Nova and more. Generic series shown in search; your personalized copy appears in wallet view.</p>
-          <span class="collection-card-cta">Browse in archive search →</span>
+          <div class="collection-card-body">
+            <h3 class="collection-card-title">daCAT Badges</h3>
+            <p>Personal 1:1 awards — Rookie Cards, clubs, Gem Nova &amp; more.</p>
+            <span class="collection-card-cta">Browse badges →</span>
+          </div>
+        </a>
+        <a class="collection-card collection-card-live" href="dacommunity/?collection=dacommunity">
+          <span class="collection-card-status">Live</span>
+          <div class="collection-card-media">
+            <img src="assets/brand/dacat-mascot.png" alt="" width="120" height="120" />
+          </div>
+          <div class="collection-card-body">
+            <h3 class="collection-card-title">daCommunity NFTs</h3>
+            <p>Telegram-born <code>dacat.*</code> stories on Base — find &amp; share your pieces.</p>
+            <span class="collection-card-cta">Open collection →</span>
+          </div>
         </a>
       </div>
     </section>
@@ -196,10 +201,10 @@
 
   <footer class="site-footer">
     <p><a href="https://www.dacat.fun/" target="_blank" rel="noopener noreferrer">dacat.fun</a> · <a href="https://www.dacatworld.com/" target="_blank" rel="noopener noreferrer">dacatworld</a> · <a href="https://dacat.store/" target="_blank" rel="noopener noreferrer">dacat.store</a> · <a href="https://dagato.store/" target="_blank" rel="noopener noreferrer">dagato.store</a></p>
-    <p class="site-version">Site build 20260721-3</p>
+    <p class="site-version">Site build 20260721-4</p>
   </footer>
-  <script src="js/pwa-register.js?v=20260721-3" defer></script>
-  <script src="js/home.js?v=20260721-3" defer></script>
+  <script src="js/pwa-register.js?v=20260721-4" defer></script>
+  <script src="js/home.js?v=20260721-4" defer></script>
   <script src="js/universe-nav.js" defer></script>
 </body>
 </html>

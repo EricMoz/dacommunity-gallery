@@ -15,7 +15,7 @@ CATALOG_PATH = ROOT / "web" / "data" / "bigkix_catalog.json"
 
 
 def slim_item(item: dict) -> dict:
-    return {
+    out = {
         "token_id": item.get("token_id"),
         "name": item.get("name"),
         "display_name": item.get("display_name"),
@@ -37,6 +37,10 @@ def slim_item(item: dict) -> dict:
         "collection_id": item.get("collection_id") or "bigkix",
         "opensea_name": item.get("opensea_name"),
     }
+    activity = item.get("recent_activity") or []
+    if activity:
+        out["recent_activity"] = activity[:12]
+    return out
 
 
 def main() -> None:
