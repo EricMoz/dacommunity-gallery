@@ -609,6 +609,10 @@ async function loadWalletIndex() {
 
   enrichHoldersAndCollectorsWithENS();
   rebuildCollectorsForCurrentView();
+  seedRankingCacheFromGalleryData();
+  if (galleryCollectorView && galleryCollectorView.address) {
+    refreshCollectorRankBadgesAsync();
+  }
 }
 
 /* Registry loader (Part 1 multi-col support).
@@ -1432,6 +1436,7 @@ function setGalleryCollectorView(entry, opts) {
   var addr = entry.address.toLowerCase();
   // Ensure collectorsList matches active collection so primary rank is meaningful
   rebuildCollectorsForCurrentView();
+  seedRankingCacheFromGalleryData();
   galleryCollectorView = {
     address: addr,
     label: label,
@@ -1440,10 +1445,12 @@ function setGalleryCollectorView(entry, opts) {
     uniquePieces: nvl(entry.unique_pieces, (entry.holdings || []).length),
     collectionQuantity: nvl(entry.collection_quantity, "—"),
     rank: collectorRank(addr),
-    ranks: collectorRankBadges(addr, 10),
+    ranks: collectorRankBadges(addr, 10, 3),
   };
   renderCollectorFocusUi();
   refreshView();
+  // Fill ranks for collections not in current filter (async catalogs / wallet index)
+  refreshCollectorRankBadgesAsync();
   if (opts.scroll === false) return;
   scrollToCollectorTheaterTop({ behavior: opts.scrollBehavior || "smooth" });
 }
@@ -1484,7 +1491,8 @@ function expandCollectorHoldingsFromLoadedData() {
   });
   galleryCollectorView.collectionQuantity = qty;
   galleryCollectorView.rank = collectorRank(addr);
-  galleryCollectorView.ranks = collectorRankBadges(addr, 10);
+  galleryCollectorView.ranks = collectorRankBadges(addr, 10, 3);
+  refreshCollectorRankBadgesAsync();
 }
 
 /**
@@ -2059,85 +2067,175 @@ function collectorRankInList(address, list) {
   return null;
 }
 
-/** Collectors ranking list for one collection id (from currently loaded items / index). */
+/** Independent of active filter — ranks per collection for wallet badges. */
+var collectionRankingCache = {}; // colId -> sorted collectors array
+
+function collectionRankShortName(colId, fallbackName) {
+  if (colId === "bigkix") return "BIG KIX";
+  if (colId === "badges") return "Badges";
+  if (colId === "dacommunity") return "daCommunity";
+  return fallbackName || colId || "Archive";
+}
+
+/** Sync snapshot from currently loaded gallery items (cheap, call when data loads). */
+function seedRankingCacheFromGalleryData() {
+  var items = (galleryData && galleryData.items) || [];
+  if (!items.length) return;
+  var byCol = {};
+  items.forEach(function (it) {
+    var cid = it.collection_id || "dacommunity";
+    if (!byCol[cid]) byCol[cid] = [];
+    byCol[cid].push(it);
+  });
+  Object.keys(byCol).forEach(function (cid) {
+    if (cid === "badges") {
+      collectionRankingCache[cid] = buildCollectorsFromBadgeItems(byCol[cid]);
+    } else {
+      collectionRankingCache[cid] = buildCollectorsFromLoadedItems(byCol[cid]);
+    }
+  });
+  // daCommunity wallet index is authoritative when present (full Base ranking)
+  if (walletIndex && (walletIndex.collectors || walletIndex.by_address)) {
+    var wiList =
+      (walletIndex.collectors && walletIndex.collectors.length
+        ? walletIndex.collectors
+        : null) || buildCollectorsFromIndex(walletIndex);
+    if (wiList && wiList.length) {
+      collectionRankingCache.dacommunity = wiList;
+    }
+  }
+}
+
+/**
+ * Ensure ranking lists exist for every live collection (loads catalogs if needed).
+ * Does not change activeCollection / gallery grid data.
+ */
+async function ensureAllCollectionRankingCaches() {
+  seedRankingCacheFromGalleryData();
+  var live = getLiveCollections();
+  var prefix = getDataPrefix();
+  var stamp = getBuildStamp();
+  var q = "?v=" + stamp;
+
+  for (var i = 0; i < live.length; i++) {
+    var col = live[i];
+    if (!col || !col.id) continue;
+    if (collectionRankingCache[col.id] && collectionRankingCache[col.id].length) {
+      continue;
+    }
+    try {
+      if (col.id === "dacommunity") {
+        if (!walletIndex) {
+          try {
+            var w = await fetchJson(WALLET_URL, 20000);
+            walletIndex = (w && w.holders_index) || w || null;
+          } catch (e1) {}
+        }
+        if (walletIndex) {
+          collectionRankingCache.dacommunity =
+            (walletIndex.collectors && walletIndex.collectors.length
+              ? walletIndex.collectors
+              : null) || buildCollectorsFromIndex(walletIndex);
+        }
+        if (
+          !collectionRankingCache.dacommunity ||
+          !collectionRankingCache.dacommunity.length
+        ) {
+          var gUrl = prefix + "data/gallery_catalog.json" + q;
+          var g = await fetchJson(gUrl, 20000);
+          if (g && g.items) {
+            g.items.forEach(function (it) {
+              if (!it.collection_id) it.collection_id = "dacommunity";
+            });
+            collectionRankingCache.dacommunity = buildCollectorsFromLoadedItems(
+              g.items
+            );
+          }
+        }
+        continue;
+      }
+      // Secondary: badges / bigkix / future
+      var catFile =
+        (col.data && col.data.catalog) ||
+        (col.id === "badges" ? "badges_catalog.json" : null) ||
+        (col.id === "bigkix" ? "bigkix_catalog.json" : null);
+      if (!catFile) continue;
+      var data = await fetchJson(prefix + "data/" + catFile + q, 20000);
+      if (!data || !data.items || !data.items.length) continue;
+      data.items.forEach(function (it) {
+        if (!it.collection_id) it.collection_id = col.id;
+      });
+      if (col.id === "badges") {
+        collectionRankingCache[col.id] = buildCollectorsFromBadgeItems(data.items);
+      } else {
+        collectionRankingCache[col.id] = buildCollectorsFromLoadedItems(data.items);
+      }
+    } catch (e) {
+      console.warn("Ranking cache load failed for " + col.id, e);
+    }
+  }
+}
+
+/** Sync ranking from cache (or current list). Filter-independent. */
 function getCollectorsRankingList(colId) {
+  if (colId && collectionRankingCache[colId] && collectionRankingCache[colId].length) {
+    return collectionRankingCache[colId];
+  }
+  // Fallbacks from whatever is currently in memory
+  if (colId === "dacommunity" && walletIndex) {
+    return (
+      (walletIndex.collectors && walletIndex.collectors.length
+        ? walletIndex.collectors
+        : null) || buildCollectorsFromIndex(walletIndex)
+    );
+  }
   var items = (galleryData && galleryData.items) || [];
   if (colId && colId !== "all") {
     items = items.filter(function (i) {
       return (i.collection_id || "dacommunity") === colId;
     });
   }
-  if (colId === "badges") {
-    return buildCollectorsFromBadgeItems(items);
-  }
-  if (colId === "dacommunity") {
-    // Prefer live item owners when present; fall back to wallet index
-    var fromItems = buildCollectorsFromLoadedItems(items);
-    if (fromItems.length) return fromItems;
-    return buildCollectorsFromIndex(walletIndex);
-  }
-  if (!colId || colId === "all") {
-    return buildCollectorsFromLoadedItems((galleryData && galleryData.items) || []);
-  }
-  // BIG KIX and other secondary galleries
+  if (colId === "badges") return buildCollectorsFromBadgeItems(items);
   return buildCollectorsFromLoadedItems(items);
 }
 
 /**
- * Top ranks (default top 10) across live collections for one wallet.
- * Used for multi-color rank badges in portfolio / wallet profile.
+ * Top ranks across ALL live collections (default top 10 each, max 3 badges shown).
+ * Independent of collection filter. Active filter's collection is ordered first.
  */
-function collectorRankBadges(address, topN) {
+function collectorRankBadges(address, topN, maxBadges) {
   topN = topN || 10;
+  maxBadges = maxBadges || 3;
   var key = (address || "").toLowerCase();
   if (!key) return [];
   var out = [];
   var seen = {};
   var live = getLiveCollections();
   live.forEach(function (col) {
-    if (!col || !col.id) return;
+    if (!col || !col.id || seen[col.id]) return;
     var list = getCollectorsRankingList(col.id);
     var r = collectorRankInList(key, list);
-    if (r && r <= topN && !seen[col.id]) {
+    if (r && r <= topN) {
       seen[col.id] = true;
       out.push({
         id: col.id,
         rank: r,
         name: col.name || col.id,
-        short:
-          col.id === "bigkix"
-            ? "BIG KIX"
-            : col.id === "badges"
-              ? "Badges"
-              : col.id === "dacommunity"
-                ? "daCommunity"
-                : col.name || col.id,
+        short: collectionRankShortName(col.id, col.name),
       });
     }
   });
-  // If only one collection is loaded (e.g. cold ?collection=bigkix), still surface that rank
-  if (!out.length && activeCollection && activeCollection !== "all") {
-    var r0 = collectorRankInList(key, collectorsList);
-    if (r0 && r0 <= topN) {
-      out.push({
-        id: activeCollection,
-        rank: r0,
-        name: getCollectionName(activeCollection),
-        short:
-          activeCollection === "bigkix"
-            ? "BIG KIX"
-            : activeCollection === "badges"
-              ? "Badges"
-              : activeCollection === "dacommunity"
-                ? "daCommunity"
-                : getCollectionName(activeCollection),
-      });
-    }
-  }
+  // Prefer current collection first, then best ranks
+  var prefer = activeCollection && activeCollection !== "all" ? activeCollection : null;
   out.sort(function (a, b) {
-    return a.rank - b.rank;
+    if (prefer) {
+      if (a.id === prefer && b.id !== prefer) return -1;
+      if (b.id === prefer && a.id !== prefer) return 1;
+    }
+    if (a.rank !== b.rank) return a.rank - b.rank;
+    return String(a.short).localeCompare(String(b.short));
   });
-  return out;
+  return out.slice(0, maxBadges);
 }
 
 function rankBadgeClass(colId) {
@@ -2166,6 +2264,28 @@ function formatRankBadgesHtml(ranks, opts) {
       );
     })
     .join("");
+}
+
+/** Refresh rank badges on open portfolio after async cache fills. */
+async function refreshCollectorRankBadgesAsync() {
+  if (!galleryCollectorView || !galleryCollectorView.address) return;
+  try {
+    await ensureAllCollectionRankingCaches();
+  } catch (e) {
+    console.warn("ensureAllCollectionRankingCaches", e);
+  }
+  if (!galleryCollectorView) return;
+  var addr = galleryCollectorView.address;
+  galleryCollectorView.ranks = collectorRankBadges(addr, 10, 3);
+  galleryCollectorView.rank = collectorRank(addr);
+  renderCollectorFocusUi();
+  // Update profile card ranks if visible
+  var ranksWrap = document.querySelector(".collector-profile-ranks");
+  if (ranksWrap && galleryCollectorView.ranks) {
+    ranksWrap.innerHTML = formatRankBadgesHtml(galleryCollectorView.ranks, {
+      short: true,
+    });
+  }
 }
 
 function renderTopCollectors() {
@@ -2503,7 +2623,8 @@ function renderWalletSuccess(entry, opts) {
   var uq = nvl(entry.unique_pieces, holdings.length);
   var qty = nvl(entry.collection_quantity, "—");
   rebuildCollectorsForCurrentView();
-  var ranks = collectorRankBadges(entry.address, 10);
+  seedRankingCacheFromGalleryData();
+  var ranks = collectorRankBadges(entry.address, 10, 3);
   var rankHtml = ranks.length
     ? '<div class="collector-profile-ranks">' +
       formatRankBadgesHtml(ranks, { short: true }) +
@@ -2541,6 +2662,8 @@ function renderWalletSuccess(entry, opts) {
     holdings.length +
     ")</h3>" +
     '<div class="holdings-grid" id="wallet-holdings-grid"></div>';
+  // Async: fill ranks for collections not in the current filter (up to 3 top-10s)
+  refreshCollectorRankBadgesAsync();
 
   renderHoldingsGrid(holdings, $("#wallet-holdings-grid"));
   bindCollectorResultActions(entry);
