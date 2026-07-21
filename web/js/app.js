@@ -982,20 +982,45 @@ function cleanStoryText(item) {
       lines.shift();
       continue;
     }
-    // BIG KIX OpenSea titles often lead the body: "BIG KIX #014 – EAGLE 250 - Season…"
-    if (/^big\s*kix\s*#\s*\d+/i.test(head)) {
-      lines.shift();
-      continue;
-    }
     // Drop pure OpenSea name line when present
     if (item.opensea_name && head === String(item.opensea_name).trim().toLowerCase()) {
       lines.shift();
       continue;
     }
+    // BIG KIX: multi-line body after a title-only first line
+    if (/^big\s*kix\s*#\s*\d+/i.test(head) && lines.length > 1) {
+      lines.shift();
+      continue;
+    }
+    // BIG KIX flat catalog excerpt is one line: "BIG KIX #024 – NAME - Season 1 – First Edition The story…"
+    // Do NOT drop the whole line — strip the title prefix and keep the lore.
+    if (/^big\s*kix\s*#\s*\d+/i.test(head) && lines.length === 1) {
+      var rest = lines[0]
+        .replace(
+          /^BIG\s*KIX\s*#\s*\d+\s*[-–—]\s*.+?\s*[-–—]\s*Season\s*\d+(?:\s*[-–—]\s*First\s*Edition)?\s*/i,
+          ""
+        )
+        .trim();
+      if (rest) lines[0] = rest;
+      break;
+    }
     break;
   }
   while (lines.length && !lines[0].trim()) lines.shift();
-  return lines.join("\n").trim();
+  var out = lines.join("\n").trim();
+  // Safety: if we still only have a title-ish string, try raw description body
+  if (
+    (!out || /^big\s*kix\s*#/i.test(out)) &&
+    item.description &&
+    item.description.indexOf("\n") >= 0
+  ) {
+    var body = item.description.replace(/\r\n/g, "\n").split("\n");
+    while (body.length && !body[0].trim()) body.shift();
+    if (body.length && /^big\s*kix\s*#/i.test(body[0].trim())) body.shift();
+    while (body.length && !body[0].trim()) body.shift();
+    out = body.join("\n").trim() || out;
+  }
+  return out;
 }
 
 function displayExcerpt(item) {

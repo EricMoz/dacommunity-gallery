@@ -145,7 +145,23 @@ def clean_description(text: str | None) -> str:
 
 
 def excerpt(text: str, max_len: int = 160) -> str:
-    flat = re.sub(r"\s+", " ", text).strip()
+    """Build a short blurb; skip the OpenSea title line so UI excerpts are lore-first."""
+    if not text:
+        return ""
+    lines = [ln.strip() for ln in text.replace("\r\n", "\n").split("\n") if ln.strip()]
+    if lines and re.match(r"^BIG\s*KIX\s*#\s*\d+", lines[0], re.I):
+        lines = lines[1:]
+    body = " ".join(lines).strip() if lines else re.sub(r"\s+", " ", text).strip()
+    # Also strip inline title prefix if description was flattened
+    body = re.sub(
+        r"^BIG\s*KIX\s*#\s*\d+\s*[-–—]\s*.+?\s*[-–—]\s*Season\s*\d+(?:\s*[-–—]\s*First\s*Edition)?\s*",
+        "",
+        body,
+        flags=re.I,
+    ).strip()
+    flat = re.sub(r"\s+", " ", body).strip()
+    if not flat:
+        flat = re.sub(r"\s+", " ", text).strip()
     if len(flat) <= max_len:
         return flat
     return flat[: max_len - 1].rstrip() + "…"
