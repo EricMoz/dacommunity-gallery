@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-21T10:25:00.295028+00:00",
+  "generated_at": "2026-07-22T10:25:01.924213+00:00",
   "source": "opensea_api_v2",
   "collection": {
     "id": "bigkix",
@@ -38,7 +38,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/24",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/24",
-      "updated_at": "2026-07-21T10:24:06.276975",
+      "updated_at": "2026-07-22T10:24:07.913919",
       "traits": [
         {
           "trait_type": "Role",
@@ -289,7 +289,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/23",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/23",
-      "updated_at": "2026-07-21T10:24:06.276986",
+      "updated_at": "2026-07-22T10:24:07.913929",
       "traits": [
         {
           "trait_type": "Set",
@@ -361,8 +361,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 7,
-        "circulating_copies": 7,
+        "holder_count": 9,
+        "circulating_copies": 9,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -413,20 +413,42 @@
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T08:22:47+00:00",
+          "at": "2026-07-21T13:10:11+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-19T00:00:11+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:10:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T12:55:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T08:22:47+00:00",
@@ -513,7 +535,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/22",
       "metadata_url": "ipfs://Qmdkw9oKwcQqLhpJFBCbQ85jv1ceUdjA1UWqc9ShESVbVs/22",
-      "updated_at": "2026-07-21T10:24:06.276998",
+      "updated_at": "2026-07-22T10:24:07.913937",
       "traits": [
         {
           "trait_type": "Set",
@@ -585,8 +607,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 7,
-        "circulating_copies": 7,
+        "holder_count": 9,
+        "circulating_copies": 9,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -637,20 +659,42 @@
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T08:33:47+00:00",
+          "at": "2026-07-21T13:20:23+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-18T23:10:59+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:20:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:05:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T08:33:47+00:00",
@@ -721,7 +765,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/21",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/21",
-      "updated_at": "2026-07-21T10:24:06.277015",
+      "updated_at": "2026-07-22T10:24:07.913945",
       "traits": [
         {
           "trait_type": "Set",
@@ -793,8 +837,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 7,
-        "circulating_copies": 7,
+        "holder_count": 9,
+        "circulating_copies": 9,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -845,20 +889,42 @@
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T08:27:23+00:00",
+          "at": "2026-07-21T13:14:23+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-18T21:16:23+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:14:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T12:59:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T08:27:23+00:00",
@@ -937,7 +1003,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/20",
       "metadata_url": "ipfs://QmXRGA9mMSNJfQCLa9v8NqAz8X6EoDqBhDePugjJE7XKV3/20",
-      "updated_at": "2026-07-21T10:24:06.277022",
+      "updated_at": "2026-07-22T10:24:07.913952",
       "traits": [
         {
           "trait_type": "Set",
@@ -1009,8 +1075,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 7,
-        "circulating_copies": 8,
+        "holder_count": 9,
+        "circulating_copies": 10,
         "top_holders": [
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
@@ -1061,20 +1127,42 @@
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T08:33:11+00:00",
+          "at": "2026-07-21T13:20:59+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-18T19:25:23+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:20:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:06:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T08:33:11+00:00",
@@ -1152,7 +1240,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/19",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/19",
-      "updated_at": "2026-07-21T10:24:06.277030",
+      "updated_at": "2026-07-22T10:24:07.913959",
       "traits": [
         {
           "trait_type": "Role",
@@ -1218,8 +1306,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 7,
-        "circulating_copies": 7,
+        "holder_count": 10,
+        "circulating_copies": 10,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -1270,20 +1358,53 @@
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
+          },
+          {
+            "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T08:24:23+00:00",
+          "at": "2026-07-21T13:33:11+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-18T15:29:59+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:33:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:11:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T12:56:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T08:24:23+00:00",
@@ -1362,7 +1483,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/18",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/18",
-      "updated_at": "2026-07-21T10:24:06.277036",
+      "updated_at": "2026-07-22T10:24:07.913966",
       "traits": [
         {
           "trait_type": "Role",
@@ -1422,8 +1543,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 7,
-        "circulating_copies": 7,
+        "holder_count": 10,
+        "circulating_copies": 10,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -1474,20 +1595,53 @@
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
+          },
+          {
+            "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T08:22:11+00:00",
+          "at": "2026-07-21T13:25:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-18T10:54:35+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:25:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:09:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T12:54:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T08:22:11+00:00",
@@ -1552,13 +1706,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
           "quantity": 1
-        },
-        {
-          "type": "mint",
-          "at": "2026-07-18T10:54:35+00:00",
-          "from": null,
-          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "quantity": 333
         }
       ],
       "opensea_name": "BIG KIX #018- DACAT MOVIE - Season 1 - First Edition"
@@ -1574,7 +1721,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/17",
       "metadata_url": "ipfs://QmUZoy2QY5fxvsbWoBb9cg5qBeoXLoSr42NkgirbnVeRHp/17",
-      "updated_at": "2026-07-21T10:24:06.277043",
+      "updated_at": "2026-07-22T10:24:07.913973",
       "traits": [
         {
           "trait_type": "Type",
@@ -1640,8 +1787,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 7,
-        "circulating_copies": 8,
+        "holder_count": 9,
+        "circulating_copies": 10,
         "top_holders": [
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
@@ -1692,20 +1839,42 @@
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T08:30:35+00:00",
+          "at": "2026-07-21T13:17:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-18T03:29:23+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:17:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:02:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T08:30:35+00:00",
@@ -1783,7 +1952,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/16",
       "metadata_url": "ipfs://QmWg4CchemsxQjfdWGAqZWa98db3FS6PbLNPNKtTsMk8sx/16",
-      "updated_at": "2026-07-21T10:24:06.277049",
+      "updated_at": "2026-07-22T10:24:07.913980",
       "traits": [
         {
           "trait_type": "Role",
@@ -1849,8 +2018,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 7,
-        "circulating_copies": 7,
+        "holder_count": 9,
+        "circulating_copies": 9,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -1901,20 +2070,42 @@
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T08:35:35+00:00",
+          "at": "2026-07-21T13:18:47+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-18T00:40:11+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:18:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:03:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T08:35:35+00:00",
@@ -1985,7 +2176,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/15",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/15",
-      "updated_at": "2026-07-21T10:24:06.277056",
+      "updated_at": "2026-07-22T10:24:07.913986",
       "traits": [
         {
           "trait_type": "Role",
@@ -2057,8 +2248,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 7,
-        "circulating_copies": 7,
+        "holder_count": 9,
+        "circulating_copies": 9,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -2109,20 +2300,42 @@
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T08:26:35+00:00",
+          "at": "2026-07-21T13:13:23+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-17T19:54:35+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:13:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T12:58:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T08:26:35+00:00",
@@ -2193,7 +2406,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/14",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/14",
-      "updated_at": "2026-07-21T10:24:06.277063",
+      "updated_at": "2026-07-22T10:24:07.913993",
       "traits": [
         {
           "trait_type": "Type",
@@ -2259,8 +2472,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 7,
-        "circulating_copies": 8,
+        "holder_count": 9,
+        "circulating_copies": 10,
         "top_holders": [
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
@@ -2311,20 +2524,42 @@
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T08:20:35+00:00",
+          "at": "2026-07-21T13:08:59+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-17T12:34:59+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:08:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T12:53:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T08:20:35+00:00",
@@ -2410,7 +2645,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/13",
       "metadata_url": "ipfs://Qmdf5SD5cic5SkcU5HpPxTNUbbwQYXvgq6YRfaC1rFuaa4/13",
-      "updated_at": "2026-07-21T10:24:06.277070",
+      "updated_at": "2026-07-22T10:24:07.914000",
       "traits": [
         {
           "trait_type": "Year",
@@ -2470,8 +2705,8 @@
         "total_eth": 0.01
       },
       "owners": {
-        "holder_count": 8,
-        "circulating_copies": 57,
+        "holder_count": 10,
+        "circulating_copies": 59,
         "top_holders": [
           {
             "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
@@ -2526,20 +2761,42 @@
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T08:34:23+00:00",
+          "at": "2026-07-21T13:19:47+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-17T05:04:35+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:19:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:05:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T08:34:23+00:00",
@@ -2625,7 +2882,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/12",
       "metadata_url": "ipfs://Qmd5P27njQDcHhyTwaGqbxFRSAEgp5obvugRz9hiSXnW3y/12",
-      "updated_at": "2026-07-21T10:24:06.277082",
+      "updated_at": "2026-07-22T10:24:07.914006",
       "traits": [
         {
           "trait_type": "Season",
@@ -2667,8 +2924,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 7,
-        "circulating_copies": 7,
+        "holder_count": 10,
+        "circulating_copies": 10,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -2719,20 +2976,53 @@
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
+          },
+          {
+            "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T08:32:35+00:00",
+          "at": "2026-07-21T13:24:11+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-17T02:19:47+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:24:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:21:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:07:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T08:32:35+00:00",
@@ -2811,7 +3101,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/11",
       "metadata_url": "ipfs://QmUZoy2QY5fxvsbWoBb9cg5qBeoXLoSr42NkgirbnVeRHp/11",
-      "updated_at": "2026-07-21T10:24:06.277088",
+      "updated_at": "2026-07-22T10:24:07.914013",
       "traits": [
         {
           "trait_type": "Role",
@@ -2871,8 +3161,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 8,
-        "circulating_copies": 8,
+        "holder_count": 11,
+        "circulating_copies": 11,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -2925,6 +3215,18 @@
             "quantity": 1
           },
           {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
+          },
+          {
+            "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+            "quantity": 1
+          },
+          {
             "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
             "quantity": 1
           }
@@ -2932,15 +3234,36 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T08:29:59+00:00",
+          "at": "2026-07-21T13:31:59+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-16T03:12:47+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:31:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:16:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:02:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T08:29:59+00:00",
@@ -3018,7 +3341,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/10",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/10",
-      "updated_at": "2026-07-21T10:24:06.277094",
+      "updated_at": "2026-07-22T10:24:07.914022",
       "traits": [
         {
           "trait_type": "Role",
@@ -3084,8 +3407,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 7,
-        "circulating_copies": 7,
+        "holder_count": 10,
+        "circulating_copies": 10,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -3136,20 +3459,53 @@
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
+          },
+          {
+            "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T08:25:47+00:00",
+          "at": "2026-07-21T13:31:23+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-14T02:13:11+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:31:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:12:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T12:58:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T08:25:47+00:00",
@@ -3220,7 +3576,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/9",
       "metadata_url": "ipfs://Qmdkw9oKwcQqLhpJFBCbQ85jv1ceUdjA1UWqc9ShESVbVs/9",
-      "updated_at": "2026-07-21T10:24:06.277101",
+      "updated_at": "2026-07-22T10:24:07.914031",
       "traits": [
         {
           "trait_type": "Role",
@@ -3286,8 +3642,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 7,
-        "circulating_copies": 7,
+        "holder_count": 10,
+        "circulating_copies": 10,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -3338,20 +3694,53 @@
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
+          },
+          {
+            "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T08:28:47+00:00",
+          "at": "2026-07-21T13:30:11+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-13T06:04:59+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:30:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:15:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:00:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T08:28:47+00:00",
@@ -3422,7 +3811,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/8",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/8",
-      "updated_at": "2026-07-21T10:24:06.277107",
+      "updated_at": "2026-07-22T10:24:07.914038",
       "traits": [
         {
           "trait_type": "Role",
@@ -3488,8 +3877,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 7,
-        "circulating_copies": 7,
+        "holder_count": 10,
+        "circulating_copies": 10,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -3540,20 +3929,53 @@
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
+          },
+          {
+            "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T08:25:11+00:00",
+          "at": "2026-07-21T13:30:47+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-13T05:33:11+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:30:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:12:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T12:57:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T08:25:11+00:00",
@@ -3632,7 +4054,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/7",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/7",
-      "updated_at": "2026-07-21T10:24:06.277113",
+      "updated_at": "2026-07-22T10:24:07.914044",
       "traits": [
         {
           "trait_type": "Role",
@@ -3698,8 +4120,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 7,
-        "circulating_copies": 7,
+        "holder_count": 10,
+        "circulating_copies": 10,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -3750,20 +4172,53 @@
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
+          },
+          {
+            "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T08:23:23+00:00",
+          "at": "2026-07-21T13:26:11+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-13T04:29:35+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:26:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:10:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T12:56:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T08:23:23+00:00",
@@ -3834,7 +4289,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/6",
       "metadata_url": "ipfs://Qmdf5SD5cic5SkcU5HpPxTNUbbwQYXvgq6YRfaC1rFuaa4/6",
-      "updated_at": "2026-07-21T10:24:06.277119",
+      "updated_at": "2026-07-22T10:24:07.914051",
       "traits": [
         {
           "trait_type": "Role",
@@ -3900,8 +4355,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 7,
-        "circulating_copies": 7,
+        "holder_count": 10,
+        "circulating_copies": 10,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -3952,20 +4407,53 @@
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
+          },
+          {
+            "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T08:36:23+00:00",
+          "at": "2026-07-21T13:28:47+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-13T03:19:59+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:28:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:18:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:03:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T08:36:23+00:00",
@@ -4036,7 +4524,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/5",
       "metadata_url": "ipfs://QmUMTrcNYnNMsNeuKFc9bmn5ZbUnm85UwyHrRT9bvoo69m/5",
-      "updated_at": "2026-07-21T10:24:06.277125",
+      "updated_at": "2026-07-22T10:24:07.914057",
       "traits": [
         {
           "trait_type": "Date",
@@ -4114,8 +4602,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 8,
-        "circulating_copies": 8,
+        "holder_count": 11,
+        "circulating_copies": 11,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -4168,6 +4656,18 @@
             "quantity": 1
           },
           {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
+          },
+          {
+            "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+            "quantity": 1
+          },
+          {
             "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
             "quantity": 1
           }
@@ -4175,15 +4675,36 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T08:34:59+00:00",
+          "at": "2026-07-21T13:29:23+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-12T15:08:59+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:29:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:19:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:04:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T08:34:59+00:00",
@@ -4261,7 +4782,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/4",
       "metadata_url": "ipfs://QmWbio5gpWd9XjmGQB4DtD3WGqyQcqfXDHcsa4yDDWFtre/4",
-      "updated_at": "2026-07-21T10:24:06.277131",
+      "updated_at": "2026-07-22T10:24:07.914063",
       "traits": [
         {
           "trait_type": "Date",
@@ -4333,8 +4854,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 8,
-        "circulating_copies": 8,
+        "holder_count": 11,
+        "circulating_copies": 11,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -4387,6 +4908,18 @@
             "quantity": 1
           },
           {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
+          },
+          {
+            "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+            "quantity": 1
+          },
+          {
             "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
             "quantity": 1
           }
@@ -4394,15 +4927,36 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T08:29:23+00:00",
+          "at": "2026-07-21T13:27:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-12T13:48:35+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:27:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:16:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:01:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T08:29:23+00:00",
@@ -4466,13 +5020,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
           "quantity": 1
-        },
-        {
-          "type": "mint",
-          "at": "2026-07-12T13:48:35+00:00",
-          "from": null,
-          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "quantity": 333
         }
       ],
       "opensea_name": "BIG KIX #004- RUG PULL - Season 1 - First Edition"
@@ -4488,7 +5035,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/3",
       "metadata_url": "ipfs://QmQHmpqgHNp23HBUhsWufY4YBSeF4j7C1ZyPpNB2aAcXP6/3",
-      "updated_at": "2026-07-21T10:24:06.277147",
+      "updated_at": "2026-07-22T10:24:07.914070",
       "traits": [
         {
           "trait_type": "Date",
@@ -4560,8 +5107,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 8,
-        "circulating_copies": 8,
+        "holder_count": 11,
+        "circulating_copies": 11,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -4614,6 +5161,18 @@
             "quantity": 1
           },
           {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
+          },
+          {
+            "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+            "quantity": 1
+          },
+          {
             "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
             "quantity": 1
           }
@@ -4621,15 +5180,36 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T08:28:11+00:00",
+          "at": "2026-07-21T13:26:59+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-12T11:43:23+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:26:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:14:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T12:59:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T08:28:11+00:00",
@@ -4693,13 +5273,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
           "quantity": 1
-        },
-        {
-          "type": "mint",
-          "at": "2026-07-12T11:43:23+00:00",
-          "from": null,
-          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "quantity": 333
         }
       ],
       "opensea_name": "BIG KIX #003 - SCAMURAI - Season 1 - First Edition"
@@ -4715,7 +5288,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/2",
       "metadata_url": "ipfs://QmXRGA9mMSNJfQCLa9v8NqAz8X6EoDqBhDePugjJE7XKV3/2",
-      "updated_at": "2026-07-21T10:24:06.277153",
+      "updated_at": "2026-07-22T10:24:07.914076",
       "traits": [
         {
           "trait_type": "Date",
@@ -4993,7 +5566,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/1",
       "metadata_url": "ipfs://QmcTHRLb6hYdxZCayHgmWdJy4RcDgutPRvmoP81jBT4kKG/1",
-      "updated_at": "2026-07-21T10:24:06.277159",
+      "updated_at": "2026-07-22T10:24:07.914081",
       "traits": [
         {
           "trait_type": "Role",
@@ -5065,8 +5638,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 16,
-        "circulating_copies": 16,
+        "holder_count": 17,
+        "circulating_copies": 17,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -5143,6 +5716,10 @@
             "quantity": 1
           },
           {
+            "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+            "quantity": 1
+          },
+          {
             "address": "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46",
             "quantity": 1
           },
@@ -5158,15 +5735,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T09:10:23+00:00",
+          "at": "2026-07-21T13:24:59+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-11T18:18:59+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:24:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T09:10:23+00:00",
@@ -5243,13 +5827,6 @@
           "at": "2026-07-20T13:26:59+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T13:24:11+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
           "quantity": 1
         }
       ],
