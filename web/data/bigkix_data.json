@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-25T09:45:29.554173+00:00",
+  "generated_at": "2026-07-26T09:58:46.545594+00:00",
   "source": "opensea_api_v2",
   "collection": {
     "id": "bigkix",
@@ -20,7 +20,7 @@
     "contract_name": "BIG KIX",
     "floor_eth": 0.001,
     "floor_symbol": "ETH",
-    "num_owners": 18,
+    "num_owners": 19,
     "total_sales": 6,
     "total_volume": 0.006000000000000005,
     "piece_count": 24,
@@ -38,7 +38,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/24",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/24",
-      "updated_at": "2026-07-25T09:44:35.596305",
+      "updated_at": "2026-07-26T09:57:52.571251",
       "traits": [
         {
           "trait_type": "Role",
@@ -104,15 +104,15 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
-          },
-          {
-            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
             "quantity": 1
           }
         ],
@@ -123,6 +123,10 @@
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
             "quantity": 1
           },
           {
@@ -143,10 +147,6 @@
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
-          },
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1
           },
           {
@@ -184,16 +184,23 @@
         ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "sale",
-          "at": "2026-07-25T02:52:11+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
-          "quantity": 3
+          "type": "transfer",
+          "at": "2026-07-25T23:08:11+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-19T04:44:47+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-25T23:08:11+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        },
         {
           "type": "sale",
           "at": "2026-07-25T02:52:11+00:00",
@@ -272,13 +279,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T13:27:35+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #024 - DACAT  MEME - Season 1 - First Edition"
@@ -294,7 +294,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/23",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/23",
-      "updated_at": "2026-07-25T09:44:35.596319",
+      "updated_at": "2026-07-26T09:57:52.571262",
       "traits": [
         {
           "trait_type": "Set",
@@ -540,7 +540,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/22",
       "metadata_url": "ipfs://Qmdkw9oKwcQqLhpJFBCbQ85jv1ceUdjA1UWqc9ShESVbVs/22",
-      "updated_at": "2026-07-25T09:44:35.596327",
+      "updated_at": "2026-07-26T09:57:52.571268",
       "traits": [
         {
           "trait_type": "Set",
@@ -770,7 +770,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/21",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/21",
-      "updated_at": "2026-07-25T09:44:35.596335",
+      "updated_at": "2026-07-26T09:57:52.571274",
       "traits": [
         {
           "trait_type": "Set",
@@ -850,6 +850,10 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
@@ -859,10 +863,6 @@
           },
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
-          },
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1
           }
         ],
@@ -872,6 +872,10 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
@@ -885,10 +889,6 @@
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
-          },
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1
           },
           {
@@ -907,15 +907,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T13:14:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "at": "2026-07-25T23:03:59+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-18T21:16:23+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-25T23:03:59+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T13:14:23+00:00",
@@ -1008,7 +1015,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/20",
       "metadata_url": "ipfs://QmXRGA9mMSNJfQCLa9v8NqAz8X6EoDqBhDePugjJE7XKV3/20",
-      "updated_at": "2026-07-25T09:44:35.596348",
+      "updated_at": "2026-07-26T09:57:52.571282",
       "traits": [
         {
           "trait_type": "Set",
@@ -1080,8 +1087,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 9,
-        "circulating_copies": 10,
+        "holder_count": 10,
+        "circulating_copies": 11,
         "top_holders": [
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
@@ -1092,15 +1099,15 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
-          },
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1
           }
         ],
@@ -1114,6 +1121,10 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
@@ -1123,10 +1134,6 @@
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
-          },
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1
           },
           {
@@ -1140,20 +1147,38 @@
           {
             "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
             "quantity": 1
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T13:20:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "at": "2026-07-25T22:49:59+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-18T19:25:23+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-25T22:49:59+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-25T17:34:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T13:20:59+00:00",
@@ -1223,13 +1248,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
           "quantity": 1
-        },
-        {
-          "type": "mint",
-          "at": "2026-07-18T19:25:23+00:00",
-          "from": null,
-          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "quantity": 333
         }
       ],
       "opensea_name": "BIG KIX #020 - DACAT KID - Season 1 - First Edition"
@@ -1245,7 +1263,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/19",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/19",
-      "updated_at": "2026-07-25T09:44:35.596357",
+      "updated_at": "2026-07-26T09:57:52.571288",
       "traits": [
         {
           "trait_type": "Role",
@@ -1311,11 +1329,15 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 10,
-        "circulating_copies": 10,
+        "holder_count": 11,
+        "circulating_copies": 11,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
             "quantity": 1
           },
           {
@@ -1328,10 +1350,6 @@
           },
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
-          },
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1
           }
         ],
@@ -1341,6 +1359,10 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
@@ -1354,10 +1376,6 @@
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
-          },
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1
           },
           {
@@ -1375,20 +1393,38 @@
           {
             "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
             "quantity": 1
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T13:33:11+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "at": "2026-07-25T23:07:23+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-18T15:29:59+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-25T23:07:23+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-25T17:28:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T13:33:11+00:00",
@@ -1459,20 +1495,6 @@
           "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
           "quantity": 1,
           "price_eth": null
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-18T15:30:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-          "quantity": 1
-        },
-        {
-          "type": "mint",
-          "at": "2026-07-18T15:29:59+00:00",
-          "from": null,
-          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "quantity": 333
         }
       ],
       "opensea_name": "BIG KIX #019 - GENERAL GRIN - Season 1 - First Edition"
@@ -1488,7 +1510,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/18",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/18",
-      "updated_at": "2026-07-25T09:44:35.596364",
+      "updated_at": "2026-07-26T09:57:52.571294",
       "traits": [
         {
           "trait_type": "Role",
@@ -1731,7 +1753,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/17",
       "metadata_url": "ipfs://QmUZoy2QY5fxvsbWoBb9cg5qBeoXLoSr42NkgirbnVeRHp/17",
-      "updated_at": "2026-07-25T09:44:35.596373",
+      "updated_at": "2026-07-26T09:57:52.571299",
       "traits": [
         {
           "trait_type": "Type",
@@ -1809,15 +1831,15 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
-          },
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1
           }
         ],
@@ -1831,6 +1853,10 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
@@ -1840,10 +1866,6 @@
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
-          },
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1
           },
           {
@@ -1862,15 +1884,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T13:17:35+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "at": "2026-07-25T22:41:23+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-18T03:29:23+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-25T22:41:23+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T13:17:35+00:00",
@@ -1962,7 +1991,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/16",
       "metadata_url": "ipfs://QmWg4CchemsxQjfdWGAqZWa98db3FS6PbLNPNKtTsMk8sx/16",
-      "updated_at": "2026-07-25T09:44:35.596381",
+      "updated_at": "2026-07-26T09:57:52.571305",
       "traits": [
         {
           "trait_type": "Role",
@@ -2036,6 +2065,10 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
@@ -2045,10 +2078,6 @@
           },
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
-          },
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1
           }
         ],
@@ -2058,6 +2087,10 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
@@ -2071,10 +2104,6 @@
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
-          },
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1
           },
           {
@@ -2093,15 +2122,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T13:18:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "at": "2026-07-25T22:25:23+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-18T00:40:11+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-25T22:25:23+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T13:18:47+00:00",
@@ -2186,7 +2222,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/15",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/15",
-      "updated_at": "2026-07-25T09:44:35.596389",
+      "updated_at": "2026-07-26T09:57:52.571310",
       "traits": [
         {
           "trait_type": "Role",
@@ -2266,6 +2302,10 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
@@ -2275,10 +2315,6 @@
           },
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
-          },
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1
           }
         ],
@@ -2288,6 +2324,10 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
@@ -2301,10 +2341,6 @@
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
-          },
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1
           },
           {
@@ -2323,15 +2359,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T13:13:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "at": "2026-07-25T22:03:35+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-17T19:54:35+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-25T22:03:35+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T13:13:23+00:00",
@@ -2416,7 +2459,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/14",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/14",
-      "updated_at": "2026-07-25T09:44:35.596397",
+      "updated_at": "2026-07-26T09:57:52.571316",
       "traits": [
         {
           "trait_type": "Type",
@@ -2494,15 +2537,15 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
-          },
-          {
-            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
             "quantity": 1
           }
         ],
@@ -2516,6 +2559,10 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
@@ -2525,10 +2572,6 @@
           },
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
-          },
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1
           },
           {
@@ -2547,15 +2590,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T13:08:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "at": "2026-07-25T22:41:47+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-17T12:34:59+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-25T22:41:47+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T13:08:59+00:00",
@@ -2633,13 +2683,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
           "quantity": 1
-        },
-        {
-          "type": "mint",
-          "at": "2026-07-17T12:34:59+00:00",
-          "from": null,
-          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "quantity": 250
         }
       ],
       "opensea_name": "BIG KIX #014 - EAGLE 250 - Season 1 - First Edition"
@@ -2655,7 +2698,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/13",
       "metadata_url": "ipfs://Qmdf5SD5cic5SkcU5HpPxTNUbbwQYXvgq6YRfaC1rFuaa4/13",
-      "updated_at": "2026-07-25T09:44:35.596405",
+      "updated_at": "2026-07-26T09:57:52.571322",
       "traits": [
         {
           "trait_type": "Year",
@@ -2727,15 +2770,15 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
-          },
-          {
-            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
             "quantity": 1
           }
         ],
@@ -2746,6 +2789,10 @@
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
             "quantity": 1
           },
           {
@@ -2765,10 +2812,6 @@
             "quantity": 1
           },
           {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1
-          },
-          {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1
           },
@@ -2784,15 +2827,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T13:19:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "at": "2026-07-26T00:33:11+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-17T05:04:35+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-26T00:33:11+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T13:19:47+00:00",
@@ -2870,13 +2920,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
           "quantity": 50
-        },
-        {
-          "type": "mint",
-          "at": "2026-07-17T05:04:35+00:00",
-          "from": null,
-          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "quantity": 100
         }
       ],
       "opensea_name": "BIG KIX #013 - THE BUREK GUY - Season 1 - First Edition"
@@ -2892,7 +2935,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/12",
       "metadata_url": "ipfs://Qmd5P27njQDcHhyTwaGqbxFRSAEgp5obvugRz9hiSXnW3y/12",
-      "updated_at": "2026-07-25T09:44:35.596413",
+      "updated_at": "2026-07-26T09:57:52.571327",
       "traits": [
         {
           "trait_type": "Season",
@@ -3111,7 +3154,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/11",
       "metadata_url": "ipfs://QmUZoy2QY5fxvsbWoBb9cg5qBeoXLoSr42NkgirbnVeRHp/11",
-      "updated_at": "2026-07-25T09:44:35.596420",
+      "updated_at": "2026-07-26T09:57:52.571332",
       "traits": [
         {
           "trait_type": "Role",
@@ -3179,6 +3222,10 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
@@ -3188,10 +3235,6 @@
           },
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
-          },
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1
           }
         ],
@@ -3201,6 +3244,10 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
@@ -3214,10 +3261,6 @@
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
-          },
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1
           },
           {
@@ -3244,15 +3287,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T13:31:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "at": "2026-07-25T22:25:59+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-16T03:12:47+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-25T22:25:59+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T13:31:59+00:00",
@@ -3329,13 +3379,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
           "quantity": 1
-        },
-        {
-          "type": "mint",
-          "at": "2026-07-16T03:12:47+00:00",
-          "from": null,
-          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "quantity": 333
         }
       ],
       "opensea_name": "BIG KIX #011 - COLLECTOR CAT - Season 1 - First Edition"
@@ -3351,7 +3394,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/10",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/10",
-      "updated_at": "2026-07-25T09:44:35.596428",
+      "updated_at": "2026-07-26T09:57:52.571337",
       "traits": [
         {
           "trait_type": "Role",
@@ -3425,6 +3468,10 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
@@ -3434,10 +3481,6 @@
           },
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
-          },
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1
           }
         ],
@@ -3447,6 +3490,10 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
@@ -3460,10 +3507,6 @@
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
-          },
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1
           },
           {
@@ -3486,15 +3529,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T13:31:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "at": "2026-07-25T22:24:23+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-14T02:13:11+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-25T22:24:23+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T13:31:23+00:00",
@@ -3586,7 +3636,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/9",
       "metadata_url": "ipfs://Qmdkw9oKwcQqLhpJFBCbQ85jv1ceUdjA1UWqc9ShESVbVs/9",
-      "updated_at": "2026-07-25T09:44:35.596435",
+      "updated_at": "2026-07-26T09:57:52.571343",
       "traits": [
         {
           "trait_type": "Role",
@@ -3660,6 +3710,10 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
@@ -3669,10 +3723,6 @@
           },
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
-          },
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1
           }
         ],
@@ -3682,6 +3732,10 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
@@ -3695,10 +3749,6 @@
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
-          },
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1
           },
           {
@@ -3721,15 +3771,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T13:30:11+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "at": "2026-07-25T22:49:35+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-13T06:04:59+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-25T22:49:35+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T13:30:11+00:00",
@@ -3821,7 +3878,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/8",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/8",
-      "updated_at": "2026-07-25T09:44:35.596444",
+      "updated_at": "2026-07-26T09:57:52.571350",
       "traits": [
         {
           "trait_type": "Role",
@@ -3895,6 +3952,10 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
@@ -3904,10 +3965,6 @@
           },
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
-          },
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1
           }
         ],
@@ -3917,6 +3974,10 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
@@ -3930,10 +3991,6 @@
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
-          },
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1
           },
           {
@@ -3956,15 +4013,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T13:30:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "at": "2026-07-26T00:31:59+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-13T05:33:11+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-26T00:31:59+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T13:30:47+00:00",
@@ -4042,13 +4106,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
           "quantity": 1
-        },
-        {
-          "type": "mint",
-          "at": "2026-07-13T05:33:11+00:00",
-          "from": null,
-          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "quantity": 333
         }
       ],
       "opensea_name": "BIG KIX #008 - DINO - Season 1 - First Edition"
@@ -4064,7 +4121,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/7",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/7",
-      "updated_at": "2026-07-25T09:44:35.596451",
+      "updated_at": "2026-07-26T09:57:52.571356",
       "traits": [
         {
           "trait_type": "Role",
@@ -4299,7 +4356,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/6",
       "metadata_url": "ipfs://Qmdf5SD5cic5SkcU5HpPxTNUbbwQYXvgq6YRfaC1rFuaa4/6",
-      "updated_at": "2026-07-25T09:44:35.596460",
+      "updated_at": "2026-07-26T09:57:52.571362",
       "traits": [
         {
           "trait_type": "Role",
@@ -4534,7 +4591,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/5",
       "metadata_url": "ipfs://QmUMTrcNYnNMsNeuKFc9bmn5ZbUnm85UwyHrRT9bvoo69m/5",
-      "updated_at": "2026-07-25T09:44:35.596468",
+      "updated_at": "2026-07-26T09:57:52.571368",
       "traits": [
         {
           "trait_type": "Date",
@@ -4612,8 +4669,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 11,
-        "circulating_copies": 11,
+        "holder_count": 12,
+        "circulating_copies": 12,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -4678,6 +4735,10 @@
             "quantity": 1
           },
           {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
+          },
+          {
             "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
             "quantity": 1
           }
@@ -4685,15 +4746,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T13:29:23+00:00",
+          "at": "2026-07-25T17:31:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-12T15:08:59+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-25T17:31:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T13:29:23+00:00",
@@ -4770,13 +4838,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
           "quantity": 1
-        },
-        {
-          "type": "mint",
-          "at": "2026-07-12T15:08:59+00:00",
-          "from": null,
-          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "quantity": 333
         }
       ],
       "opensea_name": "BIG KIX #005 - BOGMIRE - Season 1 - First Edition"
@@ -4792,7 +4853,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/4",
       "metadata_url": "ipfs://QmWbio5gpWd9XjmGQB4DtD3WGqyQcqfXDHcsa4yDDWFtre/4",
-      "updated_at": "2026-07-25T09:44:35.596476",
+      "updated_at": "2026-07-26T09:57:52.571373",
       "traits": [
         {
           "trait_type": "Date",
@@ -4864,11 +4925,15 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 11,
-        "circulating_copies": 11,
+        "holder_count": 12,
+        "circulating_copies": 12,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
             "quantity": 1
           },
           {
@@ -4881,10 +4946,6 @@
           },
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
-          },
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1
           }
         ],
@@ -4894,6 +4955,10 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
@@ -4907,10 +4972,6 @@
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
-          },
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1
           },
           {
@@ -4930,6 +4991,10 @@
             "quantity": 1
           },
           {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
+          },
+          {
             "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
             "quantity": 1
           }
@@ -4937,15 +5002,29 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T13:27:35+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "at": "2026-07-25T22:27:47+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-12T13:48:35+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-25T22:27:47+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-25T17:29:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T13:27:35+00:00",
@@ -5016,20 +5095,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T23:29:35+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-12T13:52:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #004- RUG PULL - Season 1 - First Edition"
@@ -5045,7 +5110,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/3",
       "metadata_url": "ipfs://QmQHmpqgHNp23HBUhsWufY4YBSeF4j7C1ZyPpNB2aAcXP6/3",
-      "updated_at": "2026-07-25T09:44:35.596483",
+      "updated_at": "2026-07-26T09:57:52.571378",
       "traits": [
         {
           "trait_type": "Date",
@@ -5117,8 +5182,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 11,
-        "circulating_copies": 11,
+        "holder_count": 12,
+        "circulating_copies": 12,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -5183,6 +5248,10 @@
             "quantity": 1
           },
           {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
+          },
+          {
             "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
             "quantity": 1
           }
@@ -5190,15 +5259,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T13:26:59+00:00",
+          "at": "2026-07-25T17:30:47+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-12T11:43:23+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-25T17:30:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T13:26:59+00:00",
@@ -5276,13 +5352,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-12T11:47:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #003 - SCAMURAI - Season 1 - First Edition"
@@ -5298,7 +5367,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/2",
       "metadata_url": "ipfs://QmXRGA9mMSNJfQCLa9v8NqAz8X6EoDqBhDePugjJE7XKV3/2",
-      "updated_at": "2026-07-25T09:44:35.596490",
+      "updated_at": "2026-07-26T09:57:52.571383",
       "traits": [
         {
           "trait_type": "Date",
@@ -5386,11 +5455,11 @@
             "quantity": 1
           },
           {
-            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
             "quantity": 1
           },
           {
-            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           }
         ],
@@ -5408,6 +5477,10 @@
             "quantity": 1
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           },
@@ -5421,10 +5494,6 @@
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
-          },
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
             "quantity": 1
           },
           {
@@ -5471,15 +5540,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-25T02:56:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
-          "quantity": 3
+          "at": "2026-07-25T23:04:35+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-12T03:38:35+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-25T23:04:35+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-25T02:56:59+00:00",
@@ -5559,13 +5635,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T13:41:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #002 - PAPERHANDS - Season 1 - First Edition"
@@ -5581,7 +5650,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/1",
       "metadata_url": "ipfs://QmcTHRLb6hYdxZCayHgmWdJy4RcDgutPRvmoP81jBT4kKG/1",
-      "updated_at": "2026-07-25T09:44:35.596497",
+      "updated_at": "2026-07-26T09:57:52.571388",
       "traits": [
         {
           "trait_type": "Role",

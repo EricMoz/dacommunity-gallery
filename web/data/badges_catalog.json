@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-25T09:48:48.197622+00:00",
+  "generated_at": "2026-07-26T10:04:09.329466+00:00",
   "source": "badges_catalog",
   "collection": {
     "slug": "badges",
@@ -31,6 +31,11 @@
         "circulating_copies": 7,
         "top_holders": [
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1,
             "ens_name": "lostthegame.eth"
@@ -39,11 +44,6 @@
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1,
             "ens_name": "mozvane.eth"
-          },
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1,
-            "ens_name": "daforeman.eth"
           },
           {
             "address": "0xbd0c0b2943eae1b97e4d0e6b18df3faa5fb14a10",
@@ -57,6 +57,11 @@
         ],
         "holders": [
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1,
             "ens_name": "lostthegame.eth"
@@ -65,11 +70,6 @@
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1,
             "ens_name": "mozvane.eth"
-          },
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1,
-            "ens_name": "daforeman.eth"
           },
           {
             "address": "0xbd0c0b2943eae1b97e4d0e6b18df3faa5fb14a10",
@@ -137,14 +137,14 @@
             "ens_name": "dabeezy.eth"
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1,
             "ens_name": "lostthegame.eth"
-          },
-          {
-            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1,
-            "ens_name": "kingsi.eth"
           }
         ],
         "holders": [
@@ -162,6 +162,11 @@
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1,
             "ens_name": "dabeezy.eth"
+          },
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
           },
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
@@ -187,11 +192,6 @@
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1,
             "ens_name": "mozvane.eth"
-          },
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1,
-            "ens_name": "daforeman.eth"
           },
           {
             "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
@@ -341,14 +341,14 @@
         "circulating_copies": 1,
         "top_holders": [
           {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
             "quantity": 1,
             "ens_name": "daforeman.eth"
           }
         ],
         "holders": [
           {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
             "quantity": 1,
             "ens_name": "daforeman.eth"
           }
@@ -1463,7 +1463,7 @@
         "circulating_copies": 5,
         "top_holders": [
           {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
             "quantity": 1,
             "ens_name": "daforeman.eth"
           },
@@ -1490,7 +1490,7 @@
         ],
         "holders": [
           {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
             "quantity": 1,
             "ens_name": "daforeman.eth"
           },
@@ -1547,14 +1547,14 @@
         "circulating_copies": 1,
         "top_holders": [
           {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
             "quantity": 1,
             "ens_name": "daforeman.eth"
           }
         ],
         "holders": [
           {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
             "quantity": 1,
             "ens_name": "daforeman.eth"
           }
@@ -1866,14 +1866,14 @@
             "ens_name": "dabeezy.eth"
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
+          },
+          {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1,
             "ens_name": "mozvane.eth"
-          },
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1,
-            "ens_name": "daforeman.eth"
           }
         ],
         "holders": [
@@ -1883,14 +1883,14 @@
             "ens_name": "dabeezy.eth"
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
+          },
+          {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1,
             "ens_name": "mozvane.eth"
-          },
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1,
-            "ens_name": "daforeman.eth"
           }
         ]
       },
@@ -1925,14 +1925,14 @@
         "circulating_copies": 1,
         "top_holders": [
           {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
             "quantity": 1,
             "ens_name": "daforeman.eth"
           }
         ],
         "holders": [
           {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
             "quantity": 1,
             "ens_name": "daforeman.eth"
           }
@@ -3144,14 +3144,14 @@
         "circulating_copies": 1,
         "top_holders": [
           {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
             "quantity": 1,
             "ens_name": "daforeman.eth"
           }
         ],
         "holders": [
           {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
             "quantity": 1,
             "ens_name": "daforeman.eth"
           }
@@ -3186,14 +3186,14 @@
         "circulating_copies": 1,
         "top_holders": [
           {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
             "quantity": 1,
             "ens_name": "daforeman.eth"
           }
         ],
         "holders": [
           {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
             "quantity": 1,
             "ens_name": "daforeman.eth"
           }
@@ -3285,14 +3285,14 @@
             "ens_name": "dabeezy.eth"
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1,
             "ens_name": "lostthegame.eth"
-          },
-          {
-            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1,
-            "ens_name": "kingsi.eth"
           }
         ],
         "holders": [
@@ -3310,6 +3310,11 @@
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1,
             "ens_name": "dabeezy.eth"
+          },
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
           },
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
@@ -3335,11 +3340,6 @@
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1,
             "ens_name": "mozvane.eth"
-          },
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1,
-            "ens_name": "daforeman.eth"
           },
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
@@ -3404,6 +3404,11 @@
             "ens_name": "dabeezy.eth"
           },
           {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
+          },
+          {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1,
             "ens_name": "lostthegame.eth"
@@ -3417,11 +3422,6 @@
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
             "quantity": 1,
             "ens_name": "dacatstudios.eth"
-          },
-          {
-            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
-            "quantity": 1,
-            "ens_name": "dbcrypto.eth"
           }
         ],
         "holders": [
@@ -3429,6 +3429,11 @@
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1,
             "ens_name": "dabeezy.eth"
+          },
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
           },
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
@@ -3454,11 +3459,6 @@
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1,
             "ens_name": "mozvane.eth"
-          },
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1,
-            "ens_name": "daforeman.eth"
           },
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
