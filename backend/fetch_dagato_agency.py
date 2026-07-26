@@ -468,15 +468,16 @@ def build_rarity_series(edition_items: list[dict]) -> list[dict]:
         ]
 
         slug_key = "1of1" if label == "1:1" else label.lower()
-        display = f"{label}"
+        # Browse titles: what it is + rank (rarity stays on the tag, not the title)
+        display = f"daGATO Case File · Rank {rank}"
         excerpt = (
-            f"{file_count} case file{'s' if file_count != 1 else ''} · "
+            f"{label} rarity · {file_count} case file{'s' if file_count != 1 else ''} · "
             f"{len(holders)} holder{'s' if len(holders) != 1 else ''} · "
             f"{total_copies} cop{'ies' if total_copies != 1 else 'y'}. "
             f"Open for the full holder list."
         )
         description = (
-            f"Rarity tier: {label} (token rank #{rank} of 5).\n\n"
+            f"daGATO Case File · Rank {rank} of 5 ({label} rarity).\n\n"
             f"{file_count} unique case file{'s' if file_count != 1 else ''} "
             f"share this rarity across daGATO Detective Agency: Volume 1.\n\n"
             f"Holders below own any case file of this rarity — quantity is total "
