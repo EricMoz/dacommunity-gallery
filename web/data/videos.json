@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updated": "2026-07-19",
+  "updated": "2026-07-26",
   "featuredStrategy": "Streaming-style row: one entry point per series (ep 1 or lead trailer). Characters (Mozvane + daBeezy) share one series for Series up-next. Shorts are a separate bottom rail and never enter the modal pool. Featured row max 6 — swap titles rather than grow the rail.",
   "featuredIds": [
     "dagato-blessless",
@@ -362,6 +362,46 @@
       "sortOrder": 2,
       "openExternal": true,
       "externalUrl": "https://www.youtube.com/shorts/TTKPRLSlF1I"
+    },
+    {
+      "id": "short-ultra-rare-dagato",
+      "title": "Ultra rare daGATO NFT just dropped!",
+      "youtubeId": "sl0EEVDmrSI",
+      "series": "Shorts",
+      "type": "Short",
+      "creator": "DaBeezy",
+      "creatorChannel": "daBeezy1",
+      "description": "Ultra rare daGATO NFT drop short from DaBeezy. Character spotlight in short form. Opens on YouTube Shorts.",
+      "whatItIs": "YouTube Short · daGATO character / NFT drop.",
+      "releaseDate": "July 2026",
+      "releasedAt": "2026-07-20",
+      "thumbnail": "https://i.ytimg.com/vi/sl0EEVDmrSI/hqdefault.jpg",
+      "duration": "0:30",
+      "filterCategory": "shorts",
+      "alsoFilters": ["characters"],
+      "sortOrder": 3,
+      "openExternal": true,
+      "externalUrl": "https://www.youtube.com/shorts/sl0EEVDmrSI"
+    },
+    {
+      "id": "short-not-just-promises-dacat",
+      "title": "Not just promises $daCAT",
+      "youtubeId": "8bdtSJFzOwg",
+      "series": "Shorts",
+      "type": "Short",
+      "creator": "DaBeezy",
+      "creatorChannel": "daBeezy1",
+      "description": "Not just promises: $daCAT original character short from DaBeezy (#crypto #nft #originalcharacter). Opens on YouTube Shorts.",
+      "whatItIs": "YouTube Short · daCAT original character.",
+      "releaseDate": "July 2026",
+      "releasedAt": "2026-07-26",
+      "thumbnail": "https://i.ytimg.com/vi/8bdtSJFzOwg/hqdefault.jpg",
+      "duration": "0:30",
+      "filterCategory": "shorts",
+      "alsoFilters": ["characters"],
+      "sortOrder": 4,
+      "openExternal": true,
+      "externalUrl": "https://www.youtube.com/shorts/8bdtSJFzOwg"
     }
   ],
   "seriesOrder": [

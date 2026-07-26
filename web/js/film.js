@@ -370,6 +370,13 @@
       );
     }
 
+    // alsoFilters: extra chip ids (e.g. Shorts that also appear under Characters)
+    const also = video.alsoFilters || video.filterAlso || [];
+    if (Array.isArray(also) && also.length) {
+      if (also.indexOf(activeFilter) !== -1) return true;
+      if (def && def.id && also.indexOf(def.id) !== -1) return true;
+    }
+
     // Blended OR: series chip may also match type; type chips match type only.
     const hits = [];
     if (def.matchSeries) {
@@ -662,24 +669,13 @@
         : 2;
     let list = videos.filter(isShort);
     if (searchQuery) list = list.filter(matchesSearch);
-    // Honor type chips (e.g. Episode) so short-form episodes still filter in
+    // Honor type/series chips so short-form can also match e.g. Characters via alsoFilters
     if (activeFilter !== "all" && activeFilter !== "shorts") {
       list = list.filter(matchesFilter);
     }
     list = sortShorts(list);
-
-    const def = getFilterDef(activeFilter);
-    const typeOnlyChip =
-      def &&
-      def.matchType &&
-      !def.matchSeries &&
-      def.id !== "all" &&
-      def.id !== "shorts";
-    const filterOk =
-      activeFilter === "all" ||
-      activeFilter === "shorts" ||
-      !!typeOnlyChip;
-    if (!filterOk || list.length < minVisible) return;
+    // Show rail whenever enough shorts match the active filter (All, Shorts, Characters, type chips, …)
+    if (list.length < minVisible) return;
 
     const section = document.createElement("section");
     section.className = "film-series-section film-shorts-section";
