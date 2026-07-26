@@ -75,6 +75,7 @@ CSS maps `surface` to body classes (e.g. `badges-page` ↔ `cosmic_soon`). Futur
 |------------|-------|------------|
 | daCommunity | `/dacommunity/` | `app.js` + `gallery_*.json` |
 | BIG KIX | `/dacommunity/?collection=bigkix` | `app.js` + `bigkix_*.json` (Ethereum, single-slug fetch) |
+| daGATO Detective Agency | `/dacommunity/?collection=dagato-agency` | `app.js` + `dagato_agency_*.json` (Ethereum, rarity tags) |
 | Badges | `/dacommunity/?collection=badges` | `app.js` + `badges_*.json` |
 
 ### BIG KIX pipeline
@@ -88,6 +89,20 @@ python fetch_bigkix.py          # writes web/data/bigkix_data.json + catalog
 - Creator `dacatworld.eth` / `0xa6d5…` excluded from holder counts
 - Titles normalized to `BIG KIX #014 · EAGLE 250` (`opensea_name` keeps full OpenSea title)
 - Activity + listings via same collection-events + best-listings pattern as daCommunity
+
+### daGATO Detective Agency: Volume 1 pipeline
+
+```bash
+cd backend
+python fetch_dagato_agency.py   # writes web/data/dagato_agency_data.json + catalog
+# Daily: refresh-data.yml runs after BIG KIX fetch
+```
+
+- Complete limited drop (33 case files) on Ethereum · steward `dagato.eth`
+- **No creator exclusion** — every holder counts toward collectors
+- Rarity trait → UI tags: Common / Uncommon / Epic / Legendary / 1:1
+- Activity (mint / transfer / sale) + listings + owners (same pattern as BIG KIX)
+- Titles: `daGATO Case File #27`
 
 Do **not** duplicate gallery logic for preview pages — use `preview_only` + themed static HTML until data exists.
 

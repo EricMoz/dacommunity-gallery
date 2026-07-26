@@ -44,6 +44,26 @@
       }
     },
     {
+      "id": "dagato-agency",
+      "name": "daGATO Detective Agency: Volume 1",
+      "status": "live",
+      "chain": "ethereum",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
+      "opensea_slug": "dagato-detective-agency-volume-1",
+      "route": "/dacommunity/?collection=dagato-agency",
+      "data": {
+        "gallery": "dagato_agency_data.json",
+        "catalog": "dagato_agency_catalog.json"
+      },
+      "features": ["gallery", "collector_view", "wallet_lookup", "opensea_sync"],
+      "creator_ens": "dagato.eth",
+      "theme": {
+        "accent": "#ffcc00",
+        "surface": "dark_cinema",
+        "collector_surface": "dark_cinema"
+      }
+    },
+    {
       "id": "badges",
       "name": "daCAT Badges",
       "status": "live",

@@ -228,8 +228,10 @@ function applyCollectionUI() {
 function adaptHeaderForCollection() {
   var isBadges = activeCollection === "badges";
   var isBigKix = activeCollection === "bigkix";
+  var isAgency = activeCollection === "dagato-agency";
   document.body.classList.toggle("is-badges-view", isBadges);
   document.body.classList.toggle("is-bigkix-view", isBigKix);
+  document.body.classList.toggle("is-dagato-agency-view", isAgency);
   try {
     var h1 = document.querySelector(".hero-band h1");
     var lead = document.querySelector(".hero-lead");
@@ -245,6 +247,10 @@ function adaptHeaderForCollection() {
       h1.innerHTML = 'BIG <span class="accent">KIX</span>';
       lead.textContent =
         "Ridiculously BIG sneakers and original DACAT WORLD characters. Collect what you love, connect with fellow fans and creators, and enjoy a collector-first experience where every mint matters.";
+    } else if (isAgency) {
+      h1.innerHTML = 'daGATO <span class="accent">Detective Agency</span>';
+      lead.textContent =
+        "Enter the shadows of Cyber City. Volume 1 case files span distinctive detective identities, cyber-noir environments, and rarity tiers — from Common operatives to legendary 1:1 creations. The city hides the truth. daGATO finds it. Stealth. Style. Supremacy.";
     } else {
       h1.innerHTML = originalHeroTitle || h1.innerHTML;
       lead.textContent = originalHeroLead || lead.textContent;
@@ -477,7 +483,7 @@ async function fetchJson(url, timeoutMs) {
     // the browser always gets the absolute latest bytes from the server (bypassing any
     // HTTP/browser cache). The ?v=BUILD stamp (from meta) still provides build-coherent
     // long-term caching keys per release, and the SW network-first layer provides offline.
-    const isOurData = /\/data\/(gallery_(data|meta|catalog|wallet_index)|videos|badges_(data|catalog)|bigkix_(data|catalog)|collections_registry)\.json(\?|$)/i.test(url);
+    const isOurData = /\/data\/(gallery_(data|meta|catalog|wallet_index)|videos|badges_(data|catalog)|bigkix_(data|catalog)|dagato_agency_(data|catalog)|collections_registry)\.json(\?|$)/i.test(url);
     const res = await fetch(url, {
       signal: ctrl.signal,
       cache: isOurData ? "no-store" : "default"
@@ -955,6 +961,52 @@ function formatPieceTitleHtml(title) {
     }
   }
   return escapeHtml(t);
+}
+
+/** Normalize rarity label from item.rarity or traits (Detective Agency). */
+function itemRarityLabel(item) {
+  if (!item) return null;
+  if (item.rarity) return String(item.rarity);
+  var traits = item.traits || [];
+  for (var i = 0; i < traits.length; i++) {
+    var tt = (traits[i].trait_type || "").toLowerCase();
+    if (tt === "rarity" && traits[i].value) {
+      var raw = String(traits[i].value).trim();
+      var key = raw.toLowerCase();
+      if (key === "1 of 1" || key === "1of1" || key === "one of one") return "1:1";
+      if (key === "common") return "Common";
+      if (key === "uncommon") return "Uncommon";
+      if (key === "epic") return "Epic";
+      if (key === "legendary") return "Legendary";
+      return raw;
+    }
+  }
+  return null;
+}
+
+function rarityBadgeClass(label) {
+  if (!label) return "";
+  var k = String(label).toLowerCase().replace(/\s+/g, "");
+  if (k === "1:1" || k === "1of1") return "rarity-badge-1of1";
+  if (k === "common") return "rarity-badge-common";
+  if (k === "uncommon") return "rarity-badge-uncommon";
+  if (k === "epic") return "rarity-badge-epic";
+  if (k === "legendary") return "rarity-badge-legendary";
+  return "rarity-badge-common";
+}
+
+function formatRarityBadgeHtml(item) {
+  var label = itemRarityLabel(item);
+  if (!label) return "";
+  return (
+    '<span class="rarity-badge ' +
+    rarityBadgeClass(label) +
+    '" title="Rarity: ' +
+    escapeHtml(label) +
+    '">' +
+    escapeHtml(label) +
+    "</span>"
+  );
 }
 
 function collectionStewardLabel() {
@@ -2097,6 +2149,7 @@ var collectionRankingCache = {}; // colId -> sorted collectors array
 
 function collectionRankShortName(colId, fallbackName) {
   if (colId === "bigkix") return "BIG KIX";
+  if (colId === "dagato-agency") return "Agency";
   if (colId === "badges") return "Badges";
   if (colId === "dacommunity") return "daCommunity";
   return fallbackName || colId || "Archive";
@@ -2179,11 +2232,12 @@ async function ensureAllCollectionRankingCaches() {
         }
         continue;
       }
-      // Secondary: badges / bigkix / future
+      // Secondary: badges / bigkix / agency / future
       var catFile =
         (col.data && col.data.catalog) ||
         (col.id === "badges" ? "badges_catalog.json" : null) ||
-        (col.id === "bigkix" ? "bigkix_catalog.json" : null);
+        (col.id === "bigkix" ? "bigkix_catalog.json" : null) ||
+        (col.id === "dagato-agency" ? "dagato_agency_catalog.json" : null);
       if (!catFile) continue;
       var data = await fetchJson(prefix + "data/" + catFile + q, 20000);
       if (!data || !data.items || !data.items.length) continue;
@@ -2265,6 +2319,7 @@ function collectorRankBadges(address, topN, maxBadges) {
 
 function rankBadgeClass(colId) {
   if (colId === "bigkix") return "rank-badge-bigkix";
+  if (colId === "dagato-agency") return "rank-badge-dagato-agency";
   if (colId === "badges") return "rank-badge-badges";
   if (colId === "dacommunity") return "rank-badge-dacommunity";
   return "rank-badge-archive";
@@ -2285,6 +2340,7 @@ function formatRankBadgesHtml(ranks, opts) {
       var short = r.short;
       if (compact) {
         if (r.id === "bigkix") short = "KIX";
+        else if (r.id === "dagato-agency") short = "AGY";
         else if (r.id === "badges") short = "BDG";
         else if (r.id === "dacommunity") short = "COM";
         else short = String(r.short || r.id || "").slice(0, 4);
@@ -2341,6 +2397,8 @@ function renderTopCollectors() {
   if (labelEl) {
     if (activeCollection === "bigkix") {
       labelEl.textContent = "Heavy collectors in BIG KIX";
+    } else if (activeCollection === "dagato-agency") {
+      labelEl.textContent = "Heavy collectors in Detective Agency";
     } else if (activeCollection === "badges") {
       labelEl.textContent = "Heavy collectors in Badges";
     } else if (activeCollection === "dacommunity") {
@@ -2384,6 +2442,7 @@ function createHoldingCard(item, holding) {
         (item.listing ? formatEth(item.listing.amount_eth) + " ETH" : "Listed") +
         "</span>"
       : "";
+  var rarityBadge = item ? formatRarityBadgeHtml(item) : "";
   var videoBadge = item && isVideoItem(item) ? '<span class="thumb-video-badge">▶</span>' : "";
   btn.innerHTML =
     '<div class="holding-card-media"><div class="holding-card-slot"></div>' +
@@ -2396,6 +2455,7 @@ function createHoldingCard(item, holding) {
     '<div class="holding-card-meta"><span>#' +
     escapeHtml(String(holding.token_id)) +
     "</span>" +
+    rarityBadge +
     listedBadge +
     "</div></div>";
   if (item) {
@@ -2935,8 +2995,16 @@ async function renderWalletLookup(identifier, opts) {
 
   // In badges collection context, ensure collectorsList reflects the current badge items
   // (loadWalletIndex may have clobbered it in the !wallet_index_file fallback path).
-  if (activeCollection === "badges" || activeCollection === "bigkix") {
-    collectorsList = buildCollectorsFromBadgeItems(galleryData ? galleryData.items : []);
+  if (
+    activeCollection === "badges" ||
+    activeCollection === "bigkix" ||
+    activeCollection === "dagato-agency"
+  ) {
+    if (activeCollection === "badges") {
+      collectorsList = buildCollectorsFromBadgeItems(galleryData ? galleryData.items : []);
+    } else {
+      collectorsList = buildCollectorsFromLoadedItems(galleryData ? galleryData.items : []);
+    }
   }
 
   var lookup = lookupWallet(identifier);
@@ -3167,6 +3235,10 @@ function renderHeroNote(collection) {
     html =
       "Character kicks from DACAT WORLD on Ethereum. Stewarded by " +
       '<strong class="steward-name">dacatworld.eth</strong>.';
+  } else if (collId === "dagato-agency") {
+    html =
+      "Cyber-noir detective case files on Ethereum. Stewarded by " +
+      '<strong class="steward-name">dagato.eth</strong>. Complete limited drop — all holders counted.';
   } else {
     note.hidden = true;
     return;
@@ -3231,7 +3303,10 @@ function renderStats(collection) {
       os.forEach(function (o) { if (o.address) uniqB[o.address.toLowerCase()] = true; });
     });
     collectorsVal = Object.keys(uniqB).length || nvl(collection && collection.num_owners, "—");
-  } else if (activeCollection === "bigkix") {
+  } else if (
+    activeCollection === "bigkix" ||
+    activeCollection === "dagato-agency"
+  ) {
     var kItems = (galleryData && galleryData.items) || [];
     // Prefer live list so stats match the grid + collectors modal
     rebuildCollectorsForCurrentView();
@@ -3338,12 +3413,14 @@ function itemMatchesSearch(item, q) {
       }
     }
   }
+  var rarity = (itemRarityLabel(item) || "").toLowerCase();
   return (
     itemTitle(item).toLowerCase().indexOf(q) >= 0 ||
     (item.name || "").toLowerCase().indexOf(q) >= 0 ||
     (item.description || "").toLowerCase().indexOf(q) >= 0 ||
     (item.excerpt || "").toLowerCase().indexOf(q) >= 0 ||
     (item.local_slug || "").toLowerCase().indexOf(q) >= 0 ||
+    (rarity && rarity.indexOf(q) >= 0) ||
     String(item.token_id).indexOf(q) >= 0
   );
 }
@@ -3722,6 +3799,7 @@ function renderGallery(items) {
     var listedBadge = item.listed
       ? '<span class="badge-listed">' + (item.listing ? formatEth(item.listing.amount_eth) + " ETH" : "Listed") + "</span>"
       : "";
+    var rarityBadge = formatRarityBadgeHtml(item);
     var videoBadge = isVideoItem(item) ? '<span class="thumb-video-badge">▶</span>' : "";
     var excerpt = displayExcerpt(item);
     if (!excerpt && fullDataStatus === "loading_full") {
@@ -3730,7 +3808,7 @@ function renderGallery(items) {
     row.innerHTML =
       '<div class="gallery-thumb-wrap"><div class="gallery-thumb-slot"></div>' + videoBadge + "</div>" +
       '<div class="gallery-meta"><h3>' + formatPieceTitleHtml(title) + "</h3><p>" + escapeHtml(excerpt || "No excerpt yet.") + "</p></div>" +
-      '<div class="gallery-side"><span class="token-pill">#' + item.token_id + "</span>" + listedBadge + "</div>";
+      '<div class="gallery-side"><span class="token-pill">#' + item.token_id + "</span>" + rarityBadge + listedBadge + "</div>";
     fillMediaSlot(row.querySelector(".gallery-thumb-slot"), item, { controls: false });
     var thumb = row.querySelector(".gallery-thumb-slot img, .gallery-thumb-slot video");
     if (thumb && thumb.tagName === "IMG" && item.opensea_image_url && resolveMediaUrl(item.image_url) !== resolveMediaUrl(item.opensea_image_url)) {
@@ -4019,6 +4097,16 @@ function openDetail(item) {
 
   var stats = $("#detail-stats");
   var chips = [];
+  var rarityLabel = itemRarityLabel(item);
+  if (rarityLabel) {
+    chips.push(
+      '<span class="rarity-badge ' +
+        rarityBadgeClass(rarityLabel) +
+        '">' +
+        escapeHtml(rarityLabel) +
+        "</span>"
+    );
+  }
   if (item.owners) {
     var oc = item.owners;
     chips.push('<span class="chip"><strong>' + effectiveHolderCount(item) + "</strong> holders</span>");
