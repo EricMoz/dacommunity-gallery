@@ -2815,22 +2815,61 @@ button.stat.stat-collectors:disabled {
   font-size: 0.9rem;
 }
 
-/* BIG KIX — cinema-dark media band */
+/*
+ * Premium drop tiles (Agency + BIG KIX): full dark cinema cards.
+ * Cool ice-blue = detective noir · Warm gold = character kicks / brand yellow.
+ * Badges + daCommunity stay light archive tiles for hierarchy.
+ */
+
+/* BIG KIX — warm street premium (gold / amber, not ice-blue) */
 .collection-card-bigkix {
   border-top: 4px solid var(--yellow);
+  background: linear-gradient(165deg, #0c0a06 0%, #1a1610 48%, #100e0a 100%);
+  color: #f5f0e6;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
 }
 
 .collection-card-bigkix .collection-card-media {
-  background: linear-gradient(155deg, #121212 0%, #2a2a2a 100%);
+  background: linear-gradient(155deg, #080706 0%, #2a2214 55%, #12100c 100%);
 }
 
 .collection-card-bigkix .collection-card-media img {
   border-radius: 12px;
-  border: 1px solid rgba(255, 204, 0, 0.35);
+  border: 1px solid rgba(255, 204, 0, 0.42);
   background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 0 24px rgba(255, 204, 0, 0.14);
 }
 
-/* daGATO Detective Agency — noir premium dark tile (same cinema band as BIG KIX) */
+.collection-card-bigkix .collection-card-title {
+  color: #fff9eb;
+}
+
+.collection-card-bigkix .collection-card-body p {
+  color: rgba(245, 240, 230, 0.88);
+}
+
+.collection-card-bigkix .collection-card-cta {
+  color: var(--yellow);
+}
+
+.collection-card-bigkix .collection-card-eyebrow {
+  color: #111;
+  background: linear-gradient(135deg, #ffe566 0%, #ffcc00 55%, #e6b800 100%);
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.collection-card-bigkix .collection-card-status {
+  background: var(--yellow);
+  color: #111;
+}
+
+.collection-card-bigkix:hover,
+.collection-card-bigkix:focus-visible {
+  border-color: rgba(255, 204, 0, 0.5);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 204, 0, 0.22);
+}
+
+/* daGATO Detective Agency — cool noir premium (ice blue) */
 .collection-card-dagato-agency {
   border-top: 4px solid #7dd3fc;
   background: linear-gradient(165deg, #0a0c10 0%, #141820 48%, #0e1218 100%);
