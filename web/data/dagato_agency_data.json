@@ -9,7 +9,7 @@
     "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
     "chain": "ethereum",
     "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-1",
-    "note": "Limited cyber-noir detective case files on Ethereum. Stewarded by dagato.eth. Complete collection — all holders counted.",
+    "note": "Limited cyber-noir detective case files on Ethereum. Stewarded by dagato.eth. Complete collection — all holders counted. Browse shows 5 rarity tiers; collector wallets show each case file.",
     "creator_ens": "dagato.eth",
     "creator_wallet": {
       "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
@@ -23,7 +23,7 @@
     "num_owners": 18,
     "total_sales": 32,
     "total_volume": 0.16000000000000006,
-    "piece_count": 33,
+    "piece_count": 5,
     "listed_count": 1,
     "rarity_counts": {
       "Common": 11,
@@ -32,9 +32,816 @@
       "Epic": 7,
       "1:1": 1
     },
-    "image_url": "https://i2c.seadn.io/collection/dagato-detective-agency-volume-1/image_type_logo/6dcbf6a0f830a10ef45731c2e11f2b/e96dcbf6a0f830a10ef45731c2e11f2b.png"
+    "image_url": "https://i2c.seadn.io/collection/dagato-detective-agency-volume-1/image_type_logo/6dcbf6a0f830a10ef45731c2e11f2b/e96dcbf6a0f830a10ef45731c2e11f2b.png",
+    "edition_count": 33,
+    "case_file_count": 33
   },
   "items": [
+    {
+      "token_id": "rank-1",
+      "token_rank": 1,
+      "name": "1:1",
+      "display_name": "1:1",
+      "local_slug": "agency-rarity-1of1",
+      "description": "Rarity tier: 1:1 (token rank #1 of 5).\n\n1 unique case file share this rarity across daGATO Detective Agency: Volume 1.\n\nHolders below own any case file of this rarity — quantity is total copies held across those files.\n\nCase files: daGATO Case File #27.",
+      "excerpt": "1 case file · 1 holder · 1 copy. Open for the full holder list.",
+      "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/4a9b2860a234a8e057f6876cc5a812/304a9b2860a234a8e057f6876cc5a812.jpeg",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/4a9b2860a234a8e057f6876cc5a812/304a9b2860a234a8e057f6876cc5a812.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-1?search[stringTraits][0][name]=Rarity&search[stringTraits][0][values][0]=1%20of%201",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "value": "1:1"
+        }
+      ],
+      "rarity": "1:1",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x8007b7bf39189e8e67cc2d72d37b9827849ed70c",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x8007b7bf39189e8e67cc2d72d37b9827849ed70c",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "creator_excluded": false
+      },
+      "collection_id": "dagato-agency",
+      "is_series_rep": true,
+      "agency_rarity_series": true,
+      "case_file_count": 1,
+      "case_files": [
+        {
+          "token_id": "27",
+          "name": "daGATO Case File #27",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/4a9b2860a234a8e057f6876cc5a812/304a9b2860a234a8e057f6876cc5a812.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/27",
+          "listed": false
+        }
+      ],
+      "member_token_ids": [
+        "27"
+      ]
+    },
+    {
+      "token_id": "rank-2",
+      "token_rank": 2,
+      "name": "Legendary",
+      "display_name": "Legendary",
+      "local_slug": "agency-rarity-legendary",
+      "description": "Rarity tier: Legendary (token rank #2 of 5).\n\n5 unique case files share this rarity across daGATO Detective Agency: Volume 1.\n\nHolders below own any case file of this rarity — quantity is total copies held across those files.\n\nCase files: daGATO Case File #01, daGATO Case File #16, daGATO Case File #21, daGATO Case File #28, daGATO Case File #32.",
+      "excerpt": "5 case files · 5 holders · 5 copies. Open for the full holder list.",
+      "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-1?search[stringTraits][0][name]=Rarity&search[stringTraits][0][values][0]=Legendary",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "value": "Legendary"
+        }
+      ],
+      "rarity": "Legendary",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 5,
+        "circulating_copies": 5,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x8007b7bf39189e8e67cc2d72d37b9827849ed70c",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x8007b7bf39189e8e67cc2d72d37b9827849ed70c",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "creator_excluded": false
+      },
+      "collection_id": "dagato-agency",
+      "is_series_rep": true,
+      "agency_rarity_series": true,
+      "case_file_count": 5,
+      "case_files": [
+        {
+          "token_id": "1",
+          "name": "daGATO Case File #01",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/1",
+          "listed": false
+        },
+        {
+          "token_id": "16",
+          "name": "daGATO Case File #16",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/16",
+          "listed": false
+        },
+        {
+          "token_id": "21",
+          "name": "daGATO Case File #21",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/21",
+          "listed": false
+        },
+        {
+          "token_id": "28",
+          "name": "daGATO Case File #28",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/28",
+          "listed": false
+        },
+        {
+          "token_id": "32",
+          "name": "daGATO Case File #32",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/32",
+          "listed": false
+        }
+      ],
+      "member_token_ids": [
+        "1",
+        "16",
+        "21",
+        "28",
+        "32"
+      ]
+    },
+    {
+      "token_id": "rank-3",
+      "token_rank": 3,
+      "name": "Epic",
+      "display_name": "Epic",
+      "local_slug": "agency-rarity-epic",
+      "description": "Rarity tier: Epic (token rank #3 of 5).\n\n7 unique case files share this rarity across daGATO Detective Agency: Volume 1.\n\nHolders below own any case file of this rarity — quantity is total copies held across those files.\n\nCase files: daGATO Case File #03, daGATO Case File #08, daGATO Case File #10, daGATO Case File #18, daGATO Case File #23, daGATO Case File #24, daGATO Case File #30.",
+      "excerpt": "7 case files · 6 holders · 7 copies. Open for the full holder list.",
+      "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-1?search[stringTraits][0][name]=Rarity&search[stringTraits][0][values][0]=Epic",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "value": "Epic"
+        }
+      ],
+      "rarity": "Epic",
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.5,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 6,
+        "circulating_copies": 7,
+        "top_holders": [
+          {
+            "address": "0x63795d3b68d42d8a169975e1536e1416aac71856",
+            "quantity": 2,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x76a6a2bc4804f32562648f728afe1490e5a1d80c",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x63795d3b68d42d8a169975e1536e1416aac71856",
+            "quantity": 2,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x76a6a2bc4804f32562648f728afe1490e5a1d80c",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "creator_excluded": false
+      },
+      "collection_id": "dagato-agency",
+      "is_series_rep": true,
+      "agency_rarity_series": true,
+      "case_file_count": 7,
+      "case_files": [
+        {
+          "token_id": "3",
+          "name": "daGATO Case File #03",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/3",
+          "listed": false
+        },
+        {
+          "token_id": "8",
+          "name": "daGATO Case File #08",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/8",
+          "listed": false
+        },
+        {
+          "token_id": "10",
+          "name": "daGATO Case File #10",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/10",
+          "listed": false
+        },
+        {
+          "token_id": "18",
+          "name": "daGATO Case File #18",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/18",
+          "listed": false
+        },
+        {
+          "token_id": "23",
+          "name": "daGATO Case File #23",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/23",
+          "listed": false
+        },
+        {
+          "token_id": "24",
+          "name": "daGATO Case File #24",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/24",
+          "listed": false
+        },
+        {
+          "token_id": "30",
+          "name": "daGATO Case File #30",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/30",
+          "listed": true
+        }
+      ],
+      "member_token_ids": [
+        "3",
+        "8",
+        "10",
+        "18",
+        "23",
+        "24",
+        "30"
+      ]
+    },
+    {
+      "token_id": "rank-4",
+      "token_rank": 4,
+      "name": "Uncommon",
+      "display_name": "Uncommon",
+      "local_slug": "agency-rarity-uncommon",
+      "description": "Rarity tier: Uncommon (token rank #4 of 5).\n\n9 unique case files share this rarity across daGATO Detective Agency: Volume 1.\n\nHolders below own any case file of this rarity — quantity is total copies held across those files.\n\nCase files: daGATO Case File #02, daGATO Case File #04, daGATO Case File #05, daGATO Case File #06, daGATO Case File #09, daGATO Case File #13, daGATO Case File #19, daGATO Case File #20, daGATO Case File #31.",
+      "excerpt": "9 case files · 8 holders · 9 copies. Open for the full holder list.",
+      "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-1?search[stringTraits][0][name]=Rarity&search[stringTraits][0][values][0]=Uncommon",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "value": "Uncommon"
+        }
+      ],
+      "rarity": "Uncommon",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 8,
+        "circulating_copies": 9,
+        "top_holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 2,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xa5dcf683b5092cd9df2f6c15ecb8d7fc355b8dea",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 2,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xa5dcf683b5092cd9df2f6c15ecb8d7fc355b8dea",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "creator_excluded": false
+      },
+      "collection_id": "dagato-agency",
+      "is_series_rep": true,
+      "agency_rarity_series": true,
+      "case_file_count": 9,
+      "case_files": [
+        {
+          "token_id": "2",
+          "name": "daGATO Case File #02",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/2",
+          "listed": false
+        },
+        {
+          "token_id": "4",
+          "name": "daGATO Case File #04",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/4",
+          "listed": false
+        },
+        {
+          "token_id": "5",
+          "name": "daGATO Case File #05",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/5",
+          "listed": false
+        },
+        {
+          "token_id": "6",
+          "name": "daGATO Case File #06",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/6",
+          "listed": false
+        },
+        {
+          "token_id": "9",
+          "name": "daGATO Case File #09",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/9",
+          "listed": false
+        },
+        {
+          "token_id": "13",
+          "name": "daGATO Case File #13",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/13",
+          "listed": false
+        },
+        {
+          "token_id": "19",
+          "name": "daGATO Case File #19",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/19",
+          "listed": false
+        },
+        {
+          "token_id": "20",
+          "name": "daGATO Case File #20",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/20",
+          "listed": false
+        },
+        {
+          "token_id": "31",
+          "name": "daGATO Case File #31",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/31",
+          "listed": false
+        }
+      ],
+      "member_token_ids": [
+        "2",
+        "4",
+        "5",
+        "6",
+        "9",
+        "13",
+        "19",
+        "20",
+        "31"
+      ]
+    },
+    {
+      "token_id": "rank-5",
+      "token_rank": 5,
+      "name": "Common",
+      "display_name": "Common",
+      "local_slug": "agency-rarity-common",
+      "description": "Rarity tier: Common (token rank #5 of 5).\n\n11 unique case files share this rarity across daGATO Detective Agency: Volume 1.\n\nHolders below own any case file of this rarity — quantity is total copies held across those files.\n\nCase files: daGATO Case File #07, daGATO Case File #11, daGATO Case File #12, daGATO Case File #14, daGATO Case File #15, daGATO Case File #17, daGATO Case File #22, daGATO Case File #25, daGATO Case File #26, daGATO Case File #29, daGATO Case File #33.",
+      "excerpt": "11 case files · 9 holders · 11 copies. Open for the full holder list.",
+      "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-1?search[stringTraits][0][name]=Rarity&search[stringTraits][0][values][0]=Common",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "value": "Common"
+        }
+      ],
+      "rarity": "Common",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 9,
+        "circulating_copies": 11,
+        "top_holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 2,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 2,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x76a6a2bc4804f32562648f728afe1490e5a1d80c",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x3d4e021e4270fe0cfc013eb79f7cb7274e2ac386",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 2,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 2,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x76a6a2bc4804f32562648f728afe1490e5a1d80c",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x3d4e021e4270fe0cfc013eb79f7cb7274e2ac386",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "creator_excluded": false
+      },
+      "collection_id": "dagato-agency",
+      "is_series_rep": true,
+      "agency_rarity_series": true,
+      "case_file_count": 11,
+      "case_files": [
+        {
+          "token_id": "7",
+          "name": "daGATO Case File #07",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7",
+          "listed": false
+        },
+        {
+          "token_id": "11",
+          "name": "daGATO Case File #11",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/11",
+          "listed": false
+        },
+        {
+          "token_id": "12",
+          "name": "daGATO Case File #12",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/12",
+          "listed": false
+        },
+        {
+          "token_id": "14",
+          "name": "daGATO Case File #14",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/14",
+          "listed": false
+        },
+        {
+          "token_id": "15",
+          "name": "daGATO Case File #15",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/15",
+          "listed": false
+        },
+        {
+          "token_id": "17",
+          "name": "daGATO Case File #17",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/17",
+          "listed": false
+        },
+        {
+          "token_id": "22",
+          "name": "daGATO Case File #22",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/22",
+          "listed": false
+        },
+        {
+          "token_id": "25",
+          "name": "daGATO Case File #25",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/25",
+          "listed": false
+        },
+        {
+          "token_id": "26",
+          "name": "daGATO Case File #26",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/26",
+          "listed": false
+        },
+        {
+          "token_id": "29",
+          "name": "daGATO Case File #29",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/29",
+          "listed": false
+        },
+        {
+          "token_id": "33",
+          "name": "daGATO Case File #33",
+          "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/33",
+          "listed": false
+        }
+      ],
+      "member_token_ids": [
+        "7",
+        "11",
+        "12",
+        "14",
+        "15",
+        "17",
+        "22",
+        "25",
+        "26",
+        "29",
+        "33"
+      ]
+    },
     {
       "token_id": "33",
       "name": "daGATO Case File #33",
@@ -92,7 +899,10 @@
           "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 5
     },
     {
       "token_id": "32",
@@ -158,7 +968,10 @@
           "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 2
     },
     {
       "token_id": "31",
@@ -224,7 +1037,10 @@
           "to": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 4
     },
     {
       "token_id": "30",
@@ -287,7 +1103,10 @@
           "to": "0x76a6a2bc4804f32562648f728afe1490e5a1d80c",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 3
     },
     {
       "token_id": "29",
@@ -346,7 +1165,10 @@
           "to": "0x76a6a2bc4804f32562648f728afe1490e5a1d80c",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 5
     },
     {
       "token_id": "28",
@@ -405,7 +1227,10 @@
           "to": "0x8007b7bf39189e8e67cc2d72d37b9827849ed70c",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 2
     },
     {
       "token_id": "27",
@@ -464,7 +1289,10 @@
           "to": "0x8007b7bf39189e8e67cc2d72d37b9827849ed70c",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 1
     },
     {
       "token_id": "26",
@@ -523,7 +1351,10 @@
           "to": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 5
     },
     {
       "token_id": "25",
@@ -582,7 +1413,10 @@
           "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 5
     },
     {
       "token_id": "24",
@@ -641,7 +1475,10 @@
           "to": "0x63795d3b68d42d8a169975e1536e1416aac71856",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 3
     },
     {
       "token_id": "23",
@@ -700,7 +1537,10 @@
           "to": "0x63795d3b68d42d8a169975e1536e1416aac71856",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 3
     },
     {
       "token_id": "22",
@@ -759,7 +1599,10 @@
           "to": "0x3d4e021e4270fe0cfc013eb79f7cb7274e2ac386",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 5
     },
     {
       "token_id": "21",
@@ -818,7 +1661,10 @@
           "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 2
     },
     {
       "token_id": "20",
@@ -877,7 +1723,10 @@
           "to": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 4
     },
     {
       "token_id": "19",
@@ -936,7 +1785,10 @@
           "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 4
     },
     {
       "token_id": "18",
@@ -995,7 +1847,10 @@
           "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 3
     },
     {
       "token_id": "17",
@@ -1054,7 +1909,10 @@
           "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 5
     },
     {
       "token_id": "16",
@@ -1113,7 +1971,10 @@
           "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 2
     },
     {
       "token_id": "15",
@@ -1179,7 +2040,10 @@
           "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 5
     },
     {
       "token_id": "14",
@@ -1238,7 +2102,10 @@
           "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 5
     },
     {
       "token_id": "13",
@@ -1297,7 +2164,10 @@
           "to": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 4
     },
     {
       "token_id": "12",
@@ -1356,7 +2226,10 @@
           "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 5
     },
     {
       "token_id": "11",
@@ -1415,7 +2288,10 @@
           "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 5
     },
     {
       "token_id": "10",
@@ -1474,7 +2350,10 @@
           "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 3
     },
     {
       "token_id": "9",
@@ -1533,7 +2412,10 @@
           "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 4
     },
     {
       "token_id": "8",
@@ -1592,7 +2474,10 @@
           "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 3
     },
     {
       "token_id": "7",
@@ -1651,7 +2536,10 @@
           "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 5
     },
     {
       "token_id": "6",
@@ -1710,7 +2598,10 @@
           "to": "0xa5dcf683b5092cd9df2f6c15ecb8d7fc355b8dea",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 4
     },
     {
       "token_id": "5",
@@ -1769,7 +2660,10 @@
           "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 4
     },
     {
       "token_id": "4",
@@ -1828,7 +2722,10 @@
           "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 4
     },
     {
       "token_id": "3",
@@ -1887,7 +2784,10 @@
           "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 3
     },
     {
       "token_id": "2",
@@ -1946,7 +2846,10 @@
           "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 4
     },
     {
       "token_id": "1",
@@ -2005,7 +2908,10 @@
           "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
           "quantity": 1
         }
-      ]
+      ],
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 2
     }
   ]
 }

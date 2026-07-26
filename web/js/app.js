@@ -111,6 +111,28 @@ function getItemKey(item) {
   return String(item.token_id);
 }
 
+/** daGATO Agency rarity-tier row (browse grid shows these 5 only). */
+function isAgencyRaritySeries(item) {
+  return !!(item && (item.agency_rarity_series || (item.collection_id === "dagato-agency" && item.is_series_rep)));
+}
+
+/** Case-file edition (collector wallet) — hide from light browse when series exist. */
+function isAgencyEditionToken(item) {
+  if (!item || (item.collection_id || "") !== "dagato-agency") return false;
+  if (isAgencyRaritySeries(item)) return false;
+  return !!(item.is_edition_token || item.rarity);
+}
+
+/** Pill label: rank 1–5 for agency series; real token # for editions. */
+function itemTokenPillLabel(item) {
+  if (!item) return "";
+  if (item.token_rank != null && isAgencyRaritySeries(item)) return String(item.token_rank);
+  return String(item.token_id);
+}
+
+/** Max collection rank pills next to wallet name (escape bar + profile). */
+var MAX_COLLECTOR_RANK_BADGES = 5;
+
 /* Browse labels (used for chips + resets). Extended for multi-col in Part 1. */
 var FILTER_LABELS = {
   all: "All",
@@ -796,6 +818,8 @@ function buildCollectorsFromLoadedItems(items) {
     ) {
       return;
     }
+    // Agency: count real case files only (not aggregated rarity rows)
+    if (isAgencyRaritySeries(item)) return;
     var os = item.owners || {};
     var list = os.holders || os.top_holders || [];
     var itemKey = getItemKey(item);
@@ -1522,7 +1546,7 @@ function setGalleryCollectorView(entry, opts) {
     uniquePieces: nvl(entry.unique_pieces, (entry.holdings || []).length),
     collectionQuantity: nvl(entry.collection_quantity, "—"),
     rank: collectorRank(addr),
-    ranks: collectorRankBadges(addr, 10, 3),
+    ranks: collectorRankBadges(addr, 10, MAX_COLLECTOR_RANK_BADGES),
   };
   renderCollectorFocusUi();
   refreshView();
@@ -1568,7 +1592,7 @@ function expandCollectorHoldingsFromLoadedData() {
   });
   galleryCollectorView.collectionQuantity = qty;
   galleryCollectorView.rank = collectorRank(addr);
-  galleryCollectorView.ranks = collectorRankBadges(addr, 10, 3);
+  galleryCollectorView.ranks = collectorRankBadges(addr, 10, MAX_COLLECTOR_RANK_BADGES);
   refreshCollectorRankBadgesAsync();
 }
 
@@ -2284,7 +2308,7 @@ function getCollectorsRankingList(colId) {
  */
 function collectorRankBadges(address, topN, maxBadges) {
   topN = topN || 10;
-  maxBadges = maxBadges || 3;
+  maxBadges = maxBadges != null ? maxBadges : MAX_COLLECTOR_RANK_BADGES;
   var key = (address || "").toLowerCase();
   if (!key) return [];
   var out = [];
@@ -2372,7 +2396,7 @@ async function refreshCollectorRankBadgesAsync() {
   }
   if (!galleryCollectorView) return;
   var addr = galleryCollectorView.address;
-  galleryCollectorView.ranks = collectorRankBadges(addr, 10, 3);
+  galleryCollectorView.ranks = collectorRankBadges(addr, 10, MAX_COLLECTOR_RANK_BADGES);
   galleryCollectorView.rank = collectorRank(addr);
   renderCollectorFocusUi();
   // Update profile card ranks if visible
@@ -2724,7 +2748,7 @@ function renderWalletSuccess(entry, opts) {
   var qty = nvl(entry.collection_quantity, "—");
   rebuildCollectorsForCurrentView();
   seedRankingCacheFromGalleryData();
-  var ranks = collectorRankBadges(entry.address, 10, 3);
+  var ranks = collectorRankBadges(entry.address, 10, MAX_COLLECTOR_RANK_BADGES);
   var rankHtml = ranks.length
     ? '<div class="collector-profile-ranks">' +
       formatRankBadgesHtml(ranks, { short: true }) +
@@ -2848,7 +2872,7 @@ function buildHoldingsFromCurrentItems(address) {
   var holdings = [];
   var seen = {};
   (galleryData && galleryData.items || []).forEach(function (item) {
-    var key = (item.source_created_collection || 'dacommunity') + ':' + item.token_id;
+    var key = getItemKey(item);
     if (seen[key]) return;
     var ownersData = item.owners || {};
     var list = ownersData.holders || ownersData.top_holders || [];
@@ -2859,6 +2883,8 @@ function buildHoldingsFromCurrentItems(address) {
       // Multi 1:1 clubs: series_rep is search-only. Edition clubs (e.g. 100 Billion) use
       // series_rep as the real collectible card and must still appear for holders.
       if (item.is_series_rep && item.source_created_collection && /trillion|billion/i.test(item.source_created_collection) && !item.edition_club) return;
+      // Agency: portfolio shows real case files, not aggregated rarity rows
+      if (isAgencyRaritySeries(item)) return;
       seen[key] = true;
       holdings.push({
         token_id: item.token_id,
@@ -2866,7 +2892,9 @@ function buildHoldingsFromCurrentItems(address) {
         display_name: item.display_name || item.name,
         image_url: item.image_url,
         opensea_url: item.opensea_url,
-        source_created_collection: item.source_created_collection
+        source_created_collection: item.source_created_collection,
+        collection_id: item.collection_id,
+        rarity: item.rarity
       });
     }
   });
@@ -3310,10 +3338,23 @@ function renderStats(collection) {
     var kItems = (galleryData && galleryData.items) || [];
     // Prefer live list so stats match the grid + collectors modal
     rebuildCollectorsForCurrentView();
-    pieces = kItems.length || nvl(collection && collection.piece_count, "—");
+    // Agency browse grid = 5 rarity series only (not 33 case files)
+    if (activeCollection === "dagato-agency") {
+      pieces =
+        getDedupedPiecesCount(kItems) ||
+        nvl(collection && collection.piece_count, "—");
+    } else {
+      pieces = kItems.length || nvl(collection && collection.piece_count, "—");
+    }
     var listedK = 0;
     var minFloorK = null;
-    kItems.forEach(function (it) {
+    var listedScan =
+      activeCollection === "dagato-agency"
+        ? kItems.filter(function (it) {
+            return isAgencyRaritySeries(it);
+          })
+        : kItems;
+    listedScan.forEach(function (it) {
       if (it.listed) {
         listedK++;
         if (it.listing && it.listing.amount_eth != null) {
@@ -3426,6 +3467,16 @@ function itemMatchesSearch(item, q) {
 }
 
 function compareItems(a, b) {
+  // Agency rarity series always order by token_rank (1:1 first … Common last)
+  if (
+    a.token_rank != null &&
+    b.token_rank != null &&
+    isAgencyRaritySeries(a) &&
+    isAgencyRaritySeries(b)
+  ) {
+    var ra = Number(a.token_rank) - Number(b.token_rank);
+    if (ra !== 0) return ra;
+  }
   var key = sortKey || "token_desc";
   if (key === "token_desc") {
     var da = Date.parse(a.minted_at || 0) || 0;
@@ -3493,6 +3544,8 @@ function getFilteredItems() {
         if (i.source_created_collection && /trillion|billion/i.test(i.source_created_collection) && i.is_series_rep && !i.edition_club) {
           return false;
         }
+        // Agency: portfolio shows case files with real token #s, not rarity aggregates
+        if (isAgencyRaritySeries(i)) return false;
         return true;
       }
       if (i.source_created_collection) {
@@ -3511,14 +3564,22 @@ function getFilteredItems() {
   // ONLY the series_rep (is_series_rep) is shown for these slugs. It carries the generic title,
   // generic image, and aggregate holder_count (e.g. 3 for 9T).
   // Personalized 1:1s (with custom names/art) appear ONLY in the owner's portfolio view.
-  // This was the required behavior; data updates added per-1/1 items so explicit filter is needed.
+  // daGATO Agency: browse shows 5 rarity tiers only; case files appear in collector wallet.
   if (!galleryCollectorView) {
     items = items.filter(function (i) {
       if (i.source_created_collection && /trillion|billion/i.test(i.source_created_collection)) {
         // Light view: keep only the series rep (has aggregate stats + generic presentation)
         return !!i.is_series_rep;
       }
+      if ((i.collection_id || "") === "dagato-agency") {
+        return isAgencyRaritySeries(i);
+      }
       return true;
+    });
+  } else {
+    // Portfolio: never show agency rarity aggregates (show real case file token #s)
+    items = items.filter(function (i) {
+      return !isAgencyRaritySeries(i);
     });
   }
   // Collection filter (for multi-collection future; current data defaults to dacommunity)
@@ -3573,7 +3634,14 @@ function getDedupedPiecesCount(allItems) {
       if (i.source_created_collection && /trillion|billion/i.test(i.source_created_collection)) {
         return !!i.is_series_rep;
       }
+      if ((i.collection_id || "") === "dagato-agency") {
+        return isAgencyRaritySeries(i);
+      }
       return true;
+    });
+  } else {
+    items = items.filter(function (i) {
+      return !isAgencyRaritySeries(i);
     });
   }
   return items.length;
@@ -3808,7 +3876,7 @@ function renderGallery(items) {
     row.innerHTML =
       '<div class="gallery-thumb-wrap"><div class="gallery-thumb-slot"></div>' + videoBadge + "</div>" +
       '<div class="gallery-meta"><h3>' + formatPieceTitleHtml(title) + "</h3><p>" + escapeHtml(excerpt || "No excerpt yet.") + "</p></div>" +
-      '<div class="gallery-side"><span class="token-pill">#' + item.token_id + "</span>" + rarityBadge + listedBadge + "</div>";
+      '<div class="gallery-side"><span class="token-pill">#' + escapeHtml(itemTokenPillLabel(item)) + "</span>" + rarityBadge + listedBadge + "</div>";
     fillMediaSlot(row.querySelector(".gallery-thumb-slot"), item, { controls: false });
     var thumb = row.querySelector(".gallery-thumb-slot img, .gallery-thumb-slot video");
     if (thumb && thumb.tagName === "IMG" && item.opensea_image_url && resolveMediaUrl(item.image_url) !== resolveMediaUrl(item.opensea_image_url)) {
@@ -4059,8 +4127,19 @@ function openDetail(item) {
   if (!panel) return;
   fillMediaSlot($("#detail-media-slot"), item, { autoplay: true, controls: true });
   $("#detail-title").innerHTML = formatPieceTitleHtml(itemTitle(item));
-  $("#detail-token").textContent =
-    "Token #" + item.token_id + (item.local_slug ? " · " + item.local_slug : "");
+  if (isAgencyRaritySeries(item)) {
+    var nFiles = item.case_file_count || (item.case_files && item.case_files.length) || 0;
+    $("#detail-token").textContent =
+      "Token rank #" +
+      (item.token_rank != null ? item.token_rank : itemTokenPillLabel(item)) +
+      " of 5 · " +
+      nFiles +
+      " case file" +
+      (nFiles === 1 ? "" : "s");
+  } else {
+    $("#detail-token").textContent =
+      "Token #" + item.token_id + (item.local_slug ? " · " + item.local_slug : "");
+  }
   var mintEl = $("#detail-mint");
   if (item.minted_at) {
     mintEl.hidden = false;
@@ -4104,6 +4183,15 @@ function openDetail(item) {
         rarityBadgeClass(rarityLabel) +
         '">' +
         escapeHtml(rarityLabel) +
+        "</span>"
+    );
+  }
+  if (isAgencyRaritySeries(item) && item.case_file_count) {
+    chips.push(
+      '<span class="chip"><strong>' +
+        item.case_file_count +
+        "</strong> case file" +
+        (item.case_file_count === 1 ? "" : "s") +
         "</span>"
     );
   }

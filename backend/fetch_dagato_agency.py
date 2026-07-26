@@ -384,8 +384,171 @@ def build_item(
     return item
 
 
+# Browse shows 5 rarity tiers (token rank 1 = highest). Editions stay for wallet view.
+RARITY_RANK_ORDER = ("1:1", "Legendary", "Epic", "Uncommon", "Common")
+RARITY_TO_RANK = {label: i + 1 for i, label in enumerate(RARITY_RANK_ORDER)}
+
+
+def build_rarity_series(edition_items: list[dict]) -> list[dict]:
+    """Aggregate case files into 5 rarity series rows for the search grid.
+
+    Edition tokens remain in the payload (collector wallet uses real token #s).
+    Series rows carry aggregated holders / circulating copies for the detail panel.
+    """
+    by_rarity: dict[str, list[dict]] = {r: [] for r in RARITY_RANK_ORDER}
+    for it in edition_items:
+        r = it.get("rarity") or "Common"
+        if r not in by_rarity:
+            by_rarity.setdefault(r, [])
+        by_rarity[r].append(it)
+
+    series: list[dict] = []
+    for label in RARITY_RANK_ORDER:
+        members = by_rarity.get(label) or []
+        if not members:
+            continue
+        rank = RARITY_TO_RANK[label]
+        # Representative art: lowest case file # for stability
+        members_sorted = sorted(
+            members, key=lambda m: int(m.get("token_id") or 0)
+        )
+        rep = members_sorted[0]
+
+        # Aggregate holders across all case files of this rarity
+        holder_qty: dict[str, dict] = {}
+        for m in members:
+            for h in (m.get("owners") or {}).get("holders") or []:
+                addr = (h.get("address") or "").lower()
+                if not addr:
+                    continue
+                qty = int(h.get("quantity") or 1)
+                if addr not in holder_qty:
+                    holder_qty[addr] = {
+                        "address": h.get("address") or addr,
+                        "quantity": 0,
+                        "ens_name": h.get("ens_name"),
+                        "username": h.get("username"),
+                    }
+                holder_qty[addr]["quantity"] += qty
+                if h.get("ens_name") and not holder_qty[addr].get("ens_name"):
+                    holder_qty[addr]["ens_name"] = h["ens_name"]
+                if h.get("username") and not holder_qty[addr].get("username"):
+                    holder_qty[addr]["username"] = h["username"]
+
+        holders = sorted(
+            holder_qty.values(), key=lambda x: x["quantity"], reverse=True
+        )
+        total_copies = sum(h["quantity"] for h in holders)
+        file_count = len(members)
+
+        # Best (lowest) active listing among members
+        best_listing = None
+        any_listed = False
+        for m in members:
+            if not m.get("listed") or not m.get("listing"):
+                continue
+            any_listed = True
+            price = m["listing"].get("amount_eth")
+            if price is None:
+                continue
+            if best_listing is None or float(price) < float(
+                best_listing.get("amount_eth") or 1e18
+            ):
+                best_listing = m["listing"]
+
+        case_files = [
+            {
+                "token_id": m.get("token_id"),
+                "name": m.get("display_name") or m.get("name"),
+                "image_url": m.get("image_url"),
+                "opensea_url": m.get("opensea_url"),
+                "listed": m.get("listed", False),
+            }
+            for m in members_sorted
+        ]
+
+        slug_key = "1of1" if label == "1:1" else label.lower()
+        display = f"{label}"
+        excerpt = (
+            f"{file_count} case file{'s' if file_count != 1 else ''} · "
+            f"{len(holders)} holder{'s' if len(holders) != 1 else ''} · "
+            f"{total_copies} cop{'ies' if total_copies != 1 else 'y'}. "
+            f"Open for the full holder list."
+        )
+        description = (
+            f"Rarity tier: {label} (token rank #{rank} of 5).\n\n"
+            f"{file_count} unique case file{'s' if file_count != 1 else ''} "
+            f"share this rarity across daGATO Detective Agency: Volume 1.\n\n"
+            f"Holders below own any case file of this rarity — quantity is total "
+            f"copies held across those files.\n\n"
+            f"Case files: "
+            + ", ".join(
+                (m.get("display_name") or f"#{m.get('token_id')}")
+                for m in members_sorted
+            )
+            + "."
+        )
+
+        series.append(
+            {
+                "token_id": f"rank-{rank}",
+                "token_rank": rank,
+                "name": display,
+                "display_name": display,
+                "local_slug": f"agency-rarity-{slug_key}",
+                "description": description,
+                "excerpt": excerpt,
+                "image_url": rep.get("image_url"),
+                "opensea_image_url": rep.get("opensea_image_url")
+                or (
+                    rep.get("image_url")
+                    if str(rep.get("image_url") or "").startswith("http")
+                    else None
+                ),
+                "media_type": rep.get("media_type") or "image",
+                "opensea_url": (
+                    f"https://opensea.io/collection/dagato-detective-agency-volume-1"
+                    f"?search[stringTraits][0][name]=Rarity"
+                    f"&search[stringTraits][0][values][0]="
+                    + (
+                        "1%20of%201"
+                        if label == "1:1"
+                        else label
+                    )
+                ),
+                "traits": [{"trait_type": "Rarity", "value": label}],
+                "rarity": label,
+                "listed": any_listed,
+                "listing": best_listing,
+                "owners": {
+                    "holder_count": len(holders),
+                    "circulating_copies": total_copies,
+                    "top_holders": holders[:8],
+                    "holders": holders,
+                    "creator_excluded": False,
+                },
+                "collection_id": COLLECTION_ID,
+                "is_series_rep": True,
+                "agency_rarity_series": True,
+                "case_file_count": file_count,
+                "case_files": case_files,
+                "member_token_ids": [m.get("token_id") for m in members_sorted],
+            }
+        )
+
+    # Mark editions so the UI can hide them from the light browse grid
+    for it in edition_items:
+        it["is_edition_token"] = True
+        it["agency_rarity_series"] = False
+        r = it.get("rarity")
+        if r in RARITY_TO_RANK:
+            it["token_rank"] = RARITY_TO_RANK[r]  # wallet can still show rarity tier
+
+    return series
+
+
 def slim_item(item: dict) -> dict:
-    # Keep activity + rarity in catalog: small collection (~33) and modal needs activity
+    # Keep activity + rarity + series flags in catalog (small collection)
     out = {
         "token_id": item.get("token_id"),
         "name": item.get("name"),
@@ -409,7 +572,20 @@ def slim_item(item: dict) -> dict:
         "opensea_name": item.get("opensea_name"),
         "rarity": item.get("rarity"),
         "traits": item.get("traits") or [],
+        "token_rank": item.get("token_rank"),
+        "is_series_rep": bool(item.get("is_series_rep")),
+        "agency_rarity_series": bool(item.get("agency_rarity_series")),
+        "is_edition_token": bool(item.get("is_edition_token")),
     }
+    if item.get("case_file_count") is not None:
+        out["case_file_count"] = item.get("case_file_count")
+    if item.get("case_files"):
+        out["case_files"] = item.get("case_files")
+    if item.get("member_token_ids"):
+        out["member_token_ids"] = item.get("member_token_ids")
+    # Series need description in catalog for first paint of detail drawer
+    if item.get("agency_rarity_series") and item.get("description"):
+        out["description"] = item.get("description")
     activity = item.get("recent_activity") or []
     if activity:
         out["recent_activity"] = activity[:12]
@@ -536,13 +712,18 @@ def main() -> int:
         items.append(item)
         print(f" ✓ [{r}]")
 
-    # Unique holders across pieces (no creator exclude)
+    # Unique holders across edition case files (no creator exclude)
     all_holders: set[str] = set()
     for it in items:
         for h in (it.get("owners") or {}).get("holders") or []:
             a = (h.get("address") or "").lower()
             if a:
                 all_holders.add(a)
+
+    # Browse grid: 5 rarity series (rank 1–5). Editions kept for collector wallets.
+    series = build_rarity_series(items)
+    combined = series + items
+    series_listed = sum(1 for s in series if s.get("listed"))
 
     payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -557,7 +738,8 @@ def main() -> int:
             "opensea_url": f"https://opensea.io/collection/{slug}",
             "note": (
                 "Limited cyber-noir detective case files on Ethereum. "
-                "Stewarded by dagato.eth. Complete collection — all holders counted."
+                "Stewarded by dagato.eth. Complete collection — all holders counted. "
+                "Browse shows 5 rarity tiers; collector wallets show each case file."
             ),
             "creator_ens": CREATOR_ENS,
             "creator_wallet": creator_wallet
@@ -569,8 +751,11 @@ def main() -> int:
             "num_owners": len(all_holders),
             "total_sales": total.get("sales"),
             "total_volume": total.get("volume"),
-            "piece_count": len(items),
-            "listed_count": listed_count,
+            # Browse "Pieces" = unique rarities (5). Editions = case file count.
+            "piece_count": len(series),
+            "edition_count": len(items),
+            "case_file_count": len(items),
+            "listed_count": series_listed if series_listed else listed_count,
             "rarity_counts": rarity_counts,
             "image_url": (
                 "https://i2c.seadn.io/collection/dagato-detective-agency-volume-1/"
@@ -578,7 +763,7 @@ def main() -> int:
                 "e96dcbf6a0f830a10ef45731c2e11f2b.png"
             ),
         },
-        "items": items,
+        "items": combined,
     }
 
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -586,8 +771,8 @@ def main() -> int:
         json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8"
     )
     print(
-        f"\nWrote {OUTPUT_PATH} — {len(items)} pieces, {listed_count} listed, "
-        f"{len(all_holders)} collectors"
+        f"\nWrote {OUTPUT_PATH} — {len(series)} rarity tiers + {len(items)} case files, "
+        f"{listed_count} edition listings, {len(all_holders)} collectors"
     )
     print(f"  Rarity: {rarity_counts}")
     write_catalog(payload)

@@ -100,6 +100,8 @@ python fetch_dagato_agency.py   # writes web/data/dagato_agency_data.json + cata
 
 - Complete limited drop (33 case files) on Ethereum · steward `dagato.eth`
 - **No creator exclusion** — every holder counts toward collectors
+- **Browse grid:** 5 rarity series only (token rank **#1 = 1:1** … **#5 = Common**). Detail shows aggregated holders + copies.
+- **Collector wallet:** each case file with real token # (unchanged)
 - Rarity trait → UI tags: Common / Uncommon / Epic / Legendary / 1:1
 - Activity (mint / transfer / sale) + listings + owners (same pattern as BIG KIX)
 - Titles: `daGATO Case File #27`

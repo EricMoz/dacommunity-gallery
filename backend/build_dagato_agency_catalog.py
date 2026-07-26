@@ -38,7 +38,19 @@ def slim_item(item: dict) -> dict:
         "opensea_name": item.get("opensea_name"),
         "rarity": item.get("rarity"),
         "traits": item.get("traits") or [],
+        "token_rank": item.get("token_rank"),
+        "is_series_rep": bool(item.get("is_series_rep")),
+        "agency_rarity_series": bool(item.get("agency_rarity_series")),
+        "is_edition_token": bool(item.get("is_edition_token")),
     }
+    if item.get("case_file_count") is not None:
+        out["case_file_count"] = item.get("case_file_count")
+    if item.get("case_files"):
+        out["case_files"] = item.get("case_files")
+    if item.get("member_token_ids"):
+        out["member_token_ids"] = item.get("member_token_ids")
+    if item.get("agency_rarity_series") and item.get("description"):
+        out["description"] = item.get("description")
     activity = item.get("recent_activity") or []
     if activity:
         out["recent_activity"] = activity[:12]
