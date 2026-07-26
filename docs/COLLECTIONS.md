@@ -98,13 +98,19 @@ python fetch_dagato_agency.py   # writes web/data/dagato_agency_data.json + cata
 # Daily: refresh-data.yml runs after BIG KIX fetch
 ```
 
-- Complete limited drop (33 case files) on Ethereum · steward `dagato.eth`
-- **No creator exclusion** — every holder counts toward collectors
-- **Browse grid:** 5 rarity series only. Titles: **daGATO Case File · {rarity}**; token pills **#1–#5** (1:1 highest). Detail shows holders, copies, and transfer/sale history.
-- **Collector wallet:** each case file with real token # (unchanged)
-- Rarity trait → UI tags: Common / Uncommon / Epic / Legendary / 1:1
-- Activity (mint / transfer / sale) + listings + owners (same pattern as BIG KIX)
-- Titles: `daGATO Case File #27`
+| Surface | Detail |
+|---------|--------|
+| Hub / home tile | Eyebrow **`Agency · Volume 1`** (not “cyber-noir”); cool ice-blue premium dark card |
+| Route | `/dacommunity/?collection=dagato-agency` |
+| Steward | `dagato.eth` · no creator-wallet exclusion |
+| Browse grid | **5 rarity series** only: titles `daGATO Case File · {rarity}`; token pills **#1–#5** (1:1 highest); each row has `minted_at` (earliest case-file mint) |
+| Rarity tags | Common / Uncommon / Epic / Legendary / 1:1 on grid, holdings, detail |
+| Detail | Aggregated holders + copies; transfer/sale history merged from case files |
+| Collector wallet | Real case-file token #s (editions), not series rows |
+| Data | `web/data/dagato_agency_data.json` + `dagato_agency_catalog.json` |
+| Fetch | `backend/fetch_dagato_agency.py` (also in `refresh-data.yml`) |
+
+Hub cards remain manual (home + `collections/index.html`) until the hub is fully registry-driven.
 
 Do **not** duplicate gallery logic for preview pages — use `preview_only` + themed static HTML until data exists.
 

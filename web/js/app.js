@@ -3361,7 +3361,7 @@ function renderHeroNote(collection) {
       '<strong class="steward-name">dacatworld.eth</strong>.';
   } else if (collId === "dagato-agency") {
     html =
-      "Cyber-noir detective case files on Ethereum. Stewarded by " +
+      "Detective Agency case files on Ethereum. Stewarded by " +
       '<strong class="steward-name">dagato.eth</strong>. Complete limited drop. All holders counted.';
   } else {
     note.hidden = true;
