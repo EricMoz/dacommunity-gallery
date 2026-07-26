@@ -3965,10 +3965,9 @@ function renderGallery(items) {
       : "";
     var rarityBadge = formatRarityBadgeHtml(item);
     var videoBadge = isVideoItem(item) ? '<span class="thumb-video-badge">▶</span>' : "";
-    // Agency rarity series: rank lives in the title — no # pill on browse (wallet keeps real token #s)
-    var tokenPill = isAgencyRaritySeries(item)
-      ? ""
-      : '<span class="token-pill">#' + escapeHtml(itemTokenPillLabel(item)) + "</span>";
+    // Agency series: #1–#5 (token_rank); case files / other cols: real token id
+    var tokenPill =
+      '<span class="token-pill">#' + escapeHtml(itemTokenPillLabel(item)) + "</span>";
     var excerpt = displayExcerpt(item);
     if (!excerpt && fullDataStatus === "loading_full") {
       excerpt = "Story loading from snapshot…";
@@ -4264,9 +4263,12 @@ function openDetail(item) {
     // Attach transfer/sale history from case files when series row lacks activity
     ensureAgencySeriesActivity(item);
     var nFiles = item.case_file_count || (item.case_files && item.case_files.length) || 0;
-    var raritySub = itemRarityLabel(item) || itemTitle(item);
+    var rankN = item.token_rank != null ? item.token_rank : itemTokenPillLabel(item);
+    var raritySub = itemRarityLabel(item) || "";
     $("#detail-token").textContent =
-      raritySub +
+      "Token #" +
+      rankN +
+      (raritySub ? " · " + raritySub : "") +
       (nFiles
         ? " · " + nFiles + " case file" + (nFiles === 1 ? "" : "s")
         : "");

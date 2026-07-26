@@ -468,8 +468,8 @@ def build_rarity_series(edition_items: list[dict]) -> list[dict]:
         ]
 
         slug_key = "1of1" if label == "1:1" else label.lower()
-        # Browse title = rarity name (tag mirrors it; no "Rank N" clutter)
-        display = label
+        # Browse title: collection identity + rarity; token pill shows #1–#5 (token_rank)
+        display = f"daGATO Case File · {label}"
         excerpt = (
             f"daGATO Detective Agency · {file_count} case file"
             f"{'s' if file_count != 1 else ''} · "
