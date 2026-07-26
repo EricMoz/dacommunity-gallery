@@ -500,6 +500,23 @@ def build_rarity_series(edition_items: list[dict]) -> list[dict]:
             activity_rows.sort(key=lambda r: r.get("at") or "", reverse=True)
             activity_rows = activity_rows[:12]
 
+        # First minted for the tier = earliest case-file mint (sort / detail parity)
+        minted_candidates = [
+            m.get("minted_at")
+            for m in members_sorted
+            if m.get("minted_at")
+        ]
+        tier_minted_at = min(minted_candidates) if minted_candidates else None
+        # Fallback: earliest mint-type activity row
+        if not tier_minted_at and activity_rows:
+            mint_acts = [
+                r.get("at")
+                for r in activity_rows
+                if r.get("type") == "mint" and r.get("at")
+            ]
+            if mint_acts:
+                tier_minted_at = min(mint_acts)
+
         owners_payload = {
             "holder_count": len(holders),
             "circulating_copies": total_copies,
@@ -509,47 +526,48 @@ def build_rarity_series(edition_items: list[dict]) -> list[dict]:
         }
         owners_payload = enrich_owner_stats(owners_payload, activity_rows)
 
-        series.append(
-            {
-                "token_id": f"rank-{rank}",
-                "token_rank": rank,
-                "name": display,
-                "display_name": display,
-                "local_slug": f"agency-rarity-{slug_key}",
-                "description": description,
-                "excerpt": excerpt,
-                "image_url": rep.get("image_url"),
-                "opensea_image_url": rep.get("opensea_image_url")
-                or (
-                    rep.get("image_url")
-                    if str(rep.get("image_url") or "").startswith("http")
-                    else None
-                ),
-                "media_type": rep.get("media_type") or "image",
-                "opensea_url": (
-                    f"https://opensea.io/collection/dagato-detective-agency-volume-1"
-                    f"?search[stringTraits][0][name]=Rarity"
-                    f"&search[stringTraits][0][values][0]="
-                    + (
-                        "1%20of%201"
-                        if label == "1:1"
-                        else label
-                    )
-                ),
-                "traits": [{"trait_type": "Rarity", "value": label}],
-                "rarity": label,
-                "listed": any_listed,
-                "listing": best_listing,
-                "owners": owners_payload,
-                "recent_activity": activity_rows,
-                "collection_id": COLLECTION_ID,
-                "is_series_rep": True,
-                "agency_rarity_series": True,
-                "case_file_count": file_count,
-                "case_files": case_files,
-                "member_token_ids": [m.get("token_id") for m in members_sorted],
-            }
-        )
+        series_item: dict = {
+            "token_id": f"rank-{rank}",
+            "token_rank": rank,
+            "name": display,
+            "display_name": display,
+            "local_slug": f"agency-rarity-{slug_key}",
+            "description": description,
+            "excerpt": excerpt,
+            "image_url": rep.get("image_url"),
+            "opensea_image_url": rep.get("opensea_image_url")
+            or (
+                rep.get("image_url")
+                if str(rep.get("image_url") or "").startswith("http")
+                else None
+            ),
+            "media_type": rep.get("media_type") or "image",
+            "opensea_url": (
+                f"https://opensea.io/collection/dagato-detective-agency-volume-1"
+                f"?search[stringTraits][0][name]=Rarity"
+                f"&search[stringTraits][0][values][0]="
+                + (
+                    "1%20of%201"
+                    if label == "1:1"
+                    else label
+                )
+            ),
+            "traits": [{"trait_type": "Rarity", "value": label}],
+            "rarity": label,
+            "listed": any_listed,
+            "listing": best_listing,
+            "owners": owners_payload,
+            "recent_activity": activity_rows,
+            "collection_id": COLLECTION_ID,
+            "is_series_rep": True,
+            "agency_rarity_series": True,
+            "case_file_count": file_count,
+            "case_files": case_files,
+            "member_token_ids": [m.get("token_id") for m in members_sorted],
+        }
+        if tier_minted_at:
+            series_item["minted_at"] = tier_minted_at
+        series.append(series_item)
 
     # Mark editions so the UI can hide them from the light browse grid
     for it in edition_items:
