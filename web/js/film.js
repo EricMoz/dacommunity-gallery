@@ -440,23 +440,31 @@
   }
 
   /**
-   * Theatre deep-link for a catalog video (desktop only). Call only for non-shorts;
-   * Shorts never get theatre.route and are excluded from mainVideos/nav resolution.
+   * Theatre deep-link for a catalog video (desktop only).
+   * Shorts are allowed for silent deep-links / up-next handoff (no advertised CTA on
+   * short cards — createShortCard still opens YouTube externally from the hub rail).
+   * Nav/hero theatre pills still resolve via non-short titles only.
    */
   function theatreHref(video) {
-    if (!video || isShort(video)) return null;
+    if (!video) return null;
     if (!isTheatrePc()) return null;
     if (video.theatre && video.theatre.enabled === false) return null;
     if (video.theatre && video.theatre.route) return video.theatre.route;
     return "theatre/?v=" + encodeURIComponent(video.id);
   }
 
+  /** Theatre href for hub marketing CTAs — never point hero/nav at Shorts. */
+  function theatreHrefForPromo(video) {
+    if (!video || isShort(video)) return null;
+    return theatreHref(video);
+  }
+
   function hasDedicatedTheatreRoute(video) {
-    return !!(video.theatre && video.theatre.route && theatreHref(video));
+    return !!(video.theatre && video.theatre.route && theatreHrefForPromo(video));
   }
 
   function resolveHeroTheatreHref() {
-    const withTheatre = sortVideos(videos.filter((v) => theatreHref(v)));
+    const withTheatre = sortVideos(videos.filter((v) => theatreHrefForPromo(v)));
     const dedicated = withTheatre.find((v) => hasDedicatedTheatreRoute(v));
     if (dedicated) return theatreHref(dedicated);
     return withTheatre.length ? theatreHref(withTheatre[0]) : null;
@@ -1259,7 +1267,8 @@
         modalLinks.parentNode.insertBefore(promo, modalLinks.nextSibling);
       }
     }
-    const theatre = theatreHref(video);
+    // Promo theatre pill only for main catalog films (never advertise on Shorts)
+    const theatre = theatreHrefForPromo(video);
     if (theatre && els.modalTheatre) {
       els.modalTheatre.href = theatre;
       els.modalTheatre.hidden = false;

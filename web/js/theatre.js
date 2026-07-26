@@ -147,10 +147,32 @@
     });
   }
 
+  /** Map catalog series name → filter id (for alsoFilters / multi-category shorts). */
+  function seriesFilterId(seriesName) {
+    var map = {
+      "daCAT Chronicles": "chronicles",
+      "DACAT WORLD": "dacatworld",
+      Podcast: "podcasts",
+      Characters: "characters",
+      Crossovers: "crossovers",
+      Shorts: "shorts",
+    };
+    return map[seriesName] || null;
+  }
+
+  /**
+   * Series queue for up-next: same series, plus videos that opt into this series
+   * via alsoFilters (e.g. daGATO short tagged Characters while living under Shorts).
+   */
   function seriesList(current) {
+    if (!current) return [];
+    var fid = seriesFilterId(current.series);
     return sortVideos(
       videos.filter(function (v) {
-        return v.series === current.series;
+        if (v.series === current.series) return true;
+        var also = v.alsoFilters || v.filterAlso || [];
+        if (fid && Array.isArray(also) && also.indexOf(fid) !== -1) return true;
+        return false;
       })
     );
   }
@@ -275,8 +297,21 @@
         (video.creator || "");
     }
     if (els.ytLink) {
-      els.ytLink.href =
-        "https://www.youtube.com/watch?v=" + video.youtubeId;
+      // Prefer Shorts URL when catalog marks external short-form
+      if (video.externalUrl) {
+        els.ytLink.href = video.externalUrl;
+      } else if (
+        video.openExternal ||
+        video.series === "Shorts" ||
+        video.filterCategory === "shorts"
+      ) {
+        els.ytLink.href =
+          "https://www.youtube.com/shorts/" +
+          encodeURIComponent(video.youtubeId);
+      } else {
+        els.ytLink.href =
+          "https://www.youtube.com/watch?v=" + video.youtubeId;
+      }
     }
     applyTheme(entry, video);
   }
