@@ -4835,4 +4835,13 @@ async function init() {
 
     if (window.location.hash === "#wallet-panel" && !parseWalletFromUrl()) {
       setTimeout(scrollToCollectorHub, 600);
- 
+    }
+  } catch (err) {
+    console.error(err);
+    if (err.message === "FILE_PROTOCOL") return;
+    showFatalError("Could not load gallery data", err.message || String(err), "Run: cd backend && python build_catalog.py");
+  }
+}
+
+// defer script in dacommunity/index.html — DOM is ready when this runs
+init();
