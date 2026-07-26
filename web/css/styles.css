@@ -9836,22 +9836,41 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
     gap: 0.75rem;
   }
 
+  /* Featured: same yellow horizontal scroll rail as Shorts */
   .film-vgrid-featured {
     display: flex;
     flex-wrap: nowrap;
     grid-template-columns: unset;
     overflow-x: auto;
+    overflow-y: hidden;
     gap: 0.75rem;
-    padding-bottom: 0.35rem;
+    padding-bottom: 0.5rem;
     scroll-snap-type: x proximity;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
     scrollbar-width: thin;
+    scrollbar-color: rgba(255, 204, 0, 0.35) transparent;
+  }
+
+  .film-vgrid-featured::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .film-vgrid-featured::-webkit-scrollbar-thumb {
+    background: rgba(255, 204, 0, 0.35);
+    border-radius: 4px;
+  }
+
+  .film-vgrid-featured::-webkit-scrollbar-track {
+    background: transparent;
   }
 
   .film-vgrid-featured .film-vcard {
-    flex: 0 0 min(72vw, 240px);
-    width: auto;
+    flex: 0 0 min(70vw, 220px);
+    width: min(70vw, 220px);
+    max-width: 280px;
     scroll-snap-align: start;
+    box-sizing: border-box;
   }
 
   .film-shorts-track {
