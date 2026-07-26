@@ -298,7 +298,7 @@ function adaptHeaderForCollection() {
     } else if (isAgency) {
       h1.innerHTML = 'daGATO <span class="accent">Detective Agency</span>';
       lead.textContent =
-        "Enter the shadows of Cyber City. Volume 1 case files span distinctive detective identities, cyber-noir environments, and rarity tiers — from Common operatives to legendary 1:1 creations. The city hides the truth. daGATO finds it. Stealth. Style. Supremacy.";
+        "Enter the shadows of Cyber City. Volume 1 case files span distinctive detective identities, cyber-noir environments, and rarity tiers from Common operatives to legendary 1:1 creations. The city hides the truth. daGATO finds it. Stealth. Style. Supremacy.";
     } else {
       h1.innerHTML = originalHeroTitle || h1.innerHTML;
       lead.textContent = originalHeroLead || lead.textContent;
@@ -2716,7 +2716,7 @@ function closeShareModal() {
 }
 
 function shareToSocial(platform, url) {
-  var text = encodeURIComponent("daCAT archive view — filters & collection included");
+  var text = encodeURIComponent("daCAT archive view: filters and collection included");
   var u = encodeURIComponent(url);
   var href = "";
   if (platform === "x") {
@@ -2730,7 +2730,7 @@ function shareToSocial(platform, url) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(url);
     }
-    showCopyToast("Link copied — paste into Instagram story or post");
+    showCopyToast("Link copied. Paste into Instagram story or post");
     closeShareModal();
     return;
   }
@@ -3362,7 +3362,7 @@ function renderHeroNote(collection) {
   } else if (collId === "dagato-agency") {
     html =
       "Cyber-noir detective case files on Ethereum. Stewarded by " +
-      '<strong class="steward-name">dagato.eth</strong>. Complete limited drop — all holders counted.';
+      '<strong class="steward-name">dagato.eth</strong>. Complete limited drop. All holders counted.';
   } else {
     note.hidden = true;
     return;
@@ -4089,12 +4089,45 @@ function formatActivityLine(row) {
   return activityTypeLabel(row.type) + qty;
 }
 
+/** For Agency rarity rows: merge recent_activity from member case files if missing. */
+function ensureAgencySeriesActivity(item) {
+  if (!item || !isAgencyRaritySeries(item)) return item;
+  if (item.recent_activity && item.recent_activity.length) return item;
+  var wantIds = {};
+  (item.member_token_ids || []).forEach(function (id) {
+    wantIds[String(id)] = true;
+  });
+  var rarity = itemRarityLabel(item);
+  var rows = [];
+  ((galleryData && galleryData.items) || []).forEach(function (ed) {
+    if (!ed || isAgencyRaritySeries(ed)) return;
+    if ((ed.collection_id || "") !== "dagato-agency" && !ed.is_edition_token) return;
+    var tid = String(ed.token_id);
+    var match =
+      (Object.keys(wantIds).length && wantIds[tid]) ||
+      (!Object.keys(wantIds).length && rarity && itemRarityLabel(ed) === rarity);
+    if (!match && rarity && itemRarityLabel(ed) === rarity) match = true;
+    if (!match) return;
+    (ed.recent_activity || []).forEach(function (r) {
+      if (r) rows.push(r);
+    });
+  });
+  if (!rows.length) return item;
+  rows = dedupeActivityRows(rows);
+  rows.sort(function (a, b) {
+    return String(b.at || "").localeCompare(String(a.at || ""));
+  });
+  item.recent_activity = rows.slice(0, 12);
+  return item;
+}
+
 function renderDetailActivity(item) {
   var block = $("#detail-activity");
   var list = $("#detail-activity-list");
   var osLink = $("#detail-activity-opensea");
   var countEl = $("#detail-activity-count");
   var previewEl = $("#detail-activity-preview");
+  if (item) ensureAgencySeriesActivity(item);
   var rows = dedupeActivityRows(item.recent_activity || []);
   if (!rows.length) {
     block.hidden = true;
@@ -4228,14 +4261,15 @@ function openDetail(item) {
   fillMediaSlot($("#detail-media-slot"), item, { autoplay: true, controls: true });
   $("#detail-title").innerHTML = formatPieceTitleHtml(itemTitle(item));
   if (isAgencyRaritySeries(item)) {
+    // Attach transfer/sale history from case files when series row lacks activity
+    ensureAgencySeriesActivity(item);
     var nFiles = item.case_file_count || (item.case_files && item.case_files.length) || 0;
+    var raritySub = itemRarityLabel(item) || itemTitle(item);
     $("#detail-token").textContent =
-      "Token rank #" +
-      (item.token_rank != null ? item.token_rank : itemTokenPillLabel(item)) +
-      " of 5 · " +
-      nFiles +
-      " case file" +
-      (nFiles === 1 ? "" : "s");
+      raritySub +
+      (nFiles
+        ? " · " + nFiles + " case file" + (nFiles === 1 ? "" : "s")
+        : "");
   } else {
     $("#detail-token").textContent =
       "Token #" + item.token_id + (item.local_slug ? " · " + item.local_slug : "");

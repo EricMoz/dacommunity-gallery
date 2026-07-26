@@ -468,20 +468,18 @@ def build_rarity_series(edition_items: list[dict]) -> list[dict]:
         ]
 
         slug_key = "1of1" if label == "1:1" else label.lower()
-        # Browse titles: what it is + rank (rarity stays on the tag, not the title)
-        display = f"daGATO Case File · Rank {rank}"
+        # Browse title = rarity name (tag mirrors it; no "Rank N" clutter)
+        display = label
         excerpt = (
-            f"{label} rarity · {file_count} case file{'s' if file_count != 1 else ''} · "
+            f"daGATO Detective Agency · {file_count} case file"
+            f"{'s' if file_count != 1 else ''} · "
             f"{len(holders)} holder{'s' if len(holders) != 1 else ''} · "
-            f"{total_copies} cop{'ies' if total_copies != 1 else 'y'}. "
-            f"Open for the full holder list."
+            f"{total_copies} cop{'ies' if total_copies != 1 else 'y'}"
         )
         description = (
-            f"daGATO Case File · Rank {rank} of 5 ({label} rarity).\n\n"
-            f"{file_count} unique case file{'s' if file_count != 1 else ''} "
-            f"share this rarity across daGATO Detective Agency: Volume 1.\n\n"
-            f"Holders below own any case file of this rarity — quantity is total "
-            f"copies held across those files.\n\n"
+            f"daGATO Detective Agency: Volume 1.\n\n"
+            f"{file_count} case file{'s' if file_count != 1 else ''} at {label} rarity. "
+            f"Open holders and recent transfers below.\n\n"
             f"Case files: "
             + ", ".join(
                 (m.get("display_name") or f"#{m.get('token_id')}")
@@ -489,6 +487,27 @@ def build_rarity_series(edition_items: list[dict]) -> list[dict]:
             )
             + "."
         )
+
+        # Merge mint/transfer/sale history from member case files (same UX as BIG KIX)
+        activity_rows: list[dict] = []
+        for m in members_sorted:
+            for row in m.get("recent_activity") or []:
+                if not isinstance(row, dict):
+                    continue
+                activity_rows.append(dict(row))
+        if activity_rows:
+            activity_rows = dedupe_activity_rows(activity_rows)
+            activity_rows.sort(key=lambda r: r.get("at") or "", reverse=True)
+            activity_rows = activity_rows[:12]
+
+        owners_payload = {
+            "holder_count": len(holders),
+            "circulating_copies": total_copies,
+            "top_holders": holders[:8],
+            "holders": holders,
+            "creator_excluded": False,
+        }
+        owners_payload = enrich_owner_stats(owners_payload, activity_rows)
 
         series.append(
             {
@@ -521,13 +540,8 @@ def build_rarity_series(edition_items: list[dict]) -> list[dict]:
                 "rarity": label,
                 "listed": any_listed,
                 "listing": best_listing,
-                "owners": {
-                    "holder_count": len(holders),
-                    "circulating_copies": total_copies,
-                    "top_holders": holders[:8],
-                    "holders": holders,
-                    "creator_excluded": False,
-                },
+                "owners": owners_payload,
+                "recent_activity": activity_rows,
                 "collection_id": COLLECTION_ID,
                 "is_series_rep": True,
                 "agency_rarity_series": True,

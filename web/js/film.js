@@ -1276,7 +1276,7 @@
     if (shareBtn) {
       shareBtn.onclick = function () {
         var ytUrl = `https://www.youtube.com/watch?v=${video.youtubeId}`;
-        var shareTitle = video.title + " — daCAT Films";
+        var shareTitle = video.title + " · daCAT Films";
         showSocialShareModal(ytUrl, shareTitle);
       };
     }
