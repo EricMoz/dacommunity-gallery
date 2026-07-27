@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-26T19:29:34.095386+00:00",
+  "generated_at": "2026-07-27T11:25:16.949747+00:00",
   "source": "dagato_agency_catalog",
   "collection": {
     "id": "dagato-agency",
@@ -9,7 +9,7 @@
     "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
     "chain": "ethereum",
     "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-1",
-    "note": "Limited cyber-noir detective case files on Ethereum. Stewarded by dagato.eth. Complete collection. all holders counted. Browse shows 5 rarity tiers; collector wallets show each case file.",
+    "note": "Limited cyber-noir detective case files on Ethereum. Stewarded by dagato.eth. Complete collection — all holders counted. Browse shows 5 rarity tiers; collector wallets show each case file.",
     "creator_ens": "dagato.eth",
     "creator_wallet": {
       "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
@@ -24,6 +24,8 @@
     "total_sales": 32,
     "total_volume": 0.16000000000000006,
     "piece_count": 5,
+    "edition_count": 33,
+    "case_file_count": 33,
     "listed_count": 1,
     "rarity_counts": {
       "Common": 11,
@@ -32,9 +34,7 @@
       "Epic": 7,
       "1:1": 1
     },
-    "image_url": "https://i2c.seadn.io/collection/dagato-detective-agency-volume-1/image_type_logo/6dcbf6a0f830a10ef45731c2e11f2b/e96dcbf6a0f830a10ef45731c2e11f2b.png",
-    "edition_count": 33,
-    "case_file_count": 33
+    "image_url": "https://i2c.seadn.io/collection/dagato-detective-agency-volume-1/image_type_logo/6dcbf6a0f830a10ef45731c2e11f2b/e96dcbf6a0f830a10ef45731c2e11f2b.png"
   },
   "items": [
     {
