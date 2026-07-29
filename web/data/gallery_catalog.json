@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-28T10:33:11.694408+00:00",
+  "generated_at": "2026-07-29T10:37:11.848865+00:00",
   "source": "gallery_catalog",
   "collection": {
     "slug": "rodeo-posts-12142",
@@ -18,7 +18,7 @@
     "total_sales": 0,
     "total_volume": 0.0,
     "piece_count": 65,
-    "listed_count": 5
+    "listed_count": 6
   },
   "wallet_index_file": "wallet_index.json",
   "items": [
@@ -268,8 +268,12 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/61",
       "opensea_image_url": null,
-      "listed": false,
-      "listing": null,
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.005,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
       "owners": {
         "holder_count": 9,
         "circulating_copies": 31,

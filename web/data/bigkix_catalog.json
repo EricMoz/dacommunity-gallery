@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-28T10:34:12.038152+00:00",
+  "generated_at": "2026-07-29T10:38:12.217571+00:00",
   "source": "bigkix_catalog",
   "collection": {
     "id": "bigkix",
@@ -256,8 +256,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 9,
-        "circulating_copies": 9,
+        "holder_count": 10,
+        "circulating_copies": 10,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -316,14 +316,18 @@
           {
             "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
             "quantity": 1
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T13:10:11+00:00",
+          "at": "2026-07-28T14:10:23+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
           "quantity": 1
         }
       },
@@ -331,6 +335,13 @@
       "collection_id": "bigkix",
       "opensea_name": "BIG KIX #023 - TARG - Season 1 - First Edition",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-28T14:10:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T13:10:11+00:00",
@@ -409,13 +420,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
           "quantity": 1
-        },
-        {
-          "type": "mint",
-          "at": "2026-07-19T00:00:11+00:00",
-          "from": null,
-          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "quantity": 333
         }
       ]
     },
@@ -438,8 +442,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 9,
-        "circulating_copies": 9,
+        "holder_count": 10,
+        "circulating_copies": 10,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -498,14 +502,18 @@
           {
             "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
             "quantity": 1
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T13:20:23+00:00",
+          "at": "2026-07-28T14:16:59+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
           "quantity": 1
         }
       },
@@ -513,6 +521,13 @@
       "collection_id": "bigkix",
       "opensea_name": "BIG KIX #022 - CELESTE  - Season 1 - First Edition",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-28T14:16:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T13:20:23+00:00",
@@ -604,8 +619,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 9,
-        "circulating_copies": 9,
+        "holder_count": 10,
+        "circulating_copies": 10,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -664,14 +679,18 @@
           {
             "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
             "quantity": 1
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-25T23:03:59+00:00",
-          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "at": "2026-07-28T14:12:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
           "quantity": 1
         }
       },
@@ -679,6 +698,13 @@
       "collection_id": "bigkix",
       "opensea_name": "BIG KIX #021 - CATBOT - Season 1 - First Edition",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-28T14:12:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-25T23:03:59+00:00",
@@ -756,13 +782,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
           "quantity": 1
-        },
-        {
-          "type": "mint",
-          "at": "2026-07-18T21:16:23+00:00",
-          "from": null,
-          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "quantity": 333
         }
       ]
     },
@@ -1349,8 +1368,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 9,
-        "circulating_copies": 10,
+        "holder_count": 10,
+        "circulating_copies": 11,
         "top_holders": [
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
@@ -1409,14 +1428,18 @@
           {
             "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
             "quantity": 1
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-25T22:41:23+00:00",
-          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "at": "2026-07-28T14:14:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
           "quantity": 1
         }
       },
@@ -1424,6 +1447,13 @@
       "collection_id": "bigkix",
       "opensea_name": "BIG KIX #017 - UNCLE SAM - Season 1 - First Edition",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-28T14:14:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-25T22:41:23+00:00",
@@ -1500,13 +1530,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
           "quantity": 1
-        },
-        {
-          "type": "mint",
-          "at": "2026-07-18T03:29:23+00:00",
-          "from": null,
-          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "quantity": 250
         }
       ]
     },
@@ -1529,8 +1552,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 9,
-        "circulating_copies": 9,
+        "holder_count": 10,
+        "circulating_copies": 10,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -1589,14 +1612,18 @@
           {
             "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
             "quantity": 1
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-25T22:25:23+00:00",
-          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "at": "2026-07-28T14:15:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
           "quantity": 1
         }
       },
@@ -1604,6 +1631,13 @@
       "collection_id": "bigkix",
       "opensea_name": "BIG KIX #016 - ABRAHAM LINCOLN - Season 1 - First Edition",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-28T14:15:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-25T22:25:23+00:00",
@@ -1702,8 +1736,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 9,
-        "circulating_copies": 9,
+        "holder_count": 10,
+        "circulating_copies": 10,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -1762,14 +1796,18 @@
           {
             "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
             "quantity": 1
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-25T22:03:35+00:00",
-          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "at": "2026-07-28T14:12:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
           "quantity": 1
         }
       },
@@ -1777,6 +1815,13 @@
       "collection_id": "bigkix",
       "opensea_name": "BIG KIX #015 - GEORGE WASHINGTON - Season 1 - First Edition",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-28T14:12:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-25T22:03:35+00:00",
@@ -1875,8 +1920,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 9,
-        "circulating_copies": 10,
+        "holder_count": 10,
+        "circulating_copies": 11,
         "top_holders": [
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
@@ -1935,14 +1980,18 @@
           {
             "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
             "quantity": 1
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-25T22:41:47+00:00",
-          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "at": "2026-07-28T14:09:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
           "quantity": 1
         }
       },
@@ -1950,6 +1999,13 @@
       "collection_id": "bigkix",
       "opensea_name": "BIG KIX #014 - EAGLE 250 - Season 1 - First Edition",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-28T14:09:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-25T22:41:47+00:00",
@@ -2026,13 +2082,6 @@
           "at": "2026-07-20T23:54:59+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-17T12:39:11+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
           "quantity": 1
         }
       ]
@@ -2241,8 +2290,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 10,
-        "circulating_copies": 10,
+        "holder_count": 11,
+        "circulating_copies": 11,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -2305,14 +2354,18 @@
           {
             "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
             "quantity": 1
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T13:24:11+00:00",
+          "at": "2026-07-28T14:17:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
           "quantity": 1
         }
       },
@@ -2320,6 +2373,13 @@
       "collection_id": "bigkix",
       "opensea_name": "BIG KIX #012 - RUSSELL COREY - Season 1 - First Edition",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-28T14:17:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T13:24:11+00:00",
@@ -2397,13 +2457,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
           "quantity": 1
-        },
-        {
-          "type": "mint",
-          "at": "2026-07-17T02:19:47+00:00",
-          "from": null,
-          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "quantity": 333
         }
       ]
     },
@@ -2426,8 +2479,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 11,
-        "circulating_copies": 11,
+        "holder_count": 12,
+        "circulating_copies": 12,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -2492,6 +2545,10 @@
             "quantity": 1
           },
           {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
+          },
+          {
             "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
             "quantity": 1
           }
@@ -2499,9 +2556,9 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-25T22:25:59+00:00",
-          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "at": "2026-07-28T14:14:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
           "quantity": 1
         }
       },
@@ -2509,6 +2566,13 @@
       "collection_id": "bigkix",
       "opensea_name": "BIG KIX #011 - COLLECTOR CAT - Season 1 - First Edition",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-28T14:14:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-25T22:25:59+00:00",
@@ -2585,13 +2649,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-16T09:19:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-          "quantity": 1
         }
       ]
     },
@@ -2614,8 +2671,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 10,
-        "circulating_copies": 10,
+        "holder_count": 11,
+        "circulating_copies": 11,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -2678,14 +2735,18 @@
           {
             "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
             "quantity": 1
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-25T22:24:23+00:00",
-          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "at": "2026-07-28T14:12:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
           "quantity": 1
         }
       },
@@ -2693,6 +2754,13 @@
       "collection_id": "bigkix",
       "opensea_name": "BIG KIX #010 - KIXIE - Season 1 - First Edition",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-28T14:12:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-25T22:24:23+00:00",
@@ -2769,13 +2837,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
           "quantity": 1
-        },
-        {
-          "type": "mint",
-          "at": "2026-07-14T02:13:11+00:00",
-          "from": null,
-          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "quantity": 333
         }
       ]
     },
@@ -2798,8 +2859,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 10,
-        "circulating_copies": 10,
+        "holder_count": 11,
+        "circulating_copies": 11,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -2862,14 +2923,18 @@
           {
             "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
             "quantity": 1
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-25T22:49:35+00:00",
-          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "at": "2026-07-28T14:13:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
           "quantity": 1
         }
       },
@@ -2877,6 +2942,13 @@
       "collection_id": "bigkix",
       "opensea_name": "BIG KIX #009 - SAL - Season 1 - First Edition",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-28T14:13:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-25T22:49:35+00:00",
@@ -2953,13 +3025,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
           "quantity": 1
-        },
-        {
-          "type": "mint",
-          "at": "2026-07-13T06:04:59+00:00",
-          "from": null,
-          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "quantity": 333
         }
       ]
     },
@@ -2982,8 +3047,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 10,
-        "circulating_copies": 10,
+        "holder_count": 11,
+        "circulating_copies": 11,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -3046,14 +3111,18 @@
           {
             "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
             "quantity": 1
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-26T00:31:59+00:00",
-          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "at": "2026-07-28T14:11:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
           "quantity": 1
         }
       },
@@ -3061,6 +3130,13 @@
       "collection_id": "bigkix",
       "opensea_name": "BIG KIX #008 - DINO - Season 1 - First Edition",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-28T14:11:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-26T00:31:59+00:00",
@@ -3138,13 +3214,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-13T06:35:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-          "quantity": 1
         }
       ]
     },
@@ -3167,8 +3236,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 10,
-        "circulating_copies": 10,
+        "holder_count": 11,
+        "circulating_copies": 11,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -3231,14 +3300,18 @@
           {
             "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
             "quantity": 1
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T13:26:11+00:00",
+          "at": "2026-07-28T14:10:59+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
           "quantity": 1
         }
       },
@@ -3246,6 +3319,13 @@
       "collection_id": "bigkix",
       "opensea_name": "BIG KIX #007 - COYLE - Season 1 - First Edition",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-28T14:10:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T13:26:11+00:00",
@@ -3344,8 +3424,8 @@
         "total_eth": 0.03
       },
       "owners": {
-        "holder_count": 10,
-        "circulating_copies": 10,
+        "holder_count": 11,
+        "circulating_copies": 11,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -3408,14 +3488,18 @@
           {
             "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
             "quantity": 1
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-21T13:28:47+00:00",
+          "at": "2026-07-28T14:15:23+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
           "quantity": 1
         }
       },
@@ -3423,6 +3507,13 @@
       "collection_id": "bigkix",
       "opensea_name": "BIG KIX #006 - SNAP - Season 1 - First Edition",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-07-28T14:15:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-21T13:28:47+00:00",
