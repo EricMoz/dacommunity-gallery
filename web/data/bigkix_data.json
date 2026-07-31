@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-30T10:23:10.784907+00:00",
+  "generated_at": "2026-07-31T10:36:49.281239+00:00",
   "source": "opensea_api_v2",
   "collection": {
     "id": "bigkix",
@@ -18,7 +18,7 @@
     },
     "creator_excluded_from_stats": true,
     "contract_name": "BIG KIX",
-    "floor_eth": 0.001,
+    "floor_eth": 1e-08,
     "floor_symbol": "ETH",
     "num_owners": 19,
     "total_sales": 6,
@@ -38,7 +38,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/24",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/24",
-      "updated_at": "2026-07-30T10:22:16.838297",
+      "updated_at": "2026-07-31T10:35:55.318727",
       "traits": [
         {
           "trait_type": "Role",
@@ -85,11 +85,11 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.0011538461538461537,
+        "amount_eth": 1e-06,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 26,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-05
       },
       "owners": {
         "holder_count": 16,
@@ -294,7 +294,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/23",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/23",
-      "updated_at": "2026-07-30T10:22:16.838315",
+      "updated_at": "2026-07-31T10:35:55.318742",
       "traits": [
         {
           "trait_type": "Set",
@@ -359,11 +359,11 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.0010714285714285715,
+        "amount_eth": 1.0000000000000001e-07,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 28,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-06
       },
       "owners": {
         "holder_count": 10,
@@ -544,7 +544,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/22",
       "metadata_url": "ipfs://Qmdkw9oKwcQqLhpJFBCbQ85jv1ceUdjA1UWqc9ShESVbVs/22",
-      "updated_at": "2026-07-30T10:22:16.838323",
+      "updated_at": "2026-07-31T10:35:55.318751",
       "traits": [
         {
           "trait_type": "Set",
@@ -609,11 +609,11 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.001,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 30,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 10,
@@ -785,7 +785,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/21",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/21",
-      "updated_at": "2026-07-30T10:22:16.838332",
+      "updated_at": "2026-07-31T10:35:55.318760",
       "traits": [
         {
           "trait_type": "Set",
@@ -850,11 +850,11 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.0010344827586206897,
+        "amount_eth": 1e-06,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 29,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-05
       },
       "owners": {
         "holder_count": 10,
@@ -1034,7 +1034,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/20",
       "metadata_url": "ipfs://QmXRGA9mMSNJfQCLa9v8NqAz8X6EoDqBhDePugjJE7XKV3/20",
-      "updated_at": "2026-07-30T10:22:16.838341",
+      "updated_at": "2026-07-31T10:35:55.318769",
       "traits": [
         {
           "trait_type": "Set",
@@ -1099,11 +1099,11 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.001,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 30,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 10,
@@ -1282,7 +1282,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/19",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/19",
-      "updated_at": "2026-07-30T10:22:16.838351",
+      "updated_at": "2026-07-31T10:35:55.318778",
       "traits": [
         {
           "trait_type": "Role",
@@ -1341,11 +1341,11 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.0010344827586206897,
+        "amount_eth": 1.0000000000000001e-07,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 29,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-06
       },
       "owners": {
         "holder_count": 11,
@@ -1529,7 +1529,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/18",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/18",
-      "updated_at": "2026-07-30T10:22:16.838360",
+      "updated_at": "2026-07-31T10:35:55.318786",
       "traits": [
         {
           "trait_type": "Role",
@@ -1582,11 +1582,11 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.0012,
+        "amount_eth": 1.0000000000000001e-07,
         "currency": "ETH",
         "status": "ACTIVE",
         "quantity": 25,
-        "total_eth": 0.03
+        "total_eth": 2.5e-06
       },
       "owners": {
         "holder_count": 11,
@@ -1772,7 +1772,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/17",
       "metadata_url": "ipfs://QmUZoy2QY5fxvsbWoBb9cg5qBeoXLoSr42NkgirbnVeRHp/17",
-      "updated_at": "2026-07-30T10:22:16.838368",
+      "updated_at": "2026-07-31T10:35:55.318794",
       "traits": [
         {
           "trait_type": "Type",
@@ -1831,11 +1831,11 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.001,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 30,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 10,
@@ -2014,7 +2014,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/16",
       "metadata_url": "ipfs://QmWg4CchemsxQjfdWGAqZWa98db3FS6PbLNPNKtTsMk8sx/16",
-      "updated_at": "2026-07-30T10:22:16.838377",
+      "updated_at": "2026-07-31T10:35:55.318803",
       "traits": [
         {
           "trait_type": "Role",
@@ -2073,11 +2073,11 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.001,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 30,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 10,
@@ -2256,7 +2256,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/15",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/15",
-      "updated_at": "2026-07-30T10:22:16.838386",
+      "updated_at": "2026-07-31T10:35:55.318811",
       "traits": [
         {
           "trait_type": "Role",
@@ -2321,11 +2321,11 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.001,
+        "amount_eth": 1e-06,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 30,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-05
       },
       "owners": {
         "holder_count": 10,
@@ -2504,7 +2504,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/14",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/14",
-      "updated_at": "2026-07-30T10:22:16.838394",
+      "updated_at": "2026-07-31T10:35:55.318819",
       "traits": [
         {
           "trait_type": "Type",
@@ -2563,11 +2563,11 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.0010344827586206897,
+        "amount_eth": 2.0000000000000002e-07,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 29,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 5e-06
       },
       "owners": {
         "holder_count": 10,
@@ -2747,7 +2747,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/13",
       "metadata_url": "ipfs://Qmdf5SD5cic5SkcU5HpPxTNUbbwQYXvgq6YRfaC1rFuaa4/13",
-      "updated_at": "2026-07-30T10:22:16.838403",
+      "updated_at": "2026-07-31T10:35:55.318828",
       "traits": [
         {
           "trait_type": "Year",
@@ -2800,11 +2800,11 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.0011111111111111111,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 9,
-        "total_eth": 0.01
+        "quantity": 10,
+        "total_eth": 1e-07
       },
       "owners": {
         "holder_count": 10,
@@ -2984,7 +2984,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/12",
       "metadata_url": "ipfs://Qmd5P27njQDcHhyTwaGqbxFRSAEgp5obvugRz9hiSXnW3y/12",
-      "updated_at": "2026-07-30T10:22:16.838411",
+      "updated_at": "2026-07-31T10:35:55.318836",
       "traits": [
         {
           "trait_type": "Season",
@@ -3019,11 +3019,11 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.0010344827586206897,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 29,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 11,
@@ -3207,7 +3207,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/11",
       "metadata_url": "ipfs://QmUZoy2QY5fxvsbWoBb9cg5qBeoXLoSr42NkgirbnVeRHp/11",
-      "updated_at": "2026-07-30T10:22:16.838419",
+      "updated_at": "2026-07-31T10:35:55.318844",
       "traits": [
         {
           "trait_type": "Role",
@@ -3260,11 +3260,11 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.001,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 30,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 12,
@@ -3451,7 +3451,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/10",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/10",
-      "updated_at": "2026-07-30T10:22:16.838426",
+      "updated_at": "2026-07-31T10:35:55.318851",
       "traits": [
         {
           "trait_type": "Role",
@@ -3510,11 +3510,11 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.001,
+        "amount_eth": 1e-06,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 30,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-05
       },
       "owners": {
         "holder_count": 11,
@@ -3697,7 +3697,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/9",
       "metadata_url": "ipfs://Qmdkw9oKwcQqLhpJFBCbQ85jv1ceUdjA1UWqc9ShESVbVs/9",
-      "updated_at": "2026-07-30T10:22:16.838434",
+      "updated_at": "2026-07-31T10:35:55.318863",
       "traits": [
         {
           "trait_type": "Role",
@@ -3756,11 +3756,11 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.001,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 30,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 11,
@@ -3943,7 +3943,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/8",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/8",
-      "updated_at": "2026-07-30T10:22:16.838442",
+      "updated_at": "2026-07-31T10:35:55.318869",
       "traits": [
         {
           "trait_type": "Role",
@@ -4002,11 +4002,11 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.0010344827586206897,
+        "amount_eth": 1e-06,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 29,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-05
       },
       "owners": {
         "holder_count": 11,
@@ -4190,7 +4190,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/7",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/7",
-      "updated_at": "2026-07-30T10:22:16.838450",
+      "updated_at": "2026-07-31T10:35:55.318876",
       "traits": [
         {
           "trait_type": "Role",
@@ -4249,11 +4249,9 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.001,
+        "amount_eth": 1e-06,
         "currency": "ETH",
-        "status": "ACTIVE",
-        "quantity": 30,
-        "total_eth": 0.03
+        "status": "ACTIVE"
       },
       "owners": {
         "holder_count": 11,
@@ -4436,7 +4434,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/6",
       "metadata_url": "ipfs://Qmdf5SD5cic5SkcU5HpPxTNUbbwQYXvgq6YRfaC1rFuaa4/6",
-      "updated_at": "2026-07-30T10:22:16.838459",
+      "updated_at": "2026-07-31T10:35:55.318882",
       "traits": [
         {
           "trait_type": "Role",
@@ -4495,11 +4493,11 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.001,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 30,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 11,
@@ -4682,7 +4680,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/5",
       "metadata_url": "ipfs://QmUMTrcNYnNMsNeuKFc9bmn5ZbUnm85UwyHrRT9bvoo69m/5",
-      "updated_at": "2026-07-30T10:22:16.838468",
+      "updated_at": "2026-07-31T10:35:55.318888",
       "traits": [
         {
           "trait_type": "Date",
@@ -4753,11 +4751,11 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.001,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 30,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 12,
@@ -4944,7 +4942,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/4",
       "metadata_url": "ipfs://QmWbio5gpWd9XjmGQB4DtD3WGqyQcqfXDHcsa4yDDWFtre/4",
-      "updated_at": "2026-07-30T10:22:16.838477",
+      "updated_at": "2026-07-31T10:35:55.318894",
       "traits": [
         {
           "trait_type": "Date",
@@ -5009,11 +5007,11 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.0010344827586206897,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 29,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 12,
@@ -5201,7 +5199,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/3",
       "metadata_url": "ipfs://QmQHmpqgHNp23HBUhsWufY4YBSeF4j7C1ZyPpNB2aAcXP6/3",
-      "updated_at": "2026-07-30T10:22:16.838484",
+      "updated_at": "2026-07-31T10:35:55.318901",
       "traits": [
         {
           "trait_type": "Date",
@@ -5266,11 +5264,11 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.0010344827586206897,
+        "amount_eth": 1e-06,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 29,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-05
       },
       "owners": {
         "holder_count": 12,
@@ -5458,7 +5456,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/2",
       "metadata_url": "ipfs://QmXRGA9mMSNJfQCLa9v8NqAz8X6EoDqBhDePugjJE7XKV3/2",
-      "updated_at": "2026-07-30T10:22:16.838492",
+      "updated_at": "2026-07-31T10:35:55.318906",
       "traits": [
         {
           "trait_type": "Date",
@@ -5523,11 +5521,11 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.0012,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
         "quantity": 25,
-        "total_eth": 0.03
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 18,
@@ -5741,7 +5739,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/1",
       "metadata_url": "ipfs://QmcTHRLb6hYdxZCayHgmWdJy4RcDgutPRvmoP81jBT4kKG/1",
-      "updated_at": "2026-07-30T10:22:16.838500",
+      "updated_at": "2026-07-31T10:35:55.318912",
       "traits": [
         {
           "trait_type": "Role",
@@ -5806,11 +5804,11 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 0.0011538461538461537,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 26,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 18,

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-30T10:23:10.784907+00:00",
+  "generated_at": "2026-07-31T10:36:49.281239+00:00",
   "source": "bigkix_catalog",
   "collection": {
     "id": "bigkix",
@@ -18,7 +18,7 @@
     },
     "creator_excluded_from_stats": true,
     "contract_name": "BIG KIX",
-    "floor_eth": 0.001,
+    "floor_eth": 1e-08,
     "floor_symbol": "ETH",
     "num_owners": 19,
     "total_sales": 6,
@@ -39,11 +39,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/76626cb7ae5b1ee71d57f34d8f0219/a376626cb7ae5b1ee71d57f34d8f0219.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.0011538461538461537,
+        "amount_eth": 1e-06,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 26,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-05
       },
       "owners": {
         "holder_count": 16,
@@ -249,11 +249,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/b14e5d2e54fafe1e4d883a1a306cf0/d4b14e5d2e54fafe1e4d883a1a306cf0.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.0010714285714285715,
+        "amount_eth": 1.0000000000000001e-07,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 28,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-06
       },
       "owners": {
         "holder_count": 10,
@@ -435,11 +435,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/3ee4e09b5fdad25c369bdb6d76d38c/363ee4e09b5fdad25c369bdb6d76d38c.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.001,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 30,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 10,
@@ -612,11 +612,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/726497d3282552c528c955e304bf2c/54726497d3282552c528c955e304bf2c.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.0010344827586206897,
+        "amount_eth": 1e-06,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 29,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-05
       },
       "owners": {
         "holder_count": 10,
@@ -797,11 +797,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/289db9554eb345146d6d1771290f26/57289db9554eb345146d6d1771290f26.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.001,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 30,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 10,
@@ -981,11 +981,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/d47b2e6bb0944f2c3e385329091a4f/3cd47b2e6bb0944f2c3e385329091a4f.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.0010344827586206897,
+        "amount_eth": 1.0000000000000001e-07,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 29,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-06
       },
       "owners": {
         "holder_count": 11,
@@ -1170,11 +1170,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/964115619d8f28244ea78fd690fcaa/a4964115619d8f28244ea78fd690fcaa.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.0012,
+        "amount_eth": 1.0000000000000001e-07,
         "currency": "ETH",
         "status": "ACTIVE",
         "quantity": 25,
-        "total_eth": 0.03
+        "total_eth": 2.5e-06
       },
       "owners": {
         "holder_count": 11,
@@ -1361,11 +1361,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/9cae0ab533e32eb9f33f54240905fc/129cae0ab533e32eb9f33f54240905fc.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.001,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 30,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 10,
@@ -1545,11 +1545,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/7fdf5a21c6e70a1349ac91ef2562dc/f57fdf5a21c6e70a1349ac91ef2562dc.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.001,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 30,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 10,
@@ -1729,11 +1729,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/38a9567a250ccbb2e1b7f3beb15082/bd38a9567a250ccbb2e1b7f3beb15082.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.001,
+        "amount_eth": 1e-06,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 30,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-05
       },
       "owners": {
         "holder_count": 10,
@@ -1913,11 +1913,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/5487ea08245a8bc3f1cd2b6876cf44/d55487ea08245a8bc3f1cd2b6876cf44.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.0010344827586206897,
+        "amount_eth": 2.0000000000000002e-07,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 29,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 5e-06
       },
       "owners": {
         "holder_count": 10,
@@ -2098,11 +2098,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/bf5cd0946f707a8debdc5be7c28b12/3bbf5cd0946f707a8debdc5be7c28b12.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.0011111111111111111,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 9,
-        "total_eth": 0.01
+        "quantity": 10,
+        "total_eth": 1e-07
       },
       "owners": {
         "holder_count": 10,
@@ -2283,11 +2283,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/7673e1eb35e6651e5928dadb97b438/b77673e1eb35e6651e5928dadb97b438.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.0010344827586206897,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 29,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 11,
@@ -2472,11 +2472,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/6830deb08f473d7d5d5d46c14a1b8a/2f6830deb08f473d7d5d5d46c14a1b8a.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.001,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 30,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 12,
@@ -2664,11 +2664,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/ab2f04b8f209f7d802f5116c0f502b/98ab2f04b8f209f7d802f5116c0f502b.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.001,
+        "amount_eth": 1e-06,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 30,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-05
       },
       "owners": {
         "holder_count": 11,
@@ -2852,11 +2852,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/838ac7cc3dae2952750a36b30c2aa8/9a838ac7cc3dae2952750a36b30c2aa8.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.001,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 30,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 11,
@@ -3040,11 +3040,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/a65f891bd0035d18dab6b44c62209b/a0a65f891bd0035d18dab6b44c62209b.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.0010344827586206897,
+        "amount_eth": 1e-06,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 29,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-05
       },
       "owners": {
         "holder_count": 11,
@@ -3229,11 +3229,9 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/156c534a5a9ddd409d55762bf59e1d/d4156c534a5a9ddd409d55762bf59e1d.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.001,
+        "amount_eth": 1e-06,
         "currency": "ETH",
-        "status": "ACTIVE",
-        "quantity": 30,
-        "total_eth": 0.03
+        "status": "ACTIVE"
       },
       "owners": {
         "holder_count": 11,
@@ -3417,11 +3415,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/daaa7b378aface9a6dc14e767fe624/99daaa7b378aface9a6dc14e767fe624.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.001,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 30,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 11,
@@ -3605,11 +3603,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/9c34b975422e5e860557ca995b2f9c/f19c34b975422e5e860557ca995b2f9c.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.001,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 30,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 12,
@@ -3797,11 +3795,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/52d3ee8d9d3e0d44680088015dfb60/3852d3ee8d9d3e0d44680088015dfb60.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.0010344827586206897,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 29,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 12,
@@ -3990,11 +3988,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/ddd96bb2ec1f2b9c482dc655986076/abddd96bb2ec1f2b9c482dc655986076.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.0010344827586206897,
+        "amount_eth": 1e-06,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 29,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-05
       },
       "owners": {
         "holder_count": 12,
@@ -4183,11 +4181,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/d781c610ade14296fd4e7b368acfd8/5fd781c610ade14296fd4e7b368acfd8.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.0012,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
         "quantity": 25,
-        "total_eth": 0.03
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 18,
@@ -4402,11 +4400,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/b400f5b08036b248a8066cda5bfd86/53b400f5b08036b248a8066cda5bfd86.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.0011538461538461537,
+        "amount_eth": 1e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 26,
-        "total_eth": 0.03
+        "quantity": 25,
+        "total_eth": 2.5e-07
       },
       "owners": {
         "holder_count": 18,
