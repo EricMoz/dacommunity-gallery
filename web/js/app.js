@@ -2558,20 +2558,28 @@ function renderTopCollectors() {
     }
   }
   var top = collectorsList.slice(0, 8);
+  var rankByCopies = activeCollection === "bigkix";
   track.innerHTML = top
     .map(function (c) {
       var label = c.ens_name || c.username || shortenAddress(c.address);
       var uq = Number(c.unique_pieces) || 0;
       var cq = Number(c.collection_quantity) || uq;
-      // Show unique · copies when multi-qty (BIG KIX editions, multi-file wallets)
-      var meta = cq > uq ? uq + "·" + cq : String(uq);
+      // BIG KIX ranks by copies held; other collections show unique (and copies if multi)
+      var meta = rankByCopies
+        ? String(cq)
+        : cq > uq
+          ? uq + "·" + cq
+          : String(uq);
+      var title = rankByCopies
+        ? cq + " cop" + (cq === 1 ? "y" : "ies") + " held"
+        : uq + " unique · " + cq + " copies held";
       return (
         '<button type="button" class="top-collector-pill" data-address="' +
         escapeHtml(c.address) +
         '" data-lookup="' +
         escapeHtml(c.ens_name || c.address) +
         '" title="' +
-        escapeHtml(uq + " unique · " + cq + " copies held") +
+        escapeHtml(title) +
         '">' +
         escapeHtml(label) +
         '<span class="meta">' +
@@ -3319,13 +3327,15 @@ function renderCollectors(filter) {
       );
     });
   }
+  var rankByCopies = activeCollection === "bigkix";
   list.innerHTML = rows
     .map(function (c) {
       var label = c.ens_name || c.username || shortenAddress(c.address);
       var uq = Number(c.unique_pieces) || 0;
       var cq = Number(c.collection_quantity) || uq;
-      var countLabel =
-        cq > uq
+      var countLabel = rankByCopies
+        ? cq + " cop" + (cq === 1 ? "y" : "ies")
+        : cq > uq
           ? uq + " unique · " + cq + " copies"
           : uq + " piece" + (uq === 1 ? "" : "s");
       return (
