@@ -826,13 +826,41 @@ function enrichHoldersAndCollectorsWithENS() {
   });
 }
 
+/** Creator / steward addresses excluded from collector rankings (BIG KIX etc.). */
+function excludedCollectorAddresses(items) {
+  var out = {};
+  var col =
+    (galleryData && galleryData.collection) ||
+    (items && items[0] && null) ||
+    null;
+  // Prefer active gallery collection meta
+  if (galleryData && galleryData.collection) col = galleryData.collection;
+  if (col && col.creator_excluded_from_stats) {
+    var cw = col.creator_wallet || {};
+    if (cw.address) out[String(cw.address).toLowerCase()] = true;
+  }
+  // Known BIG KIX steward (matches backend fetch_bigkix CREATOR_ADDRESS)
+  if (
+    (col && (col.id === "bigkix" || col.slug === "bigkix")) ||
+    activeCollection === "bigkix"
+  ) {
+    out["0xa6d5c9602a49afddff9873cf51db2991dec2c9ee"] = true;
+  }
+  return out;
+}
+
 /**
  * Build collectors list from currently loaded gallery items.
  * Uses the same per-item ownership rules as buildHoldingsFromCurrentItems so the
  * collectors-modal "N pieces" count matches the collector wallet view when both
  * daCommunity + badges are loaded ("All collections").
+ *
+ * opts.rankByCopies — rank by total quantity held (BIG KIX multi-copy editions).
  */
-function buildCollectorsFromLoadedItems(items) {
+function buildCollectorsFromLoadedItems(items, opts) {
+  opts = opts || {};
+  var rankByCopies = opts.rankByCopies === true;
+  var exclude = excludedCollectorAddresses(items);
   var byAddr = {};
   (items || []).forEach(function (item) {
     // Match buildHoldingsFromCurrentItems: multi 1:1 series_rep is search-only
@@ -851,7 +879,7 @@ function buildCollectorsFromLoadedItems(items) {
     var itemKey = getItemKey(item);
     list.forEach(function (h) {
       var a = (h.address || "").toLowerCase();
-      if (!a) return;
+      if (!a || exclude[a]) return;
       if (!byAddr[a]) {
         byAddr[a] = {
           address: h.address || a,
@@ -881,7 +909,16 @@ function buildCollectorsFromLoadedItems(items) {
     delete byAddr[a]._keys;
   });
   return Object.values(byAddr).sort(function (a, b) {
-    return (b.unique_pieces || b.collection_quantity || 0) - (a.unique_pieces || a.collection_quantity || 0);
+    if (rankByCopies) {
+      var qa = Number(a.collection_quantity) || 0;
+      var qb = Number(b.collection_quantity) || 0;
+      if (qb !== qa) return qb - qa;
+      return (Number(b.unique_pieces) || 0) - (Number(a.unique_pieces) || 0);
+    }
+    var ua = Number(a.unique_pieces) || 0;
+    var ub = Number(b.unique_pieces) || 0;
+    if (ub !== ua) return ub - ua;
+    return (Number(b.collection_quantity) || 0) - (Number(a.collection_quantity) || 0);
   });
 }
 
@@ -909,6 +946,9 @@ function rebuildCollectorsForCurrentView() {
     // (badges only). BIG KIX and similar collections must use loaded-item owners.
     if (activeCollection === "badges") {
       collectorsList = buildCollectorsFromBadgeItems(items);
+    } else if (activeCollection === "bigkix") {
+      // BIG KIX: rank by total copies held (not unique designs)
+      collectorsList = buildCollectorsFromLoadedItems(items, { rankByCopies: true });
     } else {
       collectorsList = buildCollectorsFromLoadedItems(items);
     }
@@ -2267,6 +2307,10 @@ function seedRankingCacheFromGalleryData() {
   Object.keys(byCol).forEach(function (cid) {
     if (cid === "badges") {
       collectionRankingCache[cid] = buildCollectorsFromBadgeItems(byCol[cid]);
+    } else if (cid === "bigkix") {
+      collectionRankingCache[cid] = buildCollectorsFromLoadedItems(byCol[cid], {
+        rankByCopies: true,
+      });
     } else {
       collectionRankingCache[cid] = buildCollectorsFromLoadedItems(byCol[cid]);
     }
@@ -2345,6 +2389,10 @@ async function ensureAllCollectionRankingCaches() {
       });
       if (col.id === "badges") {
         collectionRankingCache[col.id] = buildCollectorsFromBadgeItems(data.items);
+      } else if (col.id === "bigkix") {
+        collectionRankingCache[col.id] = buildCollectorsFromLoadedItems(data.items, {
+          rankByCopies: true,
+        });
       } else {
         collectionRankingCache[col.id] = buildCollectorsFromLoadedItems(data.items);
       }
@@ -2374,6 +2422,9 @@ function getCollectorsRankingList(colId) {
     });
   }
   if (colId === "badges") return buildCollectorsFromBadgeItems(items);
+  if (colId === "bigkix") {
+    return buildCollectorsFromLoadedItems(items, { rankByCopies: true });
+  }
   return buildCollectorsFromLoadedItems(items);
 }
 
