@@ -73,7 +73,7 @@ CSS maps `surface` to body classes (e.g. `badges-page` ↔ `cosmic_soon`). Futur
 
 | Collection | Route | Experience |
 |------------|-------|------------|
-| daCommunity | `/dacommunity/` | `app.js` + `gallery_*.json` |
+| daCommunity | `/dacommunity/` | `app.js` + `gallery_*.json` (OpenSea slug `dacommunity-archive`, contract on Base) |
 | BIG KIX | `/dacommunity/?collection=bigkix` | `app.js` + `bigkix_*.json` (Ethereum, single-slug fetch) |
 | daGATO Detective Agency | `/dacommunity/?collection=dagato-agency` | `app.js` + `dagato_agency_*.json` (Ethereum, rarity tags) |
 | Badges | `/dacommunity/?collection=badges` | `app.js` + `badges_*.json` |

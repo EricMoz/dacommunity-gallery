@@ -211,6 +211,21 @@ After deploy (~1–2 min):
 
 Registry-driven collections (`web/data/collections_registry.json`) — see **`docs/COLLECTIONS.md`** for adding live drops, per-community themes, and feature flags. Hub cards are still manual until a registry-driven hub ships.
 
+### OpenSea collection slug (daCommunity archive)
+
+Primary Base archive slug is **`dacommunity-archive`** (was `rodeo-posts-12142`). Contract  
+`0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1` is unchanged.
+
+| What | Depends on slug? |
+|------|------------------|
+| Daily fetch / listings / events / stats | **Yes** — registry `opensea_slug` + CI key probe |
+| Collection page link on OpenSea | **Yes** — `collection.opensea_url` |
+| NFT images (`i2c.seadn.io/base/0x64c…`) | **No** — contract + asset hash |
+| Per-token OpenSea links (`/assets/base/0x64c…/id`) | **No** — chain + contract + token id |
+
+If the slug changes again: update `collections_registry.json`, `backend/config.py` fallbacks,  
+`.github/workflows/refresh-data.yml` stats probe, and re-fetch so `gallery_*` collection meta matches.
+
 Film **Theatre mode** (`web/data/theatre_registry.json`, `theatre.js`) — see **`docs/THEATRE.md`**. Desktop-only; YT API player. **Lights-down layout:** compact up-next chip bottom-left (`max-width: 15.5rem`), Lights up pill top-right — must not overlap (see THEATRE.md chrome table). No full-page overlay on the player.
 
 ---

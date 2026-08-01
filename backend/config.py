@@ -11,11 +11,11 @@ try:
     from collections_registry import get_primary_live
 
     _PRIMARY = get_primary_live()
-    COLLECTION_SLUG = _PRIMARY.get("opensea_slug") or "rodeo-posts-12142"
+    COLLECTION_SLUG = _PRIMARY.get("opensea_slug") or "dacommunity-archive"
     CONTRACT_ADDRESS = _PRIMARY.get("contract") or "0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1"
     CHAIN = _PRIMARY.get("chain") or "base"
 except Exception:
-    COLLECTION_SLUG = "rodeo-posts-12142"
+    COLLECTION_SLUG = "dacommunity-archive"
     CONTRACT_ADDRESS = "0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1"
     CHAIN = "base"
 
