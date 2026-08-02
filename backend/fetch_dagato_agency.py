@@ -516,15 +516,19 @@ def build_rarity_series(edition_items: list[dict]) -> list[dict]:
             f"{len(holders)} holder{'s' if len(holders) != 1 else ''} · "
             f"{total_copies} cop{'ies' if total_copies != 1 else 'y'}"
         )
+        def _case_file_id_label(m: dict) -> str:
+            tid = m.get("token_id")
+            try:
+                return f"#{str(int(tid)).zfill(2)}"
+            except (TypeError, ValueError):
+                return f"#{tid}" if tid is not None else "#?"
+
         description = (
             f"daGATO Detective Agency: Volume {VOLUME}.\n\n"
             f"{file_count} case file{'s' if file_count != 1 else ''} at {label} rarity. "
             f"Open holders and recent transfers below.\n\n"
             f"Case files: "
-            + ", ".join(
-                (m.get("display_name") or f"#{m.get('token_id')}")
-                for m in members_sorted
-            )
+            + ", ".join(_case_file_id_label(m) for m in members_sorted)
             + "."
         )
 
