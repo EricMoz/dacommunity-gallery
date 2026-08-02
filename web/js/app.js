@@ -692,17 +692,83 @@ function buildCollectorsFromIndex(idx) {
   return Object.values(idx.by_address)
     .map(function (e) {
       var holdings = e.holdings || [];
+      var uq = Number(nvl(e.unique_pieces, holdings.length)) || 0;
+      var cq = Number(e.collection_quantity);
+      // Prefer explicit qty; else sum holding quantities; else fall back to unique
+      if (isNaN(cq) || cq <= 0) {
+        cq = 0;
+        holdings.forEach(function (h) {
+          var q = Number(h && h.quantity);
+          cq += !isNaN(q) && q > 0 ? q : 1;
+        });
+      }
+      if (cq < uq) cq = uq;
       return {
         address: e.address,
         ens_name: e.ens_name,
         username: e.username,
-        unique_pieces: nvl(e.unique_pieces, holdings.length),
-        collection_quantity: nvl(e.collection_quantity, 0),
+        unique_pieces: uq,
+        collection_quantity: cq,
       };
     })
     .sort(function (a, b) {
-      return b.unique_pieces - a.unique_pieces;
+      var ua = Number(a.unique_pieces) || 0;
+      var ub = Number(b.unique_pieces) || 0;
+      if (ub !== ua) return ub - ua;
+      return (Number(b.collection_quantity) || 0) - (Number(a.collection_quantity) || 0);
     });
+}
+
+/** Consistent collector count label: "N unique · M copies" everywhere. */
+function formatCollectorHoldLabel(c) {
+  var uq = Number(c && c.unique_pieces) || 0;
+  var cq = Number(c && c.collection_quantity) || 0;
+  if (cq < uq) cq = uq;
+  if (!uq && !cq) return "0 unique · 0 copies";
+  return uq + " unique · " + cq + " copies";
+}
+
+/** Compact pill meta: "N·M" (unique · copies). */
+function formatCollectorHoldMeta(c) {
+  var uq = Number(c && c.unique_pieces) || 0;
+  var cq = Number(c && c.collection_quantity) || 0;
+  if (cq < uq) cq = uq;
+  if (!uq && !cq) return "0";
+  return uq + "·" + cq;
+}
+
+/** Merge collector rows by address, summing unique + copies (for All collections). */
+function mergeCollectorRows(lists) {
+  var map = {};
+  (lists || []).forEach(function (list) {
+    (list || []).forEach(function (c) {
+      if (!c || !c.address) return;
+      var k = String(c.address).toLowerCase();
+      var pieces = Number(c.unique_pieces) || 0;
+      var qty = Number(c.collection_quantity) || 0;
+      if (qty < pieces) qty = pieces;
+      if (!map[k]) {
+        map[k] = {
+          address: c.address,
+          ens_name: c.ens_name || null,
+          username: c.username || null,
+          unique_pieces: pieces,
+          collection_quantity: qty,
+        };
+      } else {
+        map[k].unique_pieces += pieces;
+        map[k].collection_quantity += qty;
+        if (!map[k].ens_name && c.ens_name) map[k].ens_name = c.ens_name;
+        if (!map[k].username && c.username) map[k].username = c.username;
+      }
+    });
+  });
+  return Object.values(map).sort(function (a, b) {
+    var ua = Number(a.unique_pieces) || 0;
+    var ub = Number(b.unique_pieces) || 0;
+    if (ub !== ua) return ub - ua;
+    return (Number(b.collection_quantity) || 0) - (Number(a.collection_quantity) || 0);
+  });
 }
 
 function buildCollectorsFromBadgeItems(items) {
@@ -956,48 +1022,34 @@ function rebuildCollectorsForCurrentView() {
     return;
   }
   if (!activeCollection || activeCollection === "all") {
-    // "All collections": count pieces across currently loaded dacommunity + secondaries.
-    // Previous merge kept only the first list's unique_pieces, so badge holdings were dropped
-    // for anyone already in the daCommunity wallet index — modal under-counted vs wallet view.
-    var fromItems = buildCollectorsFromLoadedItems(galleryData ? galleryData.items : []);
-    if (fromItems.length) {
-      collectorsList = fromItems;
-    } else {
-      // Fallback if items not loaded yet: sum dacommunity index + item-based collectors
-      var dacomCols = [];
-      if (walletIndex && walletIndex.by_address) {
-        dacomCols = buildCollectorsFromIndex(walletIndex);
-      }
-      var itemCols = buildCollectorsFromBadgeItems(galleryData ? galleryData.items : []);
-      var map = {};
-      function mergeRow(c) {
-        if (!c || !c.address) return;
-        var k = c.address.toLowerCase();
-        var pieces = Number(c.unique_pieces) || 0;
-        var qty = Number(c.collection_quantity) || 0;
-        if (!map[k]) {
-          map[k] = {
-            address: c.address,
-            ens_name: c.ens_name || null,
-            username: c.username || null,
-            unique_pieces: pieces,
-            collection_quantity: qty,
-          };
-        } else {
-          map[k].unique_pieces += pieces;
-          map[k].collection_quantity += qty;
-          if (!map[k].ens_name && c.ens_name) map[k].ens_name = c.ens_name;
-          if (!map[k].username && c.username) map[k].username = c.username;
-        }
-      }
-      dacomCols.forEach(mergeRow);
-      itemCols.forEach(mergeRow);
-      collectorsList = Object.values(map).sort(function (a, b) {
-        return (b.unique_pieces || b.collection_quantity || 0) - (a.unique_pieces || a.collection_quantity || 0);
-      });
+    // All collections: daCommunity from wallet index (full Base qty) + every other
+    // collection from item owners (badges / BIG KIX / Agency). Sum uniques + copies.
+    var allItems = (galleryData && galleryData.items) || [];
+    var secondaryItems = allItems.filter(function (i) {
+      return (i.collection_id || "dacommunity") !== "dacommunity";
+    });
+    var dacomItems = allItems.filter(function (i) {
+      return (i.collection_id || "dacommunity") === "dacommunity";
+    });
+    var dacomCols = [];
+    if (walletIndex && (walletIndex.by_address || walletIndex.collectors)) {
+      dacomCols = buildCollectorsFromIndex(walletIndex);
     }
+    if (!dacomCols.length && dacomItems.length) {
+      dacomCols = buildCollectorsFromLoadedItems(dacomItems);
+    }
+    var badgeCols = buildCollectorsFromBadgeItems(secondaryItems);
+    var otherCols = buildCollectorsFromLoadedItems(
+      secondaryItems.filter(function (i) {
+        return !i.source_created_collection;
+      })
+    );
+    collectorsList = mergeCollectorRows([dacomCols, badgeCols, otherCols]);
   } else if (activeCollection === "dacommunity") {
     collectorsList = buildCollectorsFromIndex(walletIndex);
+    if (!collectorsList.length && galleryData && galleryData.items) {
+      collectorsList = buildCollectorsFromLoadedItems(galleryData.items);
+    }
   }
   updateCollectorsButton();
 }
@@ -2558,32 +2610,20 @@ function renderTopCollectors() {
     }
   }
   var top = collectorsList.slice(0, 8);
-  var rankByCopies = activeCollection === "bigkix";
   track.innerHTML = top
     .map(function (c) {
       var label = c.ens_name || c.username || shortenAddress(c.address);
-      var uq = Number(c.unique_pieces) || 0;
-      var cq = Number(c.collection_quantity) || uq;
-      // BIG KIX ranks by copies held; other collections show unique (and copies if multi)
-      var meta = rankByCopies
-        ? String(cq)
-        : cq > uq
-          ? uq + "·" + cq
-          : String(uq);
-      var title = rankByCopies
-        ? cq + " cop" + (cq === 1 ? "y" : "ies") + " held"
-        : uq + " unique · " + cq + " copies held";
       return (
         '<button type="button" class="top-collector-pill" data-address="' +
         escapeHtml(c.address) +
         '" data-lookup="' +
         escapeHtml(c.ens_name || c.address) +
         '" title="' +
-        escapeHtml(title) +
+        escapeHtml(formatCollectorHoldLabel(c)) +
         '">' +
         escapeHtml(label) +
         '<span class="meta">' +
-        meta +
+        escapeHtml(formatCollectorHoldMeta(c)) +
         "</span></button>"
       );
     })
@@ -3327,21 +3367,13 @@ function renderCollectors(filter) {
       );
     });
   }
-  var rankByCopies = activeCollection === "bigkix";
   list.innerHTML = rows
     .map(function (c) {
       var label = c.ens_name || c.username || shortenAddress(c.address);
-      var uq = Number(c.unique_pieces) || 0;
-      var cq = Number(c.collection_quantity) || uq;
-      var countLabel = rankByCopies
-        ? cq + " cop" + (cq === 1 ? "y" : "ies")
-        : cq > uq
-          ? uq + " unique · " + cq + " copies"
-          : uq + " piece" + (uq === 1 ? "" : "s");
       return (
         '<button type="button" class="collector-row" data-address="' + escapeHtml(c.address) + '">' +
         '<div class="collector-info"><strong>' + escapeHtml(label) + '</strong><span class="meta">' + escapeHtml(c.ens_name || c.address) + "</span></div>" +
-        '<span class="count">' + countLabel + "</span></button>"
+        '<span class="count">' + escapeHtml(formatCollectorHoldLabel(c)) + "</span></button>"
       );
     })
     .join("");
