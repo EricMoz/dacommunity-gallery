@@ -35,7 +35,22 @@
       "daforeman.eth": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
       "dabeezy.eth": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
       "mrcryptonist.eth": "0xe597a25c77317b361636270251dc53d36491a11d",
-      "jeffadams.eth": "0xf6c9b6b8b700906d43281ec485bee2139026cb27"
+      "jeffadams.eth": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
+      "hodlstar.base.eth": "0x011dddd5b5470d2818bffb400b4e38949fe21ac3",
+      "henia.base.eth": "0x67f3c18339ac0da29be9573d559a1291100b7c7b",
+      "inshirowetrust.base.eth": "0x3e43287a26acf9e5206f4551ccda29c7d9bea93e",
+      "visualarchive.base.eth": "0x445a6fc0bf61535e7d2ef96258124fdb9a855fdc",
+      "dacatdreams.base.eth": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+      "wmdsj19880725.base.eth": "0x5469f22fc52ad7a5e1f430a75b1cbd542393dfb0",
+      "aerospace.base.eth": "0x58e5c387c541ba7c4b04f126adb778fb02715afa",
+      "jhonnyfolies.base.eth": "0x5b8b03f255a2acf815e59dc55847096c43335385",
+      "shortcut.base.eth": "0x68bca5a8bdebe05fb8a6648c7316b4eb7e19a064",
+      "pieface.base.eth": "0x68cd16cacbaaca45dfd0f0e7e2609d273a0d4083",
+      "pa3gba.base.eth": "0x7f23f1c4be15fa3adabc821de9ef70efa5503f24",
+      "gottothird.base.eth": "0x7f284d2167b3bb8d8f6669593f4c24e752b54812",
+      "slowfreeze.base.eth": "0x93b34003169bd7cdb3e0710fedff4cb6795a32ef",
+      "mozcat.base.eth": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+      "lostthegame.base.eth": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684"
     },
     "by_address": {
       "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684": {
@@ -367,7 +382,8 @@
             "name": "dacat.ghibli",
             "display_name": "dacat.ghibli"
           }
-        ]
+        ],
+        "base_name": "lostthegame.base.eth"
       },
       "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe": {
         "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
@@ -678,7 +694,8 @@
             "name": "dacat.ghibli",
             "display_name": "dacat.ghibli"
           }
-        ]
+        ],
+        "base_name": "mozcat.base.eth"
       },
       "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5": {
         "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
@@ -929,7 +946,8 @@
             "name": "dacat.scribble",
             "display_name": "dacat.scribble"
           }
-        ]
+        ],
+        "base_name": "dacatdreams.base.eth"
       },
       "0xff003d893a2600dd8a773beaeed4097e2d5c3487": {
         "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
@@ -1714,7 +1732,8 @@
             "name": "dacat.week100",
             "display_name": "dacat.week100"
           }
-        ]
+        ],
+        "base_name": "henia.base.eth"
       },
       "0x9efee4a57815240304effc71f6f65091b7e70ed6": {
         "address": "0x9efee4a57815240304effc71f6f65091b7e70ed6",
@@ -1861,7 +1880,8 @@
             "name": "dacat.legacy",
             "display_name": "dacat.legacy"
           }
-        ]
+        ],
+        "base_name": "henia.base.eth"
       },
       "0x011dddd5b5470d2818bffb400b4e38949fe21ac3": {
         "address": "0x011dddd5b5470d2818bffb400b4e38949fe21ac3",
@@ -1897,7 +1917,8 @@
             "name": "dacat.bastion",
             "display_name": "dacat.bastion"
           }
-        ]
+        ],
+        "base_name": "hodlstar.base.eth"
       },
       "0x1b0ca3b64719bddba0214814deb32d37634e418f": {
         "address": "0x1b0ca3b64719bddba0214814deb32d37634e418f",
@@ -2090,7 +2111,8 @@
             "name": "dacat.rock",
             "display_name": "dacat.rock"
           }
-        ]
+        ],
+        "base_name": "wmdsj19880725.base.eth"
       },
       "0x4845b4ed2ae13dedace7da1616c3597a99c321a4": {
         "address": "0x4845b4ed2ae13dedace7da1616c3597a99c321a4",
@@ -2345,7 +2367,8 @@
             "name": "dacat.gaze",
             "display_name": "dacat.gaze"
           }
-        ]
+        ],
+        "base_name": "slowfreeze.base.eth"
       },
       "0x8f15253e0775e1df0561a875ddf00dae70cf72a7": {
         "address": "0x8f15253e0775e1df0561a875ddf00dae70cf72a7",
@@ -2409,7 +2432,8 @@
             "name": "dacat.vision",
             "display_name": "dacat.vision"
           }
-        ]
+        ],
+        "base_name": "gottothird.base.eth"
       },
       "0x7f23f1c4be15fa3adabc821de9ef70efa5503f24": {
         "address": "0x7f23f1c4be15fa3adabc821de9ef70efa5503f24",
@@ -2425,7 +2449,8 @@
             "name": "dacat.throne",
             "display_name": "dacat.throne"
           }
-        ]
+        ],
+        "base_name": "pa3gba.base.eth"
       },
       "0x77142c2ccc81d0b3dc8569b7d9f460e8b9696232": {
         "address": "0x77142c2ccc81d0b3dc8569b7d9f460e8b9696232",
@@ -2489,7 +2514,8 @@
             "name": "dacat.legacy",
             "display_name": "dacat.legacy"
           }
-        ]
+        ],
+        "base_name": "pieface.base.eth"
       },
       "0x68bca5a8bdebe05fb8a6648c7316b4eb7e19a064": {
         "address": "0x68bca5a8bdebe05fb8a6648c7316b4eb7e19a064",
@@ -2505,7 +2531,8 @@
             "name": "dacat.dunk",
             "display_name": "dacat.dunk"
           }
-        ]
+        ],
+        "base_name": "shortcut.base.eth"
       },
       "0x6395aeb764163d8179e946feafb8338752437623": {
         "address": "0x6395aeb764163d8179e946feafb8338752437623",
@@ -2553,7 +2580,8 @@
             "name": "dacat.blaze",
             "display_name": "dacat.blaze"
           }
-        ]
+        ],
+        "base_name": "jhonnyfolies.base.eth"
       },
       "0x58e5c387c541ba7c4b04f126adb778fb02715afa": {
         "address": "0x58e5c387c541ba7c4b04f126adb778fb02715afa",
@@ -2569,7 +2597,8 @@
             "name": "dacat.gateway",
             "display_name": "dacat.gateway"
           }
-        ]
+        ],
+        "base_name": "aerospace.base.eth"
       },
       "0x55d5c0aa6486ccd91775f4f2e3258f5d7ceac5ce": {
         "address": "0x55d5c0aa6486ccd91775f4f2e3258f5d7ceac5ce",
@@ -2617,7 +2646,8 @@
             "name": "dacat.blaze",
             "display_name": "dacat.blaze"
           }
-        ]
+        ],
+        "base_name": "visualarchive.base.eth"
       },
       "0x3e43287a26acf9e5206f4551ccda29c7d9bea93e": {
         "address": "0x3e43287a26acf9e5206f4551ccda29c7d9bea93e",
@@ -2633,7 +2663,8 @@
             "name": "dacat.vision",
             "display_name": "dacat.vision"
           }
-        ]
+        ],
+        "base_name": "inshirowetrust.base.eth"
       },
       "0x356d8dac5f0da039dcc3e22c8b42fde00e79f7e6": {
         "address": "0x356d8dac5f0da039dcc3e22c8b42fde00e79f7e6",

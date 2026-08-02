@@ -223,7 +223,10 @@ Built in the **daily** `refresh-data.yml` job during `fetch_gallery_data.py` →
 
 **Speed:** addresses re-resolve at most every **~14 days** (`last_ens_resolved`). Cache hits reuse prior ENS **and** username (no extra API). Fresh resolves only when new or expired.
 
-**Not yet:** Base names (`.base.eth`) reverse lookup — ensdata does not reliably return them; no stable free reverse API wired. Prefer asking before adding a second network hop per wallet.
+**Base names (weekly, separate job):** `enrich-base-names.yml` → `backend/enrich_base_names.py`  
+uses public [web3.bio](https://api.web3.bio) profiles → writes `web/data/name_index.json` and  
+patches `base_name` onto `wallet_index` holders. Does **not** run on the daily OpenSea refresh.  
+Display priority: **ENS → Base name → OpenSea username → short 0x**.
 
 ### OpenSea collection slug (daCommunity archive)
 

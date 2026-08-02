@@ -71,6 +71,7 @@ function initDataUrls() {
   WALLET_URL = prefix + "data/wallet_index.json" + q;
   META_URL = prefix + "data/gallery_meta.json" + q;
   REGISTRY_URL = prefix + "data/collections_registry.json" + q;
+  NAME_INDEX_URL = prefix + "data/name_index.json" + q;
 }
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -78,6 +79,8 @@ const $ = (sel, root = document) => root.querySelector(sel);
 /* === Global State (single source of truth for browse + collector modes) === */
 let galleryData = null;
 let walletIndex = null;
+/** Cross-collection name cache (weekly Base-name enricher). */
+let nameIndex = null;
 let collectorsList = [];
 let itemsById = new Map();
 /** Browse view — single source of truth for search / filter / sort. */
@@ -531,7 +534,7 @@ async function fetchJson(url, timeoutMs) {
     // the browser always gets the absolute latest bytes from the server (bypassing any
     // HTTP/browser cache). The ?v=BUILD stamp (from meta) still provides build-coherent
     // long-term caching keys per release, and the SW network-first layer provides offline.
-    const isOurData = /\/data\/(gallery_(data|meta|catalog|wallet_index)|videos|badges_(data|catalog)|bigkix_(data|catalog)|dagato_agency_(data|catalog)|collections_registry)\.json(\?|$)/i.test(url);
+    const isOurData = /\/data\/(gallery_(data|meta|catalog|wallet_index)|name_index|videos|badges_(data|catalog)|bigkix_(data|catalog)|dagato_agency_(data|catalog)|collections_registry)\.json(\?|$)/i.test(url);
     const res = await fetch(url, {
       signal: ctrl.signal,
       cache: isOurData ? "no-store" : "default"
@@ -616,6 +619,27 @@ async function refreshFullDataInBackground() {
   }
 }
 
+async function loadNameIndex() {
+  if (nameIndex) return nameIndex;
+  if (typeof NAME_INDEX_URL === "undefined" || !NAME_INDEX_URL) return null;
+  try {
+    nameIndex = await fetchJson(NAME_INDEX_URL, 12000);
+  } catch (e) {
+    console.warn("name_index load failed (Base names optional):", e);
+    nameIndex = { by_address: {}, name_aliases: {} };
+  }
+  return nameIndex;
+}
+
+function nameIndexEntry(address) {
+  var key = (address || "").toLowerCase();
+  if (!key) return null;
+  if (nameIndex && nameIndex.by_address && nameIndex.by_address[key]) {
+    return nameIndex.by_address[key];
+  }
+  return null;
+}
+
 async function loadWalletIndex() {
   // Always load the main daCommunity wallet index for ENS enrichment — even when viewing
   // BIG KIX / badges (those collections do not ship their own wallet_index_file).
@@ -629,6 +653,10 @@ async function loadWalletIndex() {
     console.warn("Wallet index load failed:", e);
     if (!walletIndex) walletIndex = (galleryData && galleryData.holders_index) || null;
   }
+  // Optional weekly Base-name index (non-blocking if missing)
+  try {
+    await loadNameIndex();
+  } catch (e2) {}
 
   // Enrich wallet by_address with ENS from badge item names if missing (most recent by minted_at).
   if (walletIndex && walletIndex.by_address && galleryData && galleryData.items) {
@@ -703,9 +731,11 @@ function buildCollectorsFromIndex(idx) {
         });
       }
       if (cq < uq) cq = uq;
+      var ni = nameIndexEntry(e.address);
       return {
         address: e.address,
         ens_name: e.ens_name,
+        base_name: e.base_name || (ni && ni.base_name) || null,
         username: e.username,
         unique_pieces: uq,
         collection_quantity: cq,
@@ -1326,8 +1356,15 @@ function shortenAddress(addr) {
 
 function holderLabel(address) {
   var entry = walletIndex && walletIndex.by_address && walletIndex.by_address[address.toLowerCase()];
-  if (!entry) return shortenAddress(address);
-  return entry.ens_name || entry.username || shortenAddress(address);
+  var ni = nameIndexEntry(address);
+  if (!entry && !ni) return shortenAddress(address);
+  return (
+    (entry && entry.ens_name) ||
+    (ni && ni.base_name) ||
+    (entry && entry.base_name) ||
+    (entry && entry.username) ||
+    shortenAddress(address)
+  );
 }
 
 function addressDisplayMeta(address) {
@@ -1335,6 +1372,7 @@ function addressDisplayMeta(address) {
   var key = address.toLowerCase();
   var full = address;
   var entry = walletIndex && walletIndex.by_address && walletIndex.by_address[key];
+  var ni = nameIndexEntry(key);
   // Also check attached ens_name from badge owners data (for pure badge holders or after fetch with ENS)
   var fromDataEns = null;
   if (galleryData && Array.isArray(galleryData.items)) {
@@ -1354,15 +1392,23 @@ function addressDisplayMeta(address) {
   // and any portfolio / wallet view / chips for the same address. This ensures e.g. daforeman.eth
   // (current) shows everywhere instead of old names like inshirowetrust.eth from stale owner records.
   var fromList = null;
+  var fromListBase = null;
   (collectorsList || []).forEach(function (c) {
-    if ((c.address || '').toLowerCase() === key && c.ens_name) {
-      fromList = c.ens_name;
+    if ((c.address || "").toLowerCase() === key) {
+      if (c.ens_name) fromList = c.ens_name;
+      if (c.base_name) fromListBase = c.base_name;
     }
   });
-  var ens = fromList || (entry && entry.ens_name) || fromDataEns;
-  var username = entry && entry.username;
-  var lookupValue = ens || full;
-  var display = ens || username || shortenAddress(full);
+  // Priority: ENS → Base name → OpenSea username → short 0x
+  var ens = fromList || (entry && entry.ens_name) || fromDataEns || null;
+  var base =
+    fromListBase ||
+    (entry && entry.base_name) ||
+    (ni && ni.base_name) ||
+    null;
+  var username = (entry && entry.username) || (ni && ni.username) || null;
+  var lookupValue = ens || base || full;
+  var display = ens || base || username || shortenAddress(full);
   return {
     address: key,
     display: display,
@@ -3103,7 +3149,11 @@ function lookupWallet(identifier) {
   var address = raw.toLowerCase();
   var needsResolve = false;
   if (isEnsName(raw)) {
-    var alias = (walletIndex && walletIndex.ens_aliases && walletIndex.ens_aliases[raw.toLowerCase()]) || null;
+    var rawL = raw.toLowerCase();
+    var alias =
+      (walletIndex && walletIndex.ens_aliases && walletIndex.ens_aliases[rawL]) ||
+      (nameIndex && nameIndex.name_aliases && nameIndex.name_aliases[rawL]) ||
+      null;
     if (alias) {
       address = alias.toLowerCase();
     } else {

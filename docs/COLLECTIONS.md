@@ -123,6 +123,15 @@ python fetch_dagato_agency.py --volume 2   # merge into same site collection
 
 Hub cards remain manual (home + `collections/index.html`) until the hub is fully registry-driven.
 
+### Collector names (daily + weekly)
+
+| Job | Frequency | What |
+|-----|-----------|------|
+| `refresh-data.yml` | Daily | ENS + OpenSea username → `wallet_index.json` |
+| `enrich-base-names.yml` | Weekly (Sunday) | Base names (`.base.eth`) → `name_index.json` + patch wallet |
+
+Display: **ENS → Base name → OpenSea username → short 0x**.
+
 Do **not** duplicate gallery logic for preview pages — use `preview_only` + themed static HTML until data exists.
 
 ---
