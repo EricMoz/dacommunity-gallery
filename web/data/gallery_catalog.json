@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-01T09:56:44.993454+00:00",
+  "generated_at": "2026-08-02T09:55:03.969340+00:00",
   "source": "gallery_catalog",
   "collection": {
     "slug": "dacommunity-archive",
@@ -11,7 +11,7 @@
     "note": "Originally minted on Rodeo. Contract unchanged on Base; collection stewarded via dacatdreams.base.eth.",
     "creator_ens": "dacatdreams.base.eth",
     "creator_wallet": null,
-    "contract_name": "Rodeo posts",
+    "contract_name": "daCommunity Archive",
     "floor_eth": 0.0005,
     "floor_symbol": "ETH",
     "num_owners": 59,

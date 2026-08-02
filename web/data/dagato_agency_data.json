@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-01T10:00:05.624224+00:00",
+  "generated_at": "2026-08-02T09:58:24.512685+00:00",
   "source": "opensea_api_v2",
   "collection": {
     "id": "dagato-agency",
@@ -1137,14 +1137,14 @@
       "token_id": "33",
       "name": "Common Case File #33 · Vol 1",
       "display_name": "Common Case File #33 · Vol 1",
-      "local_slug": "dagato-case-file-33",
+      "local_slug": "case-file-v1-33",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/33",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/33",
-      "updated_at": "2026-08-01T09:57:51.577029",
+      "updated_at": "2026-08-02T09:56:10.479615",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1154,6 +1154,8 @@
         }
       ],
       "rarity": "Common",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1191,24 +1193,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #33",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 5,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 5
     },
     {
       "token_id": "32",
       "name": "Legendary Case File #32 · Vol 1",
       "display_name": "Legendary Case File #32 · Vol 1",
-      "local_slug": "dagato-case-file-32",
+      "local_slug": "case-file-v1-32",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/32",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/32",
-      "updated_at": "2026-08-01T09:57:51.577015",
+      "updated_at": "2026-08-02T09:56:10.479606",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1218,6 +1219,8 @@
         }
       ],
       "rarity": "Legendary",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1262,24 +1265,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #32",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 2,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 2
     },
     {
       "token_id": "31",
       "name": "Uncommon Case File #31 · Vol 1",
       "display_name": "Uncommon Case File #31 · Vol 1",
-      "local_slug": "dagato-case-file-31",
+      "local_slug": "case-file-v1-31",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/31",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/31",
-      "updated_at": "2026-08-01T09:57:51.577039",
+      "updated_at": "2026-08-02T09:56:10.479621",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1289,6 +1291,8 @@
         }
       ],
       "rarity": "Uncommon",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1333,24 +1337,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #31",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 4,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 4
     },
     {
       "token_id": "30",
       "name": "Epic Case File #30 · Vol 1",
       "display_name": "Epic Case File #30 · Vol 1",
-      "local_slug": "dagato-case-file-30",
+      "local_slug": "case-file-v1-30",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/30",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/30",
-      "updated_at": "2026-08-01T09:57:51.577057",
+      "updated_at": "2026-08-02T09:56:10.479631",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1360,6 +1363,8 @@
         }
       ],
       "rarity": "Epic",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": true,
       "listing": {
         "amount_eth": 0.5,
@@ -1401,24 +1406,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #30",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 3,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 3
     },
     {
       "token_id": "29",
       "name": "Common Case File #29 · Vol 1",
       "display_name": "Common Case File #29 · Vol 1",
-      "local_slug": "dagato-case-file-29",
+      "local_slug": "case-file-v1-29",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/29",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/29",
-      "updated_at": "2026-08-01T09:57:51.577048",
+      "updated_at": "2026-08-02T09:56:10.479626",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1428,6 +1432,8 @@
         }
       ],
       "rarity": "Common",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1465,24 +1471,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #29",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 5,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 5
     },
     {
       "token_id": "28",
       "name": "Legendary Case File #28 · Vol 1",
       "display_name": "Legendary Case File #28 · Vol 1",
-      "local_slug": "dagato-case-file-28",
+      "local_slug": "case-file-v1-28",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/28",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/28",
-      "updated_at": "2026-08-01T09:57:51.577075",
+      "updated_at": "2026-08-02T09:56:10.479641",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1492,6 +1497,8 @@
         }
       ],
       "rarity": "Legendary",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1529,24 +1536,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #28",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 2,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 2
     },
     {
       "token_id": "27",
       "name": "1:1 Case File #27 · Vol 1",
       "display_name": "1:1 Case File #27 · Vol 1",
-      "local_slug": "dagato-case-file-27",
+      "local_slug": "case-file-v1-27",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/4a9b2860a234a8e057f6876cc5a812/304a9b2860a234a8e057f6876cc5a812.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/27",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/27",
-      "updated_at": "2026-08-01T09:57:51.577066",
+      "updated_at": "2026-08-02T09:56:10.479637",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1556,6 +1562,8 @@
         }
       ],
       "rarity": "1:1",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1593,24 +1601,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #27",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 1,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 1
     },
     {
       "token_id": "26",
       "name": "Common Case File #26 · Vol 1",
       "display_name": "Common Case File #26 · Vol 1",
-      "local_slug": "dagato-case-file-26",
+      "local_slug": "case-file-v1-26",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/26",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/26",
-      "updated_at": "2026-08-01T09:57:51.577083",
+      "updated_at": "2026-08-02T09:56:10.479646",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1620,6 +1627,8 @@
         }
       ],
       "rarity": "Common",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1657,24 +1666,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #26",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 5,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 5
     },
     {
       "token_id": "25",
       "name": "Common Case File #25 · Vol 1",
       "display_name": "Common Case File #25 · Vol 1",
-      "local_slug": "dagato-case-file-25",
+      "local_slug": "case-file-v1-25",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/25",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/25",
-      "updated_at": "2026-08-01T09:57:51.577091",
+      "updated_at": "2026-08-02T09:56:10.479651",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1684,6 +1692,8 @@
         }
       ],
       "rarity": "Common",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1721,24 +1731,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #25",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 5,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 5
     },
     {
       "token_id": "24",
       "name": "Epic Case File #24 · Vol 1",
       "display_name": "Epic Case File #24 · Vol 1",
-      "local_slug": "dagato-case-file-24",
+      "local_slug": "case-file-v1-24",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/24",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/24",
-      "updated_at": "2026-08-01T09:57:51.577100",
+      "updated_at": "2026-08-02T09:56:10.479655",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1748,6 +1757,8 @@
         }
       ],
       "rarity": "Epic",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1785,24 +1796,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #24",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 3,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 3
     },
     {
       "token_id": "23",
       "name": "Epic Case File #23 · Vol 1",
       "display_name": "Epic Case File #23 · Vol 1",
-      "local_slug": "dagato-case-file-23",
+      "local_slug": "case-file-v1-23",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/23",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/23",
-      "updated_at": "2026-08-01T09:57:51.577109",
+      "updated_at": "2026-08-02T09:56:10.479660",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1812,6 +1822,8 @@
         }
       ],
       "rarity": "Epic",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1849,24 +1861,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #23",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 3,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 3
     },
     {
       "token_id": "22",
       "name": "Common Case File #22 · Vol 1",
       "display_name": "Common Case File #22 · Vol 1",
-      "local_slug": "dagato-case-file-22",
+      "local_slug": "case-file-v1-22",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/22",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/22",
-      "updated_at": "2026-08-01T09:57:51.577117",
+      "updated_at": "2026-08-02T09:56:10.479664",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1876,6 +1887,8 @@
         }
       ],
       "rarity": "Common",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1913,24 +1926,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #22",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 5,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 5
     },
     {
       "token_id": "21",
       "name": "Legendary Case File #21 · Vol 1",
       "display_name": "Legendary Case File #21 · Vol 1",
-      "local_slug": "dagato-case-file-21",
+      "local_slug": "case-file-v1-21",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/21",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/21",
-      "updated_at": "2026-08-01T09:57:51.577126",
+      "updated_at": "2026-08-02T09:56:10.479672",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1940,6 +1952,8 @@
         }
       ],
       "rarity": "Legendary",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1977,24 +1991,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #21",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 2,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 2
     },
     {
       "token_id": "20",
       "name": "Uncommon Case File #20 · Vol 1",
       "display_name": "Uncommon Case File #20 · Vol 1",
-      "local_slug": "dagato-case-file-20",
+      "local_slug": "case-file-v1-20",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/20",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/20",
-      "updated_at": "2026-08-01T09:57:51.577135",
+      "updated_at": "2026-08-02T09:56:10.479677",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2004,6 +2017,8 @@
         }
       ],
       "rarity": "Uncommon",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2041,24 +2056,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #20",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 4,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 4
     },
     {
       "token_id": "19",
       "name": "Uncommon Case File #19 · Vol 1",
       "display_name": "Uncommon Case File #19 · Vol 1",
-      "local_slug": "dagato-case-file-19",
+      "local_slug": "case-file-v1-19",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/19",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/19",
-      "updated_at": "2026-08-01T09:57:51.577152",
+      "updated_at": "2026-08-02T09:56:10.479686",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2068,6 +2082,8 @@
         }
       ],
       "rarity": "Uncommon",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2105,24 +2121,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #19",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 4,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 4
     },
     {
       "token_id": "18",
       "name": "Epic Case File #18 · Vol 1",
       "display_name": "Epic Case File #18 · Vol 1",
-      "local_slug": "dagato-case-file-18",
+      "local_slug": "case-file-v1-18",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/18",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/18",
-      "updated_at": "2026-08-01T09:57:51.577161",
+      "updated_at": "2026-08-02T09:56:10.479691",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2132,6 +2147,8 @@
         }
       ],
       "rarity": "Epic",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2169,24 +2186,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #18",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 3,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 3
     },
     {
       "token_id": "17",
       "name": "Common Case File #17 · Vol 1",
       "display_name": "Common Case File #17 · Vol 1",
-      "local_slug": "dagato-case-file-17",
+      "local_slug": "case-file-v1-17",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/17",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/17",
-      "updated_at": "2026-08-01T09:57:51.577144",
+      "updated_at": "2026-08-02T09:56:10.479682",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2196,6 +2212,8 @@
         }
       ],
       "rarity": "Common",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2233,24 +2251,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #17",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 5,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 5
     },
     {
       "token_id": "16",
       "name": "Legendary Case File #16 · Vol 1",
       "display_name": "Legendary Case File #16 · Vol 1",
-      "local_slug": "dagato-case-file-16",
+      "local_slug": "case-file-v1-16",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/16",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/16",
-      "updated_at": "2026-08-01T09:57:51.577187",
+      "updated_at": "2026-08-02T09:56:10.479704",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2260,6 +2277,8 @@
         }
       ],
       "rarity": "Legendary",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2297,24 +2316,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #16",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 2,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 2
     },
     {
       "token_id": "15",
       "name": "Common Case File #15 · Vol 1",
       "display_name": "Common Case File #15 · Vol 1",
-      "local_slug": "dagato-case-file-15",
+      "local_slug": "case-file-v1-15",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/15",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/15",
-      "updated_at": "2026-08-01T09:57:51.577169",
+      "updated_at": "2026-08-02T09:56:10.479695",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2324,6 +2342,8 @@
         }
       ],
       "rarity": "Common",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2368,24 +2388,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #15",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 5,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 5
     },
     {
       "token_id": "14",
       "name": "Common Case File #14 · Vol 1",
       "display_name": "Common Case File #14 · Vol 1",
-      "local_slug": "dagato-case-file-14",
+      "local_slug": "case-file-v1-14",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/14",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/14",
-      "updated_at": "2026-08-01T09:57:51.577178",
+      "updated_at": "2026-08-02T09:56:10.479699",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2395,6 +2414,8 @@
         }
       ],
       "rarity": "Common",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2432,24 +2453,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #14",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 5,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 5
     },
     {
       "token_id": "13",
       "name": "Uncommon Case File #13 · Vol 1",
       "display_name": "Uncommon Case File #13 · Vol 1",
-      "local_slug": "dagato-case-file-13",
+      "local_slug": "case-file-v1-13",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/13",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/13",
-      "updated_at": "2026-08-01T09:57:51.577196",
+      "updated_at": "2026-08-02T09:56:10.479710",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2459,6 +2479,8 @@
         }
       ],
       "rarity": "Uncommon",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2496,24 +2518,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #13",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 4,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 4
     },
     {
       "token_id": "12",
       "name": "Common Case File #12 · Vol 1",
       "display_name": "Common Case File #12 · Vol 1",
-      "local_slug": "dagato-case-file-12",
+      "local_slug": "case-file-v1-12",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/12",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/12",
-      "updated_at": "2026-08-01T09:57:51.577213",
+      "updated_at": "2026-08-02T09:56:10.479720",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2523,6 +2544,8 @@
         }
       ],
       "rarity": "Common",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2560,24 +2583,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #12",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 5,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 5
     },
     {
       "token_id": "11",
       "name": "Common Case File #11 · Vol 1",
       "display_name": "Common Case File #11 · Vol 1",
-      "local_slug": "dagato-case-file-11",
+      "local_slug": "case-file-v1-11",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/11",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/11",
-      "updated_at": "2026-08-01T09:57:51.577221",
+      "updated_at": "2026-08-02T09:56:10.479725",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2587,6 +2609,8 @@
         }
       ],
       "rarity": "Common",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2624,24 +2648,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #11",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 5,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 5
     },
     {
       "token_id": "10",
       "name": "Epic Case File #10 · Vol 1",
       "display_name": "Epic Case File #10 · Vol 1",
-      "local_slug": "dagato-case-file-10",
+      "local_slug": "case-file-v1-10",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/10",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/10",
-      "updated_at": "2026-08-01T09:57:51.577204",
+      "updated_at": "2026-08-02T09:56:10.479716",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2651,6 +2674,8 @@
         }
       ],
       "rarity": "Epic",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2688,24 +2713,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #10",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 3,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 3
     },
     {
       "token_id": "9",
       "name": "Uncommon Case File #09 · Vol 1",
       "display_name": "Uncommon Case File #09 · Vol 1",
-      "local_slug": "dagato-case-file-09",
+      "local_slug": "case-file-v1-09",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/9",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/9",
-      "updated_at": "2026-08-01T09:57:51.577230",
+      "updated_at": "2026-08-02T09:56:10.479730",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2715,6 +2739,8 @@
         }
       ],
       "rarity": "Uncommon",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2752,24 +2778,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #09",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 4,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 4
     },
     {
       "token_id": "8",
       "name": "Epic Case File #08 · Vol 1",
       "display_name": "Epic Case File #08 · Vol 1",
-      "local_slug": "dagato-case-file-08",
+      "local_slug": "case-file-v1-08",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/8",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/8",
-      "updated_at": "2026-08-01T09:57:51.577247",
+      "updated_at": "2026-08-02T09:56:10.479739",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2779,6 +2804,8 @@
         }
       ],
       "rarity": "Epic",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2816,24 +2843,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #08",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 3,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 3
     },
     {
       "token_id": "7",
       "name": "Common Case File #07 · Vol 1",
       "display_name": "Common Case File #07 · Vol 1",
-      "local_slug": "dagato-case-file-07",
+      "local_slug": "case-file-v1-07",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/7",
-      "updated_at": "2026-08-01T09:57:51.577239",
+      "updated_at": "2026-08-02T09:56:10.479734",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2843,6 +2869,8 @@
         }
       ],
       "rarity": "Common",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2880,24 +2908,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #07",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 5,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 5
     },
     {
       "token_id": "6",
       "name": "Uncommon Case File #06 · Vol 1",
       "display_name": "Uncommon Case File #06 · Vol 1",
-      "local_slug": "dagato-case-file-06",
+      "local_slug": "case-file-v1-06",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/6",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/6",
-      "updated_at": "2026-08-01T09:57:51.577256",
+      "updated_at": "2026-08-02T09:56:10.479743",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2907,6 +2934,8 @@
         }
       ],
       "rarity": "Uncommon",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2944,24 +2973,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #06",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 4,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 4
     },
     {
       "token_id": "5",
       "name": "Uncommon Case File #05 · Vol 1",
       "display_name": "Uncommon Case File #05 · Vol 1",
-      "local_slug": "dagato-case-file-05",
+      "local_slug": "case-file-v1-05",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/5",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/5",
-      "updated_at": "2026-08-01T09:57:51.577281",
+      "updated_at": "2026-08-02T09:56:10.479759",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2971,6 +2999,8 @@
         }
       ],
       "rarity": "Uncommon",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -3008,24 +3038,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #05",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 4,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 4
     },
     {
       "token_id": "4",
       "name": "Uncommon Case File #04 · Vol 1",
       "display_name": "Uncommon Case File #04 · Vol 1",
-      "local_slug": "dagato-case-file-04",
+      "local_slug": "case-file-v1-04",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/4",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/4",
-      "updated_at": "2026-08-01T09:57:51.577273",
+      "updated_at": "2026-08-02T09:56:10.479753",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3035,6 +3064,8 @@
         }
       ],
       "rarity": "Uncommon",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -3072,24 +3103,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #04",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 4,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 4
     },
     {
       "token_id": "3",
       "name": "Epic Case File #03 · Vol 1",
       "display_name": "Epic Case File #03 · Vol 1",
-      "local_slug": "dagato-case-file-03",
+      "local_slug": "case-file-v1-03",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/3",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/3",
-      "updated_at": "2026-08-01T09:57:51.577290",
+      "updated_at": "2026-08-02T09:56:10.479765",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3099,6 +3129,8 @@
         }
       ],
       "rarity": "Epic",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -3136,24 +3168,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #03",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 3,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 3
     },
     {
       "token_id": "2",
       "name": "Uncommon Case File #02 · Vol 1",
       "display_name": "Uncommon Case File #02 · Vol 1",
-      "local_slug": "dagato-case-file-02",
+      "local_slug": "case-file-v1-02",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/2",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/2",
-      "updated_at": "2026-08-01T09:57:51.577265",
+      "updated_at": "2026-08-02T09:56:10.479748",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3163,6 +3194,8 @@
         }
       ],
       "rarity": "Uncommon",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -3200,24 +3233,23 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #02",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 4,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 4
     },
     {
       "token_id": "1",
       "name": "Legendary Case File #01 · Vol 1",
       "display_name": "Legendary Case File #01 · Vol 1",
-      "local_slug": "dagato-case-file-01",
+      "local_slug": "case-file-v1-01",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/1",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/1",
-      "updated_at": "2026-08-01T09:57:51.577298",
+      "updated_at": "2026-08-02T09:56:10.479771",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3227,6 +3259,8 @@
         }
       ],
       "rarity": "Legendary",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -3264,11 +3298,10 @@
           "quantity": 1
         }
       ],
+      "opensea_name": "daGATO Case File #01",
+      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 2,
-      "volume": 1,
-      "volume_label": "Vol 1",
-      "is_edition_token": true
+      "token_rank": 2
     }
   ]
 }

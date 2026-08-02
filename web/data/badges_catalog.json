@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-01T10:05:09.983793+00:00",
+  "generated_at": "2026-08-02T10:03:39.101541+00:00",
   "source": "badges_catalog",
   "collection": {
     "slug": "badges",
@@ -9,9 +9,9 @@
     "creator_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
     "note": "Personal 1/1 and limited awards/badges created by the wallet. Issuer wallet excluded from all holder stats. Mystery items pending approval.",
     "total_created": 17,
-    "one_of_ones": 59,
+    "one_of_ones": 60,
     "unclaimed": 0,
-    "mysteries": 2
+    "mysteries": 3
   },
   "items": [
     {
@@ -2052,17 +2052,22 @@
       "image_url": "assets/badges/dacat-5-trillion-club.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat5trillion",
-      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1276d1e11aa5d2cc0854b936477f4d3bc88a5df1/36c8e5432567874e0e0603d8ff1041/2536c8e5432567874e0e0603d8ff1041.png",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1276d1e11aa5d2cc0854b936477f4d3bc88a5df1/37049c4f1e2d410f206630264e01b9/0737049c4f1e2d410f206630264e01b9.png",
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 2,
-        "circulating_copies": 2,
+        "holder_count": 3,
+        "circulating_copies": 3,
         "top_holders": [
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1,
             "ens_name": "mozvane.eth"
+          },
+          {
+            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
           },
           {
             "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
@@ -2075,6 +2080,11 @@
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1,
             "ens_name": "mozvane.eth"
+          },
+          {
+            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
           },
           {
             "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
@@ -2094,6 +2104,51 @@
       "edition_club": false,
       "sub_category": "Trillion Club",
       "tags": [
+        "trillion_club"
+      ]
+    },
+    {
+      "token_id": "3",
+      "name": "DAFOREMAN - 5 TRILLION DACAT CLUB MEMBERSHIP",
+      "display_name": "DACAT 5 TRILLION CLUB",
+      "local_slug": "dacat-5-trillion-club",
+      "excerpt": "Exclusive 1-of-1 NFT minted in recognition of DAFOREMAN.ETH as a member of the DACAT 5 TRILLION CLUB. The DACAT 5 TRILLION CLUB is a recognition program create…",
+      "image_url": "assets/badges/dacat-5-trillion-club.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dacat5trillion",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1276d1e11aa5d2cc0854b936477f4d3bc88a5df1/37049c4f1e2d410f206630264e01b9/0737049c4f1e2d410f206630264e01b9.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
+          }
+        ]
+      },
+      "minted_at": "2026-08-02T04:10:35+00:00",
+      "is_1_of_1": true,
+      "award_category": "daforeman_-_5_trillion_dacat_club_membership",
+      "unclaimed_or_available": false,
+      "mystery_status": "mystery_until_review",
+      "ens_match_detected": false,
+      "source_created_collection": "dacat5trillion",
+      "is_series_rep": false,
+      "edition_club": false,
+      "sub_category": "Daforeman - 5 Trillion Dacat Club Membership",
+      "tags": [
+        "1_of_1",
         "trillion_club"
       ]
     },
