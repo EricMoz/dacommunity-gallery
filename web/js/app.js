@@ -2031,7 +2031,12 @@ function collectorTokenIdSet(entry) {
 function setGalleryCollectorView(entry, opts) {
   opts = opts || {};
   if (!entry) return;
-  var label = entry.ens_name || entry.username || shortenAddress(entry.address);
+  enrichCollectorRowNames(entry);
+  var label =
+    entry.ens_name ||
+    entry.base_name ||
+    entry.username ||
+    shortenAddress(entry.address);
   var addr = entry.address.toLowerCase();
   // Ensure collectorsList matches active collection so primary rank is meaningful
   rebuildCollectorsForCurrentView();
