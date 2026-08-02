@@ -1,6 +1,7 @@
-# Weekly Base-name enricher — separate from daily OpenSea refresh.
-# Uses public web3.bio profiles only (no OpenSea key). Safe to fail independently.
-name: Enrich Base names (weekly)
+# Weekly identity enrichers — separate from daily OpenSea gallery refresh.
+# 1) Base names (web3.bio, no OpenSea key)
+# 2) OpenSea profile usernames (instant OpenSea key; only missing/stale profiles)
+name: Enrich wallet names (weekly)
 
 on:
   schedule:
@@ -16,13 +17,13 @@ permissions:
   actions: write
 
 concurrency:
-  group: enrich-base-names
+  group: enrich-wallet-names
   cancel-in-progress: true
 
 jobs:
   enrich:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v5
         with:
@@ -45,16 +46,39 @@ jobs:
           cd backend
           python enrich_base_names.py
 
-      - name: Commit name index
+      - name: Generate OpenSea API key
+        id: generate_key
+        run: |
+          set -e
+          KEY=$(curl -s -X POST https://api.opensea.io/api/v2/auth/keys | jq -r '.api_key')
+          if [ -z "$KEY" ] || [ "$KEY" = "null" ]; then
+            echo "::warning::Could not generate OpenSea key — skipping profile enrich."
+            echo "key=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "::add-mask::$KEY"
+          echo "key=$KEY" >> "$GITHUB_OUTPUT"
+
+      - name: Enrich OpenSea profile usernames
+        if: steps.generate_key.outputs.key != ''
+        env:
+          OPENSEA_API_KEY: ${{ steps.generate_key.outputs.key }}
+        run: |
+          set -e
+          cd backend
+          # Weekly: refresh unchecked / stale profiles (21d cache). New holders get filled.
+          python enrich_opensea_profiles.py
+
+      - name: Commit name updates
         run: |
           set -e
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add web/data/name_index.json web/data/wallet_index.json
           if git diff --staged --quiet; then
-            echo "No Base-name changes."
+            echo "No name changes."
             exit 0
           fi
-          git commit -m "chore: weekly Base-name enrich ($(date -u +%Y-%m-%d))"
+          git commit -m "chore: weekly wallet name enrich ($(date -u +%Y-%m-%d))"
           git pull --rebase --autostash origin main || git pull --autostash origin main || true
           git push origin main || git push origin main --force-with-lease || echo "::warning::Push may have raced; next weekly run will retry."

@@ -223,10 +223,17 @@ Built in the **daily** `refresh-data.yml` job during `fetch_gallery_data.py` →
 
 **Speed:** addresses re-resolve at most every **~14 days** (`last_ens_resolved`). Cache hits reuse prior ENS **and** username (no extra API). Fresh resolves only when new or expired.
 
-**Base names (weekly, separate job):** `enrich-base-names.yml` → `backend/enrich_base_names.py`  
-uses public [web3.bio](https://api.web3.bio) profiles → writes `web/data/name_index.json` and  
-patches `base_name` onto `wallet_index` holders. Does **not** run on the daily OpenSea refresh.  
+**Weekly identity job** (`enrich-base-names.yml`, Sundays + manual):
+
+| Step | Script | Source |
+|------|--------|--------|
+| Base names | `enrich_base_names.py` | web3.bio → `name_index.json` + `base_name` on wallet |
+| OpenSea usernames | `enrich_opensea_profiles.py` | OpenSea accounts API → `username` on wallet |
+
+Does **not** run on the daily gallery refresh (keeps that path fast).  
 Display priority: **ENS → Base name → OpenSea username → short 0x**.
+
+One-time backfill: `cd backend && python enrich_opensea_profiles.py --force`
 
 ### OpenSea collection slug (daCommunity archive)
 
