@@ -1061,17 +1061,26 @@ function bindNameSuggestInputs() {
     walletInput.removeAttribute("list");
     walletInput.setAttribute("autocomplete", "off");
     walletInput.addEventListener("input", function () {
-      renderNameSuggest(walletInput, "wallet-name-suggest", function (lookup) {
-        walletInput.value = lookup;
-        renderWalletLookup(lookup, { updateUrl: true, scroll: false });
+      renderNameSuggest(walletInput, "wallet-name-suggest", function (lookup, addr) {
+        // Always resolve via 0x when we have it (OpenSea / ENS labels alone used to 404)
+        if (addr) {
+          runWalletLookupFromAddress(addr, lookup);
+        } else {
+          walletInput.value = lookup;
+          renderWalletLookup(lookup, { updateUrl: true, scroll: false });
+        }
       });
     });
     walletInput.addEventListener("focus", function () {
       // Only show after the user has typed something
       if (walletInput.value.trim().length >= 1) {
-        renderNameSuggest(walletInput, "wallet-name-suggest", function (lookup) {
-          walletInput.value = lookup;
-          renderWalletLookup(lookup, { updateUrl: true, scroll: false });
+        renderNameSuggest(walletInput, "wallet-name-suggest", function (lookup, addr) {
+          if (addr) {
+            runWalletLookupFromAddress(addr, lookup);
+          } else {
+            walletInput.value = lookup;
+            renderWalletLookup(lookup, { updateUrl: true, scroll: false });
+          }
         });
       }
     });
@@ -1753,7 +1762,8 @@ function addressDisplayMeta(address) {
     (ni && ni.base_name) ||
     null;
   var username = (entry && entry.username) || (ni && ni.username) || null;
-  var lookupValue = ens || base || full;
+  // Prefer a re-typable display name so Look up works for OpenSea handles too
+  var lookupValue = ens || base || username || full;
   var display = ens || base || username || shortenAddress(full);
   return {
     address: key,
@@ -3011,7 +3021,7 @@ function renderTopCollectors() {
     .map(function (c) {
       enrichCollectorRowNames(c);
       var label = formatCollectorDisplayName(c);
-      var lookup = c.ens_name || c.base_name || c.address;
+      var lookup = c.ens_name || c.base_name || c.username || c.address;
       return (
         '<button type="button" class="top-collector-pill" data-address="' +
         escapeHtml(c.address) +
@@ -3321,7 +3331,12 @@ function renderWalletState(kind, opts) {
 function renderWalletSuccess(entry, opts) {
   var resultEl = $("#wallet-result");
   if (!resultEl) return;
-  var label = entry.ens_name || entry.username || shortenAddress(entry.address);
+  enrichCollectorRowNames(entry);
+  var label =
+    entry.ens_name ||
+    entry.base_name ||
+    entry.username ||
+    shortenAddress(entry.address);
   var holdings = entry.holdings || [];
   var holdStats = holdings.length ? summarizeHoldingsStats(holdings) : null;
   var uq = holdStats ? holdStats.unique_pieces : nvl(entry.unique_pieces, holdings.length);
@@ -3337,6 +3352,16 @@ function renderWalletSuccess(entry, opts) {
       formatRankBadgesHtml(ranks, { short: true }) +
       "</div>"
     : "";
+  // Secondary line: show other known handles under the primary display name
+  var secondaryBits = [];
+  if (entry.ens_name && entry.ens_name !== label) secondaryBits.push(entry.ens_name);
+  if (entry.base_name && entry.base_name !== label) secondaryBits.push(entry.base_name);
+  if (entry.username && entry.username !== label) secondaryBits.push(entry.username);
+  var secondaryHtml = secondaryBits.length
+    ? '<p class="collector-profile-ens">' +
+      escapeHtml(secondaryBits.join(" · ")) +
+      "</p>"
+    : "";
 
   resultEl.hidden = false;
   resultEl.innerHTML =
@@ -3346,9 +3371,7 @@ function renderWalletSuccess(entry, opts) {
     '<p class="collector-profile-name">' +
     escapeHtml(label) +
     "</p>" +
-    (entry.ens_name && entry.username
-      ? '<p class="collector-profile-ens">' + escapeHtml(entry.username) + "</p>"
-      : "") +
+    secondaryHtml +
     '<p class="collector-profile-address">' +
     escapeHtml(entry.address) +
     "</p>" +
@@ -3434,6 +3457,81 @@ function isEnsName(v) {
   return (s.endsWith(".eth") || s.endsWith(".base.eth")) && s.length > 4;
 }
 
+/**
+ * Map ENS / Base / OpenSea username (or alias) → 0x address from local indexes.
+ * Exact case-insensitive match only (avoids ambiguous prefix hits).
+ */
+function resolveCollectorNameToAddress(name) {
+  var raw = (name || "").trim();
+  if (!raw) return null;
+  var key = raw.toLowerCase();
+
+  function aliasHit(map) {
+    if (!map) return null;
+    if (map[key]) return String(map[key]).toLowerCase();
+    if (map[raw]) return String(map[raw]).toLowerCase();
+    var found = null;
+    Object.keys(map).some(function (n) {
+      if (String(n).toLowerCase() === key) {
+        found = String(map[n]).toLowerCase();
+        return true;
+      }
+      return false;
+    });
+    return found;
+  }
+
+  var fromAlias =
+    aliasHit(walletIndex && walletIndex.ens_aliases) ||
+    aliasHit(nameIndex && nameIndex.name_aliases);
+  if (fromAlias && isEthAddress(fromAlias)) return fromAlias;
+
+  var matches = [];
+  function consider(addr, ens, base, user) {
+    var a = String(addr || "")
+      .toLowerCase()
+      .trim();
+    if (!a || !isEthAddress(a)) return;
+    var fields = [ens, base, user];
+    for (var i = 0; i < fields.length; i++) {
+      var f = fields[i];
+      if (f && String(f).toLowerCase() === key) {
+        if (matches.indexOf(a) < 0) matches.push(a);
+        return;
+      }
+    }
+  }
+
+  if (walletIndex && walletIndex.by_address) {
+    Object.keys(walletIndex.by_address).forEach(function (a) {
+      var e = walletIndex.by_address[a] || {};
+      consider(e.address || a, e.ens_name, e.base_name, e.username);
+    });
+  }
+  if (nameIndex && nameIndex.by_address) {
+    Object.keys(nameIndex.by_address).forEach(function (a) {
+      var e = nameIndex.by_address[a] || {};
+      consider(e.address || a, e.ens_name, e.base_name, e.username);
+    });
+  }
+  (collectorsList || []).forEach(function (c) {
+    if (!c) return;
+    consider(c.address, c.ens_name, c.base_name, c.username);
+  });
+
+  if (matches.length === 1) return matches[0];
+  // Rare collision: prefer wallet_index entry if present
+  if (matches.length > 1) {
+    for (var mi = 0; mi < matches.length; mi++) {
+      if (walletIndex && walletIndex.by_address && walletIndex.by_address[matches[mi]]) {
+        return matches[mi];
+      }
+    }
+    return matches[0];
+  }
+  return null;
+}
+
 async function resolveEnsToAddress(name) {
   var url = "https://ensdata.net/" + encodeURIComponent(name.trim());
   const ctrl = new AbortController();
@@ -3493,12 +3591,12 @@ function lookupWallet(identifier) {
   var raw = identifier.trim();
   if (!raw) {
     return {
-      error: "Paste an ENS name or 0x address to see what's in the archive.",
+      error: "Paste an ENS, Base name, OpenSea username, or 0x address.",
       title: "Need an address",
     };
   }
 
-  // Resolve ENS to address early so synth always gets a 0x (synth fails on ENS strings)
+  // Resolve name → 0x early so synth always gets an address (fails on bare ENS/OS strings)
   var address = raw.toLowerCase();
   var needsResolve = false;
   if (isEnsName(raw)) {
@@ -3506,18 +3604,27 @@ function lookupWallet(identifier) {
     var alias =
       (walletIndex && walletIndex.ens_aliases && walletIndex.ens_aliases[rawL]) ||
       (nameIndex && nameIndex.name_aliases && nameIndex.name_aliases[rawL]) ||
-      null;
+      resolveCollectorNameToAddress(raw);
     if (alias) {
       address = alias.toLowerCase();
     } else {
       needsResolve = true;
     }
-  } else if (!isEthAddress(raw)) {
-    return {
-      error: "That doesn't look like a valid ENS (.eth / .base.eth) or 0x address.",
-      title: "Check the format",
-      hint: "Example: mozvane.eth or 0xabc…1234",
-    };
+  } else if (isEthAddress(raw)) {
+    address = raw.toLowerCase();
+  } else {
+    // OpenSea username or other local display name (e.g. MalteExe)
+    var named = resolveCollectorNameToAddress(raw);
+    if (named) {
+      address = named;
+    } else {
+      return {
+        error:
+          "That name isn't in the archive snapshot. Try the full 0x address, or an ENS / Base / OpenSea name we index.",
+        title: "Name not found",
+        hint: "Example: MalteExe, mozvane.eth, or 0xabc…1234",
+      };
+    }
   }
 
   // Try synthetic holdings from whatever is currently loaded in galleryData (badges items have owners lists).
@@ -3777,11 +3884,12 @@ function renderCollectors(filter) {
       enrichCollectorRowNames(c);
       var label = formatCollectorDisplayName(c);
       var sub = c.ens_name || c.base_name || c.username || c.address;
+      var lookup = c.ens_name || c.base_name || c.username || c.address;
       return (
         '<button type="button" class="collector-row" data-address="' +
         escapeHtml(c.address) +
         '" data-lookup="' +
-        escapeHtml(c.ens_name || c.base_name || c.address) +
+        escapeHtml(lookup) +
         '">' +
         '<div class="collector-info"><strong>' +
         escapeHtml(label) +
