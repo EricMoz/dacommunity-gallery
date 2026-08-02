@@ -100,15 +100,26 @@ python fetch_dagato_agency.py   # writes web/data/dagato_agency_data.json + cata
 
 | Surface | Detail |
 |---------|--------|
-| Hub / home tile | Eyebrow **`Agency · Volume 1`** (not “cyber-noir”); cool ice-blue premium dark card |
-| Route | `/dacommunity/?collection=dagato-agency` |
+| Hub / home tile | Eyebrow **`Agency · Volume 1`**; cool ice-blue premium dark card |
+| Route | `/dacommunity/?collection=dagato-agency` (one site collection for all volumes) |
 | Steward | `dagato.eth` · no creator-wallet exclusion |
-| Browse grid | **5 rarity series** only: titles `daGATO Case File · {rarity}`; token pills **#1–#5** (1:1 highest); each row has `minted_at` (earliest case-file mint) |
+| Browse titles | **`{Rarity} Case File · Vol N`** e.g. `Legendary Case File · Vol 1` |
+| Wallet titles | **`{Rarity} Case File #NN · Vol N`** e.g. `Common Case File #33 · Vol 1` |
+| Browse grid | **5 rarity series** per volume; token pills **#1–#5** (1:1 highest); `minted_at` on series |
 | Rarity tags | Common / Uncommon / Epic / Legendary / 1:1 on grid, holdings, detail |
 | Detail | Aggregated holders + copies; transfer/sale history merged from case files |
 | Collector wallet | Real case-file token #s (editions), not series rows |
 | Data | `web/data/dagato_agency_data.json` + `dagato_agency_catalog.json` |
 | Fetch | `backend/fetch_dagato_agency.py` (also in `refresh-data.yml`) |
+
+**Multi-volume (soon):** OpenSea will use a new collection per volume; the site keeps **`dagato-agency`**.  
+Titles already carry `volume` / `volume_label` (`Vol 1`, `Vol 2`, …). When Volume 2 is ready:
+
+```bash
+cd backend
+# Planned (not live until Vol 2 registry slug exists):
+python fetch_dagato_agency.py --volume 2   # merge into same site collection
+```
 
 Hub cards remain manual (home + `collections/index.html`) until the hub is fully registry-driven.
 

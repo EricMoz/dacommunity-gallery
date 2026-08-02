@@ -43,9 +43,14 @@ CREATOR_ENS = "dagato.eth"
 # OpenSea collection owner (steward); NOT excluded from holder stats
 CREATOR_ADDRESS = "0xa5dcf683b5092cd9df2f6c15ecb8d7fc355b8dea"
 
-# daGATO Case File #27
+# Site keeps one gallery collection; each OpenSea drop is a volume (Vol 1, Vol 2, …).
+# Future volumes: fetch with --volume N (separate OpenSea slug) and merge into this id.
+VOLUME = 1
+VOLUME_LABEL = f"Vol {VOLUME}"
+
+# daGATO Case File #27 (OpenSea raw titles)
 TITLE_RE = re.compile(
-    r"daGATO\s+Case\s+File\s*#\s*(\d+)",
+    r"(?:daGATO\s+)?Case\s+File\s*#\s*(\d+)",
     re.I,
 )
 
@@ -184,21 +189,52 @@ def extract_rarity(traits: list | None) -> str | None:
     return None
 
 
-def parse_case_title(name: str | None, token_id: str) -> tuple[str, str, str | None]:
-    """Return (display_name, local_slug, opensea_name_if_different)."""
-    raw = (name or "").strip()
-    m = TITLE_RE.search(raw) if raw else None
-    if m:
-        num = m.group(1).zfill(2)
-        display = f"daGATO Case File #{num}"
-        slug = f"dagato-case-file-{num}"
-        return display, slug, raw if raw != display else None
+def format_edition_title(
+    rarity: str | None,
+    token_id: str,
+    *,
+    volume_label: str = VOLUME_LABEL,
+) -> str:
+    """Site display: '{Rarity} Case File #NN · Vol N'."""
+    r = rarity or "Common"
     try:
         num = str(int(token_id)).zfill(2)
     except ValueError:
         num = str(token_id)
-    display = f"daGATO Case File #{num}"
-    return display, f"dagato-case-file-{num}", raw or None
+    return f"{r} Case File #{num} · {volume_label}"
+
+
+def format_series_title(
+    rarity: str,
+    *,
+    volume_label: str = VOLUME_LABEL,
+) -> str:
+    """Browse tier: '{Rarity} Case File · Vol N'."""
+    return f"{rarity} Case File · {volume_label}"
+
+
+def parse_case_title(
+    name: str | None,
+    token_id: str,
+    *,
+    rarity: str | None = None,
+    volume: int = VOLUME,
+    volume_label: str | None = None,
+) -> tuple[str, str, str | None]:
+    """Return (display_name, local_slug, opensea_name_if_different)."""
+    raw = (name or "").strip()
+    label = volume_label or f"Vol {volume}"
+    m = TITLE_RE.search(raw) if raw else None
+    if m:
+        num = m.group(1).zfill(2)
+    else:
+        try:
+            num = str(int(token_id)).zfill(2)
+        except ValueError:
+            num = str(token_id)
+    display = format_edition_title(rarity, num, volume_label=label)
+    slug = f"case-file-v{volume}-{num}"
+    return display, slug, raw if raw and raw != display else None
 
 
 def summarize_owners(
@@ -347,14 +383,16 @@ def build_item(
     owner_stats = summarize_owners(owners, exclude_addresses=None)
     owner_stats = enrich_owner_stats(owner_stats, recent_activity)
 
+    traits = nft.get("traits") or []
+    rarity = extract_rarity(traits)
     raw_name = nft.get("name") or f"daGATO Case File #{token_id}"
-    display, slug, opensea_name = parse_case_title(raw_name, token_id)
+    display, slug, opensea_name = parse_case_title(
+        raw_name, token_id, rarity=rarity, volume=VOLUME, volume_label=VOLUME_LABEL
+    )
     image_url = nft.get("display_image_url") or nft.get("image_url") or ""
     media_type = (
         "video" if re.search(r"\.(mov|mp4|webm)(\?|$)", image_url, re.I) else "image"
     )
-    traits = nft.get("traits") or []
-    rarity = extract_rarity(traits)
 
     item = {
         "token_id": token_id,
@@ -370,6 +408,8 @@ def build_item(
         "updated_at": nft.get("updated_at"),
         "traits": traits,
         "rarity": rarity,
+        "volume": VOLUME,
+        "volume_label": VOLUME_LABEL,
         "listed": listing_info is not None,
         "listing": listing_info,
         "owners": owner_stats,
@@ -468,16 +508,16 @@ def build_rarity_series(edition_items: list[dict]) -> list[dict]:
         ]
 
         slug_key = "1of1" if label == "1:1" else label.lower()
-        # Browse title: collection identity + rarity; token pill shows #1–#5 (token_rank)
-        display = f"daGATO Case File · {label}"
+        # Browse: '{Rarity} Case File · Vol N'; token pill shows #1–#5 (token_rank)
+        display = format_series_title(label, volume_label=VOLUME_LABEL)
         excerpt = (
-            f"daGATO Detective Agency · {file_count} case file"
+            f"Detective Agency {VOLUME_LABEL} · {file_count} case file"
             f"{'s' if file_count != 1 else ''} · "
             f"{len(holders)} holder{'s' if len(holders) != 1 else ''} · "
             f"{total_copies} cop{'ies' if total_copies != 1 else 'y'}"
         )
         description = (
-            f"daGATO Detective Agency: Volume 1.\n\n"
+            f"daGATO Detective Agency: Volume {VOLUME}.\n\n"
             f"{file_count} case file{'s' if file_count != 1 else ''} at {label} rarity. "
             f"Open holders and recent transfers below.\n\n"
             f"Case files: "
@@ -531,7 +571,7 @@ def build_rarity_series(edition_items: list[dict]) -> list[dict]:
             "token_rank": rank,
             "name": display,
             "display_name": display,
-            "local_slug": f"agency-rarity-{slug_key}",
+            "local_slug": f"agency-v{VOLUME}-rarity-{slug_key}",
             "description": description,
             "excerpt": excerpt,
             "image_url": rep.get("image_url"),
@@ -554,6 +594,8 @@ def build_rarity_series(edition_items: list[dict]) -> list[dict]:
             ),
             "traits": [{"trait_type": "Rarity", "value": label}],
             "rarity": label,
+            "volume": VOLUME,
+            "volume_label": VOLUME_LABEL,
             "listed": any_listed,
             "listing": best_listing,
             "owners": owners_payload,
@@ -573,9 +615,16 @@ def build_rarity_series(edition_items: list[dict]) -> list[dict]:
     for it in edition_items:
         it["is_edition_token"] = True
         it["agency_rarity_series"] = False
+        it["volume"] = it.get("volume") or VOLUME
+        it["volume_label"] = it.get("volume_label") or VOLUME_LABEL
         r = it.get("rarity")
         if r in RARITY_TO_RANK:
             it["token_rank"] = RARITY_TO_RANK[r]  # wallet can still show rarity tier
+        # Keep display titles on the {Rarity} Case File #NN · Vol N pattern
+        it["name"] = format_edition_title(
+            r, str(it.get("token_id") or ""), volume_label=VOLUME_LABEL
+        )
+        it["display_name"] = it["name"]
 
     return series
 
@@ -606,6 +655,8 @@ def slim_item(item: dict) -> dict:
         "rarity": item.get("rarity"),
         "traits": item.get("traits") or [],
         "token_rank": item.get("token_rank"),
+        "volume": item.get("volume"),
+        "volume_label": item.get("volume_label"),
         "is_series_rep": bool(item.get("is_series_rep")),
         "agency_rarity_series": bool(item.get("agency_rarity_series")),
         "is_edition_token": bool(item.get("is_edition_token")),
@@ -648,11 +699,24 @@ def main() -> int:
     )
     parser.add_argument("--max-items", type=int, default=0, help="Limit (0=all)")
     parser.add_argument(
+        "--volume",
+        type=int,
+        default=1,
+        help=(
+            "Volume number for titles (Vol N). Site keeps one collection_id; "
+            "future OpenSea drops use --volume 2+ and merge (not wired yet)."
+        ),
+    )
+    parser.add_argument(
         "--create-key",
         action="store_true",
         help="Create OpenSea instant API key if missing (local only)",
     )
     args = parser.parse_args()
+
+    global VOLUME, VOLUME_LABEL
+    VOLUME = max(1, int(args.volume or 1))
+    VOLUME_LABEL = f"Vol {VOLUME}"
 
     reg = get_collection(COLLECTION_ID)
     if not reg:

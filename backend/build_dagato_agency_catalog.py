@@ -39,6 +39,8 @@ def slim_item(item: dict) -> dict:
         "rarity": item.get("rarity"),
         "traits": item.get("traits") or [],
         "token_rank": item.get("token_rank"),
+        "volume": item.get("volume"),
+        "volume_label": item.get("volume_label"),
         "is_series_rep": bool(item.get("is_series_rep")),
         "agency_rarity_series": bool(item.get("agency_rarity_series")),
         "is_edition_token": bool(item.get("is_edition_token")),

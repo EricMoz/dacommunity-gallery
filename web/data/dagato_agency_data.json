@@ -40,11 +40,11 @@
     {
       "token_id": "rank-1",
       "token_rank": 1,
-      "name": "daGATO Case File · 1:1",
-      "display_name": "daGATO Case File · 1:1",
-      "local_slug": "agency-rarity-1of1",
+      "name": "1:1 Case File · Vol 1",
+      "display_name": "1:1 Case File · Vol 1",
+      "local_slug": "agency-v1-rarity-1of1",
       "description": "daGATO Detective Agency: Volume 1.\n\n1 case file at 1:1 rarity. Open holders and recent transfers below.\n\nCase files: daGATO Case File #27.",
-      "excerpt": "daGATO Detective Agency · 1 case file · 1 holder · 1 copy",
+      "excerpt": "Detective Agency Vol 1 · 1 case file · 1 holder · 1 copy",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/4a9b2860a234a8e057f6876cc5a812/304a9b2860a234a8e057f6876cc5a812.jpeg",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/4a9b2860a234a8e057f6876cc5a812/304a9b2860a234a8e057f6876cc5a812.jpeg",
       "media_type": "image",
@@ -56,6 +56,8 @@
         }
       ],
       "rarity": "1:1",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -116,11 +118,11 @@
     {
       "token_id": "rank-2",
       "token_rank": 2,
-      "name": "daGATO Case File · Legendary",
-      "display_name": "daGATO Case File · Legendary",
-      "local_slug": "agency-rarity-legendary",
+      "name": "Legendary Case File · Vol 1",
+      "display_name": "Legendary Case File · Vol 1",
+      "local_slug": "agency-v1-rarity-legendary",
       "description": "daGATO Detective Agency: Volume 1.\n\n5 case files at Legendary rarity. Open holders and recent transfers below.\n\nCase files: daGATO Case File #01, daGATO Case File #16, daGATO Case File #21, daGATO Case File #28, daGATO Case File #32.",
-      "excerpt": "daGATO Detective Agency · 5 case files · 5 holders · 5 copies",
+      "excerpt": "Detective Agency Vol 1 · 5 case files · 5 holders · 5 copies",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
       "media_type": "image",
@@ -132,6 +134,8 @@
         }
       ],
       "rarity": "Legendary",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -307,11 +311,11 @@
     {
       "token_id": "rank-3",
       "token_rank": 3,
-      "name": "daGATO Case File · Epic",
-      "display_name": "daGATO Case File · Epic",
-      "local_slug": "agency-rarity-epic",
+      "name": "Epic Case File · Vol 1",
+      "display_name": "Epic Case File · Vol 1",
+      "local_slug": "agency-v1-rarity-epic",
       "description": "daGATO Detective Agency: Volume 1.\n\n7 case files at Epic rarity. Open holders and recent transfers below.\n\nCase files: daGATO Case File #03, daGATO Case File #08, daGATO Case File #10, daGATO Case File #18, daGATO Case File #23, daGATO Case File #24, daGATO Case File #30.",
-      "excerpt": "daGATO Detective Agency · 7 case files · 6 holders · 7 copies",
+      "excerpt": "Detective Agency Vol 1 · 7 case files · 6 holders · 7 copies",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
       "media_type": "image",
@@ -323,6 +327,8 @@
         }
       ],
       "rarity": "Epic",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": true,
       "listing": {
         "amount_eth": 0.5,
@@ -537,11 +543,11 @@
     {
       "token_id": "rank-4",
       "token_rank": 4,
-      "name": "daGATO Case File · Uncommon",
-      "display_name": "daGATO Case File · Uncommon",
-      "local_slug": "agency-rarity-uncommon",
+      "name": "Uncommon Case File · Vol 1",
+      "display_name": "Uncommon Case File · Vol 1",
+      "local_slug": "agency-v1-rarity-uncommon",
       "description": "daGATO Detective Agency: Volume 1.\n\n9 case files at Uncommon rarity. Open holders and recent transfers below.\n\nCase files: daGATO Case File #02, daGATO Case File #04, daGATO Case File #05, daGATO Case File #06, daGATO Case File #09, daGATO Case File #13, daGATO Case File #19, daGATO Case File #20, daGATO Case File #31.",
-      "excerpt": "daGATO Detective Agency · 9 case files · 8 holders · 9 copies",
+      "excerpt": "Detective Agency Vol 1 · 9 case files · 8 holders · 9 copies",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
       "media_type": "image",
@@ -553,6 +559,8 @@
         }
       ],
       "rarity": "Uncommon",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -817,11 +825,11 @@
     {
       "token_id": "rank-5",
       "token_rank": 5,
-      "name": "daGATO Case File · Common",
-      "display_name": "daGATO Case File · Common",
-      "local_slug": "agency-rarity-common",
+      "name": "Common Case File · Vol 1",
+      "display_name": "Common Case File · Vol 1",
+      "local_slug": "agency-v1-rarity-common",
       "description": "daGATO Detective Agency: Volume 1.\n\n11 case files at Common rarity. Open holders and recent transfers below.\n\nCase files: daGATO Case File #07, daGATO Case File #11, daGATO Case File #12, daGATO Case File #14, daGATO Case File #15, daGATO Case File #17, daGATO Case File #22, daGATO Case File #25, daGATO Case File #26, daGATO Case File #29, daGATO Case File #33.",
-      "excerpt": "daGATO Detective Agency · 11 case files · 9 holders · 11 copies",
+      "excerpt": "Detective Agency Vol 1 · 11 case files · 9 holders · 11 copies",
       "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
       "media_type": "image",
@@ -833,6 +841,8 @@
         }
       ],
       "rarity": "Common",
+      "volume": 1,
+      "volume_label": "Vol 1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1125,8 +1135,8 @@
     },
     {
       "token_id": "33",
-      "name": "daGATO Case File #33",
-      "display_name": "daGATO Case File #33",
+      "name": "Common Case File #33 · Vol 1",
+      "display_name": "Common Case File #33 · Vol 1",
       "local_slug": "dagato-case-file-33",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -1181,14 +1191,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 5
+      "token_rank": 5,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "32",
-      "name": "daGATO Case File #32",
-      "display_name": "daGATO Case File #32",
+      "name": "Legendary Case File #32 · Vol 1",
+      "display_name": "Legendary Case File #32 · Vol 1",
       "local_slug": "dagato-case-file-32",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -1250,14 +1262,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 2
+      "token_rank": 2,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "31",
-      "name": "daGATO Case File #31",
-      "display_name": "daGATO Case File #31",
+      "name": "Uncommon Case File #31 · Vol 1",
+      "display_name": "Uncommon Case File #31 · Vol 1",
       "local_slug": "dagato-case-file-31",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -1319,14 +1333,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 4
+      "token_rank": 4,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "30",
-      "name": "daGATO Case File #30",
-      "display_name": "daGATO Case File #30",
+      "name": "Epic Case File #30 · Vol 1",
+      "display_name": "Epic Case File #30 · Vol 1",
       "local_slug": "dagato-case-file-30",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -1385,14 +1401,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 3
+      "token_rank": 3,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "29",
-      "name": "daGATO Case File #29",
-      "display_name": "daGATO Case File #29",
+      "name": "Common Case File #29 · Vol 1",
+      "display_name": "Common Case File #29 · Vol 1",
       "local_slug": "dagato-case-file-29",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -1447,14 +1465,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 5
+      "token_rank": 5,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "28",
-      "name": "daGATO Case File #28",
-      "display_name": "daGATO Case File #28",
+      "name": "Legendary Case File #28 · Vol 1",
+      "display_name": "Legendary Case File #28 · Vol 1",
       "local_slug": "dagato-case-file-28",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -1509,14 +1529,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 2
+      "token_rank": 2,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "27",
-      "name": "daGATO Case File #27",
-      "display_name": "daGATO Case File #27",
+      "name": "1:1 Case File #27 · Vol 1",
+      "display_name": "1:1 Case File #27 · Vol 1",
       "local_slug": "dagato-case-file-27",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -1571,14 +1593,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 1
+      "token_rank": 1,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "26",
-      "name": "daGATO Case File #26",
-      "display_name": "daGATO Case File #26",
+      "name": "Common Case File #26 · Vol 1",
+      "display_name": "Common Case File #26 · Vol 1",
       "local_slug": "dagato-case-file-26",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -1633,14 +1657,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 5
+      "token_rank": 5,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "25",
-      "name": "daGATO Case File #25",
-      "display_name": "daGATO Case File #25",
+      "name": "Common Case File #25 · Vol 1",
+      "display_name": "Common Case File #25 · Vol 1",
       "local_slug": "dagato-case-file-25",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -1695,14 +1721,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 5
+      "token_rank": 5,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "24",
-      "name": "daGATO Case File #24",
-      "display_name": "daGATO Case File #24",
+      "name": "Epic Case File #24 · Vol 1",
+      "display_name": "Epic Case File #24 · Vol 1",
       "local_slug": "dagato-case-file-24",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -1757,14 +1785,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 3
+      "token_rank": 3,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "23",
-      "name": "daGATO Case File #23",
-      "display_name": "daGATO Case File #23",
+      "name": "Epic Case File #23 · Vol 1",
+      "display_name": "Epic Case File #23 · Vol 1",
       "local_slug": "dagato-case-file-23",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -1819,14 +1849,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 3
+      "token_rank": 3,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "22",
-      "name": "daGATO Case File #22",
-      "display_name": "daGATO Case File #22",
+      "name": "Common Case File #22 · Vol 1",
+      "display_name": "Common Case File #22 · Vol 1",
       "local_slug": "dagato-case-file-22",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -1881,14 +1913,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 5
+      "token_rank": 5,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "21",
-      "name": "daGATO Case File #21",
-      "display_name": "daGATO Case File #21",
+      "name": "Legendary Case File #21 · Vol 1",
+      "display_name": "Legendary Case File #21 · Vol 1",
       "local_slug": "dagato-case-file-21",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -1943,14 +1977,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 2
+      "token_rank": 2,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "20",
-      "name": "daGATO Case File #20",
-      "display_name": "daGATO Case File #20",
+      "name": "Uncommon Case File #20 · Vol 1",
+      "display_name": "Uncommon Case File #20 · Vol 1",
       "local_slug": "dagato-case-file-20",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -2005,14 +2041,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 4
+      "token_rank": 4,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "19",
-      "name": "daGATO Case File #19",
-      "display_name": "daGATO Case File #19",
+      "name": "Uncommon Case File #19 · Vol 1",
+      "display_name": "Uncommon Case File #19 · Vol 1",
       "local_slug": "dagato-case-file-19",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -2067,14 +2105,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 4
+      "token_rank": 4,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "18",
-      "name": "daGATO Case File #18",
-      "display_name": "daGATO Case File #18",
+      "name": "Epic Case File #18 · Vol 1",
+      "display_name": "Epic Case File #18 · Vol 1",
       "local_slug": "dagato-case-file-18",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -2129,14 +2169,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 3
+      "token_rank": 3,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "17",
-      "name": "daGATO Case File #17",
-      "display_name": "daGATO Case File #17",
+      "name": "Common Case File #17 · Vol 1",
+      "display_name": "Common Case File #17 · Vol 1",
       "local_slug": "dagato-case-file-17",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -2191,14 +2233,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 5
+      "token_rank": 5,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "16",
-      "name": "daGATO Case File #16",
-      "display_name": "daGATO Case File #16",
+      "name": "Legendary Case File #16 · Vol 1",
+      "display_name": "Legendary Case File #16 · Vol 1",
       "local_slug": "dagato-case-file-16",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -2253,14 +2297,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 2
+      "token_rank": 2,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "15",
-      "name": "daGATO Case File #15",
-      "display_name": "daGATO Case File #15",
+      "name": "Common Case File #15 · Vol 1",
+      "display_name": "Common Case File #15 · Vol 1",
       "local_slug": "dagato-case-file-15",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -2322,14 +2368,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 5
+      "token_rank": 5,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "14",
-      "name": "daGATO Case File #14",
-      "display_name": "daGATO Case File #14",
+      "name": "Common Case File #14 · Vol 1",
+      "display_name": "Common Case File #14 · Vol 1",
       "local_slug": "dagato-case-file-14",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -2384,14 +2432,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 5
+      "token_rank": 5,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "13",
-      "name": "daGATO Case File #13",
-      "display_name": "daGATO Case File #13",
+      "name": "Uncommon Case File #13 · Vol 1",
+      "display_name": "Uncommon Case File #13 · Vol 1",
       "local_slug": "dagato-case-file-13",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -2446,14 +2496,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 4
+      "token_rank": 4,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "12",
-      "name": "daGATO Case File #12",
-      "display_name": "daGATO Case File #12",
+      "name": "Common Case File #12 · Vol 1",
+      "display_name": "Common Case File #12 · Vol 1",
       "local_slug": "dagato-case-file-12",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -2508,14 +2560,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 5
+      "token_rank": 5,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "11",
-      "name": "daGATO Case File #11",
-      "display_name": "daGATO Case File #11",
+      "name": "Common Case File #11 · Vol 1",
+      "display_name": "Common Case File #11 · Vol 1",
       "local_slug": "dagato-case-file-11",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -2570,14 +2624,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 5
+      "token_rank": 5,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "10",
-      "name": "daGATO Case File #10",
-      "display_name": "daGATO Case File #10",
+      "name": "Epic Case File #10 · Vol 1",
+      "display_name": "Epic Case File #10 · Vol 1",
       "local_slug": "dagato-case-file-10",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -2632,14 +2688,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 3
+      "token_rank": 3,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "9",
-      "name": "daGATO Case File #09",
-      "display_name": "daGATO Case File #09",
+      "name": "Uncommon Case File #09 · Vol 1",
+      "display_name": "Uncommon Case File #09 · Vol 1",
       "local_slug": "dagato-case-file-09",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -2694,14 +2752,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 4
+      "token_rank": 4,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "8",
-      "name": "daGATO Case File #08",
-      "display_name": "daGATO Case File #08",
+      "name": "Epic Case File #08 · Vol 1",
+      "display_name": "Epic Case File #08 · Vol 1",
       "local_slug": "dagato-case-file-08",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -2756,14 +2816,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 3
+      "token_rank": 3,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "7",
-      "name": "daGATO Case File #07",
-      "display_name": "daGATO Case File #07",
+      "name": "Common Case File #07 · Vol 1",
+      "display_name": "Common Case File #07 · Vol 1",
       "local_slug": "dagato-case-file-07",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -2818,14 +2880,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 5
+      "token_rank": 5,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "6",
-      "name": "daGATO Case File #06",
-      "display_name": "daGATO Case File #06",
+      "name": "Uncommon Case File #06 · Vol 1",
+      "display_name": "Uncommon Case File #06 · Vol 1",
       "local_slug": "dagato-case-file-06",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -2880,14 +2944,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 4
+      "token_rank": 4,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "5",
-      "name": "daGATO Case File #05",
-      "display_name": "daGATO Case File #05",
+      "name": "Uncommon Case File #05 · Vol 1",
+      "display_name": "Uncommon Case File #05 · Vol 1",
       "local_slug": "dagato-case-file-05",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -2942,14 +3008,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 4
+      "token_rank": 4,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "4",
-      "name": "daGATO Case File #04",
-      "display_name": "daGATO Case File #04",
+      "name": "Uncommon Case File #04 · Vol 1",
+      "display_name": "Uncommon Case File #04 · Vol 1",
       "local_slug": "dagato-case-file-04",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -3004,14 +3072,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 4
+      "token_rank": 4,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "3",
-      "name": "daGATO Case File #03",
-      "display_name": "daGATO Case File #03",
+      "name": "Epic Case File #03 · Vol 1",
+      "display_name": "Epic Case File #03 · Vol 1",
       "local_slug": "dagato-case-file-03",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -3066,14 +3136,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 3
+      "token_rank": 3,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "2",
-      "name": "daGATO Case File #02",
-      "display_name": "daGATO Case File #02",
+      "name": "Uncommon Case File #02 · Vol 1",
+      "display_name": "Uncommon Case File #02 · Vol 1",
       "local_slug": "dagato-case-file-02",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -3128,14 +3200,16 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 4
+      "token_rank": 4,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     },
     {
       "token_id": "1",
-      "name": "daGATO Case File #01",
-      "display_name": "daGATO Case File #01",
+      "name": "Legendary Case File #01 · Vol 1",
+      "display_name": "Legendary Case File #01 · Vol 1",
       "local_slug": "dagato-case-file-01",
       "description": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until the official reveal. The city hides the truth. daGATO finds it.",
       "excerpt": "A classified collectible from daGATO Detective Agency: Volume 1. Each case file represents one piece of the agency's first limited collection, concealed until…",
@@ -3190,9 +3264,11 @@
           "quantity": 1
         }
       ],
-      "is_edition_token": true,
       "agency_rarity_series": false,
-      "token_rank": 2
+      "token_rank": 2,
+      "is_edition_token": true,
+      "volume": 1,
+      "volume_label": "Vol 1"
     }
   ]
 }
