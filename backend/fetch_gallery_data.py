@@ -384,11 +384,13 @@ def build_holders_index(
         username = None
         last_res_ts = None
         resolved_at = None
+        profile_checked = False
         if resolve_ens:
             p = previous_by.get(address, {})
             last_res_ts = p.get("last_ens_resolved")
             prev_ens = p.get("ens_name")
             prev_username = p.get("username")
+            profile_checked = bool(p.get("profile_checked"))
 
             # Shared resolver: ensdata.net primary + OpenSea ENS fallback + 14d cache + lowercase.
             # Skip network if recently resolved; returns prev_ens on skip/failure.
@@ -399,11 +401,12 @@ def build_holders_index(
                 previous_ens=prev_ens,
             )
 
-            # Fresh OpenSea account call only when cache expired — picks up username
-            # (OpenSea profile) and any ENS ensdata missed. Display priority is applied
-            # on the frontend: ens_name → username → short 0x.
+            # OpenSea profile (username): refresh when ENS cache expires OR we have never
+            # probed profile for this wallet. One-time fill recovers names skipped while
+            # only ENS was cached. Display priority on site: ENS → Base → OpenSea → 0x.
             do_fresh_resolve = not last_res_ts or (time.time() - last_res_ts) >= (14 * 86400)
-            if do_fresh_resolve:
+            need_profile = do_fresh_resolve or not profile_checked
+            if need_profile:
                 try:
                     resolved = client.resolve_account(holder["address"])
                     if not ens_name:
@@ -413,12 +416,20 @@ def build_holders_index(
                     u = resolved.get("username") or resolved.get("display_name")
                     if u:
                         username = str(u).strip()
+                        # Prefer real profile handles over raw 0x dumps
+                        if username.lower().startswith("0x") and len(username) >= 10:
+                            username = None
                 except requests.HTTPError:
                     pass
-                # Keep prior username if OpenSea returned nothing this run
+                except Exception:
+                    pass
+                profile_checked = True
                 if not username and prev_username:
                     username = prev_username
-                resolved_at = time.time()
+                if do_fresh_resolve:
+                    resolved_at = time.time()
+                else:
+                    resolved_at = last_res_ts or time.time()
             else:
                 # Cache hit: never wipe prior OpenSea username
                 username = prev_username
@@ -439,6 +450,7 @@ def build_holders_index(
             "holdings": holdings,
             "unique_pieces": len(holdings),
             "last_ens_resolved": resolved_at,
+            "profile_checked": profile_checked,
         }
 
         # Preserve past ENS names (keyed by wallet address)
@@ -586,11 +598,13 @@ def main() -> int:
                 "ens_name": entry.get("ens_name"),
                 "ens_history": entry.get("ens_history") or [],
                 "username": entry.get("username"),
+                "base_name": entry.get("base_name"),
                 "collection_quantity": entry.get("collection_quantity"),
                 "unique_pieces": entry.get("unique_pieces"),
                 # Persist the last resolution timestamp so future runs can skip re-resolving this address
                 # for the configured cache window (see resolve_ens_name + build_holders_index).
                 "last_ens_resolved": entry.get("last_ens_resolved"),
+                "profile_checked": entry.get("profile_checked"),
                 "holdings": [
                     {
                         "token_id": h["token_id"],

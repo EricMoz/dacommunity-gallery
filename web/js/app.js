@@ -194,7 +194,33 @@ function getCollectionName(id) {
   if (!id || id === "all") return "All collections";
   var list = (collectionsRegistry && collectionsRegistry.collections) || [];
   var found = list.find(function (c) { return c.id === id; });
-  return found ? found.name : id;
+  return found ? collectionSelectLabel(found) : id;
+}
+
+/** Dropdown / chip label — drop volume suffixes (multi-volume Agency stays one site collection). */
+function collectionSelectLabel(col) {
+  if (!col) return "";
+  if (col.id === "dagato-agency") return "daGATO Detective Agency";
+  var n = col.name || col.id || "";
+  // Strip trailing ": Volume N" / "Volume N" if present on future registry names
+  n = String(n).replace(/\s*[:·-]?\s*Volume\s*\d+\s*$/i, "").trim();
+  return n || col.id;
+}
+
+/** Human collection label for an item (registry name or known ids). */
+function itemCollectionLabel(item) {
+  if (!item) return "";
+  var cid = item.collection_id || "dacommunity";
+  var list = (collectionsRegistry && collectionsRegistry.collections) || [];
+  var found = list.find(function (c) {
+    return c.id === cid;
+  });
+  if (found) return collectionSelectLabel(found);
+  if (cid === "bigkix") return "BIG KIX";
+  if (cid === "badges") return "daCAT Badges";
+  if (cid === "dagato-agency") return "daGATO Detective Agency";
+  if (cid === "dacommunity") return "daCommunity";
+  return cid;
 }
 
 /** Return per-collection catalog/full data URLs (with current prefix + build stamp) when the
@@ -4023,30 +4049,63 @@ function hasRecentActivity(item, withinDays) {
 
 function itemMatchesSearch(item, q) {
   if (!q) return true;
-  var steward = collectionStewardLabel().toLowerCase();
-  if (steward.indexOf(q) >= 0) return true;
+  q = String(q).toLowerCase().trim();
+  if (!q) return true;
+
+  // Multi-token: all words must match somewhere (order-independent)
+  var tokens = q.split(/\s+/).filter(Boolean);
+  if (!tokens.length) return true;
+
+  var hayParts = [
+    itemTitle(item),
+    item.name,
+    item.display_name,
+    item.opensea_name,
+    item.description,
+    item.excerpt,
+    item.local_slug,
+    item.collection_id,
+    itemCollectionLabel(item),
+    itemRarityLabel(item),
+    item.volume_label,
+    item.volume != null ? "vol " + item.volume : "",
+    item.volume != null ? "volume " + item.volume : "",
+    String(item.token_id),
+    item.token_id != null ? "#" + item.token_id : "",
+    collectionStewardLabel(),
+  ];
+
+  // Holder names / addresses (ENS, Base, OpenSea, 0x)
   var holders = (item.owners && item.owners.holders) || [];
   for (var i = 0; i < holders.length; i++) {
-    var addr = holders[i].address;
-    if (addr && addr.toLowerCase().indexOf(q) >= 0) return true;
-    if (walletIndex && walletIndex.by_address) {
-      var entry = walletIndex.by_address[addr.toLowerCase()];
+    var h = holders[i] || {};
+    var addr = h.address || "";
+    hayParts.push(addr, h.ens_name, h.base_name, h.username);
+    if (addr && walletIndex && walletIndex.by_address) {
+      var entry = walletIndex.by_address[String(addr).toLowerCase()];
       if (entry) {
-        if ((entry.ens_name || "").toLowerCase().indexOf(q) >= 0) return true;
-        if ((entry.username || "").toLowerCase().indexOf(q) >= 0) return true;
+        hayParts.push(entry.ens_name, entry.base_name, entry.username);
       }
     }
+    var ni = nameIndexEntry(addr);
+    if (ni) hayParts.push(ni.base_name, ni.ens_name, ni.username);
   }
-  var rarity = (itemRarityLabel(item) || "").toLowerCase();
-  return (
-    itemTitle(item).toLowerCase().indexOf(q) >= 0 ||
-    (item.name || "").toLowerCase().indexOf(q) >= 0 ||
-    (item.description || "").toLowerCase().indexOf(q) >= 0 ||
-    (item.excerpt || "").toLowerCase().indexOf(q) >= 0 ||
-    (item.local_slug || "").toLowerCase().indexOf(q) >= 0 ||
-    (rarity && rarity.indexOf(q) >= 0) ||
-    String(item.token_id).indexOf(q) >= 0
-  );
+
+  // Traits (e.g. Rarity)
+  (item.traits || []).forEach(function (t) {
+    if (!t) return;
+    hayParts.push(t.trait_type, t.value);
+  });
+
+  var hay = hayParts
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  for (var t = 0; t < tokens.length; t++) {
+    if (hay.indexOf(tokens[t]) < 0) return false;
+  }
+  return true;
 }
 
 function compareItems(a, b) {
@@ -4165,8 +4224,10 @@ function getFilteredItems() {
       return !isAgencyRaritySeries(i);
     });
   }
-  // Collection filter (for multi-collection future; current data defaults to dacommunity)
-  if (activeCollection && activeCollection !== "all") {
+  // Collection dropdown scopes browse — but free-text search spans all loaded
+  // collections so typing "kix" / "agency" / "badge" still finds pieces.
+  var qSearch = (searchQuery || "").trim();
+  if (activeCollection && activeCollection !== "all" && !qSearch) {
     items = items.filter(function (i) {
       return (i.collection_id || "dacommunity") === activeCollection;
     });
@@ -4174,9 +4235,11 @@ function getFilteredItems() {
   if (activeFilter === "listed") items = items.filter(function (i) { return i.listed; });
   if (activeFilter === "not_listed") items = items.filter(function (i) { return !i.listed; });
   if (activeFilter === "activity") items = items.filter(function (i) { return hasRecentActivity(i); });
-  if (searchQuery) {
-    var q = searchQuery.toLowerCase();
-    items = items.filter(function (i) { return itemMatchesSearch(i, q); });
+  if (qSearch) {
+    var q = qSearch.toLowerCase();
+    items = items.filter(function (i) {
+      return itemMatchesSearch(i, q);
+    });
   }
   // Final safety dedup by composite key. Prevents any random duplicate cards from
   // state/merge timing (prefer series_rep if a collision somehow occurs for a club slug).
@@ -4889,10 +4952,10 @@ function populateCollectionSelect() {
   if (!sel) return;
   var live = getLiveCollections();
   sel.innerHTML = '<option value="all">All collections</option>';
-  live.forEach(function(c){
-    var o = document.createElement('option');
+  live.forEach(function (c) {
+    var o = document.createElement("option");
     o.value = c.id;
-    o.textContent = c.name || c.id;
+    o.textContent = collectionSelectLabel(c);
     sel.appendChild(o);
   });
   sel.value = activeCollection || "all";
