@@ -2383,7 +2383,7 @@ function renderCollectorFocusUi() {
   if (searchInp) {
     searchInp.placeholder = active
       ? "Search this collection…"
-      : "dacat.blast, story, #47…";
+      : "name, rarity, #21, ENS…";
   }
 
   var browseRibbon = $("#collector-browse-ribbon");
@@ -4155,65 +4155,205 @@ function hasRecentActivity(item, withinDays) {
   return ageH !== null && ageH <= withinDays * 24;
 }
 
+/** Escape a string for safe use inside a RegExp. */
+function escapeRegExp(s) {
+  return String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/**
+ * Text match helper.
+ * mode: "substr" | "word-prefix" (token must start a word) | "word" (whole word)
+ */
+function textHasSearchToken(text, token, mode) {
+  if (text == null || text === "" || !token) return false;
+  var s = String(text).toLowerCase();
+  var t = String(token).toLowerCase();
+  if (mode === "substr") return s.indexOf(t) >= 0;
+  try {
+    var boundary = "(^|[^a-z0-9_])";
+    var re =
+      mode === "word"
+        ? new RegExp(boundary + escapeRegExp(t) + "([^a-z0-9_]|$)", "i")
+        : new RegExp(boundary + escapeRegExp(t), "i"); // word-prefix
+    return re.test(s);
+  } catch (e) {
+    return s.indexOf(t) >= 0;
+  }
+}
+
+/** Pure digits / #N → match token ids and #padded numbers in titles only (not prose/hex). */
+function itemMatchesNumericSearchToken(item, rawToken) {
+  var token = String(rawToken || "").replace(/^#/, "");
+  if (!/^\d+$/.test(token)) return false;
+
+  var tid = item.token_id != null ? String(item.token_id) : "";
+  var tidCore = tid.replace(/^rank-/i, "");
+  // Exact token id (agency rank-3, badge #0, etc.)
+  if (tid === token || tidCore === token) return true;
+  if (/^\d+$/.test(tidCore)) {
+    // "024" vs "24" — same numeric id
+    try {
+      if (String(Number(tidCore)) === String(Number(token))) return true;
+    } catch (e) {}
+  }
+
+  // Single digit is too noisy against titles ("Vol 1", "1:1", "Season 1")
+  // Only accept exact token_id matches above.
+  if (token.length < 2) return false;
+
+  var titles = [
+    itemTitle(item),
+    item.name,
+    item.display_name,
+    item.opensea_name,
+    item.local_slug,
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  // Digit-bounded match so "21" hits "#021" / "big-kix-021" but not random hex prose
+  var n = String(Number(token));
+  var patterns = [token];
+  if (n !== token) patterns.push(n);
+  for (var i = 0; i < patterns.length; i++) {
+    var p = patterns[i];
+    var re = new RegExp("(?:^|[^0-9])#?0*" + escapeRegExp(p) + "(?:[^0-9]|$)", "i");
+    if (re.test(titles)) return true;
+  }
+  return false;
+}
+
+/** Holder 0x match only when the user clearly typed an address fragment. */
+function itemHasHolderAddressPrefix(item, token) {
+  var t = String(token || "").toLowerCase();
+  if (t.indexOf("0x") !== 0 || t.length < 8) return false;
+  var holders = (item.owners && item.owners.holders) || [];
+  for (var i = 0; i < holders.length; i++) {
+    var addr = String((holders[i] && holders[i].address) || "").toLowerCase();
+    if (addr && addr.indexOf(t) === 0) return true;
+  }
+  return false;
+}
+
+/** Collect human holder names (ENS / Base / OpenSea) — never raw 0x. */
+function itemHolderSearchNames(item) {
+  var names = [];
+  var holders = (item.owners && item.owners.holders) || [];
+  for (var i = 0; i < holders.length; i++) {
+    var h = holders[i] || {};
+    if (h.ens_name) names.push(h.ens_name);
+    if (h.base_name) names.push(h.base_name);
+    if (h.username) names.push(h.username);
+    var addr = h.address || "";
+    if (addr && walletIndex && walletIndex.by_address) {
+      var entry = walletIndex.by_address[String(addr).toLowerCase()];
+      if (entry) {
+        if (entry.ens_name) names.push(entry.ens_name);
+        if (entry.base_name) names.push(entry.base_name);
+        if (entry.username) names.push(entry.username);
+      }
+    }
+    var ni = nameIndexEntry(addr);
+    if (ni) {
+      if (ni.ens_name) names.push(ni.ens_name);
+      if (ni.base_name) names.push(ni.base_name);
+      if (ni.username) names.push(ni.username);
+    }
+  }
+  return names;
+}
+
+/**
+ * NFT free-text search — tuned for people, not substring accidents.
+ *
+ * Matches: titles, slugs, collection/rarity labels, holder names, meaningful traits.
+ * Avoids: every 0x hex digit, "copy/copies" in stats excerpts, single-digit noise,
+ *         giant trait ids, always-on steward label matching everything.
+ * Wallet addresses only when the query itself looks like 0x…
+ */
 function itemMatchesSearch(item, q) {
   if (!q) return true;
   q = String(q).toLowerCase().trim();
   if (!q) return true;
 
-  // Multi-token: all words must match somewhere (order-independent)
+  // Multi-token: every word must match (order-independent)
   var tokens = q.split(/\s+/).filter(Boolean);
   if (!tokens.length) return true;
 
-  var hayParts = [
+  for (var t = 0; t < tokens.length; t++) {
+    if (!itemMatchesSearchToken(item, tokens[t])) return false;
+  }
+  return true;
+}
+
+function itemMatchesSearchToken(item, token) {
+  if (!token) return true;
+
+  // Explicit address lookup (wallet bar is better; still support intentional 0x search)
+  if (token.indexOf("0x") === 0) {
+    return itemHasHolderAddressPrefix(item, token);
+  }
+
+  // Pure number or #47 → token id / #NNN in title only
+  if (/^#?\d+$/.test(token)) {
+    return itemMatchesNumericSearchToken(item, token);
+  }
+
+  // --- Primary identity fields (substring is fine: catbot, kix, dacat.blast) ---
+  var primary = [
     itemTitle(item),
     item.name,
     item.display_name,
     item.opensea_name,
-    item.description,
-    item.excerpt,
     item.local_slug,
-    item.collection_id,
     itemCollectionLabel(item),
+    item.collection_id,
     itemRarityLabel(item),
     item.volume_label,
-    item.volume != null ? "vol " + item.volume : "",
-    item.volume != null ? "volume " + item.volume : "",
-    String(item.token_id),
-    item.token_id != null ? "#" + item.token_id : "",
-    collectionStewardLabel(),
   ];
+  // "vol" / "volume" as words (without bare digit attachment that made "1" match Vol 1)
+  if (item.volume != null && item.volume !== "") {
+    primary.push("vol", "volume");
+  }
+  var i;
+  for (i = 0; i < primary.length; i++) {
+    if (textHasSearchToken(primary[i], token, "substr")) return true;
+  }
 
-  // Holder names / addresses (ENS, Base, OpenSea, 0x)
-  var holders = (item.owners && item.owners.holders) || [];
-  for (var i = 0; i < holders.length; i++) {
-    var h = holders[i] || {};
-    var addr = h.address || "";
-    hayParts.push(addr, h.ens_name, h.base_name, h.username);
-    if (addr && walletIndex && walletIndex.by_address) {
-      var entry = walletIndex.by_address[String(addr).toLowerCase()];
-      if (entry) {
-        hayParts.push(entry.ens_name, entry.base_name, entry.username);
-      }
+  // --- Holder names (ENS / Base / OpenSea). Min 2 chars to limit noise. ---
+  if (token.length >= 2) {
+    var holderNames = itemHolderSearchNames(item);
+    for (i = 0; i < holderNames.length; i++) {
+      if (textHasSearchToken(holderNames[i], token, "substr")) return true;
     }
-    var ni = nameIndexEntry(addr);
-    if (ni) hayParts.push(ni.base_name, ni.ens_name, ni.username);
   }
 
-  // Traits (e.g. Rarity)
-  (item.traits || []).forEach(function (t) {
-    if (!t) return;
-    hayParts.push(t.trait_type, t.value);
-  });
-
-  var hay = hayParts
-    .filter(Boolean)
-    .join(" ")
-    .toLowerCase();
-
-  for (var t = 0; t < tokens.length; t++) {
-    if (hay.indexOf(tokens[t]) < 0) return false;
+  // --- Traits: skip opaque numeric ids (rodeo_post_id etc.) ---
+  var traits = item.traits || [];
+  for (i = 0; i < traits.length; i++) {
+    var tr = traits[i];
+    if (!tr) continue;
+    var tt = String(tr.trait_type || "");
+    var tv = String(tr.value != null ? tr.value : "");
+    var ttL = tt.toLowerCase();
+    var tvTrim = tv.trim();
+    // Skip machine ids
+    if (/(_id|id)$/i.test(ttL) && /^\d+$/.test(tvTrim)) continue;
+    if (/^\d{6,}$/.test(tvTrim)) continue;
+    if (tv && textHasSearchToken(tv, token, "substr")) return true;
+    // Trait type only for 3+ char tokens ("season", "rarity")
+    if (token.length >= 3 && tt && textHasSearchToken(tt, token, "substr")) return true;
   }
-  return true;
+
+  // --- Story text: longer tokens only, whole words (not "cop"/"season" in "copies"/"seasoned") ---
+  // Skip auto-generated excerpts (stats lines like "1 holder · 1 copy").
+  if (token.length >= 4) {
+    var story = item.description || "";
+    if (story && textHasSearchToken(story, token, "word")) return true;
+  }
+
+  return false;
 }
 
 function compareItems(a, b) {
