@@ -57,6 +57,7 @@ let FULL_DATA_URL = "";
 let WALLET_URL = "";
 let META_URL = "";
 let REGISTRY_URL = "";
+let NAME_INDEX_URL = "";
 let galleryMeta = null;
 function initDataUrls() {
   var prefix = getDataPrefix();
