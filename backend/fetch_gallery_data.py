@@ -388,9 +388,10 @@ def build_holders_index(
             p = previous_by.get(address, {})
             last_res_ts = p.get("last_ens_resolved")
             prev_ens = p.get("ens_name")
+            prev_username = p.get("username")
 
-            # NEW: use shared resolver (ensdata.net primary + OS fallback + 14d cache + lowercase)
-            # Skip cost if recently resolved; returns prev_ens on skip/failure.
+            # Shared resolver: ensdata.net primary + OpenSea ENS fallback + 14d cache + lowercase.
+            # Skip network if recently resolved; returns prev_ens on skip/failure.
             ens_name = client.resolve_ens_name(
                 holder.get("address"),
                 last_resolved=last_res_ts,
@@ -398,22 +399,29 @@ def build_holders_index(
                 previous_ens=prev_ens,
             )
 
-            # Only pay for full resolve_account (for username + possible ens fallback) when we actually decided to hit network.
-            # last_res_ts None or old => fresh attempt this run.
+            # Fresh OpenSea account call only when cache expired — picks up username
+            # (OpenSea profile) and any ENS ensdata missed. Display priority is applied
+            # on the frontend: ens_name → username → short 0x.
             do_fresh_resolve = not last_res_ts or (time.time() - last_res_ts) >= (14 * 86400)
             if do_fresh_resolve:
                 try:
                     resolved = client.resolve_account(holder["address"])
-                    # If the new ensdata path returned nothing but OpenSea did, take it (already lowered inside helper too).
                     if not ens_name:
                         ens_name = resolved.get("ens_name")
                         if ens_name:
                             ens_name = str(ens_name).lower()
-                    username = resolved.get("username")
+                    u = resolved.get("username") or resolved.get("display_name")
+                    if u:
+                        username = str(u).strip()
                 except requests.HTTPError:
                     pass
+                # Keep prior username if OpenSea returned nothing this run
+                if not username and prev_username:
+                    username = prev_username
                 resolved_at = time.time()
             else:
+                # Cache hit: never wipe prior OpenSea username
+                username = prev_username
                 resolved_at = last_res_ts
 
         # Use prebuilt holdings (from per-NFT owners data) instead of per-holder API call.

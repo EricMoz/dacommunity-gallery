@@ -211,6 +211,20 @@ After deploy (~1–2 min):
 
 Registry-driven collections (`web/data/collections_registry.json`) — see **`docs/COLLECTIONS.md`** for adding live drops, per-community themes, and feature flags. Hub cards are still manual until a registry-driven hub ships.
 
+### Collector display names (ENS / OpenSea)
+
+Built in the **daily** `refresh-data.yml` job during `fetch_gallery_data.py` → `wallet_index.json`.
+
+| Priority (frontend) | Source |
+|---------------------|--------|
+| 1. ENS | `ensdata.net` then OpenSea account (`ens_name`) |
+| 2. OpenSea profile | OpenSea `username` / `display_name` on account resolve |
+| 3. Wallet | Shortened `0x…` |
+
+**Speed:** addresses re-resolve at most every **~14 days** (`last_ens_resolved`). Cache hits reuse prior ENS **and** username (no extra API). Fresh resolves only when new or expired.
+
+**Not yet:** Base names (`.base.eth`) reverse lookup — ensdata does not reliably return them; no stable free reverse API wired. Prefer asking before adding a second network hop per wallet.
+
 ### OpenSea collection slug (daCommunity archive)
 
 Primary Base archive slug is **`dacommunity-archive`** (was `rodeo-posts-12142`). Contract  

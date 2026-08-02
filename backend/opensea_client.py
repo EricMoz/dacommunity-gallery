@@ -203,17 +203,18 @@ class OpenSeaClient:
     ) -> str | None:
         """Primary ENS resolver for wallet_index / badge owners.
 
-        Strategy (per requirements):
+        Strategy:
         1. Primary: ensdata.net/{address} (free, no key, fast). Uses "ens_primary" or "ens".
-        2. Fallback: self.resolve_account(address) from OpenSea.
+           (Typically L1 .eth primary; Base .base.eth reverse is not reliably returned here.)
+        2. Fallback: self.resolve_account(address) from OpenSea (may also yield username elsewhere).
         3. Cache: Skip network if last_resolved (unix timestamp seconds) is < cache_days old (default 14).
-           This prevents re-resolving every address on every daily run, keeping the ~15min pipeline fast.
-        4. Always normalize to .lower() on any new resolution. This permanently fixes
-           ALL-CAPS issues (e.g. "DAFOREMAN.ETH" -> "daforeman.eth") for storage, aliases, history, and display.
+           Keeps the daily pipeline light — only addresses new or older than the window re-resolve.
+        4. Always normalize to .lower() on any new resolution (e.g. DAFOREMAN.ETH → daforeman.eth).
         5. On skip or transient failure: return previous_ens (never wipe good data on flaky days).
-        6. Called for both gallery holders (via build_holders_index) and badge owner addresses (via merge).
+        6. Used by gallery holders (build_holders_index) and badge owner addresses.
 
         last_resolved and previous_ens are passed from prior wallet_index.json entries.
+        OpenSea profile username is handled in build_holders_index (separate field), not here.
         """
         addr = (address or "").lower().strip()
         if not addr:
