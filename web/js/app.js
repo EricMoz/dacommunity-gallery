@@ -844,81 +844,101 @@ function collectorMatchesQuery(c, q) {
 
 /**
  * Build suggestion rows for typeahead: ENS / Base / OpenSea / 0x.
- * Sources: collectorsList + wallet_index + name_index.
+ * One row per wallet address (merged names, no duplicates).
  */
 function collectNameSuggestions(query, limit) {
   limit = limit || 8;
   var q = (query || "").trim().toLowerCase();
   if (q.length < 1) return [];
-  var seen = {};
-  var out = [];
 
-  function pushRow(addr, ens, base, user) {
-    var a = (addr || "").toLowerCase();
-    if (!a || seen[a]) return;
-    var row = {
-      address: addr,
-      ens_name: ens || null,
-      base_name: base || null,
-      username: user || null,
-    };
-    enrichCollectorRowNames(row);
-    if (!collectorMatchesQuery(row, q) && a.indexOf(q) < 0) return;
-    seen[a] = true;
-    out.push({
-      address: row.address || a,
-      label: formatCollectorDisplayName(row),
-      sub:
-        row.ens_name ||
-        row.base_name ||
-        row.username ||
-        shortenAddress(row.address || a),
-      lookup: row.ens_name || row.base_name || row.address || a,
-    });
+  // Distinct wallets: merge every source into one map by address
+  var byAddr = {};
+  function absorb(addr, ens, base, user) {
+    var a = String(addr || "")
+      .toLowerCase()
+      .trim();
+    if (!a || a.indexOf("0x") !== 0 || a.length < 10) return;
+    if (!byAddr[a]) {
+      byAddr[a] = {
+        address: addr,
+        ens_name: null,
+        base_name: null,
+        username: null,
+      };
+    }
+    var r = byAddr[a];
+    if (ens && !r.ens_name) r.ens_name = ens;
+    if (base && !r.base_name) r.base_name = base;
+    if (user && !r.username) r.username = user;
   }
 
   (collectorsList || []).forEach(function (c) {
-    if (out.length >= limit) return;
     enrichCollectorRowNames(c);
-    if (!collectorMatchesQuery(c, q)) return;
-    pushRow(c.address, c.ens_name, c.base_name, c.username);
+    absorb(c.address, c.ens_name, c.base_name, c.username);
   });
-
   if (walletIndex && walletIndex.by_address) {
     Object.keys(walletIndex.by_address).forEach(function (a) {
-      if (out.length >= limit) return;
       var e = walletIndex.by_address[a];
-      pushRow(e.address || a, e.ens_name, e.base_name, e.username);
+      absorb(e.address || a, e.ens_name, e.base_name, e.username);
     });
   }
-
   if (nameIndex && nameIndex.by_address) {
     Object.keys(nameIndex.by_address).forEach(function (a) {
-      if (out.length >= limit) return;
       var e = nameIndex.by_address[a];
-      pushRow(e.address || a, e.ens_name, e.base_name, e.username);
+      absorb(e.address || a, e.ens_name, e.base_name, e.username);
     });
   }
-
-  // Alias exact prefix matches (type full name)
-  var aliases = {};
+  // Aliases map name → address; fold into the same wallet rows
+  function absorbAlias(name, addr) {
+    var n = String(name || "")
+      .toLowerCase()
+      .trim();
+    if (!n || n.indexOf(q) < 0) return;
+    var isBase = n.indexOf(".base.") >= 0 || n.endsWith(".base.eth");
+    absorb(addr, isBase ? null : n, isBase ? n : null, null);
+  }
   if (walletIndex && walletIndex.ens_aliases) {
     Object.keys(walletIndex.ens_aliases).forEach(function (n) {
-      aliases[n] = walletIndex.ens_aliases[n];
+      absorbAlias(n, walletIndex.ens_aliases[n]);
     });
   }
   if (nameIndex && nameIndex.name_aliases) {
     Object.keys(nameIndex.name_aliases).forEach(function (n) {
-      aliases[n] = nameIndex.name_aliases[n];
+      absorbAlias(n, nameIndex.name_aliases[n]);
     });
   }
-  Object.keys(aliases).forEach(function (n) {
-    if (out.length >= limit) return;
-    if (n.indexOf(q) < 0) return;
-    var a = aliases[n];
-    pushRow(a, n.indexOf(".base.") >= 0 ? null : n, n.indexOf(".base.") >= 0 ? n : null, null);
+
+  var out = [];
+  var seenLookup = {};
+  Object.keys(byAddr).forEach(function (a) {
+    var row = byAddr[a];
+    enrichCollectorRowNames(row);
+    if (!collectorMatchesQuery(row, q) && a.indexOf(q) < 0) return;
+    var label = formatCollectorDisplayName(row);
+    var lookup = row.ens_name || row.base_name || row.username || row.address || a;
+    var lk = String(lookup).toLowerCase();
+    if (seenLookup[lk] || seenLookup[a]) return;
+    seenLookup[lk] = true;
+    seenLookup[a] = true;
+    var bits = [];
+    if (row.ens_name && row.ens_name !== label) bits.push(row.ens_name);
+    if (row.base_name && row.base_name !== label) bits.push(row.base_name);
+    if (row.username && row.username !== label) bits.push(row.username);
+    bits.push(shortenAddress(row.address || a));
+    out.push({
+      address: row.address || a,
+      label: label,
+      sub: bits.join(" · "),
+      lookup: lookup,
+      // Prefer prefix matches when sorting
+      _rank: String(label).toLowerCase().indexOf(q) === 0 ? 0 : 1,
+    });
   });
 
+  out.sort(function (a, b) {
+    if (a._rank !== b._rank) return a._rank - b._rank;
+    return String(a.label).localeCompare(String(b.label));
+  });
   return out.slice(0, limit);
 }
 
@@ -994,69 +1014,40 @@ function renderNameSuggest(inputEl, boxId, onPick) {
   });
 }
 
-/** Populate HTML datalists as progressive enhancement (desktop browsers). */
+/** No-op kept for call sites that refreshed suggestions after data load. */
 function renderNameSuggestDatalists() {
-  var ids = ["wallet-name-datalist", "collectors-name-datalist"];
-  ids.forEach(function (id) {
-    var dl = document.getElementById(id);
-    if (!dl) return;
-    var rows = collectNameSuggestions("", 200);
-    // empty query returns []; build from indexes directly
-    var opts = [];
-    var seen = {};
-    function add(label, value) {
-      if (!label && !value) return;
-      var v = value || label;
-      var k = String(v).toLowerCase();
-      if (seen[k]) return;
-      seen[k] = true;
-      opts.push(
-        '<option value="' +
-          escapeHtml(v) +
-          '">' +
-          escapeHtml(label || v) +
-          "</option>"
-      );
-    }
-    (collectorsList || []).forEach(function (c) {
-      enrichCollectorRowNames(c);
-      if (c.ens_name) add(c.ens_name, c.ens_name);
-      if (c.base_name) add(c.base_name, c.base_name);
-      if (c.username) add(c.username, c.username);
-    });
-    if (walletIndex && walletIndex.by_address) {
-      Object.keys(walletIndex.by_address).forEach(function (a) {
-        var e = walletIndex.by_address[a];
-        if (e.ens_name) add(e.ens_name, e.ens_name);
-        if (e.base_name) add(e.base_name, e.base_name);
-        if (e.username) add(e.username, e.username);
-      });
-    }
-    if (nameIndex && nameIndex.by_address) {
-      Object.keys(nameIndex.by_address).forEach(function (a) {
-        var e = nameIndex.by_address[a];
-        if (e.base_name) add(e.base_name, e.base_name);
-      });
-    }
-    dl.innerHTML = opts.slice(0, 300).join("");
+  // Native <datalist> removed — it doubled the custom dropdown and showed
+  // an empty/side helper before typing. Custom name-suggest-box only.
+  document.querySelectorAll("#wallet-name-datalist, #collectors-name-datalist").forEach(function (dl) {
+    if (dl && dl.parentNode) dl.parentNode.removeChild(dl);
   });
+  var walletInput = $("#wallet-input");
+  if (walletInput) walletInput.removeAttribute("list");
+  var cs = $("#collectors-search");
+  if (cs) cs.removeAttribute("list");
 }
 
 function bindNameSuggestInputs() {
   var walletInput = $("#wallet-input");
   if (walletInput && !walletInput.dataset.suggestBound) {
     walletInput.dataset.suggestBound = "1";
-    walletInput.setAttribute("list", "wallet-name-datalist");
-    if (!document.getElementById("wallet-name-datalist")) {
-      var dl = document.createElement("datalist");
-      dl.id = "wallet-name-datalist";
-      walletInput.insertAdjacentElement("afterend", dl);
-    }
+    // Kill browser datalist helper if anything re-added it
+    walletInput.removeAttribute("list");
+    walletInput.setAttribute("autocomplete", "off");
     walletInput.addEventListener("input", function () {
       renderNameSuggest(walletInput, "wallet-name-suggest", function (lookup) {
         walletInput.value = lookup;
         renderWalletLookup(lookup, { updateUrl: true, scroll: false });
       });
+    });
+    walletInput.addEventListener("focus", function () {
+      // Only show after the user has typed something
+      if (walletInput.value.trim().length >= 1) {
+        renderNameSuggest(walletInput, "wallet-name-suggest", function (lookup) {
+          walletInput.value = lookup;
+          renderWalletLookup(lookup, { updateUrl: true, scroll: false });
+        });
+      }
     });
     walletInput.addEventListener("blur", function () {
       setTimeout(function () {
@@ -1071,19 +1062,14 @@ function bindNameSuggestInputs() {
   var cs = $("#collectors-search");
   if (cs && !cs.dataset.suggestBound) {
     cs.dataset.suggestBound = "1";
-    cs.setAttribute("list", "collectors-name-datalist");
-    if (!document.getElementById("collectors-name-datalist")) {
-      var dl2 = document.createElement("datalist");
-      dl2.id = "collectors-name-datalist";
-      cs.insertAdjacentElement("afterend", dl2);
-    }
+    cs.removeAttribute("list");
+    cs.setAttribute("autocomplete", "off");
     cs.addEventListener("input", function () {
       renderCollectors(cs.value);
       renderNameSuggest(cs, "collectors-name-suggest", function (lookup, addr) {
         cs.value = lookup;
         renderCollectors(lookup);
         hideNameSuggest("collectors-name-suggest");
-        // Jump to that collector
         if (addr) {
           closeCollectorsModal();
           runWalletLookupFromAddress(addr, lookup);
