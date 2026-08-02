@@ -3524,11 +3524,14 @@ function lookupWallet(identifier) {
     // clicking a name there (e.g. daforeman.eth) shows the same current ENS in the portfolio view,
     // instead of an older name that may be stuck in badge owners data for some items.
     var fromList = null;
+    var fromListBase = null;
     (collectorsList || []).forEach(function (c) {
-      if ((c.address || '').toLowerCase() === address && c.ens_name) {
-        fromList = c.ens_name;
+      if ((c.address || "").toLowerCase() === address) {
+        if (c.ens_name) fromList = c.ens_name;
+        if (c.base_name) fromListBase = c.base_name;
       }
     });
+    var ni = nameIndexEntry(address);
     var synthStats = summarizeHoldingsStats(synth);
     return {
       entry: {
@@ -3537,8 +3540,10 @@ function lookupWallet(identifier) {
         unique_pieces: synthStats.unique_pieces,
         collection_quantity: synthStats.collection_quantity,
         ens_name: fromList || foundEns || meta.ens_name || null,
-        username: foundUser || meta.username || null
-      }
+        base_name:
+          fromListBase || meta.base_name || (ni && ni.base_name) || null,
+        username: foundUser || meta.username || null,
+      },
     };
   }
 
