@@ -241,17 +241,25 @@ def main() -> int:
             elif base and not entry.get("base_name"):
                 entry["base_name"] = base
                 patched += 1
-            # aliases for .base.eth lookup
+        # Keep collectors[] in sync (UI sometimes reads this list directly)
+        collectors = hi.get("collectors") or []
+        for c in collectors:
+            key = str(c.get("address") or "").lower()
+            base = (by_address.get(key) or {}).get("base_name") or (
+                ba.get(key) or {}
+            ).get("base_name")
+            if base:
+                c["base_name"] = base
+        # aliases for .base.eth lookup
         aliases = hi.get("ens_aliases") or {}
         for name, a in (name_index.get("name_aliases") or {}).items():
-            if a in ba or a.lower() in {x.lower() for x in ba}:
-                aliases[name] = a if a in ba else a.lower()
-        # normalize keys
-        for name, a in list(aliases.items()):
             al = str(a).lower()
             if al in ba:
                 aliases[name] = ba[al].get("address") or al
+            else:
+                aliases[name] = a
         hi["ens_aliases"] = aliases
+        hi["collectors"] = collectors
         if "holders_index" in wallet:
             wallet["holders_index"] = hi
         else:
@@ -261,7 +269,7 @@ def main() -> int:
                 "holders_index": hi,
             }
         save_json(WALLET_PATH, wallet)
-        print(f"Patched base_name onto {patched} wallet_index holders")
+        print(f"Patched base_name onto {patched} wallet_index holders (+ collectors list)")
 
     print(
         f"Done. resolved={resolved} skipped_cache={skipped} "

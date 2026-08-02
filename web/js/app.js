@@ -621,10 +621,16 @@ async function refreshFullDataInBackground() {
 }
 
 async function loadNameIndex() {
-  if (nameIndex) return nameIndex;
+  // Always re-fetch when URL stamp changes; allow one successful load per page
+  if (nameIndex && nameIndex.by_address && Object.keys(nameIndex.by_address).length) {
+    return nameIndex;
+  }
   if (typeof NAME_INDEX_URL === "undefined" || !NAME_INDEX_URL) return null;
   try {
     nameIndex = await fetchJson(NAME_INDEX_URL, 12000);
+    if (!nameIndex || !nameIndex.by_address) {
+      nameIndex = { by_address: {}, name_aliases: {} };
+    }
   } catch (e) {
     console.warn("name_index load failed (Base names optional):", e);
     nameIndex = { by_address: {}, name_aliases: {} };
@@ -658,6 +664,24 @@ async function loadWalletIndex() {
   try {
     await loadNameIndex();
   } catch (e2) {}
+
+  // Merge base_name from name_index onto wallet holders for display
+  if (walletIndex && walletIndex.by_address && nameIndex && nameIndex.by_address) {
+    Object.keys(walletIndex.by_address).forEach(function (a) {
+      var e = walletIndex.by_address[a];
+      var ni = nameIndex.by_address[a] || nameIndex.by_address[a.toLowerCase()];
+      if (e && ni && ni.base_name && !e.base_name) e.base_name = ni.base_name;
+    });
+  }
+  // Merge aliases so .base.eth lookup works in wallet search
+  if (walletIndex && nameIndex && nameIndex.name_aliases) {
+    if (!walletIndex.ens_aliases) walletIndex.ens_aliases = {};
+    Object.keys(nameIndex.name_aliases).forEach(function (n) {
+      if (!walletIndex.ens_aliases[n]) {
+        walletIndex.ens_aliases[n] = nameIndex.name_aliases[n];
+      }
+    });
+  }
 
   // Enrich wallet by_address with ENS from badge item names if missing (most recent by minted_at).
   if (walletIndex && walletIndex.by_address && galleryData && galleryData.items) {
@@ -766,6 +790,312 @@ function formatCollectorHoldMeta(c) {
   if (cq < uq) cq = uq;
   if (!uq && !cq) return "0";
   return uq + "·" + cq;
+}
+
+/** Display name: ENS → Base name → OpenSea username → short 0x */
+function formatCollectorDisplayName(c) {
+  if (!c) return "";
+  var ni = nameIndexEntry(c.address);
+  return (
+    c.ens_name ||
+    c.base_name ||
+    (ni && ni.base_name) ||
+    c.username ||
+    shortenAddress(c.address || "")
+  );
+}
+
+/** Attach ENS / Base / OpenSea names from wallet + name indexes onto a collectors row. */
+function enrichCollectorRowNames(c) {
+  if (!c || !c.address) return c;
+  var key = String(c.address).toLowerCase();
+  var e = walletIndex && walletIndex.by_address && walletIndex.by_address[key];
+  var ni = nameIndexEntry(key);
+  if (e) {
+    if (!c.ens_name && e.ens_name) c.ens_name = e.ens_name;
+    if (!c.base_name && e.base_name) c.base_name = e.base_name;
+    if (!c.username && e.username) c.username = e.username;
+  }
+  if (!c.base_name && ni && ni.base_name) c.base_name = ni.base_name;
+  if (!c.ens_name && ni && ni.ens_name) c.ens_name = ni.ens_name;
+  if (!c.username && ni && ni.username) c.username = ni.username;
+  return c;
+}
+
+function enrichCollectorsListNames() {
+  (collectorsList || []).forEach(enrichCollectorRowNames);
+}
+
+/** True if collector matches free-text query (ENS / Base / OS username / 0x). */
+function collectorMatchesQuery(c, q) {
+  if (!q) return true;
+  var hay = [
+    c.ens_name,
+    c.base_name,
+    c.username,
+    c.address,
+    formatCollectorDisplayName(c),
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+  return hay.indexOf(q) >= 0;
+}
+
+/**
+ * Build suggestion rows for typeahead: ENS / Base / OpenSea / 0x.
+ * Sources: collectorsList + wallet_index + name_index.
+ */
+function collectNameSuggestions(query, limit) {
+  limit = limit || 8;
+  var q = (query || "").trim().toLowerCase();
+  if (q.length < 1) return [];
+  var seen = {};
+  var out = [];
+
+  function pushRow(addr, ens, base, user) {
+    var a = (addr || "").toLowerCase();
+    if (!a || seen[a]) return;
+    var row = {
+      address: addr,
+      ens_name: ens || null,
+      base_name: base || null,
+      username: user || null,
+    };
+    enrichCollectorRowNames(row);
+    if (!collectorMatchesQuery(row, q) && a.indexOf(q) < 0) return;
+    seen[a] = true;
+    out.push({
+      address: row.address || a,
+      label: formatCollectorDisplayName(row),
+      sub:
+        row.ens_name ||
+        row.base_name ||
+        row.username ||
+        shortenAddress(row.address || a),
+      lookup: row.ens_name || row.base_name || row.address || a,
+    });
+  }
+
+  (collectorsList || []).forEach(function (c) {
+    if (out.length >= limit) return;
+    enrichCollectorRowNames(c);
+    if (!collectorMatchesQuery(c, q)) return;
+    pushRow(c.address, c.ens_name, c.base_name, c.username);
+  });
+
+  if (walletIndex && walletIndex.by_address) {
+    Object.keys(walletIndex.by_address).forEach(function (a) {
+      if (out.length >= limit) return;
+      var e = walletIndex.by_address[a];
+      pushRow(e.address || a, e.ens_name, e.base_name, e.username);
+    });
+  }
+
+  if (nameIndex && nameIndex.by_address) {
+    Object.keys(nameIndex.by_address).forEach(function (a) {
+      if (out.length >= limit) return;
+      var e = nameIndex.by_address[a];
+      pushRow(e.address || a, e.ens_name, e.base_name, e.username);
+    });
+  }
+
+  // Alias exact prefix matches (type full name)
+  var aliases = {};
+  if (walletIndex && walletIndex.ens_aliases) {
+    Object.keys(walletIndex.ens_aliases).forEach(function (n) {
+      aliases[n] = walletIndex.ens_aliases[n];
+    });
+  }
+  if (nameIndex && nameIndex.name_aliases) {
+    Object.keys(nameIndex.name_aliases).forEach(function (n) {
+      aliases[n] = nameIndex.name_aliases[n];
+    });
+  }
+  Object.keys(aliases).forEach(function (n) {
+    if (out.length >= limit) return;
+    if (n.indexOf(q) < 0) return;
+    var a = aliases[n];
+    pushRow(a, n.indexOf(".base.") >= 0 ? null : n, n.indexOf(".base.") >= 0 ? n : null, null);
+  });
+
+  return out.slice(0, limit);
+}
+
+function ensureSuggestBox(inputEl, boxId) {
+  if (!inputEl || !inputEl.parentNode) return null;
+  var box = document.getElementById(boxId);
+  if (box) return box;
+  var wrap =
+    inputEl.closest(".lookup-field") ||
+    inputEl.closest(".wallet-input-wrap") ||
+    inputEl.parentNode;
+  if (wrap && getComputedStyle(wrap).position === "static") {
+    wrap.style.position = "relative";
+  }
+  box = document.createElement("div");
+  box.id = boxId;
+  box.className = "name-suggest-box";
+  box.hidden = true;
+  box.setAttribute("role", "listbox");
+  if (wrap) wrap.appendChild(box);
+  else inputEl.insertAdjacentElement("afterend", box);
+  return box;
+}
+
+function hideNameSuggest(boxId) {
+  var box = document.getElementById(boxId);
+  if (box) {
+    box.hidden = true;
+    box.innerHTML = "";
+  }
+}
+
+function renderNameSuggest(inputEl, boxId, onPick) {
+  if (!inputEl) return;
+  var box = ensureSuggestBox(inputEl, boxId);
+  if (!box) return;
+  var q = inputEl.value.trim();
+  if (q.length < 1) {
+    hideNameSuggest(boxId);
+    return;
+  }
+  var rows = collectNameSuggestions(q, 8);
+  if (!rows.length) {
+    hideNameSuggest(boxId);
+    return;
+  }
+  box.hidden = false;
+  box.innerHTML = rows
+    .map(function (r, i) {
+      return (
+        '<button type="button" class="name-suggest-item" role="option" data-i="' +
+        i +
+        '" data-lookup="' +
+        escapeHtml(r.lookup) +
+        '" data-address="' +
+        escapeHtml(r.address) +
+        '"><span class="name-suggest-label">' +
+        escapeHtml(r.label) +
+        '</span><span class="name-suggest-sub">' +
+        escapeHtml(r.sub) +
+        "</span></button>"
+      );
+    })
+    .join("");
+  box.querySelectorAll(".name-suggest-item").forEach(function (btn) {
+    btn.addEventListener("mousedown", function (e) {
+      e.preventDefault(); // keep focus flow stable
+      var lookup = btn.getAttribute("data-lookup");
+      var addr = btn.getAttribute("data-address");
+      hideNameSuggest(boxId);
+      if (onPick) onPick(lookup, addr);
+    });
+  });
+}
+
+/** Populate HTML datalists as progressive enhancement (desktop browsers). */
+function renderNameSuggestDatalists() {
+  var ids = ["wallet-name-datalist", "collectors-name-datalist"];
+  ids.forEach(function (id) {
+    var dl = document.getElementById(id);
+    if (!dl) return;
+    var rows = collectNameSuggestions("", 200);
+    // empty query returns []; build from indexes directly
+    var opts = [];
+    var seen = {};
+    function add(label, value) {
+      if (!label && !value) return;
+      var v = value || label;
+      var k = String(v).toLowerCase();
+      if (seen[k]) return;
+      seen[k] = true;
+      opts.push(
+        '<option value="' +
+          escapeHtml(v) +
+          '">' +
+          escapeHtml(label || v) +
+          "</option>"
+      );
+    }
+    (collectorsList || []).forEach(function (c) {
+      enrichCollectorRowNames(c);
+      if (c.ens_name) add(c.ens_name, c.ens_name);
+      if (c.base_name) add(c.base_name, c.base_name);
+      if (c.username) add(c.username, c.username);
+    });
+    if (walletIndex && walletIndex.by_address) {
+      Object.keys(walletIndex.by_address).forEach(function (a) {
+        var e = walletIndex.by_address[a];
+        if (e.ens_name) add(e.ens_name, e.ens_name);
+        if (e.base_name) add(e.base_name, e.base_name);
+        if (e.username) add(e.username, e.username);
+      });
+    }
+    if (nameIndex && nameIndex.by_address) {
+      Object.keys(nameIndex.by_address).forEach(function (a) {
+        var e = nameIndex.by_address[a];
+        if (e.base_name) add(e.base_name, e.base_name);
+      });
+    }
+    dl.innerHTML = opts.slice(0, 300).join("");
+  });
+}
+
+function bindNameSuggestInputs() {
+  var walletInput = $("#wallet-input");
+  if (walletInput && !walletInput.dataset.suggestBound) {
+    walletInput.dataset.suggestBound = "1";
+    walletInput.setAttribute("list", "wallet-name-datalist");
+    if (!document.getElementById("wallet-name-datalist")) {
+      var dl = document.createElement("datalist");
+      dl.id = "wallet-name-datalist";
+      walletInput.insertAdjacentElement("afterend", dl);
+    }
+    walletInput.addEventListener("input", function () {
+      renderNameSuggest(walletInput, "wallet-name-suggest", function (lookup) {
+        walletInput.value = lookup;
+        renderWalletLookup(lookup, { updateUrl: true, scroll: false });
+      });
+    });
+    walletInput.addEventListener("blur", function () {
+      setTimeout(function () {
+        hideNameSuggest("wallet-name-suggest");
+      }, 180);
+    });
+    walletInput.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") hideNameSuggest("wallet-name-suggest");
+    });
+  }
+
+  var cs = $("#collectors-search");
+  if (cs && !cs.dataset.suggestBound) {
+    cs.dataset.suggestBound = "1";
+    cs.setAttribute("list", "collectors-name-datalist");
+    if (!document.getElementById("collectors-name-datalist")) {
+      var dl2 = document.createElement("datalist");
+      dl2.id = "collectors-name-datalist";
+      cs.insertAdjacentElement("afterend", dl2);
+    }
+    cs.addEventListener("input", function () {
+      renderCollectors(cs.value);
+      renderNameSuggest(cs, "collectors-name-suggest", function (lookup, addr) {
+        cs.value = lookup;
+        renderCollectors(lookup);
+        hideNameSuggest("collectors-name-suggest");
+        // Jump to that collector
+        if (addr) {
+          closeCollectorsModal();
+          runWalletLookupFromAddress(addr, lookup);
+        }
+      });
+    });
+    cs.addEventListener("blur", function () {
+      setTimeout(function () {
+        hideNameSuggest("collectors-name-suggest");
+      }, 180);
+    });
+  }
 }
 
 /** Merge collector rows by address, summing unique + copies (for All collections). */
@@ -1005,18 +1335,20 @@ function buildCollectorsFromLoadedItems(items, opts) {
     }
     delete byAddr[a]._keys;
   });
-  return Object.values(byAddr).sort(function (a, b) {
-    if (rankByCopies) {
-      var qa = Number(a.collection_quantity) || 0;
-      var qb = Number(b.collection_quantity) || 0;
-      if (qb !== qa) return qb - qa;
-      return (Number(b.unique_pieces) || 0) - (Number(a.unique_pieces) || 0);
-    }
-    var ua = Number(a.unique_pieces) || 0;
-    var ub = Number(b.unique_pieces) || 0;
-    if (ub !== ua) return ub - ua;
-    return (Number(b.collection_quantity) || 0) - (Number(a.collection_quantity) || 0);
-  });
+  return Object.values(byAddr)
+    .map(enrichCollectorRowNames)
+    .sort(function (a, b) {
+      if (rankByCopies) {
+        var qa = Number(a.collection_quantity) || 0;
+        var qb = Number(b.collection_quantity) || 0;
+        if (qb !== qa) return qb - qa;
+        return (Number(b.unique_pieces) || 0) - (Number(a.unique_pieces) || 0);
+      }
+      var ua = Number(a.unique_pieces) || 0;
+      var ub = Number(b.unique_pieces) || 0;
+      if (ub !== ua) return ub - ua;
+      return (Number(b.collection_quantity) || 0) - (Number(a.collection_quantity) || 0);
+    });
 }
 
 /** Prefer full JSON for secondary collections (activity + complete owners). */
@@ -1082,6 +1414,7 @@ function rebuildCollectorsForCurrentView() {
       collectorsList = buildCollectorsFromLoadedItems(galleryData.items);
     }
   }
+  enrichCollectorsListNames();
   updateCollectorsButton();
 }
 
@@ -2659,14 +2992,16 @@ function renderTopCollectors() {
   var top = collectorsList.slice(0, 8);
   track.innerHTML = top
     .map(function (c) {
-      var label = c.ens_name || c.username || shortenAddress(c.address);
+      enrichCollectorRowNames(c);
+      var label = formatCollectorDisplayName(c);
+      var lookup = c.ens_name || c.base_name || c.address;
       return (
         '<button type="button" class="top-collector-pill" data-address="' +
         escapeHtml(c.address) +
         '" data-lookup="' +
-        escapeHtml(c.ens_name || c.address) +
+        escapeHtml(lookup) +
         '" title="' +
-        escapeHtml(formatCollectorHoldLabel(c)) +
+        escapeHtml(label + " · " + formatCollectorHoldLabel(c)) +
         '">' +
         escapeHtml(label) +
         '<span class="meta">' +
@@ -3403,6 +3738,7 @@ function exploreCollector(address, highlightTokenId) {
 function renderCollectors(filter) {
   var list = $("#collectors-list");
   if (!list) return;
+  enrichCollectorsListNames();
   if (!collectorsList.length) {
     list.innerHTML = "<p class='wallet-result empty'>No collectors indexed yet.</p>";
     return;
@@ -3411,27 +3747,38 @@ function renderCollectors(filter) {
   var rows = collectorsList;
   if (q) {
     rows = rows.filter(function (c) {
-      return (
-        (c.ens_name || "").toLowerCase().indexOf(q) >= 0 ||
-        (c.username || "").toLowerCase().indexOf(q) >= 0 ||
-        c.address.toLowerCase().indexOf(q) >= 0
-      );
+      return collectorMatchesQuery(c, q);
     });
   }
   list.innerHTML = rows
     .map(function (c) {
-      var label = c.ens_name || c.username || shortenAddress(c.address);
+      enrichCollectorRowNames(c);
+      var label = formatCollectorDisplayName(c);
+      var sub = c.ens_name || c.base_name || c.username || c.address;
       return (
-        '<button type="button" class="collector-row" data-address="' + escapeHtml(c.address) + '">' +
-        '<div class="collector-info"><strong>' + escapeHtml(label) + '</strong><span class="meta">' + escapeHtml(c.ens_name || c.address) + "</span></div>" +
-        '<span class="count">' + escapeHtml(formatCollectorHoldLabel(c)) + "</span></button>"
+        '<button type="button" class="collector-row" data-address="' +
+        escapeHtml(c.address) +
+        '" data-lookup="' +
+        escapeHtml(c.ens_name || c.base_name || c.address) +
+        '">' +
+        '<div class="collector-info"><strong>' +
+        escapeHtml(label) +
+        '</strong><span class="meta">' +
+        escapeHtml(sub) +
+        "</span></div>" +
+        '<span class="count">' +
+        escapeHtml(formatCollectorHoldLabel(c)) +
+        "</span></button>"
       );
     })
     .join("");
   list.querySelectorAll(".collector-row").forEach(function (btn) {
     btn.addEventListener("click", function () {
       closeCollectorsModal();
-      runWalletLookupFromAddress(btn.dataset.address, btn.dataset.address);
+      runWalletLookupFromAddress(
+        btn.dataset.address,
+        btn.getAttribute("data-lookup") || btn.dataset.address
+      );
     });
   });
 }
@@ -4807,8 +5154,7 @@ function bindUi() {
     });
   }
   renderCollectorFocusUi();
-  var cs = $("#collectors-search");
-  if (cs) cs.addEventListener("input", function (e) { renderCollectors(e.target.value); });
+  bindNameSuggestInputs();
   var viewBtn = $("#view-collectors-btn");
   if (viewBtn) viewBtn.addEventListener("click", openCollectorsModal);
   $("#collectors-modal-close").addEventListener("click", closeCollectorsModal);
@@ -4972,21 +5318,29 @@ async function init() {
     var hasWalletInit = !initCol || (initCol.features || []).indexOf("wallet_lookup") !== -1;
     if (hasWalletInit) {
       loadWalletIndex().then(function () {
-        // Enrich owners with ENS from walletIndex for display
+        // Enrich owners with ENS / Base names from walletIndex + name_index
         if (galleryData && Array.isArray(galleryData.items)) {
           var byAddr = (walletIndex && walletIndex.by_address) || {};
           galleryData.items.forEach(function (item) {
             var os = item.owners || {};
             ["holders", "top_holders"].forEach(function (k) {
               (os[k] || []).forEach(function (o) {
-                var e = byAddr[(o.address || "").toLowerCase()];
+                var key = (o.address || "").toLowerCase();
+                var e = byAddr[key];
+                var ni = nameIndexEntry(key);
                 if (e && e.ens_name) o.ens_name = e.ens_name;
+                if (e && e.base_name) o.base_name = e.base_name;
+                if (ni && ni.base_name && !o.base_name) o.base_name = ni.base_name;
+                if (e && e.username) o.username = e.username;
               });
             });
           });
         }
         // Force collectors for active collection (esp. ?collection=bigkix cold load)
         rebuildCollectorsForCurrentView();
+        enrichCollectorsListNames();
+        renderTopCollectors();
+        renderNameSuggestDatalists();
         renderStats(galleryData.collection);
         updateCollectorsButton();
         if (activeDetailTokenId) {
