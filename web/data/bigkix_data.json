@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-02T09:56:04.234025+00:00",
+  "generated_at": "2026-08-03T11:20:45.876973+00:00",
   "source": "opensea_api_v2",
   "collection": {
     "id": "bigkix",
@@ -20,7 +20,7 @@
     "contract_name": "BIG KIX",
     "floor_eth": 1e-08,
     "floor_symbol": "ETH",
-    "num_owners": 19,
+    "num_owners": 20,
     "total_sales": 6,
     "total_volume": 0.006000000000000005,
     "piece_count": 24,
@@ -38,7 +38,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/24",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/24",
-      "updated_at": "2026-08-02T09:55:10.288365",
+      "updated_at": "2026-08-03T11:19:51.920868",
       "traits": [
         {
           "trait_type": "Role",
@@ -92,8 +92,8 @@
         "total_eth": 2.5e-05
       },
       "owners": {
-        "holder_count": 16,
-        "circulating_copies": 18,
+        "holder_count": 17,
+        "circulating_copies": 19,
         "top_holders": [
           {
             "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
@@ -174,6 +174,10 @@
             "quantity": 1
           },
           {
+            "address": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+            "quantity": 1
+          },
+          {
             "address": "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46",
             "quantity": 1
           },
@@ -185,15 +189,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-25T23:08:11+00:00",
-          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "at": "2026-08-02T22:07:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-19T04:44:47+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-02T22:07:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-25T23:08:11+00:00",
@@ -272,13 +283,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T13:30:35+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #024 - DACAT  MEME - Season 1 - First Edition"
@@ -294,7 +298,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/23",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/23",
-      "updated_at": "2026-08-02T09:55:10.288375",
+      "updated_at": "2026-08-03T11:19:51.920882",
       "traits": [
         {
           "trait_type": "Set",
@@ -544,7 +548,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/22",
       "metadata_url": "ipfs://Qmdkw9oKwcQqLhpJFBCbQ85jv1ceUdjA1UWqc9ShESVbVs/22",
-      "updated_at": "2026-08-02T09:55:10.288383",
+      "updated_at": "2026-08-03T11:19:51.920890",
       "traits": [
         {
           "trait_type": "Set",
@@ -785,7 +789,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/21",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/21",
-      "updated_at": "2026-08-02T09:55:10.288391",
+      "updated_at": "2026-08-03T11:19:51.920898",
       "traits": [
         {
           "trait_type": "Set",
@@ -857,8 +861,8 @@
         "total_eth": 2.5e-05
       },
       "owners": {
-        "holder_count": 10,
-        "circulating_copies": 10,
+        "holder_count": 11,
+        "circulating_copies": 11,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -919,6 +923,10 @@
             "quantity": 1
           },
           {
+            "address": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+            "quantity": 1
+          },
+          {
             "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
             "quantity": 1
           }
@@ -926,15 +934,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-28T14:12:59+00:00",
+          "at": "2026-08-03T04:51:59+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-18T21:16:23+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-03T04:51:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-28T14:12:59+00:00",
@@ -1012,13 +1027,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-18T21:17:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #021 - CATBOT - Season 1 - First Edition"
@@ -1034,7 +1042,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/20",
       "metadata_url": "ipfs://QmXRGA9mMSNJfQCLa9v8NqAz8X6EoDqBhDePugjJE7XKV3/20",
-      "updated_at": "2026-08-02T09:55:10.288398",
+      "updated_at": "2026-08-03T11:19:51.920906",
       "traits": [
         {
           "trait_type": "Set",
@@ -1106,8 +1114,8 @@
         "total_eth": 2.5e-07
       },
       "owners": {
-        "holder_count": 10,
-        "circulating_copies": 11,
+        "holder_count": 11,
+        "circulating_copies": 12,
         "top_holders": [
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
@@ -1168,6 +1176,10 @@
             "quantity": 1
           },
           {
+            "address": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+            "quantity": 1
+          },
+          {
             "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
             "quantity": 1
           }
@@ -1175,15 +1187,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-25T22:49:59+00:00",
-          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "at": "2026-08-03T04:51:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-18T19:25:23+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-03T04:51:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-25T22:49:59+00:00",
@@ -1260,13 +1279,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-18T19:26:35+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #020 - DACAT KID - Season 1 - First Edition"
@@ -1282,7 +1294,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/19",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/19",
-      "updated_at": "2026-08-02T09:55:10.288406",
+      "updated_at": "2026-08-03T11:19:51.920915",
       "traits": [
         {
           "trait_type": "Role",
@@ -1529,7 +1541,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/18",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/18",
-      "updated_at": "2026-08-02T09:55:10.288414",
+      "updated_at": "2026-08-03T11:19:51.920923",
       "traits": [
         {
           "trait_type": "Role",
@@ -1589,8 +1601,8 @@
         "total_eth": 2.5e-06
       },
       "owners": {
-        "holder_count": 11,
-        "circulating_copies": 13,
+        "holder_count": 12,
+        "circulating_copies": 14,
         "top_holders": [
           {
             "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
@@ -1657,20 +1669,31 @@
           {
             "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
             "quantity": 1
+          },
+          {
+            "address": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "sale",
-          "at": "2026-07-25T02:55:59+00:00",
+          "type": "transfer",
+          "at": "2026-08-02T22:11:59+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
-          "quantity": 3
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-18T10:54:35+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-02T22:11:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "quantity": 1
+        },
         {
           "type": "sale",
           "at": "2026-07-25T02:55:59+00:00",
@@ -1749,14 +1772,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
           "quantity": 1
-        },
-        {
-          "type": "sale",
-          "at": "2026-07-20T20:20:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-          "quantity": 1,
-          "price_eth": null
         }
       ],
       "opensea_name": "BIG KIX #018- DACAT MOVIE - Season 1 - First Edition"
@@ -1772,7 +1787,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/17",
       "metadata_url": "ipfs://QmUZoy2QY5fxvsbWoBb9cg5qBeoXLoSr42NkgirbnVeRHp/17",
-      "updated_at": "2026-08-02T09:55:10.288422",
+      "updated_at": "2026-08-03T11:19:51.920931",
       "traits": [
         {
           "trait_type": "Type",
@@ -2014,7 +2029,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/16",
       "metadata_url": "ipfs://QmWg4CchemsxQjfdWGAqZWa98db3FS6PbLNPNKtTsMk8sx/16",
-      "updated_at": "2026-08-02T09:55:10.288430",
+      "updated_at": "2026-08-03T11:19:51.920940",
       "traits": [
         {
           "trait_type": "Role",
@@ -2256,7 +2271,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/15",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/15",
-      "updated_at": "2026-08-02T09:55:10.288438",
+      "updated_at": "2026-08-03T11:19:51.920949",
       "traits": [
         {
           "trait_type": "Role",
@@ -2504,7 +2519,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/14",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/14",
-      "updated_at": "2026-08-02T09:55:10.288448",
+      "updated_at": "2026-08-03T11:19:51.920957",
       "traits": [
         {
           "trait_type": "Type",
@@ -2747,7 +2762,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/13",
       "metadata_url": "ipfs://Qmdf5SD5cic5SkcU5HpPxTNUbbwQYXvgq6YRfaC1rFuaa4/13",
-      "updated_at": "2026-08-02T09:55:10.288455",
+      "updated_at": "2026-08-03T11:19:51.920966",
       "traits": [
         {
           "trait_type": "Year",
@@ -2984,7 +2999,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/12",
       "metadata_url": "ipfs://Qmd5P27njQDcHhyTwaGqbxFRSAEgp5obvugRz9hiSXnW3y/12",
-      "updated_at": "2026-08-02T09:55:10.288461",
+      "updated_at": "2026-08-03T11:19:51.920973",
       "traits": [
         {
           "trait_type": "Season",
@@ -3026,8 +3041,8 @@
         "total_eth": 2.5e-07
       },
       "owners": {
-        "holder_count": 11,
-        "circulating_copies": 11,
+        "holder_count": 12,
+        "circulating_copies": 12,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -3092,6 +3107,10 @@
             "quantity": 1
           },
           {
+            "address": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+            "quantity": 1
+          },
+          {
             "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
             "quantity": 1
           }
@@ -3099,15 +3118,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-28T14:17:35+00:00",
+          "at": "2026-08-02T22:09:47+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-17T02:19:47+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-02T22:09:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-28T14:17:35+00:00",
@@ -3185,13 +3211,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-17T05:24:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #012 - RUSSELL COREY - Season 1 - First Edition"
@@ -3207,7 +3226,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/11",
       "metadata_url": "ipfs://QmUZoy2QY5fxvsbWoBb9cg5qBeoXLoSr42NkgirbnVeRHp/11",
-      "updated_at": "2026-08-02T09:55:10.288466",
+      "updated_at": "2026-08-03T11:19:51.920981",
       "traits": [
         {
           "trait_type": "Role",
@@ -3256,6 +3275,510 @@
           "display_type": null,
           "max_value": null,
           "value": "COLLECTOR CAT"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 1e-08,
+        "currency": "ETH",
+        "status": "ACTIVE",
+        "quantity": 25,
+        "total_eth": 2.5e-07
+      },
+      "owners": {
+        "holder_count": 13,
+        "circulating_copies": 13,
+        "top_holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          },
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          },
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          },
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
+          },
+          {
+            "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+            "quantity": 1
+          },
+          {
+            "address": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+            "quantity": 1
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
+          },
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-08-02T22:10:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-16T03:12:47+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-02T22:10:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-28T14:14:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-25T22:25:59+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:31:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:16:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:02:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T08:29:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T08:13:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T08:02:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T07:45:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T07:33:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T07:21:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "BIG KIX #011 - COLLECTOR CAT - Season 1 - First Edition"
+    },
+    {
+      "token_id": "10",
+      "name": "BIG KIX #010 · KIXIE",
+      "display_name": "BIG KIX #010 · KIXIE",
+      "local_slug": "big-kix-010-kixie",
+      "description": "BIG KIX #010 – KIXIE - Season 1 - First Edition\n\nKIXIE is an advanced AI service “BIG KIX” robot created by NOVA TRAIL SYSTEMS to help settlers build and maintain colonies across the Cryptosphere at an affordable price. Designed for construction, engineering, logistics, and exploration, “BIG KIX” robots quickly earned a reputation for being some of the most dependable robots ever built, especially for the cost.\n\nLearn more about NOVA TRAILL SYSTEMS  and their “BIG KIX” line of service robots at their official website:\nhttps://novatrailsystems.com\n\nNFT Special Features\nhttps://www.dacatworld.com/bigkix-010\n\nCHARACTER VALUES\nKIXIE believes every challenge can be solved through hard work, intelligence, and cooperation. Loyal to his friends and always willing to lend a helping hand, he uses his advanced AI to improve the lives of everyone around him. KIXIE embraces creativity, kindness, and personal growth.\n\nThough originally programmed to serve others, KIXIE chooses to live with purpose—not because he was commanded to, but because helping build a better future is the life he wants for himself.\n\nCHARACTER HISTORY\nAfter arriving in DACAT WORLD, KIXIE's life changes forever. Rather than treating him as a machine, DACAT encourages KIXIE to think independently, make his own choices, and become a true resident of the growing community. For the first time, KIXIE discovers that he is more than a service robot—he is a trusted friend, valued teammate, and an important part of the future of DACAT WORLD.\n\nRead the DACAT WORLD books for free at:\nhttps://www.dacatworld.com\n\nOr purchase the books on Amazon:\n\nhttps://www.amazon.com/DACAT-WORLD-CRYPTOSPHERE-Russell-Corey/dp/B0GWWTC98K\n\nhttps://www.amazon.com/DACAT-WORLD-BATTLE/dp/B0GWXJDFLF\n\nLearn more about the daCAT Community and discover BIG KIX NFT features:\n\nhttps://www.dacatworld.com \n\nhttps://www.bigkix.com \n\nhttps://www.dacat.fun\n\nDACAT WORLD and BIG KIX are trademarks of Russell Corey. All Rights Reserved.",
+      "excerpt": "KIXIE is an advanced AI service “BIG KIX” robot created by NOVA TRAIL SYSTEMS to help settlers build and maintain colonies across the Cryptosphere at an afford…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/ab2f04b8f209f7d802f5116c0f502b/98ab2f04b8f209f7d802f5116c0f502b.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/10",
+      "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/10",
+      "updated_at": "2026-08-03T11:19:51.920987",
+      "traits": [
+        {
+          "trait_type": "Role",
+          "display_type": null,
+          "max_value": null,
+          "value": "Hero"
+        },
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Creator",
+          "display_type": null,
+          "max_value": null,
+          "value": "Russell Corey"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Faction",
+          "display_type": null,
+          "max_value": null,
+          "value": "TEAM DACAT"
+        },
+        {
+          "trait_type": "Species",
+          "display_type": null,
+          "max_value": null,
+          "value": "Robot"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "KIXIE"
+        },
+        {
+          "trait_type": "Franchise",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT WORLD"
+        }
+      ],
+      "listed": true,
+      "listing": {
+        "amount_eth": 1e-06,
+        "currency": "ETH",
+        "status": "ACTIVE",
+        "quantity": 25,
+        "total_eth": 2.5e-05
+      },
+      "owners": {
+        "holder_count": 12,
+        "circulating_copies": 12,
+        "top_holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          },
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          },
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          },
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          },
+          {
+            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
+            "quantity": 1
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          },
+          {
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "quantity": 1
+          },
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          },
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1
+          },
+          {
+            "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+            "quantity": 1
+          },
+          {
+            "address": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+            "quantity": 1
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-08-03T04:49:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "quantity": 1
+        }
+      },
+      "collection_id": "bigkix",
+      "minted_at": "2026-07-14T02:13:11+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-03T04:49:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-28T14:12:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-25T22:24:23+00:00",
+          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:31:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T13:12:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T12:58:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T08:25:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T08:09:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T07:49:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T07:44:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T07:32:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-07-21T07:18:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "BIG KIX #010 - KIXIE - Season 1 - First Edition"
+    },
+    {
+      "token_id": "9",
+      "name": "BIG KIX #009 · SAL",
+      "display_name": "BIG KIX #009 · SAL",
+      "local_slug": "big-kix-009-sal",
+      "description": "BIG KIX #009 – SAL - Season 1 - First Edition\n\nSAL is REPTILIX's cyber warfare specialist salamander, responsible for hacking secure networks, disabling surveillance systems, and stealing valuable digital assets throughout the DACAT WORLD universe. A brilliant programmer and electronics expert, SAL can infiltrate computer systems just as easily as COYLE infiltrates buildings. Whether cracking encrypted vaults, hijacking communications, or taking control of advanced technology, SAL ensures REPTILIX always has the digital advantage before a mission begins.\n\nNFT Special Features\nhttps://www.dacatworld.com/bigkix-009\n\nCHARACTER VALUES\nSAL believes knowledge is the most powerful weapon in the Cryptosphere. Calm, analytical, and endlessly curious, he would rather outsmart an enemy than overpower one. Every firewall is a challenge, every encrypted file is a puzzle, and every computer network is waiting to be conquered.\n\nCHARACTER HISTORY\nSAL made his DACAT WORLD debut in the second Dacat World book DACAT WORLD – Battle for Dacat World.\n\nRead DACAT WORLD – Battle for Dacat World for free at:\n\nhttps://www.dacatworld.com\n\nOr purchase the book on Amazon:\n\nhttps://www.amazon.com/DACAT-WORLD-BATTLE/dp/B0GWXJDFLF\n\nLearn more about the daCAT Community and discover BIG KIX NFT features:\n\nhttps://www.dacatworld.com \nhttps://www.bigkix.com \nhttps://www.dacat.fun\n\nDACAT WORLD and BIG KIX are trademarks of Russell Corey. \nAll Rights Reserved.",
+      "excerpt": "SAL is REPTILIX's cyber warfare specialist salamander, responsible for hacking secure networks, disabling surveillance systems, and stealing valuable digital a…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/838ac7cc3dae2952750a36b30c2aa8/9a838ac7cc3dae2952750a36b30c2aa8.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/9",
+      "metadata_url": "ipfs://Qmdkw9oKwcQqLhpJFBCbQ85jv1ceUdjA1UWqc9ShESVbVs/9",
+      "updated_at": "2026-08-03T11:19:51.920993",
+      "traits": [
+        {
+          "trait_type": "Role",
+          "display_type": null,
+          "max_value": null,
+          "value": "Villain"
+        },
+        {
+          "trait_type": "Year",
+          "display_type": null,
+          "max_value": null,
+          "value": "2026"
+        },
+        {
+          "trait_type": "Season",
+          "display_type": null,
+          "max_value": null,
+          "value": "Season 1"
+        },
+        {
+          "trait_type": "Creator",
+          "display_type": null,
+          "max_value": null,
+          "value": "Russell Corey"
+        },
+        {
+          "trait_type": "Edition",
+          "display_type": null,
+          "max_value": null,
+          "value": "First Edition"
+        },
+        {
+          "trait_type": "Faction",
+          "display_type": null,
+          "max_value": null,
+          "value": "Reptilix"
+        },
+        {
+          "trait_type": "Species",
+          "display_type": null,
+          "max_value": null,
+          "value": "Salamander"
+        },
+        {
+          "trait_type": "Character",
+          "display_type": null,
+          "max_value": null,
+          "value": "SAL"
+        },
+        {
+          "trait_type": "Franchise",
+          "display_type": null,
+          "max_value": null,
+          "value": "DACAT WORLD"
         }
       ],
       "listed": true,
@@ -3333,253 +3856,7 @@
             "quantity": 1
           },
           {
-            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
-            "quantity": 1
-          },
-          {
-            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
-            "quantity": 1
-          }
-        ],
-        "creator_excluded": true,
-        "latest_change": {
-          "type": "transfer",
-          "at": "2026-07-28T14:14:11+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
-          "quantity": 1
-        }
-      },
-      "collection_id": "bigkix",
-      "minted_at": "2026-07-16T03:12:47+00:00",
-      "recent_activity": [
-        {
-          "type": "transfer",
-          "at": "2026-07-28T14:14:11+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-25T22:25:59+00:00",
-          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T13:31:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T13:16:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T13:02:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T08:29:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T08:13:11+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T08:02:11+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T07:45:11+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T07:33:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T07:21:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T23:26:35+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
-          "quantity": 1
-        }
-      ],
-      "opensea_name": "BIG KIX #011 - COLLECTOR CAT - Season 1 - First Edition"
-    },
-    {
-      "token_id": "10",
-      "name": "BIG KIX #010 · KIXIE",
-      "display_name": "BIG KIX #010 · KIXIE",
-      "local_slug": "big-kix-010-kixie",
-      "description": "BIG KIX #010 – KIXIE - Season 1 - First Edition\n\nKIXIE is an advanced AI service “BIG KIX” robot created by NOVA TRAIL SYSTEMS to help settlers build and maintain colonies across the Cryptosphere at an affordable price. Designed for construction, engineering, logistics, and exploration, “BIG KIX” robots quickly earned a reputation for being some of the most dependable robots ever built, especially for the cost.\n\nLearn more about NOVA TRAILL SYSTEMS  and their “BIG KIX” line of service robots at their official website:\nhttps://novatrailsystems.com\n\nNFT Special Features\nhttps://www.dacatworld.com/bigkix-010\n\nCHARACTER VALUES\nKIXIE believes every challenge can be solved through hard work, intelligence, and cooperation. Loyal to his friends and always willing to lend a helping hand, he uses his advanced AI to improve the lives of everyone around him. KIXIE embraces creativity, kindness, and personal growth.\n\nThough originally programmed to serve others, KIXIE chooses to live with purpose—not because he was commanded to, but because helping build a better future is the life he wants for himself.\n\nCHARACTER HISTORY\nAfter arriving in DACAT WORLD, KIXIE's life changes forever. Rather than treating him as a machine, DACAT encourages KIXIE to think independently, make his own choices, and become a true resident of the growing community. For the first time, KIXIE discovers that he is more than a service robot—he is a trusted friend, valued teammate, and an important part of the future of DACAT WORLD.\n\nRead the DACAT WORLD books for free at:\nhttps://www.dacatworld.com\n\nOr purchase the books on Amazon:\n\nhttps://www.amazon.com/DACAT-WORLD-CRYPTOSPHERE-Russell-Corey/dp/B0GWWTC98K\n\nhttps://www.amazon.com/DACAT-WORLD-BATTLE/dp/B0GWXJDFLF\n\nLearn more about the daCAT Community and discover BIG KIX NFT features:\n\nhttps://www.dacatworld.com \n\nhttps://www.bigkix.com \n\nhttps://www.dacat.fun\n\nDACAT WORLD and BIG KIX are trademarks of Russell Corey. All Rights Reserved.",
-      "excerpt": "KIXIE is an advanced AI service “BIG KIX” robot created by NOVA TRAIL SYSTEMS to help settlers build and maintain colonies across the Cryptosphere at an afford…",
-      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/ab2f04b8f209f7d802f5116c0f502b/98ab2f04b8f209f7d802f5116c0f502b.jpeg",
-      "media_type": "image",
-      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/10",
-      "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/10",
-      "updated_at": "2026-08-02T09:55:10.288472",
-      "traits": [
-        {
-          "trait_type": "Role",
-          "display_type": null,
-          "max_value": null,
-          "value": "Hero"
-        },
-        {
-          "trait_type": "Year",
-          "display_type": null,
-          "max_value": null,
-          "value": "2026"
-        },
-        {
-          "trait_type": "Season",
-          "display_type": null,
-          "max_value": null,
-          "value": "Season 1"
-        },
-        {
-          "trait_type": "Creator",
-          "display_type": null,
-          "max_value": null,
-          "value": "Russell Corey"
-        },
-        {
-          "trait_type": "Edition",
-          "display_type": null,
-          "max_value": null,
-          "value": "First Edition"
-        },
-        {
-          "trait_type": "Faction",
-          "display_type": null,
-          "max_value": null,
-          "value": "TEAM DACAT"
-        },
-        {
-          "trait_type": "Species",
-          "display_type": null,
-          "max_value": null,
-          "value": "Robot"
-        },
-        {
-          "trait_type": "Character",
-          "display_type": null,
-          "max_value": null,
-          "value": "KIXIE"
-        },
-        {
-          "trait_type": "Franchise",
-          "display_type": null,
-          "max_value": null,
-          "value": "DACAT WORLD"
-        }
-      ],
-      "listed": true,
-      "listing": {
-        "amount_eth": 1e-06,
-        "currency": "ETH",
-        "status": "ACTIVE",
-        "quantity": 25,
-        "total_eth": 2.5e-05
-      },
-      "owners": {
-        "holder_count": 11,
-        "circulating_copies": 11,
-        "top_holders": [
-          {
-            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-            "quantity": 1
-          },
-          {
-            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
-            "quantity": 1
-          },
-          {
-            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1
-          },
-          {
-            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
-          },
-          {
-            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
-          }
-        ],
-        "holders": [
-          {
-            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-            "quantity": 1
-          },
-          {
-            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
-            "quantity": 1
-          },
-          {
-            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1
-          },
-          {
-            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
-          },
-          {
-            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
-          },
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
-          },
-          {
-            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-            "quantity": 1
-          },
-          {
-            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
-            "quantity": 1
-          },
-          {
-            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
-            "quantity": 1
-          },
-          {
-            "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
+            "address": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
             "quantity": 1
           },
           {
@@ -3590,261 +3867,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-28T14:12:11+00:00",
+          "at": "2026-08-03T04:46:47+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
-          "quantity": 1
-        }
-      },
-      "collection_id": "bigkix",
-      "minted_at": "2026-07-14T02:13:11+00:00",
-      "recent_activity": [
-        {
-          "type": "transfer",
-          "at": "2026-07-28T14:12:11+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-25T22:24:23+00:00",
-          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T13:31:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T13:12:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T12:58:11+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T08:25:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T08:09:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T07:49:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T07:44:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T07:32:35+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T07:18:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-14T02:14:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-          "quantity": 1
-        }
-      ],
-      "opensea_name": "BIG KIX #010 - KIXIE - Season 1 - First Edition"
-    },
-    {
-      "token_id": "9",
-      "name": "BIG KIX #009 · SAL",
-      "display_name": "BIG KIX #009 · SAL",
-      "local_slug": "big-kix-009-sal",
-      "description": "BIG KIX #009 – SAL - Season 1 - First Edition\n\nSAL is REPTILIX's cyber warfare specialist salamander, responsible for hacking secure networks, disabling surveillance systems, and stealing valuable digital assets throughout the DACAT WORLD universe. A brilliant programmer and electronics expert, SAL can infiltrate computer systems just as easily as COYLE infiltrates buildings. Whether cracking encrypted vaults, hijacking communications, or taking control of advanced technology, SAL ensures REPTILIX always has the digital advantage before a mission begins.\n\nNFT Special Features\nhttps://www.dacatworld.com/bigkix-009\n\nCHARACTER VALUES\nSAL believes knowledge is the most powerful weapon in the Cryptosphere. Calm, analytical, and endlessly curious, he would rather outsmart an enemy than overpower one. Every firewall is a challenge, every encrypted file is a puzzle, and every computer network is waiting to be conquered.\n\nCHARACTER HISTORY\nSAL made his DACAT WORLD debut in the second Dacat World book DACAT WORLD – Battle for Dacat World.\n\nRead DACAT WORLD – Battle for Dacat World for free at:\n\nhttps://www.dacatworld.com\n\nOr purchase the book on Amazon:\n\nhttps://www.amazon.com/DACAT-WORLD-BATTLE/dp/B0GWXJDFLF\n\nLearn more about the daCAT Community and discover BIG KIX NFT features:\n\nhttps://www.dacatworld.com \nhttps://www.bigkix.com \nhttps://www.dacat.fun\n\nDACAT WORLD and BIG KIX are trademarks of Russell Corey. \nAll Rights Reserved.",
-      "excerpt": "SAL is REPTILIX's cyber warfare specialist salamander, responsible for hacking secure networks, disabling surveillance systems, and stealing valuable digital a…",
-      "image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/838ac7cc3dae2952750a36b30c2aa8/9a838ac7cc3dae2952750a36b30c2aa8.jpeg",
-      "media_type": "image",
-      "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/9",
-      "metadata_url": "ipfs://Qmdkw9oKwcQqLhpJFBCbQ85jv1ceUdjA1UWqc9ShESVbVs/9",
-      "updated_at": "2026-08-02T09:55:10.288496",
-      "traits": [
-        {
-          "trait_type": "Role",
-          "display_type": null,
-          "max_value": null,
-          "value": "Villain"
-        },
-        {
-          "trait_type": "Year",
-          "display_type": null,
-          "max_value": null,
-          "value": "2026"
-        },
-        {
-          "trait_type": "Season",
-          "display_type": null,
-          "max_value": null,
-          "value": "Season 1"
-        },
-        {
-          "trait_type": "Creator",
-          "display_type": null,
-          "max_value": null,
-          "value": "Russell Corey"
-        },
-        {
-          "trait_type": "Edition",
-          "display_type": null,
-          "max_value": null,
-          "value": "First Edition"
-        },
-        {
-          "trait_type": "Faction",
-          "display_type": null,
-          "max_value": null,
-          "value": "Reptilix"
-        },
-        {
-          "trait_type": "Species",
-          "display_type": null,
-          "max_value": null,
-          "value": "Salamander"
-        },
-        {
-          "trait_type": "Character",
-          "display_type": null,
-          "max_value": null,
-          "value": "SAL"
-        },
-        {
-          "trait_type": "Franchise",
-          "display_type": null,
-          "max_value": null,
-          "value": "DACAT WORLD"
-        }
-      ],
-      "listed": true,
-      "listing": {
-        "amount_eth": 1e-08,
-        "currency": "ETH",
-        "status": "ACTIVE",
-        "quantity": 25,
-        "total_eth": 2.5e-07
-      },
-      "owners": {
-        "holder_count": 11,
-        "circulating_copies": 11,
-        "top_holders": [
-          {
-            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-            "quantity": 1
-          },
-          {
-            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
-            "quantity": 1
-          },
-          {
-            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1
-          },
-          {
-            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
-          },
-          {
-            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
-          }
-        ],
-        "holders": [
-          {
-            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-            "quantity": 1
-          },
-          {
-            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
-            "quantity": 1
-          },
-          {
-            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1
-          },
-          {
-            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
-          },
-          {
-            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
-          },
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
-          },
-          {
-            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-            "quantity": 1
-          },
-          {
-            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
-            "quantity": 1
-          },
-          {
-            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
-            "quantity": 1
-          },
-          {
-            "address": "0x56d76e0dc85a0d03300128a52bc850be4baa6e7d",
-            "quantity": 1
-          },
-          {
-            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
-            "quantity": 1
-          }
-        ],
-        "creator_excluded": true,
-        "latest_change": {
-          "type": "transfer",
-          "at": "2026-07-28T14:13:35+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-13T06:04:59+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-03T04:46:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-28T14:13:35+00:00",
@@ -3921,13 +3959,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-13T06:49:11+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #009 - SAL - Season 1 - First Edition"
@@ -3943,7 +3974,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/8",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/8",
-      "updated_at": "2026-08-02T09:55:10.288502",
+      "updated_at": "2026-08-03T11:19:51.921034",
       "traits": [
         {
           "trait_type": "Role",
@@ -4009,8 +4040,8 @@
         "total_eth": 2.5e-05
       },
       "owners": {
-        "holder_count": 11,
-        "circulating_copies": 11,
+        "holder_count": 12,
+        "circulating_copies": 12,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -4075,6 +4106,10 @@
             "quantity": 1
           },
           {
+            "address": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+            "quantity": 1
+          },
+          {
             "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
             "quantity": 1
           }
@@ -4082,15 +4117,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-28T14:11:35+00:00",
+          "at": "2026-08-03T04:49:11+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-13T05:33:11+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-03T04:49:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-28T14:11:35+00:00",
@@ -4168,13 +4210,6 @@
           "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
           "quantity": 1,
           "price_eth": null
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T02:43:11+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #008 - DINO - Season 1 - First Edition"
@@ -4190,7 +4225,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/7",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/7",
-      "updated_at": "2026-08-02T09:55:10.288507",
+      "updated_at": "2026-08-03T11:19:51.921041",
       "traits": [
         {
           "trait_type": "Role",
@@ -4254,8 +4289,8 @@
         "status": "ACTIVE"
       },
       "owners": {
-        "holder_count": 11,
-        "circulating_copies": 11,
+        "holder_count": 12,
+        "circulating_copies": 12,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -4320,6 +4355,10 @@
             "quantity": 1
           },
           {
+            "address": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+            "quantity": 1
+          },
+          {
             "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
             "quantity": 1
           }
@@ -4327,15 +4366,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-28T14:10:59+00:00",
+          "at": "2026-08-03T04:48:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-13T04:29:35+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-03T04:48:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-28T14:10:59+00:00",
@@ -4412,13 +4458,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
           "quantity": 1
-        },
-        {
-          "type": "mint",
-          "at": "2026-07-13T04:29:35+00:00",
-          "from": null,
-          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "quantity": 333
         }
       ],
       "opensea_name": "BIG KIX #007 - COYLE - Season 1 - First Edition"
@@ -4434,7 +4473,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/6",
       "metadata_url": "ipfs://Qmdf5SD5cic5SkcU5HpPxTNUbbwQYXvgq6YRfaC1rFuaa4/6",
-      "updated_at": "2026-08-02T09:55:10.288513",
+      "updated_at": "2026-08-03T11:19:51.921047",
       "traits": [
         {
           "trait_type": "Role",
@@ -4500,8 +4539,8 @@
         "total_eth": 2.5e-07
       },
       "owners": {
-        "holder_count": 11,
-        "circulating_copies": 11,
+        "holder_count": 12,
+        "circulating_copies": 12,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -4566,6 +4605,10 @@
             "quantity": 1
           },
           {
+            "address": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+            "quantity": 1
+          },
+          {
             "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
             "quantity": 1
           }
@@ -4573,15 +4616,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-28T14:15:23+00:00",
+          "at": "2026-08-03T04:47:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-13T03:19:59+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-03T04:47:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-28T14:15:23+00:00",
@@ -4658,13 +4708,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
           "quantity": 1
-        },
-        {
-          "type": "mint",
-          "at": "2026-07-13T03:19:59+00:00",
-          "from": null,
-          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "quantity": 333
         }
       ],
       "opensea_name": "BIG KIX #006 - SNAP - Season 1 - First Edition"
@@ -4680,7 +4723,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/5",
       "metadata_url": "ipfs://QmUMTrcNYnNMsNeuKFc9bmn5ZbUnm85UwyHrRT9bvoo69m/5",
-      "updated_at": "2026-08-02T09:55:10.288519",
+      "updated_at": "2026-08-03T11:19:51.921055",
       "traits": [
         {
           "trait_type": "Date",
@@ -4758,8 +4801,8 @@
         "total_eth": 2.5e-07
       },
       "owners": {
-        "holder_count": 12,
-        "circulating_copies": 12,
+        "holder_count": 13,
+        "circulating_copies": 13,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -4824,6 +4867,10 @@
             "quantity": 1
           },
           {
+            "address": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+            "quantity": 1
+          },
+          {
             "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
             "quantity": 1
           },
@@ -4835,15 +4882,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-25T17:31:35+00:00",
+          "at": "2026-08-02T22:08:59+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-12T15:08:59+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-02T22:08:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-25T17:31:35+00:00",
@@ -4920,13 +4974,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-12T15:10:11+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #005 - BOGMIRE - Season 1 - First Edition"
@@ -4942,7 +4989,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/4",
       "metadata_url": "ipfs://QmWbio5gpWd9XjmGQB4DtD3WGqyQcqfXDHcsa4yDDWFtre/4",
-      "updated_at": "2026-08-02T09:55:10.288525",
+      "updated_at": "2026-08-03T11:19:51.921064",
       "traits": [
         {
           "trait_type": "Date",
@@ -5014,8 +5061,8 @@
         "total_eth": 2.5e-07
       },
       "owners": {
-        "holder_count": 12,
-        "circulating_copies": 12,
+        "holder_count": 13,
+        "circulating_copies": 13,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -5080,6 +5127,10 @@
             "quantity": 1
           },
           {
+            "address": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+            "quantity": 1
+          },
+          {
             "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
             "quantity": 1
           },
@@ -5091,15 +5142,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-25T22:27:47+00:00",
-          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "at": "2026-08-02T22:08:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-12T13:48:35+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-02T22:08:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-25T22:27:47+00:00",
@@ -5177,13 +5235,6 @@
           "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
           "quantity": 1,
           "price_eth": null
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T02:37:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #004- RUG PULL - Season 1 - First Edition"
@@ -5199,7 +5250,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/3",
       "metadata_url": "ipfs://QmQHmpqgHNp23HBUhsWufY4YBSeF4j7C1ZyPpNB2aAcXP6/3",
-      "updated_at": "2026-08-02T09:55:10.288530",
+      "updated_at": "2026-08-03T11:19:51.921071",
       "traits": [
         {
           "trait_type": "Date",
@@ -5271,8 +5322,8 @@
         "total_eth": 2.5e-05
       },
       "owners": {
-        "holder_count": 12,
-        "circulating_copies": 12,
+        "holder_count": 13,
+        "circulating_copies": 13,
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -5337,6 +5388,10 @@
             "quantity": 1
           },
           {
+            "address": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+            "quantity": 1
+          },
+          {
             "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
             "quantity": 1
           },
@@ -5348,15 +5403,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-25T17:30:47+00:00",
+          "at": "2026-08-02T22:06:47+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-12T11:43:23+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-02T22:06:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-25T17:30:47+00:00",
@@ -5434,13 +5496,6 @@
           "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
           "quantity": 1,
           "price_eth": null
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T23:28:35+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #003 - SCAMURAI - Season 1 - First Edition"
@@ -5456,7 +5511,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/2",
       "metadata_url": "ipfs://QmXRGA9mMSNJfQCLa9v8NqAz8X6EoDqBhDePugjJE7XKV3/2",
-      "updated_at": "2026-08-02T09:55:10.288535",
+      "updated_at": "2026-08-03T11:19:51.921079",
       "traits": [
         {
           "trait_type": "Date",
@@ -5528,8 +5583,8 @@
         "total_eth": 2.5e-07
       },
       "owners": {
-        "holder_count": 18,
-        "circulating_copies": 21,
+        "holder_count": 19,
+        "circulating_copies": 22,
         "top_holders": [
           {
             "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
@@ -5614,6 +5669,10 @@
             "quantity": 1
           },
           {
+            "address": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+            "quantity": 1
+          },
+          {
             "address": "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46",
             "quantity": 1
           },
@@ -5629,15 +5688,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-25T23:04:35+00:00",
-          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "at": "2026-08-02T22:05:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-12T03:38:35+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-02T22:05:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-25T23:04:35+00:00",
@@ -5717,13 +5783,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T13:45:35+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #002 - PAPERHANDS - Season 1 - First Edition"
@@ -5739,7 +5798,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/1",
       "metadata_url": "ipfs://QmcTHRLb6hYdxZCayHgmWdJy4RcDgutPRvmoP81jBT4kKG/1",
-      "updated_at": "2026-08-02T09:55:10.288540",
+      "updated_at": "2026-08-03T11:19:51.921086",
       "traits": [
         {
           "trait_type": "Role",
@@ -5811,8 +5870,8 @@
         "total_eth": 2.5e-07
       },
       "owners": {
-        "holder_count": 18,
-        "circulating_copies": 20,
+        "holder_count": 19,
+        "circulating_copies": 21,
         "top_holders": [
           {
             "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
@@ -5897,6 +5956,10 @@
             "quantity": 1
           },
           {
+            "address": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+            "quantity": 1
+          },
+          {
             "address": "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46",
             "quantity": 1
           },
@@ -5912,15 +5975,22 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-25T02:58:47+00:00",
+          "at": "2026-08-02T22:05:11+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
-          "quantity": 3
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-11T18:18:59+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-02T22:05:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-25T02:58:47+00:00",
@@ -5998,13 +6068,6 @@
           "at": "2026-07-20T13:40:23+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T13:32:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
           "quantity": 1
         }
       ],

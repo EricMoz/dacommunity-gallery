@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-02T10:03:39.101541+00:00",
+  "generated_at": "2026-08-03T11:30:06.870784+00:00",
   "source": "badges_catalog",
   "collection": {
     "slug": "badges",
@@ -27,8 +27,8 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 7,
-        "circulating_copies": 7,
+        "holder_count": 8,
+        "circulating_copies": 8,
         "top_holders": [
           {
             "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
@@ -88,6 +88,10 @@
             "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
             "quantity": 1,
             "ens_name": "msgato.eth"
+          },
+          {
+            "address": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+            "quantity": 1
           }
         ]
       },
