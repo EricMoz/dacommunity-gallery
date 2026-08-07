@@ -35,11 +35,11 @@ On the client, a small catalog file loads immediately for the first view. Richer
 
 The standout part is how we handle OpenSea access.
 
-Most projects store a permanent API key in their repo or CI secrets. We don't. Every data refresh calls a public endpoint to get a short-lived key for that run only. The key is used once in the Action and then gone.
+OpenSea keys never reach the browser. The daily Action prefers an optional `OPENSEA_API_KEY` repo secret, otherwise reuses a short-lived instant key from Actions cache, otherwise mints one via the public endpoint (rate-limited; cache avoids burning the 2/day/IP quota on shared runners).
 
-All the fetching and processing happens exclusively in GitHub Actions. The published site contains only static files — HTML, CSS, JS, and pre-built JSON. No keys, no secrets, and no external calls ever reach the user's browser.
+All fetching and processing happens exclusively in GitHub Actions. The published site contains only static files — HTML, CSS, JS, and pre-built JSON. No keys and no external OpenSea calls ever reach the user's browser.
 
-This removes whole categories of risk: no key rotation problems, no chance of a leaked long-lived token, and a very small attack surface on the live site. Data freshness issues are clearly surfaced with banners so people know what they're looking at.
+That keeps the live surface small. Data freshness issues are clearly surfaced with banners so people know what they're looking at.
 
 ## Technical details
 
@@ -111,7 +111,7 @@ git push origin main
 
 ## Security & API Keys
 
-- **No long-lived secrets required.** The CI workflow (`refresh-data.yml`) auto-generates a fresh temporary OpenSea key on every run using the public endpoint.
+- **OpenSea access is automated.** Daily refresh uses optional `OPENSEA_API_KEY` secret, then a cached instant key, then mint via public `POST /api/v2/auth/keys` (rate-limited ~2 keys/day/IP — cache avoids that trap on GitHub runners).
 - `.env` (if used locally) is gitignored — never commit.
 - All OpenSea calls happen only in the backend during the daily job. The live site is pure static JSON + vanilla JS — zero API keys or secrets ever reach the browser.
 - Stale data or refresh problems surface clearly in `gallery_meta.json` (visible banner on site) and GitHub Actions logs.

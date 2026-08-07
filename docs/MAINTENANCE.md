@@ -167,24 +167,28 @@ Panels are full-width white blocks — cars only show in the **side gutters** an
 
 ## CI & Automated Data Pipeline (the standout part)
 
-The daily refresh is **fully automated and secret-free**:
+The daily refresh resolves an OpenSea key then fetches JSON:
 
-- `refresh-data.yml` generates a fresh temporary OpenSea key every single run using the public `POST /api/v2/auth/keys` endpoint.
-- No `OPENSEA_API_KEY` secret is required (we cleaned up the old fallback).
+1. **Optional** repo secret `OPENSEA_API_KEY` (from [opensea.io/settings/developer](https://opensea.io/settings/developer)) — most reliable for cron.
+2. Else **Actions cache** of a previously minted instant key (keys last ~7 days).
+3. Else **mint** via `POST /api/v2/auth/keys` (no signup).
+
+**Why mint can fail:** OpenSea limits instant keys to **~2 per day per IP**. GitHub-hosted runners share IPs with other projects, so a bare mint-every-run often returns HTTP **429** and the job used to die with an empty key. Caching + optional secret fixes that.
+
 - Runs on cron + manual dispatch.
 - Fetches main gallery + badges, promotes data, commits JSONs, and triggers deploy.
 - On failure it records details into `gallery_meta.json` (visible staleness banner on the live site).
 
-This is one of the nicest parts of the project: zero ongoing key rotation or secret management while still getting fresh on-chain data daily.
-
 | Workflow | LFS | Notes |
 |----------|-----|-------|
-| `refresh-data.yml` | `lfs: false` | JSON-only. Auto key gen. |
+| `refresh-data.yml` | `lfs: false` | JSON-only. Secret → cache → mint. |
 | `deploy-pages.yml` | `lfs: false` at checkout + smart cache + conditional `lfs pull` | Reuses previous assets heavily. Only pulls when needed. |
+
+**Recommended once:** add repo secret `OPENSEA_API_KEY` so daily cron never depends on shared-runner mint quotas.
 
 **Manual QA after workflow or key-related changes:**
 - Trigger **Refresh gallery data (daily)** manually.
-- Confirm the "Generate fresh OpenSea API key" step succeeds and masks the key.
+- Confirm **Resolve OpenSea API key** succeeds (`source=repo_secret|cache|minted`) and the key is masked.
 - Verify deploy succeeds and the live site footer shows a new build id.
 - Check `gallery_meta.json` on site shows recent `data_generated_at` and `status: ok`.
 
