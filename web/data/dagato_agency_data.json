@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08T00:41:25.478253+00:00",
+  "generated_at": "2026-08-08T08:42:02.974354+00:00",
   "source": "opensea_api_v2",
   "collection": {
     "id": "dagato-agency",
@@ -22,7 +22,7 @@
     "floor_symbol": "ETH",
     "num_owners": 20,
     "total_sales": 63,
-    "total_volume": 0.3149774220354663,
+    "total_volume": 0.3150000000000001,
     "piece_count": 10,
     "edition_count": 66,
     "case_file_count": 66,
@@ -46,7 +46,7 @@
         "floor_eth": 0.5,
         "floor_symbol": "ETH",
         "total_sales": 32,
-        "total_volume": 0.15997742203546628,
+        "total_volume": 0.16000000000000006,
         "case_file_count": 33,
         "piece_count": 5,
         "listed_count": 1,
@@ -2333,7 +2333,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/33",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/33",
-      "updated_at": "2026-08-08T00:36:51.332463",
+      "updated_at": "2026-08-08T08:37:28.770805",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2400,7 +2400,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/32",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/32",
-      "updated_at": "2026-08-08T00:36:51.332449",
+      "updated_at": "2026-08-08T08:37:28.770793",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2474,7 +2474,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/31",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/31",
-      "updated_at": "2026-08-08T00:36:51.332475",
+      "updated_at": "2026-08-08T08:37:28.770814",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2548,7 +2548,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/30",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/30",
-      "updated_at": "2026-08-08T00:36:51.332497",
+      "updated_at": "2026-08-08T08:37:28.770842",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2619,7 +2619,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/29",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/29",
-      "updated_at": "2026-08-08T00:36:51.332484",
+      "updated_at": "2026-08-08T08:37:28.770823",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2686,7 +2686,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/28",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/28",
-      "updated_at": "2026-08-08T00:36:51.332515",
+      "updated_at": "2026-08-08T08:37:28.770859",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2753,7 +2753,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/27",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/27",
-      "updated_at": "2026-08-08T00:36:51.332506",
+      "updated_at": "2026-08-08T08:37:28.770851",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2820,7 +2820,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/26",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/26",
-      "updated_at": "2026-08-08T00:36:51.332523",
+      "updated_at": "2026-08-08T08:37:28.770865",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2887,7 +2887,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/25",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/25",
-      "updated_at": "2026-08-08T00:36:51.332531",
+      "updated_at": "2026-08-08T08:37:28.770871",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2954,7 +2954,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/24",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/24",
-      "updated_at": "2026-08-08T00:36:51.332541",
+      "updated_at": "2026-08-08T08:37:28.770876",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3021,7 +3021,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/23",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/23",
-      "updated_at": "2026-08-08T00:36:51.332553",
+      "updated_at": "2026-08-08T08:37:28.770882",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3088,7 +3088,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/22",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/22",
-      "updated_at": "2026-08-08T00:36:51.332563",
+      "updated_at": "2026-08-08T08:37:28.770887",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3155,7 +3155,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/21",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/21",
-      "updated_at": "2026-08-08T00:36:51.332572",
+      "updated_at": "2026-08-08T08:37:28.770892",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3222,7 +3222,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/20",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/20",
-      "updated_at": "2026-08-08T00:36:51.332580",
+      "updated_at": "2026-08-08T08:37:28.770898",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3289,7 +3289,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/19",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/19",
-      "updated_at": "2026-08-08T00:36:51.332599",
+      "updated_at": "2026-08-08T08:37:28.770910",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3356,7 +3356,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/18",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/18",
-      "updated_at": "2026-08-08T00:36:51.332610",
+      "updated_at": "2026-08-08T08:37:28.770915",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3423,7 +3423,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/17",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/17",
-      "updated_at": "2026-08-08T00:36:51.332589",
+      "updated_at": "2026-08-08T08:37:28.770905",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3490,7 +3490,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/16",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/16",
-      "updated_at": "2026-08-08T00:36:51.332641",
+      "updated_at": "2026-08-08T08:37:28.770931",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3557,7 +3557,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/15",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/15",
-      "updated_at": "2026-08-08T00:36:51.332621",
+      "updated_at": "2026-08-08T08:37:28.770921",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3631,7 +3631,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/14",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/14",
-      "updated_at": "2026-08-08T00:36:51.332632",
+      "updated_at": "2026-08-08T08:37:28.770926",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3698,7 +3698,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/13",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/13",
-      "updated_at": "2026-08-08T00:36:51.332649",
+      "updated_at": "2026-08-08T08:37:28.770936",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3765,7 +3765,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/12",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/12",
-      "updated_at": "2026-08-08T00:36:51.332688",
+      "updated_at": "2026-08-08T08:37:28.770947",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3832,7 +3832,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/11",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/11",
-      "updated_at": "2026-08-08T00:36:51.332699",
+      "updated_at": "2026-08-08T08:37:28.770960",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3899,7 +3899,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/10",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/10",
-      "updated_at": "2026-08-08T00:36:51.332656",
+      "updated_at": "2026-08-08T08:37:28.770941",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3966,7 +3966,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/9",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/9",
-      "updated_at": "2026-08-08T00:36:51.332706",
+      "updated_at": "2026-08-08T08:37:28.770966",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -4033,7 +4033,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/8",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/8",
-      "updated_at": "2026-08-08T00:36:51.332721",
+      "updated_at": "2026-08-08T08:37:28.770976",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -4100,7 +4100,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/7",
-      "updated_at": "2026-08-08T00:36:51.332714",
+      "updated_at": "2026-08-08T08:37:28.770971",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -4167,7 +4167,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/6",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/6",
-      "updated_at": "2026-08-08T00:36:51.332730",
+      "updated_at": "2026-08-08T08:37:28.770982",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -4234,7 +4234,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/5",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/5",
-      "updated_at": "2026-08-08T00:36:51.332753",
+      "updated_at": "2026-08-08T08:37:28.770998",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -4301,7 +4301,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/4",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/4",
-      "updated_at": "2026-08-08T00:36:51.332746",
+      "updated_at": "2026-08-08T08:37:28.770992",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -4368,7 +4368,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/3",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/3",
-      "updated_at": "2026-08-08T00:36:51.332760",
+      "updated_at": "2026-08-08T08:37:28.771004",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -4435,7 +4435,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/2",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/2",
-      "updated_at": "2026-08-08T00:36:51.332738",
+      "updated_at": "2026-08-08T08:37:28.770987",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -4502,7 +4502,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/1",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/1",
-      "updated_at": "2026-08-08T00:36:51.332767",
+      "updated_at": "2026-08-08T08:37:28.771009",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -4569,7 +4569,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/33",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/33",
-      "updated_at": "2026-08-08T00:39:09.442485",
+      "updated_at": "2026-08-08T08:39:46.924669",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -4642,7 +4642,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/32",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/32",
-      "updated_at": "2026-08-08T00:39:09.442496",
+      "updated_at": "2026-08-08T08:39:46.924680",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -4715,7 +4715,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/31",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/31",
-      "updated_at": "2026-08-08T00:39:09.442468",
+      "updated_at": "2026-08-08T08:39:46.924650",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -4788,7 +4788,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/30",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/30",
-      "updated_at": "2026-08-08T00:39:09.442507",
+      "updated_at": "2026-08-08T08:39:46.924692",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -4861,7 +4861,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/29",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/29",
-      "updated_at": "2026-08-08T00:39:09.442462",
+      "updated_at": "2026-08-08T08:39:46.924643",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -4934,7 +4934,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/28",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/28",
-      "updated_at": "2026-08-08T00:39:09.442480",
+      "updated_at": "2026-08-08T08:39:46.924663",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -5007,7 +5007,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/27",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/27",
-      "updated_at": "2026-08-08T00:39:09.442490",
+      "updated_at": "2026-08-08T08:39:46.924675",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -5080,7 +5080,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/26",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/26",
-      "updated_at": "2026-08-08T00:39:09.442474",
+      "updated_at": "2026-08-08T08:39:46.924657",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -5153,7 +5153,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/25",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/25",
-      "updated_at": "2026-08-08T00:39:09.442451",
+      "updated_at": "2026-08-08T08:39:46.924632",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -5226,7 +5226,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/24",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/24",
-      "updated_at": "2026-08-08T00:39:09.442501",
+      "updated_at": "2026-08-08T08:39:46.924686",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -5299,7 +5299,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/23",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/23",
-      "updated_at": "2026-08-08T00:39:09.442513",
+      "updated_at": "2026-08-08T08:39:46.924699",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -5372,7 +5372,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/22",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/22",
-      "updated_at": "2026-08-08T00:39:09.442518",
+      "updated_at": "2026-08-08T08:39:46.924706",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -5445,7 +5445,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/21",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/21",
-      "updated_at": "2026-08-08T00:39:09.442524",
+      "updated_at": "2026-08-08T08:39:46.924712",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -5518,7 +5518,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/20",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/20",
-      "updated_at": "2026-08-08T00:39:09.442529",
+      "updated_at": "2026-08-08T08:39:46.924718",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -5591,7 +5591,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/19",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/19",
-      "updated_at": "2026-08-08T00:39:09.442534",
+      "updated_at": "2026-08-08T08:39:46.924725",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -5664,7 +5664,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/18",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/18",
-      "updated_at": "2026-08-08T00:39:09.442539",
+      "updated_at": "2026-08-08T08:39:46.924731",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -5737,7 +5737,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/17",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/17",
-      "updated_at": "2026-08-08T00:39:09.442555",
+      "updated_at": "2026-08-08T08:39:46.924751",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -5810,7 +5810,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/16",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/16",
-      "updated_at": "2026-08-08T00:39:09.442549",
+      "updated_at": "2026-08-08T08:39:46.924745",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -5883,7 +5883,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/15",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/15",
-      "updated_at": "2026-08-08T00:39:09.442544",
+      "updated_at": "2026-08-08T08:39:46.924738",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -5956,7 +5956,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/14",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/14",
-      "updated_at": "2026-08-08T00:39:09.442566",
+      "updated_at": "2026-08-08T08:39:46.924764",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -6029,7 +6029,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/13",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/13",
-      "updated_at": "2026-08-08T00:39:09.442572",
+      "updated_at": "2026-08-08T08:39:46.924771",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -6102,7 +6102,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/12",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/12",
-      "updated_at": "2026-08-08T00:39:09.442561",
+      "updated_at": "2026-08-08T08:39:46.924758",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -6175,7 +6175,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/11",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/11",
-      "updated_at": "2026-08-08T00:39:09.442577",
+      "updated_at": "2026-08-08T08:39:46.924778",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -6248,7 +6248,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/10",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/10",
-      "updated_at": "2026-08-08T00:39:09.442582",
+      "updated_at": "2026-08-08T08:39:46.924784",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -6321,7 +6321,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/9",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/9",
-      "updated_at": "2026-08-08T00:39:09.442588",
+      "updated_at": "2026-08-08T08:39:46.924793",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -6394,7 +6394,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/8",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/8",
-      "updated_at": "2026-08-08T00:39:09.442596",
+      "updated_at": "2026-08-08T08:39:46.924800",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -6467,7 +6467,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/7",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/7",
-      "updated_at": "2026-08-08T00:39:09.442603",
+      "updated_at": "2026-08-08T08:39:46.924807",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -6540,7 +6540,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/6",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/6",
-      "updated_at": "2026-08-08T00:39:09.442608",
+      "updated_at": "2026-08-08T08:39:46.924813",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -6613,7 +6613,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/5",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/5",
-      "updated_at": "2026-08-08T00:39:09.442613",
+      "updated_at": "2026-08-08T08:39:46.924819",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -6686,7 +6686,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/4",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/4",
-      "updated_at": "2026-08-08T00:39:09.442618",
+      "updated_at": "2026-08-08T08:39:46.924826",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -6759,7 +6759,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/3",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/3",
-      "updated_at": "2026-08-08T00:39:09.442634",
+      "updated_at": "2026-08-08T08:39:46.924844",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -6832,7 +6832,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/2",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/2",
-      "updated_at": "2026-08-08T00:39:09.442629",
+      "updated_at": "2026-08-08T08:39:46.924839",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -6905,7 +6905,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/1",
       "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/1",
-      "updated_at": "2026-08-08T00:39:09.442624",
+      "updated_at": "2026-08-08T08:39:46.924834",
       "traits": [
         {
           "trait_type": "Rarity",

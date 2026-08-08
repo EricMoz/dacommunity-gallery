@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08T00:41:25.478253+00:00",
+  "generated_at": "2026-08-08T08:42:02.974354+00:00",
   "source": "dagato_agency_catalog",
   "collection": {
     "id": "dagato-agency",
@@ -22,7 +22,7 @@
     "floor_symbol": "ETH",
     "num_owners": 20,
     "total_sales": 63,
-    "total_volume": 0.3149774220354663,
+    "total_volume": 0.3150000000000001,
     "piece_count": 10,
     "edition_count": 66,
     "case_file_count": 66,
@@ -46,7 +46,7 @@
         "floor_eth": 0.5,
         "floor_symbol": "ETH",
         "total_sales": 32,
-        "total_volume": 0.15997742203546628,
+        "total_volume": 0.16000000000000006,
         "case_file_count": 33,
         "piece_count": 5,
         "listed_count": 1,
