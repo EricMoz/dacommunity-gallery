@@ -179,7 +179,26 @@ Logic lives in \scripts/ci_resolve_opensea_key.sh\, used by efresh-data.yml\:
 | **Fallback** | If mint returns **429** but a stored key still has life, CI keeps using the store and re-warms the cache. |
 | **Invalid store** | If the stats probe fails, the store file is deleted so the next good mint can replace it cleanly. |
 
-Instant keys last **~7 days** (OpenSea free tier), not a month — renew is automatic. Optional secret \OPENSEA_API_KEY\ is only an **emergency override** (e.g. first seed when mint is rate-limited and the store is empty). You should not need to rotate anything monthly.
+Instant keys last **~7 days** (OpenSea free tier), not a month — renew is automatic when mint works.
+
+#### If every run fails with mint HTTP 429 (empty store)
+
+GitHub-hosted runners share IPs; OpenSea allows only **~2 instant keys/day/IP**, so the store may never get its first key.
+
+**Best one-time fix (recommended):**
+
+1. On your machine (home/VPN — **not** Actions), mint or create a key:
+   - Instant: curl -s -X POST https://api.opensea.io/api/v2/auth/keys → copy pi_key
+   - Or create a normal key at [opensea.io/settings/developer](https://opensea.io/settings/developer) (longer-lived)
+2. Repo → **Settings → Secrets and variables → Actions → New repository secret**
+   - Name: OPENSEA_API_KEY
+   - Value: the key (never put keys in workflow_dispatch inputs — those can show in the UI)
+3. Run **Refresh gallery data (daily)** once (manual dispatch).
+4. The job uses the secret **and seeds Actions cache**. After a green run you can either:
+   - **Leave the secret** (simplest; most reliable for daily cron), or
+   - **Delete the secret** and rely on cache + future mints (re-seed if 429 returns with empty store)
+
+Do **not** paste keys into public issues, PR comments, or workflow_dispatch text fields.
 
 - Runs on cron + manual dispatch.
 - Fetches main gallery + badges (+ other collection fetchers), commits JSONs, triggers deploy.
