@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-08-08T00:08:58.462516+00:00",
-  "data_generated_at": "2026-08-06T10:36:37.674275+00:00",
+  "updated_at": "2026-08-08T00:35:46.424881+00:00",
+  "data_generated_at": "2026-08-08T00:35:46.386649+00:00",
   "listed_count": 6,
   "piece_count": 65,
   "refresh": {
-    "status": "failed",
+    "status": "ok",
     "source": "github_actions",
-    "finished_at": "2026-08-08T00:08:58.462527+00:00",
-    "error": "Failed to resolve OpenSea API key (mint rate-limit or empty store). Keys auto-store/reuse/replace after the first successful mint — re-run later or see scripts/ci_resolve_opensea_key.sh.",
-    "error_code": "key_generation_failed"
+    "finished_at": "2026-08-08T00:35:46.424896+00:00",
+    "error": null,
+    "error_code": null
   },
   "opensea_key": {
-    "status": "unknown",
-    "checked_at": "2026-08-08T00:08:58.462529+00:00",
+    "status": "ok",
+    "checked_at": "2026-08-08T00:35:46.424900+00:00",
     "rotation_reminder_days": 30,
-    "hint": "Failed to resolve OpenSea API key (mint rate-limit or empty store). Keys auto-store/reuse/replace after the first successful mint — re-run later or see scripts/ci_resolve_opensea_key.sh."
+    "hint": "OpenSea API key auto-generated fresh each run via workflow (no manual secret rotation needed). Instant keys last ~30 days; fallback to repository secret if generation fails."
   }
 }

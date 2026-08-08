@@ -1,44 +1,95 @@
 {
-  "generated_at": "2026-08-06T10:40:06.508979+00:00",
+  "generated_at": "2026-08-08T00:41:25.478253+00:00",
   "source": "opensea_api_v2",
   "collection": {
     "id": "dagato-agency",
     "slug": "dagato-detective-agency-volume-1",
-    "name": "daGATO Detective Agency: Volume 1",
-    "display_name": "daGATO Detective Agency: Volume 1",
+    "name": "daGATO Detective Agency",
+    "display_name": "daGATO Detective Agency",
     "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
     "chain": "ethereum",
     "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-1",
-    "note": "Limited cyber-noir detective case files on Ethereum. Stewarded by dagato.eth. Complete collection — all holders counted. Browse shows 5 rarity tiers; collector wallets show each case file.",
+    "note": "Limited cyber-noir detective case files on Ethereum (Volumes 1, 2). Stewarded by dagato.eth. All holders counted. Browse shows 5 rarity tiers per volume; collector wallets show each case file.",
     "creator_ens": "dagato.eth",
     "creator_wallet": {
       "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-      "username": "daGATO_eth",
+      "username": null,
       "ens_name": "dagato.eth"
     },
     "creator_excluded_from_stats": false,
     "contract_name": "daGATO Detective Agency: Volume 1",
-    "floor_eth": 0.5,
+    "floor_eth": 0.0,
     "floor_symbol": "ETH",
-    "num_owners": 18,
-    "total_sales": 32,
-    "total_volume": 0.16000000000000006,
-    "piece_count": 5,
-    "edition_count": 33,
-    "case_file_count": 33,
+    "num_owners": 20,
+    "total_sales": 63,
+    "total_volume": 0.3149774220354663,
+    "piece_count": 10,
+    "edition_count": 66,
+    "case_file_count": 66,
     "listed_count": 1,
     "rarity_counts": {
-      "Common": 11,
-      "Legendary": 5,
-      "Uncommon": 9,
-      "Epic": 7,
-      "1:1": 1
+      "Common": 22,
+      "Legendary": 10,
+      "Uncommon": 18,
+      "Epic": 14,
+      "1:1": 2
     },
+    "volume_count": 2,
+    "volumes": [
+      {
+        "volume": 1,
+        "volume_label": "Vol 1",
+        "slug": "dagato-detective-agency-volume-1",
+        "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
+        "chain": "ethereum",
+        "contract_name": "daGATO Detective Agency: Volume 1",
+        "floor_eth": 0.5,
+        "floor_symbol": "ETH",
+        "total_sales": 32,
+        "total_volume": 0.15997742203546628,
+        "case_file_count": 33,
+        "piece_count": 5,
+        "listed_count": 1,
+        "rarity_counts": {
+          "Common": 11,
+          "Legendary": 5,
+          "Uncommon": 9,
+          "Epic": 7,
+          "1:1": 1
+        },
+        "image_url": "https://i2c.seadn.io/collection/dagato-detective-agency-volume-1/image_type_logo/6dcbf6a0f830a10ef45731c2e11f2b/e96dcbf6a0f830a10ef45731c2e11f2b.png",
+        "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-1"
+      },
+      {
+        "volume": 2,
+        "volume_label": "Vol 2",
+        "slug": "dagato-detective-agency-volume-2",
+        "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+        "chain": "ethereum",
+        "contract_name": "daGATO Detective Agency: Volume 2",
+        "floor_eth": 0.0,
+        "floor_symbol": "",
+        "total_sales": 31,
+        "total_volume": 0.15500000000000005,
+        "case_file_count": 33,
+        "piece_count": 5,
+        "listed_count": 0,
+        "rarity_counts": {
+          "Uncommon": 9,
+          "Epic": 7,
+          "Common": 11,
+          "Legendary": 5,
+          "1:1": 1
+        },
+        "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/d3bb501b16efc2efa8646a84222850/f0d3bb501b16efc2efa8646a84222850.png",
+        "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-2"
+      }
+    ],
     "image_url": "https://i2c.seadn.io/collection/dagato-detective-agency-volume-1/image_type_logo/6dcbf6a0f830a10ef45731c2e11f2b/e96dcbf6a0f830a10ef45731c2e11f2b.png"
   },
   "items": [
     {
-      "token_id": "rank-1",
+      "token_id": "rank-v1-1",
       "token_rank": 1,
       "name": "1:1 Case File · Vol 1",
       "display_name": "1:1 Case File · Vol 1",
@@ -58,6 +109,7 @@
       "rarity": "1:1",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -107,7 +159,9 @@
           "name": "1:1 Case File #27 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/4a9b2860a234a8e057f6876cc5a812/304a9b2860a234a8e057f6876cc5a812.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/27",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         }
       ],
       "member_token_ids": [
@@ -116,7 +170,7 @@
       "minted_at": "2026-07-25T07:52:11+00:00"
     },
     {
-      "token_id": "rank-2",
+      "token_id": "rank-v1-2",
       "token_rank": 2,
       "name": "Legendary Case File · Vol 1",
       "display_name": "Legendary Case File · Vol 1",
@@ -136,6 +190,7 @@
       "rarity": "Legendary",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -268,35 +323,45 @@
           "name": "Legendary Case File #01 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/1",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "16",
           "name": "Legendary Case File #16 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/16",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "21",
           "name": "Legendary Case File #21 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/21",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "28",
           "name": "Legendary Case File #28 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/28",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "32",
           "name": "Legendary Case File #32 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/32",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         }
       ],
       "member_token_ids": [
@@ -309,7 +374,7 @@
       "minted_at": "2026-07-25T03:00:35+00:00"
     },
     {
-      "token_id": "rank-3",
+      "token_id": "rank-v1-3",
       "token_rank": 3,
       "name": "Epic Case File · Vol 1",
       "display_name": "Epic Case File · Vol 1",
@@ -329,6 +394,7 @@
       "rarity": "Epic",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": true,
       "listing": {
         "amount_eth": 0.5,
@@ -484,49 +550,63 @@
           "name": "Epic Case File #03 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/3",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "8",
           "name": "Epic Case File #08 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/8",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "10",
           "name": "Epic Case File #10 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/10",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "18",
           "name": "Epic Case File #18 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/18",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "23",
           "name": "Epic Case File #23 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/23",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "24",
           "name": "Epic Case File #24 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/24",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "30",
           "name": "Epic Case File #30 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/30",
-          "listed": true
+          "listed": true,
+          "volume": 1,
+          "volume_label": "Vol 1"
         }
       ],
       "member_token_ids": [
@@ -541,7 +621,7 @@
       "minted_at": "2026-07-25T03:00:35+00:00"
     },
     {
-      "token_id": "rank-4",
+      "token_id": "rank-v1-4",
       "token_rank": 4,
       "name": "Uncommon Case File · Vol 1",
       "display_name": "Uncommon Case File · Vol 1",
@@ -561,6 +641,7 @@
       "rarity": "Uncommon",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -750,63 +831,81 @@
           "name": "Uncommon Case File #02 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/2",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "4",
           "name": "Uncommon Case File #04 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/4",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "5",
           "name": "Uncommon Case File #05 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/5",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "6",
           "name": "Uncommon Case File #06 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/6",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "9",
           "name": "Uncommon Case File #09 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/9",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "13",
           "name": "Uncommon Case File #13 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/13",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "19",
           "name": "Uncommon Case File #19 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/19",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "20",
           "name": "Uncommon Case File #20 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/20",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "31",
           "name": "Uncommon Case File #31 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/f0cb9ed481816796ff2de3e2b6b19a/32f0cb9ed481816796ff2de3e2b6b19a.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/31",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         }
       ],
       "member_token_ids": [
@@ -823,7 +922,7 @@
       "minted_at": "2026-07-25T03:00:35+00:00"
     },
     {
-      "token_id": "rank-5",
+      "token_id": "rank-v1-5",
       "token_rank": 5,
       "name": "Common Case File · Vol 1",
       "display_name": "Common Case File · Vol 1",
@@ -843,6 +942,7 @@
       "rarity": "Common",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1045,77 +1145,99 @@
           "name": "Common Case File #07 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "11",
           "name": "Common Case File #11 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/11",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "12",
           "name": "Common Case File #12 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/12",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "14",
           "name": "Common Case File #14 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/14",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "15",
           "name": "Common Case File #15 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/15",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "17",
           "name": "Common Case File #17 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/17",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "22",
           "name": "Common Case File #22 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/22",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "25",
           "name": "Common Case File #25 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/25",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "26",
           "name": "Common Case File #26 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/26",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "29",
           "name": "Common Case File #29 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/29",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         },
         {
           "token_id": "33",
           "name": "Common Case File #33 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/dc6d50004c4ee3513f1c7fa3e37bce/3adc6d50004c4ee3513f1c7fa3e37bce.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/33",
-          "listed": false
+          "listed": false,
+          "volume": 1,
+          "volume_label": "Vol 1"
         }
       ],
       "member_token_ids": [
@@ -1134,6 +1256,1073 @@
       "minted_at": "2026-07-25T03:00:59+00:00"
     },
     {
+      "token_id": "rank-v2-1",
+      "token_rank": 1,
+      "name": "1:1 Case File · Vol 2",
+      "display_name": "1:1 Case File · Vol 2",
+      "local_slug": "agency-v2-rarity-1of1",
+      "description": "daGATO Detective Agency: Volume 2.\n\n1 case file at 1:1 rarity. Open holders and recent transfers below.\n\nCase files: #23.",
+      "excerpt": "Detective Agency Vol 2 · 1 case file · 1 holder · 1 copy",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/4171fc0c62b743f06d192bbf7f3fae/954171fc0c62b743f06d192bbf7f3fae.png",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/4171fc0c62b743f06d192bbf7f3fae/954171fc0c62b743f06d192bbf7f3fae.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-2?search[stringTraits][0][name]=Rarity&search[stringTraits][0][values][0]=1%20of%201",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "value": "1:1"
+        }
+      ],
+      "rarity": "1:1",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-03T00:23:23+00:00",
+          "from": null,
+          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+          "quantity": 1
+        }
+      },
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-03T00:23:23+00:00",
+          "from": null,
+          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+          "quantity": 1
+        }
+      ],
+      "collection_id": "dagato-agency",
+      "is_series_rep": true,
+      "agency_rarity_series": true,
+      "case_file_count": 1,
+      "case_files": [
+        {
+          "token_id": "23",
+          "name": "1:1 Case File #23 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/4171fc0c62b743f06d192bbf7f3fae/954171fc0c62b743f06d192bbf7f3fae.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/23",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        }
+      ],
+      "member_token_ids": [
+        "23"
+      ],
+      "minted_at": "2026-08-03T00:23:23+00:00"
+    },
+    {
+      "token_id": "rank-v2-2",
+      "token_rank": 2,
+      "name": "Legendary Case File · Vol 2",
+      "display_name": "Legendary Case File · Vol 2",
+      "local_slug": "agency-v2-rarity-legendary",
+      "description": "daGATO Detective Agency: Volume 2.\n\n5 case files at Legendary rarity. Open holders and recent transfers below.\n\nCase files: #05, #11, #16, #21, #28.",
+      "excerpt": "Detective Agency Vol 2 · 5 case files · 4 holders · 5 copies",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/226a56d748bfaaf06e3bc28a8a8d99/47226a56d748bfaaf06e3bc28a8a8d99.png",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/226a56d748bfaaf06e3bc28a8a8d99/47226a56d748bfaaf06e3bc28a8a8d99.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-2?search[stringTraits][0][name]=Rarity&search[stringTraits][0][values][0]=Legendary",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "value": "Legendary"
+        }
+      ],
+      "rarity": "Legendary",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 4,
+        "circulating_copies": 5,
+        "top_holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 2,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xe12eb704664f8e852359d36d77b90178e5540bd6",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 2,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xe12eb704664f8e852359d36d77b90178e5540bd6",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      },
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-08-02T03:38:11+00:00",
+          "from": null,
+          "to": "0xe12eb704664f8e852359d36d77b90178e5540bd6",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-08-02T00:48:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:41:23+00:00",
+          "from": null,
+          "to": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:21:35+00:00",
+          "from": null,
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        }
+      ],
+      "collection_id": "dagato-agency",
+      "is_series_rep": true,
+      "agency_rarity_series": true,
+      "case_file_count": 5,
+      "case_files": [
+        {
+          "token_id": "5",
+          "name": "Legendary Case File #05 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/226a56d748bfaaf06e3bc28a8a8d99/47226a56d748bfaaf06e3bc28a8a8d99.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/5",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "11",
+          "name": "Legendary Case File #11 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/226a56d748bfaaf06e3bc28a8a8d99/47226a56d748bfaaf06e3bc28a8a8d99.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/11",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "16",
+          "name": "Legendary Case File #16 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/226a56d748bfaaf06e3bc28a8a8d99/47226a56d748bfaaf06e3bc28a8a8d99.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/16",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "21",
+          "name": "Legendary Case File #21 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/226a56d748bfaaf06e3bc28a8a8d99/47226a56d748bfaaf06e3bc28a8a8d99.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/21",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "28",
+          "name": "Legendary Case File #28 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/226a56d748bfaaf06e3bc28a8a8d99/47226a56d748bfaaf06e3bc28a8a8d99.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/28",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        }
+      ],
+      "member_token_ids": [
+        "5",
+        "11",
+        "16",
+        "21",
+        "28"
+      ],
+      "minted_at": "2026-08-01T23:21:35+00:00"
+    },
+    {
+      "token_id": "rank-v2-3",
+      "token_rank": 3,
+      "name": "Epic Case File · Vol 2",
+      "display_name": "Epic Case File · Vol 2",
+      "local_slug": "agency-v2-rarity-epic",
+      "description": "daGATO Detective Agency: Volume 2.\n\n7 case files at Epic rarity. Open holders and recent transfers below.\n\nCase files: #03, #08, #13, #18, #24, #29, #32.",
+      "excerpt": "Detective Agency Vol 2 · 7 case files · 5 holders · 7 copies",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/4fc61c6513de9d61205cd246348a97/724fc61c6513de9d61205cd246348a97.png",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/4fc61c6513de9d61205cd246348a97/724fc61c6513de9d61205cd246348a97.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-2?search[stringTraits][0][name]=Rarity&search[stringTraits][0][values][0]=Epic",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "value": "Epic"
+        }
+      ],
+      "rarity": "Epic",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 5,
+        "circulating_copies": 7,
+        "top_holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 3,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 3,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      },
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-08-02T01:08:47+00:00",
+          "from": null,
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:56:59+00:00",
+          "from": null,
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:26:23+00:00",
+          "from": null,
+          "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:20:23+00:00",
+          "from": null,
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        }
+      ],
+      "collection_id": "dagato-agency",
+      "is_series_rep": true,
+      "agency_rarity_series": true,
+      "case_file_count": 7,
+      "case_files": [
+        {
+          "token_id": "3",
+          "name": "Epic Case File #03 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/4fc61c6513de9d61205cd246348a97/724fc61c6513de9d61205cd246348a97.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/3",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "8",
+          "name": "Epic Case File #08 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/4fc61c6513de9d61205cd246348a97/724fc61c6513de9d61205cd246348a97.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/8",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "13",
+          "name": "Epic Case File #13 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/7ab20050861167819f592e83dc75d3/fe7ab20050861167819f592e83dc75d3.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/13",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "18",
+          "name": "Epic Case File #18 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/7ab20050861167819f592e83dc75d3/fe7ab20050861167819f592e83dc75d3.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/18",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "24",
+          "name": "Epic Case File #24 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/7ab20050861167819f592e83dc75d3/fe7ab20050861167819f592e83dc75d3.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/24",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "29",
+          "name": "Epic Case File #29 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/7ab20050861167819f592e83dc75d3/fe7ab20050861167819f592e83dc75d3.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/29",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "32",
+          "name": "Epic Case File #32 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/7ab20050861167819f592e83dc75d3/fe7ab20050861167819f592e83dc75d3.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/32",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        }
+      ],
+      "member_token_ids": [
+        "3",
+        "8",
+        "13",
+        "18",
+        "24",
+        "29",
+        "32"
+      ],
+      "minted_at": "2026-08-01T23:20:23+00:00"
+    },
+    {
+      "token_id": "rank-v2-4",
+      "token_rank": 4,
+      "name": "Uncommon Case File · Vol 2",
+      "display_name": "Uncommon Case File · Vol 2",
+      "local_slug": "agency-v2-rarity-uncommon",
+      "description": "daGATO Detective Agency: Volume 2.\n\n9 case files at Uncommon rarity. Open holders and recent transfers below.\n\nCase files: #02, #06, #09, #14, #17, #20, #26, #30, #33.",
+      "excerpt": "Detective Agency Vol 2 · 9 case files · 6 holders · 9 copies",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/9ad5918a5822be96b59c2c87cf2475/369ad5918a5822be96b59c2c87cf2475.png",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/9ad5918a5822be96b59c2c87cf2475/369ad5918a5822be96b59c2c87cf2475.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-2?search[stringTraits][0][name]=Rarity&search[stringTraits][0][values][0]=Uncommon",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "value": "Uncommon"
+        }
+      ],
+      "rarity": "Uncommon",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 6,
+        "circulating_copies": 9,
+        "top_holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 4,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 4,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      },
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-08-02T01:19:11+00:00",
+          "from": null,
+          "to": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-08-02T00:48:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:56:59+00:00",
+          "from": null,
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:28:59+00:00",
+          "from": null,
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:21:35+00:00",
+          "from": null,
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:20:23+00:00",
+          "from": null,
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        }
+      ],
+      "collection_id": "dagato-agency",
+      "is_series_rep": true,
+      "agency_rarity_series": true,
+      "case_file_count": 9,
+      "case_files": [
+        {
+          "token_id": "2",
+          "name": "Uncommon Case File #02 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/9ad5918a5822be96b59c2c87cf2475/369ad5918a5822be96b59c2c87cf2475.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/2",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "6",
+          "name": "Uncommon Case File #06 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/9ad5918a5822be96b59c2c87cf2475/369ad5918a5822be96b59c2c87cf2475.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/6",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "9",
+          "name": "Uncommon Case File #09 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/9ad5918a5822be96b59c2c87cf2475/369ad5918a5822be96b59c2c87cf2475.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/9",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "14",
+          "name": "Uncommon Case File #14 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/d3bb501b16efc2efa8646a84222850/f0d3bb501b16efc2efa8646a84222850.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/14",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "17",
+          "name": "Uncommon Case File #17 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/d3bb501b16efc2efa8646a84222850/f0d3bb501b16efc2efa8646a84222850.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/17",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "20",
+          "name": "Uncommon Case File #20 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/d3bb501b16efc2efa8646a84222850/f0d3bb501b16efc2efa8646a84222850.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/20",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "26",
+          "name": "Uncommon Case File #26 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/d3bb501b16efc2efa8646a84222850/f0d3bb501b16efc2efa8646a84222850.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/26",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "30",
+          "name": "Uncommon Case File #30 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/d3bb501b16efc2efa8646a84222850/f0d3bb501b16efc2efa8646a84222850.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/30",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "33",
+          "name": "Uncommon Case File #33 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/d3bb501b16efc2efa8646a84222850/f0d3bb501b16efc2efa8646a84222850.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/33",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        }
+      ],
+      "member_token_ids": [
+        "2",
+        "6",
+        "9",
+        "14",
+        "17",
+        "20",
+        "26",
+        "30",
+        "33"
+      ],
+      "minted_at": "2026-08-01T23:20:23+00:00"
+    },
+    {
+      "token_id": "rank-v2-5",
+      "token_rank": 5,
+      "name": "Common Case File · Vol 2",
+      "display_name": "Common Case File · Vol 2",
+      "local_slug": "agency-v2-rarity-common",
+      "description": "daGATO Detective Agency: Volume 2.\n\n11 case files at Common rarity. Open holders and recent transfers below.\n\nCase files: #01, #04, #07, #10, #12, #15, #19, #22, #25, #27, #31.",
+      "excerpt": "Detective Agency Vol 2 · 11 case files · 8 holders · 11 copies",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/f52ba5ee7e055f646b30a6b2334fd2/91f52ba5ee7e055f646b30a6b2334fd2.png",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/f52ba5ee7e055f646b30a6b2334fd2/91f52ba5ee7e055f646b30a6b2334fd2.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-2?search[stringTraits][0][name]=Rarity&search[stringTraits][0][values][0]=Common",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "value": "Common"
+        }
+      ],
+      "rarity": "Common",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 8,
+        "circulating_copies": 11,
+        "top_holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 4,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 4,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      },
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-08-02T06:59:47+00:00",
+          "from": null,
+          "to": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-08-02T01:09:11+00:00",
+          "from": null,
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-08-02T00:48:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:56:59+00:00",
+          "from": null,
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:35:47+00:00",
+          "from": null,
+          "to": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:25:23+00:00",
+          "from": null,
+          "to": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:21:35+00:00",
+          "from": null,
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:20:23+00:00",
+          "from": null,
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        }
+      ],
+      "collection_id": "dagato-agency",
+      "is_series_rep": true,
+      "agency_rarity_series": true,
+      "case_file_count": 11,
+      "case_files": [
+        {
+          "token_id": "1",
+          "name": "Common Case File #01 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/f52ba5ee7e055f646b30a6b2334fd2/91f52ba5ee7e055f646b30a6b2334fd2.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/1",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "4",
+          "name": "Common Case File #04 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/f52ba5ee7e055f646b30a6b2334fd2/91f52ba5ee7e055f646b30a6b2334fd2.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/4",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "7",
+          "name": "Common Case File #07 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/f52ba5ee7e055f646b30a6b2334fd2/91f52ba5ee7e055f646b30a6b2334fd2.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/7",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "10",
+          "name": "Common Case File #10 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/f52ba5ee7e055f646b30a6b2334fd2/91f52ba5ee7e055f646b30a6b2334fd2.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/10",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "12",
+          "name": "Common Case File #12 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/f52ba5ee7e055f646b30a6b2334fd2/91f52ba5ee7e055f646b30a6b2334fd2.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/12",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "15",
+          "name": "Common Case File #15 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/9efb8c636d055321bf634c62880c6d/f69efb8c636d055321bf634c62880c6d.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/15",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "19",
+          "name": "Common Case File #19 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/9efb8c636d055321bf634c62880c6d/f69efb8c636d055321bf634c62880c6d.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/19",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "22",
+          "name": "Common Case File #22 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/9efb8c636d055321bf634c62880c6d/f69efb8c636d055321bf634c62880c6d.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/22",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "25",
+          "name": "Common Case File #25 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/9efb8c636d055321bf634c62880c6d/f69efb8c636d055321bf634c62880c6d.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/25",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "27",
+          "name": "Common Case File #27 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/9efb8c636d055321bf634c62880c6d/f69efb8c636d055321bf634c62880c6d.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/27",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        },
+        {
+          "token_id": "31",
+          "name": "Common Case File #31 · Vol 2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/9efb8c636d055321bf634c62880c6d/f69efb8c636d055321bf634c62880c6d.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/31",
+          "listed": false,
+          "volume": 2,
+          "volume_label": "Vol 2"
+        }
+      ],
+      "member_token_ids": [
+        "1",
+        "4",
+        "7",
+        "10",
+        "12",
+        "15",
+        "19",
+        "22",
+        "25",
+        "27",
+        "31"
+      ],
+      "minted_at": "2026-08-01T23:20:23+00:00"
+    },
+    {
       "token_id": "33",
       "name": "Common Case File #33 · Vol 1",
       "display_name": "Common Case File #33 · Vol 1",
@@ -1144,7 +2333,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/33",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/33",
-      "updated_at": "2026-08-06T10:37:47.624692",
+      "updated_at": "2026-08-08T00:36:51.332463",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1156,6 +2345,7 @@
       "rarity": "Common",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1194,6 +2384,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #33",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 5
@@ -1209,7 +2400,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/32",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/32",
-      "updated_at": "2026-08-06T10:37:47.624683",
+      "updated_at": "2026-08-08T00:36:51.332449",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1221,6 +2412,7 @@
       "rarity": "Legendary",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1266,6 +2458,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #32",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 2
@@ -1281,7 +2474,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/31",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/31",
-      "updated_at": "2026-08-06T10:37:47.624698",
+      "updated_at": "2026-08-08T00:36:51.332475",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1293,6 +2486,7 @@
       "rarity": "Uncommon",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1338,6 +2532,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #31",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 4
@@ -1353,7 +2548,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/30",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/30",
-      "updated_at": "2026-08-06T10:37:47.624708",
+      "updated_at": "2026-08-08T00:36:51.332497",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1365,6 +2560,7 @@
       "rarity": "Epic",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": true,
       "listing": {
         "amount_eth": 0.5,
@@ -1407,6 +2603,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #30",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 3
@@ -1422,7 +2619,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/29",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/29",
-      "updated_at": "2026-08-06T10:37:47.624703",
+      "updated_at": "2026-08-08T00:36:51.332484",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1434,6 +2631,7 @@
       "rarity": "Common",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1472,6 +2670,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #29",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 5
@@ -1487,7 +2686,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/28",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/28",
-      "updated_at": "2026-08-06T10:37:47.624718",
+      "updated_at": "2026-08-08T00:36:51.332515",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1499,6 +2698,7 @@
       "rarity": "Legendary",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1537,6 +2737,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #28",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 2
@@ -1552,7 +2753,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/27",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/27",
-      "updated_at": "2026-08-06T10:37:47.624714",
+      "updated_at": "2026-08-08T00:36:51.332506",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1564,6 +2765,7 @@
       "rarity": "1:1",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1602,6 +2804,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #27",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 1
@@ -1617,7 +2820,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/26",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/26",
-      "updated_at": "2026-08-06T10:37:47.624723",
+      "updated_at": "2026-08-08T00:36:51.332523",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1629,6 +2832,7 @@
       "rarity": "Common",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1667,6 +2871,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #26",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 5
@@ -1682,7 +2887,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/25",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/25",
-      "updated_at": "2026-08-06T10:37:47.624727",
+      "updated_at": "2026-08-08T00:36:51.332531",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1694,6 +2899,7 @@
       "rarity": "Common",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1732,6 +2938,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #25",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 5
@@ -1747,7 +2954,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/24",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/24",
-      "updated_at": "2026-08-06T10:37:47.624731",
+      "updated_at": "2026-08-08T00:36:51.332541",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1759,6 +2966,7 @@
       "rarity": "Epic",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1797,6 +3005,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #24",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 3
@@ -1812,7 +3021,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/23",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/23",
-      "updated_at": "2026-08-06T10:37:47.624736",
+      "updated_at": "2026-08-08T00:36:51.332553",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1824,6 +3033,7 @@
       "rarity": "Epic",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1862,6 +3072,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #23",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 3
@@ -1877,7 +3088,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/22",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/22",
-      "updated_at": "2026-08-06T10:37:47.624740",
+      "updated_at": "2026-08-08T00:36:51.332563",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1889,6 +3100,7 @@
       "rarity": "Common",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1927,6 +3139,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #22",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 5
@@ -1942,7 +3155,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/21",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/21",
-      "updated_at": "2026-08-06T10:37:47.624744",
+      "updated_at": "2026-08-08T00:36:51.332572",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -1954,6 +3167,7 @@
       "rarity": "Legendary",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1992,6 +3206,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #21",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 2
@@ -2007,7 +3222,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/20",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/20",
-      "updated_at": "2026-08-06T10:37:47.624749",
+      "updated_at": "2026-08-08T00:36:51.332580",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2019,6 +3234,7 @@
       "rarity": "Uncommon",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2057,6 +3273,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #20",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 4
@@ -2072,7 +3289,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/19",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/19",
-      "updated_at": "2026-08-06T10:37:47.624757",
+      "updated_at": "2026-08-08T00:36:51.332599",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2084,6 +3301,7 @@
       "rarity": "Uncommon",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2122,6 +3340,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #19",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 4
@@ -2137,7 +3356,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/18",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/18",
-      "updated_at": "2026-08-06T10:37:47.624761",
+      "updated_at": "2026-08-08T00:36:51.332610",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2149,6 +3368,7 @@
       "rarity": "Epic",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2187,6 +3407,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #18",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 3
@@ -2202,7 +3423,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/17",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/17",
-      "updated_at": "2026-08-06T10:37:47.624753",
+      "updated_at": "2026-08-08T00:36:51.332589",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2214,6 +3435,7 @@
       "rarity": "Common",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2252,6 +3474,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #17",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 5
@@ -2267,7 +3490,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/16",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/16",
-      "updated_at": "2026-08-06T10:37:47.624776",
+      "updated_at": "2026-08-08T00:36:51.332641",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2279,6 +3502,7 @@
       "rarity": "Legendary",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2317,6 +3541,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #16",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 2
@@ -2332,7 +3557,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/15",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/15",
-      "updated_at": "2026-08-06T10:37:47.624766",
+      "updated_at": "2026-08-08T00:36:51.332621",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2344,6 +3569,7 @@
       "rarity": "Common",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2389,6 +3615,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #15",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 5
@@ -2404,7 +3631,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/14",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/14",
-      "updated_at": "2026-08-06T10:37:47.624770",
+      "updated_at": "2026-08-08T00:36:51.332632",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2416,6 +3643,7 @@
       "rarity": "Common",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2454,6 +3682,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #14",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 5
@@ -2469,7 +3698,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/13",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/13",
-      "updated_at": "2026-08-06T10:37:47.624782",
+      "updated_at": "2026-08-08T00:36:51.332649",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2481,6 +3710,7 @@
       "rarity": "Uncommon",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2519,6 +3749,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #13",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 4
@@ -2534,7 +3765,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/12",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/12",
-      "updated_at": "2026-08-06T10:37:47.624793",
+      "updated_at": "2026-08-08T00:36:51.332688",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2546,6 +3777,7 @@
       "rarity": "Common",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2584,6 +3816,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #12",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 5
@@ -2599,7 +3832,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/11",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/11",
-      "updated_at": "2026-08-06T10:37:47.624798",
+      "updated_at": "2026-08-08T00:36:51.332699",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2611,6 +3844,7 @@
       "rarity": "Common",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2649,6 +3883,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #11",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 5
@@ -2664,7 +3899,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/10",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/10",
-      "updated_at": "2026-08-06T10:37:47.624787",
+      "updated_at": "2026-08-08T00:36:51.332656",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2676,6 +3911,7 @@
       "rarity": "Epic",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2714,6 +3950,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #10",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 3
@@ -2729,7 +3966,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/9",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/9",
-      "updated_at": "2026-08-06T10:37:47.624804",
+      "updated_at": "2026-08-08T00:36:51.332706",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2741,6 +3978,7 @@
       "rarity": "Uncommon",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2779,6 +4017,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #09",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 4
@@ -2794,7 +4033,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/8",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/8",
-      "updated_at": "2026-08-06T10:37:47.624816",
+      "updated_at": "2026-08-08T00:36:51.332721",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2806,6 +4045,7 @@
       "rarity": "Epic",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2844,6 +4084,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #08",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 3
@@ -2859,7 +4100,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/7",
-      "updated_at": "2026-08-06T10:37:47.624810",
+      "updated_at": "2026-08-08T00:36:51.332714",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2871,6 +4112,7 @@
       "rarity": "Common",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2909,6 +4151,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #07",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 5
@@ -2924,7 +4167,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/6",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/6",
-      "updated_at": "2026-08-06T10:37:47.624821",
+      "updated_at": "2026-08-08T00:36:51.332730",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -2936,6 +4179,7 @@
       "rarity": "Uncommon",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -2974,6 +4218,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #06",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 4
@@ -2989,7 +4234,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/5",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/5",
-      "updated_at": "2026-08-06T10:37:47.624837",
+      "updated_at": "2026-08-08T00:36:51.332753",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3001,6 +4246,7 @@
       "rarity": "Uncommon",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -3039,6 +4285,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #05",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 4
@@ -3054,7 +4301,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/4",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/4",
-      "updated_at": "2026-08-06T10:37:47.624832",
+      "updated_at": "2026-08-08T00:36:51.332746",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3066,6 +4313,7 @@
       "rarity": "Uncommon",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -3104,6 +4352,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #04",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 4
@@ -3119,7 +4368,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/3",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/3",
-      "updated_at": "2026-08-06T10:37:47.624843",
+      "updated_at": "2026-08-08T00:36:51.332760",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3131,6 +4380,7 @@
       "rarity": "Epic",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -3169,6 +4419,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #03",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 3
@@ -3184,7 +4435,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/2",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/2",
-      "updated_at": "2026-08-06T10:37:47.624826",
+      "updated_at": "2026-08-08T00:36:51.332738",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3196,6 +4447,7 @@
       "rarity": "Uncommon",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -3234,6 +4486,7 @@
         }
       ],
       "opensea_name": "daGATO Case File #02",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 4
@@ -3249,7 +4502,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/1",
       "metadata_url": "ipfs://QmVLrUCyDsPb6LEbxL8XXgnr9eHg7BxqSCR5UJbah1YPvC/1",
-      "updated_at": "2026-08-06T10:37:47.624848",
+      "updated_at": "2026-08-08T00:36:51.332767",
       "traits": [
         {
           "trait_type": "Rarity",
@@ -3261,6 +4514,7 @@
       "rarity": "Legendary",
       "volume": 1,
       "volume_label": "Vol 1",
+      "opensea_slug": "dagato-detective-agency-volume-1",
       "listed": false,
       "listing": null,
       "owners": {
@@ -3299,9 +4553,2419 @@
         }
       ],
       "opensea_name": "daGATO Case File #01",
+      "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
       "is_edition_token": true,
       "agency_rarity_series": false,
       "token_rank": 2
+    },
+    {
+      "token_id": "33",
+      "name": "Uncommon Case File #33 · Vol 2",
+      "display_name": "Uncommon Case File #33 · Vol 2",
+      "local_slug": "case-file-v2-33",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/d3bb501b16efc2efa8646a84222850/f0d3bb501b16efc2efa8646a84222850.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/33",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/33",
+      "updated_at": "2026-08-08T00:39:09.442485",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Uncommon"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Field Investigator"
+        }
+      ],
+      "rarity": "Uncommon",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-06T19:18:23+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #33",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 4
+    },
+    {
+      "token_id": "32",
+      "name": "Epic Case File #32 · Vol 2",
+      "display_name": "Epic Case File #32 · Vol 2",
+      "local_slug": "case-file-v2-32",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/7ab20050861167819f592e83dc75d3/fe7ab20050861167819f592e83dc75d3.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/32",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/32",
+      "updated_at": "2026-08-08T00:39:09.442496",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Epic"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Special Case Operative"
+        }
+      ],
+      "rarity": "Epic",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-06T19:18:23+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #32",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 3
+    },
+    {
+      "token_id": "31",
+      "name": "Common Case File #31 · Vol 2",
+      "display_name": "Common Case File #31 · Vol 2",
+      "local_slug": "case-file-v2-31",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/9efb8c636d055321bf634c62880c6d/f69efb8c636d055321bf634c62880c6d.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/31",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/31",
+      "updated_at": "2026-08-08T00:39:09.442468",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Common"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Street Detective"
+        }
+      ],
+      "rarity": "Common",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-06T19:18:23+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #31",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 5
+    },
+    {
+      "token_id": "30",
+      "name": "Uncommon Case File #30 · Vol 2",
+      "display_name": "Uncommon Case File #30 · Vol 2",
+      "local_slug": "case-file-v2-30",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/d3bb501b16efc2efa8646a84222850/f0d3bb501b16efc2efa8646a84222850.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/30",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/30",
+      "updated_at": "2026-08-08T00:39:09.442507",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Uncommon"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Field Investigator"
+        }
+      ],
+      "rarity": "Uncommon",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-06T19:18:23+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #30",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 4
+    },
+    {
+      "token_id": "29",
+      "name": "Epic Case File #29 · Vol 2",
+      "display_name": "Epic Case File #29 · Vol 2",
+      "local_slug": "case-file-v2-29",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/7ab20050861167819f592e83dc75d3/fe7ab20050861167819f592e83dc75d3.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/29",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/29",
+      "updated_at": "2026-08-08T00:39:09.442462",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Epic"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Special Case Operative"
+        }
+      ],
+      "rarity": "Epic",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-06T19:18:23+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #29",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 3
+    },
+    {
+      "token_id": "28",
+      "name": "Legendary Case File #28 · Vol 2",
+      "display_name": "Legendary Case File #28 · Vol 2",
+      "local_slug": "case-file-v2-28",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/226a56d748bfaaf06e3bc28a8a8d99/47226a56d748bfaaf06e3bc28a8a8d99.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/28",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/28",
+      "updated_at": "2026-08-08T00:39:09.442480",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Legendary"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Chief Detective"
+        }
+      ],
+      "rarity": "Legendary",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-06T19:18:23+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #28",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 2
+    },
+    {
+      "token_id": "27",
+      "name": "Common Case File #27 · Vol 2",
+      "display_name": "Common Case File #27 · Vol 2",
+      "local_slug": "case-file-v2-27",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/9efb8c636d055321bf634c62880c6d/f69efb8c636d055321bf634c62880c6d.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/27",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/27",
+      "updated_at": "2026-08-08T00:39:09.442490",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Common"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Street Detective"
+        }
+      ],
+      "rarity": "Common",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-06T19:18:23+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #27",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 5
+    },
+    {
+      "token_id": "26",
+      "name": "Uncommon Case File #26 · Vol 2",
+      "display_name": "Uncommon Case File #26 · Vol 2",
+      "local_slug": "case-file-v2-26",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/d3bb501b16efc2efa8646a84222850/f0d3bb501b16efc2efa8646a84222850.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/26",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/26",
+      "updated_at": "2026-08-08T00:39:09.442474",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Uncommon"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Field Investigator"
+        }
+      ],
+      "rarity": "Uncommon",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-06T19:18:23+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #26",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 4
+    },
+    {
+      "token_id": "25",
+      "name": "Common Case File #25 · Vol 2",
+      "display_name": "Common Case File #25 · Vol 2",
+      "local_slug": "case-file-v2-25",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/9efb8c636d055321bf634c62880c6d/f69efb8c636d055321bf634c62880c6d.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/25",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/25",
+      "updated_at": "2026-08-08T00:39:09.442451",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Common"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Street Detective"
+        }
+      ],
+      "rarity": "Common",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-06T19:18:23+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #25",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 5
+    },
+    {
+      "token_id": "24",
+      "name": "Epic Case File #24 · Vol 2",
+      "display_name": "Epic Case File #24 · Vol 2",
+      "local_slug": "case-file-v2-24",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/7ab20050861167819f592e83dc75d3/fe7ab20050861167819f592e83dc75d3.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/24",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/24",
+      "updated_at": "2026-08-08T00:39:09.442501",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Epic"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Special Case Operative"
+        }
+      ],
+      "rarity": "Epic",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-06T19:18:23+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-06T19:18:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #24",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 3
+    },
+    {
+      "token_id": "23",
+      "name": "1:1 Case File #23 · Vol 2",
+      "display_name": "1:1 Case File #23 · Vol 2",
+      "local_slug": "case-file-v2-23",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/4171fc0c62b743f06d192bbf7f3fae/954171fc0c62b743f06d192bbf7f3fae.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/23",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/23",
+      "updated_at": "2026-08-08T00:39:09.442513",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "1 of 1"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Agency Founder"
+        }
+      ],
+      "rarity": "1:1",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-03T00:23:23+00:00",
+          "from": null,
+          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-03T00:23:23+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-03T00:23:23+00:00",
+          "from": null,
+          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #23",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 1
+    },
+    {
+      "token_id": "22",
+      "name": "Common Case File #22 · Vol 2",
+      "display_name": "Common Case File #22 · Vol 2",
+      "local_slug": "case-file-v2-22",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/9efb8c636d055321bf634c62880c6d/f69efb8c636d055321bf634c62880c6d.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/22",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/22",
+      "updated_at": "2026-08-08T00:39:09.442518",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Common"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Street Detective"
+        }
+      ],
+      "rarity": "Common",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-02T06:59:47+00:00",
+          "from": null,
+          "to": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-02T06:59:47+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-02T06:59:47+00:00",
+          "from": null,
+          "to": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #22",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 5
+    },
+    {
+      "token_id": "21",
+      "name": "Legendary Case File #21 · Vol 2",
+      "display_name": "Legendary Case File #21 · Vol 2",
+      "local_slug": "case-file-v2-21",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/226a56d748bfaaf06e3bc28a8a8d99/47226a56d748bfaaf06e3bc28a8a8d99.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/21",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/21",
+      "updated_at": "2026-08-08T00:39:09.442524",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Legendary"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Chief Detective"
+        }
+      ],
+      "rarity": "Legendary",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xe12eb704664f8e852359d36d77b90178e5540bd6",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xe12eb704664f8e852359d36d77b90178e5540bd6",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-02T03:38:11+00:00",
+          "from": null,
+          "to": "0xe12eb704664f8e852359d36d77b90178e5540bd6",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-02T03:38:11+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-02T03:38:11+00:00",
+          "from": null,
+          "to": "0xe12eb704664f8e852359d36d77b90178e5540bd6",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #21",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 2
+    },
+    {
+      "token_id": "20",
+      "name": "Uncommon Case File #20 · Vol 2",
+      "display_name": "Uncommon Case File #20 · Vol 2",
+      "local_slug": "case-file-v2-20",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/d3bb501b16efc2efa8646a84222850/f0d3bb501b16efc2efa8646a84222850.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/20",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/20",
+      "updated_at": "2026-08-08T00:39:09.442529",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Uncommon"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Field Investigator"
+        }
+      ],
+      "rarity": "Uncommon",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-02T01:19:11+00:00",
+          "from": null,
+          "to": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-02T01:19:11+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-02T01:19:11+00:00",
+          "from": null,
+          "to": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #20",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 4
+    },
+    {
+      "token_id": "19",
+      "name": "Common Case File #19 · Vol 2",
+      "display_name": "Common Case File #19 · Vol 2",
+      "local_slug": "case-file-v2-19",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/9efb8c636d055321bf634c62880c6d/f69efb8c636d055321bf634c62880c6d.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/19",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/19",
+      "updated_at": "2026-08-08T00:39:09.442534",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Common"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Street Detective"
+        }
+      ],
+      "rarity": "Common",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-02T01:09:11+00:00",
+          "from": null,
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-02T01:09:11+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-02T01:09:11+00:00",
+          "from": null,
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #19",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 5
+    },
+    {
+      "token_id": "18",
+      "name": "Epic Case File #18 · Vol 2",
+      "display_name": "Epic Case File #18 · Vol 2",
+      "local_slug": "case-file-v2-18",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/7ab20050861167819f592e83dc75d3/fe7ab20050861167819f592e83dc75d3.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/18",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/18",
+      "updated_at": "2026-08-08T00:39:09.442539",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Epic"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Special Case Operative"
+        }
+      ],
+      "rarity": "Epic",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-02T01:08:47+00:00",
+          "from": null,
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-02T01:08:47+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-02T01:08:47+00:00",
+          "from": null,
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #18",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 3
+    },
+    {
+      "token_id": "17",
+      "name": "Uncommon Case File #17 · Vol 2",
+      "display_name": "Uncommon Case File #17 · Vol 2",
+      "local_slug": "case-file-v2-17",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/d3bb501b16efc2efa8646a84222850/f0d3bb501b16efc2efa8646a84222850.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/17",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/17",
+      "updated_at": "2026-08-08T00:39:09.442555",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Uncommon"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Field Investigator"
+        }
+      ],
+      "rarity": "Uncommon",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-02T00:48:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-02T00:48:59+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-02T00:48:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #17",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 4
+    },
+    {
+      "token_id": "16",
+      "name": "Legendary Case File #16 · Vol 2",
+      "display_name": "Legendary Case File #16 · Vol 2",
+      "local_slug": "case-file-v2-16",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/226a56d748bfaaf06e3bc28a8a8d99/47226a56d748bfaaf06e3bc28a8a8d99.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/16",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/16",
+      "updated_at": "2026-08-08T00:39:09.442549",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Legendary"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Chief Detective"
+        }
+      ],
+      "rarity": "Legendary",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-02T00:48:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-02T00:48:59+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-02T00:48:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #16",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 2
+    },
+    {
+      "token_id": "15",
+      "name": "Common Case File #15 · Vol 2",
+      "display_name": "Common Case File #15 · Vol 2",
+      "local_slug": "case-file-v2-15",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/9efb8c636d055321bf634c62880c6d/f69efb8c636d055321bf634c62880c6d.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/15",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/15",
+      "updated_at": "2026-08-08T00:39:09.442544",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Common"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Street Detective"
+        }
+      ],
+      "rarity": "Common",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-02T00:48:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-02T00:48:59+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-02T00:48:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #15",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 5
+    },
+    {
+      "token_id": "14",
+      "name": "Uncommon Case File #14 · Vol 2",
+      "display_name": "Uncommon Case File #14 · Vol 2",
+      "local_slug": "case-file-v2-14",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/d3bb501b16efc2efa8646a84222850/f0d3bb501b16efc2efa8646a84222850.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/14",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/14",
+      "updated_at": "2026-08-08T00:39:09.442566",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Uncommon"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Field Investigator"
+        }
+      ],
+      "rarity": "Uncommon",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-01T23:56:59+00:00",
+          "from": null,
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-01T23:56:59+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:56:59+00:00",
+          "from": null,
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #14",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 4
+    },
+    {
+      "token_id": "13",
+      "name": "Epic Case File #13 · Vol 2",
+      "display_name": "Epic Case File #13 · Vol 2",
+      "local_slug": "case-file-v2-13",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/7ab20050861167819f592e83dc75d3/fe7ab20050861167819f592e83dc75d3.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/13",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/13",
+      "updated_at": "2026-08-08T00:39:09.442572",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Epic"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Special Case Operative"
+        }
+      ],
+      "rarity": "Epic",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-01T23:56:59+00:00",
+          "from": null,
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-01T23:56:59+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:56:59+00:00",
+          "from": null,
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #13",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 3
+    },
+    {
+      "token_id": "12",
+      "name": "Common Case File #12 · Vol 2",
+      "display_name": "Common Case File #12 · Vol 2",
+      "local_slug": "case-file-v2-12",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/f52ba5ee7e055f646b30a6b2334fd2/91f52ba5ee7e055f646b30a6b2334fd2.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/12",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/12",
+      "updated_at": "2026-08-08T00:39:09.442561",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Common"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Street Detective"
+        }
+      ],
+      "rarity": "Common",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-01T23:56:59+00:00",
+          "from": null,
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-01T23:56:59+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:56:59+00:00",
+          "from": null,
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #12",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 5
+    },
+    {
+      "token_id": "11",
+      "name": "Legendary Case File #11 · Vol 2",
+      "display_name": "Legendary Case File #11 · Vol 2",
+      "local_slug": "case-file-v2-11",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/226a56d748bfaaf06e3bc28a8a8d99/47226a56d748bfaaf06e3bc28a8a8d99.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/11",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/11",
+      "updated_at": "2026-08-08T00:39:09.442577",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Legendary"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Chief Detective"
+        }
+      ],
+      "rarity": "Legendary",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-01T23:41:23+00:00",
+          "from": null,
+          "to": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-01T23:41:23+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:41:23+00:00",
+          "from": null,
+          "to": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #11",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 2
+    },
+    {
+      "token_id": "10",
+      "name": "Common Case File #10 · Vol 2",
+      "display_name": "Common Case File #10 · Vol 2",
+      "local_slug": "case-file-v2-10",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/f52ba5ee7e055f646b30a6b2334fd2/91f52ba5ee7e055f646b30a6b2334fd2.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/10",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/10",
+      "updated_at": "2026-08-08T00:39:09.442582",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Common"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Street Detective"
+        }
+      ],
+      "rarity": "Common",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-01T23:35:47+00:00",
+          "from": null,
+          "to": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-01T23:35:47+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:35:47+00:00",
+          "from": null,
+          "to": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #10",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 5
+    },
+    {
+      "token_id": "9",
+      "name": "Uncommon Case File #09 · Vol 2",
+      "display_name": "Uncommon Case File #09 · Vol 2",
+      "local_slug": "case-file-v2-09",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/9ad5918a5822be96b59c2c87cf2475/369ad5918a5822be96b59c2c87cf2475.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/9",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/9",
+      "updated_at": "2026-08-08T00:39:09.442588",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Uncommon"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Field Investigator"
+        }
+      ],
+      "rarity": "Uncommon",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-01T23:28:59+00:00",
+          "from": null,
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-01T23:28:59+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:28:59+00:00",
+          "from": null,
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #09",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 4
+    },
+    {
+      "token_id": "8",
+      "name": "Epic Case File #08 · Vol 2",
+      "display_name": "Epic Case File #08 · Vol 2",
+      "local_slug": "case-file-v2-08",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/4fc61c6513de9d61205cd246348a97/724fc61c6513de9d61205cd246348a97.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/8",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/8",
+      "updated_at": "2026-08-08T00:39:09.442596",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Epic"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Special Case Operative"
+        }
+      ],
+      "rarity": "Epic",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-01T23:26:23+00:00",
+          "from": null,
+          "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-01T23:26:23+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:26:23+00:00",
+          "from": null,
+          "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #08",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 3
+    },
+    {
+      "token_id": "7",
+      "name": "Common Case File #07 · Vol 2",
+      "display_name": "Common Case File #07 · Vol 2",
+      "local_slug": "case-file-v2-07",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/f52ba5ee7e055f646b30a6b2334fd2/91f52ba5ee7e055f646b30a6b2334fd2.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/7",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/7",
+      "updated_at": "2026-08-08T00:39:09.442603",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Common"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Street Detective"
+        }
+      ],
+      "rarity": "Common",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-01T23:25:23+00:00",
+          "from": null,
+          "to": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-01T23:25:23+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:25:23+00:00",
+          "from": null,
+          "to": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #07",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 5
+    },
+    {
+      "token_id": "6",
+      "name": "Uncommon Case File #06 · Vol 2",
+      "display_name": "Uncommon Case File #06 · Vol 2",
+      "local_slug": "case-file-v2-06",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/9ad5918a5822be96b59c2c87cf2475/369ad5918a5822be96b59c2c87cf2475.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/6",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/6",
+      "updated_at": "2026-08-08T00:39:09.442608",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Uncommon"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Field Investigator"
+        }
+      ],
+      "rarity": "Uncommon",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-01T23:21:35+00:00",
+          "from": null,
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-01T23:21:35+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:21:35+00:00",
+          "from": null,
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #06",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 4
+    },
+    {
+      "token_id": "5",
+      "name": "Legendary Case File #05 · Vol 2",
+      "display_name": "Legendary Case File #05 · Vol 2",
+      "local_slug": "case-file-v2-05",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/226a56d748bfaaf06e3bc28a8a8d99/47226a56d748bfaaf06e3bc28a8a8d99.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/5",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/5",
+      "updated_at": "2026-08-08T00:39:09.442613",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Legendary"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Chief Detective"
+        }
+      ],
+      "rarity": "Legendary",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-01T23:21:35+00:00",
+          "from": null,
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-01T23:21:35+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:21:35+00:00",
+          "from": null,
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #05",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 2
+    },
+    {
+      "token_id": "4",
+      "name": "Common Case File #04 · Vol 2",
+      "display_name": "Common Case File #04 · Vol 2",
+      "local_slug": "case-file-v2-04",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/f52ba5ee7e055f646b30a6b2334fd2/91f52ba5ee7e055f646b30a6b2334fd2.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/4",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/4",
+      "updated_at": "2026-08-08T00:39:09.442618",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Common"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Street Detective"
+        }
+      ],
+      "rarity": "Common",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-01T23:21:35+00:00",
+          "from": null,
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-01T23:21:35+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:21:35+00:00",
+          "from": null,
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #04",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 5
+    },
+    {
+      "token_id": "3",
+      "name": "Epic Case File #03 · Vol 2",
+      "display_name": "Epic Case File #03 · Vol 2",
+      "local_slug": "case-file-v2-03",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/4fc61c6513de9d61205cd246348a97/724fc61c6513de9d61205cd246348a97.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/3",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/3",
+      "updated_at": "2026-08-08T00:39:09.442634",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Epic"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Special Case Operative"
+        }
+      ],
+      "rarity": "Epic",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-01T23:20:23+00:00",
+          "from": null,
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-01T23:20:23+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:20:23+00:00",
+          "from": null,
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #03",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 3
+    },
+    {
+      "token_id": "2",
+      "name": "Uncommon Case File #02 · Vol 2",
+      "display_name": "Uncommon Case File #02 · Vol 2",
+      "local_slug": "case-file-v2-02",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/9ad5918a5822be96b59c2c87cf2475/369ad5918a5822be96b59c2c87cf2475.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/2",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/2",
+      "updated_at": "2026-08-08T00:39:09.442629",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Uncommon"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Field Investigator"
+        }
+      ],
+      "rarity": "Uncommon",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-01T23:20:23+00:00",
+          "from": null,
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-01T23:20:23+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:20:23+00:00",
+          "from": null,
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #02",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 4
+    },
+    {
+      "token_id": "1",
+      "name": "Common Case File #01 · Vol 2",
+      "display_name": "Common Case File #01 · Vol 2",
+      "local_slug": "case-file-v2-01",
+      "description": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece collection. Every assignment is revealed at random. Five ranks. One Agency. The next case is yours.",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 2. Each case file represents one of five distinct Agency ranks within this limited 33-piece colle…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/f52ba5ee7e055f646b30a6b2334fd2/91f52ba5ee7e055f646b30a6b2334fd2.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/1",
+      "metadata_url": "ipfs://QmZmeGddgabUxaP9QFkCgzNhGYRW6ng8cB4nGVzbvAToan/1",
+      "updated_at": "2026-08-08T00:39:09.442624",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Common"
+        },
+        {
+          "trait_type": "Agency Rank",
+          "display_type": null,
+          "max_value": null,
+          "value": "Street Detective"
+        }
+      ],
+      "rarity": "Common",
+      "volume": 2,
+      "volume_label": "Vol 2",
+      "opensea_slug": "dagato-detective-agency-volume-2",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-01T23:20:23+00:00",
+          "from": null,
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        }
+      },
+      "collection_id": "dagato-agency",
+      "minted_at": "2026-08-01T23:20:23+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-01T23:20:23+00:00",
+          "from": null,
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        }
+      ],
+      "opensea_name": "daGATO Case File #01",
+      "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+      "is_edition_token": true,
+      "agency_rarity_series": false,
+      "token_rank": 5
     }
   ]
 }
