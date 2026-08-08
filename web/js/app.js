@@ -744,36 +744,9 @@ async function loadWalletIndex() {
     });
   }
 
-  // Enrich wallet by_address with ENS from badge item names if missing (most recent by minted_at).
-  if (walletIndex && walletIndex.by_address && galleryData && galleryData.items) {
-    var nameEns = {};
-    galleryData.items.forEach(function (item) {
-      var nm = item.name || item.display_name || "";
-      var m = nm.match(/([a-z0-9-]+\.eth)/i);
-      if (m) {
-        var ens = m[1].toLowerCase();
-        var d = item.minted_at || "0";
-        var hs = (item.current_holders || []).concat(
-          item.owners
-            ? (item.owners.holders || []).concat(item.owners.top_holders || [])
-            : []
-        );
-        hs.forEach(function (h) {
-          var a = (h.address || "").toLowerCase();
-          if (a) {
-            if (!nameEns[a] || d > (nameEns[a].d || "0")) {
-              nameEns[a] = { ens: ens, d: d };
-            }
-          }
-        });
-      }
-    });
-    Object.keys(nameEns).forEach(function (a) {
-      if (walletIndex.by_address[a] && !walletIndex.by_address[a].ens_name) {
-        walletIndex.by_address[a].ens_name = nameEns[a].ens;
-      }
-    });
-  }
+  // Do NOT stamp ens_name from badge *titles* (e.g. "DAFOREMAN.ETH - 1T CLUB").
+  // Titles name the award recipient; the holding address may be a different vault with
+  // no reverse ENS. Only reverse-resolved ens_name from wallet_index / owners is trusted.
 
   enrichHoldersAndCollectorsWithENS();
   rebuildCollectorsForCurrentView();
@@ -1190,26 +1163,12 @@ function mergeCollectorRows(lists) {
 
 function buildCollectorsFromBadgeItems(items) {
   var byAddr = {};
-  var ensCandidates = {}; // addr -> [{ens, date}]
   (items || []).forEach(function (item) {
     if (!item.source_created_collection) return; // badges only
     var slug = item.source_created_collection;
     var os = item.owners || {};
     var list = os.holders || os.top_holders || [];
-    // Extract ENS from personalized item name if present (e.g. "daforeman.eth - ...")
-    var itemName = item.name || item.display_name || '';
-    var m = itemName.match(/([a-z0-9-]+\.eth)/i);
-    var ensFromName = m ? m[1].toLowerCase() : null;
-    var itemDate = item.minted_at || '0';
-    if (ensFromName) {
-      list.forEach(function (h) {
-        var a = (h.address || '').toLowerCase();
-        if (a) {
-          if (!ensCandidates[a]) ensCandidates[a] = [];
-          ensCandidates[a].push({ens: ensFromName, date: itemDate});
-        }
-      });
-    }
+    // ENS only from reverse-resolved holder.ens_name (never from NFT title text)
     list.forEach(function (h) {
       var a = (h.address || '').toLowerCase();
       if (!a) return;
@@ -1231,20 +1190,7 @@ function buildCollectorsFromBadgeItems(items) {
       if (slug) byAddr[a]._slugs[slug] = true;
     });
   });
-  // Pick most recent ENS from names (for cases where resolve didn't populate ens_name)
-  Object.keys(ensCandidates).forEach(function (a) {
-    var list = ensCandidates[a];
-    if (list.length > 0) {
-      list.sort(function (x, y) { return y.date.localeCompare(x.date); });
-      var best = list[0].ens;
-      if (!byAddr[a]) {
-        byAddr[a] = { address: a, ens_name: best, username: null, unique_pieces: 0, collection_quantity: 0, _slugs: {} };
-      } else if (!byAddr[a].ens_name) {
-        byAddr[a].ens_name = best;
-      }
-    }
-  });
-  // enrich ENS from walletIndex if available (many overlap) -- but do not clobber good values from badge owners data
+  // enrich ENS from walletIndex if available (many overlap) -- reverse-resolved only
   Object.keys(byAddr).forEach(function (a) {
     var e = walletIndex && walletIndex.by_address && walletIndex.by_address[a];
     if (e) {
@@ -1265,47 +1211,15 @@ function buildCollectorsFromBadgeItems(items) {
     });
 }
 
+/** Attach reverse-resolved ENS from wallet_index onto collectors (never from NFT titles). */
 function enrichHoldersAndCollectorsWithENS() {
-  if (!galleryData || !galleryData.items) return;
-  var addrToBest = {};
-  galleryData.items.forEach(function (item) {
-    var nm = item.name || item.display_name || '';
-    var m = nm.match(/([a-z0-9-]+\.eth)/i);
-    if (m) {
-      var ens = m[1].toLowerCase();
-      var d = item.minted_at || '0';
-      var hs = [];
-      if (item.owners) {
-        hs = hs.concat(item.owners.holders || []);
-        hs = hs.concat(item.owners.top_holders || []);
-      }
-      hs = hs.concat(item.current_holders || []);
-      hs.forEach(function (h) {
-        var a = (h.address || '').toLowerCase();
-        if (a) {
-          if (!addrToBest[a] || d > (addrToBest[a].d || '0')) {
-            addrToBest[a] = { ens: ens, d: d };
-          }
-          if (!h.ens_name) h.ens_name = ens;
-        }
-      });
-    }
-  });
-  // from wallet
-  if (walletIndex && walletIndex.by_address) {
-    Object.keys(walletIndex.by_address).forEach(function (a) {
-      var e = walletIndex.by_address[a];
-      if (e && e.ens_name) {
-        if (!addrToBest[a]) addrToBest[a] = { ens: e.ens_name, d: '9999' };
-      }
-    });
-  }
-  // apply to collectorsList if built
+  if (!collectorsList || !collectorsList.length) return;
+  if (!walletIndex || !walletIndex.by_address) return;
   collectorsList.forEach(function (c) {
-    var a = (c.address || '').toLowerCase();
-    if (a && !c.ens_name && addrToBest[a]) {
-      c.ens_name = addrToBest[a].ens;
-    }
+    var a = (c.address || "").toLowerCase();
+    if (!a || c.ens_name) return;
+    var e = walletIndex.by_address[a];
+    if (e && e.ens_name) c.ens_name = e.ens_name;
   });
 }
 
@@ -3565,8 +3479,12 @@ function resolveCollectorNameToAddress(name) {
   });
 
   if (matches.length === 1) return matches[0];
-  // Rare collision: prefer wallet_index entry if present
+  // Multiple addresses claim the same name (usually title-poisoned ENS). Never guess:
+  // for .eth / Base names, only ens_aliases is authoritative; else live-resolve.
   if (matches.length > 1) {
+    if (key.endsWith(".eth") || key.endsWith(".base.eth")) {
+      return fromAlias && isEthAddress(fromAlias) ? fromAlias : null;
+    }
     for (var mi = 0; mi < matches.length; mi++) {
       if (walletIndex && walletIndex.by_address && walletIndex.by_address[matches[mi]]) {
         return matches[mi];
