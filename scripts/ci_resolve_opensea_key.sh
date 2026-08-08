@@ -7,7 +7,8 @@
 #   3. Else mint via POST /api/v2/auth/keys → on success REPLACE the stored file
 #   4. If mint fails (often HTTP 429) → fall back to stored key if any life remains
 #
-# Optional: OPENSEA_API_KEY_SECRET env (repo secret) short-circuits mint/cache for emergencies.
+# Optional: OPENSEA_API_KEY_SECRET (repo secret) — recommended one-time seed or permanent override.
+# When provided, also WRITES the store so the next run can reuse cache (and you may delete the secret).
 #
 # Outputs (GITHUB_OUTPUT):
 #   key=...          masked by caller via ::add-mask::
@@ -24,6 +25,8 @@ MIN_TTL_SECONDS="${MIN_TTL_SECONDS:-43200}"
 HARD_MIN_TTL_SECONDS="${HARD_MIN_TTL_SECONDS:-1800}"
 MAX_MINT_ATTEMPTS="${MAX_MINT_ATTEMPTS:-3}"
 UA="${OPENSEA_UA:-dacommunity-gallery-refresh/1.2 (+https://github.com/EricMoz/dacommunity-gallery)}"
+# Instant free-tier keys typically last ~7 days
+DEFAULT_SEED_TTL_DAYS="${DEFAULT_SEED_TTL_DAYS:-7}"
 
 mkdir -p "$(dirname "$KEY_FILE")"
 chmod 700 "$(dirname "$KEY_FILE")" 2>/dev/null || true
@@ -54,6 +57,23 @@ seconds_until_expiry() {
   echo $((exp_epoch - now_epoch))
 }
 
+write_store() {
+  # Persist key payload for Actions cache (never committed).
+  local key="$1"
+  local expires_at="${2:-}"
+  if [ -z "$expires_at" ]; then
+    expires_at=$(date -u -d "+${DEFAULT_SEED_TTL_DAYS} days" --iso-8601=seconds 2>/dev/null \
+      || date -u -v+${DEFAULT_SEED_TTL_DAYS}d +"%Y-%m-%dT%H:%M:%SZ" 2>/dev/null \
+      || date -u +"%Y-%m-%dT%H:%M:%SZ")
+  fi
+  jq -n \
+    --arg k "$key" \
+    --arg exp "$expires_at" \
+    --arg name "stored_$(date -u +%Y%m%d)" \
+    '{api_key:$k, expires_at:$exp, name:$name}' > "$KEY_FILE"
+  chmod 600 "$KEY_FILE" 2>/dev/null || true
+}
+
 read_cached() {
   if [ ! -f "$KEY_FILE" ]; then
     return 1
@@ -66,10 +86,13 @@ read_cached() {
   return 0
 }
 
-# --- 0) Optional emergency secret (not required for normal daily ops) ---
+# --- 0) Repo secret OPENSEA_API_KEY (best one-time seed OR permanent override) ---
+# Prefer cache when secret matches an already-stored healthy key? Skip — secret always wins
+# but we also write the store so later runs without the secret can reuse Actions cache.
 if [ -n "${OPENSEA_API_KEY_SECRET:-}" ]; then
-  echo "Using optional repository secret OPENSEA_API_KEY (emergency override)."
-  emit "$OPENSEA_API_KEY_SECRET" "repo_secret" "false"
+  echo "Using repository secret OPENSEA_API_KEY (also seeding Actions cache store for future runs)."
+  write_store "$OPENSEA_API_KEY_SECRET" ""
+  emit "$OPENSEA_API_KEY_SECRET" "repo_secret" "true"
   exit 0
 fi
 
@@ -107,7 +130,7 @@ while [ "$attempt" -le "$MAX_MINT_ATTEMPTS" ]; do
   ERR=$(jq -r '(.errors[0] // .error // empty)|tostring' /tmp/opensea_key.json 2>/dev/null || true)
 
   if { [ "$HTTP_CODE" = "200" ] || [ "$HTTP_CODE" = "201" ]; } && [ -n "$KEY" ]; then
-    # Replace stored key atomically
+    # Replace stored key atomically (full OpenSea payload includes expires_at)
     cp /tmp/opensea_key.json "$KEY_FILE"
     chmod 600 "$KEY_FILE" 2>/dev/null || true
     NEW_EXP=$(jq -r '.expires_at // empty' "$KEY_FILE")

@@ -40,7 +40,7 @@ OpenSea keys never reach the browser. The daily Action (`refresh-data.yml`) keep
 3. When it is near expiry (or missing), **mint** a new key via `POST /api/v2/auth/keys`
 4. On a successful mint, **replace** the stored key; after a successful API probe, save it back to cache
 
-No monthly hand-rotation. Optional repo secret `OPENSEA_API_KEY` is only an emergency override.
+No monthly hand-rotation. If mint is stuck on HTTP 429 with an empty store, seed once via repo secret `OPENSEA_API_KEY` (mint from home/VPN or Developer settings) — the job also writes Actions cache so later runs can work without re-minting.
 
 All fetching happens in GitHub Actions. The published site is static HTML/CSS/JS/JSON only — no keys and no OpenSea calls from the browser. Staleness is surfaced via `gallery_meta.json` banners.
 

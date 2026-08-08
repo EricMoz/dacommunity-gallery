@@ -3,7 +3,10 @@
 # OpenSea key lifecycle (automatic — no monthly manual rotation):
 #   store (Actions cache) → reuse while valid → mint only when renewing → replace store
 # Instant keys expire ~7 days; mint is rate-limited (~2/day/IP). Reuse avoids 429s.
-# Optional emergency secret: OPENSEA_API_KEY (not required for normal daily ops).
+#
+# If mint is stuck on 429 (empty store): seed once via repo secret OPENSEA_API_KEY
+# (mint from home/VPN or Developer settings), run this workflow once — secret is also
+# written into the Actions cache store so later crons can work without the secret.
 # Implementation: scripts/ci_resolve_opensea_key.sh
 #
 # LFS optimization: this workflow only updates web/data/*.json — it does not read or
@@ -17,6 +20,11 @@ on:
     # 08:00 UTC daily (~3–4 AM US Eastern; GitHub may start runs a few minutes late)
     - cron: "0 8 * * *"
   workflow_dispatch:
+    inputs:
+      note:
+        description: "Optional note (no secrets here — use repo secret OPENSEA_API_KEY to seed)"
+        required: false
+        type: string
 
 env:
   # Force Node 24 for any lingering old actions (checkout@v5+ is native node24)
