@@ -504,6 +504,16 @@ def main():
             display_name = title_map.get(slug, name)
 
             local_slug = SLUG_TO_LOCAL_ASSET.get(slug, slug + "-" + token_id)
+            # Series card must use generic club art — never the first holder's personalized 1:1.
+            # Personal images live only on non-rep edition rows (portfolio / wallet view).
+            local_asset = ROOT / "web" / "assets" / "badges" / f"{local_slug}.png"
+            if local_asset.is_file():
+                series_image = f"assets/badges/{local_slug}.png"
+                series_media = "image"
+            else:
+                # Fallback: keep OpenSea image only if no local asset (should be rare)
+                series_image = image
+                series_media = media_type
             series_item = {
                 "token_id": token_id,
                 "name": name,
@@ -511,8 +521,9 @@ def main():
                 "local_slug": local_slug,
                 "description": desc,
                 "excerpt": excerpt(desc),
-                "image_url": image,
-                "media_type": media_type,
+                "image_url": series_image,
+                "media_type": series_media,
+                # Do not set opensea_image_url to a personal NFT — that leaks into light/search UI
                 "opensea_url": f"https://opensea.io/collection/{slug}",
                 "traits": rep_nft.get("traits", []),
                 "listed": False,

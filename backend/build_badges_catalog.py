@@ -31,13 +31,36 @@ def resolve_local_badge_image(item: dict, root: Path) -> str:
             return f"assets/badges/{slug}.png"
     return item.get("image_url") or ""
 
+
+def is_multi_custom_series_rep(item: dict) -> bool:
+    """Trillion/billion club series card (not the personal 1:1 editions)."""
+    if not item.get("is_series_rep") or item.get("edition_club"):
+        return False
+    slug = (item.get("source_created_collection") or "").lower()
+    return "trillion" in slug or "billion" in slug
+
+
 def slim_item(item: dict, root: Path) -> dict:
     # Mirror main slim + keep unique badge fields + subcats/tags for light filters/grouping
     img = resolve_local_badge_image(item, root)
-    orig_img = item.get("image_url") or item.get("opensea_image_url") or ""
-    # Force image for local PNG assets (generic view). Original media_type (e.g. video for dagato) is preserved
-    # via opensea_image_url and used preferentially in portfolio/collector view.
-    media_type = "image" if img.startswith("assets/badges/") else item.get("media_type", "image")
+    multi_rep = is_multi_custom_series_rep(item)
+    # Series cards: generic local art only. Personalized OpenSea art stays on edition rows.
+    if multi_rep and img.startswith("assets/badges/"):
+        opensea_img = None
+        media_type = "image"
+    else:
+        orig_img = item.get("image_url") or item.get("opensea_image_url") or ""
+        # Personal 1:1 rows: keep remote art. If image_url was already local, keep remote separately.
+        if orig_img.startswith("http"):
+            opensea_img = orig_img
+        elif (item.get("opensea_image_url") or "").startswith("http"):
+            opensea_img = item.get("opensea_image_url")
+        else:
+            opensea_img = None
+        # Force image for local PNG assets (generic view). Video badges keep remote via opensea_image_url.
+        media_type = (
+            "image" if img.startswith("assets/badges/") else item.get("media_type", "image")
+        )
     return {
         "token_id": item.get("token_id"),
         "name": item.get("name"),
@@ -47,7 +70,7 @@ def slim_item(item: dict, root: Path) -> dict:
         "image_url": img,
         "media_type": media_type,
         "opensea_url": item.get("opensea_url"),
-        "opensea_image_url": orig_img if orig_img.startswith("http") else None,
+        "opensea_image_url": opensea_img,
         "listed": item.get("listed", False),
         "listing": item.get("listing"),
         "owners": item.get("owners"),

@@ -578,13 +578,43 @@ async function fetchJson(url, timeoutMs) {
   }
 }
 
+/** Multi-1:1 trillion/billion club series card (generic art only — not personal editions). */
+function isBadgeMultiSeriesRep(item) {
+  return !!(
+    item &&
+    item.is_series_rep &&
+    !item.edition_club &&
+    item.source_created_collection &&
+    /trillion|billion/i.test(item.source_created_collection)
+  );
+}
+
+/** Force generic local PNG for club series cards; keep personal art only on non-rep rows. */
+function normalizeBadgeSeriesImages(item) {
+  if (!isBadgeMultiSeriesRep(item)) return;
+  var slug = (item.local_slug || "").trim();
+  if (slug) {
+    item.image_url = "assets/badges/" + slug + ".png";
+    item.media_type = "image";
+  }
+  // Never fall back to a personal 1:1 OpenSea image on the series card
+  item.opensea_image_url = null;
+}
+
 function indexItems(data) {
   itemsById.clear();
   (data.items || []).forEach(function (i) {
     if (!i.display_name) {
       i.display_name = i.local_slug || (i.name && i.name.toLowerCase().indexOf("dacat.") === 0 ? i.name : null);
     }
-    if (!i.opensea_image_url && i.image_url && i.image_url.indexOf("http") === 0) {
+    normalizeBadgeSeriesImages(i);
+    // Personal editions only: promote remote image_url to opensea_image_url when missing
+    if (
+      !isBadgeMultiSeriesRep(i) &&
+      !i.opensea_image_url &&
+      i.image_url &&
+      i.image_url.indexOf("http") === 0
+    ) {
       i.opensea_image_url = i.image_url;
     }
     if (/\.(mov|mp4|webm)(\?|$)/i.test(i.image_url || "") && !i.media_type) {
@@ -1706,6 +1736,15 @@ function resolveMediaUrl(url) {
 }
 
 function imgSrc(item) {
+  if (isBadgeMultiSeriesRep(item)) {
+    var local =
+      item.image_url && String(item.image_url).indexOf("assets/badges/") === 0
+        ? item.image_url
+        : item.local_slug
+          ? "assets/badges/" + item.local_slug + ".png"
+          : item.image_url;
+    return resolveMediaUrl(local || "");
+  }
   return resolveMediaUrl(item.image_url || item.opensea_image_url || "");
 }
 
@@ -3083,6 +3122,7 @@ function createHoldingCard(item, holding) {
     if (
       thumb &&
       thumb.tagName === "IMG" &&
+      !isBadgeMultiSeriesRep(item) &&
       item.opensea_image_url &&
       resolveMediaUrl(item.image_url) !== resolveMediaUrl(item.opensea_image_url)
     ) {
@@ -3922,13 +3962,27 @@ function fillMediaSlot(slot, item, opts) {
   opts = opts || {};
   slot.innerHTML = "";
   var src = imgSrc(item);
+  var seriesGeneric = isBadgeMultiSeriesRep(item);
   // Prefer opensea video source for video items (e.g. gem nova green in generic search/detail)
-  // or personalized in portfolio. Fall back to current src (png for generic).
-  if (item && item.opensea_image_url && /^https?:/i.test(item.opensea_image_url) && /\.(mp4|mov|webm)/i.test(item.opensea_image_url)) {
+  // or personalized art in portfolio for real editions. Never for multi-1:1 series cards.
+  if (
+    !seriesGeneric &&
+    item &&
+    item.opensea_image_url &&
+    /^https?:/i.test(item.opensea_image_url) &&
+    /\.(mp4|mov|webm)/i.test(item.opensea_image_url)
+  ) {
     if (isVideoItem(item) || galleryCollectorView || (opts && (opts.autoplay || opts.controls))) {
       src = resolveMediaUrl(item.opensea_image_url);
     }
-  } else if (galleryCollectorView && item && item.opensea_image_url && /^https?:/i.test(item.opensea_image_url)) {
+  } else if (
+    !seriesGeneric &&
+    galleryCollectorView &&
+    item &&
+    item.opensea_image_url &&
+    /^https?:/i.test(item.opensea_image_url)
+  ) {
+    // Wallet view: show personalized 1:1 art for that holder's copy
     src = resolveMediaUrl(item.opensea_image_url);
   }
   if (!src) return;
@@ -3952,7 +4006,12 @@ function fillMediaSlot(slot, item, opts) {
     img.alt = itemTitle(item);
     img.loading = "lazy";
     img.decoding = "async";
-    if (item.opensea_image_url && resolveMediaUrl(item.image_url) !== resolveMediaUrl(item.opensea_image_url)) {
+    // Error fallback to personal OpenSea art only for real editions — not series cards
+    if (
+      !seriesGeneric &&
+      item.opensea_image_url &&
+      resolveMediaUrl(item.image_url) !== resolveMediaUrl(item.opensea_image_url)
+    ) {
       img.addEventListener("error", function () { img.src = resolveMediaUrl(item.opensea_image_url); }, { once: true });
     }
     slot.appendChild(img);
@@ -4781,7 +4840,13 @@ function renderGallery(items) {
       '<div class="gallery-side">' + tokenPill + rarityBadge + listedBadge + "</div>";
     fillMediaSlot(row.querySelector(".gallery-thumb-slot"), item, { controls: false });
     var thumb = row.querySelector(".gallery-thumb-slot img, .gallery-thumb-slot video");
-    if (thumb && thumb.tagName === "IMG" && item.opensea_image_url && resolveMediaUrl(item.image_url) !== resolveMediaUrl(item.opensea_image_url)) {
+    if (
+      thumb &&
+      thumb.tagName === "IMG" &&
+      !isBadgeMultiSeriesRep(item) &&
+      item.opensea_image_url &&
+      resolveMediaUrl(item.image_url) !== resolveMediaUrl(item.opensea_image_url)
+    ) {
       thumb.addEventListener("error", function () { thumb.src = resolveMediaUrl(item.opensea_image_url); }, { once: true });
     }
     row.setAttribute("data-token-id", getItemKey(item));
