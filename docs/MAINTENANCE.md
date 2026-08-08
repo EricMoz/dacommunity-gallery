@@ -167,32 +167,34 @@ Panels are full-width white blocks — cars only show in the **side gutters** an
 
 ## CI & Automated Data Pipeline (the standout part)
 
-The daily refresh resolves an OpenSea key then fetches JSON:
+### OpenSea key store / reuse / replace (no monthly manual work)
 
-1. **Optional** repo secret `OPENSEA_API_KEY` (from [opensea.io/settings/developer](https://opensea.io/settings/developer)) — most reliable for cron.
-2. Else **Actions cache** of a previously minted instant key (keys last ~7 days).
-3. Else **mint** via `POST /api/v2/auth/keys` (no signup).
+Logic lives in \scripts/ci_resolve_opensea_key.sh\, used by efresh-data.yml\:
 
-**Why mint can fail:** OpenSea limits instant keys to **~2 per day per IP**. GitHub-hosted runners share IPs with other projects, so a bare mint-every-run often returns HTTP **429** and the job used to die with an empty key. Caching + optional secret fixes that.
+| Step | What happens |
+|------|----------------|
+| **Store** | After a key passes the lightweight OpenSea stats probe, the full mint payload (key + \expires_at\) is saved to **GitHub Actions cache** as \.ci/opensea_instant_key.json\ (gitignored — never committed). |
+| **Reuse** | Later daily runs restore that file and reuse the key while ≥12h of life remains. **No mint** → avoids OpenSea’s **~2 keys/day/IP** limit on shared runners. |
+| **Replace** | When the stored key is inside the renew window (or missing), CI mints a new instant key. On success the store file is **overwritten** and saved to cache under a new cache entry. |
+| **Fallback** | If mint returns **429** but a stored key still has life, CI keeps using the store and re-warms the cache. |
+| **Invalid store** | If the stats probe fails, the store file is deleted so the next good mint can replace it cleanly. |
+
+Instant keys last **~7 days** (OpenSea free tier), not a month — renew is automatic. Optional secret \OPENSEA_API_KEY\ is only an **emergency override** (e.g. first seed when mint is rate-limited and the store is empty). You should not need to rotate anything monthly.
 
 - Runs on cron + manual dispatch.
-- Fetches main gallery + badges, promotes data, commits JSONs, and triggers deploy.
-- On failure it records details into `gallery_meta.json` (visible staleness banner on the live site).
+- Fetches main gallery + badges (+ other collection fetchers), commits JSONs, triggers deploy.
+- On failure records \gallery_meta.json\ (staleness banner on the live site).
 
 | Workflow | LFS | Notes |
 |----------|-----|-------|
-| `refresh-data.yml` | `lfs: false` | JSON-only. Secret → cache → mint. |
-| `deploy-pages.yml` | `lfs: false` at checkout + smart cache + conditional `lfs pull` | Reuses previous assets heavily. Only pulls when needed. |
-
-**Recommended once:** add repo secret `OPENSEA_API_KEY` so daily cron never depends on shared-runner mint quotas.
+| efresh-data.yml\ | \lfs: false\ | JSON-only. Store → reuse → mint/replace. |
+| \deploy-pages.yml\ | \lfs: false\ at checkout + smart cache + conditional \lfs pull\ | Reuses previous assets heavily. |
 
 **Manual QA after workflow or key-related changes:**
 - Trigger **Refresh gallery data (daily)** manually.
-- Confirm **Resolve OpenSea API key** succeeds (`source=repo_secret|cache|minted`) and the key is masked.
-- Verify deploy succeeds and the live site footer shows a new build id.
-- Check `gallery_meta.json` on site shows recent `data_generated_at` and `status: ok`.
-
----
+- Confirm **Resolve OpenSea API key** logs \source=cache|minted|cache_stale_fallback\ (or epo_secret\) and the key is masked.
+- Confirm **Save stored OpenSea key** runs when \should_save=true\ after a green verify.
+- Check \gallery_meta.json\ shows recent \data_generated_at\ and \status: ok\.
 
 ## Deploy & verification
 

@@ -1,6 +1,6 @@
 # daCAT Universe Hub
 
-This is a static site that serves as the interactive hub for the daCAT community. You can browse the full NFT archive, look up any collector's pieces by wallet or ENS, watch films in an immersive player, and follow live market cap races — all without connecting a wallet or talking to a server from your browser.
+This is a static site that serves as the interactive hub for the daCAT community. You can browse the full NFT archive, look up any collector's pieces by wallet or ENS, watch films in an immersive player, and follow live market cap races â€” all without connecting a wallet or talking to a server from your browser.
 
 **Live production:** [universe.dacat.fun](https://universe.dacat.fun)  
 Source of truth + GitHub Pages: [ericmoz.github.io/dacommunity-gallery](https://ericmoz.github.io/dacommunity-gallery)
@@ -11,7 +11,7 @@ Everything runs on GitHub Pages. The site pulls data once a day through automate
 
 - It's completely static. No backend, no database, no server costs after deployment.
 - Data updates are fully automated and happen daily in CI. You don't babysit anything.
-- We avoid the usual security headaches around API keys by generating fresh temporary ones for every data pull instead of storing long-lived secrets.
+- OpenSea access is automated in CI: mint a short-lived key once, **store** it, **reuse** it on later runs, and **replace** it only when a new mint succeeds (no monthly manual rotation).
 - The whole thing is deliberately lightweight so it stays fast, cheap, and low-risk.
 - **Video size & format are first-class design inputs.** Shorts stay on an external rail (YouTube Shorts). The main catalog + Theatre Mode are optimized for proper landscape viewing and the lights-down immersive experience. This is intentional, not an afterthought.
 
@@ -33,13 +33,16 @@ On the client, a small catalog file loads immediately for the first view. Richer
 
 ## Security model
 
-The standout part is how we handle OpenSea access.
+OpenSea keys never reach the browser. The daily Action (`refresh-data.yml`) keeps a short-lived instant key in **GitHub Actions cache** (not in the repo):
 
-OpenSea keys never reach the browser. The daily Action prefers an optional `OPENSEA_API_KEY` repo secret, otherwise reuses a short-lived instant key from Actions cache, otherwise mints one via the public endpoint (rate-limited; cache avoids burning the 2/day/IP quota on shared runners).
+1. **Restore** the last successful key from cache
+2. **Reuse** it while it still has life left (avoids OpenSea's ~2 mints/day/IP limit on shared runners)
+3. When it is near expiry (or missing), **mint** a new key via `POST /api/v2/auth/keys`
+4. On a successful mint, **replace** the stored key; after a successful API probe, save it back to cache
 
-All fetching and processing happens exclusively in GitHub Actions. The published site contains only static files — HTML, CSS, JS, and pre-built JSON. No keys and no external OpenSea calls ever reach the user's browser.
+No monthly hand-rotation. Optional repo secret `OPENSEA_API_KEY` is only an emergency override.
 
-That keeps the live surface small. Data freshness issues are clearly surfaced with banners so people know what they're looking at.
+All fetching happens in GitHub Actions. The published site is static HTML/CSS/JS/JSON only — no keys and no OpenSea calls from the browser. Staleness is surfaced via `gallery_meta.json` banners.
 
 ## Technical details
 
@@ -84,7 +87,7 @@ Art, stories, and films by Randy Chavez, DaKingsi, and everyone who's contribute
 
 The real home is at dacat.fun, along with the films and the community itself.
 
-**dacat.fun · dacatworld · dacat.store · universe.dacat.fun**
+**dacat.fun Â· dacatworld Â· dacat.store Â· universe.dacat.fun**
 
 ## Deploy & cache busting
 
@@ -96,7 +99,7 @@ GitHub Pages and browsers can cache assets. Each push to `main` runs **Deploy ga
 | `web/BUILD.json` | Build id + UTC timestamp |
 | `?v=` on CSS/JS in HTML | Browser cache bust |
 | `sw.js` `CACHE` constant | Service worker invalidation |
-| `Site build …` + `<meta name="site-build">` | Visible version on all pages |
+| `Site build â€¦` + `<meta name="site-build">` | Visible version on all pages |
 
 **Manual bump before push:**
 
@@ -107,14 +110,15 @@ git commit -m "chore: bump deploy build"
 git push origin main
 ```
 
-**If the site looks stale:** Compare footer build id to [latest commit](https://github.com/EricMoz/dacommunity-gallery). Hard-refresh, or DevTools → Application → clear site data once. CI may bump the id again on deploy (e.g. local `20260605-8` → live `20260605-9`); any id higher than yours is current.
+**If the site looks stale:** Compare footer build id to [latest commit](https://github.com/EricMoz/dacommunity-gallery). Hard-refresh, or DevTools â†’ Application â†’ clear site data once. CI may bump the id again on deploy (e.g. local `20260605-8` â†’ live `20260605-9`); any id higher than yours is current.
 
 ## Security & API Keys
 
-- **OpenSea access is automated.** Daily refresh uses optional `OPENSEA_API_KEY` secret, then a cached instant key, then mint via public `POST /api/v2/auth/keys` (rate-limited ~2 keys/day/IP — cache avoids that trap on GitHub runners).
-- `.env` (if used locally) is gitignored — never commit.
-- All OpenSea calls happen only in the backend during the daily job. The live site is pure static JSON + vanilla JS — zero API keys or secrets ever reach the browser.
-- Stale data or refresh problems surface clearly in `gallery_meta.json` (visible banner on site) and GitHub Actions logs.
+- **Store / reuse / replace** — see `scripts/ci_resolve_opensea_key.sh` and the Security model section above. Instant keys last ~7 days; CI renews them without you.
+- Key material lives only in Actions cache (`.ci/opensea_instant_key.json`, gitignored) and masked job logs — never committed.
+- `.env` (local only) is gitignored — never commit.
+- Live site: pure static JSON + vanilla JS; zero OpenSea keys in the browser.
+- Stale data surfaces in `gallery_meta.json` (banner) and Actions logs.
 
 ## Repo layout
 
@@ -125,7 +129,7 @@ web/              Static site (HTML, CSS, JS, data, assets)
   film/           Community theater (modal player + Theatre Mode)
   VERSION.txt     Deploy build id (auto-bumped in CI)
 .github/workflows deploy-pages.yml, refresh-data.yml
-scripts/          bump_deploy_version.py, refresh.ps1, verify_piece_activity.py
+scripts/          bump_deploy_version.py, ci_resolve_opensea_key.sh, refresh.ps1, verify_piece_activity.py
 docs/             MAINTENANCE.md, COLLECTIONS.md, THEATRE.md
 web/data/collections_registry.json   Live + upcoming collection manifest
 web/data/videos.json                 Film catalog (shorts stay external)
@@ -136,6 +140,6 @@ web/data/videos.json                 Film catalog (shorts stay external)
 | Workflow | Trigger | Purpose |
 |----------|---------|---------|
 | `deploy-pages.yml` | Push to `main`, manual | Bump build, cache LFS assets, publish `web/` |
-| `refresh-data.yml` | Daily cron, manual | Fetch OpenSea → commit JSON (`lfs: false`) |
+| `refresh-data.yml` | Daily cron, manual | Fetch OpenSea â†’ commit JSON (`lfs: false`) |
 
-NFT images live in Git LFS under `web/assets/`. **Refresh** never downloads LFS. **Deploy** restores a cached copy and only runs `git lfs pull` on cache miss or when `web/assets/` changes — daily JSON updates should not re-download the full image set.
+NFT images live in Git LFS under `web/assets/`. **Refresh** never downloads LFS. **Deploy** restores a cached copy and only runs `git lfs pull` on cache miss or when `web/assets/` changes â€” daily JSON updates should not re-download the full image set.

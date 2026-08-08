@@ -1,8 +1,10 @@
 # Fetches OpenSea data and commits JSON.
-# OpenSea access (in order):
-#   1) optional repo secret OPENSEA_API_KEY (recommended for reliable daily cron)
-#   2) Actions-cached instant key (7-day expiry; avoids 2-keys/day IP limit)
-#   3) mint via public POST /api/v2/auth/keys
+#
+# OpenSea key lifecycle (automatic — no monthly manual rotation):
+#   store (Actions cache) → reuse while valid → mint only when renewing → replace store
+# Instant keys expire ~7 days; mint is rate-limited (~2/day/IP). Reuse avoids 429s.
+# Optional emergency secret: OPENSEA_API_KEY (not required for normal daily ops).
+# Implementation: scripts/ci_resolve_opensea_key.sh
 #
 # LFS optimization: this workflow only updates web/data/*.json — it does not read or
 # write NFT images under web/assets/. Checkout uses lfs: false so the daily run does not
@@ -40,116 +42,26 @@ jobs:
           lfs: false
           fetch-depth: 0
 
-      # OpenSea instant keys: POST /api/v2/auth/keys (no signup).
-      # Hard limit: 2 keys / day / IP (shared GitHub runners hit this often).
-      # Strategy: optional repo secret → cached key (7-day TTL) → mint with retries.
-      - name: Restore cached OpenSea key
+      # Restore last successful instant key (replaced on each successful mint).
+      - name: Restore stored OpenSea key
         uses: actions/cache/restore@v4
         id: restore_opensea_key
         with:
           path: .ci/opensea_instant_key.json
-          key: opensea-instant-key-v1-${{ github.run_id }}
+          # Unique key per run so save always writes; restore-keys picks newest prior store
+          key: opensea-instant-key-v2-${{ github.run_id }}
           restore-keys: |
-            opensea-instant-key-v1-
+            opensea-instant-key-v2-
 
       - name: Resolve OpenSea API key
         id: generate_key
         env:
-          # Optional long-lived key (Settings → Developer). Preferred when set.
+          # Optional emergency override only — normal path is store/reuse/replace
           OPENSEA_API_KEY_SECRET: ${{ secrets.OPENSEA_API_KEY }}
         run: |
           set -euo pipefail
-          mkdir -p .ci
-          KEY_FILE=".ci/opensea_instant_key.json"
-
-          emit_key() {
-            local key="$1"
-            local source="$2"
-            if [ -z "$key" ] || [ "$key" = "null" ]; then
-              return 1
-            fi
-            echo "::add-mask::$key"
-            echo "key=$key" >> "$GITHUB_OUTPUT"
-            echo "source=$source" >> "$GITHUB_OUTPUT"
-            echo "OpenSea API key ready (source=$source)."
-          }
-
-          # 1) Repository secret (highest reliability for daily cron)
-          if [ -n "${OPENSEA_API_KEY_SECRET:-}" ]; then
-            emit_key "$OPENSEA_API_KEY_SECRET" "repo_secret"
-            exit 0
-          fi
-
-          # 2) Reuse Actions-cache key if still valid for at least 6 hours
-          if [ -f "$KEY_FILE" ]; then
-            CACHED_KEY=$(jq -r '.api_key // empty' "$KEY_FILE" 2>/dev/null || true)
-            EXPIRES_AT=$(jq -r '.expires_at // empty' "$KEY_FILE" 2>/dev/null || true)
-            if [ -n "$CACHED_KEY" ] && [ -n "$EXPIRES_AT" ]; then
-              # GNU date on ubuntu-latest
-              EXP_EPOCH=$(date -u -d "$EXPIRES_AT" +%s 2>/dev/null || echo 0)
-              NOW_EPOCH=$(date -u +%s)
-              MIN_LEFT=$((6 * 3600))
-              if [ "$EXP_EPOCH" -gt $((NOW_EPOCH + MIN_LEFT)) ]; then
-                echo "Reusing cached instant key (expires_at=$EXPIRES_AT)."
-                emit_key "$CACHED_KEY" "cache"
-                exit 0
-              fi
-              echo "Cached key missing or expires soon (expires_at=${EXPIRES_AT:-none}); will mint if possible."
-            fi
-          else
-            echo "No cached OpenSea key on this runner."
-          fi
-
-          # 3) Mint instant key (HTTP 201). Rate limit: 2/day/IP → expect 429 on shared GHA IPs.
-          attempt=1
-          max_attempts=4
-          while [ "$attempt" -le "$max_attempts" ]; do
-            echo "Minting instant OpenSea key (attempt $attempt/$max_attempts)..."
-            HTTP_CODE=$(curl -sS -o /tmp/opensea_key.json -w "%{http_code}" \
-              -X POST "https://api.opensea.io/api/v2/auth/keys" \
-              -H "Accept: application/json" \
-              -H "User-Agent: dacommunity-gallery-refresh/1.1 (+https://github.com/EricMoz/dacommunity-gallery)" \
-              --max-time 45 || echo "000")
-            KEY=$(jq -r '.api_key // empty' /tmp/opensea_key.json 2>/dev/null || true)
-            ERR=$(jq -r '.errors[0] // .error // empty' /tmp/opensea_key.json 2>/dev/null || true)
-
-            if { [ "$HTTP_CODE" = "200" ] || [ "$HTTP_CODE" = "201" ]; } && [ -n "$KEY" ]; then
-              # Persist full payload for cache restore (includes expires_at)
-              cp /tmp/opensea_key.json "$KEY_FILE"
-              echo "minted=true" >> "$GITHUB_OUTPUT"
-              emit_key "$KEY" "minted"
-              exit 0
-            fi
-
-            echo "::warning::Key mint failed HTTP=$HTTP_CODE err=${ERR:-none} body=$(head -c 400 /tmp/opensea_key.json 2>/dev/null || true)"
-
-            # 429 is daily IP quota — retries only help other runners; short backoff still used for blips
-            if [ "$HTTP_CODE" = "429" ]; then
-              # If cache exists but was near-expiry, try it as last resort
-              if [ -f "$KEY_FILE" ]; then
-                FALLBACK=$(jq -r '.api_key // empty' "$KEY_FILE" 2>/dev/null || true)
-                if [ -n "$FALLBACK" ]; then
-                  echo "::warning::Rate limited minting; using near-expiry cached key as last resort."
-                  emit_key "$FALLBACK" "cache_rate_limit_fallback"
-                  exit 0
-                fi
-              fi
-              sleep $((attempt * 20))
-            else
-              sleep $((attempt * 10))
-            fi
-            attempt=$((attempt + 1))
-          done
-
-          echo "::error::Could not resolve an OpenSea API key. Instant endpoint rate-limits to ~2 keys/day/IP (GitHub-hosted runners share IPs). Fix: set repo secret OPENSEA_API_KEY from https://opensea.io/settings/developer, or re-run later when a cached mint is available."
-          exit 1
-
-      - name: Save OpenSea key cache
-        if: success() && steps.generate_key.outputs.source == 'minted'
-        uses: actions/cache/save@v4
-        with:
-          path: .ci/opensea_instant_key.json
-          key: opensea-instant-key-v1-${{ github.run_id }}
+          chmod +x scripts/ci_resolve_opensea_key.sh
+          scripts/ci_resolve_opensea_key.sh
 
       - uses: actions/setup-python@v6
         with:
@@ -168,19 +80,31 @@ jobs:
             exit 1
           fi
           echo "OpenSea API key is set (source=${{ steps.generate_key.outputs.source }}). Testing with lightweight call..."
-          # Lightweight validation (no full fetch) to catch expired/invalid keys early
           HTTP_CODE=$(curl -sS -o /tmp/opensea_test.json -w "%{http_code}" \
             -H "x-api-key: $OPENSEA_API_KEY" \
             -H "Accept: application/json" \
-            -H "User-Agent: dacommunity-gallery-refresh/1.1" \
+            -H "User-Agent: dacommunity-gallery-refresh/1.2" \
             --max-time 45 \
             "https://api.opensea.io/api/v2/collections/dacommunity-archive/stats" || echo "000")
           if [ "$HTTP_CODE" != "200" ]; then
             echo "::error::OpenSea key test failed with HTTP $HTTP_CODE (source=${{ steps.generate_key.outputs.source }})."
             head -c 800 /tmp/opensea_test.json || true
+            # Drop dead store so next run is forced to mint a replacement
+            if [ -f .ci/opensea_instant_key.json ]; then
+              echo "Removing invalid stored key so the next successful mint can replace it."
+              rm -f .ci/opensea_instant_key.json
+            fi
             exit 1
           fi
           echo "OpenSea API key validated successfully (200 OK)."
+
+      # Persist store after the key is proven good: first mint OR re-warm reused key
+      - name: Save stored OpenSea key
+        if: success() && steps.generate_key.outputs.should_save == 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: .ci/opensea_instant_key.json
+          key: opensea-instant-key-v2-${{ github.run_id }}
 
       - name: Fetch from OpenSea
         id: fetch
@@ -230,7 +154,7 @@ jobs:
           ERROR="Refresh job failed — see the log for the failing step."
           if [ "${{ steps.verify_secret.outcome }}" = "failure" ] || [ "${{ steps.generate_key.outcome }}" = "failure" ]; then
             CODE="key_generation_failed"
-            ERROR="Failed to resolve OpenSea API key (rate limit 2/day/IP on instant keys, or invalid secret). See Resolve/Verify steps; optional fix: set OPENSEA_API_KEY secret."
+            ERROR="Failed to resolve OpenSea API key (mint rate-limit or empty store). Keys auto-store/reuse/replace after the first successful mint — re-run later or see scripts/ci_resolve_opensea_key.sh."
           fi
           python backend/gallery_meta.py --record-failure --error "$ERROR" --error-code "$CODE"
           git config user.name "github-actions[bot]"
