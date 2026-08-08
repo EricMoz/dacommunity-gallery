@@ -90,36 +90,30 @@ python fetch_bigkix.py          # writes web/data/bigkix_data.json + catalog
 - Titles normalized to `BIG KIX #014 · EAGLE 250` (`opensea_name` keeps full OpenSea title)
 - Activity + listings via same collection-events + best-listings pattern as daCommunity
 
-### daGATO Detective Agency: Volume 1 pipeline
+### daGATO Detective Agency (multi-volume) pipeline
 
 ```bash
 cd backend
-python fetch_dagato_agency.py   # writes web/data/dagato_agency_data.json + catalog
+python fetch_dagato_agency.py          # all registry volumes → dagato_agency_*.json
+python fetch_dagato_agency.py --volume 2   # single volume only (still full rewrite)
 # Daily: refresh-data.yml runs after BIG KIX fetch
 ```
 
 | Surface | Detail |
 |---------|--------|
-| Hub / home tile | Eyebrow **`Agency · Volume 1`**; cool ice-blue premium dark card |
+| Hub / home tile | Eyebrow **`Agency · Vol 1–2`**; cool ice-blue premium dark card |
 | Route | `/dacommunity/?collection=dagato-agency` (one site collection for all volumes) |
 | Steward | `dagato.eth` · no creator-wallet exclusion |
-| Browse titles | **`{Rarity} Case File · Vol N`** e.g. `Legendary Case File · Vol 1` |
+| OpenSea | Separate collection per volume (`…-volume-1`, `…-volume-2`); listed in registry `volumes[]` |
+| Browse titles | **`{Rarity} Case File · Vol N`** e.g. `Legendary Case File · Vol 2` |
 | Wallet titles | **`{Rarity} Case File #NN · Vol N`** e.g. `Common Case File #33 · Vol 1` |
-| Browse grid | **5 rarity series** per volume; token pills **#1–#5** (1:1 highest); `minted_at` on series |
+| Browse grid | **5 rarity series per volume** (10 cards for Vol 1+2); pills **#1–#5**; sort Vol then rank |
+| Pieces stat | Count of rarity series rows (not raw case-file count) |
 | Rarity tags | Common / Uncommon / Epic / Legendary / 1:1 on grid, holdings, detail |
 | Detail | Aggregated holders + copies; transfer/sale history merged from case files |
-| Collector wallet | Real case-file token #s (editions), not series rows |
+| Collector wallet | Real case-file token #s (editions), namespaced by volume so #s don’t collide |
 | Data | `web/data/dagato_agency_data.json` + `dagato_agency_catalog.json` |
 | Fetch | `backend/fetch_dagato_agency.py` (also in `refresh-data.yml`) |
-
-**Multi-volume (soon):** OpenSea will use a new collection per volume; the site keeps **`dagato-agency`**.  
-Titles already carry `volume` / `volume_label` (`Vol 1`, `Vol 2`, …). When Volume 2 is ready:
-
-```bash
-cd backend
-# Planned (not live until Vol 2 registry slug exists):
-python fetch_dagato_agency.py --volume 2   # merge into same site collection
-```
 
 Hub cards remain manual (home + `collections/index.html`) until the hub is fully registry-driven.
 

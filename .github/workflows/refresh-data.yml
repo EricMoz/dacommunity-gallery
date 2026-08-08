@@ -125,13 +125,14 @@ jobs:
           cd backend
           python fetch_bigkix.py
 
-      - name: Fetch daGATO Detective Agency Volume 1
+      - name: Fetch daGATO Detective Agency (all volumes)
         if: success()
         env:
           OPENSEA_API_KEY: ${{ steps.generate_key.outputs.key }}
         run: |
           set -e
           cd backend
+          # Fetches every registry volume (Vol 1, Vol 2, …) into one site collection
           python fetch_dagato_agency.py
 
       - name: Fetch badges (for owners/dates)

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-07-19",
+  "updated": "2026-08-08",
   "collections": [
     {
       "id": "dacommunity",
@@ -57,6 +57,21 @@
       },
       "features": ["gallery", "collector_view", "wallet_lookup", "opensea_sync"],
       "creator_ens": "dagato.eth",
+      "volumes": [
+        {
+          "volume": 1,
+          "opensea_slug": "dagato-detective-agency-volume-1",
+          "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
+          "chain": "ethereum",
+          "image_url": "https://i2c.seadn.io/collection/dagato-detective-agency-volume-1/image_type_logo/6dcbf6a0f830a10ef45731c2e11f2b/e96dcbf6a0f830a10ef45731c2e11f2b.png"
+        },
+        {
+          "volume": 2,
+          "opensea_slug": "dagato-detective-agency-volume-2",
+          "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+          "chain": "ethereum"
+        }
+      ],
       "theme": {
         "accent": "#ffcc00",
         "surface": "dark_cinema",

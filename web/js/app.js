@@ -109,6 +109,11 @@ function getItemKey(item) {
   }
   // Secondary collections (BIG KIX, etc.) — avoid token_id collisions with daCommunity
   var cid = item.collection_id || "dacommunity";
+  // Agency: Vol 1 and Vol 2 share token #s on different contracts — namespace by volume
+  if (cid === "dagato-agency") {
+    var vol = item.volume != null && item.volume !== "" ? item.volume : 1;
+    return cid + "-v" + vol + "-" + String(item.token_id);
+  }
   if (cid && cid !== "dacommunity" && cid !== "all") {
     return cid + "-" + item.token_id;
   }
@@ -328,7 +333,7 @@ function adaptHeaderForCollection() {
     } else if (isAgency) {
       h1.innerHTML = 'daGATO <span class="accent">Detective Agency</span>';
       lead.textContent =
-        "Enter the shadows of Cyber City. Volume 1 case files span distinctive detective identities, cyber-noir environments, and rarity tiers from Common operatives to legendary 1:1 creations. The city hides the truth. daGATO finds it. Stealth. Style. Supremacy.";
+        "Enter the shadows of Cyber City. Volumes 1 and 2 case files span distinctive detective identities, cyber-noir environments, and rarity tiers from Common operatives to legendary 1:1 creations. Browse shows five rarity tiers per volume; your wallet shows every case file you hold. The city hides the truth. daGATO finds it. Stealth. Style. Supremacy.";
     } else {
       h1.innerHTML = originalHeroTitle || h1.innerHTML;
       lead.textContent = originalHeroLead || lead.textContent;
@@ -3982,8 +3987,8 @@ function renderHeroNote(collection) {
       '<strong class="steward-name">dacatworld.eth</strong>.';
   } else if (collId === "dagato-agency") {
     html =
-      "Detective Agency case files on Ethereum. Stewarded by " +
-      '<strong class="steward-name">dagato.eth</strong>. Complete limited drop. All holders counted.';
+      "Detective Agency case files on Ethereum (Volumes 1–2). Stewarded by " +
+      '<strong class="steward-name">dagato.eth</strong>. All holders counted — five rarity tiers per volume in browse; real case-file #s in wallets.';
   } else {
     note.hidden = true;
     return;
@@ -4055,7 +4060,7 @@ function renderStats(collection) {
     var kItems = (galleryData && galleryData.items) || [];
     // Prefer live list so stats match the grid + collectors modal
     rebuildCollectorsForCurrentView();
-    // Agency browse grid = 5 rarity series only (not 33 case files)
+    // Agency browse grid = 5 rarity series per volume (not raw case files)
     if (activeCollection === "dagato-agency") {
       pieces =
         getDedupedPiecesCount(kItems) ||
@@ -4357,15 +4362,15 @@ function itemMatchesSearchToken(item, token) {
 }
 
 function compareItems(a, b) {
-  // Agency rarity series always order by token_rank (1:1 first … Common last)
-  if (
-    a.token_rank != null &&
-    b.token_rank != null &&
-    isAgencyRaritySeries(a) &&
-    isAgencyRaritySeries(b)
-  ) {
-    var ra = Number(a.token_rank) - Number(b.token_rank);
-    if (ra !== 0) return ra;
+  // Agency rarity series: Vol 1…N, then rank (1:1 first … Common last) within each volume
+  if (isAgencyRaritySeries(a) && isAgencyRaritySeries(b)) {
+    var va = Number(a.volume) || 1;
+    var vb = Number(b.volume) || 1;
+    if (va !== vb) return va - vb;
+    if (a.token_rank != null && b.token_rank != null) {
+      var ra = Number(a.token_rank) - Number(b.token_rank);
+      if (ra !== 0) return ra;
+    }
   }
   var key = sortKey || "token_desc";
   if (key === "token_desc") {

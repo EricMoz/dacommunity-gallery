@@ -1,16 +1,16 @@
 """
-Fetch daGATO Detective Agency: Volume 1 from OpenSea (Ethereum)
-→ web/data/dagato_agency_data.json + catalog.
+Fetch daGATO Detective Agency volumes from OpenSea (Ethereum)
+→ merge into web/data/dagato_agency_data.json + catalog.
 
-Complete limited drop (33 case files). Mirrors BIG KIX pipeline:
-  - collection NFTs + best listings + events (transfers/sales/mints)
-  - per-token owners
-  - rarity trait extracted for UI tags (Common / Uncommon / Epic / Legendary / 1:1)
+One **site** collection (`dagato-agency`); each OpenSea drop is a volume
+(Vol 1, Vol 2, …) with its own slug/contract. Browse still shows **5 rarity
+series per volume**; collector wallets show real case-file token #s.
 
-No creator-wallet exclusion — every holder counts (no steward stash of extras).
+No creator-wallet exclusion — every holder counts.
 
 Usage (from backend/):
-  python fetch_dagato_agency.py
+  python fetch_dagato_agency.py              # all volumes in registry
+  python fetch_dagato_agency.py --volume 2   # one volume only (rewrites full file)
   python fetch_dagato_agency.py --create-key
   python fetch_dagato_agency.py --quick
 """
@@ -43,10 +43,33 @@ CREATOR_ENS = "dagato.eth"
 # OpenSea collection owner (steward); NOT excluded from holder stats
 CREATOR_ADDRESS = "0xa5dcf683b5092cd9df2f6c15ecb8d7fc355b8dea"
 
-# Site keeps one gallery collection; each OpenSea drop is a volume (Vol 1, Vol 2, …).
-# Future volumes: fetch with --volume N (separate OpenSea slug) and merge into this id.
+# Fallback volume map if registry has no ``volumes`` array yet.
+# Vol 2 contract from OpenSea collection page (distinct ERC drop from Vol 1).
+DEFAULT_VOLUMES: list[dict] = [
+    {
+        "volume": 1,
+        "opensea_slug": "dagato-detective-agency-volume-1",
+        "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
+        "chain": "ethereum",
+        "image_url": (
+            "https://i2c.seadn.io/collection/dagato-detective-agency-volume-1/"
+            "image_type_logo/6dcbf6a0f830a10ef45731c2e11f2b/"
+            "e96dcbf6a0f830a10ef45731c2e11f2b.png"
+        ),
+    },
+    {
+        "volume": 2,
+        "opensea_slug": "dagato-detective-agency-volume-2",
+        "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
+        "chain": "ethereum",
+        "image_url": None,
+    },
+]
+
+# Mutated per-volume during fetch (build_item / series helpers).
 VOLUME = 1
 VOLUME_LABEL = f"Vol {VOLUME}"
+VOLUME_OPENSEA_SLUG = DEFAULT_VOLUMES[0]["opensea_slug"]
 
 # daGATO Case File #27 (OpenSea raw titles)
 TITLE_RE = re.compile(
@@ -410,6 +433,7 @@ def build_item(
         "rarity": rarity,
         "volume": VOLUME,
         "volume_label": VOLUME_LABEL,
+        "opensea_slug": VOLUME_OPENSEA_SLUG,
         "listed": listing_info is not None,
         "listing": listing_info,
         "owners": owner_stats,
@@ -429,11 +453,18 @@ RARITY_RANK_ORDER = ("1:1", "Legendary", "Epic", "Uncommon", "Common")
 RARITY_TO_RANK = {label: i + 1 for i, label in enumerate(RARITY_RANK_ORDER)}
 
 
-def build_rarity_series(edition_items: list[dict]) -> list[dict]:
+def build_rarity_series(
+    edition_items: list[dict],
+    *,
+    volume: int,
+    volume_label: str,
+    opensea_slug: str,
+) -> list[dict]:
     """Aggregate case files into 5 rarity series rows for the search grid.
 
     Edition tokens remain in the payload (collector wallet uses real token #s).
     Series rows carry aggregated holders / circulating copies for the detail panel.
+    One set of 5 series **per volume** (token_id ``rank-v{{vol}}-{{rank}}`` so Vols don't collide).
     """
     by_rarity: dict[str, list[dict]] = {r: [] for r in RARITY_RANK_ORDER}
     for it in edition_items:
@@ -503,15 +534,17 @@ def build_rarity_series(edition_items: list[dict]) -> list[dict]:
                 "image_url": m.get("image_url"),
                 "opensea_url": m.get("opensea_url"),
                 "listed": m.get("listed", False),
+                "volume": volume,
+                "volume_label": volume_label,
             }
             for m in members_sorted
         ]
 
         slug_key = "1of1" if label == "1:1" else label.lower()
         # Browse: '{Rarity} Case File · Vol N'; token pill shows #1–#5 (token_rank)
-        display = format_series_title(label, volume_label=VOLUME_LABEL)
+        display = format_series_title(label, volume_label=volume_label)
         excerpt = (
-            f"Detective Agency {VOLUME_LABEL} · {file_count} case file"
+            f"Detective Agency {volume_label} · {file_count} case file"
             f"{'s' if file_count != 1 else ''} · "
             f"{len(holders)} holder{'s' if len(holders) != 1 else ''} · "
             f"{total_copies} cop{'ies' if total_copies != 1 else 'y'}"
@@ -524,7 +557,7 @@ def build_rarity_series(edition_items: list[dict]) -> list[dict]:
                 return f"#{tid}" if tid is not None else "#?"
 
         description = (
-            f"daGATO Detective Agency: Volume {VOLUME}.\n\n"
+            f"daGATO Detective Agency: Volume {volume}.\n\n"
             f"{file_count} case file{'s' if file_count != 1 else ''} at {label} rarity. "
             f"Open holders and recent transfers below.\n\n"
             f"Case files: "
@@ -570,12 +603,14 @@ def build_rarity_series(edition_items: list[dict]) -> list[dict]:
         }
         owners_payload = enrich_owner_stats(owners_payload, activity_rows)
 
+        rarity_q = "1%20of%201" if label == "1:1" else label
         series_item: dict = {
-            "token_id": f"rank-{rank}",
+            # Unique across volumes (UI getItemKey + sort)
+            "token_id": f"rank-v{volume}-{rank}",
             "token_rank": rank,
             "name": display,
             "display_name": display,
-            "local_slug": f"agency-v{VOLUME}-rarity-{slug_key}",
+            "local_slug": f"agency-v{volume}-rarity-{slug_key}",
             "description": description,
             "excerpt": excerpt,
             "image_url": rep.get("image_url"),
@@ -587,19 +622,15 @@ def build_rarity_series(edition_items: list[dict]) -> list[dict]:
             ),
             "media_type": rep.get("media_type") or "image",
             "opensea_url": (
-                f"https://opensea.io/collection/dagato-detective-agency-volume-1"
+                f"https://opensea.io/collection/{opensea_slug}"
                 f"?search[stringTraits][0][name]=Rarity"
-                f"&search[stringTraits][0][values][0]="
-                + (
-                    "1%20of%201"
-                    if label == "1:1"
-                    else label
-                )
+                f"&search[stringTraits][0][values][0]={rarity_q}"
             ),
             "traits": [{"trait_type": "Rarity", "value": label}],
             "rarity": label,
-            "volume": VOLUME,
-            "volume_label": VOLUME_LABEL,
+            "volume": volume,
+            "volume_label": volume_label,
+            "opensea_slug": opensea_slug,
             "listed": any_listed,
             "listing": best_listing,
             "owners": owners_payload,
@@ -619,14 +650,15 @@ def build_rarity_series(edition_items: list[dict]) -> list[dict]:
     for it in edition_items:
         it["is_edition_token"] = True
         it["agency_rarity_series"] = False
-        it["volume"] = it.get("volume") or VOLUME
-        it["volume_label"] = it.get("volume_label") or VOLUME_LABEL
+        it["volume"] = it.get("volume") or volume
+        it["volume_label"] = it.get("volume_label") or volume_label
+        it["opensea_slug"] = it.get("opensea_slug") or opensea_slug
         r = it.get("rarity")
         if r in RARITY_TO_RANK:
             it["token_rank"] = RARITY_TO_RANK[r]  # wallet can still show rarity tier
         # Keep display titles on the {Rarity} Case File #NN · Vol N pattern
         it["name"] = format_edition_title(
-            r, str(it.get("token_id") or ""), volume_label=VOLUME_LABEL
+            r, str(it.get("token_id") or ""), volume_label=volume_label
         )
         it["display_name"] = it["name"]
 
@@ -661,6 +693,7 @@ def slim_item(item: dict) -> dict:
         "token_rank": item.get("token_rank"),
         "volume": item.get("volume"),
         "volume_label": item.get("volume_label"),
+        "opensea_slug": item.get("opensea_slug"),
         "is_series_rep": bool(item.get("is_series_rep")),
         "agency_rarity_series": bool(item.get("agency_rarity_series")),
         "is_edition_token": bool(item.get("is_edition_token")),
@@ -694,45 +727,59 @@ def write_catalog(payload: dict) -> None:
     print(f"Wrote {CATALOG_PATH} ({len(items)} items)")
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser(
-        description="Fetch daGATO Detective Agency → dagato_agency_data.json"
-    )
-    parser.add_argument(
-        "--quick", action="store_true", help="Skip listings/owners/events"
-    )
-    parser.add_argument("--max-items", type=int, default=0, help="Limit (0=all)")
-    parser.add_argument(
-        "--volume",
-        type=int,
-        default=1,
-        help=(
-            "Volume number for titles (Vol N). Site keeps one collection_id; "
-            "future OpenSea drops use --volume 2+ and merge (not wired yet)."
-        ),
-    )
-    parser.add_argument(
-        "--create-key",
-        action="store_true",
-        help="Create OpenSea instant API key if missing (local only)",
-    )
-    args = parser.parse_args()
+def resolve_volumes(reg: dict, volume_filter: int | None) -> list[dict]:
+    """Volume descriptors from registry ``volumes`` or DEFAULT_VOLUMES."""
+    raw = reg.get("volumes") if reg else None
+    if not raw:
+        raw = DEFAULT_VOLUMES
+    out: list[dict] = []
+    for v in raw:
+        if not isinstance(v, dict):
+            continue
+        try:
+            num = int(v.get("volume") or 0)
+        except (TypeError, ValueError):
+            continue
+        if num < 1:
+            continue
+        if volume_filter is not None and num != volume_filter:
+            continue
+        slug = (v.get("opensea_slug") or v.get("slug") or "").strip()
+        contract = (v.get("contract") or "").strip().lower()
+        if not slug or not contract:
+            print(f"  Skip volume {num}: missing slug or contract")
+            continue
+        out.append(
+            {
+                "volume": num,
+                "opensea_slug": slug,
+                "contract": contract,
+                "chain": (v.get("chain") or reg.get("chain") or "ethereum"),
+                "image_url": v.get("image_url"),
+            }
+        )
+    out.sort(key=lambda x: x["volume"])
+    return out
 
-    global VOLUME, VOLUME_LABEL
-    VOLUME = max(1, int(args.volume or 1))
-    VOLUME_LABEL = f"Vol {VOLUME}"
 
-    reg = get_collection(COLLECTION_ID)
-    if not reg:
-        raise RuntimeError(f"Collection '{COLLECTION_ID}' missing from registry")
+def fetch_one_volume(
+    api_key: str,
+    vol: dict,
+    *,
+    quick: bool,
+    max_items: int,
+) -> tuple[list[dict], list[dict], dict]:
+    """Fetch one OpenSea volume → (series_rows, edition_items, volume_meta)."""
+    global VOLUME, VOLUME_LABEL, VOLUME_OPENSEA_SLUG
+    volume = int(vol["volume"])
+    volume_label = f"Vol {volume}"
+    slug = vol["opensea_slug"]
+    chain = vol.get("chain") or "ethereum"
+    contract = vol["contract"]
+    VOLUME = volume
+    VOLUME_LABEL = volume_label
+    VOLUME_OPENSEA_SLUG = slug
 
-    slug = reg.get("opensea_slug") or "dagato-detective-agency-volume-1"
-    chain = reg.get("chain") or "ethereum"
-    contract = (reg.get("contract") or "").lower()
-    if not contract:
-        raise RuntimeError("daGATO Agency contract missing from registry")
-
-    api_key = load_api_key(create_if_missing=args.create_key)
     client = OpenSeaClient(
         api_key,
         chain=chain,
@@ -740,55 +787,47 @@ def main() -> int:
         collection_slug=slug,
     )
 
-    print(f"daGATO Detective Agency — {chain} / {slug} / {contract[:10]}…")
-    contract_meta = client.get_contract()
+    print(f"\n=== Volume {volume} — {chain} / {slug} / {contract[:12]}… ===")
+    contract_meta = client.get_contract() or {}
     print(f"  Contract name: {contract_meta.get('name')}")
 
-    print("Fetching collection stats...")
-    stats_raw = client.get_collection_stats()
+    print("  Fetching collection stats...")
+    stats_raw = client.get_collection_stats() or {}
     total = stats_raw.get("total") or {}
 
-    creator_wallet = None
-    try:
-        resolved = client.resolve_account(CREATOR_ENS)
-        if resolved.get("address"):
-            creator_wallet = resolved
-    except requests.HTTPError:
-        creator_wallet = {"address": CREATOR_ADDRESS, "ens_name": CREATOR_ENS}
-
-    print("Fetching NFT metadata...")
+    print("  Fetching NFT metadata...")
     nfts = client.iter_collection_nfts()
     nfts.sort(key=lambda n: int(n.get("identifier", 0) or 0), reverse=True)
-    if args.max_items > 0:
-        nfts = nfts[: args.max_items]
+    if max_items > 0:
+        nfts = nfts[:max_items]
     print(f"  {len(nfts)} NFTs")
 
     mint_dates: dict[str, str] = {}
     activity_by_token: dict[str, list[dict]] = {}
-    if not args.quick:
+    if not quick:
         try:
             mint_dates, activity_by_token = process_collection_events(client)
         except Exception as exc:
             print(f"  Warning: collection events failed ({exc})")
 
     listings_by_token: dict[str, dict] = {}
-    if not args.quick:
-        print("Fetching active listings…")
+    if not quick:
+        print("  Fetching active listings…")
         try:
             listings_by_token = build_active_listings_map(client)
             print(f"  {len(listings_by_token)} listed")
         except Exception as exc:
             print(f"  Warning: listings failed ({exc})")
 
-    items = []
+    items: list[dict] = []
     listed_count = 0
     rarity_counts: dict[str, int] = {}
     for i, nft in enumerate(nfts, 1):
         token_id = str(nft.get("identifier"))
-        print(f"  [{i}/{len(nfts)}] token #{token_id}", end="", flush=True)
+        print(f"  [{i}/{len(nfts)}] V{volume} token #{token_id}", end="", flush=True)
         listing = None
         owners = None
-        if not args.quick:
+        if not quick:
             listing = listings_by_token.get(token_id)
             if listing is None:
                 try:
@@ -806,6 +845,7 @@ def main() -> int:
             minted_at=mint_dates.get(token_id),
             recent_activity=activity_by_token.get(token_id),
         )
+        item["contract"] = contract
         if item["listed"]:
             listed_count += 1
         r = item.get("rarity") or "Unknown"
@@ -813,52 +853,188 @@ def main() -> int:
         items.append(item)
         print(f" ✓ [{r}]")
 
-    # Unique holders across edition case files (no creator exclude)
+    series = build_rarity_series(
+        items,
+        volume=volume,
+        volume_label=volume_label,
+        opensea_slug=slug,
+    )
+    meta = {
+        "volume": volume,
+        "volume_label": volume_label,
+        "slug": slug,
+        "contract": contract,
+        "chain": chain,
+        "contract_name": contract_meta.get("name"),
+        "floor_eth": total.get("floor_price"),
+        "floor_symbol": total.get("floor_price_symbol", "ETH"),
+        "total_sales": total.get("sales"),
+        "total_volume": total.get("volume"),
+        "case_file_count": len(items),
+        "piece_count": len(series),
+        "listed_count": sum(1 for s in series if s.get("listed")) or listed_count,
+        "rarity_counts": rarity_counts,
+        "image_url": vol.get("image_url")
+        or (
+            items[0].get("image_url")
+            if items
+            else None
+        ),
+        "opensea_url": f"https://opensea.io/collection/{slug}",
+    }
+    print(
+        f"  Volume {volume} done: {len(series)} tiers + {len(items)} case files "
+        f"({listed_count} edition listings)"
+    )
+    return series, items, meta
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Fetch daGATO Detective Agency (all volumes) → dagato_agency_data.json"
+    )
+    parser.add_argument(
+        "--quick", action="store_true", help="Skip listings/owners/events"
+    )
+    parser.add_argument("--max-items", type=int, default=0, help="Limit per volume (0=all)")
+    parser.add_argument(
+        "--volume",
+        type=int,
+        default=0,
+        help="Fetch only this volume (0 = all volumes in registry).",
+    )
+    parser.add_argument(
+        "--create-key",
+        action="store_true",
+        help="Create OpenSea instant API key if missing (local only)",
+    )
+    args = parser.parse_args()
+
+    reg = get_collection(COLLECTION_ID)
+    if not reg:
+        raise RuntimeError(f"Collection '{COLLECTION_ID}' missing from registry")
+
+    volume_filter = int(args.volume) if args.volume and int(args.volume) > 0 else None
+    volumes = resolve_volumes(reg, volume_filter)
+    if not volumes:
+        raise RuntimeError("No daGATO Agency volumes configured (registry volumes / DEFAULT_VOLUMES)")
+
+    api_key = load_api_key(create_if_missing=args.create_key)
+
+    creator_wallet = None
+    try:
+        probe = OpenSeaClient(
+            api_key,
+            chain=volumes[0].get("chain") or "ethereum",
+            contract=volumes[0]["contract"],
+            collection_slug=volumes[0]["opensea_slug"],
+        )
+        resolved = probe.resolve_account(CREATOR_ENS)
+        if resolved.get("address"):
+            creator_wallet = resolved
+    except Exception:
+        creator_wallet = {"address": CREATOR_ADDRESS, "ens_name": CREATOR_ENS}
+
+    all_series: list[dict] = []
+    all_editions: list[dict] = []
+    volume_metas: list[dict] = []
+    rarity_counts: dict[str, int] = {}
+    floors: list[float] = []
+    total_sales = 0
+    total_volume_eth = 0.0
+
+    for vol in volumes:
+        series, editions, meta = fetch_one_volume(
+            api_key,
+            vol,
+            quick=args.quick,
+            max_items=args.max_items,
+        )
+        all_series.extend(series)
+        all_editions.extend(editions)
+        volume_metas.append(meta)
+        for k, n in (meta.get("rarity_counts") or {}).items():
+            rarity_counts[k] = rarity_counts.get(k, 0) + int(n or 0)
+        fe = meta.get("floor_eth")
+        if fe is not None:
+            try:
+                floors.append(float(fe))
+            except (TypeError, ValueError):
+                pass
+        try:
+            total_sales += int(meta.get("total_sales") or 0)
+        except (TypeError, ValueError):
+            pass
+        try:
+            total_volume_eth += float(meta.get("total_volume") or 0)
+        except (TypeError, ValueError):
+            pass
+
+    # Unique holders across all volumes' edition case files
     all_holders: set[str] = set()
-    for it in items:
+    for it in all_editions:
         for h in (it.get("owners") or {}).get("holders") or []:
             a = (h.get("address") or "").lower()
             if a:
                 all_holders.add(a)
 
-    # Browse grid: 5 rarity series (rank 1–5). Editions kept for collector wallets.
-    series = build_rarity_series(items)
-    combined = series + items
-    series_listed = sum(1 for s in series if s.get("listed"))
+    # Stable browse order: Vol 1…N, each rarity rank 1→5
+    all_series.sort(
+        key=lambda s: (int(s.get("volume") or 0), int(s.get("token_rank") or 99))
+    )
+    combined = all_series + all_editions
+    series_listed = sum(1 for s in all_series if s.get("listed"))
+    primary = volume_metas[0] if volume_metas else {}
+    vol_nums = [m["volume"] for m in volume_metas]
+    if len(vol_nums) == 1:
+        name = f"daGATO Detective Agency: Volume {vol_nums[0]}"
+        note = (
+            f"Limited cyber-noir detective case files on Ethereum (Volume {vol_nums[0]}). "
+            "Stewarded by dagato.eth. All holders counted. "
+            "Browse shows 5 rarity tiers per volume; collector wallets show each case file."
+        )
+    else:
+        name = "daGATO Detective Agency"
+        note = (
+            f"Limited cyber-noir detective case files on Ethereum (Volumes "
+            f"{', '.join(str(v) for v in vol_nums)}). "
+            "Stewarded by dagato.eth. All holders counted. "
+            "Browse shows 5 rarity tiers per volume; collector wallets show each case file."
+        )
 
     payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "source": "opensea_api_v2",
         "collection": {
             "id": COLLECTION_ID,
-            "slug": slug,
-            "name": "daGATO Detective Agency: Volume 1",
-            "display_name": "daGATO Detective Agency: Volume 1",
-            "contract": contract,
-            "chain": chain,
-            "opensea_url": f"https://opensea.io/collection/{slug}",
-            "note": (
-                "Limited cyber-noir detective case files on Ethereum. "
-                "Stewarded by dagato.eth. Complete collection — all holders counted. "
-                "Browse shows 5 rarity tiers; collector wallets show each case file."
-            ),
+            "slug": primary.get("slug") or "dagato-detective-agency-volume-1",
+            "name": name,
+            "display_name": name,
+            "contract": primary.get("contract"),
+            "chain": primary.get("chain") or "ethereum",
+            "opensea_url": primary.get("opensea_url")
+            or "https://opensea.io/collection/dagato-detective-agency-volume-1",
+            "note": note,
             "creator_ens": CREATOR_ENS,
             "creator_wallet": creator_wallet
             or {"address": CREATOR_ADDRESS, "ens_name": CREATOR_ENS},
             "creator_excluded_from_stats": False,
-            "contract_name": contract_meta.get("name"),
-            "floor_eth": total.get("floor_price"),
-            "floor_symbol": total.get("floor_price_symbol", "ETH"),
+            "contract_name": primary.get("contract_name"),
+            "floor_eth": min(floors) if floors else primary.get("floor_eth"),
+            "floor_symbol": primary.get("floor_symbol") or "ETH",
             "num_owners": len(all_holders),
-            "total_sales": total.get("sales"),
-            "total_volume": total.get("volume"),
-            # Browse "Pieces" = unique rarities (5). Editions = case file count.
-            "piece_count": len(series),
-            "edition_count": len(items),
-            "case_file_count": len(items),
-            "listed_count": series_listed if series_listed else listed_count,
+            "total_sales": total_sales or None,
+            "total_volume": total_volume_eth or None,
+            # Browse "Pieces" = rarity series across all volumes (5 × N)
+            "piece_count": len(all_series),
+            "edition_count": len(all_editions),
+            "case_file_count": len(all_editions),
+            "listed_count": series_listed,
             "rarity_counts": rarity_counts,
-            "image_url": (
+            "volume_count": len(volume_metas),
+            "volumes": volume_metas,
+            "image_url": primary.get("image_url")
+            or (
                 "https://i2c.seadn.io/collection/dagato-detective-agency-volume-1/"
                 "image_type_logo/6dcbf6a0f830a10ef45731c2e11f2b/"
                 "e96dcbf6a0f830a10ef45731c2e11f2b.png"
@@ -872,8 +1048,9 @@ def main() -> int:
         json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8"
     )
     print(
-        f"\nWrote {OUTPUT_PATH} — {len(series)} rarity tiers + {len(items)} case files, "
-        f"{listed_count} edition listings, {len(all_holders)} collectors"
+        f"\nWrote {OUTPUT_PATH} — {len(all_series)} rarity tiers + "
+        f"{len(all_editions)} case files across {len(volume_metas)} volume(s), "
+        f"{len(all_holders)} collectors"
     )
     print(f"  Rarity: {rarity_counts}")
     write_catalog(payload)

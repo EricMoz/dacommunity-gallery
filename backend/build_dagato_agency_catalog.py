@@ -41,6 +41,7 @@ def slim_item(item: dict) -> dict:
         "token_rank": item.get("token_rank"),
         "volume": item.get("volume"),
         "volume_label": item.get("volume_label"),
+        "opensea_slug": item.get("opensea_slug"),
         "is_series_rep": bool(item.get("is_series_rep")),
         "agency_rarity_series": bool(item.get("agency_rarity_series")),
         "is_edition_token": bool(item.get("is_edition_token")),
