@@ -767,33 +767,15 @@ def main():
 
     # Enrich holders with ENS from personalized names (for club holders etc.)
     # This captures ENS from the name (e.g. "DAFOREMAN.ETH - ..." or "datrailcat.eth - ...") reliably and fast.
-    # Picks most recent by minted_at.
-    # NOTE: Force .lower() here so we never store ALL-CAPS ENS from item titles into holders/wallet.
-    addr_to_ens = {}
-    for it in items:
-        nm = it.get('name', '') or it.get('display_name', '')
-        m = re.search(r'([a-z0-9.-]+\.eth)', nm, re.IGNORECASE)
-        if m:
-            ens = (m.group(1) or "").lower()
-            hs = it.get('current_holders', []) or []
-            if it.get('owners'):
-                hs += it['owners'].get('holders', []) or []
-                hs += it['owners'].get('top_holders', []) or []
-            for h in hs:
-                a = (h.get('address') or '').lower()
-                if a:
-                    d = it.get('minted_at', '') or ''
-                    if a not in addr_to_ens or d > addr_to_ens[a].get('date', ''):
-                        addr_to_ens[a] = {'ens': ens, 'date': d}
-    for it in items:
-        for hlist in [it.get('current_holders', []), (it.get('owners') or {}).get('holders', []), (it.get('owners') or {}).get('top_holders', []) ]:
-            for h in hlist:
-                a = (h.get('address') or '').lower()
-                if a and not h.get('ens_name') and a in addr_to_ens:
-                    h['ens_name'] = addr_to_ens[a]['ens']
+    # NOTE: Do NOT stamp ens_name from badge *titles* (e.g. "DAFOREMAN.ETH - 1T CLUB").
+    # Titles name the award recipient; the holding address may be a different vault with no
+    # reverse ENS (daforeman.eth only resolves to one address on-chain). Title→ENS poisoned
+    # wallet lookup so one person appeared as two "daforeman.eth" wallets.
 
     # Backfill ENS into badge item holders from previous wallet_index if this run didn't get it
-    # (helps with rate limits / flaky resolves during long fetch; once set, persists)
+    # (helps with rate limits / flaky resolves during long fetch; once set, persists).
+    # Only copy ens_name when reverse-resolution previously validated it for *this* address
+    # (we re-validate multi-address collisions below when writing wallet_index).
     try:
         prev_wallet = {}
         wpath = ROOT / "web" / "data" / "wallet_index.json"
@@ -875,15 +857,12 @@ def main():
                 p["ens_history"] = [str(h).lower() for h in (p.get("ens_history") or []) if h]
 
         new_addresses = set()
-        item_ens = {}
         for it in items:
             for h in (it.get("current_holders") or []) + (it.get("owners", {}).get("holders", []) or []):
                 a = (h.get("address") or "").lower()
                 if a and a != ISSUER_WALLET:
                     new_addresses.add(a)
-                    if h.get('ens_name'):
-                        # already lowered by the name-parse step above
-                        item_ens[a] = h['ens_name']
+                    # Do not copy title-inferred ens from items into item_ens — reverse only
 
         updated_by = dict(prev_by)
         updated_aliases = dict(prev_aliases)
@@ -897,9 +876,21 @@ def main():
             if addr in updated_by:
                 # already have from gallery; still refresh latest ENS if needed (cache-aware)
                 try:
-                    # Route through shared helper for ensdata.net primary, cache skip, lowercase, preserve-on-fail
+                    # Force re-resolve if previous ENS is shared by multiple addresses (title-poison)
+                    force = False
+                    if prev_ens:
+                        share = [
+                            a2
+                            for a2, e2 in updated_by.items()
+                            if (e2.get("ens_name") or "").lower() == prev_ens.lower()
+                        ]
+                        if len(share) > 1:
+                            force = True
                     new_ens = client.resolve_ens_name(
-                        addr, last_resolved=last_res, cache_days=14, previous_ens=prev_ens
+                        addr,
+                        last_resolved=None if force else last_res,
+                        cache_days=14,
+                        previous_ens=None if force else prev_ens,
                     )
                     old_ens = updated_by[addr].get("ens_name")
                     if new_ens and new_ens != old_ens:
@@ -910,9 +901,18 @@ def main():
                         updated_by[addr]["ens_history"] = hist
                         if old_ens:
                             updated_aliases[old_ens.lower()] = addr
+                    elif force and not new_ens:
+                        # Reverse resolve failed — clear poisoned title-based ENS
+                        old_ens = updated_by[addr].get("ens_name")
+                        if old_ens:
+                            hist = list(updated_by[addr].get("ens_history") or [])
+                            if old_ens not in hist:
+                                hist.append(old_ens)
+                            updated_by[addr]["ens_history"] = hist
+                        updated_by[addr]["ens_name"] = None
                     # Record/refresh timestamp only on actual fresh resolve attempt
                     now_ts = time.time()
-                    if not last_res or (now_ts - last_res) >= (14 * 86400):
+                    if force or not last_res or (now_ts - last_res) >= (14 * 86400):
                         updated_by[addr]["last_ens_resolved"] = now_ts
                     elif last_res:
                         updated_by[addr].setdefault("last_ens_resolved", last_res)
@@ -920,14 +920,11 @@ def main():
                     pass
                 continue
 
-            # new address from badges: resolve current ENS (via helper) + start entry
-            ens_name = (item_ens.get(addr) or None)
+            # new address from badges: reverse-resolve only (never title-inferred ENS)
             username = None
-            if not ens_name:
-                # will use ensdata first + fallback; respects last_res if present (rare for truly new)
-                ens_name = client.resolve_ens_name(
-                    addr, last_resolved=last_res, cache_days=14, previous_ens=prev_ens
-                )
+            ens_name = client.resolve_ens_name(
+                addr, last_resolved=last_res, cache_days=14, previous_ens=prev_ens
+            )
             # If still no ENS, keep previous if we had one (for flaky resolves / badge-only that resolve later)
             if not ens_name and prev_ens:
                 ens_name = prev_ens
