@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-08-02T14:55:19.320130+00:00",
+  "generated_at": "2026-08-09T10:36:29.168726+00:00",
   "source": "web3.bio_profile",
   "cache_days": 21,
-  "address_count": 89,
-  "base_name_count": 17,
+  "address_count": 96,
+  "base_name_count": 18,
   "by_address": {
     "0x011dddd5b5470d2818bffb400b4e38949fe21ac3": {
       "address": "0x011dddd5b5470d2818bffb400b4e38949fe21ac3",
@@ -449,6 +449,41 @@
       "address": "0xffcd46f8267ea602a9a05b17027a53cae1364298",
       "base_name": null,
       "last_base_resolved": 1785631834.8372195
+    },
+    "0x418940f4675ceb18f49b9f182b62473872ee0bd1": {
+      "address": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+      "base_name": null,
+      "last_base_resolved": 1786271752.0521142
+    },
+    "0x4e822f0773a16e862d185853e8b4131a9a922deb": {
+      "address": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+      "base_name": null,
+      "last_base_resolved": 1786271752.0521142
+    },
+    "0x6b41725261a39c52d3bc12fde51f53d5663c4d78": {
+      "address": "0x6b41725261a39c52d3bc12fde51f53d5663c4d78",
+      "base_name": null,
+      "last_base_resolved": 1786271752.0521142
+    },
+    "0x87aa9eec8d50a5438f7c2bc95da50ac4bbaeb7b4": {
+      "address": "0x87aa9eec8d50a5438f7c2bc95da50ac4bbaeb7b4",
+      "base_name": null,
+      "last_base_resolved": 1786271752.0521142
+    },
+    "0xe12eb704664f8e852359d36d77b90178e5540bd6": {
+      "address": "0xe12eb704664f8e852359d36d77b90178e5540bd6",
+      "base_name": null,
+      "last_base_resolved": 1786271752.0521142
+    },
+    "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef": {
+      "address": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
+      "base_name": null,
+      "last_base_resolved": 1786271752.0521142
+    },
+    "0xee2301b51d369b30031fa06b0367b0e8a8ba759f": {
+      "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+      "base_name": "nanozki.base.eth",
+      "last_base_resolved": 1786271752.0521142
     }
   },
   "name_aliases": {
@@ -467,6 +502,7 @@
     "gottothird.base.eth": "0x7f284d2167b3bb8d8f6669593f4c24e752b54812",
     "slowfreeze.base.eth": "0x93b34003169bd7cdb3e0710fedff4cb6795a32ef",
     "mozcat.base.eth": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-    "lostthegame.base.eth": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684"
+    "lostthegame.base.eth": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+    "nanozki.base.eth": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f"
   }
 }
