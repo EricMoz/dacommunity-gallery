@@ -2,7 +2,7 @@
 <!-- Film hub (catalog + player).
      - film.js handles grid, filters, modal YT player, up-next.
      - daCAT World / podcast videos get store/YouTube note (Part 1).
-     - Theatre mode links to /film/mozvane/ (uses theatre.js for immersive).
+     - Theatre mode uses /film/theatre/?v=<id> (theatre.js); legacy /film/mozvane/ redirects.
      See film.js + docs/COLLECTIONS.md for structure. -->
 <html lang="en">
 <head>
@@ -66,7 +66,7 @@
       <h1>daCAT <span class="film-hero-name">films</span></h1>
       <nav class="page-quick-links" aria-label="Quick links">
         <!-- hidden by default; film.js shows only at min-width 769px (same as Theatre Mode) -->
-        <a class="page-quick-link film-hub-theatre-quick" id="film-hero-theatre" href="mozvane/" hidden>🍿 Theatre mode</a>
+        <a class="page-quick-link film-hub-theatre-quick" id="film-hero-theatre" href="theatre/?v=mozvane-quick-stop" hidden>🍿 Theatre mode</a>
         <a class="page-quick-link" href="https://dacat.store/" target="_blank" rel="noopener noreferrer">Shop</a>
         <a class="page-quick-link" href="../">Universe</a>
       </nav>
@@ -91,7 +91,7 @@
     <!-- Same trio as hero: Theatre · Shop · Home -->
     <nav class="film-hub-foot-links page-quick-links" aria-label="Also explore">
       <!-- hidden by default; film.js shows only at min-width 769px (same as Theatre Mode) -->
-      <a class="page-quick-link film-hub-foot-theatre" href="mozvane/" hidden>🍿 Theatre mode</a>
+      <a class="page-quick-link film-hub-foot-theatre" href="theatre/?v=mozvane-quick-stop" hidden>🍿 Theatre mode</a>
       <a class="page-quick-link" href="https://dacat.store/" target="_blank" rel="noopener noreferrer">Shop</a>
       <a class="page-quick-link" href="../">Universe</a>
     </nav>
@@ -165,7 +165,7 @@
           <p id="film-modal-desc" class="film-modal-desc"></p>
           <p class="film-modal-links">
             <a id="film-modal-yt" href="#" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
-            <a id="film-modal-theatre" class="film-modal-theatre" href="mozvane/" hidden>🍿 Theatre mode</a>
+            <a id="film-modal-theatre" class="film-modal-theatre" href="theatre/?v=mozvane-quick-stop" hidden>🍿 Theatre mode</a>
             <button type="button" id="film-modal-share" class="film-modal-share-btn">Share</button>
           </p>
         </aside>

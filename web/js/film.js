@@ -474,6 +474,11 @@
    * Theatre href for hub nav pills (top + bottom). Explicitly skips Shorts so
    * portrait clips never become the default Theatre entry point.
    */
+  /** Safe default when catalog is empty / still loading (generic theatre shell). */
+  function defaultTheatreHref() {
+    return "theatre/?v=mozvane-quick-stop";
+  }
+
   function resolveNavTheatreHref() {
     const dedicated = sortVideos(
       (videos || []).filter(
@@ -486,7 +491,7 @@
     );
     if (dedicated.length) return dedicated[0].theatre.route;
     const href = resolveHeroTheatreHref();
-    return href || "mozvane/";
+    return href || defaultTheatreHref();
   }
 
   /**
@@ -497,7 +502,7 @@
    */
   function syncTheatreNavLinks() {
     const show = isTheatrePc();
-    const href = show ? resolveNavTheatreHref() : "mozvane/";
+    const href = show ? resolveNavTheatreHref() : defaultTheatreHref();
     document
       .querySelectorAll("#film-hero-theatre, .film-hub-foot-theatre")
       .forEach(function (el) {

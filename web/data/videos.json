@@ -188,8 +188,7 @@
       "sortOrder": 1,
       "theatre": {
         "slug": "mozvane",
-        "enabled": true,
-        "route": "mozvane/"
+        "enabled": true
       }
     },
     {

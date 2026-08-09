@@ -2,7 +2,7 @@
 
 Immersive full-screen watch experience for **every film on desktop** (769px+). Distinct from the in-hub modal player — minimal chrome, vignette, **Lights down** (near-black), and a niche flying-popcorn background when lights are up.
 
-**Live examples:** [Mozvane theatre](https://ericmoz.github.io/dacommunity-gallery/film/mozvane/) · generic route `/film/theatre/?v=<videoId>`
+**Live example:** [Mozvane in theatre](https://ericmoz.github.io/dacommunity-gallery/film/theatre/?v=mozvane-quick-stop) · generic route `/film/theatre/?v=<videoId>`
 
 ---
 
@@ -13,23 +13,22 @@ Immersive full-screen watch experience for **every film on desktop** (769px+). D
 ```json
 "theatre": {
   "slug": "mozvane",
-  "enabled": true,
-  "route": "mozvane/"
+  "enabled": true
 }
 ```
 
 | Field | Purpose |
 |-------|---------|
-| `slug` | Key into `theatre_registry.json` |
+| `slug` | Key into `theatre_registry.json` (optional theme) |
 | `enabled` | Set `false` to opt a title out of theatre (default: all catalog videos on desktop) |
-| `route` | Canonical path under `/film/` for dedicated drops (optional; default `theatre/?v=<id>`) |
+| `route` | **Optional** dedicated path under `/film/` (rare). Omit to use `theatre/?v=<id>` |
 
-### `web/data/theatre_registry.json` — per theatre (backend / theme)
+### `web/data/theatre_registry.json` — per theatre theme
 
 ```json
 "mozvane": {
   "videoId": "mozvane-quick-stop",
-  "canonicalRoute": "mozvane/",
+  "canonicalRoute": "theatre/?v=mozvane-quick-stop",
   "theme": {
     "accent": "#ffcc00",
     "curtains": true,
@@ -48,18 +47,18 @@ Immersive full-screen watch experience for **every film on desktop** (769px+). D
 
 | URL | Resolver |
 |-----|----------|
-| `/film/mozvane/` | `body[data-video-id="mozvane-quick-stop"]` |
-| `/film/theatre/?v=mozvane-quick-stop` | `?v=` query param |
+| `/film/theatre/?v=mozvane-quick-stop` | `?v=` query param → `theatre.js` |
+| `/film/mozvane/` | **Legacy redirect only** → `/film/theatre/?v=mozvane-quick-stop` (no player shell) |
 
-Both load `web/js/theatre.js` + `theatre_registry.json` for theme.
+Canonical player shell: `web/film/theatre/index.html` + `web/js/theatre.js` + `theatre_registry.json` for theme.
 
 ---
 
 ## Film hub integration (`film.js`)
 
 - **Desktop only** (`min-width: 769px`): modal link **🍿 Theatre mode** for every catalog video unless `theatre.enabled === false`
-- Series row CTA only for titles with a dedicated `theatre.route` (e.g. Mozvane)
-- `theatreHref(video)` builds route from `theatre.route` or generic `theatre/?v=`
+- Series row CTA only for titles with an optional dedicated `theatre.route` (none required for Mozvane)
+- `theatreHref(video)` → `theatre/?v=<id>` (or optional `theatre.route` if set)
 - Mobile: hub modal player only; theatre URLs show a desktop-only message
 - **Shorts never enter Theatre or the hub modal** — see below
 
@@ -85,10 +84,10 @@ Implementation comments live at the top of `film.js` and on `isShort` / `mainVid
 
 ## Adding a new theatre title
 
-1. Add `theatre` block to the video in `videos.json`.
-2. Add slug entry in `theatre_registry.json` (`theme`, empty `extras`).
-3. Either set `route` to a dedicated folder (`/film/my-drop/`) cloning `mozvane/index.html`, or rely on `/film/theatre/?v=<id>` only.
-4. QA: hub modal link, series CTA, mobile player, Lights down, reduced motion.
+1. Optionally add `theatre: { slug, enabled }` on the video in `videos.json`.
+2. Optionally add a slug entry in `theatre_registry.json` (`theme`, empty `extras`).
+3. Prefer the generic route `/film/theatre/?v=<id>` only — no dedicated HTML folder needed.
+4. QA: hub modal link, mobile player, Lights down, reduced motion.
 
 ---
 
@@ -113,7 +112,7 @@ Do **not** stretch the dim up-next bar full width — it collides with **Lights 
 
 - **First film in session:** Back → `/film/?v=<entryId>` (reopens hub modal on the film you started from).
 - **After Skip / auto-chain:** Back → previous film in stack (`history.back()` + `popstate`); label switches to **← Previous film**.
-- Stack persisted in `sessionStorage` (`dacat-theatre-watch-stack`) for in-page route changes (`mozvane/` → `theatre/?v=`).
+- Stack persisted in `sessionStorage` (`dacat-theatre-watch-stack`) for in-page `theatre/?v=` changes.
 
 Both are `position: fixed` only while `body.film-theatre-lights-down`. Chrome auto-hides after **2.5s** idle (`film-theatre-chrome-idle`); any mouse/keyboard activity wakes it. Disabled when `prefers-reduced-motion`. The player (`.film-theatre-stage`) stays `z-index: 6` with no full-page overlay — vignette darkens edges only.
 
@@ -122,10 +121,10 @@ Both are `position: fixed` only while `body.film-theatre-lights-down`. Chrome au
 ## QA checklist
 
 - [ ] Desktop: any film modal → **🍿 Theatre mode** → `/film/theatre/?v=<id>` loads
-- [ ] `/film/mozvane/` — dedicated route + registry theme
+- [ ] Mozvane: theme from `theatre_registry.json` still applies on generic route
+- [ ] `/film/mozvane/` redirects to `/film/theatre/?v=mozvane-quick-stop` (legacy bookmarks)
 - [ ] Lights down → **Back** top-left; up-next chip bottom-left; **Lights up** top-right (no overlap)
 - [ ] Skip twice → Back returns to previous film; third Back → film hub with entry `?v=`
 - [ ] Lights up → full Random/Series bar under player; popcorn background
-- [ ] Mozvane series row → dedicated “Theatre mode · full screen” CTA only
 - [ ] Mobile: no modal theatre link; `/film/theatre/` shows desktop-only copy
 - [ ] `prefers-reduced-motion`: no popcorn drift or lights flash

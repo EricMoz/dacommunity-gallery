@@ -112,12 +112,14 @@ jobs:
           test -f web/VERSION.txt || (echo "Missing web/VERSION.txt — bump step failed" && exit 1)
           test -f web/BUILD.json || (echo "Missing web/BUILD.json — bump step failed" && exit 1)
           # Every hub must share the same stamp (partial edge/HTML drift has left /film/ stale before).
-          for hub in web/index.html web/dacommunity/index.html web/film/index.html web/film/mozvane/index.html web/film/theatre/index.html web/collections/index.html web/analytics/index.html; do
+          for hub in web/index.html web/dacommunity/index.html web/film/index.html web/film/theatre/index.html web/collections/index.html web/analytics/index.html; do
             grep -q "Site build ${BUILD}" "$hub" || (echo "footer missing Site build ${BUILD}: $hub" && exit 1)
             grep -q "name=\"site-build\" content=\"${BUILD}\"" "$hub" || (echo "meta site-build missing ${BUILD}: $hub" && exit 1)
           done
-          # badges is a redirect shell — meta only
+          # badges + legacy film/mozvane are redirect shells — meta only
           grep -q "name=\"site-build\" content=\"${BUILD}\"" web/badges/index.html || (echo "meta site-build missing ${BUILD}: web/badges/index.html" && exit 1)
+          grep -q "name=\"site-build\" content=\"${BUILD}\"" web/film/mozvane/index.html || (echo "meta site-build missing ${BUILD}: web/film/mozvane/index.html" && exit 1)
+          grep -q "theatre/?v=mozvane-quick-stop" web/film/mozvane/index.html || (echo "mozvane legacy path must redirect to theatre/?v=mozvane-quick-stop" && exit 1)
           grep -q "film.js?v=${BUILD}" web/film/index.html || (echo "film hub not loading film.js?v=${BUILD}" && exit 1)
           grep -q "styles.css?v=${BUILD}" web/film/index.html || (echo "film hub not loading styles.css?v=${BUILD}" && exit 1)
           grep -q "relatedNft" web/js/film.js || (echo "film.js missing relatedNft promo support" && exit 1)
@@ -133,7 +135,8 @@ jobs:
           test -f web/badges/index.html || (echo "Missing web/badges/index.html" && exit 1)
           test -f web/analytics/index.html || (echo "Missing web/analytics/index.html" && exit 1)
           test -f web/film/index.html || (echo "Missing web/film/index.html" && exit 1)
-          test -f web/film/mozvane/index.html || (echo "Missing web/film/mozvane/index.html" && exit 1)
+          test -f web/film/theatre/index.html || (echo "Missing web/film/theatre/index.html" && exit 1)
+          test -f web/film/mozvane/index.html || (echo "Missing web/film/mozvane/index.html (legacy redirect)" && exit 1)
           test -f web/collections/index.html || (echo "Missing web/collections/index.html" && exit 1)
           grep -q "Film &amp; comics" web/index.html || (echo "Homepage missing Film & comics section — stale index?" && exit 1)
           grep -q "daCAT Chronicles" web/index.html || (echo "Homepage missing Chronicles card" && exit 1)

@@ -77,7 +77,7 @@ Nav markup is **duplicated** in each `web/**/index.html` (no shared partial yet)
 | Collections | `web/collections/index.html` |
 | Gallery | `web/dacommunity/index.html` |
 | Film hub | `web/film/index.html` |
-| Mozvane | `web/film/mozvane/index.html` |
+| Theatre mode | `web/film/theatre/index.html` (+ legacy redirect `web/film/mozvane/`) |
 | Analytics | `web/analytics/index.html` |
 | Badges | `web/badges/index.html` |
 

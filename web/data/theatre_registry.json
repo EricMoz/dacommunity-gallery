@@ -4,7 +4,7 @@
   "theatres": {
     "mozvane": {
       "videoId": "mozvane-quick-stop",
-      "canonicalRoute": "mozvane/",
+      "canonicalRoute": "theatre/?v=mozvane-quick-stop",
       "theme": {
         "accent": "#ffcc00",
         "curtains": true,

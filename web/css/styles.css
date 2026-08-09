@@ -4572,7 +4572,7 @@ body.film-theatre-awaiting-lights {
 .film-theatre-back-btn {
   /* UX: guaranteed >=44px tap target (min-height + padding), inline-flex + center for
      reliable touch + no text clipping on any size/mode/route (lights on, lights down,
-     mobile, desktop, theatre/?v=*, mozvane). Gold accent + dark glass for contrast in
+     mobile, desktop, theatre/?v=*). Gold accent + dark glass for contrast in
      all link scenarios. */
   min-height: 44px;
   padding: 0.42rem 0.9rem;

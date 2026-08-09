@@ -1,132 +1,26 @@
 <!DOCTYPE html>
-<!-- Mozvane theatre mode — canonical route for mozvane-quick-stop -->
+<!--
+  Legacy path decommissioned: Mozvane used to ship a full theatre shell here.
+  That shell was redundant with /film/theatre/?v=… — this page only redirects
+  so old bookmarks and shared /film/mozvane/ links keep working.
+-->
 <html lang="en">
 <head>
   <meta name="site-build" content="20260802-11" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mozvane · Theatre mode · daCAT</title>
-  <meta name="description" content="Mozvane: five-minute daCAT anime film in theatre mode. Sora-era community flagship with daBeezy." />
-  <link rel="icon" href="../../assets/brand/dacat-icon-64.png" type="image/png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../../css/styles.css?v=20260802-11" />
+  <title>Redirecting · Mozvane Theatre · daCAT</title>
+  <meta name="robots" content="noindex" />
+  <meta http-equiv="refresh" content="0;url=../theatre/?v=mozvane-quick-stop" />
+  <link rel="canonical" href="../theatre/?v=mozvane-quick-stop" />
+  <script>
+    location.replace("../theatre/?v=mozvane-quick-stop");
+  </script>
 </head>
-<body class="film-page film-theater film-theatre-page" data-video-id="mozvane-quick-stop" data-theatre-slug="mozvane">
-  <div class="film-theater-vignette" aria-hidden="true"></div>
-  <div class="film-theatre-popcorn-field" id="theatre-popcorn-field" aria-hidden="true"></div>
-  <div class="film-theatre-curtain film-theatre-curtain--left" aria-hidden="true"></div>
-  <div class="film-theatre-curtain film-theatre-curtain--right" aria-hidden="true"></div>
-
-  <header class="site-header film-theatre-header">
-    <div class="header-inner">
-      <div class="brand">
-        <a class="brand-logo" href="https://www.dacat.fun/" target="_blank" rel="noopener" aria-label="daCAT.fun">
-          <img class="brand-mascot" src="../../assets/brand/dacat-mascot.png" alt="" width="56" height="56" />
-        </a>
-        <a class="brand-tag" href="./" aria-label="Mozvane Theatre">Mozvane</a>
-      </div>
-      <nav class="header-nav" aria-label="Main">
-        <a class="nav-btn nav-btn-film is-active" href="../" aria-current="page">Film Hub</a>
-        <a class="nav-btn nav-btn-home" href="../../">Universe</a>
-        <a class="nav-btn nav-btn-collections" href="../../collections/">collection hub</a>
-        <a class="nav-btn nav-btn-wallet" href="../../dacommunity/#wallet-panel">my dacats</a>
-        <a class="nav-btn nav-btn-chart" href="../../analytics/">MC race</a>
-        <a class="nav-btn nav-btn-utility" href="https://t.me/daCat_token" target="_blank" rel="noopener">TG</a>
-        <a class="nav-btn nav-btn-story" href="https://www.dacat.fun/" target="_blank" rel="noopener">story</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="film-theatre-main">
-    <section class="film-theatre-screen" aria-label="Theatre player">
-      <p class="film-theatre-kicker">Community spotlight · Theatre mode</p>
-      <p class="film-theatre-series" id="theatre-series">Mozvane</p>
-      <h1 class="film-theatre-title" id="theatre-title">Mozvane</h1>
-      <p class="film-theatre-meta" id="theatre-meta">Episode · ~5 min · daBeezy · Sora-era community film</p>
-
-      <div class="film-theatre-stage">
-        <nav class="film-theatre-action-bar" id="theatre-action-bar" aria-label="Theatre controls">
-          <div class="film-theatre-top-chrome">
-            <button type="button" class="film-theatre-back-btn" id="theatre-back">← Film hub</button>
-          </div>
-          <div class="film-theatre-lights-dock" id="theatre-lights-dock">
-            <p class="film-theatre-lights-hint" id="theatre-lights-hint">🍿 Grab popcorn. Tap Lights down</p>
-            <button type="button" class="film-theatre-lights-btn" id="theatre-lights" aria-pressed="false">Lights down</button>
-          </div>
-        </nav>
-        <div class="film-theatre-player-mount">
-          <div class="film-theatre-player" id="theatre-player"></div>
-          <p class="film-theatre-loading" id="theatre-loading">Cueing film…</p>
-        </div>
-        <p class="film-theatre-error" id="theatre-error" hidden></p>
-
-        <div class="film-theatre-upnext" id="theatre-upnext" hidden>
-          <div class="film-theatre-upnext-full" id="theatre-upnext-full">
-            <div class="film-upnext-bar" id="theatre-upnext-bar">
-              <button type="button" class="film-upnext-preview" id="theatre-upnext-preview" aria-label="Play up next">
-                <img id="theatre-upnext-thumb" class="film-upnext-thumb" alt="" width="96" height="54" />
-                <span class="film-upnext-copy">
-                  <span class="film-upnext-kicker" id="theatre-upnext-kicker">Up next · Random</span>
-                  <span class="film-upnext-title" id="theatre-upnext-title"></span>
-                  <span class="film-upnext-meta" id="theatre-upnext-meta"></span>
-                </span>
-              </button>
-              <div class="film-upnext-controls">
-                <div class="film-upnext-modes" role="group" aria-label="Up next mode">
-                  <button type="button" class="film-upnext-mode theatre-upnext-mode is-active" data-mode="random" aria-pressed="true">Random</button>
-                  <button type="button" class="film-upnext-mode theatre-upnext-mode" data-mode="series" aria-pressed="false">Series</button>
-                </div>
-                <button type="button" class="film-upnext-play" id="theatre-upnext-play">Play random</button>
-              </div>
-            </div>
-            <div class="film-upnext-end" id="theatre-upnext-end" hidden>
-              <button type="button" class="film-upnext-end-tap" id="theatre-upnext-end-tap" aria-label="Play up next now">
-                <span class="film-upnext-kicker">Up next</span>
-                <p class="film-upnext-countdown" id="theatre-upnext-countdown"></p>
-              </button>
-              <div class="film-upnext-end-actions">
-                <button type="button" class="film-upnext-cancel" id="theatre-upnext-cancel">Stay here</button>
-                <button type="button" class="film-upnext-play-now" id="theatre-upnext-play-now">Play now</button>
-              </div>
-            </div>
-          </div>
-          <div class="film-theatre-upnext-dim" id="theatre-upnext-dim" hidden>
-            <div class="film-theatre-upnext-dim-bar">
-              <button type="button" class="film-theatre-upnext-dim-tap" id="theatre-upnext-dim-tap" aria-label="Play up next">
-                <span class="film-theatre-upnext-dim-kicker">Up next · Random</span>
-                <span class="film-theatre-upnext-dim-title" id="theatre-upnext-dim-title"></span>
-              </button>
-              <button type="button" class="film-theatre-upnext-dim-play" id="theatre-upnext-dim-play" aria-label="Play random next">Skip</button>
-            </div>
-            <div class="film-theatre-upnext-dim-end" id="theatre-upnext-dim-end" hidden>
-              <button type="button" class="film-theatre-upnext-dim-end-tap" id="theatre-upnext-dim-end-tap" aria-label="Play up next now">
-                <p class="film-theatre-upnext-dim-countdown" id="theatre-upnext-dim-countdown"></p>
-              </button>
-              <div class="film-theatre-upnext-dim-actions">
-                <button type="button" class="film-theatre-upnext-dim-cancel" id="theatre-upnext-dim-cancel">Stay</button>
-                <button type="button" class="film-theatre-upnext-dim-play-now" id="theatre-upnext-dim-play-now">Play now</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <p class="film-theatre-footline">
-        <span class="film-theatre-popcorn" id="theatre-popcorn">Lights down anytime for full immersion.</span>
-        <span class="film-theatre-foot-sep" aria-hidden="true">·</span>
-        <a class="film-theatre-yt-chip" id="theatre-yt" href="https://www.youtube.com/watch?v=bHcbwUs2_ds" target="_blank" rel="noopener noreferrer">YouTube</a>
-      </p>
-    </section>
-  </main>
-
-  <footer class="site-footer film-footer film-theatre-footer">
-    <p><a href="https://www.dacat.fun/" target="_blank" rel="noopener noreferrer">dacat.fun</a> · <a href="https://www.dacatworld.com/" target="_blank" rel="noopener noreferrer">dacatworld</a> · <a href="https://dacat.store/" target="_blank" rel="noopener noreferrer">dacat.store</a></p>
-    <p class="site-version">Site build 20260802-11</p>
-  </footer>
-
-  <script src="../../js/pwa-register.js?v=20260802-11" defer></script>
-  <script src="../../js/theatre.js?v=20260802-11" defer></script>
+<body>
+  <p>
+    Theatre mode moved.
+    <a href="../theatre/?v=mozvane-quick-stop">Continue to Mozvane in Theatre mode</a>
+  </p>
 </body>
 </html>
