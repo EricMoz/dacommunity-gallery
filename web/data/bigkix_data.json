@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08T08:37:24.279481+00:00",
+  "generated_at": "2026-08-09T08:39:26.550506+00:00",
   "source": "opensea_api_v2",
   "collection": {
     "id": "bigkix",
@@ -20,11 +20,11 @@
     "contract_name": "BIG KIX",
     "floor_eth": 1e-08,
     "floor_symbol": "ETH",
-    "num_owners": 20,
-    "total_sales": 6,
-    "total_volume": 0.006000000000000005,
+    "num_owners": 24,
+    "total_sales": 31,
+    "total_volume": 0.006017630000000031,
     "piece_count": 24,
-    "listed_count": 24
+    "listed_count": 23
   },
   "items": [
     {
@@ -38,7 +38,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/24",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/24",
-      "updated_at": "2026-08-08T08:36:30.309117",
+      "updated_at": "2026-08-09T08:38:28.540876",
       "traits": [
         {
           "trait_type": "Role",
@@ -85,19 +85,23 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 1e-06,
+        "amount_eth": 1.0416666666666667e-06,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 25,
+        "quantity": 24,
         "total_eth": 2.5e-05
       },
       "owners": {
-        "holder_count": 17,
-        "circulating_copies": 19,
+        "holder_count": 18,
+        "circulating_copies": 20,
         "top_holders": [
           {
             "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
             "quantity": 3
+          },
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -110,16 +114,16 @@
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
-          },
-          {
-            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
           }
         ],
         "holders": [
           {
             "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
             "quantity": 3
+          },
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -188,16 +192,31 @@
         ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "transfer",
-          "at": "2026-08-02T22:07:35+00:00",
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-19T04:44:47+00:00",
       "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-08-02T22:07:35+00:00",
@@ -269,20 +288,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T13:41:11+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T13:36:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #024 - DACAT  MEME - Season 1 - First Edition"
@@ -298,7 +303,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/23",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/23",
-      "updated_at": "2026-08-08T08:36:30.309129",
+      "updated_at": "2026-08-09T08:38:28.540889",
       "traits": [
         {
           "trait_type": "Set",
@@ -363,16 +368,24 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 1.0000000000000001e-07,
+        "amount_eth": 1.0869565217391305e-07,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 25,
+        "quantity": 23,
         "total_eth": 2.5e-06
       },
       "owners": {
-        "holder_count": 10,
-        "circulating_copies": 10,
+        "holder_count": 12,
+        "circulating_copies": 12,
         "top_holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
+          {
+            "address": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -384,17 +397,17 @@
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
             "quantity": 1
-          },
-          {
-            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
-          },
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
           }
         ],
         "holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
+          {
+            "address": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -439,15 +452,45 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-28T14:10:23+00:00",
+          "at": "2026-08-08T23:43:47+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "to": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-19T00:00:11+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-08T23:43:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-08-08T23:43:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
         {
           "type": "transfer",
           "at": "2026-07-28T14:10:23+00:00",
@@ -503,36 +546,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
           "quantity": 1
-        },
-        {
-          "type": "sale",
-          "at": "2026-07-21T02:40:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-          "quantity": 1,
-          "price_eth": null
-        },
-        {
-          "type": "sale",
-          "at": "2026-07-20T20:20:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-          "quantity": 1,
-          "price_eth": null
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T20:20:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-19T00:01:35+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #023 - TARG - Season 1 - First Edition"
@@ -548,7 +561,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/22",
       "metadata_url": "ipfs://Qmdkw9oKwcQqLhpJFBCbQ85jv1ceUdjA1UWqc9ShESVbVs/22",
-      "updated_at": "2026-08-08T08:36:30.309136",
+      "updated_at": "2026-08-09T08:38:28.540897",
       "traits": [
         {
           "trait_type": "Set",
@@ -613,16 +626,20 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 1e-08,
+        "amount_eth": 1.0416666666666666e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 25,
+        "quantity": 24,
         "total_eth": 2.5e-07
       },
       "owners": {
-        "holder_count": 10,
-        "circulating_copies": 10,
+        "holder_count": 11,
+        "circulating_copies": 11,
         "top_holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -638,13 +655,13 @@
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
             "quantity": 1
-          },
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
           }
         ],
         "holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -688,16 +705,31 @@
         ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "transfer",
-          "at": "2026-07-28T14:16:59+00:00",
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-18T23:10:59+00:00",
       "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-28T14:16:59+00:00",
@@ -767,13 +799,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
           "quantity": 1
-        },
-        {
-          "type": "mint",
-          "at": "2026-07-18T23:10:59+00:00",
-          "from": null,
-          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "quantity": 333
         }
       ],
       "opensea_name": "BIG KIX #022 - CELESTE  - Season 1 - First Edition"
@@ -789,7 +814,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/21",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/21",
-      "updated_at": "2026-08-08T08:36:30.309143",
+      "updated_at": "2026-08-09T08:38:28.540906",
       "traits": [
         {
           "trait_type": "Set",
@@ -854,16 +879,20 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 1e-06,
+        "amount_eth": 1.0416666666666667e-06,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 25,
+        "quantity": 24,
         "total_eth": 2.5e-05
       },
       "owners": {
-        "holder_count": 11,
-        "circulating_copies": 11,
+        "holder_count": 12,
+        "circulating_copies": 12,
         "top_holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -879,13 +908,13 @@
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
             "quantity": 1
-          },
-          {
-            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
           }
         ],
         "holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -934,15 +963,30 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-08-03T04:51:59+00:00",
+          "at": "2026-08-08T21:42:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-18T21:16:23+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
         {
           "type": "transfer",
           "at": "2026-08-03T04:51:59+00:00",
@@ -1012,21 +1056,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
           "quantity": 1
-        },
-        {
-          "type": "sale",
-          "at": "2026-07-21T02:35:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-          "quantity": 1,
-          "price_eth": null
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T22:16:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #021 - CATBOT - Season 1 - First Edition"
@@ -1042,7 +1071,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/20",
       "metadata_url": "ipfs://QmXRGA9mMSNJfQCLa9v8NqAz8X6EoDqBhDePugjJE7XKV3/20",
-      "updated_at": "2026-08-08T08:36:30.309150",
+      "updated_at": "2026-08-09T08:38:28.540913",
       "traits": [
         {
           "trait_type": "Set",
@@ -1107,19 +1136,23 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 1e-08,
+        "amount_eth": 1.0416666666666666e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 25,
+        "quantity": 24,
         "total_eth": 2.5e-07
       },
       "owners": {
-        "holder_count": 11,
-        "circulating_copies": 12,
+        "holder_count": 12,
+        "circulating_copies": 13,
         "top_holders": [
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
             "quantity": 2
+          },
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -1132,16 +1165,16 @@
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
-          },
-          {
-            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
           }
         ],
         "holders": [
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
             "quantity": 2
+          },
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -1187,15 +1220,30 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-08-03T04:51:11+00:00",
+          "at": "2026-08-08T21:42:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-18T19:25:23+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
         {
           "type": "transfer",
           "at": "2026-08-03T04:51:11+00:00",
@@ -1265,20 +1313,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T22:20:35+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T22:20:11+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #020 - DACAT KID - Season 1 - First Edition"
@@ -1294,7 +1328,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/19",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/19",
-      "updated_at": "2026-08-08T08:36:30.309157",
+      "updated_at": "2026-08-09T08:38:28.540920",
       "traits": [
         {
           "trait_type": "Role",
@@ -1353,16 +1387,20 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 1.0000000000000001e-07,
+        "amount_eth": 1.0416666666666668e-07,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 25,
+        "quantity": 24,
         "total_eth": 2.5e-06
       },
       "owners": {
-        "holder_count": 11,
-        "circulating_copies": 11,
+        "holder_count": 12,
+        "circulating_copies": 12,
         "top_holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -1378,13 +1416,13 @@
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
             "quantity": 1
-          },
-          {
-            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
           }
         ],
         "holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -1432,16 +1470,31 @@
         ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "transfer",
-          "at": "2026-07-25T23:07:23+00:00",
-          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-18T15:29:59+00:00",
       "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-25T23:07:23+00:00",
@@ -1511,21 +1564,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T20:20:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-          "quantity": 1
-        },
-        {
-          "type": "sale",
-          "at": "2026-07-20T20:20:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-          "quantity": 1,
-          "price_eth": null
         }
       ],
       "opensea_name": "BIG KIX #019 - GENERAL GRIN - Season 1 - First Edition"
@@ -1541,7 +1579,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/18",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/18",
-      "updated_at": "2026-08-08T08:36:30.309164",
+      "updated_at": "2026-08-09T08:38:28.540927",
       "traits": [
         {
           "trait_type": "Role",
@@ -1594,19 +1632,27 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 1.0000000000000001e-07,
+        "amount_eth": 1.0869565217391305e-07,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 25,
+        "quantity": 23,
         "total_eth": 2.5e-06
       },
       "owners": {
-        "holder_count": 12,
-        "circulating_copies": 14,
+        "holder_count": 14,
+        "circulating_copies": 16,
         "top_holders": [
           {
             "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
             "quantity": 3
+          },
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
+          {
+            "address": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
+            "quantity": 1
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -1615,20 +1661,20 @@
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
-          },
-          {
-            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
-          },
-          {
-            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
           }
         ],
         "holders": [
           {
             "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
             "quantity": 3
+          },
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
+          {
+            "address": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
+            "quantity": 1
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -1678,15 +1724,45 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-08-02T22:11:59+00:00",
+          "at": "2026-08-08T23:41:59+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "to": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-18T10:54:35+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-08T23:41:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-08-08T23:41:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
         {
           "type": "transfer",
           "at": "2026-08-02T22:11:59+00:00",
@@ -1743,35 +1819,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T07:50:35+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T07:30:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-          "quantity": 1
-        },
-        {
-          "type": "sale",
-          "at": "2026-07-21T02:38:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-          "quantity": 1,
-          "price_eth": null
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T02:38:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #018- DACAT MOVIE - Season 1 - First Edition"
@@ -1787,7 +1834,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/17",
       "metadata_url": "ipfs://QmUZoy2QY5fxvsbWoBb9cg5qBeoXLoSr42NkgirbnVeRHp/17",
-      "updated_at": "2026-08-08T08:36:30.309171",
+      "updated_at": "2026-08-09T08:38:28.540934",
       "traits": [
         {
           "trait_type": "Type",
@@ -1846,19 +1893,27 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 1e-08,
+        "amount_eth": 1.0869565217391303e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 25,
+        "quantity": 23,
         "total_eth": 2.5e-07
       },
       "owners": {
-        "holder_count": 10,
-        "circulating_copies": 11,
+        "holder_count": 12,
+        "circulating_copies": 13,
         "top_holders": [
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
             "quantity": 2
+          },
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
+          {
+            "address": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
+            "quantity": 1
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -1867,20 +1922,20 @@
           {
             "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
             "quantity": 1
-          },
-          {
-            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1
-          },
-          {
-            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
           }
         ],
         "holders": [
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
             "quantity": 2
+          },
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
+          {
+            "address": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
+            "quantity": 1
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -1922,15 +1977,45 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-28T14:14:59+00:00",
+          "at": "2026-08-08T23:46:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "to": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-18T03:29:23+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-08T23:46:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-08-08T23:46:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
         {
           "type": "transfer",
           "at": "2026-07-28T14:14:59+00:00",
@@ -1986,34 +2071,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T00:15:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T00:04:11+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-18T03:59:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-18T03:31:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #017 - UNCLE SAM - Season 1 - First Edition"
@@ -2029,7 +2086,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/16",
       "metadata_url": "ipfs://QmWg4CchemsxQjfdWGAqZWa98db3FS6PbLNPNKtTsMk8sx/16",
-      "updated_at": "2026-08-08T08:36:30.309177",
+      "updated_at": "2026-08-09T08:38:28.540940",
       "traits": [
         {
           "trait_type": "Role",
@@ -2088,16 +2145,20 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 1e-08,
+        "amount_eth": 1.0416666666666666e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 25,
+        "quantity": 24,
         "total_eth": 2.5e-07
       },
       "owners": {
-        "holder_count": 10,
-        "circulating_copies": 10,
+        "holder_count": 11,
+        "circulating_copies": 11,
         "top_holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -2113,13 +2174,13 @@
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
             "quantity": 1
-          },
-          {
-            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
           }
         ],
         "holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -2164,15 +2225,30 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-28T14:15:47+00:00",
+          "at": "2026-08-08T21:42:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-18T00:40:11+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
         {
           "type": "transfer",
           "at": "2026-07-28T14:15:47+00:00",
@@ -2242,20 +2318,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-18T00:42:35+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-          "quantity": 1
-        },
-        {
-          "type": "mint",
-          "at": "2026-07-18T00:40:11+00:00",
-          "from": null,
-          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "quantity": 250
         }
       ],
       "opensea_name": "BIG KIX #016 - ABRAHAM LINCOLN - Season 1 - First Edition"
@@ -2271,7 +2333,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/15",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/15",
-      "updated_at": "2026-08-08T08:36:30.309184",
+      "updated_at": "2026-08-09T08:38:28.540947",
       "traits": [
         {
           "trait_type": "Role",
@@ -2336,16 +2398,20 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 1e-06,
+        "amount_eth": 1.0416666666666667e-06,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 25,
+        "quantity": 24,
         "total_eth": 2.5e-05
       },
       "owners": {
-        "holder_count": 10,
-        "circulating_copies": 10,
+        "holder_count": 11,
+        "circulating_copies": 11,
         "top_holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -2361,13 +2427,13 @@
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
             "quantity": 1
-          },
-          {
-            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
           }
         ],
         "holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -2411,16 +2477,31 @@
         ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "transfer",
-          "at": "2026-07-28T14:12:35+00:00",
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-17T19:54:35+00:00",
       "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-28T14:12:35+00:00",
@@ -2490,20 +2571,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-17T19:55:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-          "quantity": 1
-        },
-        {
-          "type": "mint",
-          "at": "2026-07-17T19:54:35+00:00",
-          "from": null,
-          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "quantity": 250
         }
       ],
       "opensea_name": "BIG KIX #015 - GEORGE WASHINGTON - Season 1 - First Edition"
@@ -2519,7 +2586,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/14",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/14",
-      "updated_at": "2026-08-08T08:36:30.309190",
+      "updated_at": "2026-08-09T08:38:28.540953",
       "traits": [
         {
           "trait_type": "Type",
@@ -2578,19 +2645,23 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 2.0000000000000002e-07,
+        "amount_eth": 2.0833333333333336e-07,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 25,
+        "quantity": 24,
         "total_eth": 5e-06
       },
       "owners": {
-        "holder_count": 10,
-        "circulating_copies": 11,
+        "holder_count": 11,
+        "circulating_copies": 12,
         "top_holders": [
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 2
+          },
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -2603,16 +2674,16 @@
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
-          },
-          {
-            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
           }
         ],
         "holders": [
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 2
+          },
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -2653,16 +2724,31 @@
         ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "transfer",
-          "at": "2026-07-28T14:09:47+00:00",
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-17T12:34:59+00:00",
       "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-28T14:09:47+00:00",
@@ -2733,20 +2819,6 @@
           "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
           "quantity": 1,
           "price_eth": null
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T00:18:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T23:54:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #014 - EAGLE 250 - Season 1 - First Edition"
@@ -2762,7 +2834,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/13",
       "metadata_url": "ipfs://Qmdf5SD5cic5SkcU5HpPxTNUbbwQYXvgq6YRfaC1rFuaa4/13",
-      "updated_at": "2026-08-08T08:36:30.309197",
+      "updated_at": "2026-08-09T08:38:28.540960",
       "traits": [
         {
           "trait_type": "Year",
@@ -2815,19 +2887,27 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 1e-08,
+        "amount_eth": 1.25e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 10,
+        "quantity": 8,
         "total_eth": 1e-07
       },
       "owners": {
-        "holder_count": 10,
-        "circulating_copies": 59,
+        "holder_count": 12,
+        "circulating_copies": 61,
         "top_holders": [
           {
             "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
             "quantity": 50
+          },
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
+          {
+            "address": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
+            "quantity": 1
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -2836,20 +2916,20 @@
           {
             "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
             "quantity": 1
-          },
-          {
-            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1
-          },
-          {
-            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
           }
         ],
         "holders": [
           {
             "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
             "quantity": 50
+          },
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
+          {
+            "address": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
+            "quantity": 1
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -2891,15 +2971,45 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-07-26T00:33:11+00:00",
-          "from": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "at": "2026-08-08T23:46:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-17T05:04:35+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-08T23:46:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-08-08T23:46:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-26T00:33:11+00:00",
@@ -2955,35 +3065,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
           "quantity": 1
-        },
-        {
-          "type": "sale",
-          "at": "2026-07-20T20:20:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-          "quantity": 1,
-          "price_eth": null
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T20:20:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-17T05:19:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-17T05:08:35+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
-          "quantity": 50
         }
       ],
       "opensea_name": "BIG KIX #013 - THE BUREK GUY - Season 1 - First Edition"
@@ -2999,7 +3080,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/12",
       "metadata_url": "ipfs://Qmd5P27njQDcHhyTwaGqbxFRSAEgp5obvugRz9hiSXnW3y/12",
-      "updated_at": "2026-08-08T08:36:30.309204",
+      "updated_at": "2026-08-09T08:38:28.540966",
       "traits": [
         {
           "trait_type": "Season",
@@ -3034,16 +3115,20 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 1e-08,
+        "amount_eth": 1.0416666666666666e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 25,
+        "quantity": 24,
         "total_eth": 2.5e-07
       },
       "owners": {
-        "holder_count": 12,
-        "circulating_copies": 12,
+        "holder_count": 13,
+        "circulating_copies": 13,
         "top_holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -3059,13 +3144,13 @@
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
             "quantity": 1
-          },
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
           }
         ],
         "holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -3117,16 +3202,31 @@
         ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "transfer",
-          "at": "2026-08-02T22:09:47+00:00",
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-17T02:19:47+00:00",
       "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-08-02T22:09:47+00:00",
@@ -3196,21 +3296,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
           "quantity": 1
-        },
-        {
-          "type": "sale",
-          "at": "2026-07-20T20:20:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-          "quantity": 1,
-          "price_eth": null
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T20:20:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #012 - RUSSELL COREY - Season 1 - First Edition"
@@ -3226,7 +3311,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/11",
       "metadata_url": "ipfs://QmUZoy2QY5fxvsbWoBb9cg5qBeoXLoSr42NkgirbnVeRHp/11",
-      "updated_at": "2026-08-08T08:36:30.309210",
+      "updated_at": "2026-08-09T08:38:28.540972",
       "traits": [
         {
           "trait_type": "Role",
@@ -3279,16 +3364,20 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 1e-08,
+        "amount_eth": 1.0416666666666666e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 25,
+        "quantity": 24,
         "total_eth": 2.5e-07
       },
       "owners": {
-        "holder_count": 13,
-        "circulating_copies": 13,
+        "holder_count": 14,
+        "circulating_copies": 14,
         "top_holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -3304,13 +3393,13 @@
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
             "quantity": 1
-          },
-          {
-            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
           }
         ],
         "holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -3367,15 +3456,30 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-08-02T22:10:23+00:00",
+          "at": "2026-08-08T21:42:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-16T03:12:47+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
         {
           "type": "transfer",
           "at": "2026-08-02T22:10:23+00:00",
@@ -3445,20 +3549,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T07:33:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T07:21:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #011 - COLLECTOR CAT - Season 1 - First Edition"
@@ -3474,7 +3564,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/10",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/10",
-      "updated_at": "2026-08-08T08:36:30.309216",
+      "updated_at": "2026-08-09T08:38:28.540979",
       "traits": [
         {
           "trait_type": "Role",
@@ -3533,16 +3623,20 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 1e-06,
+        "amount_eth": 1.0416666666666667e-06,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 25,
+        "quantity": 24,
         "total_eth": 2.5e-05
       },
       "owners": {
-        "holder_count": 12,
-        "circulating_copies": 12,
+        "holder_count": 13,
+        "circulating_copies": 13,
         "top_holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -3558,13 +3652,13 @@
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
             "quantity": 1
-          },
-          {
-            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
           }
         ],
         "holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -3616,16 +3710,31 @@
         ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "transfer",
-          "at": "2026-08-03T04:49:47+00:00",
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-14T02:13:11+00:00",
       "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-08-03T04:49:47+00:00",
@@ -3695,20 +3804,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T07:32:35+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T07:18:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #010 - KIXIE - Season 1 - First Edition"
@@ -3724,7 +3819,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/9",
       "metadata_url": "ipfs://Qmdkw9oKwcQqLhpJFBCbQ85jv1ceUdjA1UWqc9ShESVbVs/9",
-      "updated_at": "2026-08-08T08:36:30.309223",
+      "updated_at": "2026-08-09T08:38:28.540985",
       "traits": [
         {
           "trait_type": "Role",
@@ -3783,16 +3878,20 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 1e-08,
+        "amount_eth": 1.0416666666666666e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 25,
+        "quantity": 24,
         "total_eth": 2.5e-07
       },
       "owners": {
-        "holder_count": 12,
-        "circulating_copies": 12,
+        "holder_count": 13,
+        "circulating_copies": 13,
         "top_holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -3808,13 +3907,13 @@
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
             "quantity": 1
-          },
-          {
-            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
           }
         ],
         "holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -3866,16 +3965,31 @@
         ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "transfer",
-          "at": "2026-08-03T04:46:47+00:00",
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-13T06:04:59+00:00",
       "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-08-03T04:46:47+00:00",
@@ -3945,20 +4059,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T07:16:35+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T06:57:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #009 - SAL - Season 1 - First Edition"
@@ -3974,7 +4074,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/8",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/8",
-      "updated_at": "2026-08-08T08:36:30.309229",
+      "updated_at": "2026-08-09T08:38:28.540991",
       "traits": [
         {
           "trait_type": "Role",
@@ -4033,16 +4133,24 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 1e-06,
+        "amount_eth": 0.002,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 25,
-        "total_eth": 2.5e-05
+        "quantity": 5,
+        "total_eth": 0.01
       },
       "owners": {
-        "holder_count": 12,
-        "circulating_copies": 12,
+        "holder_count": 14,
+        "circulating_copies": 23,
         "top_holders": [
+          {
+            "address": "0x6b41725261a39c52d3bc12fde51f53d5663c4d78",
+            "quantity": 10
+          },
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -4054,17 +4162,17 @@
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
-          },
-          {
-            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
-          },
-          {
-            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
           }
         ],
         "holders": [
+          {
+            "address": "0x6b41725261a39c52d3bc12fde51f53d5663c4d78",
+            "quantity": 10
+          },
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -4116,16 +4224,46 @@
         ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "transfer",
-          "at": "2026-08-03T04:49:11+00:00",
+          "type": "sale",
+          "at": "2026-08-08T21:44:11+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
-          "quantity": 1
+          "to": "0x6b41725261a39c52d3bc12fde51f53d5663c4d78",
+          "quantity": 10
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-13T05:33:11+00:00",
       "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:44:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6b41725261a39c52d3bc12fde51f53d5663c4d78",
+          "quantity": 10,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:44:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x6b41725261a39c52d3bc12fde51f53d5663c4d78",
+          "quantity": 10
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
         {
           "type": "transfer",
           "at": "2026-08-03T04:49:11+00:00",
@@ -4181,35 +4319,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T07:52:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T07:25:11+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T07:15:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-          "quantity": 1
-        },
-        {
-          "type": "sale",
-          "at": "2026-07-21T02:43:11+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-          "quantity": 1,
-          "price_eth": null
         }
       ],
       "opensea_name": "BIG KIX #008 - DINO - Season 1 - First Edition"
@@ -4225,7 +4334,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/7",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/7",
-      "updated_at": "2026-08-08T08:36:30.309235",
+      "updated_at": "2026-08-09T08:38:28.540997",
       "traits": [
         {
           "trait_type": "Role",
@@ -4282,16 +4391,16 @@
           "value": "DACAT WORLD"
         }
       ],
-      "listed": true,
-      "listing": {
-        "amount_eth": 1e-06,
-        "currency": "ETH",
-        "status": "ACTIVE"
-      },
+      "listed": false,
+      "listing": null,
       "owners": {
-        "holder_count": 12,
-        "circulating_copies": 12,
+        "holder_count": 13,
+        "circulating_copies": 13,
         "top_holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -4307,13 +4416,13 @@
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
             "quantity": 1
-          },
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
           }
         ],
         "holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -4366,15 +4475,30 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-08-03T04:48:35+00:00",
+          "at": "2026-08-08T21:42:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-13T04:29:35+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
         {
           "type": "transfer",
           "at": "2026-08-03T04:48:35+00:00",
@@ -4444,20 +4568,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T06:57:11+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-13T06:34:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #007 - COYLE - Season 1 - First Edition"
@@ -4473,7 +4583,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/6",
       "metadata_url": "ipfs://Qmdf5SD5cic5SkcU5HpPxTNUbbwQYXvgq6YRfaC1rFuaa4/6",
-      "updated_at": "2026-08-08T08:36:30.309242",
+      "updated_at": "2026-08-09T08:38:28.541005",
       "traits": [
         {
           "trait_type": "Role",
@@ -4532,16 +4642,20 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 1e-08,
+        "amount_eth": 1.0416666666666666e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 25,
+        "quantity": 24,
         "total_eth": 2.5e-07
       },
       "owners": {
-        "holder_count": 12,
-        "circulating_copies": 12,
+        "holder_count": 13,
+        "circulating_copies": 13,
         "top_holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -4557,13 +4671,13 @@
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
             "quantity": 1
-          },
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
           }
         ],
         "holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -4615,16 +4729,31 @@
         ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "transfer",
-          "at": "2026-08-03T04:47:35+00:00",
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-13T03:19:59+00:00",
       "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-08-03T04:47:35+00:00",
@@ -4694,20 +4823,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T06:58:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-13T06:32:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #006 - SNAP - Season 1 - First Edition"
@@ -4723,7 +4838,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/5",
       "metadata_url": "ipfs://QmUMTrcNYnNMsNeuKFc9bmn5ZbUnm85UwyHrRT9bvoo69m/5",
-      "updated_at": "2026-08-08T08:36:30.309248",
+      "updated_at": "2026-08-09T08:38:28.541013",
       "traits": [
         {
           "trait_type": "Date",
@@ -4794,16 +4909,20 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 1e-08,
+        "amount_eth": 1.0416666666666666e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 25,
+        "quantity": 24,
         "total_eth": 2.5e-07
       },
       "owners": {
-        "holder_count": 13,
-        "circulating_copies": 13,
+        "holder_count": 14,
+        "circulating_copies": 14,
         "top_holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -4819,13 +4938,13 @@
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
             "quantity": 1
-          },
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
           }
         ],
         "holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -4882,15 +5001,30 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-08-02T22:08:59+00:00",
+          "at": "2026-08-08T21:42:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-12T15:08:59+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
         {
           "type": "transfer",
           "at": "2026-08-02T22:08:59+00:00",
@@ -4960,20 +5094,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T06:59:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T23:27:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #005 - BOGMIRE - Season 1 - First Edition"
@@ -4989,7 +5109,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/4",
       "metadata_url": "ipfs://QmWbio5gpWd9XjmGQB4DtD3WGqyQcqfXDHcsa4yDDWFtre/4",
-      "updated_at": "2026-08-08T08:36:30.309259",
+      "updated_at": "2026-08-09T08:38:28.541021",
       "traits": [
         {
           "trait_type": "Date",
@@ -5054,16 +5174,20 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 1e-08,
+        "amount_eth": 1.0416666666666666e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 25,
+        "quantity": 24,
         "total_eth": 2.5e-07
       },
       "owners": {
-        "holder_count": 13,
-        "circulating_copies": 13,
+        "holder_count": 14,
+        "circulating_copies": 14,
         "top_holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -5079,13 +5203,13 @@
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
             "quantity": 1
-          },
-          {
-            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
           }
         ],
         "holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -5141,16 +5265,31 @@
         ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "transfer",
-          "at": "2026-08-02T22:08:11+00:00",
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-12T13:48:35+00:00",
       "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-08-02T22:08:11+00:00",
@@ -5220,21 +5359,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T07:09:35+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-          "quantity": 1
-        },
-        {
-          "type": "sale",
-          "at": "2026-07-21T02:37:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-          "quantity": 1,
-          "price_eth": null
         }
       ],
       "opensea_name": "BIG KIX #004- RUG PULL - Season 1 - First Edition"
@@ -5250,7 +5374,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/3",
       "metadata_url": "ipfs://QmQHmpqgHNp23HBUhsWufY4YBSeF4j7C1ZyPpNB2aAcXP6/3",
-      "updated_at": "2026-08-08T08:36:30.309266",
+      "updated_at": "2026-08-09T08:38:28.541028",
       "traits": [
         {
           "trait_type": "Date",
@@ -5315,16 +5439,20 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 1e-06,
+        "amount_eth": 1.0416666666666667e-06,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 25,
+        "quantity": 24,
         "total_eth": 2.5e-05
       },
       "owners": {
-        "holder_count": 13,
-        "circulating_copies": 13,
+        "holder_count": 14,
+        "circulating_copies": 14,
         "top_holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -5340,13 +5468,13 @@
           {
             "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
             "quantity": 1
-          },
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1
           }
         ],
         "holders": [
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
@@ -5403,15 +5531,30 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-08-02T22:06:47+00:00",
+          "at": "2026-08-08T21:42:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-12T11:43:23+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
         {
           "type": "transfer",
           "at": "2026-08-02T22:06:47+00:00",
@@ -5481,21 +5624,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T02:37:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-          "quantity": 1
-        },
-        {
-          "type": "sale",
-          "at": "2026-07-21T02:37:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-          "quantity": 1,
-          "price_eth": null
         }
       ],
       "opensea_name": "BIG KIX #003 - SCAMURAI - Season 1 - First Edition"
@@ -5511,7 +5639,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/2",
       "metadata_url": "ipfs://QmXRGA9mMSNJfQCLa9v8NqAz8X6EoDqBhDePugjJE7XKV3/2",
-      "updated_at": "2026-08-08T08:36:30.309272",
+      "updated_at": "2026-08-09T08:38:28.541036",
       "traits": [
         {
           "trait_type": "Date",
@@ -5576,15 +5704,15 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 1e-08,
+        "amount_eth": 1.0416666666666666e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 25,
+        "quantity": 24,
         "total_eth": 2.5e-07
       },
       "owners": {
-        "holder_count": 19,
-        "circulating_copies": 22,
+        "holder_count": 20,
+        "circulating_copies": 23,
         "top_holders": [
           {
             "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
@@ -5595,15 +5723,15 @@
             "quantity": 2
           },
           {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
+          {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1
           },
           {
             "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
-            "quantity": 1
-          },
-          {
-            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
           }
         ],
@@ -5615,6 +5743,10 @@
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
             "quantity": 2
+          },
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -5687,16 +5819,31 @@
         ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "transfer",
-          "at": "2026-08-02T22:05:59+00:00",
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-12T03:38:35+00:00",
       "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-08-02T22:05:59+00:00",
@@ -5769,20 +5916,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T13:52:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T13:47:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #002 - PAPERHANDS - Season 1 - First Edition"
@@ -5798,7 +5931,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/1",
       "metadata_url": "ipfs://QmcTHRLb6hYdxZCayHgmWdJy4RcDgutPRvmoP81jBT4kKG/1",
-      "updated_at": "2026-08-08T08:36:30.309278",
+      "updated_at": "2026-08-09T08:38:28.541044",
       "traits": [
         {
           "trait_type": "Role",
@@ -5863,19 +5996,27 @@
       ],
       "listed": true,
       "listing": {
-        "amount_eth": 1e-08,
+        "amount_eth": 1.0869565217391303e-08,
         "currency": "ETH",
         "status": "ACTIVE",
-        "quantity": 25,
+        "quantity": 23,
         "total_eth": 2.5e-07
       },
       "owners": {
-        "holder_count": 19,
-        "circulating_copies": 21,
+        "holder_count": 22,
+        "circulating_copies": 24,
         "top_holders": [
           {
             "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
             "quantity": 3
+          },
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
+          {
+            "address": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
+            "quantity": 1
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -5884,20 +6025,20 @@
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1
-          },
-          {
-            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1
-          },
-          {
-            "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
-            "quantity": 1
           }
         ],
         "holders": [
           {
             "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
             "quantity": 3
+          },
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
+          },
+          {
+            "address": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
+            "quantity": 1
           },
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -5940,6 +6081,10 @@
             "quantity": 1
           },
           {
+            "address": "0x87aa9eec8d50a5438f7c2bc95da50ac4bbaeb7b4",
+            "quantity": 1
+          },
+          {
             "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
             "quantity": 1
           },
@@ -5975,15 +6120,52 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-08-02T22:05:11+00:00",
+          "at": "2026-08-08T23:44:23+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
+          "to": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-11T18:18:59+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-08T23:44:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-08-08T23:44:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-08T22:29:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x87aa9eec8d50a5438f7c2bc95da50ac4bbaeb7b4",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-08T21:42:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-08-02T22:05:11+00:00",
@@ -6033,41 +6215,6 @@
           "at": "2026-07-20T23:25:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T13:54:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T13:50:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T13:46:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T13:43:59+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T13:40:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
           "quantity": 1
         }
       ],
