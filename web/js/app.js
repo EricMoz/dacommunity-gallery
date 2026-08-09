@@ -1977,6 +1977,49 @@ function applyBrowseControlsFromState() {
   });
 }
 
+/**
+ * Browse filters (collection / search / listed / sort) are GLOBAL session state.
+ *
+ * CONTRACT — do not "clean up" filters when opening a wallet (product requirement):
+ * - Archive / collection search → open NFT → "View collector" MUST keep the same
+ *   filters in the portfolio so the grid stays scoped (e.g. Badges + a search term).
+ * - Manual wallet lookup also leaves filters alone unless the user clears them.
+ * - ONLY these paths may wipe or change filters:
+ *     • Clear filters / Clear all (clearCollectorFilters, resetBrowseView)
+ *     • Removing one filter chip (onBrowseFilterChipCleared — one key only)
+ *     • Escape-key cascade in archive (handleEscapeKey)
+ * - Clearing the collection chip reloads multi-collection data but keeps remaining chips.
+ * Engineers: if a new entry path into collector view appears, call
+ * captureBrowseFilterState() before side effects and reaffirmBrowseFilters() after —
+ * never default to resetFilters / activeCollection = "all" on enter.
+ */
+function captureBrowseFilterState() {
+  return {
+    collection: activeCollection || "all",
+    q: searchQuery || "",
+    filter: activeFilter || "all",
+    sort: sortKey || "token_desc",
+  };
+}
+
+function applyBrowseFilterState(state) {
+  if (!state) return;
+  activeCollection = state.collection || "all";
+  searchQuery = state.q || "";
+  activeFilter = state.filter || "all";
+  sortKey = state.sort || "token_desc";
+  applyBrowseControlsFromState();
+}
+
+/** Re-sync filter globals → form controls + URL chips after entering collector view. */
+function reaffirmBrowseFilters(preserved) {
+  if (preserved) applyBrowseFilterState(preserved);
+  else applyBrowseControlsFromState();
+  try {
+    syncBrowseParamsToUrl();
+  } catch (e) {}
+}
+
 async function applyNavState(st) {
   if (!st || st.kind !== NAV_KIND) {
     parseBrowseParamsFromUrl();
@@ -2016,11 +2059,21 @@ async function applyNavState(st) {
     closeDetail({ fromPopstate: true });
     var inputW = $("#wallet-input");
     if (inputW) inputW.value = st.wallet;
+    // History state filters already applied above — pass through so wallet open
+    // cannot clobber them (see captureBrowseFilterState CONTRACT).
+    var histFilters = {
+      collection: st.collection || "all",
+      q: st.q || "",
+      filter: st.filter || "all",
+      sort: st.sort || "token_desc",
+    };
     await renderWalletLookup(st.wallet, {
       updateUrl: false,
       noPush: true,
       scrollBehavior: "instant",
+      preserveFilters: histFilters,
     });
+    reaffirmBrowseFilters(histFilters);
     if (!activeCollection || activeCollection === "all") {
       expandCollectorHoldingsFromLoadedData();
       renderCollectorFocusUi();
@@ -2171,6 +2224,10 @@ function collectorTokenIdSet(entry) {
 function setGalleryCollectorView(entry, opts) {
   opts = opts || {};
   if (!entry) return;
+  // Never wipe browse filters here — see captureBrowseFilterState CONTRACT above.
+  if (opts.preserveFilters) {
+    applyBrowseFilterState(opts.preserveFilters);
+  }
   enrichCollectorRowNames(entry);
   var label =
     entry.ens_name ||
@@ -2201,15 +2258,31 @@ function setGalleryCollectorView(entry, opts) {
     ranks: collectorRankBadges(addr, 10, MAX_COLLECTOR_RANK_BADGES),
   };
   renderCollectorFocusUi();
+  // Keep filter chips / inputs visible & correct in portfolio browse strip
+  applyBrowseControlsFromState();
   refreshView();
-  // When portfolio opens from a single-collection page, expand to all loaded pieces
-  // once secondary catalogs / wallet index catch up (clear-filters still forces full reload).
+  // When portfolio opens under "All collections", expand holdings from loaded data.
+  // If a collection (or other) filter is active, do NOT force multi-collection expand —
+  // user came from a scoped archive search and expects that scope to stick until they
+  // clear the chip (onBrowseFilterChipCleared / clearCollectorFilters).
   if (!activeCollection || activeCollection === "all") {
     expandCollectorHoldingsFromLoadedData();
     renderCollectorFocusUi();
+    applyBrowseControlsFromState();
+    refreshView();
   }
   // Fill ranks for collections not in current filter (async catalogs / wallet index)
   refreshCollectorRankBadgesAsync();
+  // History entry must embed the same filters so Back/Forward restores them
+  var filterSnap = captureBrowseFilterState();
+  var navExtra = {
+    wallet: addr,
+    piece: null,
+    collection: filterSnap.collection,
+    q: filterSnap.q,
+    filter: filterSnap.filter,
+    sort: filterSnap.sort,
+  };
   if (!opts.noPush) {
     var cur = history.state;
     if (
@@ -2219,12 +2292,12 @@ function setGalleryCollectorView(entry, opts) {
       cur.wallet === addr &&
       !cur.piece
     ) {
-      replaceNavState("collector", { wallet: addr, piece: null });
+      replaceNavState("collector", navExtra);
     } else {
-      pushNavState("collector", { wallet: addr, piece: null });
+      pushNavState("collector", navExtra);
     }
   } else {
-    replaceNavState("collector", { wallet: addr, piece: null });
+    replaceNavState("collector", navExtra);
   }
   if (opts.scroll === false) return;
   scrollToCollectorTheaterTop({ behavior: opts.scrollBehavior || "smooth" });
@@ -2711,6 +2784,9 @@ function applyCollectorView(address) {
   if (!address) return;
   var key = address.toLowerCase();
   var meta = addressDisplayMeta(address);
+  // Snapshot filters BEFORE any UI side effects (NFT → wallet must keep them).
+  // See captureBrowseFilterState CONTRACT — do not clear filters on this path.
+  var preservedFilters = captureBrowseFilterState();
   // Keep detail history entry so browser Back can return to the NFT
   closeDetail({ fromPopstate: true });
   closeCollectorsModal();
@@ -2750,15 +2826,27 @@ function applyCollectorView(address) {
       username: fUser || m.username || null
     };
     // Pushes history: archive/collection search → wallet (Back restores prior step)
-    renderWalletSuccess(entry, { scrollBehavior: "smooth", noPush: false });
+    renderWalletSuccess(entry, {
+      scrollBehavior: "smooth",
+      noPush: false,
+      preserveFilters: preservedFilters,
+    });
+    reaffirmBrowseFilters(preservedFilters);
     return;
   }
   var entry = walletIndex && walletIndex.by_address && walletIndex.by_address[key];
   if (entry) {
-    renderWalletSuccess(entry, { scrollBehavior: "smooth", noPush: false });
+    renderWalletSuccess(entry, {
+      scrollBehavior: "smooth",
+      noPush: false,
+      preserveFilters: preservedFilters,
+    });
+    reaffirmBrowseFilters(preservedFilters);
     return;
   }
-  runWalletLookupFromAddress(address, meta.lookupValue);
+  runWalletLookupFromAddress(address, meta.lookupValue, {
+    preserveFilters: preservedFilters,
+  });
 }
 
 function walletShareUrl(address) {
@@ -2864,7 +2952,8 @@ function bindGalleryListClicks() {
   });
 }
 
-function runWalletLookupFromAddress(address, lookupValue) {
+function runWalletLookupFromAddress(address, lookupValue, opts) {
+  opts = opts || {};
   var input = $("#wallet-input");
   if (!input) return;
   var meta = addressDisplayMeta(address);
@@ -2875,7 +2964,11 @@ function runWalletLookupFromAddress(address, lookupValue) {
   // Always pass the canonical 0x address (from data-address in pills etc) to lookup
   // so synth path works directly without relying on ENS resolve (which can hang on external service).
   // The input keeps the nice ENS name for display.
-  renderWalletLookup(address, { updateUrl: true, scrollBehavior: "smooth" });
+  renderWalletLookup(address, {
+    updateUrl: true,
+    scrollBehavior: "smooth",
+    preserveFilters: opts.preserveFilters || captureBrowseFilterState(),
+  });
 }
 
 function pinWalletDeepLinkScroll() {
@@ -3575,6 +3668,7 @@ function renderWalletSuccess(entry, opts) {
   setGalleryCollectorView(entry, {
     scrollBehavior: opts && opts.scrollBehavior,
     noPush: !!(opts && opts.noPush),
+    preserveFilters: opts && opts.preserveFilters,
   });
 }
 
@@ -3947,11 +4041,17 @@ async function renderWalletLookup(identifier, opts) {
   }
 
   var entry = lookup.entry;
-  // History: setGalleryCollectorView pushes (or replaces when noPush / deep-link)
+  // History: setGalleryCollectorView pushes (or replaces when noPush / deep-link).
+  // Preserve archive filters unless this is a clean deep-link with no prior filters.
+  var preserved =
+    opts.preserveFilters ||
+    (opts.resetFilters ? null : captureBrowseFilterState());
   renderWalletSuccess(entry, {
     scrollBehavior: opts.scrollBehavior,
     noPush: opts.noPush || opts.updateUrl === false,
+    preserveFilters: preserved,
   });
+  if (preserved) reaffirmBrowseFilters(preserved);
 }
 
 function updateCollectorsButton() {
@@ -4674,13 +4774,20 @@ function getFilteredItems() {
       return !isAgencyRaritySeries(i);
     });
   }
-  // Collection dropdown scopes browse — but free-text search spans all loaded
-  // collections so typing "kix" / "agency" / "badge" still finds pieces.
+  // Collection dropdown + free-text search:
+  // - Archive (no portfolio): search spans all loaded collections while typing so
+  //   "kix" / "agency" / "badge" still finds pieces across the merge.
+  // - Collector wallet: ALWAYS honor the collection chip even when a search term is
+  //   also set. NFT → "View collector" must keep archive filters (collection AND q
+  //   AND listed/sort). Do not skip collection scope here — that looked like
+  //   "filters don't carry over" when opening a wallet from a filtered NFT.
   var qSearch = (searchQuery || "").trim();
-  if (activeCollection && activeCollection !== "all" && !qSearch) {
-    items = items.filter(function (i) {
-      return (i.collection_id || "dacommunity") === activeCollection;
-    });
+  if (activeCollection && activeCollection !== "all") {
+    if (galleryCollectorView || !qSearch) {
+      items = items.filter(function (i) {
+        return (i.collection_id || "dacommunity") === activeCollection;
+      });
+    }
   }
   if (activeFilter === "listed") items = items.filter(function (i) { return i.listed; });
   if (activeFilter === "not_listed") items = items.filter(function (i) { return !i.listed; });
