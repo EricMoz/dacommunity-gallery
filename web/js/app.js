@@ -546,7 +546,8 @@ function applyPieceFromUrl() {
   if (!slug) return;
   var item = findItemBySlug(slug);
   if (item) {
-    openDetail(item);
+    // Deep-link restore: replace, don't push a second history entry
+    openDetail(item, { noPush: true });
     return;
   }
   var search = $("#search");
@@ -1894,30 +1895,193 @@ function parseBrowseParamsFromUrl() {
 
 function syncBrowseParamsToUrl() {
   try {
-    var params = new URLSearchParams(window.location.search);
-    if (activeCollection && activeCollection !== "all") {
-      params.set("collection", activeCollection);
-    } else {
-      params.delete("collection");
+    // Keep wallet / piece history stack in sync (replace current entry)
+    replaceNavState(
+      activeDetailTokenId ? "detail" : galleryCollectorView ? "collector" : "browse"
+    );
+  } catch (e) {}
+}
+
+/* --- In-app history: browse ↔ collector wallet ↔ piece detail (browser Back works) --- */
+var NAV_KIND = "dacatGallery";
+var navSuppressPush = false;
+/** How many in-app pushState steps we took this session (so ← Back won't leave the site). */
+var navStackDepth = 0;
+
+function currentNavSnapshot(view) {
+  var v =
+    view ||
+    (activeDetailTokenId ? "detail" : galleryCollectorView ? "collector" : "browse");
+  return {
+    kind: NAV_KIND,
+    view: v,
+    wallet: galleryCollectorView ? galleryCollectorView.address : null,
+    piece: activeDetailTokenId || null,
+    collection: activeCollection || "all",
+    q: searchQuery || "",
+    filter: activeFilter || "all",
+    sort: sortKey || "token_desc",
+  };
+}
+
+function urlFromNavState(st) {
+  st = st || currentNavSnapshot();
+  var params = new URLSearchParams();
+  if (st.collection && st.collection !== "all") params.set("collection", st.collection);
+  if (st.q) params.set("q", st.q);
+  if (st.filter && st.filter !== "all") params.set("filter", st.filter);
+  if (st.sort && st.sort !== "token_desc") params.set("sort", st.sort);
+  if (st.wallet) params.set("wallet", String(st.wallet).toLowerCase());
+  if (st.piece) params.set("piece", st.piece);
+  var qs = params.toString();
+  var hash = st.wallet || st.view === "collector" ? "#wallet-panel" : "";
+  return window.location.pathname + (qs ? "?" + qs : "") + hash;
+}
+
+function pushNavState(view, extra) {
+  if (navSuppressPush) return;
+  try {
+    var st = Object.assign(currentNavSnapshot(view), extra || {});
+    history.pushState(st, "", urlFromNavState(st));
+    navStackDepth += 1;
+  } catch (e) {}
+}
+
+function replaceNavState(view, extra) {
+  try {
+    var st = Object.assign(currentNavSnapshot(view), extra || {});
+    history.replaceState(st, "", urlFromNavState(st));
+  } catch (e) {}
+}
+
+/** True when Back should step our SPA stack (not leave the site). */
+function canHistoryBackInApp() {
+  return (
+    navStackDepth > 0 &&
+    history.state &&
+    history.state.kind === NAV_KIND
+  );
+}
+
+function applyBrowseControlsFromState() {
+  var search = $("#search");
+  if (search) search.value = searchQuery || "";
+  var sort = $("#sort-select");
+  if (sort) sort.value = sortKey || "token_desc";
+  var colSel = $("#collection-select");
+  if (colSel) colSel.value = activeCollection || "all";
+  document.querySelectorAll(".filter").forEach(function (btn) {
+    var on = btn.dataset.filter === activeFilter;
+    btn.classList.toggle("active", on);
+    btn.setAttribute("aria-selected", on ? "true" : "false");
+  });
+}
+
+async function applyNavState(st) {
+  if (!st || st.kind !== NAV_KIND) {
+    parseBrowseParamsFromUrl();
+    applyBrowseControlsFromState();
+    if (parseWalletFromUrl()) {
+      await applyWalletFromUrl();
+    } else if (galleryCollectorView) {
+      exitCollectorView({ fromPopstate: true, scrollToHub: false, keepLookup: false });
     }
-    if (searchQuery) {
-      params.set("q", searchQuery);
-    } else {
-      params.delete("q");
+    applyPieceFromUrl();
+    refreshView();
+    return;
+  }
+
+  activeCollection = st.collection || "all";
+  searchQuery = st.q || "";
+  activeFilter = st.filter || "all";
+  sortKey = st.sort || "token_desc";
+  applyBrowseControlsFromState();
+
+  if (st.view === "browse") {
+    closeDetail({ fromPopstate: true });
+    if (galleryCollectorView) {
+      exitCollectorView({
+        fromPopstate: true,
+        scrollToHub: false,
+        keepLookup: false,
+      });
     }
-    if (activeFilter && activeFilter !== "all") {
-      params.set("filter", activeFilter);
-    } else {
-      params.delete("filter");
+    refreshView();
+    replaceNavState("browse");
+    return;
+  }
+
+  // Collector wallet (and optional piece detail on top of wallet)
+  if (st.wallet) {
+    closeDetail({ fromPopstate: true });
+    var inputW = $("#wallet-input");
+    if (inputW) inputW.value = st.wallet;
+    await renderWalletLookup(st.wallet, {
+      updateUrl: false,
+      noPush: true,
+      scrollBehavior: "instant",
+    });
+    if (!activeCollection || activeCollection === "all") {
+      expandCollectorHoldingsFromLoadedData();
+      renderCollectorFocusUi();
+      refreshView();
     }
-    if (sortKey && sortKey !== "token_desc") {
-      params.set("sort", sortKey);
-    } else {
-      params.delete("sort");
+    if (st.view === "detail" && st.piece) {
+      var itemW =
+        itemsById.get(st.piece) ||
+        findItemBySlug(st.piece) ||
+        null;
+      if (itemW) openDetail(itemW, { noPush: true });
     }
-    var qs = params.toString();
-    var newUrl = window.location.pathname + (qs ? "?" + qs : "") + window.location.hash;
-    history.replaceState(null, "", newUrl);
+    return;
+  }
+
+  // Piece detail opened from archive / collection search (no wallet in stack)
+  if (st.view === "detail" && st.piece) {
+    closeDetail({ fromPopstate: true });
+    if (galleryCollectorView) {
+      exitCollectorView({
+        fromPopstate: true,
+        scrollToHub: false,
+        keepLookup: false,
+      });
+    }
+    refreshView();
+    var itemA =
+      itemsById.get(st.piece) ||
+      findItemBySlug(st.piece) ||
+      null;
+    if (itemA) openDetail(itemA, { noPush: true });
+    return;
+  }
+
+  closeDetail({ fromPopstate: true });
+  if (galleryCollectorView) {
+    exitCollectorView({ fromPopstate: true, scrollToHub: false });
+  }
+  refreshView();
+}
+
+function bindGalleryPopState() {
+  if (bindGalleryPopState._bound) return;
+  bindGalleryPopState._bound = true;
+  window.addEventListener("popstate", function (e) {
+    if (navStackDepth > 0) navStackDepth -= 1;
+    navSuppressPush = true;
+    Promise.resolve(applyNavState(e.state))
+      .catch(function (err) {
+        console.warn("popstate nav failed", err);
+      })
+      .then(function () {
+        navSuppressPush = false;
+      });
+  });
+  try {
+    if (!history.state || history.state.kind !== NAV_KIND) {
+      replaceNavState(
+        parseWalletFromUrl() ? "collector" : activeDetailTokenId ? "detail" : "browse"
+      );
+    }
   } catch (e) {}
 }
 
@@ -1957,25 +2121,21 @@ function dacommunityBaseUrl() {
   return new URL("/dacommunity/", window.location.origin);
 }
 
-function syncWalletShareUrl(address) {
+function syncWalletShareUrl(address, opts) {
+  opts = opts || {};
   if (!address || !/^0x[a-fA-F0-9]{40}$/i.test(address)) return;
-  var onDacommunity = window.location.pathname.indexOf("/dacommunity") >= 0;
-  var url = onDacommunity ? new URL(window.location.href) : dacommunityBaseUrl();
-  url.searchParams.set("wallet", address.toLowerCase());
-  url.searchParams.delete("ens");
-  url.hash = "wallet-panel";
   if (bindCollectorHubNav._bound) bindCollectorHubNav._suppressHash = true;
-  history.replaceState(null, "", url.pathname + url.search + url.hash);
+  if (opts.push) {
+    pushNavState("collector", { wallet: address.toLowerCase(), piece: null });
+  } else {
+    replaceNavState("collector", { wallet: address.toLowerCase(), piece: null });
+  }
   if (bindCollectorHubNav._bound) bindCollectorHubNav._suppressHash = false;
 }
 
 function clearWalletShareUrl() {
-  var params = new URLSearchParams(window.location.search);
-  params.delete("wallet");
-  params.delete("ens");
-  var q = params.toString();
-  var path = window.location.pathname + (q ? "?" + q : "") + window.location.hash;
-  history.replaceState(null, "", path);
+  // Drop wallet from URL; keep browse filters on the current history entry
+  replaceNavState("browse", { wallet: null, piece: null });
 }
 
 /** Empty lookup field, hide result card, drop ?wallet= from URL. */
@@ -2050,6 +2210,22 @@ function setGalleryCollectorView(entry, opts) {
   }
   // Fill ranks for collections not in current filter (async catalogs / wallet index)
   refreshCollectorRankBadgesAsync();
+  if (!opts.noPush) {
+    var cur = history.state;
+    if (
+      cur &&
+      cur.kind === NAV_KIND &&
+      cur.view === "collector" &&
+      cur.wallet === addr &&
+      !cur.piece
+    ) {
+      replaceNavState("collector", { wallet: addr, piece: null });
+    } else {
+      pushNavState("collector", { wallet: addr, piece: null });
+    }
+  } else {
+    replaceNavState("collector", { wallet: addr, piece: null });
+  }
   if (opts.scroll === false) return;
   scrollToCollectorTheaterTop({ behavior: opts.scrollBehavior || "smooth" });
 }
@@ -2122,24 +2298,32 @@ function scrollToCollectorTheaterTop(opts) {
   });
 }
 
-/** Reset search/filter/sort inside an active collector view (stay in theater mode).
- *  Always reloads "All collections" data so holdings outside the prior filter reappear.
+/**
+ * Load multi-collection catalog for portfolio so every NFT in the wallet can show.
+ * Same data path as Clear filters; resetFilters wipes search/listed/sort chips.
  */
-function clearCollectorFilters() {
+async function reloadPortfolioBrowseData(opts) {
+  opts = opts || {};
   if (!galleryCollectorView) return;
-  activeFilter = "all";
-  searchQuery = "";
-  sortKey = "token_desc";
-  var search = $("#search");
-  var sort = $("#sort-select");
   var colSel = $("#collection-select");
-  if (search) search.value = "";
-  if (sort) sort.value = "token_desc";
-  document.querySelectorAll(".filter").forEach(function (btn) {
-    var on = btn.dataset.filter === "all";
-    btn.classList.toggle("active", on);
-    btn.setAttribute("aria-selected", on ? "true" : "false");
-  });
+  if (opts.resetFilters) {
+    activeFilter = "all";
+    searchQuery = "";
+    sortKey = "token_desc";
+    var search = $("#search");
+    var sort = $("#sort-select");
+    if (search) search.value = "";
+    if (sort) sort.value = "token_desc";
+    document.querySelectorAll(".filter").forEach(function (btn) {
+      var on = btn.dataset.filter === "all";
+      btn.classList.toggle("active", on);
+      btn.setAttribute("aria-selected", on ? "true" : "false");
+    });
+  }
+  // Expand scope to all collections so holdings outside a single collection reappear
+  activeCollection = "all";
+  if (colSel) colSel.value = "all";
+  applyBrowseControlsFromState();
 
   function afterAllDataReady() {
     expandCollectorHoldingsFromLoadedData();
@@ -2167,65 +2351,65 @@ function clearCollectorFilters() {
     applyCollectionUI();
   }
 
-  // Already on all: still re-merge secondaries so agency/bigkix pieces aren't missing
-  // after a single-collection cold load that never merged.
-  if (!activeCollection || activeCollection === "all") {
-    if (colSel) colSel.value = "all";
-    var loadElAll = $("#load-state");
-    if (loadElAll) loadElAll.hidden = false;
-    (async function () {
-      try {
-        await loadAllCollectionsForPortfolio();
-        afterAllDataReady();
-        if (dataSource === "catalog") refreshFullDataInBackground();
-        loadWalletIndex()
-          .then(function () {
-            expandCollectorHoldingsFromLoadedData();
-            renderCollectorFocusUi();
-            refreshView();
-          })
-          .catch(function () {
-            afterAllDataReady();
-          });
-      } catch (err) {
-        console.error("clearCollectorFilters (all) failed", err);
-        afterAllDataReady();
-      } finally {
-        if (loadElAll) loadElAll.hidden = true;
-      }
-    })();
-    return;
-  }
-
-  // Need full multi-collection catalog so portfolio is not stuck on one collection
-  activeCollection = "all";
-  if (colSel) colSel.value = "all";
-  syncBrowseParamsToUrl();
   var loadEl = $("#load-state");
   if (loadEl) loadEl.hidden = false;
-  (async function () {
+  try {
+    await loadAllCollectionsForPortfolio();
+    afterAllDataReady();
+    if (dataSource === "catalog") refreshFullDataInBackground();
     try {
-      await loadAllCollectionsForPortfolio();
-      afterAllDataReady();
-      if (dataSource === "catalog") {
-        refreshFullDataInBackground();
-      }
-      loadWalletIndex()
-        .then(function () {
-          expandCollectorHoldingsFromLoadedData();
-          renderCollectorFocusUi();
-          refreshView();
-        })
-        .catch(function () {
-          afterAllDataReady();
-        });
-    } catch (err) {
-      console.error("clearCollectorFilters failed", err);
-      afterAllDataReady();
-    } finally {
-      if (loadEl) loadEl.hidden = true;
+      await loadWalletIndex();
+      expandCollectorHoldingsFromLoadedData();
+      renderCollectorFocusUi();
+      refreshView();
+    } catch (e) {}
+  } catch (err) {
+    console.error("reloadPortfolioBrowseData failed", err);
+    afterAllDataReady();
+  } finally {
+    if (loadEl) loadEl.hidden = true;
+  }
+}
+
+/**
+ * After removing one filter chip: refresh like Clear filters when needed,
+ * but keep any remaining chips (search + collection + listed, etc.).
+ */
+function onBrowseFilterChipCleared(clearedKey) {
+  if (galleryCollectorView) {
+    if (clearedKey === "collection") {
+      // Leaving a single-collection scope → load all collections so wallet shows every NFT
+      // while keeping search / listed / sort chips.
+      reloadPortfolioBrowseData({ resetFilters: false });
+      return;
     }
-  })();
+    // search / listed / sort only: re-expand holdings then re-apply remaining filters
+    expandCollectorHoldingsFromLoadedData();
+    renderCollectorFocusUi();
+    refreshView();
+    syncBrowseParamsToUrl();
+    return;
+  }
+  // Archive (non-collector)
+  if (clearedKey === "collection") {
+    var colSel = $("#collection-select");
+    if (colSel) {
+      colSel.value = "all";
+      colSel.dispatchEvent(new Event("change"));
+    } else {
+      refreshView();
+      syncBrowseParamsToUrl();
+    }
+    return;
+  }
+  refreshView();
+  syncBrowseParamsToUrl();
+}
+
+/** Reset all search/filter/sort inside collector view; reload all collections so full wallet shows. */
+function clearCollectorFilters() {
+  if (!galleryCollectorView) return;
+  reloadPortfolioBrowseData({ resetFilters: true });
 }
 
 function clearGalleryCollectorView(opts) {
@@ -2248,13 +2432,30 @@ function clearGalleryCollectorView(opts) {
 function exitCollectorView(opts) {
   opts = opts || {};
   if (!galleryCollectorView) return;
+  // Prefer browser history when we pushed a collector/detail step this session
+  // (collection search → wallet → NFT → Back steps correctly; won't leave the site).
+  if (
+    !opts.fromPopstate &&
+    !opts.forceExit &&
+    canHistoryBackInApp() &&
+    (history.state.view === "collector" || history.state.view === "detail")
+  ) {
+    try {
+      history.back();
+      return;
+    } catch (e) {}
+  }
   var keepLookup = opts.keepLookup === true;
+  closeDetail({ fromPopstate: true });
   clearGalleryCollectorView({ clearResult: keepLookup ? false : true });
   if (!keepLookup) {
     resetWalletLookupHub();
   } else if (opts.clearInput) {
     var input = $("#wallet-input");
     if (input) input.value = "";
+  }
+  if (!opts.fromPopstate) {
+    replaceNavState("browse", { wallet: null, piece: null });
   }
   if (opts.scrollToHub !== false) {
     scrollToCollectorHub({
@@ -2510,7 +2711,8 @@ function applyCollectorView(address) {
   if (!address) return;
   var key = address.toLowerCase();
   var meta = addressDisplayMeta(address);
-  closeDetail();
+  // Keep detail history entry so browser Back can return to the NFT
+  closeDetail({ fromPopstate: true });
   closeCollectorsModal();
   var input = $("#wallet-input");
   if (input) input.value = meta.lookupValue || meta.address;
@@ -2547,14 +2749,13 @@ function applyCollectorView(address) {
       ens_name: fromList || fEns || m.ens_name || null,
       username: fUser || m.username || null
     };
-    renderWalletSuccess(entry, { scrollBehavior: "smooth" });
-    syncWalletShareUrl(key);
+    // Pushes history: archive/collection search → wallet (Back restores prior step)
+    renderWalletSuccess(entry, { scrollBehavior: "smooth", noPush: false });
     return;
   }
   var entry = walletIndex && walletIndex.by_address && walletIndex.by_address[key];
   if (entry) {
-    renderWalletSuccess(entry, { scrollBehavior: "smooth" });
-    syncWalletShareUrl(entry.address);
+    renderWalletSuccess(entry, { scrollBehavior: "smooth", noPush: false });
     return;
   }
   runWalletLookupFromAddress(address, meta.lookupValue);
@@ -2584,11 +2785,18 @@ function scrollToCollectorHub(opts) {
   function runScroll() {
     if (opts.updateHash !== false) {
       bindCollectorHubNav._suppressHash = true;
-      history.replaceState(
-        null,
-        "",
-        window.location.pathname + window.location.search + "#wallet-panel"
-      );
+      // Keep NAV_KIND state; force #wallet-panel for the lookup hub scroll target
+      try {
+        var st = Object.assign(
+          currentNavSnapshot(galleryCollectorView ? "collector" : "browse"),
+          galleryCollectorView
+            ? { wallet: galleryCollectorView.address, piece: null }
+            : { wallet: null, piece: null }
+        );
+        var href = urlFromNavState(st);
+        if (href.indexOf("#") < 0) href += "#wallet-panel";
+        history.replaceState(st, "", href);
+      } catch (e) {}
       bindCollectorHubNav._suppressHash = false;
     }
     scrollToElementBelowHeader(lookup, opts);
@@ -2661,7 +2869,8 @@ function runWalletLookupFromAddress(address, lookupValue) {
   if (!input) return;
   var meta = addressDisplayMeta(address);
   input.value = lookupValue || meta.lookupValue || meta.address;
-  closeDetail();
+  // Keep prior detail/browse history entry so Back can return to it
+  closeDetail({ fromPopstate: true });
   closeCollectorsModal();
   // Always pass the canonical 0x address (from data-address in pills etc) to lookup
   // so synth path works directly without relying on ENS resolve (which can hang on external service).
@@ -2680,7 +2889,12 @@ async function applyWalletFromUrl() {
   pinWalletDeepLinkScroll();
   var input = $("#wallet-input");
   if (input) input.value = q;
-  await renderWalletLookup(q, { updateUrl: true, scrollBehavior: "instant" });
+  // Deep-link: replace current history entry (don't add a dead Back step off-site)
+  await renderWalletLookup(q, {
+    updateUrl: false,
+    noPush: true,
+    scrollBehavior: "instant",
+  });
   pinWalletDeepLinkScroll();
   requestAnimationFrame(function () {
     requestAnimationFrame(pinWalletDeepLinkScroll);
@@ -3358,7 +3572,10 @@ function renderWalletSuccess(entry, opts) {
   bindCollectorResultActions(entry);
   var hub = resultEl.closest && resultEl.closest(".collector-hub");
   if (hub) hub.classList.add("has-result");
-  setGalleryCollectorView(entry, { scrollBehavior: opts && opts.scrollBehavior });
+  setGalleryCollectorView(entry, {
+    scrollBehavior: opts && opts.scrollBehavior,
+    noPush: !!(opts && opts.noPush),
+  });
 }
 
 function clearWalletResultHighlight() {
@@ -3730,8 +3947,11 @@ async function renderWalletLookup(identifier, opts) {
   }
 
   var entry = lookup.entry;
-  renderWalletSuccess(entry, opts);
-  if (opts.updateUrl !== false) syncWalletShareUrl(entry.address);
+  // History: setGalleryCollectorView pushes (or replaces when noPush / deep-link)
+  renderWalletSuccess(entry, {
+    scrollBehavior: opts.scrollBehavior,
+    noPush: opts.noPush || opts.updateUrl === false,
+  });
 }
 
 function updateCollectorsButton() {
@@ -4643,7 +4863,9 @@ function renderBrowseMeta(filtered, total) {
       var k = btn.getAttribute("data-clear");
       if (k === "collector") {
         exitCollectorView();
-      } else if (k === "search") {
+        return;
+      }
+      if (k === "search") {
         searchQuery = "";
         var inp = $("#search");
         if (inp) inp.value = "";
@@ -4661,13 +4883,12 @@ function renderBrowseMeta(filtered, total) {
       } else if (k === "collection") {
         activeCollection = "all";
         var colSel = $("#collection-select");
-        if (colSel) {
-          colSel.value = "all";
-          // dispatch to trigger load of merged data for all
-          colSel.dispatchEvent(new Event('change'));
-        }
+        if (colSel) colSel.value = "all";
+        // Collector: force full multi-collection reload (like Clear filters) while keeping
+        // remaining chips (search / listed / sort). Archive: fall through to onBrowseFilterChipCleared.
       }
-      refreshView();
+      // Collector wallet: expand holdings + re-apply remaining filters (not a no-op refresh)
+      onBrowseFilterChipCleared(k);
     });
   });
 }
@@ -5037,10 +5258,27 @@ function refreshDetailPanel(item) {
   renderDetailOwners(item);
 }
 
-function openDetail(item) {
+function openDetail(item, opts) {
+  opts = opts || {};
   if (!item) return;
   closeCollectorsModal();
   activeDetailTokenId = getItemKey(item);
+  if (!opts.noPush) {
+    var curD = history.state;
+    // Same piece already on stack → replace; otherwise push so Back returns here
+    if (
+      curD &&
+      curD.kind === NAV_KIND &&
+      curD.view === "detail" &&
+      curD.piece === activeDetailTokenId
+    ) {
+      replaceNavState("detail", { piece: activeDetailTokenId });
+    } else {
+      pushNavState("detail", { piece: activeDetailTokenId });
+    }
+  } else {
+    replaceNavState("detail", { piece: activeDetailTokenId });
+  }
   var panel = $("#detail-panel");
   if (!panel) return;
   fillMediaSlot($("#detail-media-slot"), item, { autoplay: true, controls: true });
@@ -5134,15 +5372,19 @@ function openDetail(item) {
   document.body.style.overflow = "hidden";
 }
 
-function closeDetail() {
+function closeDetail(opts) {
+  opts = opts || {};
   var panel = $("#detail-panel");
+  if (!panel) return;
+  var wasOpen = panel.classList.contains("open") || !!activeDetailTokenId;
   panel.classList.remove("open");
   panel.setAttribute("aria-hidden", "true");
   activeDetailTokenId = null;
   if (!$("#collectors-modal").classList.contains("open")) {
     document.body.style.overflow = "";
   }
-  $("#collector-explore").hidden = true;
+  var explore = $("#collector-explore");
+  if (explore) explore.hidden = true;
   setActivityDisclosureOpen(false);
   // Stop any video playing in the detail slot to prevent background audio after close
   var detailSlot = $("#detail-media-slot");
@@ -5152,6 +5394,22 @@ function closeDetail() {
       vid.pause();
       vid.currentTime = 0;
     }
+  }
+  // Browser Back from detail → collector/browse step; in-app close uses history when possible
+  if (
+    wasOpen &&
+    !opts.fromPopstate &&
+    canHistoryBackInApp() &&
+    history.state &&
+    history.state.view === "detail"
+  ) {
+    try {
+      history.back();
+      return;
+    } catch (e) {}
+  }
+  if (!opts.fromPopstate) {
+    replaceNavState(galleryCollectorView ? "collector" : "browse", { piece: null });
   }
 }
 
@@ -5533,6 +5791,7 @@ function bindHeaderHeightSync() {
 /* Main entry (called at bottom). Orchestrates data loads + early URL param parsing (for ?collection= etc). */
 async function init() {
   bindHeaderHeightSync();
+  bindGalleryPopState();
 
   initDataUrls();
 
