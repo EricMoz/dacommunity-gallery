@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09T08:50:02.122985+00:00",
+  "generated_at": "2026-08-10T09:27:47.886017+00:00",
   "source": "badges_catalog",
   "collection": {
     "slug": "badges",
@@ -3365,13 +3365,17 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 14,
-        "circulating_copies": 14,
+        "holder_count": 15,
+        "circulating_copies": 15,
         "top_holders": [
           {
             "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
             "quantity": 1,
             "ens_name": "jeffadams.eth"
+          },
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
           },
           {
             "address": "0xe597a25c77317b361636270251dc53d36491a11d",
@@ -3386,11 +3390,6 @@
           {
             "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
             "quantity": 1
-          },
-          {
-            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1,
-            "ens_name": "lostthegame.eth"
           }
         ],
         "holders": [
@@ -3398,6 +3397,10 @@
             "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
             "quantity": 1,
             "ens_name": "jeffadams.eth"
+          },
+          {
+            "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+            "quantity": 1
           },
           {
             "address": "0xe597a25c77317b361636270251dc53d36491a11d",
