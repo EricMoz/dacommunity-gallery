@@ -166,7 +166,7 @@
           </div>
           <div class="browse-head-actions">
             <a class="browse-collector-jump" href="#wallet-panel">Find your daCATs</a>
-            <button type="button" id="archive-share-btn" class="btn btn-outline btn-sm archive-share-btn" aria-label="Share current filters and collection">Share</button>
+            <button type="button" id="archive-share-btn" class="btn btn-outline btn-sm archive-share-btn" aria-label="Share this search view with current filters">Share view</button>
           </div>
         </div>
       </header>
@@ -258,7 +258,7 @@
       <div class="share-modal-card">
         <button type="button" class="share-modal-close" id="share-modal-close" aria-label="Close share modal">×</button>
         <h3 id="share-modal-title" class="share-modal-title">Share this view</h3>
-        <p class="share-modal-lead">Link includes current collection, filters, and sort.</p>
+        <p class="share-modal-lead" id="share-modal-lead">Link includes current collection, filters, and sort.</p>
         <button type="button" class="btn btn-accent share-copy-btn" id="share-copy-btn">Copy link</button>
         <div class="share-socials">
           <button type="button" class="share-social-btn" data-platform="x" aria-label="Share on X">𝕏 X</button>
@@ -310,7 +310,10 @@
               <div class="wallet-holdings" id="collector-explore-holdings"></div>
             </div>
           </div>
-          <a class="btn btn-accent" id="detail-opensea" href="#" target="_blank" rel="noopener">View on OpenSea</a>
+          <div class="detail-actions" id="detail-actions">
+            <a class="btn btn-accent detail-opensea" id="detail-opensea" href="#" target="_blank" rel="noopener">View on OpenSea</a>
+            <button type="button" class="btn btn-outline detail-share-btn" id="detail-share" aria-label="Share this NFT">Share</button>
+          </div>
         </div>
       </div>
     </article>

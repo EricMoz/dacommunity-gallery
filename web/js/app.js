@@ -529,16 +529,40 @@ function pieceSlug(item) {
 
 function findItemBySlug(slug) {
   if (!slug || !galleryData) return null;
-  var q = slug.trim().toLowerCase();
+  var q = String(slug).trim();
+  var qLow = q.toLowerCase();
+  // Share links use getItemKey (e.g. badges-…, dagato-agency-v1-12)
+  if (typeof itemsById !== "undefined" && itemsById) {
+    if (itemsById.has(q)) return itemsById.get(q);
+    if (itemsById.has(qLow)) return itemsById.get(qLow);
+  }
   for (var i = 0; i < galleryData.items.length; i++) {
     var it = galleryData.items[i];
-    if (pieceSlug(it) === q || String(it.token_id) === q) return it;
+    var key = getItemKey(it);
+    if (key === q || String(key).toLowerCase() === qLow) return it;
+    if (pieceSlug(it) === qLow || String(it.token_id) === q || String(it.token_id) === qLow) {
+      return it;
+    }
   }
   return null;
 }
 
 function parsePieceFromUrl() {
   return (new URLSearchParams(window.location.search).get("piece") || "").trim();
+}
+
+/**
+ * Absolute share URL for one NFT. Opens detail on load via ?piece= + optional collection
+ * so secondary catalogs (badges / BIG KIX / Agency) load the right data set.
+ */
+function pieceShareUrl(item) {
+  if (!item) return dacommunityBaseUrl().toString();
+  var url = dacommunityBaseUrl();
+  url.search = "";
+  var cid = item.collection_id || "dacommunity";
+  if (cid && cid !== "all") url.searchParams.set("collection", cid);
+  url.searchParams.set("piece", getItemKey(item));
+  return url.toString();
 }
 
 function applyPieceFromUrl() {
@@ -550,11 +574,14 @@ function applyPieceFromUrl() {
     openDetail(item, { noPush: true });
     return;
   }
-  var search = $("#search");
-  if (search) {
-    search.value = slug;
-    searchQuery = slug;
-    refreshView();
+  // Retry once items index is warm (secondary catalogs / wallet merge)
+  if (!applyPieceFromUrl._retried) {
+    applyPieceFromUrl._retried = true;
+    window.setTimeout(function () {
+      applyPieceFromUrl._retried = false;
+      var again = findItemBySlug(slug);
+      if (again) openDetail(again, { noPush: true });
+    }, 600);
   }
 }
 
@@ -3582,27 +3609,60 @@ function buildCurrentViewUrl() {
   return window.location.href;
 }
 
-function showShareModal(forcedUrl) {
+/**
+ * @param {string} [forcedUrl]
+ * @param {{ title?: string, lead?: string, shareText?: string, toast?: string }} [opts]
+ */
+function showShareModal(forcedUrl, opts) {
+  opts = opts || {};
   var modal = $("#share-modal");
   if (!modal) return;
   var url = forcedUrl || buildCurrentViewUrl();
+  showShareModal._lastUrl = url;
+  showShareModal._shareText =
+    opts.shareText ||
+    (url.indexOf("piece=") >= 0
+      ? "Check out this daCAT NFT"
+      : url.indexOf("wallet=") >= 0
+        ? "Check out these daCATs"
+        : "daCAT archive view — filters and collection included");
+  showShareModal._toast =
+    opts.toast ||
+    (url.indexOf("piece=") >= 0
+      ? "NFT link copied"
+      : url.indexOf("wallet=") >= 0
+        ? url.indexOf("collection=") >= 0 || url.indexOf("q=") >= 0
+          ? "Collector link copied (includes filters)"
+          : "Collector link copied"
+        : "Link copied (includes collection + filters)");
+
+  var titleEl = $("#share-modal-title");
+  var leadEl = $("#share-modal-lead") || modal.querySelector(".share-modal-lead");
+  if (titleEl) {
+    titleEl.textContent =
+      opts.title ||
+      (url.indexOf("piece=") >= 0
+        ? "Share this NFT"
+        : url.indexOf("wallet=") >= 0
+          ? "Share this collector"
+          : "Share this view");
+  }
+  if (leadEl) {
+    leadEl.textContent =
+      opts.lead ||
+      (url.indexOf("piece=") >= 0
+        ? "Anyone with the link opens this piece in the gallery."
+        : url.indexOf("wallet=") >= 0
+          ? "Link opens collector portfolio (keeps your filters if set)."
+          : "Link includes current collection, search, filters, and sort.");
+  }
+
   var copyBtn = $("#share-copy-btn");
   if (copyBtn) {
     copyBtn.onclick = function () {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(url).then(function () {
-          var hasWallet = url.indexOf("wallet=") >= 0;
-          var hasFilter =
-            url.indexOf("collection=") >= 0 ||
-            url.indexOf("q=") >= 0 ||
-            url.indexOf("filter=") >= 0 ||
-            url.indexOf("sort=") >= 0;
-          var msg = hasWallet
-            ? hasFilter
-              ? "Collector link copied (includes filters)"
-              : "Collector link copied"
-            : "Link copied (includes collection + filters)";
-          showCopyToast(msg);
+          showCopyToast(showShareModal._toast || "Link copied");
         }).catch(function () {
           showCopyToast("Copy: " + url);
         });
@@ -3634,7 +3694,9 @@ function closeShareModal() {
 }
 
 function shareToSocial(platform, url) {
-  var text = encodeURIComponent("daCAT archive view: filters and collection included");
+  var text = encodeURIComponent(
+    showShareModal._shareText || "Check this out on daCommunity Gallery"
+  );
   var u = encodeURIComponent(url);
   var href = "";
   if (platform === "x") {
@@ -3656,6 +3718,25 @@ function shareToSocial(platform, url) {
     window.open(href, "_blank", "noopener");
   }
   closeShareModal();
+}
+
+/** Share one NFT (detail drawer) — deep link to ?piece= with collection context. */
+function shareDetailPiece(item) {
+  if (!item) {
+    // Fallback: open piece from current detail id
+    item =
+      (activeDetailTokenId && itemsById.get(activeDetailTokenId)) ||
+      findItemBySlug(activeDetailTokenId) ||
+      null;
+  }
+  if (!item) return;
+  var title = itemTitle(item) || "daCAT NFT";
+  showShareModal(pieceShareUrl(item), {
+    title: "Share this NFT",
+    lead: "Anyone with the link opens “" + title + "” in the gallery.",
+    shareText: "Check out this daCAT: " + title,
+    toast: "NFT link copied",
+  });
 }
 
 function bindCollectorResultActions(entry) {
@@ -5560,7 +5641,24 @@ function openDetail(item, opts) {
     mintEl.textContent = "";
   }
   renderDetailDescription(item);
-  $("#detail-opensea").href = item.opensea_url || "#";
+  var osBtn = $("#detail-opensea");
+  if (osBtn) {
+    if (item.opensea_url) {
+      osBtn.href = item.opensea_url;
+      osBtn.removeAttribute("aria-disabled");
+      osBtn.classList.remove("is-disabled");
+    } else {
+      osBtn.href = "#";
+      osBtn.setAttribute("aria-disabled", "true");
+      osBtn.classList.add("is-disabled");
+    }
+  }
+  // Share this piece (bound once in bindUi; always available for every NFT)
+  var detailShare = $("#detail-share");
+  if (detailShare) {
+    detailShare.hidden = false;
+    detailShare.dataset.pieceKey = getItemKey(item);
+  }
 
   // Optional film hub link (e.g. Collector Cat badge ↔ teaser trailer)
   var relatedFilmEl = $("#detail-related-film");
@@ -5948,13 +6046,21 @@ function bindUi() {
   bindCollectorHubNav();
   bindGalleryListClicks();
 
-  // Archive view share (includes collection + current filters/sort/search)
+  // Archive / portfolio "Share view" — collection + filters (+ wallet when in collector mode)
   var archiveShare = $("#archive-share-btn");
   if (archiveShare && !archiveShare.dataset.bound) {
     archiveShare.dataset.bound = "1";
     archiveShare.addEventListener("click", function () {
-      // Use the standard share modal for archive view (same as main gallery)
-      showShareModal();
+      if (galleryCollectorView && galleryCollectorView.address) {
+        shareCollectorCollection(galleryCollectorView.address);
+        return;
+      }
+      showShareModal(buildCurrentViewUrl(), {
+        title: "Share this view",
+        lead: "Link includes current collection, search, filters, and sort.",
+        shareText: "daCAT archive view — filters and collection included",
+        toast: "Link copied (includes collection + filters)",
+      });
     });
   }
   renderCollectorFocusUi();
@@ -5975,6 +6081,20 @@ function bindUi() {
   });
   $("#detail-close").addEventListener("click", closeDetail);
   $("#detail-backdrop").addEventListener("click", closeDetail);
+  // Every NFT detail: Share beside OpenSea
+  var detailShareBtn = $("#detail-share");
+  if (detailShareBtn && !detailShareBtn.dataset.bound) {
+    detailShareBtn.dataset.bound = "1";
+    detailShareBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      var key = detailShareBtn.dataset.pieceKey || activeDetailTokenId;
+      var item =
+        (key && itemsById.get(key)) ||
+        findItemBySlug(key) ||
+        null;
+      shareDetailPiece(item);
+    });
+  }
   var activityToggle = $("#detail-activity-toggle");
   if (activityToggle && !activityToggle.dataset.bound) {
     activityToggle.dataset.bound = "1";

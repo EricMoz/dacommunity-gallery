@@ -2294,6 +2294,48 @@ button.stat:focus-visible {
 
 .detail-body { padding: 1.25rem 1.5rem 2rem; }
 
+/* Detail footer actions: OpenSea (primary) + Share (secondary), wrap cleanly on narrow screens */
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.55rem;
+  margin-top: 1.15rem;
+  width: 100%;
+}
+.detail-actions #detail-opensea,
+.detail-actions .detail-opensea {
+  flex: 1 1 11rem;
+  min-width: min(100%, 10rem);
+  text-align: center;
+  justify-content: center;
+}
+.detail-actions #detail-share,
+.detail-actions .detail-share-btn {
+  flex: 0 1 auto;
+  min-width: 5.25rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+.detail-actions #detail-opensea.is-disabled,
+.detail-actions #detail-opensea[aria-disabled="true"] {
+  opacity: 0.55;
+  pointer-events: none;
+}
+@media (max-width: 380px) {
+  .detail-actions #detail-opensea,
+  .detail-actions .detail-opensea {
+    flex: 1 1 100%;
+  }
+  .detail-actions #detail-share,
+  .detail-actions .detail-share-btn {
+    flex: 1 1 100%;
+  }
+}
+
 .detail-token {
   font-size: 0.75rem;
   color: var(--text-muted);
@@ -7216,6 +7258,13 @@ body.has-collector-view .detail-related-film:hover {
   font-size: 0.78rem;
   padding: 0.25rem 0.55rem;
   min-height: 32px;
+  white-space: nowrap;
+}
+/* Keep Share view visible in portfolio browse strip too */
+body.has-collector-view .archive-share-btn {
+  border-color: var(--black);
+  color: var(--black);
+  background: #fff;
 }
 
 .browse-collector-jump {
@@ -8694,6 +8743,17 @@ body.has-collector-view #detail-opensea {
   background: var(--yellow);
   color: var(--black);
   border-color: var(--black);
+}
+body.has-collector-view #detail-share,
+body.has-collector-view .detail-share-btn {
+  border-color: var(--black);
+  color: var(--black);
+  background: #fff;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.85);
+}
+body.has-collector-view #detail-share:hover,
+body.has-collector-view .detail-share-btn:hover {
+  background: var(--yellow);
 }
 
 .browse-controls.is-collector-filtered {
