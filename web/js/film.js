@@ -1144,21 +1144,26 @@
     var existing = document.getElementById(id);
     if (existing) existing.remove();
 
+    // Dark cinema sheet: Copy link + platform names only (matches gallery share UX)
     var modal = document.createElement("div");
     modal.id = id;
     modal.className = "social-share-modal";
+    modal.setAttribute("role", "dialog");
+    modal.setAttribute("aria-modal", "true");
+    modal.setAttribute("aria-label", "Share");
     modal.innerHTML =
       '<div class="social-share-backdrop"></div>' +
       '<div class="social-share-card">' +
-        '<button class="social-close" aria-label="Close">×</button>' +
-        '<h3>Share</h3>' +
-        '<div class="social-buttons">' +
-          '<a class="social-btn" data-type="x" target="_blank" rel="noopener">𝕏 Post</a>' +
-          '<a class="social-btn" data-type="tg" target="_blank" rel="noopener">Telegram</a>' +
-          '<a class="social-btn" data-type="fb" target="_blank" rel="noopener">Facebook</a>' +
-          '<button class="social-btn copy" data-type="copy">📋 Copy link</button>' +
-        '</div>' +
-      '</div>';
+        '<button type="button" class="social-close" aria-label="Close">×</button>' +
+        '<button type="button" class="share-copy-btn social-btn copy" data-type="copy">Copy link</button>' +
+        '<p class="share-socials-label">Or share via</p>' +
+        '<div class="share-socials social-buttons">' +
+          '<a class="share-social-btn social-btn" data-type="x" target="_blank" rel="noopener">X</a>' +
+          '<a class="share-social-btn social-btn" data-type="tg" target="_blank" rel="noopener">Telegram</a>' +
+          '<a class="share-social-btn social-btn" data-type="fb" target="_blank" rel="noopener">Facebook</a>' +
+          '<button type="button" class="share-social-btn social-btn" data-type="ig">Instagram</button>' +
+        "</div>" +
+      "</div>";
 
     document.body.appendChild(modal);
 
@@ -1178,11 +1183,30 @@
     var fb = modal.querySelector('[data-type="fb"]');
     fb.href = "https://www.facebook.com/sharer/sharer.php?u=" + encodedUrl;
 
+    var ig = modal.querySelector('[data-type="ig"]');
+    if (ig) {
+      ig.addEventListener("click", function () {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(function () {
+            ig.textContent = "Copied!";
+            setTimeout(close, 700);
+          }).catch(function () {
+            prompt("Copy link:", url);
+            close();
+          });
+        } else {
+          prompt("Copy link:", url);
+          close();
+        }
+      });
+    }
+
     var copyBtn = modal.querySelector('[data-type="copy"]');
     copyBtn.addEventListener("click", function () {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(url).then(function () {
           copyBtn.textContent = "Copied!";
+          copyBtn.classList.add("is-copied");
           setTimeout(close, 700);
         }).catch(function () {
           prompt("Copy link:", url);

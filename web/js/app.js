@@ -3529,11 +3529,9 @@ function renderHoldingsGrid(holdings, container) {
  * buildCurrentViewUrl + sync ensure share links carry collection + activeFilter/sort/q.
  */
 function showSocialShareModal(url, title) {
-  // Prefer the branded in-page share sheet when present (gallery)
+  // Prefer the in-page share sheet when present (gallery)
   if ($("#share-modal")) {
     showShareModal(url, {
-      title: "Share",
-      lead: title || "Anyone with the link can open this.",
       shareText: title || "Check this out on daCommunity Gallery",
       toast: "Link copied",
     });
@@ -3551,22 +3549,17 @@ function showSocialShareModal(url, title) {
     '<div class="social-share-backdrop"></div>' +
     '<div class="social-share-card">' +
       '<button type="button" class="social-close" aria-label="Close">×</button>' +
-      '<p class="share-modal-kicker">daCommunity Gallery</p>' +
-      '<h3>Share</h3>' +
-      '<div class="share-link-row" style="margin-bottom:0.75rem">' +
-        '<input type="text" readonly class="share-link-input social-share-link-input" value="" spellcheck="false" />' +
-      "</div>" +
-      '<div class="social-buttons">' +
-        '<a class="social-btn" data-type="x" target="_blank" rel="noopener">𝕏 · Post on X</a>' +
-        '<a class="social-btn" data-type="tg" target="_blank" rel="noopener">✈ · Telegram</a>' +
-        '<a class="social-btn" data-type="fb" target="_blank" rel="noopener">f · Facebook</a>' +
-        '<button type="button" class="social-btn copy" data-type="copy">Copy link</button>' +
+      '<button type="button" class="share-copy-btn social-btn copy" data-type="copy">Copy link</button>' +
+      '<p class="share-socials-label">Or share via</p>' +
+      '<div class="share-socials social-buttons">' +
+        '<a class="share-social-btn social-btn" data-type="x" target="_blank" rel="noopener">X</a>' +
+        '<a class="share-social-btn social-btn" data-type="tg" target="_blank" rel="noopener">Telegram</a>' +
+        '<a class="share-social-btn social-btn" data-type="fb" target="_blank" rel="noopener">Facebook</a>' +
+        '<button type="button" class="share-social-btn social-btn" data-type="ig">Instagram</button>' +
       "</div>" +
     "</div>";
 
   document.body.appendChild(modal);
-  var linkInp = modal.querySelector(".social-share-link-input");
-  if (linkInp) linkInp.value = url;
 
   var close = function () { modal.remove(); };
   modal.querySelector(".social-share-backdrop").addEventListener("click", close);
@@ -3583,6 +3576,26 @@ function showSocialShareModal(url, title) {
 
   var fb = modal.querySelector('[data-type="fb"]');
   fb.href = "https://www.facebook.com/sharer/sharer.php?u=" + encodedUrl;
+
+  var ig = modal.querySelector('[data-type="ig"]');
+  if (ig) {
+    ig.addEventListener("click", function () {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function () {
+          if (typeof showCopyToast === "function") {
+            showCopyToast("Link copied — paste into Instagram");
+          }
+          close();
+        }).catch(function () {
+          prompt("Copy link:", url);
+          close();
+        });
+      } else {
+        prompt("Copy link:", url);
+        close();
+      }
+    });
+  }
 
   var copyBtn = modal.querySelector('[data-type="copy"]');
   copyBtn.addEventListener("click", function () {
@@ -3627,8 +3640,9 @@ function buildCurrentViewUrl() {
 }
 
 /**
+ * Minimal share sheet: Copy link + platform rows. No explainer copy, no URL field.
  * @param {string} [forcedUrl]
- * @param {{ title?: string, lead?: string, shareText?: string, toast?: string, kicker?: string }} [opts]
+ * @param {{ shareText?: string, toast?: string }} [opts]
  */
 function showShareModal(forcedUrl, opts) {
   opts = opts || {};
@@ -3642,63 +3656,12 @@ function showShareModal(forcedUrl, opts) {
       ? "Check out this daCAT NFT"
       : url.indexOf("wallet=") >= 0
         ? "Check out these daCATs"
-        : "daCAT archive view — filters and collection included");
-  showShareModal._toast =
-    opts.toast ||
-    (url.indexOf("piece=") >= 0
-      ? "NFT link copied"
-      : url.indexOf("wallet=") >= 0
-        ? url.indexOf("collection=") >= 0 || url.indexOf("q=") >= 0
-          ? "Collector link copied (includes filters)"
-          : "Collector link copied"
-        : "Link copied (includes collection + filters)");
-
-  var kickerEl = $("#share-modal-kicker");
-  if (kickerEl) {
-    kickerEl.textContent =
-      opts.kicker ||
-      (url.indexOf("piece=") >= 0
-        ? "Share NFT"
-        : url.indexOf("wallet=") >= 0
-          ? "Share collector"
-          : "Share view");
-  }
-
-  var titleEl = $("#share-modal-title");
-  var leadEl = $("#share-modal-lead") || modal.querySelector(".share-modal-lead");
-  if (titleEl) {
-    titleEl.textContent =
-      opts.title ||
-      (url.indexOf("piece=") >= 0
-        ? "Share this NFT"
-        : url.indexOf("wallet=") >= 0
-          ? "Share this collector"
-          : "Share this view");
-  }
-  if (leadEl) {
-    leadEl.textContent =
-      opts.lead ||
-      (url.indexOf("piece=") >= 0
-        ? "Anyone with the link opens this piece in the gallery."
-        : url.indexOf("wallet=") >= 0
-          ? "Opens collector portfolio — keeps your filters if set."
-          : "Includes collection, search, filters, and sort.");
-  }
-
-  var linkInput = $("#share-link-input");
-  if (linkInput) {
-    linkInput.value = url;
-    // Select on focus so users can long-press / Cmd+C easily
-    linkInput.onclick = function () {
-      try {
-        linkInput.select();
-      } catch (e) {}
-    };
-  }
+        : "daCAT archive view");
+  showShareModal._toast = opts.toast || "Link copied";
 
   var copyBtn = $("#share-copy-btn");
   if (copyBtn) {
-    copyBtn.textContent = "Copy";
+    copyBtn.textContent = "Copy link";
     copyBtn.classList.remove("is-copied");
     copyBtn.onclick = function () {
       function afterCopy() {
@@ -3716,16 +3679,20 @@ function showShareModal(forcedUrl, opts) {
         });
       } else {
         try {
-          if (linkInput) {
-            linkInput.focus();
-            linkInput.select();
-            document.execCommand("copy");
-            afterCopy();
-            return;
-          }
-        } catch (e) {}
-        showCopyToast("Copy: " + url);
-        closeShareModal();
+          var ta = document.createElement("textarea");
+          ta.value = url;
+          ta.setAttribute("readonly", "");
+          ta.style.position = "fixed";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+          afterCopy();
+        } catch (e) {
+          showCopyToast("Copy: " + url);
+          closeShareModal();
+        }
       }
     };
   }
@@ -3738,7 +3705,6 @@ function showShareModal(forcedUrl, opts) {
   modal.hidden = false;
   modal.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
-  // Focus copy for keyboard users (don’t steal mobile scroll)
   if (copyBtn && window.matchMedia && window.matchMedia("(min-width: 700px)").matches) {
     window.setTimeout(function () {
       try {
