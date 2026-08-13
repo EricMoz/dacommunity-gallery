@@ -5696,79 +5696,105 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   border-color: rgba(255, 204, 0, 0.5);
 }
 
-/* Social share modal styles (for collector, archive, and film modal) */
+/* Social share modal (film / dynamic) — matches .share-modal brand sheet */
 .social-share-modal {
   position: fixed;
   inset: 0;
   z-index: 10000;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-}
-@media (min-width: 600px) {
-  .social-share-modal {
-    align-items: center;
-  }
+  padding: 1rem;
+  animation: share-modal-in 0.18s ease-out;
 }
 .social-share-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(10, 10, 10, 0.62);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 .social-share-card {
   position: relative;
-  width: 100%;
-  max-width: 360px;
-  background: #111;
-  color: #eee;
-  border: 2px solid #333;
-  border-radius: 12px 12px 0 0;
-  padding: 1rem 1rem 1.25rem;
-  box-shadow: 0 -8px 30px rgba(0,0,0,0.6);
+  width: min(100%, 22.5rem);
+  background: var(--yellow);
+  color: var(--black);
+  border: 3px solid var(--black);
+  border-radius: 16px;
+  padding: 1.25rem 1.15rem 1.2rem;
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.92);
   z-index: 2;
   margin: 0 auto;
-}
-@media (min-width: 600px) {
-  .social-share-card {
-    border-radius: 12px;
-  }
+  font-family: var(--font);
 }
 .social-share-card h3 {
-  margin: 0 0 0.6rem;
-  font-size: 0.95rem;
+  margin: 0 0 0.85rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
   font-weight: 700;
+  letter-spacing: -0.02em;
+  padding-right: 1.75rem;
+}
+.social-share-card .social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
 }
 .social-share-card .social-btn {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
   width: 100%;
   text-align: left;
-  padding: 0.45rem 0.6rem;
-  background: #1a1a1a;
-  border: 1px solid #333;
-  border-radius: 6px;
-  color: #f0f0f0;
+  padding: 0.65rem 0.85rem;
+  background: var(--black);
+  border: 2px solid var(--black);
+  border-radius: 10px;
+  color: var(--yellow);
   text-decoration: none;
-  font-size: 0.82rem;
-  margin-bottom: 0.35rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, color 0.12s ease;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
 }
 .social-share-card .social-btn:hover {
-  background: #222;
-  border-color: #444;
+  background: var(--white);
+  color: var(--black);
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.85);
 }
 .social-share-card .social-btn.copy {
-  background: #222;
-  cursor: pointer;
+  background: var(--white);
+  color: var(--black);
+}
+.social-share-card .social-btn.copy:hover {
+  background: var(--black);
+  color: var(--yellow);
 }
 .social-share-card .social-close {
   position: absolute;
-  top: 6px;
-  right: 8px;
-  background: none;
-  border: none;
-  color: #888;
-  font-size: 18px;
+  top: 0.55rem;
+  right: 0.55rem;
+  width: 2rem;
+  height: 2rem;
+  background: var(--black);
+  border: 2px solid var(--black);
+  border-radius: 50%;
+  color: var(--yellow);
+  font-size: 1.15rem;
   line-height: 1;
+  font-weight: 700;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.social-share-card .social-close:hover {
+  background: var(--white);
+  color: var(--black);
 }
 
 .film-nav-links {
@@ -8808,101 +8834,229 @@ body.has-collector-view .detail-share-btn:hover {
   z-index: 1;
 }
 
-/* Share modal (filters + collection) — desktop card, mobile bottom sheet */
+/* Share sheet — brand yellow card, hard shadow, works over archive + dark collector */
+@keyframes share-modal-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes share-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
 .share-modal {
   position: fixed;
   inset: 0;
-  z-index: 350;
+  z-index: 360;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: max(0.75rem, env(safe-area-inset-top)) 0.85rem max(0.85rem, env(safe-area-inset-bottom));
+  animation: share-modal-in 0.18s ease-out;
 }
-
-/* Force the share modal (used by the archive Share button) to be a centered card on *all* device widths,
-   including mobile. Prevents it from shooting to the bottom as a bottom-sheet and keeps the Share button
-   layout stable when the viewport is narrow. */
-@media (max-width: 600px) {
-  .share-modal-card {
-    border-radius: 12px;
-    max-width: 90vw;
-  }
+.share-modal[hidden] {
+  display: none !important;
 }
-.share-modal[hidden] { display: none !important; }
 .share-modal-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(10, 10, 10, 0.62);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 .share-modal-card {
   position: relative;
-  width: 100%;
-  max-width: 420px;
-  background: #111;
-  color: #eee;
-  border: 2px solid #333;
-  border-radius: 12px;
-  padding: 1rem 1rem 1.25rem;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  width: min(100%, 24rem);
+  background: var(--yellow);
+  color: var(--black);
+  border: 3px solid var(--black);
+  border-radius: 16px;
+  padding: 1.2rem 1.15rem 1.15rem;
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.92);
   z-index: 2;
   margin: 0 auto;
-}
-@media (min-width: 600px) {
-  .share-modal {
-    align-items: center;
-  }
-  .share-modal-card {
-    border-radius: 12px;
-    max-width: 360px;
-    margin: 0 auto;
-  }
+  animation: share-card-in 0.22s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .share-modal-close {
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  background: transparent;
-  border: none;
-  color: #888;
-  font-size: 1.4rem;
+  top: 0.55rem;
+  right: 0.55rem;
+  width: 2.1rem;
+  height: 2.1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--black);
+  border: 2px solid var(--black);
+  border-radius: 50%;
+  color: var(--yellow);
+  font-size: 1.2rem;
   line-height: 1;
-  padding: 0.25rem 0.5rem;
+  font-weight: 700;
+  padding: 0;
   cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease, transform 0.12s ease;
+}
+.share-modal-close:hover {
+  background: var(--white);
+  color: var(--black);
+  transform: scale(1.05);
+}
+.share-modal-header {
+  padding-right: 2rem;
+  margin-bottom: 0.95rem;
+}
+.share-modal-kicker {
+  margin: 0 0 0.2rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--black);
+  opacity: 0.72;
 }
 .share-modal-title {
-  margin: 0 0 0.25rem;
-  font-size: 1rem;
+  margin: 0 0 0.3rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 3.5vw, 1.35rem);
   font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--black);
 }
 .share-modal-lead {
-  margin: 0 0 0.75rem;
-  font-size: 0.8rem;
-  color: #aaa;
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.share-link-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+  min-width: 0;
+}
+.share-link-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.7rem;
+  border: 2px solid var(--black);
+  border-radius: 10px;
+  background: var(--white);
+  color: var(--black);
+  font-family: ui-monospace, "Cascadia Code", "SF Mono", Menlo, monospace;
+  font-size: 0.72rem;
+  line-height: 1.3;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+}
+.share-link-input:focus {
+  outline: 2px solid var(--blue-accent);
+  outline-offset: 1px;
 }
 .share-copy-btn {
-  width: 100%;
-  min-height: 44px;
-  margin-bottom: 0.75rem;
+  flex: 0 0 auto;
+  min-height: 2.75rem;
+  min-width: 4.75rem;
+  margin: 0;
+  padding: 0.5rem 0.9rem;
+  font-weight: 800;
+  border: 2px solid var(--black) !important;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.85);
+}
+.share-copy-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.9);
+}
+.share-copy-btn.is-copied {
+  background: var(--listed) !important;
+  color: var(--white) !important;
+  border-color: var(--black) !important;
+}
+.share-socials-label {
+  margin: 0 0 0.45rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  opacity: 0.7;
 }
 .share-socials {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.5rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.45rem;
 }
 .share-social-btn {
-  min-height: 44px;
-  padding: 0.4rem;
-  border: 2px solid #444;
-  background: #1a1a1a;
-  color: #eee;
-  border-radius: 8px;
-  font-size: 0.82rem;
-  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  min-height: 4.1rem;
+  padding: 0.45rem 0.25rem;
+  border: 2px solid var(--black);
+  background: var(--black);
+  color: var(--yellow);
+  border-radius: 12px;
+  font-family: var(--font);
+  font-size: 0.68rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.1s, transform 0.1s;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease, color 0.12s ease;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
+}
+.share-social-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+  font-weight: 800;
+}
+.share-social-name {
+  line-height: 1.15;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 0.1rem;
 }
 .share-social-btn:hover {
-  background: #222;
-  transform: translateY(-1px);
+  background: var(--white);
+  color: var(--black);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.9);
+}
+.share-social-btn:active {
+  transform: translate(0, 0);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.85);
+}
+.share-social-fb .share-social-icon {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+}
+@media (max-width: 380px) {
+  .share-socials {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .share-social-btn {
+    min-height: 3.5rem;
+    flex-direction: row;
+    gap: 0.4rem;
+    padding: 0.55rem 0.65rem;
+  }
+}
+/* Readable over dark collector theater (same yellow card, slightly stronger dim) */
+body.has-collector-view .share-modal-backdrop {
+  background: rgba(0, 0, 0, 0.72);
 }
 
 /* Clear control — archive search + wallet lookup (recovery if UI sticks) */
