@@ -1884,6 +1884,7 @@ function parseWalletFromUrl() {
 function parseBrowseParamsFromUrl() {
   var params = new URLSearchParams(window.location.search);
   var col = params.get("collection") || params.get("col");
+  // Keep "dacommunity" (not only badges/bigkix) so hub cards land on a real scoped archive
   if (col) activeCollection = col;
   var f = params.get("filter");
   if (f && FILTER_LABELS[f]) activeFilter = f;
@@ -1893,11 +1894,32 @@ function parseBrowseParamsFromUrl() {
   if (q) searchQuery = q;
 }
 
+/**
+ * Read deep-link hints from the address bar WITHOUT requiring in-memory UI state.
+ * Critical: history replace/push must never invent a bare /dacommunity/ URL when the
+ * user arrived via ?collection=… or ?wallet=… (that was wiping hub + share links).
+ */
+function readUrlNavHints() {
+  var params = new URLSearchParams(window.location.search);
+  return {
+    collection: params.get("collection") || params.get("col") || "",
+    q: params.get("q") || params.get("search") || "",
+    filter: params.get("filter") || "",
+    sort: params.get("sort") || "",
+    wallet: (params.get("wallet") || params.get("ens") || "").trim(),
+    piece: (params.get("piece") || "").trim(),
+  };
+}
+
 function syncBrowseParamsToUrl() {
   try {
     // Keep wallet / piece history stack in sync (replace current entry)
     replaceNavState(
-      activeDetailTokenId ? "detail" : galleryCollectorView ? "collector" : "browse"
+      activeDetailTokenId
+        ? "detail"
+        : galleryCollectorView || parseWalletFromUrl()
+          ? "collector"
+          : "browse"
     );
   } catch (e) {}
 }
@@ -1907,34 +1929,67 @@ var NAV_KIND = "dacatGallery";
 var navSuppressPush = false;
 /** How many in-app pushState steps we took this session (so ← Back won't leave the site). */
 var navStackDepth = 0;
+/** True after URL params have been applied into globals (safe to seed history). */
+var navUrlParsed = false;
 
 function currentNavSnapshot(view) {
-  var v =
-    view ||
-    (activeDetailTokenId ? "detail" : galleryCollectorView ? "collector" : "browse");
+  var hints = readUrlNavHints();
+  // Prefer live UI state; fall back to URL so early replaceState cannot strip deep links
+  var wallet =
+    (galleryCollectorView && galleryCollectorView.address) ||
+    hints.wallet ||
+    null;
+  var piece = activeDetailTokenId || hints.piece || null;
+  // activeCollection defaults to "all" — if still default and URL has collection, keep URL
+  var collection =
+    activeCollection && (navUrlParsed || activeCollection !== "all")
+      ? activeCollection
+      : hints.collection || activeCollection || "all";
+  if (!collection) collection = "all";
+  var q = searchQuery || hints.q || "";
+  var filter =
+    activeFilter && (navUrlParsed || activeFilter !== "all")
+      ? activeFilter
+      : hints.filter || activeFilter || "all";
+  var sort =
+    sortKey && (navUrlParsed || sortKey !== "token_desc")
+      ? sortKey
+      : hints.sort || sortKey || "token_desc";
+
+  var v = view;
+  if (!v) {
+    if (piece && (galleryCollectorView || wallet)) v = "detail";
+    else if (piece) v = "detail";
+    else if (galleryCollectorView || wallet) v = "collector";
+    else v = "browse";
+  }
   return {
     kind: NAV_KIND,
     view: v,
-    wallet: galleryCollectorView ? galleryCollectorView.address : null,
-    piece: activeDetailTokenId || null,
-    collection: activeCollection || "all",
-    q: searchQuery || "",
-    filter: activeFilter || "all",
-    sort: sortKey || "token_desc",
+    wallet: wallet ? String(wallet).toLowerCase() : null,
+    piece: piece || null,
+    collection: collection || "all",
+    q: q,
+    filter: filter || "all",
+    sort: sort || "token_desc",
   };
 }
 
 function urlFromNavState(st) {
   st = st || currentNavSnapshot();
   var params = new URLSearchParams();
-  if (st.collection && st.collection !== "all") params.set("collection", st.collection);
+  // Include dacommunity (and every non-all collection) so hub cards keep a stable slug
+  if (st.collection && st.collection !== "all") {
+    params.set("collection", st.collection);
+  }
   if (st.q) params.set("q", st.q);
   if (st.filter && st.filter !== "all") params.set("filter", st.filter);
   if (st.sort && st.sort !== "token_desc") params.set("sort", st.sort);
   if (st.wallet) params.set("wallet", String(st.wallet).toLowerCase());
   if (st.piece) params.set("piece", st.piece);
   var qs = params.toString();
-  var hash = st.wallet || st.view === "collector" ? "#wallet-panel" : "";
+  // Only pin #wallet-panel when a wallet is in the URL (collector theater / share links)
+  var hash = st.wallet ? "#wallet-panel" : "";
   return window.location.pathname + (qs ? "?" + qs : "") + hash;
 }
 
@@ -2129,13 +2184,35 @@ function bindGalleryPopState() {
         navSuppressPush = false;
       });
   });
+  // Do NOT seed/replace URL here — activeCollection/wallet globals may still be defaults
+  // and would rewrite ?collection=badges → bare /dacommunity/. Seed after parse in init.
+}
+
+/**
+ * After parseBrowseParamsFromUrl(): attach NAV_KIND state without dropping deep links.
+ * Call once per page load once URL → globals is done.
+ */
+function seedGalleryNavStateFromUrl() {
+  if (seedGalleryNavStateFromUrl._done) return;
+  seedGalleryNavStateFromUrl._done = true;
+  navUrlParsed = true;
   try {
-    if (!history.state || history.state.kind !== NAV_KIND) {
-      replaceNavState(
-        parseWalletFromUrl() ? "collector" : activeDetailTokenId ? "detail" : "browse"
-      );
-    }
-  } catch (e) {}
+    var wallet = parseWalletFromUrl();
+    var piece = parsePieceFromUrl();
+    var view = wallet ? "collector" : piece ? "detail" : "browse";
+    var st = Object.assign(currentNavSnapshot(view), {
+      wallet: wallet ? wallet.toLowerCase() : null,
+      piece: piece || null,
+      collection: activeCollection || "all",
+      q: searchQuery || "",
+      filter: activeFilter || "all",
+      sort: sortKey || "token_desc",
+    });
+    // replaceState only — never strip params that are already in the address bar
+    history.replaceState(st, "", urlFromNavState(st));
+  } catch (e) {
+    console.warn("seedGalleryNavStateFromUrl failed", e);
+  }
 }
 
 /** Measured sticky nav height — used for scroll offsets (collector escape bar, wallet hub). */
@@ -2849,10 +2926,18 @@ function applyCollectorView(address) {
   });
 }
 
+/**
+ * Canonical shareable collector portfolio link.
+ * Always absolute, wallet-first, full portfolio (no archive filters) so Telegram/X
+ * open dark collector theater — not bare archive search.
+ * Example: https://universe.dacat.fun/dacommunity/?wallet=0x…#wallet-panel
+ */
 function walletShareUrl(address) {
+  if (!address) return dacommunityBaseUrl().toString();
   var url = dacommunityBaseUrl();
-  url.searchParams.set("wallet", address.toLowerCase());
-  url.searchParams.delete("ens");
+  // Clean query — share is "this collector's portfolio", not current archive chips
+  url.search = "";
+  url.searchParams.set("wallet", String(address).toLowerCase());
   url.hash = "wallet-panel";
   return url.toString();
 }
@@ -2982,12 +3067,22 @@ async function applyWalletFromUrl() {
   pinWalletDeepLinkScroll();
   var input = $("#wallet-input");
   if (input) input.value = q;
-  // Deep-link: replace current history entry (don't add a dead Back step off-site)
+  // Shared wallet links open full portfolio theater (not archive trait search).
+  // Deep-link: replace current history entry (don't add a dead Back step off-site).
   await renderWalletLookup(q, {
     updateUrl: false,
     noPush: true,
     scrollBehavior: "instant",
+    // Keep collection/q from URL if present; otherwise captureBrowseFilterState is fine
+    preserveFilters: captureBrowseFilterState(),
   });
+  // Ensure address bar still has ?wallet= after open (defense against any replace wipe)
+  try {
+    replaceNavState("collector", {
+      wallet: /^0x[a-fA-F0-9]{40}$/i.test(q) ? q.toLowerCase() : (galleryCollectorView && galleryCollectorView.address) || q.toLowerCase(),
+      piece: null,
+    });
+  } catch (e) {}
   pinWalletDeepLinkScroll();
   requestAnimationFrame(function () {
     requestAnimationFrame(pinWalletDeepLinkScroll);
@@ -3436,29 +3531,43 @@ function showSocialShareModal(url, title) {
 
 function shareCollectorCollection(address) {
   if (!address) return;
-  // Use the standard share modal (same as main gallery view) which handles social options and centers properly.
-  // The current URL (synced with ?wallet=) will be used by buildCurrentViewUrl inside showShareModal.
-  showShareModal();
+  // Always share the canonical wallet deep-link (not whatever filters sit in the bar).
+  // Telegram/iMessage users must land in collector theater, not archive search.
+  // Do not rewrite live filter state — only the shared string is clean/wallet-first.
+  showShareModal(walletShareUrl(address));
 }
 
 /* === Share Modal (Part 1) — copyable URL with current collection + filters + social quick-links.
  * Mobile bottom-sheet via CSS; desktop centered. Reuses existing toast / URL helpers.
  */
 function buildCurrentViewUrl() {
+  // Collector portfolio → always wallet deep-link (stable for Telegram / external apps)
+  if (galleryCollectorView && galleryCollectorView.address) {
+    return walletShareUrl(galleryCollectorView.address);
+  }
+  var urlWallet = parseWalletFromUrl();
+  if (urlWallet && !galleryCollectorView) {
+    // Deep-link still resolving — prefer wallet URL over bare archive
+    return walletShareUrl(urlWallet);
+  }
   syncBrowseParamsToUrl();
   return window.location.href;
 }
 
-function showShareModal() {
+function showShareModal(forcedUrl) {
   var modal = $("#share-modal");
   if (!modal) return;
-  var url = buildCurrentViewUrl();
+  var url = forcedUrl || buildCurrentViewUrl();
   var copyBtn = $("#share-copy-btn");
   if (copyBtn) {
     copyBtn.onclick = function () {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(url).then(function () {
-          showCopyToast("Link copied (includes collection + filters)");
+          var msg =
+            url.indexOf("wallet=") >= 0
+              ? "Collector link copied"
+              : "Link copied (includes collection + filters)";
+          showCopyToast(msg);
         }).catch(function () {
           showCopyToast("Copy: " + url);
         });
@@ -5898,6 +6007,7 @@ function bindHeaderHeightSync() {
 /* Main entry (called at bottom). Orchestrates data loads + early URL param parsing (for ?collection= etc). */
 async function init() {
   bindHeaderHeightSync();
+  // Popstate listener only — never replaceState until URL params are in globals
   bindGalleryPopState();
 
   initDataUrls();
@@ -5918,12 +6028,18 @@ async function init() {
     // data pulls.
     loadGalleryMeta();
 
-    // Parse any collection/filter/sort/search from URL (supports pre-filter from /collections/ + share links)
+    // CRITICAL order: parse deep links BEFORE any history.replaceState / syncBrowseParamsToUrl.
+    // Seeding history with default activeCollection="all" previously rewrote
+    //   /dacommunity/?collection=badges  →  /dacommunity/
+    // and stripped ?wallet= share links the same way (Telegram → bare archive).
     parseBrowseParamsFromUrl();
+    seedGalleryNavStateFromUrl();
 
     // Load registry early for collection filter UI (only live ones shown)
     await loadCollectionsRegistry().catch(function(){});
     populateCollectionSelect();
+    // Re-apply collection select after options exist (seed already set activeCollection)
+    applyBrowseControlsFromState();
 
     // If URL asked for a different live collection that has its own data files (e.g. ?collection=badges),
     // switch the globals *before* the first fetch so the existing load path just works.
