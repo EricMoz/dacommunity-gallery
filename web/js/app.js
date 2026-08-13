@@ -2927,16 +2927,45 @@ function applyCollectorView(address) {
 }
 
 /**
- * Canonical shareable collector portfolio link.
- * Always absolute, wallet-first, full portfolio (no archive filters) so Telegram/X
- * open dark collector theater — not bare archive search.
- * Example: https://universe.dacat.fun/dacommunity/?wallet=0x…#wallet-panel
+ * Canonical shareable collector portfolio link (absolute).
+ * Always includes ?wallet=…#wallet-panel so openers land in collector theater.
+ *
+ * Filters (collection / search / listed / sort) are included by default so someone
+ * can share “just my Badges” or a search-scoped slice of a wallet. Pass
+ * { includeFilters: false } only when you explicitly want the full portfolio link.
+ *
+ * Examples:
+ *   …/dacommunity/?wallet=0x…#wallet-panel
+ *   …/dacommunity/?collection=badges&wallet=0x…#wallet-panel
+ *   …/dacommunity/?collection=bigkix&q=kix&wallet=0x…#wallet-panel
  */
-function walletShareUrl(address) {
+function walletShareUrl(address, opts) {
+  opts = opts || {};
   if (!address) return dacommunityBaseUrl().toString();
   var url = dacommunityBaseUrl();
-  // Clean query — share is "this collector's portfolio", not current archive chips
   url.search = "";
+  var includeFilters = opts.includeFilters !== false;
+  if (includeFilters) {
+    var snap =
+      opts.filters ||
+      captureBrowseFilterState() ||
+      {
+        collection: activeCollection || "all",
+        q: searchQuery || "",
+        filter: activeFilter || "all",
+        sort: sortKey || "token_desc",
+      };
+    if (snap.collection && snap.collection !== "all") {
+      url.searchParams.set("collection", snap.collection);
+    }
+    if (snap.q) url.searchParams.set("q", snap.q);
+    if (snap.filter && snap.filter !== "all") {
+      url.searchParams.set("filter", snap.filter);
+    }
+    if (snap.sort && snap.sort !== "token_desc") {
+      url.searchParams.set("sort", snap.sort);
+    }
+  }
   url.searchParams.set("wallet", String(address).toLowerCase());
   url.hash = "wallet-panel";
   return url.toString();
@@ -3531,24 +3560,23 @@ function showSocialShareModal(url, title) {
 
 function shareCollectorCollection(address) {
   if (!address) return;
-  // Always share the canonical wallet deep-link (not whatever filters sit in the bar).
-  // Telegram/iMessage users must land in collector theater, not archive search.
-  // Do not rewrite live filter state — only the shared string is clean/wallet-first.
-  showShareModal(walletShareUrl(address));
+  // Wallet deep-link + current portfolio filters (collection / search / listed / sort).
+  // Recipients open collector theater scoped the same way (e.g. Badges-only share).
+  showShareModal(walletShareUrl(address, { includeFilters: true }));
 }
 
 /* === Share Modal (Part 1) — copyable URL with current collection + filters + social quick-links.
  * Mobile bottom-sheet via CSS; desktop centered. Reuses existing toast / URL helpers.
  */
 function buildCurrentViewUrl() {
-  // Collector portfolio → always wallet deep-link (stable for Telegram / external apps)
+  // Collector portfolio → wallet deep-link + active filters (stable for Telegram / external apps)
   if (galleryCollectorView && galleryCollectorView.address) {
-    return walletShareUrl(galleryCollectorView.address);
+    return walletShareUrl(galleryCollectorView.address, { includeFilters: true });
   }
   var urlWallet = parseWalletFromUrl();
   if (urlWallet && !galleryCollectorView) {
-    // Deep-link still resolving — prefer wallet URL over bare archive
-    return walletShareUrl(urlWallet);
+    // Deep-link still resolving — prefer wallet URL (+ filters from bar) over bare archive
+    return walletShareUrl(urlWallet, { includeFilters: true });
   }
   syncBrowseParamsToUrl();
   return window.location.href;
@@ -3563,10 +3591,17 @@ function showShareModal(forcedUrl) {
     copyBtn.onclick = function () {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(url).then(function () {
-          var msg =
-            url.indexOf("wallet=") >= 0
-              ? "Collector link copied"
-              : "Link copied (includes collection + filters)";
+          var hasWallet = url.indexOf("wallet=") >= 0;
+          var hasFilter =
+            url.indexOf("collection=") >= 0 ||
+            url.indexOf("q=") >= 0 ||
+            url.indexOf("filter=") >= 0 ||
+            url.indexOf("sort=") >= 0;
+          var msg = hasWallet
+            ? hasFilter
+              ? "Collector link copied (includes filters)"
+              : "Collector link copied"
+            : "Link copied (includes collection + filters)";
           showCopyToast(msg);
         }).catch(function () {
           showCopyToast("Copy: " + url);
