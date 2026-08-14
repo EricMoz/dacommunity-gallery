@@ -5795,14 +5795,14 @@ function closeDetail(opts) {
   }
 }
 
-/**
- * PC glass scroll nudge on /dacommunity/ (all + ?collection= slugs).
- * Hidden when NFT detail is open so it never sits over the drawer.
- */
+/** Prefer shared scroll-nudge.js; fall back if that script is missing. */
 function syncGalleryScrollNudge() {
-  var btn = $("#gallery-scroll-nudge");
+  if (typeof window.syncSiteScrollNudge === "function") {
+    window.syncSiteScrollNudge();
+    return;
+  }
+  var btn = $("#gallery-scroll-nudge") || $("#site-scroll-nudge");
   if (!btn) return;
-  // Width-only gate; CSS also hides on narrow. Avoid pointer:fine which can false-negative.
   var wide = window.innerWidth >= 900;
   var detailOpen =
     !!activeDetailTokenId ||
@@ -5812,30 +5812,12 @@ function syncGalleryScrollNudge() {
     );
   var room =
     document.documentElement.scrollHeight - window.scrollY - window.innerHeight;
-  // Show whenever there's meaningful room left to scroll (long archive / collection grids)
-  var show = wide && !detailOpen && room > 80;
-  btn.classList.toggle("is-away", !show);
+  btn.classList.toggle("is-away", !(wide && !detailOpen && room > 80));
 }
 
 function bindGalleryScrollNudge() {
-  var btn = $("#gallery-scroll-nudge");
-  if (!btn || btn.dataset.bound) return;
-  btn.dataset.bound = "1";
-  btn.addEventListener("click", function () {
-    if (btn.classList.contains("is-away")) return;
-    btn.classList.add("is-pulse");
-    window.setTimeout(function () {
-      btn.classList.remove("is-pulse");
-    }, 420);
-    var dy = Math.round(window.innerHeight * 0.14);
-    window.scrollBy({ top: dy, left: 0, behavior: "smooth" });
-    window.setTimeout(syncGalleryScrollNudge, 500);
-  });
-  window.addEventListener("scroll", syncGalleryScrollNudge, { passive: true });
-  window.addEventListener("resize", syncGalleryScrollNudge, { passive: true });
-  // After first paint / late layout (stats, grid) re-check
-  window.setTimeout(syncGalleryScrollNudge, 0);
-  window.setTimeout(syncGalleryScrollNudge, 800);
+  // Primary binding is web/js/scroll-nudge.js (loaded before app.js).
+  // Keep a no-op-safe re-sync after grid paints.
   syncGalleryScrollNudge();
 }
 

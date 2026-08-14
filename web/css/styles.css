@@ -2746,23 +2746,22 @@ button.stat.stat-collectors:disabled {
 }
 
 /*
- * Gallery archive (/dacommunity/ + ?collection= slugs) — PC-only scroll nudge.
- * Bottom-right glass chip. MUST set display inside the media query (base is none).
- * JS adds .is-away when NFT detail is open or little scroll remains.
+ * Site PC scroll-nudge (Universe, Gallery, Film).
+ * Bottom-right glass chip. Base is display:none — desktop media MUST set display.
+ * .gallery-scroll-nudge--film = inverted glass for dark film hub.
+ * JS (scroll-nudge.js / app.js) toggles .is-away for overlays + end of page.
  */
 .gallery-scroll-nudge {
   display: none !important;
 }
 @media (min-width: 900px) {
   .gallery-scroll-nudge {
-    /* Critical: override base display:none — was missing and hid the control forever */
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
     --nudge-size: 2.65rem;
     position: fixed;
     z-index: 90;
-    /* Bottom-right yellow gutter — clear of sticky header and page edge */
     right: max(1.25rem, calc(env(safe-area-inset-right, 0px) + 1.1rem));
     bottom: max(1.35rem, calc(env(safe-area-inset-bottom, 0px) + 1.15rem));
     left: auto;
@@ -2831,6 +2830,7 @@ button.stat.stat-collectors:disabled {
     animation: none;
     transform: translateY(2px);
   }
+  /* Collector portfolio (gallery): dark glass on dark UI */
   body.has-collector-view .gallery-scroll-nudge {
     color: rgba(255, 255, 255, 0.82);
   }
@@ -2848,6 +2848,45 @@ button.stat.stat-collectors:disabled {
     box-shadow:
       0 8px 24px rgba(0, 0, 0, 0.4),
       0 0 0 2px rgba(255, 204, 0, 0.4);
+  }
+
+  /*
+   * Film hub — inverted glass for dark cinema chrome.
+   * Gold edge + dark frost so it reads on black vignette without yellow-page frost.
+   */
+  body.film-page .gallery-scroll-nudge,
+  .gallery-scroll-nudge--film {
+    color: rgba(255, 204, 0, 0.92);
+  }
+  body.film-page .gallery-scroll-nudge-glass,
+  .gallery-scroll-nudge--film .gallery-scroll-nudge-glass {
+    background: rgba(12, 12, 12, 0.55);
+    border: 1px solid rgba(255, 204, 0, 0.38);
+    box-shadow:
+      0 6px 22px rgba(0, 0, 0, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 0 0 1px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(14px) saturate(1.05);
+    -webkit-backdrop-filter: blur(14px) saturate(1.05);
+  }
+  body.film-page .gallery-scroll-nudge:hover .gallery-scroll-nudge-glass,
+  body.film-page .gallery-scroll-nudge:focus-visible .gallery-scroll-nudge-glass,
+  .gallery-scroll-nudge--film:hover .gallery-scroll-nudge-glass,
+  .gallery-scroll-nudge--film:focus-visible .gallery-scroll-nudge-glass {
+    background: rgba(22, 22, 22, 0.72);
+    border-color: rgba(255, 204, 0, 0.65);
+    box-shadow:
+      0 8px 26px rgba(0, 0, 0, 0.6),
+      0 0 0 2px rgba(255, 204, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  body.film-page .gallery-scroll-nudge:active .gallery-scroll-nudge-glass,
+  .gallery-scroll-nudge--film:active .gallery-scroll-nudge-glass {
+    background: rgba(255, 204, 0, 0.22);
+  }
+  body.film-page .gallery-scroll-nudge:hover,
+  .gallery-scroll-nudge--film:hover {
+    color: #ffcc00;
   }
 }
 @keyframes gallery-nudge-bob {
