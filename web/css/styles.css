@@ -2851,42 +2851,45 @@ button.stat.stat-collectors:disabled {
   }
 
   /*
-   * Film hub — inverted glass for dark cinema chrome.
-   * Gold edge + dark frost so it reads on black vignette without yellow-page frost.
+   * Film hub — inverted / high-contrast glass for dark cinema.
+   * Must read on #030303 vignette (previous dark-on-dark was nearly invisible).
    */
   body.film-page .gallery-scroll-nudge,
   .gallery-scroll-nudge--film {
-    color: rgba(255, 204, 0, 0.92);
+    z-index: 150; /* above film sticky deck / header stack; below film-modal (1000) */
+    color: #0a0a0a;
   }
   body.film-page .gallery-scroll-nudge-glass,
   .gallery-scroll-nudge--film .gallery-scroll-nudge-glass {
-    background: rgba(12, 12, 12, 0.55);
-    border: 1px solid rgba(255, 204, 0, 0.38);
+    background: rgba(255, 204, 0, 0.78);
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
     box-shadow:
       0 6px 22px rgba(0, 0, 0, 0.55),
-      inset 0 1px 0 rgba(255, 255, 255, 0.06),
-      0 0 0 1px rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(14px) saturate(1.05);
-    -webkit-backdrop-filter: blur(14px) saturate(1.05);
+      0 0 0 1px rgba(255, 204, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(10px) saturate(1.2);
+    -webkit-backdrop-filter: blur(10px) saturate(1.2);
+    opacity: 0.92;
   }
   body.film-page .gallery-scroll-nudge:hover .gallery-scroll-nudge-glass,
   body.film-page .gallery-scroll-nudge:focus-visible .gallery-scroll-nudge-glass,
   .gallery-scroll-nudge--film:hover .gallery-scroll-nudge-glass,
   .gallery-scroll-nudge--film:focus-visible .gallery-scroll-nudge-glass {
-    background: rgba(22, 22, 22, 0.72);
-    border-color: rgba(255, 204, 0, 0.65);
+    background: rgba(255, 220, 60, 0.95);
+    border-color: rgba(255, 255, 255, 0.55);
     box-shadow:
-      0 8px 26px rgba(0, 0, 0, 0.6),
-      0 0 0 2px rgba(255, 204, 0, 0.35),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      0 8px 28px rgba(0, 0, 0, 0.6),
+      0 0 0 2px rgba(255, 204, 0, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.55);
   }
   body.film-page .gallery-scroll-nudge:active .gallery-scroll-nudge-glass,
   .gallery-scroll-nudge--film:active .gallery-scroll-nudge-glass {
-    background: rgba(255, 204, 0, 0.22);
+    background: rgba(255, 204, 0, 0.65);
+    transform: scale(0.94);
   }
   body.film-page .gallery-scroll-nudge:hover,
   .gallery-scroll-nudge--film:hover {
-    color: #ffcc00;
+    color: #0a0a0a;
   }
 }
 @keyframes gallery-nudge-bob {

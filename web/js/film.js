@@ -756,6 +756,16 @@
       (els.featured && !els.featured.hidden) || els.rows.children.length > 0;
     els.empty.hidden = anyVisible;
     if (els.rows) els.rows.hidden = !els.rows.children.length;
+
+    // Catalog height changes after paint — re-show PC scroll-nudge if room allows
+    if (typeof window.syncSiteScrollNudge === "function") {
+      window.syncSiteScrollNudge();
+      requestAnimationFrame(function () {
+        if (typeof window.syncSiteScrollNudge === "function") {
+          window.syncSiteScrollNudge();
+        }
+      });
+    }
   }
 
   function findVideo(id) {
@@ -1337,6 +1347,9 @@
     els.modal.hidden = false;
     document.body.classList.add("film-modal-open");
     els.modal.setAttribute("aria-hidden", "false");
+    if (typeof window.syncSiteScrollNudge === "function") {
+      window.syncSiteScrollNudge();
+    }
     playInModal(videoId, true);
     if (!isChain && els.modalClose && typeof els.modalClose.focus === "function") {
       try {
@@ -1359,6 +1372,9 @@
     const url = new URL(window.location.href);
     url.searchParams.delete("v");
     history.replaceState(null, "", url);
+    if (typeof window.syncSiteScrollNudge === "function") {
+      window.syncSiteScrollNudge();
+    }
   }
 
   function renderFilters() {
