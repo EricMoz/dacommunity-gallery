@@ -2745,6 +2745,121 @@ button.stat.stat-collectors:disabled {
   gap: 1.35rem;
 }
 
+/*
+ * Collections hub — PC-only scroll nudge
+ * Sits in open yellow field below the sticky header / card stack.
+ * Glassmorphism (frosted, low opacity) — popular UI pattern; pure CSS, no deps.
+ * Hidden on touch / narrow so it never fights mobile layout.
+ */
+.collections-scroll-nudge {
+  display: none;
+}
+@media (min-width: 960px) and (hover: hover) and (pointer: fine) {
+  .collections-scroll-nudge {
+    /* Fixed in the lower yellow gutter — clear of sticky header (~4.35rem) and footer */
+    --nudge-size: 3.15rem;
+    position: fixed;
+    z-index: 45;
+    left: 50%;
+    bottom: max(1.75rem, calc(env(safe-area-inset-bottom, 0px) + 1.35rem));
+    width: var(--nudge-size);
+    height: var(--nudge-size);
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transform: translateX(-50%);
+    color: rgba(10, 10, 10, 0.72);
+    -webkit-tap-highlight-color: transparent;
+    transition: opacity 0.28s ease, transform 0.28s ease, visibility 0.28s ease;
+  }
+  .collections-scroll-nudge.is-away {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(-50%) translateY(10px);
+  }
+  .collections-scroll-nudge-glass {
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    /* See-through frost over yellow; dark edge so it reads without looking solid */
+    background: rgba(255, 255, 255, 0.22);
+    border: 1px solid rgba(10, 10, 10, 0.14);
+    box-shadow:
+      0 6px 20px rgba(10, 10, 10, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(12px) saturate(1.15);
+    -webkit-backdrop-filter: blur(12px) saturate(1.15);
+    opacity: 0.88;
+    transition: background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+  }
+  .collections-scroll-nudge-icon {
+    position: relative;
+    z-index: 1;
+    display: block;
+    margin: 0 auto;
+    /* Soft bob — premium, not mascot-corny */
+    animation: collections-nudge-bob 2.4s ease-in-out infinite;
+  }
+  .collections-scroll-nudge:hover .collections-scroll-nudge-glass,
+  .collections-scroll-nudge:focus-visible .collections-scroll-nudge-glass {
+    background: rgba(255, 255, 255, 0.38);
+    border-color: rgba(10, 10, 10, 0.28);
+    box-shadow:
+      0 8px 24px rgba(10, 10, 10, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.55),
+      0 0 0 2px rgba(255, 204, 0, 0.45);
+  }
+  .collections-scroll-nudge:hover {
+    color: rgba(10, 10, 10, 0.92);
+  }
+  .collections-scroll-nudge:focus-visible {
+    outline: none;
+  }
+  .collections-scroll-nudge:active .collections-scroll-nudge-glass {
+    transform: scale(0.94);
+    background: rgba(255, 204, 0, 0.35);
+  }
+  .collections-scroll-nudge.is-pulse .collections-scroll-nudge-glass {
+    animation: collections-nudge-click 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .collections-scroll-nudge.is-pulse .collections-scroll-nudge-icon {
+    animation: none;
+    transform: translateY(3px);
+  }
+}
+@keyframes collections-nudge-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+@keyframes collections-nudge-click {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(0.9);
+  }
+  70% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .collections-scroll-nudge-icon,
+  .collections-scroll-nudge.is-pulse .collections-scroll-nudge-glass {
+    animation: none !important;
+  }
+}
+
 @media (max-width: 900px) {
   .collection-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
