@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-13T09:15:11.479413+00:00",
+  "generated_at": "2026-08-14T09:11:56.587919+00:00",
   "source": "dagato_agency_catalog",
   "collection": {
     "id": "dagato-agency",
@@ -26,7 +26,7 @@
     "piece_count": 10,
     "edition_count": 66,
     "case_file_count": 66,
-    "listed_count": 1,
+    "listed_count": 2,
     "rarity_counts": {
       "Common": 22,
       "Legendary": 10,
@@ -49,7 +49,7 @@
         "total_volume": 0.16000000000000006,
         "case_file_count": 33,
         "piece_count": 5,
-        "listed_count": 1,
+        "listed_count": 2,
         "rarity_counts": {
           "Common": 11,
           "Legendary": 5,
@@ -181,8 +181,12 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-1?search[stringTraits][0][name]=Rarity&search[stringTraits][0][values][0]=Legendary",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
-      "listed": false,
-      "listing": null,
+      "listed": true,
+      "listing": {
+        "amount_eth": 10.0,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
       "owners": {
         "holder_count": 5,
         "circulating_copies": 5,
@@ -283,7 +287,7 @@
           "name": "Legendary Case File #01 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/1",
-          "listed": false,
+          "listed": true,
           "volume": 1,
           "volume_label": "Vol 1"
         },
@@ -4457,8 +4461,12 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/1",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
-      "listed": false,
-      "listing": null,
+      "listed": true,
+      "listing": {
+        "amount_eth": 10.0,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
       "owners": {
         "holder_count": 1,
         "circulating_copies": 1,
