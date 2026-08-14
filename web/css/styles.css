@@ -2746,19 +2746,18 @@ button.stat.stat-collectors:disabled {
 }
 
 /*
- * Collections hub — PC-only scroll nudge
- * Sits in open yellow field below the sticky header / card stack.
- * Glassmorphism (frosted, low opacity) — popular UI pattern; pure CSS, no deps.
- * Hidden on touch / narrow so it never fights mobile layout.
+ * Gallery archive (/dacommunity/ + ?collection= slugs) — PC-only scroll nudge.
+ * Frosted low-opacity bubble in the yellow field under sticky header.
+ * Hidden when NFT detail drawer is open (see app.js syncGalleryScrollNudge).
  */
-.collections-scroll-nudge {
+.gallery-scroll-nudge {
   display: none;
 }
 @media (min-width: 960px) and (hover: hover) and (pointer: fine) {
-  .collections-scroll-nudge {
-    /* Fixed in the lower yellow gutter — clear of sticky header (~4.35rem) and footer */
+  .gallery-scroll-nudge {
     --nudge-size: 3.15rem;
     position: fixed;
+    /* Below sticky header chrome; above footer; under detail drawer (z ~ higher) */
     z-index: 45;
     left: 50%;
     bottom: max(1.75rem, calc(env(safe-area-inset-bottom, 0px) + 1.35rem));
@@ -2774,17 +2773,16 @@ button.stat.stat-collectors:disabled {
     -webkit-tap-highlight-color: transparent;
     transition: opacity 0.28s ease, transform 0.28s ease, visibility 0.28s ease;
   }
-  .collections-scroll-nudge.is-away {
+  .gallery-scroll-nudge.is-away {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transform: translateX(-50%) translateY(10px);
   }
-  .collections-scroll-nudge-glass {
+  .gallery-scroll-nudge-glass {
     position: absolute;
     inset: 0;
     border-radius: 999px;
-    /* See-through frost over yellow; dark edge so it reads without looking solid */
     background: rgba(255, 255, 255, 0.22);
     border: 1px solid rgba(10, 10, 10, 0.14);
     box-shadow:
@@ -2795,16 +2793,15 @@ button.stat.stat-collectors:disabled {
     opacity: 0.88;
     transition: background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
   }
-  .collections-scroll-nudge-icon {
+  .gallery-scroll-nudge-icon {
     position: relative;
     z-index: 1;
     display: block;
     margin: 0 auto;
-    /* Soft bob — premium, not mascot-corny */
-    animation: collections-nudge-bob 2.4s ease-in-out infinite;
+    animation: gallery-nudge-bob 2.4s ease-in-out infinite;
   }
-  .collections-scroll-nudge:hover .collections-scroll-nudge-glass,
-  .collections-scroll-nudge:focus-visible .collections-scroll-nudge-glass {
+  .gallery-scroll-nudge:hover .gallery-scroll-nudge-glass,
+  .gallery-scroll-nudge:focus-visible .gallery-scroll-nudge-glass {
     background: rgba(255, 255, 255, 0.38);
     border-color: rgba(10, 10, 10, 0.28);
     box-shadow:
@@ -2812,25 +2809,44 @@ button.stat.stat-collectors:disabled {
       inset 0 1px 0 rgba(255, 255, 255, 0.55),
       0 0 0 2px rgba(255, 204, 0, 0.45);
   }
-  .collections-scroll-nudge:hover {
+  .gallery-scroll-nudge:hover {
     color: rgba(10, 10, 10, 0.92);
   }
-  .collections-scroll-nudge:focus-visible {
+  .gallery-scroll-nudge:focus-visible {
     outline: none;
   }
-  .collections-scroll-nudge:active .collections-scroll-nudge-glass {
+  .gallery-scroll-nudge:active .gallery-scroll-nudge-glass {
     transform: scale(0.94);
     background: rgba(255, 204, 0, 0.35);
   }
-  .collections-scroll-nudge.is-pulse .collections-scroll-nudge-glass {
-    animation: collections-nudge-click 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  .gallery-scroll-nudge.is-pulse .gallery-scroll-nudge-glass {
+    animation: gallery-nudge-click 0.42s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .collections-scroll-nudge.is-pulse .collections-scroll-nudge-icon {
+  .gallery-scroll-nudge.is-pulse .gallery-scroll-nudge-icon {
     animation: none;
     transform: translateY(3px);
   }
+  /* Darker glass when collector portfolio is open (still PC-only) */
+  body.has-collector-view .gallery-scroll-nudge {
+    color: rgba(255, 255, 255, 0.78);
+  }
+  body.has-collector-view .gallery-scroll-nudge-glass {
+    background: rgba(20, 20, 20, 0.35);
+    border-color: rgba(255, 204, 0, 0.28);
+    box-shadow:
+      0 6px 22px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+  body.has-collector-view .gallery-scroll-nudge:hover .gallery-scroll-nudge-glass,
+  body.has-collector-view .gallery-scroll-nudge:focus-visible .gallery-scroll-nudge-glass {
+    background: rgba(30, 30, 30, 0.5);
+    border-color: rgba(255, 204, 0, 0.5);
+    box-shadow:
+      0 8px 26px rgba(0, 0, 0, 0.4),
+      0 0 0 2px rgba(255, 204, 0, 0.35);
+  }
 }
-@keyframes collections-nudge-bob {
+@keyframes gallery-nudge-bob {
   0%,
   100% {
     transform: translateY(0);
@@ -2839,7 +2855,7 @@ button.stat.stat-collectors:disabled {
     transform: translateY(4px);
   }
 }
-@keyframes collections-nudge-click {
+@keyframes gallery-nudge-click {
   0% {
     transform: scale(1);
   }
@@ -2854,8 +2870,8 @@ button.stat.stat-collectors:disabled {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .collections-scroll-nudge-icon,
-  .collections-scroll-nudge.is-pulse .collections-scroll-nudge-glass {
+  .gallery-scroll-nudge-icon,
+  .gallery-scroll-nudge.is-pulse .gallery-scroll-nudge-glass {
     animation: none !important;
   }
 }

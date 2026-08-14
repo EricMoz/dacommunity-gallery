@@ -5750,6 +5750,7 @@ function openDetail(item, opts) {
   panel.classList.add("open");
   panel.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
+  syncGalleryScrollNudge();
 }
 
 function closeDetail(opts) {
@@ -5775,6 +5776,7 @@ function closeDetail(opts) {
       vid.currentTime = 0;
     }
   }
+  syncGalleryScrollNudge();
   // Browser Back from detail → collector/browse step; in-app close uses history when possible
   if (
     wasOpen &&
@@ -5793,6 +5795,51 @@ function closeDetail(opts) {
   }
 }
 
+/**
+ * PC glass scroll nudge on /dacommunity/ (all + ?collection= slugs).
+ * Hidden when NFT detail is open so it never sits over the drawer.
+ */
+function syncGalleryScrollNudge() {
+  var btn = $("#gallery-scroll-nudge");
+  if (!btn) return;
+  var mq = window.matchMedia("(min-width: 960px) and (hover: hover) and (pointer: fine)");
+  var detailOpen =
+    !!activeDetailTokenId ||
+    !!(
+      $("#detail-panel") &&
+      $("#detail-panel").classList.contains("open")
+    );
+  var room =
+    document.documentElement.scrollHeight - window.scrollY - window.innerHeight;
+  var show =
+    mq.matches &&
+    !detailOpen &&
+    room > window.innerHeight * 0.2;
+  btn.classList.toggle("is-away", !show);
+}
+
+function bindGalleryScrollNudge() {
+  var btn = $("#gallery-scroll-nudge");
+  if (!btn || btn.dataset.bound) return;
+  btn.dataset.bound = "1";
+  var mq = window.matchMedia("(min-width: 960px) and (hover: hover) and (pointer: fine)");
+  btn.addEventListener("click", function () {
+    if (btn.classList.contains("is-away")) return;
+    btn.classList.add("is-pulse");
+    window.setTimeout(function () {
+      btn.classList.remove("is-pulse");
+    }, 420);
+    var dy = Math.round(window.innerHeight * 0.14);
+    window.scrollBy({ top: dy, left: 0, behavior: "smooth" });
+    window.setTimeout(syncGalleryScrollNudge, 500);
+  });
+  window.addEventListener("scroll", syncGalleryScrollNudge, { passive: true });
+  window.addEventListener("resize", syncGalleryScrollNudge, { passive: true });
+  if (mq.addEventListener) mq.addEventListener("change", syncGalleryScrollNudge);
+  else if (mq.addListener) mq.addListener(syncGalleryScrollNudge);
+  syncGalleryScrollNudge();
+}
+
 function refreshView() {
   if (!galleryData) return;
   // Use deduped count so "Pieces" / "X of Y" matches exactly what's shown in the grid
@@ -5801,6 +5848,8 @@ function refreshView() {
   var filtered = getFilteredItems();
   renderBrowseMeta(filtered.length, total);
   renderGallery(filtered);
+  // Grid height changes when filters/collection switch — re-evaluate nudge
+  syncGalleryScrollNudge();
 }
 
 var searchDebounceTimer = null;
@@ -5836,6 +5885,7 @@ function populateCollectionSelect() {
 }
 
 function bindUi() {
+  bindGalleryScrollNudge();
   document.querySelectorAll(".filter").forEach(function (btn) {
     btn.addEventListener("click", function () {
       document.querySelectorAll(".filter").forEach(function (b) {

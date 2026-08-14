@@ -2,7 +2,7 @@
 <!-- NFT collections picker — daCommunity gallery + Badges. Add new collection cards here. -->
 <html lang="en">
 <head>
-  <meta name="site-build" content="20260814-1" />
+  <meta name="site-build" content="20260814-2" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- Prefer revalidation so this hub does not stick on an older shell after deploys -->
@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/styles.css?v=20260814-1" />
+  <link rel="stylesheet" href="../css/styles.css?v=20260814-2" />
 </head>
 <body class="home-page collections-page">
   <header class="site-header">
@@ -117,52 +117,10 @@
     </section>
   </main>
 
-  <!-- PC-only: frosted scroll nudge in open yellow field (hidden on touch / narrow) -->
-  <button
-    type="button"
-    class="collections-scroll-nudge"
-    id="collections-scroll-nudge"
-    aria-label="Scroll down the collection list"
-  >
-    <span class="collections-scroll-nudge-glass" aria-hidden="true"></span>
-    <svg class="collections-scroll-nudge-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M6 10l6 6 6-6" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </button>
-
   <footer class="site-footer">
     <p><a href="https://www.dacat.fun/" target="_blank" rel="noopener noreferrer">dacat.fun</a> · <a href="https://www.dacatworld.com/" target="_blank" rel="noopener noreferrer">dacatworld</a> · <a href="https://dacat.store/" target="_blank" rel="noopener noreferrer">dacat.store</a></p>
-    <p class="site-version">Site build 20260814-1</p>
+    <p class="site-version">Site build 20260814-2</p>
   </footer>
-  <script src="../js/pwa-register.js?v=20260814-1" defer></script>
-  <script>
-    (function () {
-      var btn = document.getElementById("collections-scroll-nudge");
-      if (!btn) return;
-      var mq = window.matchMedia("(min-width: 960px) and (hover: hover) and (pointer: fine)");
-      function canShow() {
-        if (!mq.matches) return false;
-        var room = document.documentElement.scrollHeight - window.scrollY - window.innerHeight;
-        return room > window.innerHeight * 0.2;
-      }
-      function sync() {
-        btn.classList.toggle("is-away", !canShow());
-      }
-      btn.addEventListener("click", function () {
-        btn.classList.add("is-pulse");
-        window.setTimeout(function () {
-          btn.classList.remove("is-pulse");
-        }, 420);
-        var dy = Math.round(window.innerHeight * 0.14);
-        window.scrollBy({ top: dy, left: 0, behavior: "smooth" });
-        window.setTimeout(sync, 500);
-      });
-      window.addEventListener("scroll", sync, { passive: true });
-      window.addEventListener("resize", sync, { passive: true });
-      if (mq.addEventListener) mq.addEventListener("change", sync);
-      else if (mq.addListener) mq.addListener(sync);
-      sync();
-    })();
-  </script>
+  <script src="../js/pwa-register.js?v=20260814-2" defer></script>
 </body>
 </html>
