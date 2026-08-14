@@ -5802,7 +5802,8 @@ function closeDetail(opts) {
 function syncGalleryScrollNudge() {
   var btn = $("#gallery-scroll-nudge");
   if (!btn) return;
-  var mq = window.matchMedia("(min-width: 960px) and (hover: hover) and (pointer: fine)");
+  // Width-only gate; CSS also hides on narrow. Avoid pointer:fine which can false-negative.
+  var wide = window.innerWidth >= 900;
   var detailOpen =
     !!activeDetailTokenId ||
     !!(
@@ -5811,10 +5812,8 @@ function syncGalleryScrollNudge() {
     );
   var room =
     document.documentElement.scrollHeight - window.scrollY - window.innerHeight;
-  var show =
-    mq.matches &&
-    !detailOpen &&
-    room > window.innerHeight * 0.2;
+  // Show whenever there's meaningful room left to scroll (long archive / collection grids)
+  var show = wide && !detailOpen && room > 80;
   btn.classList.toggle("is-away", !show);
 }
 
@@ -5822,7 +5821,6 @@ function bindGalleryScrollNudge() {
   var btn = $("#gallery-scroll-nudge");
   if (!btn || btn.dataset.bound) return;
   btn.dataset.bound = "1";
-  var mq = window.matchMedia("(min-width: 960px) and (hover: hover) and (pointer: fine)");
   btn.addEventListener("click", function () {
     if (btn.classList.contains("is-away")) return;
     btn.classList.add("is-pulse");
@@ -5835,8 +5833,9 @@ function bindGalleryScrollNudge() {
   });
   window.addEventListener("scroll", syncGalleryScrollNudge, { passive: true });
   window.addEventListener("resize", syncGalleryScrollNudge, { passive: true });
-  if (mq.addEventListener) mq.addEventListener("change", syncGalleryScrollNudge);
-  else if (mq.addListener) mq.addListener(syncGalleryScrollNudge);
+  // After first paint / late layout (stats, grid) re-check
+  window.setTimeout(syncGalleryScrollNudge, 0);
+  window.setTimeout(syncGalleryScrollNudge, 800);
   syncGalleryScrollNudge();
 }
 

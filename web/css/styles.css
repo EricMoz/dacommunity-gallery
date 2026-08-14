@@ -2747,20 +2747,25 @@ button.stat.stat-collectors:disabled {
 
 /*
  * Gallery archive (/dacommunity/ + ?collection= slugs) — PC-only scroll nudge.
- * Frosted low-opacity bubble in the yellow field under sticky header.
- * Hidden when NFT detail drawer is open (see app.js syncGalleryScrollNudge).
+ * Bottom-right glass chip. MUST set display inside the media query (base is none).
+ * JS adds .is-away when NFT detail is open or little scroll remains.
  */
 .gallery-scroll-nudge {
-  display: none;
+  display: none !important;
 }
-@media (min-width: 960px) and (hover: hover) and (pointer: fine) {
+@media (min-width: 900px) {
   .gallery-scroll-nudge {
-    --nudge-size: 3.15rem;
+    /* Critical: override base display:none — was missing and hid the control forever */
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    --nudge-size: 2.65rem;
     position: fixed;
-    /* Below sticky header chrome; above footer; under detail drawer (z ~ higher) */
-    z-index: 45;
-    left: 50%;
-    bottom: max(1.75rem, calc(env(safe-area-inset-bottom, 0px) + 1.35rem));
+    z-index: 90;
+    /* Bottom-right yellow gutter — clear of sticky header and page edge */
+    right: max(1.25rem, calc(env(safe-area-inset-right, 0px) + 1.1rem));
+    bottom: max(1.35rem, calc(env(safe-area-inset-bottom, 0px) + 1.15rem));
+    left: auto;
     width: var(--nudge-size);
     height: var(--nudge-size);
     margin: 0;
@@ -2768,82 +2773,81 @@ button.stat.stat-collectors:disabled {
     border: none;
     background: transparent;
     cursor: pointer;
-    transform: translateX(-50%);
-    color: rgba(10, 10, 10, 0.72);
+    transform: none;
+    color: rgba(10, 10, 10, 0.78);
     -webkit-tap-highlight-color: transparent;
     transition: opacity 0.28s ease, transform 0.28s ease, visibility 0.28s ease;
   }
   .gallery-scroll-nudge.is-away {
-    opacity: 0;
+    opacity: 0 !important;
     visibility: hidden;
     pointer-events: none;
-    transform: translateX(-50%) translateY(10px);
+    transform: translateY(8px);
   }
   .gallery-scroll-nudge-glass {
     position: absolute;
     inset: 0;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.22);
-    border: 1px solid rgba(10, 10, 10, 0.14);
+    background: rgba(255, 255, 255, 0.32);
+    border: 1px solid rgba(10, 10, 10, 0.16);
     box-shadow:
-      0 6px 20px rgba(10, 10, 10, 0.08),
-      inset 0 1px 0 rgba(255, 255, 255, 0.45);
-    backdrop-filter: blur(12px) saturate(1.15);
-    -webkit-backdrop-filter: blur(12px) saturate(1.15);
-    opacity: 0.88;
+      0 4px 14px rgba(10, 10, 10, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(11px) saturate(1.15);
+    -webkit-backdrop-filter: blur(11px) saturate(1.15);
     transition: background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
   }
   .gallery-scroll-nudge-icon {
     position: relative;
     z-index: 1;
     display: block;
-    margin: 0 auto;
+    width: 1.15rem;
+    height: 1.15rem;
     animation: gallery-nudge-bob 2.4s ease-in-out infinite;
   }
   .gallery-scroll-nudge:hover .gallery-scroll-nudge-glass,
   .gallery-scroll-nudge:focus-visible .gallery-scroll-nudge-glass {
-    background: rgba(255, 255, 255, 0.38);
-    border-color: rgba(10, 10, 10, 0.28);
+    background: rgba(255, 255, 255, 0.48);
+    border-color: rgba(10, 10, 10, 0.3);
     box-shadow:
-      0 8px 24px rgba(10, 10, 10, 0.12),
-      inset 0 1px 0 rgba(255, 255, 255, 0.55),
-      0 0 0 2px rgba(255, 204, 0, 0.45);
+      0 6px 18px rgba(10, 10, 10, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6),
+      0 0 0 2px rgba(255, 204, 0, 0.5);
   }
   .gallery-scroll-nudge:hover {
-    color: rgba(10, 10, 10, 0.92);
+    color: rgba(10, 10, 10, 0.95);
   }
   .gallery-scroll-nudge:focus-visible {
     outline: none;
   }
   .gallery-scroll-nudge:active .gallery-scroll-nudge-glass {
     transform: scale(0.94);
-    background: rgba(255, 204, 0, 0.35);
+    background: rgba(255, 204, 0, 0.4);
   }
   .gallery-scroll-nudge.is-pulse .gallery-scroll-nudge-glass {
     animation: gallery-nudge-click 0.42s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .gallery-scroll-nudge.is-pulse .gallery-scroll-nudge-icon {
     animation: none;
-    transform: translateY(3px);
+    transform: translateY(2px);
   }
-  /* Darker glass when collector portfolio is open (still PC-only) */
   body.has-collector-view .gallery-scroll-nudge {
-    color: rgba(255, 255, 255, 0.78);
+    color: rgba(255, 255, 255, 0.82);
   }
   body.has-collector-view .gallery-scroll-nudge-glass {
-    background: rgba(20, 20, 20, 0.35);
-    border-color: rgba(255, 204, 0, 0.28);
+    background: rgba(18, 18, 18, 0.42);
+    border-color: rgba(255, 204, 0, 0.32);
     box-shadow:
-      0 6px 22px rgba(0, 0, 0, 0.35),
+      0 6px 20px rgba(0, 0, 0, 0.35),
       inset 0 1px 0 rgba(255, 255, 255, 0.08);
   }
   body.has-collector-view .gallery-scroll-nudge:hover .gallery-scroll-nudge-glass,
   body.has-collector-view .gallery-scroll-nudge:focus-visible .gallery-scroll-nudge-glass {
-    background: rgba(30, 30, 30, 0.5);
-    border-color: rgba(255, 204, 0, 0.5);
+    background: rgba(28, 28, 28, 0.55);
+    border-color: rgba(255, 204, 0, 0.55);
     box-shadow:
-      0 8px 26px rgba(0, 0, 0, 0.4),
-      0 0 0 2px rgba(255, 204, 0, 0.35);
+      0 8px 24px rgba(0, 0, 0, 0.4),
+      0 0 0 2px rgba(255, 204, 0, 0.4);
   }
 }
 @keyframes gallery-nudge-bob {
