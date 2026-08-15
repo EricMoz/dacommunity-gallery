@@ -202,7 +202,9 @@ Do **not** paste keys into public issues, PR comments, or workflow_dispatch text
 
 - Runs on cron + manual dispatch.
 - Fetches main gallery + badges (+ other collection fetchers), commits JSONs, triggers deploy.
-- On failure records \gallery_meta.json\ (staleness banner on the live site).
+- On failure records `gallery_meta.json` (red staleness banner on the live site).
+- On **success** always re-stamps `gallery_meta` as `status: ok` and **always** dispatches Deploy Pages (so a prior fail banner cannot stick when collection JSON is unchanged).
+- Live banner: client never caches `gallery_meta.json` in the service worker; `applyGalleryMeta` hides the banner on ok.
 
 | Workflow | LFS | Notes |
 |----------|-----|-------|

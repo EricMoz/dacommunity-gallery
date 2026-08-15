@@ -66,6 +66,11 @@ function isDataJson(url) {
   );
 }
 
+/** Health banner file — never cache; a sticky "failed" meta is worse than a miss. */
+function isGalleryMeta(url) {
+  return /\/data\/gallery_meta\.json$/i.test(url.pathname);
+}
+
 function isAssetShell(url) {
   return /\.(js|css)$/i.test(url.pathname);
 }
@@ -84,8 +89,13 @@ self.addEventListener("fetch", function (event) {
   var url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
 
-  // Build stamp + HTML: always network, never store (unstick mobile shells)
-  if (isHtmlDocument(event.request, url) || /\/VERSION\.txt$/i.test(url.pathname)) {
+  // Build stamp + HTML + gallery health meta: always network, never store
+  // (unstick mobile shells; clear fail banner after successful daily refresh)
+  if (
+    isHtmlDocument(event.request, url) ||
+    /\/VERSION\.txt$/i.test(url.pathname) ||
+    isGalleryMeta(url)
+  ) {
     event.respondWith(networkOnly(event.request));
     return;
   }

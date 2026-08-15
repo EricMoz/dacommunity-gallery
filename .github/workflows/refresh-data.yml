@@ -187,6 +187,42 @@ jobs:
             echo "No meta change to record"
           fi
 
+      # Always re-stamp gallery_meta as ok at end of a green job. Prevents a prior
+      # "record failed gallery refresh" from staying live when collection JSON is
+      # unchanged (no commit) or when an intermediate step wrote failure meta.
+      - name: Ensure success gallery_meta
+        if: success()
+        id: ensure_meta
+        run: |
+          set -e
+          pip install -r backend/requirements.txt
+          PYTHONPATH=backend python - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          sys.path.insert(0, "backend")
+          from gallery_meta import META_PATH, load_meta, record_success
+
+          root = Path("web/data")
+          listed = 0
+          pieces = 0
+          gd = root / "gallery_data.json"
+          if gd.is_file():
+              data = json.loads(gd.read_text(encoding="utf-8"))
+              col = data.get("collection") or {}
+              listed = int(col.get("listed_count") or 0)
+              pieces = int(col.get("piece_count") or len(data.get("items") or []))
+          else:
+              prev = load_meta()
+              listed = int(prev.get("listed_count") or 0)
+              pieces = int(prev.get("piece_count") or 0)
+          record_success(
+              listed_count=listed, piece_count=pieces, source="github_actions"
+          )
+          print("Ensured success meta →", META_PATH)
+          PY
+
       - name: Commit updated data
         id: commit
         if: success()
@@ -203,14 +239,21 @@ jobs:
           git commit -m "chore: daily refresh from OpenSea ($(date -u +%Y-%m-%d))"
           # Robust push with limited retries (handles transient remote changes / rebase races)
           git pull --rebase --autostash origin main || git pull --autostash origin main || true
-            git push origin main --force-with-lease || git push origin main || echo "::warning::Push may have issues. Data update attempted (concurrent edit or protected branch?)."
-          echo "changed=true" >> $GITHUB_OUTPUT
+          if git push origin main --force-with-lease || git push origin main; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "::error::Push of refreshed data failed — live site may still show stale/fail banner"
+            echo "changed=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
 
+      # Always deploy after a green refresh so gallery_meta status:ok reaches Pages
+      # even if only meta flipped failed→ok or push event deploy is delayed.
       - name: Trigger Deploy gallery to GitHub Pages
-        if: steps.commit.outputs.changed == 'true'
+        if: success()
         continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "Triggering deploy workflow after successful data commit (note: push to main will also trigger it automatically)"
+          echo "Triggering deploy after successful refresh (clears fail banner on live site)"
           gh workflow run "Deploy gallery to GitHub Pages" --repo ${{ github.repository }} --ref main || echo "gh dispatch failed (harmless if push event already queued deploy)"

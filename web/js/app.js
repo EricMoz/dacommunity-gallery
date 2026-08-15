@@ -55,7 +55,9 @@ function initDataUrls() {
   CATALOG_URL = prefix + "data/gallery_catalog.json" + q;
   FULL_DATA_URL = prefix + "data/gallery_data.json" + q;
   WALLET_URL = prefix + "data/wallet_index.json" + q;
-  META_URL = prefix + "data/gallery_meta.json" + q;
+  // Bust meta every boot: health banner must not stick on a cached "failed" snapshot
+  // after a green daily refresh + Pages deploy (SW / edge can lag one stamp).
+  META_URL = prefix + "data/gallery_meta.json" + q + "&m=" + Date.now().toString(36);
   REGISTRY_URL = prefix + "data/collections_registry.json" + q;
   NAME_INDEX_URL = prefix + "data/name_index.json" + q;
 }
@@ -475,10 +477,13 @@ function bindFreshnessToggle() {
 
 function applyGalleryMeta(meta) {
   galleryMeta = meta;
+  // Always clear first — success after a failed snapshot must remove the red banner
+  // (previously we only *showed* on failure, so a sticky/cached fail never hid).
+  hideStaleBanner();
   if (!meta) return;
   var refresh = meta.refresh || {};
   var key = meta.opensea_key || {};
-  var dataAt = meta.data_generated_at || galleryData.generated_at;
+  var dataAt = meta.data_generated_at || (galleryData && galleryData.generated_at);
   var ageH = hoursSince(dataAt);
 
   if (refresh.status === "failed") {
@@ -488,6 +493,10 @@ function applyGalleryMeta(meta) {
   }
   if (key.status === "expired_or_invalid") {
     showStaleBanner(key.hint || "OpenSea API key needs renewal.", "error");
+    return;
+  }
+  // Healthy refresh: keep banner hidden even if data is slightly old (<30h is fine)
+  if (refresh.status === "ok" || refresh.status === "success") {
     return;
   }
   if (ageH !== null && ageH > 30) {
@@ -512,6 +521,22 @@ function updateFooterMaintenance(meta) {
   }
   // Intentionally omit internal key-rotation / fallback-secret notes from production footer.
   footer.innerHTML = base + '<span id="footer-updated">' + escapeHtml(updated) + "</span>" + escapeHtml(extra);
+}
+
+/** Re-fetch gallery_meta after boot so a just-finished deploy clears a fail banner. */
+function scheduleMetaRefresh() {
+  if (isFileProtocol()) return;
+  var delays = [8000, 25000, 60000];
+  delays.forEach(function (ms) {
+    setTimeout(function () {
+      try {
+        initDataUrls(); // new &m= cache buster
+        loadGalleryMeta();
+      } catch (e) {
+        /* non-fatal */
+      }
+    }, ms);
+  });
 }
 
 async function loadGalleryMeta() {
@@ -6806,6 +6831,8 @@ async function init() {
     loadGalleryMeta().then(function () {
       updateFooterMaintenance(galleryMeta);
     });
+    // Re-check meta after deploy lag so a just-cleared fail flag drops without hard refresh
+    scheduleMetaRefresh();
 
     var initCol = getCurrentCollection();
     var hasWalletInit = !initCol || (initCol.features || []).indexOf("wallet_lookup") !== -1;
