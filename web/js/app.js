@@ -82,6 +82,15 @@ let galleryData = null;
 let walletIndex = null;
 /** Cross-collection name cache (weekly Base-name enricher). */
 let nameIndex = null;
+/**
+ * Runtime identity hints for addresses not in wallet_index (secondary-collection
+ * holders, stewards). Seeded from collection.creator_wallet + ensdata reverse.
+ * Weekly "Enrich wallet names" only patches addresses already in wallet_index.
+ */
+let extraIdentityByAddress = {};
+let reverseEnsPending = {};
+let reverseEnsFailed = {};
+let identityUiRefreshTimer = null;
 let collectorsList = [];
 let itemsById = new Map();
 /** Browse view — single source of truth for search / filter / sort. */
@@ -644,6 +653,7 @@ function normalizeBadgeSeriesImages(item) {
 }
 
 function indexItems(data) {
+  if (data && data.collection) seedIdentityFromCollectionMeta(data.collection);
   itemsById.clear();
   (data.items || []).forEach(function (i) {
     if (!i.display_name) {
@@ -868,13 +878,176 @@ function formatCollectorHoldMeta(c) {
   return uq + "·" + cq;
 }
 
+function cleanIdentityName(v) {
+  if (v == null || v === "") return null;
+  var s = String(v).trim();
+  return s || null;
+}
+
+/** Merge identity fields into runtime map (does not overwrite stronger existing values). */
+function seedIdentityHint(address, fields) {
+  var key = String(address || "")
+    .toLowerCase()
+    .trim();
+  if (!key || key.indexOf("0x") !== 0) return;
+  fields = fields || {};
+  if (!extraIdentityByAddress[key]) extraIdentityByAddress[key] = {};
+  var e = extraIdentityByAddress[key];
+  var ens = cleanIdentityName(fields.ens_name);
+  var base = cleanIdentityName(fields.base_name);
+  var user = cleanIdentityName(fields.username);
+  if (ens && !e.ens_name) e.ens_name = ens.toLowerCase();
+  if (base && !e.base_name) e.base_name = base;
+  if (user && !e.username && !/^0x[a-fA-F0-9]{10,}$/i.test(user)) e.username = user;
+}
+
+/** Collection steward metadata (e.g. BIG KIX creator_wallet: dacatworld.eth). */
+function seedIdentityFromCollectionMeta(col) {
+  if (!col) return;
+  var cw = col.creator_wallet;
+  if (!cw) return;
+  if (typeof cw === "string") {
+    seedIdentityHint(cw, {});
+    return;
+  }
+  seedIdentityHint(cw.address || cw.wallet, {
+    ens_name: cw.ens_name,
+    username: cw.username,
+    base_name: cw.base_name,
+  });
+}
+
+function seedIdentitiesFromLoadedData() {
+  if (galleryData && galleryData.collection) {
+    seedIdentityFromCollectionMeta(galleryData.collection);
+  }
+  // Merged multi-collection loads may keep secondary meta only on items
+  (galleryData && galleryData.items ? galleryData.items : []).forEach(function (it) {
+    if (it && it.collection_id === "bigkix" && galleryData.collection) return;
+  });
+}
+
+/**
+ * Reverse-primary ENS via ensdata for addresses missing from wallet_index
+ * (Agency / BIG KIX / badge-only holders). ens_primary only — never bare owned-name ens.
+ */
+function fetchReverseEns(address) {
+  var key = String(address || "")
+    .toLowerCase()
+    .trim();
+  if (!key || !/^0x[a-f0-9]{40}$/.test(key)) return Promise.resolve(null);
+  if (reverseEnsFailed[key]) return Promise.resolve(null);
+  var known = resolveCollectorIdentity(key);
+  if (known.ens_name) return Promise.resolve(known.ens_name);
+  if (reverseEnsPending[key]) return reverseEnsPending[key];
+
+  reverseEnsPending[key] = fetch("https://ensdata.net/" + encodeURIComponent(key), {
+    credentials: "omit",
+  })
+    .then(function (r) {
+      if (!r.ok) throw new Error("ensdata " + r.status);
+      return r.json();
+    })
+    .then(function (data) {
+      delete reverseEnsPending[key];
+      if (!data) {
+        reverseEnsFailed[key] = 1;
+        return null;
+      }
+      // Reverse-primary only (same rule as backend opensea_client.resolve_ens_name)
+      var ens = data.ens_primary;
+      if (!ens) {
+        reverseEnsFailed[key] = 1;
+        return null;
+      }
+      ens = String(ens).toLowerCase().trim();
+      var eth = "";
+      if (data.wallets && data.wallets.eth) eth = String(data.wallets.eth).toLowerCase();
+      else if (data.address) eth = String(data.address).toLowerCase();
+      if (eth && eth !== key) {
+        reverseEnsFailed[key] = 1;
+        return null;
+      }
+      seedIdentityHint(key, { ens_name: ens });
+      return ens;
+    })
+    .catch(function () {
+      delete reverseEnsPending[key];
+      reverseEnsFailed[key] = 1;
+      return null;
+    });
+  return reverseEnsPending[key];
+}
+
+/** True when we only have a short/full 0x label (worth a reverse lookup). */
+function identityNeedsReverseLookup(addressOrRow) {
+  var id = resolveCollectorIdentity(addressOrRow);
+  if (id.ens_name || id.base_name || id.username) return false;
+  if (!id.address || !/^0x[a-f0-9]{40}$/.test(id.address)) return false;
+  if (reverseEnsFailed[id.address] || reverseEnsPending[id.address]) return false;
+  return true;
+}
+
+/**
+ * For collector pills / wallet / modal: reverse-resolve missing names, then refresh UI once.
+ */
+function ensureNamesForAddresses(addresses) {
+  var need = [];
+  var seen = {};
+  (addresses || []).forEach(function (a) {
+    var key = String(a || "")
+      .toLowerCase()
+      .trim();
+    if (!key || seen[key]) return;
+    seen[key] = 1;
+    if (identityNeedsReverseLookup(key)) need.push(key);
+  });
+  if (!need.length) return;
+  Promise.all(need.map(fetchReverseEns)).then(function (results) {
+    if (results.some(Boolean)) scheduleIdentityUiRefresh();
+  });
+}
+
+function scheduleIdentityUiRefresh() {
+  if (identityUiRefreshTimer) return;
+  identityUiRefreshTimer = window.setTimeout(function () {
+    identityUiRefreshTimer = null;
+    enrichCollectorsListNames();
+    if (galleryData && Array.isArray(galleryData.items)) {
+      stampAllOwnerIdentities(galleryData.items);
+    }
+    // Refresh list UIs that already painted short 0x labels
+    renderTopCollectors._fromIdentityRefresh = true;
+    renderTopCollectors();
+    renderTopCollectors._fromIdentityRefresh = false;
+    var modal = $("#collectors-modal");
+    if (modal && !modal.hidden) {
+      var filterEl = $("#collectors-filter");
+      renderCollectors(filterEl ? filterEl.value : "");
+    }
+    if (galleryCollectorView && galleryCollectorView.address) {
+      var id = resolveCollectorIdentity(galleryCollectorView.address);
+      galleryCollectorView.label = id.display;
+      renderCollectorFocusUi();
+    }
+    var nameEl = document.querySelector(".collector-profile-name");
+    if (nameEl && galleryCollectorView && galleryCollectorView.address) {
+      nameEl.textContent = resolveCollectorIdentity(galleryCollectorView.address).display;
+    }
+    if (activeDetailTokenId) {
+      var openItem = itemsById.get(activeDetailTokenId);
+      if (openItem) refreshDetailPanel(openItem);
+    }
+  }, 80);
+}
+
 /**
  * Canonical collector identity for every UI surface.
  * Priority: reverse ENS → Base name → OpenSea username → short 0x
  *
- * wallet_index is source of truth for reverse ENS (ensdata ens_primary / OpenSea).
- * Owner-row fields are fallbacks for addresses not yet in the index — never title text.
- * If ens_aliases maps a name to a *different* address, drop it (stale/wrong stamp).
+ * Sources: wallet_index (daCommunity daily reverse), extraIdentityByAddress
+ * (creator_wallet + live ensdata reverse for secondary holders), owner-row stamps,
+ * name_index. Never NFT title text.
  */
 function resolveCollectorIdentity(addressOrRow) {
   var key = "";
@@ -902,19 +1075,15 @@ function resolveCollectorIdentity(addressOrRow) {
     walletIndex && walletIndex.by_address && walletIndex.by_address[key]
       ? walletIndex.by_address[key]
       : null;
+  var extra = extraIdentityByAddress[key] || null;
   var ni = nameIndexEntry(key);
 
-  function cleanName(v) {
-    if (v == null || v === "") return null;
-    var s = String(v).trim();
-    return s || null;
-  }
-
-  // Reverse ENS: index first, then row/owner stamp, then name_index hint
+  // Reverse ENS: wallet_index → runtime reverse/creator seed → owner row → name_index
   var ens =
-    cleanName(entry && entry.ens_name) ||
-    cleanName(row && row.ens_name) ||
-    cleanName(ni && ni.ens_name) ||
+    cleanIdentityName(entry && entry.ens_name) ||
+    cleanIdentityName(extra && extra.ens_name) ||
+    cleanIdentityName(row && row.ens_name) ||
+    cleanIdentityName(ni && ni.ens_name) ||
     null;
   if (ens) ens = ens.toLowerCase();
 
@@ -927,15 +1096,17 @@ function resolveCollectorIdentity(addressOrRow) {
   }
 
   var base =
-    cleanName(entry && entry.base_name) ||
-    cleanName(ni && ni.base_name) ||
-    cleanName(row && row.base_name) ||
+    cleanIdentityName(entry && entry.base_name) ||
+    cleanIdentityName(extra && extra.base_name) ||
+    cleanIdentityName(ni && ni.base_name) ||
+    cleanIdentityName(row && row.base_name) ||
     null;
 
   var username =
-    cleanName(entry && entry.username) ||
-    cleanName(row && row.username) ||
-    cleanName(ni && ni.username) ||
+    cleanIdentityName(entry && entry.username) ||
+    cleanIdentityName(extra && extra.username) ||
+    cleanIdentityName(row && row.username) ||
+    cleanIdentityName(ni && ni.username) ||
     null;
   // OpenSea sometimes dumps the raw 0x as "username"
   if (username && /^0x[a-fA-F0-9]{10,}$/i.test(username)) username = null;
@@ -3483,6 +3654,14 @@ function renderTopCollectors() {
       runWalletLookupFromAddress(btn.getAttribute("data-address"), btn.getAttribute("data-lookup"));
     });
   });
+  // Secondary collections: holders often missing from wallet_index — reverse-resolve live
+  if (!renderTopCollectors._fromIdentityRefresh) {
+    ensureNamesForAddresses(
+      top.map(function (c) {
+        return c.address;
+      })
+    );
+  }
 }
 
 function createHoldingCard(item, holding) {
@@ -3884,6 +4063,10 @@ function renderWalletSuccess(entry, opts) {
   entry.ens_name = id.ens_name;
   entry.base_name = id.base_name;
   entry.username = id.username;
+  // Secondary-only holders: reverse-resolve if still short 0x
+  if (entry.address && identityNeedsReverseLookup(entry.address)) {
+    ensureNamesForAddresses([entry.address]);
+  }
   var holdings = entry.holdings || [];
   var holdStats = holdings.length ? summarizeHoldingsStats(holdings) : null;
   var uq = holdStats ? holdStats.unique_pieces : nvl(entry.unique_pieces, holdings.length);
@@ -4468,6 +4651,11 @@ function renderCollectors(filter) {
       );
     });
   });
+  ensureNamesForAddresses(
+    rows.map(function (c) {
+      return c.address;
+    })
+  );
 }
 
 function fillMediaSlot(slot, item, opts) {
