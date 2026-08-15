@@ -1714,7 +1714,65 @@ function escapeHtml(str) {
   return d.innerHTML;
 }
 
+/**
+ * Normalize HATS titles so series # is always first: "#015 - Name".
+ * OpenSea mid-batch titles sometimes use "HATS n' daCATs #015".
+ */
+function normalizeHatsDisplayTitle(raw, tokenId, traits) {
+  var s = String(raw || "").trim();
+  var tid = tokenId != null ? String(tokenId) : "";
+  function traitVal(names) {
+    var list = traits || [];
+    var want = {};
+    names.forEach(function (n) {
+      want[String(n).toLowerCase()] = true;
+    });
+    for (var i = 0; i < list.length; i++) {
+      var tt = String((list[i] && list[i].trait_type) || "")
+        .trim()
+        .toLowerCase();
+      if (!want[tt]) continue;
+      var v = String((list[i] && list[i].value) || "").trim();
+      if (v && v.toLowerCase() !== "none" && v.toLowerCase() !== "n/a") return v;
+    }
+    return "";
+  }
+  function fmt(num, rest) {
+    var n = String(parseInt(num, 10));
+    if (isNaN(Number(n))) n = String(num || tid || "");
+    while (n.length < 3) n = "0" + n;
+    rest = String(rest || "").replace(/\s+/g, " ").trim();
+    return rest ? "#" + n + " - " + rest : "#" + n;
+  }
+  var m = s.match(/^#\s*(\d+)\s*[-–—:]\s*(.+)$/);
+  if (m) return fmt(m[1], m[2]);
+  var m2 = s.match(/^(.+?)\s*#\s*(\d+)\s*$/);
+  if (m2) {
+    var prefix = m2[1].trim();
+    var gear = traitVal(["Gear Name", "Hat", "Name", "Title"]);
+    var head = traitVal(["Headwear Type"]);
+    var rest = "";
+    if (gear) rest = gear;
+    else if (prefix && !/^hats\s*n['’]?\s*dacats$/i.test(prefix)) rest = prefix;
+    else if (head) rest = head;
+    else rest = prefix;
+    return fmt(m2[2], rest);
+  }
+  var m3 = s.match(/^#?\s*(\d+)\s*$/);
+  if (m3) return fmt(m3[1], traitVal(["Gear Name", "Hat", "Name", "Title"]) || traitVal(["Headwear Type"]));
+  if ((arguments.length && tid) || s) {
+    // leave non-hat-looking strings alone when called without hat context
+  }
+  return s;
+}
+
 function itemTitle(item) {
+  if (!item) return "Token #";
+  if ((item.collection_id || "") === "hats-n-dacats") {
+    var raw = item.display_name || item.name || item.opensea_name || "";
+    var normalized = normalizeHatsDisplayTitle(raw, item.token_id, item.traits);
+    if (normalized) return normalized;
+  }
   return item.display_name || item.local_slug || item.name || "Token #" + item.token_id;
 }
 
@@ -1738,9 +1796,20 @@ function formatPieceTitleHtml(title) {
   if (hatM) {
     return (
       '<span class="piece-title piece-title-hat"><span class="piece-prefix">#' +
-      escapeHtml(hatM[1]) +
+      escapeHtml(String(parseInt(hatM[1], 10))) +
       ' · </span><span class="piece-name">' +
       escapeHtml(hatM[2].trim()) +
+      "</span></span>"
+    );
+  }
+  // Trailing number fallback (pre-normalize data): "HATS n' daCATs #015"
+  var hatTrail = t.match(/^(.+?)\s*#\s*(\d+)\s*$/);
+  if (hatTrail) {
+    return (
+      '<span class="piece-title piece-title-hat"><span class="piece-prefix">#' +
+      escapeHtml(String(parseInt(hatTrail[2], 10))) +
+      ' · </span><span class="piece-name">' +
+      escapeHtml(hatTrail[1].trim()) +
       "</span></span>"
     );
   }
@@ -5175,6 +5244,34 @@ function itemMatchesSearchToken(item, token) {
   return false;
 }
 
+/** Series # from HATS title (#020 - …) or token_id fallback. */
+function hatsSeriesNumber(item) {
+  if (!item) return null;
+  var t = item.display_name || item.name || "";
+  var m = String(t).match(/#\s*(\d+)/);
+  if (m) return parseInt(m[1], 10);
+  var n = Number(item.token_id);
+  return isNaN(n) ? null : n;
+}
+
+/**
+ * Sort timestamp for Newest/Oldest. Real minted_at wins; undated HATS use a
+ * recent batch anchor so cleared "All collections" doesn't bury Batch 01
+ * under years of daCommunity mint dates.
+ */
+function itemSortTimeMs(item) {
+  if (!item) return 0;
+  var t = Date.parse(item.minted_at || 0) || 0;
+  if (t) return t;
+  if ((item.collection_id || "") === "hats-n-dacats") {
+    // Collection created ~2026-08-02; series # nudges later hats slightly newer
+    var base = Date.parse("2026-08-12T12:00:00.000Z") || 0;
+    var series = hatsSeriesNumber(item) || 0;
+    return base + series * 60000;
+  }
+  return 0;
+}
+
 function compareItems(a, b) {
   // Agency rarity series: Vol 1…N, then rank (1:1 first … Common last) within each volume
   if (isAgencyRaritySeries(a) && isAgencyRaritySeries(b)) {
@@ -5188,19 +5285,21 @@ function compareItems(a, b) {
   }
   var key = sortKey || "token_desc";
   if (key === "token_desc") {
-    var da = Date.parse(a.minted_at || 0) || 0;
-    var db = Date.parse(b.minted_at || 0) || 0;
-    if (da && db && da !== db) return db - da; // newest first across collections
-    if (da && !db) return -1;
-    if (!da && db) return 1;
+    var da = itemSortTimeMs(a);
+    var db = itemSortTimeMs(b);
+    if (da !== db) return db - da; // newest first
+    // Within same time: HATS higher series # first; else token id
+    if ((a.collection_id || "") === "hats-n-dacats" && (b.collection_id || "") === "hats-n-dacats") {
+      var sa = hatsSeriesNumber(a);
+      var sb = hatsSeriesNumber(b);
+      if (sa != null && sb != null && sa !== sb) return sb - sa;
+    }
     return Number(b.token_id) - Number(a.token_id);
   }
   if (key === "token_asc") {
-    var da2 = Date.parse(a.minted_at || 0) || 0;
-    var db2 = Date.parse(b.minted_at || 0) || 0;
-    if (da2 && db2 && da2 !== db2) return da2 - db2;
-    if (da2 && !db2) return 1;
-    if (!da2 && db2) return -1;
+    var da2 = itemSortTimeMs(a);
+    var db2 = itemSortTimeMs(b);
+    if (da2 !== db2) return da2 - db2;
     return Number(a.token_id) - Number(b.token_id);
   }
   if (key === "name_asc") {

@@ -217,6 +217,81 @@ def excerpt(text: str, max_len: int = 160) -> str:
     return flat[: max_len - 1].rstrip() + "…"
 
 
+def _trait_value(traits: list[dict] | None, *names: str) -> str | None:
+    want = {n.lower() for n in names}
+    for t in traits or []:
+        tt = str(t.get("trait_type") or "").strip().lower()
+        if tt in want:
+            val = str(t.get("value") or "").strip()
+            if val and val.lower() not in ("none", "n/a", "null", "-"):
+                return val
+    return None
+
+
+def normalize_display_title(
+    raw_name: str | None,
+    token_id: str,
+    traits: list[dict] | None = None,
+) -> tuple[str, str | None]:
+    """Canonical display: ``#NNN - Name`` (series number always first).
+
+    OpenSea sometimes stores mid-batch titles as ``HATS n' daCATs #015`` (number
+    at the end). We keep the original as ``opensea_name`` and show number-first.
+    Prefer trait ``Gear Name`` / ``Headwear Type`` when the raw title is only
+    the collection name + number.
+    """
+    raw = (raw_name or "").strip()
+    traits = traits or []
+
+    def _fmt(num: str, rest: str) -> str:
+        try:
+            n = str(int(num)).zfill(3)
+        except ValueError:
+            n = num.zfill(3) if num.isdigit() else num
+        rest = re.sub(r"\s+", " ", (rest or "").strip())
+        return f"#{n} - {rest}" if rest else f"#{n}"
+
+    # Already number-first: "#020 - Cosmic Commander Helmet"
+    m = re.match(r"^#\s*(\d+)\s*[-–—:]\s*(.+)$", raw)
+    if m:
+        display = _fmt(m.group(1), m.group(2))
+        return display, raw if raw != display else None
+
+    # Number at end: "HATS n' daCATs #015" or "Something Cool #7"
+    m2 = re.match(r"^(.+?)\s*#\s*(\d+)\s*$", raw)
+    if m2:
+        prefix = m2.group(1).strip()
+        num = m2.group(2)
+        gear = _trait_value(traits, "Gear Name", "Hat", "Name", "Title")
+        head = _trait_value(traits, "Headwear Type")
+        if gear:
+            rest = gear
+        elif prefix and not re.match(r"^hats\s*n['’]?\s*dacats$", prefix, re.I):
+            rest = prefix
+        elif head:
+            rest = head
+        else:
+            rest = prefix if prefix else ""
+        display = _fmt(num, rest)
+        return display, raw if raw != display else None
+
+    # Bare "#15" / "15"
+    m3 = re.match(r"^#?\s*(\d+)\s*$", raw)
+    if m3:
+        gear = _trait_value(traits, "Gear Name", "Hat", "Name", "Title")
+        head = _trait_value(traits, "Headwear Type")
+        display = _fmt(m3.group(1), gear or head or "")
+        return display, raw if raw != display else None
+
+    # Fallback: no parseable number — still surface token id first
+    try:
+        num = str(int(token_id)).zfill(3)
+    except ValueError:
+        num = str(token_id)
+    display = _fmt(num, raw) if raw else f"#{num}"
+    return display, raw if raw and raw != display else None
+
+
 def slug_from_title(name: str, token_id: str) -> str:
     """Stable local_slug for share URLs — not used as display name."""
     raw = (name or "").strip()
@@ -224,6 +299,11 @@ def slug_from_title(name: str, token_id: str) -> str:
     if m:
         num = m.group(1).zfill(3)
         rest = re.sub(r"[^a-z0-9]+", "-", m.group(2).lower()).strip("-")
+        return f"hat-{num}-{rest}" if rest else f"hat-{num}"
+    m2 = re.match(r"^(.+?)\s*#\s*(\d+)\s*$", raw)
+    if m2:
+        num = m2.group(2).zfill(3)
+        rest = re.sub(r"[^a-z0-9]+", "-", m2.group(1).lower()).strip("-")
         return f"hat-{num}-{rest}" if rest else f"hat-{num}"
     try:
         num = str(int(token_id)).zfill(3)
@@ -384,14 +464,15 @@ def build_item(
     exclude_creator: set[str] | None = None,
 ) -> dict:
     token_id = str(nft.get("identifier", ""))
-    # Exact OpenSea title — do not reconstruct from token id
     raw_name = (nft.get("name") or "").strip()
     if not raw_name:
         raw_name = f"#{token_id}"
 
     traits = normalize_traits(nft.get("traits") or [])
+    # Number-first display (#NNN - Name). Preserve raw OpenSea string when reformatted.
+    display_name, opensea_name = normalize_display_title(raw_name, token_id, traits)
     description = enrich_description(
-        clean_description(nft.get("description")), traits, raw_name
+        clean_description(nft.get("description")), traits, display_name
     )
     listing_info = parse_listing_price(listing) if listing else None
     owner_stats = summarize_owners(owners, exclude_addresses=exclude_creator)
@@ -401,15 +482,15 @@ def build_item(
     media_type = (
         "video" if re.search(r"\.(mov|mp4|webm)(\?|$)", image_url, re.I) else "image"
     )
-    slug = slug_from_title(raw_name, token_id)
+    slug = slug_from_title(display_name, token_id)
 
     item = {
         "token_id": token_id,
-        "name": raw_name,
-        "display_name": raw_name,
+        "name": display_name,
+        "display_name": display_name,
         "local_slug": slug,
         "description": description,
-        "excerpt": excerpt(description) if description else raw_name,
+        "excerpt": excerpt(description) if description else display_name,
         "image_url": image_url,
         "opensea_image_url": image_url if str(image_url).startswith("http") else None,
         "media_type": media_type,
@@ -428,8 +509,25 @@ def build_item(
         "edition_size": 1,
         "max_supply": MAX_SUPPLY,
     }
+    if opensea_name:
+        item["opensea_name"] = opensea_name
+    # Mint date drives default "Newest" sort. Prefer OpenSea events; if missing,
+    # use NFT updated_at so Batch 01 still floats above older archive pieces.
     if minted_at:
         item["minted_at"] = minted_at
+    else:
+        upd = nft.get("updated_at")
+        if upd:
+            try:
+                # OpenSea may return ISO or unix
+                if isinstance(upd, (int, float)):
+                    item["minted_at"] = datetime.fromtimestamp(
+                        int(upd), tz=timezone.utc
+                    ).isoformat()
+                else:
+                    item["minted_at"] = str(upd)
+            except (TypeError, ValueError, OSError):
+                pass
     if recent_activity:
         item["recent_activity"] = recent_activity
     return item
