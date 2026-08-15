@@ -831,16 +831,16 @@ function buildCollectorsFromIndex(idx) {
   return Object.values(idx.by_address)
     .map(function (e) {
       var holdings = e.holdings || [];
-      var holdingsSum = 0;
-      holdings.forEach(function (h) {
-        var q = Number(h && h.quantity);
-        holdingsSum += !isNaN(q) && q > 0 ? q : 1;
-      });
       var uq = Number(nvl(e.unique_pieces, holdings.length)) || 0;
-      if (holdings.length && uq < holdings.length) uq = holdings.length;
-      // Prefer sum of per-token holdings. OpenSea collection_quantity is often inflated
-      // (not 1:1 with holdings[]) and made top-collector "copies" look like 300–800+.
-      var cq = holdingsSum > 0 ? holdingsSum : Number(e.collection_quantity) || 0;
+      var cq = Number(e.collection_quantity);
+      // Prefer explicit qty; else sum holding quantities; else fall back to unique
+      if (isNaN(cq) || cq <= 0) {
+        cq = 0;
+        holdings.forEach(function (h) {
+          var q = Number(h && h.quantity);
+          cq += !isNaN(q) && q > 0 ? q : 1;
+        });
+      }
       if (cq < uq) cq = uq;
       var ni = nameIndexEntry(e.address);
       return {
@@ -858,15 +858,6 @@ function buildCollectorsFromIndex(idx) {
       if (ub !== ua) return ub - ua;
       return (Number(b.collection_quantity) || 0) - (Number(a.collection_quantity) || 0);
     });
-}
-
-/** Never stamp collection_id as "all" — that makes archive items look secondary and double-count. */
-function tagItemsCollectionId(items, preferredId) {
-  var cid = preferredId || "dacommunity";
-  if (!cid || cid === "all") cid = "dacommunity";
-  (items || []).forEach(function (item) {
-    if (!item.collection_id) item.collection_id = cid;
-  });
 }
 
 /** Consistent collector count label: "N unique · M copies" everywhere. */
@@ -6179,7 +6170,9 @@ async function switchCollectionTo(newCol, opts) {
           (galleryData.collection && galleryData.collection.id) ||
           (galleryData.collection && galleryData.collection.slug) ||
           "dacommunity";
-        tagItemsCollectionId(galleryData.items, cid);
+        galleryData.items.forEach(function (item) {
+          if (!item.collection_id) item.collection_id = cid;
+        });
       }
       dataSource =
         (galleryData.source || "").indexOf("catalog") >= 0 ? "catalog" : "full";
@@ -6200,13 +6193,13 @@ async function switchCollectionTo(newCol, opts) {
       if (!stillCurrent()) return;
       galleryData = mainData;
       if (galleryData && Array.isArray(galleryData.items)) {
-        // Primary archive items are always dacommunity — never stamp "all"
-        tagItemsCollectionId(
-          galleryData.items,
-          (galleryData.collection &&
-            (galleryData.collection.id || galleryData.collection.slug)) ||
-            "dacommunity"
-        );
+        var mainCid =
+          activeCollection ||
+          (galleryData.collection && galleryData.collection.slug) ||
+          "dacommunity";
+        galleryData.items.forEach(function (item) {
+          if (!item.collection_id) item.collection_id = mainCid;
+        });
       }
       dataSource =
         galleryData.source === "gallery_catalog" ? "catalog" : "full";
@@ -6428,14 +6421,17 @@ function bindUi() {
 /** Turn loaded JSON into UI: clear loaders, stats, gallery rows, event handlers. */
 function bootGallery(data) {
   galleryData = data;
-  // Tag items with collection_id for multi-collection filtering (never "all")
+  // Tag items with collection_id for multi-collection filtering (future-proof; current data is dacommunity)
   if (galleryData && Array.isArray(galleryData.items)) {
     var cid =
       activeCollection ||
       (galleryData.collection && galleryData.collection.id) ||
       (galleryData.collection && galleryData.collection.slug) ||
       "dacommunity";
-    tagItemsCollectionId(galleryData.items, cid);
+    if (cid === "all") cid = "dacommunity";
+    galleryData.items.forEach(function (item) {
+      if (!item.collection_id) item.collection_id = cid;
+    });
   }
   indexItems(galleryData);
   // Secondary collections: collectors before first paint of stats tiles
