@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-08",
+  "updated": "2026-08-15",
   "collections": [
     {
       "id": "dacommunity",
@@ -74,6 +74,28 @@
       ],
       "theme": {
         "accent": "#ffcc00",
+        "surface": "dark_cinema",
+        "collector_surface": "dark_cinema"
+      }
+    },
+    {
+      "id": "hats-n-dacats",
+      "name": "HATS n' daCATs",
+      "status": "live",
+      "chain": "ethereum",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "opensea_slug": "hats-n-dacats",
+      "route": "/dacommunity/?collection=hats-n-dacats",
+      "data": {
+        "gallery": "hats_n_dacats_data.json",
+        "catalog": "hats_n_dacats_catalog.json"
+      },
+      "features": ["gallery", "collector_view", "wallet_lookup", "opensea_sync"],
+      "creator_ens": "hatsndacats.eth",
+      "max_supply": 333,
+      "theme": {
+        "accent": "#e8b4ff",
+        "accent_glow": "#c084fc",
         "surface": "dark_cinema",
         "collector_surface": "dark_cinema"
       }

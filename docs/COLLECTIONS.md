@@ -74,9 +74,30 @@ CSS maps `surface` to body classes (e.g. `badges-page` ↔ `cosmic_soon`). Futur
 | Collection | Route | Experience |
 |------------|-------|------------|
 | daCommunity | `/dacommunity/` | `app.js` + `gallery_*.json` (OpenSea slug `dacommunity-archive`, contract on Base) |
+| HATS n' daCATs | `/dacommunity/?collection=hats-n-dacats` | `app.js` + `hats_n_dacats_*.json` (Ethereum, true 1:1 wave drops) |
 | BIG KIX | `/dacommunity/?collection=bigkix` | `app.js` + `bigkix_*.json` (Ethereum, single-slug fetch) |
 | daGATO Detective Agency | `/dacommunity/?collection=dagato-agency` | `app.js` + `dagato_agency_*.json` (Ethereum, rarity tags) |
 | Badges | `/dacommunity/?collection=badges` | `app.js` + `badges_*.json` |
+
+### HATS n' daCATs pipeline
+
+```bash
+cd backend
+python fetch_hats_n_dacats.py          # writes web/data/hats_n_dacats_data.json + catalog
+# Daily: refresh-data.yml runs after BIG KIX fetch
+```
+
+| Surface | Detail |
+|---------|--------|
+| Hub / home tile | Eyebrow **1:1 · Batch 01**; violet premium dark card |
+| Route | `/dacommunity/?collection=hats-n-dacats` |
+| Steward | `hatsndacats.eth` · project mint wallet **excluded** from holder stats (NFTs still browseable) |
+| OpenSea | Single slug `hats-n-dacats` · contract `0xb28bf43b…` |
+| Display titles | **Exact OpenSea name** (e.g. `#020 - Cosmic Commander Helmet`) |
+| Model | True **1:1s** only (`is_1_of_1`); max supply **333**; waves auto-ingest on refresh |
+| Traits | Stored + shown on cards / detail; no invented rarity tiers |
+| Data | `web/data/hats_n_dacats_data.json` + `hats_n_dacats_catalog.json` |
+| Fetch | `backend/fetch_hats_n_dacats.py` (also in `refresh-data.yml`) |
 
 ### BIG KIX pipeline
 
@@ -128,7 +149,7 @@ Display priority: **ENS → Base → OpenSea username → short 0x** (`resolveCo
 
 `wallet_index` does **not** list pure secondary-collection holders. UI may live-reverse those via ensdata.
 
-Stewards: BIG KIX + badges exclude issuer inventory from holder stats; Agency does not use that exclusion for `0xa6d5…` when they hold case files.
+Stewards: BIG KIX + badges exclude issuer inventory from holder stats; HATS n' daCATs excludes `hatsndacats.eth` mint inventory until a collector receives the piece; Agency does not exclude its project wallet.
 
 Do **not** duplicate gallery logic for preview pages — use `preview_only` + themed static HTML until data exists.
 

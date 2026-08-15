@@ -58,9 +58,12 @@ self.addEventListener("message", function (event) {
 });
 
 function isDataJson(url) {
-  return /\/data\/(gallery_(data|meta|catalog|wallet_index)|videos|VERSION|BUILD)\.(json|txt)$/i.test(
-    url.pathname
-  ) || /\/VERSION\.txt$/i.test(url.pathname) || /\/BUILD\.json$/i.test(url.pathname);
+  // All gallery / collection JSON under /data/ — network-first so daily refresh lands
+  return (
+    /\/data\/.+\.json$/i.test(url.pathname) ||
+    /\/VERSION\.txt$/i.test(url.pathname) ||
+    /\/BUILD\.json$/i.test(url.pathname)
+  );
 }
 
 function isAssetShell(url) {

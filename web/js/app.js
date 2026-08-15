@@ -125,10 +125,16 @@ function isAgencyEditionToken(item) {
   return !!(item.is_edition_token || item.rarity);
 }
 
-/** Pill label: rank 1–5 for agency series; real token # for editions. */
+/** Pill label: rank 1–5 for agency series; hat series # from OpenSea title when present. */
 function itemTokenPillLabel(item) {
   if (!item) return "";
   if (item.token_rank != null && isAgencyRaritySeries(item)) return String(item.token_rank);
+  // HATS n' daCATs: prefer #NNN from exact OpenSea title (token_id can differ from series #)
+  if ((item.collection_id || "") === "hats-n-dacats") {
+    var title = item.display_name || item.name || "";
+    var m = String(title).match(/#\s*(\d+)/);
+    if (m) return m[1];
+  }
   return String(item.token_id);
 }
 
@@ -217,6 +223,7 @@ function itemCollectionLabel(item) {
   if (cid === "bigkix") return "BIG KIX";
   if (cid === "badges") return "daCAT Badges";
   if (cid === "dagato-agency") return "daGATO Detective Agency";
+  if (cid === "hats-n-dacats") return "HATS n' daCATs";
   if (cid === "dacommunity") return "daCommunity";
   return cid;
 }
@@ -305,9 +312,11 @@ function adaptHeaderForCollection() {
   var isBadges = activeCollection === "badges";
   var isBigKix = activeCollection === "bigkix";
   var isAgency = activeCollection === "dagato-agency";
+  var isHats = activeCollection === "hats-n-dacats";
   document.body.classList.toggle("is-badges-view", isBadges);
   document.body.classList.toggle("is-bigkix-view", isBigKix);
   document.body.classList.toggle("is-dagato-agency-view", isAgency);
+  document.body.classList.toggle("is-hats-n-dacats-view", isHats);
   try {
     var h1 = document.querySelector(".hero-band h1");
     var lead = document.querySelector(".hero-lead");
@@ -327,6 +336,10 @@ function adaptHeaderForCollection() {
       h1.innerHTML = 'daGATO <span class="accent">Detective Agency</span>';
       lead.textContent =
         "Enter the shadows of Cyber City. Volumes 1 and 2 case files span distinctive detective identities, cyber-noir environments, and rarity tiers from Common operatives to legendary 1:1 creations. Browse shows five rarity tiers per volume; your wallet shows every case file you hold. The city hides the truth. daGATO finds it. Stealth. Style. Supremacy.";
+    } else if (isHats) {
+      h1.innerHTML = "HATS n' <span class=\"accent\">daCATs</span>";
+      lead.textContent =
+        "333 unique daCATs, each defined by a legendary hat. True 1:1s with no rarity tiers — every hat stands on its own. Released in waves; Batch 01 is live. Every hat has a story. Legends Wear Hats.";
     } else {
       h1.innerHTML = originalHeroTitle || h1.innerHTML;
       lead.textContent = originalHeroLead || lead.textContent;
@@ -591,7 +604,7 @@ async function fetchJson(url, timeoutMs) {
     // the browser always gets the absolute latest bytes from the server (bypassing any
     // HTTP/browser cache). The ?v=BUILD stamp (from meta) still provides build-coherent
     // long-term caching keys per release, and the SW network-first layer provides offline.
-    const isOurData = /\/data\/(gallery_(data|meta|catalog|wallet_index)|name_index|videos|badges_(data|catalog)|bigkix_(data|catalog)|dagato_agency_(data|catalog)|collections_registry)\.json(\?|$)/i.test(url);
+    const isOurData = /\/data\/(gallery_(data|meta|catalog|wallet_index)|name_index|videos|badges_(data|catalog)|bigkix_(data|catalog)|dagato_agency_(data|catalog)|hats_n_dacats_(data|catalog)|collections_registry)\.json(\?|$)/i.test(url);
     const res = await fetch(url, {
       signal: ctrl.signal,
       cache: isOurData ? "no-store" : "default"
@@ -1520,6 +1533,13 @@ function excludedCollectorAddresses(items) {
   ) {
     out["0xa6d5c9602a49afddff9873cf51db2991dec2c9ee"] = true;
   }
+  // HATS n' daCATs project mint wallet (hatsndacats.eth) — not a collector
+  if (
+    (col && (col.id === "hats-n-dacats" || col.slug === "hats-n-dacats")) ||
+    activeCollection === "hats-n-dacats"
+  ) {
+    out["0xd23ace74f9749eb5040311e5d8654bce88d0cfb8"] = true;
+  }
   return out;
 }
 
@@ -1713,12 +1733,28 @@ function formatPieceTitleHtml(title) {
       );
     }
   }
+  // HATS n' daCATs: "#020 - Cosmic Commander Helmet" → accent number + name
+  var hatM = t.match(/^#\s*(\d+)\s*[-–—]\s*(.+)$/);
+  if (hatM) {
+    return (
+      '<span class="piece-title piece-title-hat"><span class="piece-prefix">#' +
+      escapeHtml(hatM[1]) +
+      ' · </span><span class="piece-name">' +
+      escapeHtml(hatM[2].trim()) +
+      "</span></span>"
+    );
+  }
   return escapeHtml(t);
 }
 
-/** Normalize rarity label from item.rarity or traits (Detective Agency). */
+/** Normalize rarity label from item.rarity or traits (Detective Agency).
+ *  HATS n' daCATs are true 1:1s with no rarity tiers — show "1:1" only. */
 function itemRarityLabel(item) {
   if (!item) return null;
+  // Explicit 1:1 flag (HATS n' daCATs and similar) — never invent tier names
+  if (item.is_1_of_1 && (item.collection_id || "") === "hats-n-dacats") {
+    return "1:1";
+  }
   if (item.rarity) return String(item.rarity);
   var traits = item.traits || [];
   for (var i = 0; i < traits.length; i++) {
@@ -1734,7 +1770,46 @@ function itemRarityLabel(item) {
       return raw;
     }
   }
+  if (item.is_1_of_1) return "1:1";
   return null;
+}
+
+/** Top traits for card / detail chips (skip opaque ids). */
+function itemTraitChips(item, maxN) {
+  maxN = maxN || 4;
+  var traits = (item && item.traits) || [];
+  var out = [];
+  for (var i = 0; i < traits.length && out.length < maxN; i++) {
+    var tr = traits[i];
+    if (!tr) continue;
+    var tt = String(tr.trait_type || "").trim();
+    var tv = String(tr.value != null ? tr.value : "").trim();
+    if (!tv) continue;
+    var ttL = tt.toLowerCase();
+    if (/(_id|id)$/i.test(ttL) && /^\d+$/.test(tv)) continue;
+    if (/^\d{6,}$/.test(tv)) continue;
+    // Hats: don't re-show "rarity" (none); keep hat/legend style traits
+    if (ttL === "rarity") continue;
+    out.push({ trait_type: tt, value: tv });
+  }
+  return out;
+}
+
+function formatTraitChipsHtml(item, maxN) {
+  var chips = itemTraitChips(item, maxN);
+  if (!chips.length) return "";
+  return chips
+    .map(function (c) {
+      var label = c.trait_type ? c.trait_type + ": " + c.value : c.value;
+      return (
+        '<span class="trait-chip" title="' +
+        escapeHtml(label) +
+        '">' +
+        escapeHtml(c.value) +
+        "</span>"
+      );
+    })
+    .join("");
 }
 
 function rarityBadgeClass(label) {
@@ -2954,14 +3029,11 @@ function renderCollectorFocusUi() {
             {
               id: activeCollection && activeCollection !== "all" ? activeCollection : "dacommunity",
               rank: rOne,
-              short:
-                activeCollection === "bigkix"
-                  ? "BIG KIX"
-                  : activeCollection === "badges"
-                    ? "Badges"
-                    : activeCollection === "dacommunity"
-                      ? "daCommunity"
-                      : "Archive",
+              short: collectionRankShortName(
+                activeCollection && activeCollection !== "all"
+                  ? activeCollection
+                  : "dacommunity"
+              ),
             },
           ];
         }
@@ -3329,6 +3401,7 @@ var collectionRankingCache = {}; // colId -> sorted collectors array
 function collectionRankShortName(colId, fallbackName) {
   if (colId === "bigkix") return "BIG KIX";
   if (colId === "dagato-agency") return "Agency";
+  if (colId === "hats-n-dacats") return "HATS";
   if (colId === "badges") return "Badges";
   if (colId === "dacommunity") return "daCommunity";
   return fallbackName || colId || "Archive";
@@ -3415,12 +3488,13 @@ async function ensureAllCollectionRankingCaches() {
         }
         continue;
       }
-      // Secondary: badges / bigkix / agency / future
+      // Secondary: badges / bigkix / agency / hats / future
       var catFile =
         (col.data && col.data.catalog) ||
         (col.id === "badges" ? "badges_catalog.json" : null) ||
         (col.id === "bigkix" ? "bigkix_catalog.json" : null) ||
-        (col.id === "dagato-agency" ? "dagato_agency_catalog.json" : null);
+        (col.id === "dagato-agency" ? "dagato_agency_catalog.json" : null) ||
+        (col.id === "hats-n-dacats" ? "hats_n_dacats_catalog.json" : null);
       if (!catFile) continue;
       var data = await fetchJson(prefix + "data/" + catFile + q, 20000);
       if (!data || !data.items || !data.items.length) continue;
@@ -3510,6 +3584,7 @@ function collectorRankBadges(address, topN, maxBadges) {
 function rankBadgeClass(colId) {
   if (colId === "bigkix") return "rank-badge-bigkix";
   if (colId === "dagato-agency") return "rank-badge-dagato-agency";
+  if (colId === "hats-n-dacats") return "rank-badge-hats-n-dacats";
   if (colId === "badges") return "rank-badge-badges";
   if (colId === "dacommunity") return "rank-badge-dacommunity";
   return "rank-badge-archive";
@@ -3531,6 +3606,7 @@ function formatRankBadgesHtml(ranks, opts) {
       if (compact) {
         if (r.id === "bigkix") short = "KIX";
         else if (r.id === "dagato-agency") short = "AGY";
+        else if (r.id === "hats-n-dacats") short = "HAT";
         else if (r.id === "badges") short = "BDG";
         else if (r.id === "dacommunity") short = "COM";
         else short = String(r.short || r.id || "").slice(0, 4);
@@ -3589,6 +3665,8 @@ function renderTopCollectors() {
       labelEl.textContent = "Heavy collectors in BIG KIX";
     } else if (activeCollection === "dagato-agency") {
       labelEl.textContent = "Heavy collectors in Detective Agency";
+    } else if (activeCollection === "hats-n-dacats") {
+      labelEl.textContent = "Heavy collectors in HATS n' daCATs";
     } else if (activeCollection === "badges") {
       labelEl.textContent = "Heavy collectors in Badges";
     } else if (activeCollection === "dacommunity") {
@@ -4428,10 +4506,15 @@ async function renderWalletLookup(identifier, opts) {
   if (
     activeCollection === "badges" ||
     activeCollection === "bigkix" ||
-    activeCollection === "dagato-agency"
+    activeCollection === "dagato-agency" ||
+    activeCollection === "hats-n-dacats"
   ) {
     if (activeCollection === "badges") {
       collectorsList = buildCollectorsFromBadgeItems(galleryData ? galleryData.items : []);
+    } else if (activeCollection === "bigkix") {
+      collectorsList = buildCollectorsFromLoadedItems(galleryData ? galleryData.items : [], {
+        rankByCopies: true,
+      });
     } else {
       collectorsList = buildCollectorsFromLoadedItems(galleryData ? galleryData.items : []);
     }
@@ -4715,6 +4798,10 @@ function renderHeroNote(collection) {
     html =
       "Detective Agency case files on Ethereum (Volumes 1–2). Stewarded by " +
       '<strong class="steward-name">dagato.eth</strong>. All holders counted — five rarity tiers per volume in browse; real case-file #s in wallets.';
+  } else if (collId === "hats-n-dacats") {
+    html =
+      "Legendary hats on Ethereum — true 1:1s, no rarity tiers (max 333). Released in waves. Stewarded by " +
+      '<strong class="steward-name">hatsndacats.eth</strong>. Project mint wallet hidden from collectors until a piece is bought or transferred out.';
   } else {
     note.hidden = true;
     return;
@@ -4781,7 +4868,8 @@ function renderStats(collection) {
     collectorsVal = Object.keys(uniqB).length || nvl(collection && collection.num_owners, "—");
   } else if (
     activeCollection === "bigkix" ||
-    activeCollection === "dagato-agency"
+    activeCollection === "dagato-agency" ||
+    activeCollection === "hats-n-dacats"
   ) {
     var kItems = (galleryData && galleryData.items) || [];
     // Prefer live list so stats match the grid + collectors modal
@@ -5490,6 +5578,10 @@ function renderGallery(items) {
       ? '<span class="badge-listed">' + (item.listing ? formatEth(item.listing.amount_eth) + " ETH" : "Listed") + "</span>"
       : "";
     var rarityBadge = formatRarityBadgeHtml(item);
+    var traitStrip =
+      (item.collection_id || "") === "hats-n-dacats"
+        ? formatTraitChipsHtml(item, 2)
+        : "";
     var videoBadge = isVideoItem(item) ? '<span class="thumb-video-badge">▶</span>' : "";
     // Agency series: #1–#5 (token_rank); case files / other cols: real token id
     var tokenPill =
@@ -5500,7 +5592,13 @@ function renderGallery(items) {
     }
     row.innerHTML =
       '<div class="gallery-thumb-wrap"><div class="gallery-thumb-slot"></div>' + videoBadge + "</div>" +
-      '<div class="gallery-meta"><h3>' + formatPieceTitleHtml(title) + "</h3><p>" + escapeHtml(excerpt || "No excerpt yet.") + "</p></div>" +
+      '<div class="gallery-meta"><h3>' +
+      formatPieceTitleHtml(title) +
+      "</h3><p>" +
+      escapeHtml(excerpt || "No excerpt yet.") +
+      "</p>" +
+      (traitStrip ? '<div class="gallery-trait-row">' + traitStrip + "</div>" : "") +
+      "</div>" +
       '<div class="gallery-side">' + tokenPill + rarityBadge + listedBadge + "</div>";
     fillMediaSlot(row.querySelector(".gallery-thumb-slot"), item, { controls: false });
     var thumb = row.querySelector(".gallery-thumb-slot img, .gallery-thumb-slot video");
@@ -5904,11 +6002,29 @@ function openDetail(item, opts) {
         "</span>"
     );
   }
+  // HATS n' daCATs: surface traits as chips (no invented rarity tiers)
+  if ((item.collection_id || "") === "hats-n-dacats") {
+    itemTraitChips(item, 6).forEach(function (c) {
+      var label = c.trait_type ? c.trait_type + ": " + c.value : c.value;
+      chips.push(
+        '<span class="chip trait-detail-chip" title="' +
+          escapeHtml(label) +
+          '">' +
+          escapeHtml(c.trait_type ? c.trait_type + " · " + c.value : c.value) +
+          "</span>"
+      );
+    });
+  }
   if (item.owners) {
     var oc = item.owners;
     chips.push('<span class="chip"><strong>' + effectiveHolderCount(item) + "</strong> holders</span>");
     var circ = (oc.circulating_copies != null ? oc.circulating_copies : (oc.holder_count || 0));
-    chips.push('<span class="chip"><strong>' + circ + "</strong> copies</span>");
+    // True 1:1s: avoid redundant "1 copies" noise; still show when multi
+    if (item.is_1_of_1 && circ <= 1) {
+      chips.push('<span class="chip">Unique 1:1</span>');
+    } else {
+      chips.push('<span class="chip"><strong>' + circ + "</strong> copies</span>");
+    }
   }
   if (item.listed && item.listing) {
     chips.push('<span class="chip">List <strong>' + formatEth(item.listing.amount_eth) + " ETH</strong></span>");

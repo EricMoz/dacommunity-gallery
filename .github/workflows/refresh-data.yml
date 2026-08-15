@@ -133,6 +133,16 @@ jobs:
           cd backend
           python fetch_bigkix.py
 
+      - name: Fetch HATS n' daCATs (Ethereum 1:1 wave drops)
+        if: success()
+        env:
+          OPENSEA_API_KEY: ${{ steps.generate_key.outputs.key }}
+        run: |
+          set -e
+          cd backend
+          # Re-lists every minted NFT on the slug (future waves auto-included up to 333)
+          python fetch_hats_n_dacats.py
+
       - name: Fetch daGATO Detective Agency (all volumes)
         if: success()
         env:
@@ -184,7 +194,7 @@ jobs:
           set -e
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add web/data/gallery_data.json web/data/gallery_catalog.json web/data/wallet_index.json web/data/gallery_meta.json web/data/badges_data.json web/data/badges_catalog.json web/data/bigkix_data.json web/data/bigkix_catalog.json web/data/dagato_agency_data.json web/data/dagato_agency_catalog.json
+          git add web/data/gallery_data.json web/data/gallery_catalog.json web/data/wallet_index.json web/data/gallery_meta.json web/data/badges_data.json web/data/badges_catalog.json web/data/bigkix_data.json web/data/bigkix_catalog.json web/data/dagato_agency_data.json web/data/dagato_agency_catalog.json web/data/hats_n_dacats_data.json web/data/hats_n_dacats_catalog.json
           if git diff --staged --quiet; then
             echo "No JSON changes — OpenSea data already up to date."
             echo "changed=false" >> $GITHUB_OUTPUT

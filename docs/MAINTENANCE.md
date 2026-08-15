@@ -236,6 +236,8 @@ After deploy (~1–2 min):
 
 Registry-driven collections (`web/data/collections_registry.json`) — see **`docs/COLLECTIONS.md`** for adding live drops, per-community themes, and feature flags. Hub cards are still manual until a registry-driven hub ships.
 
+**HATS n' daCATs** (live): `id=hats-n-dacats`, Ethereum `0xb28bf43b…`, `fetch_hats_n_dacats.py` + daily refresh. True 1:1s, exact OpenSea titles, max 333 (waves auto-ingest). Project mint wallet `hatsndacats.eth` / `0xd23a…` excluded from owners/top-collectors (pieces still listed in browse). Data: `hats_n_dacats_*.json`.
+
 ### Collector display names (ENS / Base / OpenSea)
 
 **Priority (every UI surface):** reverse ENS → Base name → OpenSea username → short `0x…`  

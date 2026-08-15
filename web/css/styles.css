@@ -3111,6 +3111,54 @@ button.stat.stat-collectors:disabled {
  * Badges + daCommunity stay light archive tiles for hierarchy.
  */
 
+/* HATS n' daCATs — violet / orchid premium (legendary hats) */
+.collection-card-hats-n-dacats {
+  border-top: 4px solid #e8b4ff;
+  background: linear-gradient(165deg, #0c0812 0%, #1a1224 48%, #100a18 100%);
+  color: #f3e8ff;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+}
+
+.collection-card-hats-n-dacats .collection-card-media {
+  background: linear-gradient(155deg, #08060c 0%, #2a1a3a 55%, #120c18 100%);
+}
+
+.collection-card-hats-n-dacats .collection-card-media img {
+  border-radius: 12px;
+  border: 1px solid rgba(232, 180, 255, 0.45);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 0 24px rgba(192, 132, 252, 0.18);
+}
+
+.collection-card-hats-n-dacats .collection-card-title {
+  color: #faf5ff;
+}
+
+.collection-card-hats-n-dacats .collection-card-body p {
+  color: rgba(243, 232, 255, 0.9);
+}
+
+.collection-card-hats-n-dacats .collection-card-cta {
+  color: #e9d5ff;
+}
+
+.collection-card-hats-n-dacats .collection-card-eyebrow {
+  color: #1a0a24;
+  background: linear-gradient(135deg, #f0abfc 0%, #e8b4ff 45%, #c084fc 100%);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.collection-card-hats-n-dacats .collection-card-status {
+  background: linear-gradient(135deg, #e9d5ff 0%, #c084fc 100%);
+  color: #1a0a24;
+}
+
+.collection-card-hats-n-dacats:hover,
+.collection-card-hats-n-dacats:focus-visible {
+  border-color: rgba(232, 180, 255, 0.55);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(192, 132, 252, 0.28);
+}
+
 /* BIG KIX — warm street premium (gold / amber, not ice-blue) */
 .collection-card-bigkix {
   border-top: 4px solid var(--yellow);
@@ -7785,6 +7833,14 @@ body.has-collector-view .collector-theater-vignette {
   background: var(--yellow);
 }
 
+/* HATS n' daCATs — orchid violet */
+.rank-badge-hats-n-dacats {
+  color: #1a0a24;
+  background: linear-gradient(135deg, #f0abfc 0%, #e8b4ff 45%, #c084fc 100%);
+  border-color: #7e22ce;
+  box-shadow: 2px 2px 0 rgba(88, 28, 135, 0.85);
+}
+
 /* BIG KIX — electric cyan */
 .rank-badge-bigkix {
   color: #041018;
@@ -7854,6 +7910,39 @@ body.has-collector-view .collector-theater-vignette {
   background: linear-gradient(135deg, #9f1239 0%, #e11d48 45%, #f43f5e 100%);
   border-color: #9f1239;
   box-shadow: 0 0 12px rgba(244, 63, 94, 0.4);
+}
+
+/* Trait chips — HATS n' daCATs grid + detail */
+.gallery-trait-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.28rem;
+  margin-top: 0.35rem;
+}
+
+.trait-chip {
+  display: inline-flex;
+  align-items: center;
+  max-width: 11rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0.12rem 0.42rem;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #f3e8ff;
+  background: rgba(192, 132, 252, 0.18);
+  border: 1px solid rgba(232, 180, 255, 0.35);
+}
+
+body.is-hats-n-dacats-view .gallery-row .piece-title-hat .piece-prefix {
+  color: #c084fc;
+}
+
+.trait-detail-chip {
+  border-color: rgba(192, 132, 252, 0.35) !important;
 }
 
 .gallery-side .rarity-badge {
