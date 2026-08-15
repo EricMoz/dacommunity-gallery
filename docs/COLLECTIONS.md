@@ -111,7 +111,7 @@ python fetch_dagato_agency.py --volume 2   # single volume only (still full rewr
 | Pieces stat | Count of rarity series rows (not raw case-file count) |
 | Rarity tags | Common / Uncommon / Epic / Legendary / 1:1 on grid, holdings, detail |
 | Detail | Aggregated holders + copies; transfer/sale history merged from case files |
-| Collector wallet | Real case-file token #s (editions), namespaced by volume so #s don’t collide |
+| Collector wallet | Real case-file token #s (editions). Keys are `dagato-agency-v{N}-{token_id}` (volume required — never invent Vol 1). Portfolio filter trusts `owners.holders` only for agency editions (same # exists on Vol 1 + Vol 2 contracts). Holdings rows must carry `volume` + `contract`. |
 | Data | `web/data/dagato_agency_data.json` + `dagato_agency_catalog.json` |
 | Fetch | `backend/fetch_dagato_agency.py` (also in `refresh-data.yml`) |
 

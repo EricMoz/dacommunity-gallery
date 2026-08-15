@@ -109,10 +109,20 @@ function getItemKey(item) {
   }
   // Secondary collections (BIG KIX, etc.) — avoid token_id collisions with daCommunity
   var cid = item.collection_id || "dacommunity";
-  // Agency: Vol 1 and Vol 2 share token #s on different contracts — namespace by volume
+  // Agency: Vol 1 and Vol 2 share token #s on different contracts.
+  // Stable key is volume-namespaced (share URLs: dagato-agency-v2-33).
+  // Never default missing volume to 1 — that made Vol 2 holdings match Vol 1 case files.
   if (cid === "dagato-agency") {
-    var vol = item.volume != null && item.volume !== "" ? item.volume : 1;
-    return cid + "-v" + vol + "-" + String(item.token_id);
+    if (item.volume != null && item.volume !== "") {
+      return cid + "-v" + item.volume + "-" + String(item.token_id);
+    }
+    // Holding rows without volume: fall back to contract (unique per OpenSea volume drop)
+    var contract = item.contract ? String(item.contract).toLowerCase() : "";
+    if (contract) {
+      return cid + "-" + contract + "-" + String(item.token_id);
+    }
+    // Incomplete row — orphan key must not collide with real gallery items
+    return cid + "-orphan-" + String(item.token_id);
   }
   if (cid && cid !== "dacommunity" && cid !== "all") {
     return cid + "-" + item.token_id;
@@ -536,14 +546,18 @@ function findItemBySlug(slug) {
     if (itemsById.has(q)) return itemsById.get(q);
     if (itemsById.has(qLow)) return itemsById.get(qLow);
   }
+  var bareTokenHits = [];
   for (var i = 0; i < galleryData.items.length; i++) {
     var it = galleryData.items[i];
     var key = getItemKey(it);
     if (key === q || String(key).toLowerCase() === qLow) return it;
-    if (pieceSlug(it) === qLow || String(it.token_id) === q || String(it.token_id) === qLow) {
-      return it;
+    if (pieceSlug(it) === qLow) return it;
+    // Bare numeric token_id — only safe when unique (Agency reuses #s across volumes)
+    if (String(it.token_id) === q || String(it.token_id) === qLow) {
+      bareTokenHits.push(it);
     }
   }
+  if (bareTokenHits.length === 1) return bareTokenHits[0];
   return null;
 }
 
@@ -4101,6 +4115,8 @@ function buildHoldingsFromCurrentItems(address) {
       // Agency: portfolio shows real case files, not aggregated rarity rows
       if (isAgencyRaritySeries(item)) return;
       seen[key] = true;
+      // Keep volume + contract so getItemKey(holding) matches gallery items.
+      // Dropping volume caused Vol 2 #N holdings to key as Vol 1 #N (false portfolio hits).
       holdings.push({
         token_id: item.token_id,
         name: item.display_name || item.name,
@@ -4109,7 +4125,11 @@ function buildHoldingsFromCurrentItems(address) {
         opensea_url: item.opensea_url,
         source_created_collection: item.source_created_collection,
         collection_id: item.collection_id,
+        contract: item.contract || null,
+        volume: item.volume != null ? item.volume : null,
+        volume_label: item.volume_label || null,
         rarity: item.rarity,
+        is_edition_token: !!item.is_edition_token,
         quantity: qty
       });
     }
@@ -5000,6 +5020,11 @@ function getFilteredItems() {
         // badges: only trust owner match (token_ids collide across series, rep tokens not unique)
         return false;
       }
+      // Agency editions: Vol 1 and Vol 2 reuse the same token #s on different contracts.
+      // Never fall back to a bare/partial key match — only trust owners.holders above.
+      if ((i.collection_id || "") === "dagato-agency" || i.is_edition_token) {
+        return false;
+      }
       // Fallback key match for main dacommunity style (using getItemKey to avoid collisions
       // with badge token_ids that may overlap numerically)
       var key = getItemKey(i);
@@ -5467,10 +5492,14 @@ function ensureAgencySeriesActivity(item) {
     wantIds[String(id)] = true;
   });
   var rarity = itemRarityLabel(item);
+  // Scope member merge to this series' volume so Vol 1 #N activity never mixes into Vol 2
+  var seriesVol =
+    item.volume != null && item.volume !== "" ? String(item.volume) : null;
   var rows = [];
   ((galleryData && galleryData.items) || []).forEach(function (ed) {
     if (!ed || isAgencyRaritySeries(ed)) return;
     if ((ed.collection_id || "") !== "dagato-agency" && !ed.is_edition_token) return;
+    if (seriesVol != null && String(ed.volume) !== seriesVol) return;
     var tid = String(ed.token_id);
     var match =
       (Object.keys(wantIds).length && wantIds[tid]) ||
