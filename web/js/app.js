@@ -1843,29 +1843,77 @@ function itemRarityLabel(item) {
   return null;
 }
 
-/** Top traits for card / detail chips (skip opaque ids). */
-function itemTraitChips(item, maxN) {
-  maxN = maxN || 4;
+/** Empty / placeholder trait values (OpenSea often sends Gear: "None"). */
+function isEmptyTraitValue(v) {
+  var s = String(v == null ? "" : v)
+    .trim()
+    .toLowerCase();
+  return !s || s === "none" || s === "n/a" || s === "null" || s === "-" || s === "—";
+}
+
+/**
+ * Traits for cards / detail.
+ * opts.mode: "card" | "detail" (default detail-ish)
+ * HATS cards prefer Production → Headwear Type → Theme (3 chips), never "None".
+ */
+function itemTraitChips(item, maxN, opts) {
+  opts = opts || {};
+  maxN = maxN != null ? maxN : 4;
   var traits = (item && item.traits) || [];
-  var out = [];
-  for (var i = 0; i < traits.length && out.length < maxN; i++) {
-    var tr = traits[i];
-    if (!tr) continue;
+  var isHats = item && (item.collection_id || "") === "hats-n-dacats";
+  var mode = opts.mode || (isHats && maxN <= 3 ? "card" : "all");
+
+  function usable(tr) {
+    if (!tr) return false;
     var tt = String(tr.trait_type || "").trim();
     var tv = String(tr.value != null ? tr.value : "").trim();
-    if (!tv) continue;
+    if (isEmptyTraitValue(tv)) return false;
     var ttL = tt.toLowerCase();
-    if (/(_id|id)$/i.test(ttL) && /^\d+$/.test(tv)) continue;
-    if (/^\d{6,}$/.test(tv)) continue;
-    // Hats: don't re-show "rarity" (none); keep hat/legend style traits
-    if (ttL === "rarity") continue;
-    out.push({ trait_type: tt, value: tv });
+    if (/(_id|id)$/i.test(ttL) && /^\d+$/.test(tv)) return false;
+    if (/^\d{6,}$/.test(tv)) return false;
+    if (ttL === "rarity") return false;
+    return true;
   }
-  return out;
+
+  var cleaned = [];
+  traits.forEach(function (tr) {
+    if (!usable(tr)) return;
+    cleaned.push({
+      trait_type: String(tr.trait_type || "").trim() || "Trait",
+      value: String(tr.value != null ? tr.value : "").trim(),
+    });
+  });
+
+  // HATS: Production → Headwear Type → Theme first (card = top 3; detail = full list)
+  if (isHats) {
+    var preferred = ["production", "headwear type", "theme"];
+    var out = [];
+    var used = {};
+    preferred.forEach(function (key) {
+      if (out.length >= maxN) return;
+      for (var i = 0; i < cleaned.length; i++) {
+        var ttL = cleaned[i].trait_type.toLowerCase();
+        if (ttL === key && !used[ttL]) {
+          out.push(cleaned[i]);
+          used[ttL] = true;
+          break;
+        }
+      }
+    });
+    for (var j = 0; j < cleaned.length && out.length < maxN; j++) {
+      var k = cleaned[j].trait_type.toLowerCase();
+      if (used[k]) continue;
+      out.push(cleaned[j]);
+      used[k] = true;
+    }
+    return out;
+  }
+
+  return cleaned.slice(0, maxN);
 }
 
 function formatTraitChipsHtml(item, maxN) {
-  var chips = itemTraitChips(item, maxN);
+  var chips = itemTraitChips(item, maxN != null ? maxN : 3, { mode: "card" });
   if (!chips.length) return "";
   return chips
     .map(function (c) {
@@ -5217,21 +5265,44 @@ function itemMatchesSearchToken(item, token) {
     }
   }
 
-  // --- Traits: skip opaque numeric ids (rodeo_post_id etc.) ---
-  var traits = item.traits || [];
-  for (i = 0; i < traits.length; i++) {
-    var tr = traits[i];
-    if (!tr) continue;
-    var tt = String(tr.trait_type || "");
-    var tv = String(tr.value != null ? tr.value : "");
-    var ttL = tt.toLowerCase();
-    var tvTrim = tv.trim();
-    // Skip machine ids
-    if (/(_id|id)$/i.test(ttL) && /^\d+$/.test(tvTrim)) continue;
-    if (/^\d{6,}$/.test(tvTrim)) continue;
-    if (tv && textHasSearchToken(tv, token, "substr")) return true;
-    // Trait type only for 3+ char tokens ("season", "rarity")
-    if (token.length >= 3 && tt && textHasSearchToken(tt, token, "substr")) return true;
+  // --- Traits: searchable but low-noise (skip None; no short accidental hits) ---
+  // Keep the same discipline as title/story search: min length + word match for short values.
+  if (token.length >= 3) {
+    var traits = item.traits || [];
+    // Trait *types* that are too generic to match on type alone (value still matches)
+    var noiseTraitTypes = {
+      gear: true,
+      hat: true,
+      name: true,
+      style: true,
+      trait: true,
+      value: true,
+    };
+    for (i = 0; i < traits.length; i++) {
+      var tr = traits[i];
+      if (!tr) continue;
+      var tt = String(tr.trait_type || "");
+      var tv = String(tr.value != null ? tr.value : "");
+      var ttL = tt.toLowerCase();
+      var tvTrim = tv.trim();
+      if (isEmptyTraitValue(tvTrim)) continue;
+      // Skip machine ids
+      if (/(_id|id)$/i.test(ttL) && /^\d+$/.test(tvTrim)) continue;
+      if (/^\d{6,}$/.test(tvTrim)) continue;
+      // Short values ("Cap", "Hat", "Male"): whole-word only — avoids "ca"/"at" noise.
+      // Longer values ("Batch 01", "Mythology", "Grumpy Legacy Hood"): substr ok.
+      var traitMode = tvTrim.length <= 4 ? "word" : "substr";
+      if (textHasSearchToken(tvTrim, token, traitMode)) return true;
+      // Trait type labels: "production", "theme", "headwear" — not "gear"/"hat"
+      if (
+        token.length >= 4 &&
+        tt &&
+        !noiseTraitTypes[ttL] &&
+        textHasSearchToken(tt, token, "substr")
+      ) {
+        return true;
+      }
+    }
   }
 
   // --- Story text: longer tokens only, whole words (not "cop"/"season" in "copies"/"seasoned") ---
@@ -5679,7 +5750,7 @@ function renderGallery(items) {
     var rarityBadge = formatRarityBadgeHtml(item);
     var traitStrip =
       (item.collection_id || "") === "hats-n-dacats"
-        ? formatTraitChipsHtml(item, 2)
+        ? formatTraitChipsHtml(item, 3)
         : "";
     var videoBadge = isVideoItem(item) ? '<span class="thumb-video-badge">▶</span>' : "";
     // Agency series: #1–#5 (token_rank); case files / other cols: real token id
@@ -6101,9 +6172,9 @@ function openDetail(item, opts) {
         "</span>"
     );
   }
-  // HATS n' daCATs: surface traits as chips (no invented rarity tiers)
+  // HATS n' daCATs: all real traits in detail (never "None"); cards show top 3 only
   if ((item.collection_id || "") === "hats-n-dacats") {
-    itemTraitChips(item, 6).forEach(function (c) {
+    itemTraitChips(item, 24, { mode: "all" }).forEach(function (c) {
       var label = c.trait_type ? c.trait_type + ": " + c.value : c.value;
       chips.push(
         '<span class="chip trait-detail-chip" title="' +

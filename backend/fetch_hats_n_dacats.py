@@ -148,15 +148,24 @@ def clean_description(text: str | None) -> str:
     return text
 
 
+_EMPTY_TRAIT_VALUES = frozenset({"", "none", "n/a", "null", "-", "—", "–"})
+
+
+def is_empty_trait_value(val: object) -> bool:
+    if val is None:
+        return True
+    return str(val).strip().lower() in _EMPTY_TRAIT_VALUES
+
+
 def normalize_traits(raw: list | None) -> list[dict]:
-    """Stable trait rows for UI + search."""
+    """Stable trait rows for UI + search. Drop None / N/A placeholders."""
     out: list[dict] = []
     for t in raw or []:
         if not isinstance(t, dict):
             continue
         tt = str(t.get("trait_type") or t.get("traitType") or "").strip()
         val = t.get("value")
-        if val is None:
+        if is_empty_trait_value(val):
             continue
         sv = str(val).strip()
         if not tt and not sv:
@@ -173,10 +182,26 @@ def normalize_traits(raw: list | None) -> list[dict]:
 def format_traits_blurb(traits: list[dict], *, max_pairs: int = 6) -> str:
     """Short trait line for description enrichment (not a rarity invent)."""
     parts: list[str] = []
-    for t in traits[:max_pairs]:
+    # Prefer wave / hat / theme first in the blurb
+    preferred = ("Production", "Headwear Type", "Theme")
+    by_type = {
+        str(t.get("trait_type") or "").strip(): t for t in (traits or []) if t
+    }
+    ordered: list[dict] = []
+    for p in preferred:
+        if p in by_type:
+            ordered.append(by_type[p])
+    for t in traits or []:
+        tt = str(t.get("trait_type") or "").strip()
+        if tt in preferred:
+            continue
+        ordered.append(t)
+    for t in ordered:
+        if len(parts) >= max_pairs:
+            break
         tt = (t.get("trait_type") or "").strip()
         tv = str(t.get("value") or "").strip()
-        if not tv:
+        if is_empty_trait_value(tv):
             continue
         # Skip noisy pure ids
         if re.search(r"(_id|id)$", tt, re.I) and re.fullmatch(r"\d+", tv):
