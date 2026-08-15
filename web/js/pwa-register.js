@@ -136,8 +136,36 @@
     window.location.reload();
   });
 
+  /**
+   * If a prior deploy left a failed gallery_meta in Cache Storage, drop caches
+   * once per session when VERSION is current — live meta is usually already ok.
+   */
+  function clearStaleDataCachesOnce() {
+    try {
+      if (sessionStorage.getItem("dacat-meta-cache-cleared") === "1") return;
+      sessionStorage.setItem("dacat-meta-cache-cleared", "1");
+    } catch (e) {
+      return;
+    }
+    if (!window.caches || !caches.keys) return;
+    caches.keys().then(function (keys) {
+      keys.forEach(function (k) {
+        caches.open(k).then(function (cache) {
+          cache.keys().then(function (reqs) {
+            reqs.forEach(function (req) {
+              if (req && req.url && /gallery_meta\.json/i.test(req.url)) {
+                cache.delete(req);
+              }
+            });
+          });
+        });
+      });
+    });
+  }
+
   // Run ASAP (not only on load) so stale shells heal quickly
   checkRemoteBuildAndHeal();
+  clearStaleDataCachesOnce();
 
   window.addEventListener("load", function () {
     registerWorker().then(function () {

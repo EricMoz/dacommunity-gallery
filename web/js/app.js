@@ -552,10 +552,51 @@ function scheduleMetaRefresh() {
   });
 }
 
+/**
+ * Fetch gallery_meta with a hard cache-bust URL.
+ * If the first payload says refresh failed (stale SW/edge), immediately re-fetch
+ * once — live server is often already ok after a green daily job.
+ */
+async function fetchGalleryMetaOnce() {
+  var prefix = getDataPrefix();
+  var stamp = getBuildStamp();
+  var url =
+    prefix +
+    "data/gallery_meta.json?v=" +
+    stamp +
+    "&m=" +
+    Date.now().toString(36) +
+    "&r=" +
+    Math.random().toString(36).slice(2, 8);
+  return await fetchJson(url, 8000);
+}
+
 async function loadGalleryMeta() {
   if (isFileProtocol()) return;
   try {
-    galleryMeta = await fetchJson(META_URL, 8000);
+    var meta = await fetchGalleryMetaOnce();
+    // Double-check fail snapshots: one retry often gets the post-deploy ok file
+    if (
+      meta &&
+      meta.refresh &&
+      meta.refresh.status === "failed" &&
+      /key|mint|rate.?limit|empty store/i.test(
+        String((meta.refresh && meta.refresh.error) || (meta.opensea_key && meta.opensea_key.hint) || "")
+      )
+    ) {
+      try {
+        await new Promise(function (r) {
+          setTimeout(r, 400);
+        });
+        var again = await fetchGalleryMetaOnce();
+        if (again && again.refresh && again.refresh.status === "ok") {
+          meta = again;
+        }
+      } catch (e2) {
+        /* keep first payload */
+      }
+    }
+    galleryMeta = meta;
     applyGalleryMeta(galleryMeta);
     // Force the "last updated" / data-freshness banner (and footer) to always reflect the
     // authoritative data_generated_at from gallery_meta.json (the real pull timestamp),
@@ -564,6 +605,8 @@ async function loadGalleryMeta() {
     updateFooterMaintenance(galleryMeta);
   } catch (e) {
     console.warn("gallery_meta.json not loaded:", e);
+    // Do not leave a sticky fail banner if meta cannot be loaded
+    hideStaleBanner();
   }
 }
 
