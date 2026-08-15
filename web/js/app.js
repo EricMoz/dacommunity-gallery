@@ -1649,6 +1649,23 @@ async function loadSecondaryCollectionData(urls) {
   return await fetchJson(urls.catalog, 20000);
 }
 
+/** True when loaded items span more than one site collection (or include daCommunity). */
+function galleryDataLooksMultiCollection() {
+  var items = (galleryData && galleryData.items) || [];
+  if (!items.length) return false;
+  var seen = {};
+  var n = 0;
+  for (var i = 0; i < items.length; i++) {
+    var cid = items[i].collection_id || "dacommunity";
+    if (!seen[cid]) {
+      seen[cid] = true;
+      n++;
+      if (n > 1) return true;
+    }
+  }
+  return !!seen.dacommunity && n === 1;
+}
+
 function rebuildCollectorsForCurrentView() {
   // Secondary collections: derive from item owners (badges need series-slug logic)
   if (
@@ -1667,13 +1684,26 @@ function rebuildCollectorsForCurrentView() {
     } else {
       collectorsList = buildCollectorsFromLoadedItems(items);
     }
+    enrichCollectorsListNames();
     updateCollectorsButton();
     return;
   }
   if (!activeCollection || activeCollection === "all") {
+    var allItems = (galleryData && galleryData.items) || [];
+    // Stale after clear-filters race: UI says "all" but galleryData is still a single
+    // secondary catalog. Do NOT merge full wallet_index dacom qty on top (2–3× pills).
+    if (!galleryDataLooksMultiCollection()) {
+      if (allItems.some(function (i) { return i.source_created_collection; })) {
+        collectorsList = buildCollectorsFromBadgeItems(allItems);
+      } else {
+        collectorsList = buildCollectorsFromLoadedItems(allItems);
+      }
+      enrichCollectorsListNames();
+      updateCollectorsButton();
+      return;
+    }
     // All collections: daCommunity from wallet index (full Base qty) + every other
     // collection from item owners (badges / BIG KIX / Agency). Sum uniques + copies.
-    var allItems = (galleryData && galleryData.items) || [];
     var secondaryItems = allItems.filter(function (i) {
       return (i.collection_id || "dacommunity") !== "dacommunity";
     });
@@ -2797,14 +2827,9 @@ function onBrowseFilterChipCleared(clearedKey) {
   }
   // Archive (non-collector)
   if (clearedKey === "collection") {
-    var colSel = $("#collection-select");
-    if (colSel) {
-      colSel.value = "all";
-      colSel.dispatchEvent(new Event("change"));
-    } else {
-      refreshView();
-      syncBrowseParamsToUrl();
-    }
+    // Force reload: chip clear used to set activeCollection=all then dispatch change,
+    // which no-op'd and left single-collection data under an "all" collectors merge.
+    switchCollectionTo("all", { force: true });
     return;
   }
   refreshView();
@@ -5349,26 +5374,15 @@ function resetBrowseView() {
   sortKey = "token_desc";
   var search = $("#search");
   var sort = $("#sort-select");
-  var colSel = $("#collection-select");
   if (search) search.value = "";
   if (sort) sort.value = "token_desc";
-  if (colSel) colSel.value = "all";
-  // To force reload of full 'all' data (dacom + badges merge) when clearing from a collection filter,
-  // temporarily set active to something else so the change handler runs the load.
-  if (colSel) {
-    var prev = activeCollection;
-    activeCollection = (prev === "all" ? "badges" : prev); // temp different to trigger
-    colSel.dispatchEvent(new Event('change'));
-    activeCollection = "all"; // will be set again in handler
-  } else {
-    activeCollection = "all";
-  }
   document.querySelectorAll(".filter").forEach(function (btn) {
     var on = btn.dataset.filter === "all";
     btn.classList.toggle("active", on);
     btn.setAttribute("aria-selected", on ? "true" : "false");
   });
-  refreshView();
+  // Always force a clean multi-collection load (no temp activeCollection races)
+  switchCollectionTo("all", { force: true });
   // Clean URL and hash so we don't stay stuck on ?collection=badges#wallet-panel
   try {
     var params = new URLSearchParams(window.location.search);
@@ -5471,11 +5485,9 @@ function renderBrowseMeta(filtered, total) {
         var sel = $("#sort-select");
         if (sel) sel.value = "token_desc";
       } else if (k === "collection") {
-        activeCollection = "all";
+        // Do not set activeCollection here — switchCollectionTo / portfolio reload owns it.
         var colSel = $("#collection-select");
         if (colSel) colSel.value = "all";
-        // Collector: force full multi-collection reload (like Clear filters) while keeping
-        // remaining chips (search / listed / sort). Archive: fall through to onBrowseFilterChipCleared.
       }
       // Collector wallet: expand holdings + re-apply remaining filters (not a no-op refresh)
       onBrowseFilterChipCleared(k);
@@ -6099,6 +6111,137 @@ function populateCollectionSelect() {
   sel.value = activeCollection || "all";
 }
 
+/**
+ * Load gallery data for a collection id ("all" | dacommunity | badges | …).
+ * Generation counter drops stale async completions when the user switches quickly
+ * or hits Clear filters during an in-flight load.
+ *
+ * opts.force — reload even if already on this collection (Clear filters / chip clear).
+ */
+var collectionSwitchGen = 0;
+async function switchCollectionTo(newCol, opts) {
+  opts = opts || {};
+  newCol = newCol || "all";
+  if (!opts.force && newCol === activeCollection) return;
+
+  var gen = ++collectionSwitchGen;
+  activeCollection = newCol;
+  var colSel = $("#collection-select");
+  if (colSel && colSel.value !== newCol) colSel.value = newCol;
+  syncBrowseParamsToUrl();
+
+  var col = getCurrentCollection();
+  var hasWallet = !col || (col.features || []).indexOf("wallet_lookup") !== -1;
+  var urls = getCollectionDataUrls(activeCollection);
+  var loadEl = $("#load-state");
+  if (loadEl) loadEl.hidden = false;
+
+  function stillCurrent() {
+    return gen === collectionSwitchGen;
+  }
+
+  function finishCollectorsUi() {
+    if (!stillCurrent()) return;
+    rebuildCollectorsForCurrentView();
+    enrichCollectorsListNames();
+    renderTopCollectors();
+    renderStats((galleryData && galleryData.collection) || null);
+    refreshView();
+    if (galleryCollectorView) {
+      expandCollectorHoldingsFromLoadedData();
+      renderCollectorFocusUi();
+    }
+    if (activeDetailTokenId) {
+      var openItem = itemsById.get(activeDetailTokenId);
+      if (openItem) refreshDetailPanel(openItem);
+    }
+  }
+
+  try {
+    if (urls) {
+      CATALOG_URL = urls.catalog;
+      FULL_DATA_URL = urls.full;
+      var newData = await loadSecondaryCollectionData(urls);
+      if (!stillCurrent()) return;
+      galleryData = newData;
+      if (galleryData && Array.isArray(galleryData.items)) {
+        var cid =
+          activeCollection ||
+          (galleryData.collection && galleryData.collection.id) ||
+          (galleryData.collection && galleryData.collection.slug) ||
+          "dacommunity";
+        galleryData.items.forEach(function (item) {
+          if (!item.collection_id) item.collection_id = cid;
+        });
+      }
+      dataSource =
+        (galleryData.source || "").indexOf("catalog") >= 0 ? "catalog" : "full";
+      indexItems(galleryData);
+      finishCollectorsUi();
+      adaptHeaderForCollection();
+      applyCollectionUI();
+      loadWalletIndex().then(function () {
+        if (!stillCurrent()) return;
+        if (galleryData && Array.isArray(galleryData.items)) {
+          stampAllOwnerIdentities(galleryData.items);
+        }
+        finishCollectorsUi();
+      });
+    } else {
+      initDataUrls();
+      var mainData = await loadCatalogFirst();
+      if (!stillCurrent()) return;
+      galleryData = mainData;
+      if (galleryData && Array.isArray(galleryData.items)) {
+        var mainCid =
+          activeCollection ||
+          (galleryData.collection && galleryData.collection.slug) ||
+          "dacommunity";
+        galleryData.items.forEach(function (item) {
+          if (!item.collection_id) item.collection_id = mainCid;
+        });
+      }
+      dataSource =
+        galleryData.source === "gallery_catalog" ? "catalog" : "full";
+      indexItems(galleryData);
+      if (!activeCollection || activeCollection === "all") {
+        await mergeSecondaryCatalogsIntoGallery();
+      }
+      if (!stillCurrent()) return;
+      document.querySelectorAll(".filter").forEach(function (btn) {
+        var on = btn.dataset.filter === activeFilter;
+        btn.classList.toggle("active", on);
+        btn.setAttribute("aria-selected", on ? "true" : "false");
+      });
+      finishCollectorsUi();
+      adaptHeaderForCollection();
+      applyCollectionUI();
+      if (dataSource === "catalog") {
+        refreshFullDataInBackground();
+      }
+      if (hasWallet) {
+        loadWalletIndex().then(function () {
+          if (!stillCurrent()) return;
+          finishCollectorsUi();
+        });
+      } else {
+        clearGalleryCollectorView({ clearResult: true });
+        collectorsList = [];
+        var btn = $("#view-collectors-btn");
+        if (btn) btn.hidden = true;
+      }
+    }
+  } catch (err) {
+    if (!stillCurrent()) return;
+    console.error("Collection data switch failed", err);
+    refreshView();
+    adaptHeaderForCollection();
+    applyCollectionUI();
+  } finally {
+    if (stillCurrent() && loadEl) loadEl.hidden = true;
+  }
+}
+
 function bindUi() {
   bindGalleryScrollNudge();
   document.querySelectorAll(".filter").forEach(function (btn) {
@@ -6182,132 +6325,8 @@ function bindUi() {
   populateCollectionSelect();
   var collectionSelect = $("#collection-select");
   if (collectionSelect) {
-    collectionSelect.addEventListener("change", async function (e) {
-      var newCol = e.target.value;
-      if (newCol === activeCollection) return;
-      activeCollection = newCol;
-      syncBrowseParamsToUrl();
-
-      var col = getCurrentCollection();
-      var hasWallet = !col || (col.features || []).indexOf("wallet_lookup") !== -1;
-
-      var urls = getCollectionDataUrls(activeCollection);
-      var loadEl = $("#load-state");
-      if (loadEl) loadEl.hidden = false;
-
-      try {
-        if (urls) {
-          // badges / BIG KIX: prefer full JSON so activity + holders match daCommunity detail UX
-          CATALOG_URL = urls.catalog;
-          FULL_DATA_URL = urls.full;
-          var newData = await loadSecondaryCollectionData(urls);
-          galleryData = newData;
-          if (galleryData && Array.isArray(galleryData.items)) {
-            var cid = activeCollection || (galleryData.collection && galleryData.collection.id) || (galleryData.collection && galleryData.collection.slug) || "dacommunity";
-            galleryData.items.forEach(function (item) {
-              if (!item.collection_id) item.collection_id = cid;
-            });
-          }
-          dataSource =
-            (galleryData.source || "").indexOf("catalog") >= 0 ? "catalog" : "full";
-          indexItems(galleryData);
-          rebuildCollectorsForCurrentView();
-          renderStats(galleryData.collection);
-          renderDataFreshness();
-          refreshView();
-          syncCollectorViewToCurrentItems();
-          adaptHeaderForCollection();
-          applyCollectionUI();
-
-          // Load wallet index for ENS / Base / OpenSea on owner chips
-          loadWalletIndex().then(function () {
-            if (galleryData && Array.isArray(galleryData.items)) {
-              stampAllOwnerIdentities(galleryData.items);
-            }
-            rebuildCollectorsForCurrentView();
-            enrichCollectorsListNames();
-            renderTopCollectors();
-            if (galleryCollectorView) {
-              expandCollectorHoldingsFromLoadedData();
-              renderCollectorFocusUi();
-            }
-            renderStats(galleryData.collection);
-            refreshView();
-            if (activeDetailTokenId) {
-              var openItem = itemsById.get(activeDetailTokenId);
-              if (openItem) refreshDetailPanel(openItem);
-            }
-          });
-        } else {
-          // primary dacommunity or "all": reset to default data URLs and reload
-          initDataUrls();
-          var newData = await loadCatalogFirst();
-          galleryData = newData;
-          if (galleryData && Array.isArray(galleryData.items)) {
-            var cid = activeCollection || (galleryData.collection && galleryData.collection.slug) || "dacommunity";
-            galleryData.items.forEach(function (item) {
-              if (!item.collection_id) item.collection_id = cid;
-            });
-          }
-          dataSource = galleryData.source === "gallery_catalog" ? "catalog" : "full";
-          indexItems(galleryData);
-          // For "all" after switch: merge badges + BIG KIX (+ future secondaries)
-          if (!activeCollection || activeCollection === "all") {
-            await mergeSecondaryCatalogsIntoGallery();
-          }
-          // Keep filter/sort chips in sync (e.g. stay on "For sale" when leaving BIG KIX)
-          document.querySelectorAll(".filter").forEach(function (btn) {
-            var on = btn.dataset.filter === activeFilter;
-            btn.classList.toggle("active", on);
-            btn.setAttribute("aria-selected", on ? "true" : "false");
-          });
-          rebuildCollectorsForCurrentView();
-          renderStats(
-            (galleryData && galleryData.collection) || null
-          );
-          renderDataFreshness();
-          refreshView();
-          syncCollectorViewToCurrentItems();
-          adaptHeaderForCollection();
-          applyCollectionUI();
-          // re-load wallet/collector data and background enrich for main archive
-          if (dataSource === "catalog") {
-            refreshFullDataInBackground();
-          }
-          if (hasWallet) {
-            loadWalletIndex().then(function () {
-              rebuildCollectorsForCurrentView();
-              // Portfolio open: re-expand after wallet index so daCommunity + secondaries show
-              if (galleryCollectorView) {
-                expandCollectorHoldingsFromLoadedData();
-                renderCollectorFocusUi();
-              }
-              renderStats(
-                (galleryData && galleryData.collection) || null
-              );
-              refreshView();
-              if (activeDetailTokenId) {
-                var openItem = itemsById.get(activeDetailTokenId);
-                if (openItem) refreshDetailPanel(openItem);
-              }
-              // do not auto-apply wallet from url on manual switch to avoid side effects
-            });
-          } else {
-            clearGalleryCollectorView({ clearResult: true });
-            if (typeof collectorsList !== "undefined") collectorsList = [];
-            var btn = $("#view-collectors-btn");
-            if (btn) btn.hidden = true;
-          }
-        }
-      } catch (err) {
-        console.error("Collection data switch failed", err);
-        if (loadEl) loadEl.hidden = true;
-        refreshView();
-        adaptHeaderForCollection();
-        applyCollectionUI();
-      } finally {
-        if (loadEl) loadEl.hidden = true;
-      }
+    collectionSelect.addEventListener("change", function (e) {
+      switchCollectionTo(e.target.value, { force: false });
     });
   }
 
