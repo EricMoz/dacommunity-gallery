@@ -1844,20 +1844,24 @@ button.stat:focus-visible {
   left: 0;
   right: 0;
   top: calc(100% + 4px);
-  z-index: 40;
+  z-index: 80; /* above form buttons / sticky chrome so scrollbar is hittable */
   display: flex;
   flex-direction: column;
   gap: 2px;
-  max-height: 240px;
+  max-height: min(280px, 45vh);
+  overflow-x: hidden;
   overflow-y: auto;
-  /* Keep scrollbar interaction from feeling "dead" on some browsers */
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
+  /* Room for classic scrollbar without covering labels */
+  scrollbar-gutter: stable;
   padding: 0.35rem;
   background: #111;
   border: 2px solid var(--yellow);
   border-radius: 8px;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  /* Avoid the browser treating the panel as a drag-scroll away from the field */
+  touch-action: pan-y;
 }
 
 .name-suggest-box[hidden] {

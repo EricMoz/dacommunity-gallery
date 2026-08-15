@@ -1372,20 +1372,65 @@ function ensureSuggestBox(inputEl, boxId) {
 }
 
 /**
- * Keep the typeahead open while the user interacts with it (items + scrollbar).
- * Default input blur closes the list before a scrollbar mousedown can scroll.
+ * Hit-test for the typeahead panel including the native scrollbar.
+ * Scrollbar clicks often report event.target as <html>/<body>, so contains()
+ * alone is not enough — that made the list vanish when grabbing the thumb.
+ */
+function isPointerInSuggestUI(e, box, inputEl) {
+  if (!e) return false;
+  var x = e.clientX;
+  var y = e.clientY;
+  if (typeof x !== "number" || typeof y !== "number") {
+    // Fallback: DOM containment only
+    var t0 = e.target;
+    if (box && box.contains(t0)) return true;
+    if (inputEl && (t0 === inputEl || (inputEl.contains && inputEl.contains(t0)))) return true;
+    return false;
+  }
+  function inRect(el) {
+    if (!el || el.hidden) return false;
+    var r = el.getBoundingClientRect();
+    // 2px pad so edge/scrollbar clicks still count as inside
+    return x >= r.left - 2 && x <= r.right + 2 && y >= r.top - 2 && y <= r.bottom + 2;
+  }
+  if (box && inRect(box)) return true;
+  if (inputEl && inRect(inputEl)) return true;
+  var wrap =
+    inputEl &&
+    (inputEl.closest(".lookup-field") || inputEl.closest(".wallet-input-wrap"));
+  if (wrap && inRect(wrap)) return true;
+  var t = e.target;
+  if (box && t && box.contains(t)) return true;
+  if (inputEl && t && (t === inputEl || (inputEl.contains && inputEl.contains(t)))) return true;
+  if (wrap && t && wrap.contains(t)) return true;
+  return false;
+}
+
+/**
+ * Keep the typeahead open while the user scrolls/clicks inside it.
+ * Dismiss only on true outside pointerdown or Escape.
  */
 function bindSuggestBoxKeepOpen(box, inputEl, boxId) {
   if (!box || box.dataset.keepOpenBound === "1") return;
   box.dataset.keepOpenBound = "1";
-  // preventDefault on pointer/mouse down stops the input from blurring when
-  // clicking scrollbar, padding, or items — so the list stays usable.
-  function keepFocus(e) {
-    e.preventDefault();
-  }
-  box.addEventListener("mousedown", keepFocus);
-  box.addEventListener("pointerdown", keepFocus);
-  // Outside click (capture) closes — not blur — so in-box scroll never dismisses
+  // Mark interaction so any residual blur handlers never race-close mid-scroll
+  box.addEventListener(
+    "pointerdown",
+    function () {
+      box.dataset.suggestPointer = "1";
+    },
+    true
+  );
+  box.addEventListener(
+    "pointerup",
+    function () {
+      setTimeout(function () {
+        if (box) box.dataset.suggestPointer = "";
+      }, 0);
+    },
+    true
+  );
+
   if (!document.documentElement.dataset["suggestOutside_" + boxId]) {
     document.documentElement.dataset["suggestOutside_" + boxId] = "1";
     document.addEventListener(
@@ -1393,17 +1438,8 @@ function bindSuggestBoxKeepOpen(box, inputEl, boxId) {
       function (e) {
         var b = document.getElementById(boxId);
         if (!b || b.hidden) return;
-        var t = e.target;
-        if (b.contains(t)) return;
-        if (inputEl && (t === inputEl || (inputEl.contains && inputEl.contains(t)))) {
-          return;
-        }
-        // Also keep open if click is inside the lookup field wrapper
-        var wrap =
-          inputEl &&
-          (inputEl.closest(".lookup-field") ||
-            inputEl.closest(".wallet-input-wrap"));
-        if (wrap && wrap.contains(t)) return;
+        // Geometry hit-test includes scrollbar track/thumb
+        if (isPointerInSuggestUI(e, b, inputEl)) return;
         hideNameSuggest(boxId);
       },
       true
@@ -1416,6 +1452,7 @@ function hideNameSuggest(boxId) {
   if (box) {
     box.hidden = true;
     box.innerHTML = "";
+    box.dataset.suggestPointer = "";
   }
 }
 
@@ -1428,7 +1465,8 @@ function renderNameSuggest(inputEl, boxId, onPick) {
     hideNameSuggest(boxId);
     return;
   }
-  var rows = collectNameSuggestions(q, 8);
+  // More rows so the scrollbar is actually useful for "da" style prefixes
+  var rows = collectNameSuggestions(q, 16);
   if (!rows.length) {
     hideNameSuggest(boxId);
     return;
@@ -1452,8 +1490,9 @@ function renderNameSuggest(inputEl, boxId, onPick) {
     })
     .join("");
   box.querySelectorAll(".name-suggest-item").forEach(function (btn) {
+    // mousedown + preventDefault: pick without blurring/closing via focus loss
     btn.addEventListener("mousedown", function (e) {
-      e.preventDefault(); // keep focus; parent box also preventDefaults
+      e.preventDefault();
       e.stopPropagation();
       var lookup = btn.getAttribute("data-lookup");
       var addr = btn.getAttribute("data-address");
