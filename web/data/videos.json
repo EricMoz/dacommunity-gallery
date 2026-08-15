@@ -1,13 +1,13 @@
 {
   "schemaVersion": 2,
-  "updated": "2026-07-26",
-  "featuredStrategy": "Streaming-style row: one entry point per series (ep 1 or lead trailer). Characters (Mozvane + daBeezy) share one series for Series up-next. Shorts are a separate bottom rail and never enter the modal pool. Featured row max 6 — swap titles rather than grow the rail.",
+  "updated": "2026-08-15",
+  "featuredStrategy": "Streaming-style row: one entry point per series (ep 1 or lead trailer). Characters (Mozvane + daBeezy) share one series for Series up-next. Shorts are a separate bottom rail and never enter the modal pool. Featured row max 6 — swap titles rather than grow the rail. Characters + Crossovers sort newest-first (releasedAt, then sortOrder).",
   "featuredIds": [
+    "dabeezy-contractor-callsign",
     "dagato-blessless",
     "chronicles-trailer-1",
     "dacatworld-scamurai-paperhands",
     "podcast-ep1",
-    "multiverse-montage",
     "defectors-awakening"
   ],
   "shortsMinVisible": 1,
@@ -25,11 +25,11 @@
       "whatItIs": "Official comic trailer for daCAT Chronicles.",
       "releaseDate": "Community 2026",
       "thumbnail": "https://i.ytimg.com/vi/CerrhmE6bLA/hqdefault.jpg",
-      "duration": "1:24",
+      "duration": "1:55",
       "filterCategory": "chronicles",
       "sortOrder": 1,
       "featuredPick": true,
-      "featuredOrder": 2
+      "featuredOrder": 3
     },
     {
       "id": "chronicles-trailer-2",
@@ -43,7 +43,7 @@
       "whatItIs": "Chronicles comic premiere trailer.",
       "releaseDate": "Community 2026",
       "thumbnail": "https://i.ytimg.com/vi/Q2JTIuDR_sQ/hqdefault.jpg",
-      "duration": "2:08",
+      "duration": "2:11",
       "filterCategory": "chronicles",
       "sortOrder": 2
     },
@@ -59,7 +59,7 @@
       "whatItIs": "DACAT WORLD web series episode.",
       "releaseDate": "Community 2026",
       "thumbnail": "https://i.ytimg.com/vi/3AMRcY-E7X4/hqdefault.jpg",
-      "duration": "3:21",
+      "duration": "3:43",
       "filterCategory": "dacatworld",
       "sortOrder": 1,
       "featuredPick": true,
@@ -78,11 +78,11 @@
       "releaseDate": "July 2026",
       "releasedAt": "2026-07-12",
       "thumbnail": "https://i.ytimg.com/vi/fCybybHqd3o/hqdefault.jpg",
-      "duration": "4:05",
+      "duration": "4:04",
       "filterCategory": "dacatworld",
       "sortOrder": 2,
       "featuredPick": true,
-      "featuredOrder": 5
+      "featuredOrder": 4
     },
     {
       "id": "dacatworld-collector-cat",
@@ -121,7 +121,7 @@
       "filterCategory": "podcasts",
       "sortOrder": 1,
       "featuredPick": true,
-      "featuredOrder": 4
+      "featuredOrder": 5
     },
     {
       "id": "podcast-ep2",
@@ -183,9 +183,9 @@
       "whatItIs": "Mozvane anime film — community flagship.",
       "releaseDate": "Community 2026",
       "thumbnail": "https://i.ytimg.com/vi/bHcbwUs2_ds/hqdefault.jpg",
-      "duration": "5:01",
+      "duration": "5:18",
       "filterCategory": "characters",
-      "sortOrder": 1,
+      "sortOrder": 2,
       "theatre": {
         "slug": "mozvane",
         "enabled": true
@@ -203,9 +203,29 @@
       "whatItIs": "daBeezy animated episode.",
       "releaseDate": "Community 2026",
       "thumbnail": "https://i.ytimg.com/vi/roepEUbqn6U/hqdefault.jpg",
-      "duration": "5:12",
+      "duration": "4:15",
       "filterCategory": "characters",
-      "sortOrder": 2
+      "sortOrder": 3
+    },
+    {
+      "id": "dabeezy-contractor-callsign",
+      "title": "The Contractor | Callsign Beezy",
+      "youtubeId": "brswFIaDQ5A",
+      "series": "Characters",
+      "type": "Episode",
+      "creator": "daBeezy",
+      "creatorChannel": "daBeezy1",
+      "description": "Follow Contractor Beezy after being stranded on a foreign planet. Beezy gets tangled up in a local scuffle and a mystery of abducted civilians.\n\nOriginal story by daBeezy.\n\nAnimation was made using Grok & Seedance.\n\nVisit www.dacat.fun for more daCAT universe content.\n\nMusic for ending credits sequence by: Winter Eyes",
+      "descriptionHtml": "Follow Contractor Beezy after being stranded on a foreign planet. Beezy gets tangled up in a local scuffle and a mystery of abducted civilians.<br><br>Original story by daBeezy.<br><br>Animation was made using Grok & Seedance.<br><br>Visit www.dacat.fun for more daCAT universe content.<br><br>Music for ending credits sequence by: <a href=\"https://suno.com/s/AIAqXd7sEmQ2g2pD\" target=\"_blank\" rel=\"noopener noreferrer\">Winter Eyes</a>",
+      "whatItIs": "daBeezy character episode — The Contractor | Callsign Beezy.",
+      "releaseDate": "August 2026",
+      "releasedAt": "2026-08-15",
+      "thumbnail": "https://i.ytimg.com/vi/brswFIaDQ5A/hqdefault.jpg",
+      "duration": "9:16",
+      "filterCategory": "characters",
+      "sortOrder": 1,
+      "featuredPick": true,
+      "featuredOrder": 1
     },
     {
       "id": "shiro-fishing",
@@ -219,9 +239,9 @@
       "whatItIs": "daCAT × Shiro crossover episode 1.",
       "releaseDate": "Community 2026",
       "thumbnail": "https://i.ytimg.com/vi/yIsz4sfHv10/hqdefault.jpg",
-      "duration": "4:36",
+      "duration": "2:23",
       "filterCategory": "crossovers",
-      "sortOrder": 1,
+      "sortOrder": 6,
       "featuredPick": true,
       "featuredOrder": 6
     },
@@ -237,9 +257,9 @@
       "whatItIs": "daCAT × Shiro crossover episode 2.",
       "releaseDate": "Community 2026",
       "thumbnail": "https://i.ytimg.com/vi/KaXyS8oi4Y4/hqdefault.jpg",
-      "duration": "5:04",
+      "duration": "4:42",
       "filterCategory": "crossovers",
-      "sortOrder": 2
+      "sortOrder": 5
     },
     {
       "id": "crossover-kizuna",
@@ -253,9 +273,9 @@
       "whatItIs": "Crossover fight short.",
       "releaseDate": "Community 2026",
       "thumbnail": "https://i.ytimg.com/vi/6UmBra2TJCg/hqdefault.jpg",
-      "duration": "2:18",
+      "duration": "0:41",
       "filterCategory": "crossovers",
-      "sortOrder": 3
+      "sortOrder": 4
     },
     {
       "id": "multiverse-montage",
@@ -269,9 +289,9 @@
       "whatItIs": "daCAT Multiverse music video / art collab montage.",
       "releaseDate": "Community 2026",
       "thumbnail": "https://i.ytimg.com/vi/5YXhuXug-cA/hqdefault.jpg",
-      "duration": "4:55",
+      "duration": "3:41",
       "filterCategory": "crossovers",
-      "sortOrder": 4,
+      "sortOrder": 3,
       "relatedCta": {
         "href": "../dacommunity/?sort=token_asc&collection=dacommunity#wallet-panel",
         "label": "Browse daCommunity NFT archive",
@@ -292,7 +312,7 @@
       "thumbnail": "https://i.ytimg.com/vi/I9Fy55quSPE/hqdefault.jpg",
       "duration": "5:55",
       "filterCategory": "crossovers",
-      "sortOrder": 5,
+      "sortOrder": 2,
       "featuredPick": true,
       "featuredOrder": 6
     },
@@ -311,9 +331,9 @@
       "thumbnail": "https://i.ytimg.com/vi/MdeqrnYH4MU/hqdefault.jpg",
       "duration": "4:33",
       "filterCategory": "crossovers",
-      "sortOrder": 6,
+      "sortOrder": 1,
       "featuredPick": true,
-      "featuredOrder": 1,
+      "featuredOrder": 2,
       "relatedCta": {
         "href": "https://dagato.store/products/blessless-time-power-destiny-limited-edition-poster",
         "label": "Blessless limited edition poster",
@@ -377,7 +397,9 @@
       "thumbnail": "https://i.ytimg.com/vi/sl0EEVDmrSI/hqdefault.jpg",
       "duration": "0:30",
       "filterCategory": "shorts",
-      "alsoFilters": ["characters"],
+      "alsoFilters": [
+        "characters"
+      ],
       "sortOrder": 3,
       "openExternal": true,
       "externalUrl": "https://www.youtube.com/shorts/sl0EEVDmrSI"

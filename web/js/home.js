@@ -6,16 +6,20 @@
 
   // Keep in lockstep with videos.json featuredIds (max 6 community doorways).
   var HIGHLIGHTS = [
+    {
+      id: "dabeezy-contractor-callsign",
+      category: "Characters",
+      label: "The Contractor | Callsign Beezy",
+    },
     { id: "dagato-blessless", category: "Crossovers", label: "daGATO · Blessless (vision)" },
     { id: "chronicles-trailer-1", category: "daCAT Chronicles", label: "Comic Trailer #1" },
-    { id: "podcast-ep1", category: "Podcast", label: "Episode 1" },
     {
       id: "dacatworld-scamurai-paperhands",
       category: "DACAT WORLD",
       label: "SCAMURAI & PAPERHANDS",
     },
+    { id: "podcast-ep1", category: "Podcast", label: "Episode 1" },
     { id: "defectors-awakening", category: "Crossovers", label: "Part 1 · The Awakening" },
-    { id: "multiverse-montage", category: "Crossovers", label: "Multiverse Montage" },
   ];
 
   function escapeHtml(s) {

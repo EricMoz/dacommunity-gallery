@@ -7171,6 +7171,17 @@ body.film-modal-open {
   color: #9a9a9a;
 }
 
+.film-modal-desc a {
+  color: var(--yellow, #ffcc00);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.film-modal-desc a:hover,
+.film-modal-desc a:focus-visible {
+  color: #ffe566;
+}
+
 /* Tasteful daCAT World merch / related-NFT — only inside player modal, not in list.
    NFT pill reuses the soft yellow frame language from .page-quick-link (dark theater). */
 .film-modal-world-promo {

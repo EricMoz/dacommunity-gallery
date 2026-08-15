@@ -405,6 +405,23 @@
 
   function sortVideos(list) {
     return list.slice().sort((a, b) => {
+      // Characters + Crossovers: newest first (releasedAt), then sortOrder
+      const newestFirstSeries =
+        a.series === b.series &&
+        (a.series === "Characters" || a.series === "Crossovers");
+      if (newestFirstSeries) {
+        const da = a.releasedAt || "";
+        const db = b.releasedAt || "";
+        if (da || db) {
+          if (da && db && da !== db) return db.localeCompare(da);
+          if (da && !db) return -1;
+          if (!da && db) return 1;
+        }
+        // Lower sortOrder = newer when dates match / missing
+        const soN = (a.sortOrder || 0) - (b.sortOrder || 0);
+        if (soN !== 0) return soN;
+        return a.title.localeCompare(b.title);
+      }
       const so = (a.sortOrder || 0) - (b.sortOrder || 0);
       if (so !== 0) return so;
       return a.title.localeCompare(b.title);
@@ -1237,7 +1254,12 @@
     if (els.modalDuration) els.modalDuration.textContent = video.duration || "—";
     els.modalWhat.textContent = video.whatItIs || "";
     els.modalRelease.textContent = video.releaseDate || "";
-    els.modalDesc.textContent = video.description || "";
+    // Trusted catalog HTML (e.g. credit links) or plain description
+    if (video.descriptionHtml && els.modalDesc) {
+      els.modalDesc.innerHTML = video.descriptionHtml;
+    } else if (els.modalDesc) {
+      els.modalDesc.textContent = video.description || "";
+    }
     els.modalYtLink.href = `https://www.youtube.com/watch?v=${video.youtubeId}`;
 
     // Remove any stale promo
