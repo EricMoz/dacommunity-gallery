@@ -238,28 +238,21 @@ Registry-driven collections (`web/data/collections_registry.json`) — see **`do
 
 ### Collector display names (ENS / Base / OpenSea)
 
-**Frontend priority (every surface):** ENS → Base name → OpenSea username → short `0x…`  
-Implemented once in `app.js` → `resolveCollectorIdentity()` (top collectors, collectors modal, owner chips, activity lines, collector wallet, escape bar).
+**Priority (every UI surface):** reverse ENS → Base name → OpenSea username → short `0x…`  
+Single entry: `app.js` → `resolveCollectorIdentity()`.
 
 | Priority | Source | Notes |
 |----------|--------|--------|
-| 1. Reverse ENS | Daily `wallet_index.json` via `ensdata.net` **`ens_primary` only** (not bare `ens`) + OpenSea account fallback | Bare `ens` can be an owned name NFT without reverse (e.g. holding `dacatworld.eth`) — never used as display identity |
-| 2. Base name | Weekly `name_index.json` / `base_name` on wallet | `.base.eth` |
-| 3. OpenSea username | OpenSea account `username` / `display_name` | Never raw `0x…` dumps |
-| 4. Wallet | Shortened `0x…` | Fallback |
+| 1. Reverse ENS | Daily `wallet_index` (daCommunity holders) via ensdata **`ens_primary` only** + OpenSea fallback | Bare ensdata `ens` can be an owned name NFT without reverse; do not use it |
+| 2. Base name | Weekly `name_index.json` | `.base.eth` |
+| 3. OpenSea username | Weekly profiles enrich on `wallet_index` | Skip raw `0x` dumps |
+| 4. Short address | Fallback | |
 
-**Speed:** reverse ENS re-resolves at most every **~14 days** (`last_ens_resolved`). Cache hits reuse prior ENS **and** username.
+**Secondary-collection holders** (Agency, BIG KIX, badges-only) often are **not** in `wallet_index`. Client may reverse via ensdata into session map `extraIdentityByAddress`. GitHub Action name: **Enrich wallet names (weekly)** (`.github/workflows/enrich-base-names.yml`). That job only patches addresses **already** in `wallet_index`.
 
-**Weekly identity job** (`enrich-base-names.yml`, Sundays + manual):
+**Steward exclusion (intentional):** BIG KIX + badges omit issuer `0xa6d5…` from holder lists / rankings. Agency does **not** exclude that wallet when they hold case files.
 
-| Step | Script | Source |
-|------|--------|--------|
-| Base names | `enrich_base_names.py` | web3.bio → `name_index.json` + `base_name` on wallet |
-| OpenSea usernames | `enrich_opensea_profiles.py` | OpenSea accounts API → `username` on wallet |
-
-Does **not** run on the daily gallery refresh (keeps that path fast).
-
-One-time backfill: `cd backend && python enrich_opensea_profiles.py --force`
+**Badge top-collector stats:** skip multi-1:1 `series_rep` (`isBadgeMultiSeriesRep`); count personal 1:1s + edition clubs only (same as wallet holdings).
 
 ### OpenSea collection slug (daCommunity archive)
 
@@ -277,6 +270,22 @@ If the slug changes again: update `collections_registry.json`, `backend/config.p
 `.github/workflows/refresh-data.yml` stats probe, and re-fetch so `gallery_*` collection meta matches.
 
 Film **Theatre mode** (`web/data/theatre_registry.json`, `theatre.js`) — see **`docs/THEATRE.md`**. Desktop-only; YT API player. **Lights-down layout:** compact up-next chip bottom-left (`max-width: 15.5rem`), Lights up pill top-right — must not overlap (see THEATRE.md chrome table). No full-page overlay on the player.
+
+---
+
+## Next agent handoff (keep short)
+
+| Area | Where to look | Callouts |
+|------|----------------|----------|
+| Multi-collection keys | `getItemKey` | Badges: `source_created_collection-tokenId`. Agency: `dagato-agency-v{N}-tokenId` (volume required on holdings) |
+| Agency portfolio | `getFilteredItems` + `buildHoldingsFromCurrentItems` | Owner match only; holdings must include `volume`/`contract` |
+| Identity | `resolveCollectorIdentity`, `fetchReverseEns` | Reverse primary only; steward exclusions stay in data + `excludedCollectorAddresses` |
+| Badge collector pills | `buildCollectorsFromBadgeItems` | Must skip `isBadgeMultiSeriesRep` |
+| Collection switch | `loadCollectionScope` | Never stamp `collection_id = "all"` |
+| Film PC nudge | `scroll-nudge.js` + film gold CSS | Desktop ≥900px; hide when modal open |
+| Deploy bust | `scripts/bump_deploy_version.py` | CI may bump again on Pages deploy; check footer |
+
+**Open / known fragile:** All-collections top-collector copy totals after leaving a single collection (clear / dropdown) can still disagree with a cold load of All. Do not thrash this without a careful repro. Wallet holdings + badge-scoped pills are the reference paths that work.
 
 ---
 

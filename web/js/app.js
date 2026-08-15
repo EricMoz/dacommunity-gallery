@@ -1,15 +1,9 @@
 /**
- * daCommunity Gallery core JS (vanilla, static).
- * Powers: gallery browse (search/filters/sort/grid), ?wallet= collector view,
- * ?collection= multi-col support, detail/activity, URL share.
- *
- * Boot: initDataUrls -> loadCatalogFirst -> bootGallery -> background enrich + wallet/collections.
- * Client state only; ?params for deep links/share.
- * No wallet connect needed.
+ * Gallery core (vanilla). Browse, collector wallet (?wallet=), multi-collection
+ * (?collection=), detail/activity, share URLs. Boot: catalog → paint → wallet/name indexes.
  */
 
-/* === Film ↔ NFT deep links (static; survives OpenSea badge refresh) === */
-/** Piece local_slug → film hub player. Inverse of videos.json relatedNft. */
+/* Film deep links from NFT detail (slug → film hub). */
 var RELATED_FILM_BY_PIECE_SLUG = {
   "dacat-world-collector-cat": {
     href: "../film/?v=dacatworld-collector-cat",
@@ -24,8 +18,7 @@ function relatedFilmForItem(item) {
   return null;
 }
 
-/* === Data URL Resolution & Build Stamp (cache busting) === */
-/** Parent path prefix when gallery is not at site root (e.g. /dacommunity/). */
+/* Data URLs + cache-bust (?v= from <meta name="site-build">) */
 function getDataPrefix() {
   var body = document.body;
   if (body) {
@@ -37,10 +30,7 @@ function getDataPrefix() {
   return "";
 }
 
-/** Current build stamp from <meta name="site-build"> (injected by bump_deploy_version.py on deploy).
- *  Used for strong cache-busting of all dynamic JSON data files so GitHub Pages / browser / SW
- *  never serve stale gallery_*.json or wallet_index after a data refresh + deploy.
- */
+/** Deploy stamp for ?v= on JSON/CSS/JS (bump_deploy_version.py). */
 function getBuildStamp() {
   try {
     var meta = document.querySelector('meta[name="site-build"]');
@@ -48,7 +38,6 @@ function getBuildStamp() {
       return meta.getAttribute("content");
     }
   } catch (e) {}
-  // Fallback (file: protocol or missing meta) — short time-based token so we don't hammer caches in dev.
   return "dev-" + Math.floor(Date.now() / 1000).toString(36);
 }
 
@@ -62,10 +51,6 @@ let galleryMeta = null;
 function initDataUrls() {
   var prefix = getDataPrefix();
   var stamp = getBuildStamp();
-  // Always append the deploy build stamp. This makes every data fetch URL unique per release
-  // (e.g. /data/gallery_data.json?v=20260610-5), busting GitHub Pages CDN, browser HTTP cache,
-  // and the SW's per-URL cache for the four dynamic JSONs. The stamp is the same one used
-  // for the HTML/CSS/JS ?v= links and the footer "Site build" text.
   var q = "?v=" + stamp;
   CATALOG_URL = prefix + "data/gallery_catalog.json" + q;
   FULL_DATA_URL = prefix + "data/gallery_data.json" + q;
@@ -77,60 +62,49 @@ function initDataUrls() {
 
 const $ = (sel, root = document) => root.querySelector(sel);
 
-/* === Global State (single source of truth for browse + collector modes) === */
+/* Global state */
 let galleryData = null;
 let walletIndex = null;
-/** Cross-collection name cache (weekly Base-name enricher). */
+/** Base names from weekly enrich (name_index.json). */
 let nameIndex = null;
-/**
- * Runtime identity hints for addresses not in wallet_index (secondary-collection
- * holders, stewards). Seeded from collection.creator_wallet + ensdata reverse.
- * Weekly "Enrich wallet names" only patches addresses already in wallet_index.
- */
+/** Session identity for addresses outside wallet_index (secondary holders + ensdata reverse). */
 let extraIdentityByAddress = {};
 let reverseEnsPending = {};
 let reverseEnsFailed = {};
 let identityUiRefreshTimer = null;
 let collectorsList = [];
 let itemsById = new Map();
-/** Browse view — single source of truth for search / filter / sort. */
 let activeFilter = "all";
 let searchQuery = "";
 let sortKey = "token_desc";
 let dataSource = "catalog";
-/** catalog | loading_full | live | error */
-let fullDataStatus = "catalog";
+let fullDataStatus = "catalog"; // catalog | loading_full | live | error
 let activeCollectorAddress = null;
-/** When set, main gallery grid shows only this collector's holdings. */
+/** Portfolio mode: grid scoped to this wallet. */
 let galleryCollectorView = null;
 
 let originalHeroTitle = null;
 let originalHeroLead = null;
-/** Token id when detail drawer is open — refresh holders/activity after background merge. */
+/** Open detail key (getItemKey), not bare token id. */
 let activeDetailTokenId = null;
 let activeCollection = "all";
 
+/** Stable id for share links + indexes. Agency keys require volume (or contract). */
 function getItemKey(item) {
   if (!item) return "";
-  // Badges multi-slug 1:1s
   if (item.source_created_collection) {
     return item.source_created_collection + "-" + item.token_id;
   }
-  // Secondary collections (BIG KIX, etc.) — avoid token_id collisions with daCommunity
   var cid = item.collection_id || "dacommunity";
-  // Agency: Vol 1 and Vol 2 share token #s on different contracts.
-  // Stable key is volume-namespaced (share URLs: dagato-agency-v2-33).
-  // Never default missing volume to 1 — that made Vol 2 holdings match Vol 1 case files.
+  // Vol 1/2 reuse token #s on different contracts — never invent volume 1 when missing
   if (cid === "dagato-agency") {
     if (item.volume != null && item.volume !== "") {
       return cid + "-v" + item.volume + "-" + String(item.token_id);
     }
-    // Holding rows without volume: fall back to contract (unique per OpenSea volume drop)
     var contract = item.contract ? String(item.contract).toLowerCase() : "";
     if (contract) {
       return cid + "-" + contract + "-" + String(item.token_id);
     }
-    // Incomplete row — orphan key must not collide with real gallery items
     return cid + "-orphan-" + String(item.token_id);
   }
   if (cid && cid !== "dacommunity" && cid !== "all") {
@@ -761,9 +735,7 @@ function nameIndexEntry(address) {
 }
 
 async function loadWalletIndex() {
-  // Always load the main daCommunity wallet index for ENS enrichment — even when viewing
-  // BIG KIX / badges (those collections do not ship their own wallet_index_file).
-  // Collectors for the active collection are rebuilt after, so the main index never clobbers them.
+  // daCommunity wallet_index is shared for ENS on all collections (secondaries have no own index)
   try {
     if (!walletIndex) {
       var w = await fetchJson(WALLET_URL, 20000);
@@ -773,12 +745,10 @@ async function loadWalletIndex() {
     console.warn("Wallet index load failed:", e);
     if (!walletIndex) walletIndex = (galleryData && galleryData.holders_index) || null;
   }
-  // Optional weekly Base-name index (non-blocking if missing)
   try {
     await loadNameIndex();
   } catch (e2) {}
 
-  // Merge base_name from name_index onto wallet holders for display
   if (walletIndex && walletIndex.by_address && nameIndex && nameIndex.by_address) {
     Object.keys(walletIndex.by_address).forEach(function (a) {
       var e = walletIndex.by_address[a];
@@ -786,7 +756,6 @@ async function loadWalletIndex() {
       if (e && ni && ni.base_name && !e.base_name) e.base_name = ni.base_name;
     });
   }
-  // Merge aliases so .base.eth lookup works in wallet search
   if (walletIndex && nameIndex && nameIndex.name_aliases) {
     if (!walletIndex.ens_aliases) walletIndex.ens_aliases = {};
     Object.keys(nameIndex.name_aliases).forEach(function (n) {
@@ -795,10 +764,7 @@ async function loadWalletIndex() {
       }
     });
   }
-
-  // Do NOT stamp ens_name from badge *titles* (e.g. "DAFOREMAN.ETH - 1T CLUB").
-  // Titles name the award recipient; the holding address may be a different vault with
-  // no reverse ENS. Only reverse-resolved ens_name from wallet_index / owners is trusted.
+  // Never derive ENS from badge NFT titles — reverse resolve only
 
   enrichHoldersAndCollectorsWithENS();
   rebuildCollectorsForCurrentView();
@@ -860,11 +826,7 @@ function buildCollectorsFromIndex(idx) {
     });
 }
 
-/**
- * Stamp collection_id on items missing it.
- * Never use "all" — that makes archive rows look like secondaries and double-counts
- * them when merging wallet_index + item owners for top collectors.
- */
+/** Stamp missing collection_id. Never use "all" (breaks secondary vs archive splits). */
 function stampMissingCollectionId(items, preferredId) {
   var cid = preferredId || "dacommunity";
   if (!cid || cid === "all") cid = "dacommunity";
@@ -873,7 +835,6 @@ function stampMissingCollectionId(items, preferredId) {
   });
 }
 
-/** After collectorsList rebuild — keep top pills + modal in sync. */
 function paintCollectorsUi() {
   rebuildCollectorsForCurrentView();
   enrichCollectorsListNames();
@@ -881,7 +842,7 @@ function paintCollectorsUi() {
   updateCollectorsButton();
 }
 
-/** Consistent collector count label: "N unique · M copies" everywhere. */
+/** "N unique · M copies" for modal / profile. */
 function formatCollectorHoldLabel(c) {
   var uq = Number(c && c.unique_pieces) || 0;
   var cq = Number(c && c.collection_quantity) || 0;
@@ -905,7 +866,7 @@ function cleanIdentityName(v) {
   return s || null;
 }
 
-/** Merge identity fields into runtime map (does not overwrite stronger existing values). */
+/** Merge into extraIdentityByAddress (does not overwrite stronger values). */
 function seedIdentityHint(address, fields) {
   var key = String(address || "")
     .toLowerCase()
@@ -922,7 +883,6 @@ function seedIdentityHint(address, fields) {
   if (user && !e.username && !/^0x[a-fA-F0-9]{10,}$/i.test(user)) e.username = user;
 }
 
-/** Collection steward metadata (e.g. BIG KIX creator_wallet: dacatworld.eth). */
 function seedIdentityFromCollectionMeta(col) {
   if (!col) return;
   var cw = col.creator_wallet;
@@ -942,16 +902,9 @@ function seedIdentitiesFromLoadedData() {
   if (galleryData && galleryData.collection) {
     seedIdentityFromCollectionMeta(galleryData.collection);
   }
-  // Merged multi-collection loads may keep secondary meta only on items
-  (galleryData && galleryData.items ? galleryData.items : []).forEach(function (it) {
-    if (it && it.collection_id === "bigkix" && galleryData.collection) return;
-  });
 }
 
-/**
- * Reverse-primary ENS via ensdata for addresses missing from wallet_index
- * (Agency / BIG KIX / badge-only holders). ens_primary only — never bare owned-name ens.
- */
+/** ensdata reverse-primary for holders not in wallet_index. Uses ens_primary only. */
 function fetchReverseEns(address) {
   var key = String(address || "")
     .toLowerCase()
@@ -1063,12 +1016,8 @@ function scheduleIdentityUiRefresh() {
 }
 
 /**
- * Canonical collector identity for every UI surface.
- * Priority: reverse ENS → Base name → OpenSea username → short 0x
- *
- * Sources: wallet_index (daCommunity daily reverse), extraIdentityByAddress
- * (creator_wallet + live ensdata reverse for secondary holders), owner-row stamps,
- * name_index. Never NFT title text.
+ * Display name priority: reverse ENS → Base → OpenSea username → short 0x.
+ * Prefer wallet_index / ensdata reverse; never NFT title text.
  */
 function resolveCollectorIdentity(addressOrRow) {
   var key = "";
@@ -1099,7 +1048,6 @@ function resolveCollectorIdentity(addressOrRow) {
   var extra = extraIdentityByAddress[key] || null;
   var ni = nameIndexEntry(key);
 
-  // Reverse ENS: wallet_index → runtime reverse/creator seed → owner row → name_index
   var ens =
     cleanIdentityName(entry && entry.ens_name) ||
     cleanIdentityName(extra && extra.ens_name) ||
@@ -1108,7 +1056,7 @@ function resolveCollectorIdentity(addressOrRow) {
     null;
   if (ens) ens = ens.toLowerCase();
 
-  // Reject ENS claimed by another wallet (alias map from reverse history)
+  // Drop ENS if aliases map it to a different address
   if (ens && walletIndex && walletIndex.ens_aliases) {
     var mapped = walletIndex.ens_aliases[ens];
     if (mapped && String(mapped).toLowerCase() !== key) {
@@ -1129,7 +1077,6 @@ function resolveCollectorIdentity(addressOrRow) {
     cleanIdentityName(row && row.username) ||
     cleanIdentityName(ni && ni.username) ||
     null;
-  // OpenSea sometimes dumps the raw 0x as "username"
   if (username && /^0x[a-fA-F0-9]{10,}$/i.test(username)) username = null;
 
   var display = ens || base || username || shortenAddress(key);
@@ -1490,22 +1437,18 @@ function mergeCollectorRows(lists) {
 }
 
 /**
- * Badge collectors for top pills / modal.
- * Must match buildHoldingsFromCurrentItems: multi-1:1 club series_rep is browse-only
- * (generic card nobody "owns" as a personal piece). Only personal 1:1s + edition_club
- * rows count — otherwise pills double-count rep + personal (e.g. 9·14 vs wallet 9).
+ * Badge top-collector stats. Skip multi-1:1 series_rep (browse-only), same as wallet holdings.
+ * Count personal 1:1s + edition_club rows only.
  */
 function buildCollectorsFromBadgeItems(items) {
   var byAddr = {};
   (items || []).forEach(function (item) {
-    if (!item.source_created_collection) return; // badges only
-    // Same skip as collector wallet holdings
+    if (!item.source_created_collection) return;
     if (isBadgeMultiSeriesRep(item)) return;
     var slug = item.source_created_collection;
     var itemKey = getItemKey(item);
     var os = item.owners || {};
     var list = os.holders || os.top_holders || [];
-    // ENS only from reverse-resolved holder.ens_name (never from NFT title text)
     list.forEach(function (h) {
       var a = (h.address || "").toLowerCase();
       if (!a) return;
@@ -1529,7 +1472,6 @@ function buildCollectorsFromBadgeItems(items) {
       if (itemKey) byAddr[a]._keys[itemKey] = true;
     });
   });
-  // Full identity: ENS → Base → OpenSea from indexes
   Object.keys(byAddr).forEach(function (a) {
     enrichCollectorRowNames(byAddr[a]);
   });
@@ -1537,7 +1479,6 @@ function buildCollectorsFromBadgeItems(items) {
     .map(function (e) {
       var keyCount = e._keys ? Object.keys(e._keys).length : 0;
       var slugCount = e._slugs ? Object.keys(e._slugs).length : 0;
-      // Prefer distinct held pieces (matches wallet summarizeHoldingsStats)
       e.unique_pieces = keyCount || slugCount || e.collection_quantity;
       delete e._slugs;
       delete e._keys;
@@ -1560,20 +1501,19 @@ function enrichHoldersAndCollectorsWithENS() {
   }
 }
 
-/** Creator / steward addresses excluded from collector rankings (BIG KIX etc.). */
+/** Steward/issuer wallets excluded from collector rankings (BIG KIX + badges data already omit them). */
 function excludedCollectorAddresses(items) {
   var out = {};
   var col =
     (galleryData && galleryData.collection) ||
     (items && items[0] && null) ||
     null;
-  // Prefer active gallery collection meta
   if (galleryData && galleryData.collection) col = galleryData.collection;
   if (col && col.creator_excluded_from_stats) {
     var cw = col.creator_wallet || {};
     if (cw.address) out[String(cw.address).toLowerCase()] = true;
   }
-  // Known BIG KIX steward (matches backend fetch_bigkix CREATOR_ADDRESS)
+  // BIG KIX steward (fetch_bigkix CREATOR_ADDRESS)
   if (
     (col && (col.id === "bigkix" || col.slug === "bigkix")) ||
     activeCollection === "bigkix"
@@ -4333,14 +4273,11 @@ function buildHoldingsFromCurrentItems(address) {
       }
     });
     if (qty > 0) {
-      // Multi 1:1 clubs: series_rep is search-only. Edition clubs (e.g. 100 Billion) use
-      // series_rep as the real collectible card and must still appear for holders.
+      // Multi-1:1 series_rep is browse-only; edition_club series_rep is the real card
       if (item.is_series_rep && item.source_created_collection && /trillion|billion/i.test(item.source_created_collection) && !item.edition_club) return;
-      // Agency: portfolio shows real case files, not aggregated rarity rows
       if (isAgencyRaritySeries(item)) return;
       seen[key] = true;
-      // Keep volume + contract so getItemKey(holding) matches gallery items.
-      // Dropping volume caused Vol 2 #N holdings to key as Vol 1 #N (false portfolio hits).
+      // volume + contract required for agency getItemKey
       holdings.push({
         token_id: item.token_id,
         name: item.display_name || item.name,
@@ -5236,13 +5173,10 @@ function getFilteredItems() {
         // badges: only trust owner match (token_ids collide across series, rep tokens not unique)
         return false;
       }
-      // Agency editions: Vol 1 and Vol 2 reuse the same token #s on different contracts.
-      // Never fall back to a bare/partial key match — only trust owners.holders above.
+      // Agency: owner match only (token #s collide across volumes)
       if ((i.collection_id || "") === "dagato-agency" || i.is_edition_token) {
         return false;
       }
-      // Fallback key match for main dacommunity style (using getItemKey to avoid collisions
-      // with badge token_ids that may overlap numerically)
       var key = getItemKey(i);
       if (tidSet[key]) return true;
       return false;
@@ -6099,11 +6033,7 @@ function populateCollectionSelect() {
   sel.value = activeCollection || "all";
 }
 
-/**
- * Load data for a collection scope ("all" | dacommunity | badges | …).
- * Generation guard drops stale async completions when user switches quickly.
- * Always repaints top collectors after rebuild (same numbers as cold load).
- */
+/** Load gallery data for a collection id. Gen counter ignores stale async completions. */
 var collectionScopeGen = 0;
 async function loadCollectionScope(newCol) {
   newCol = newCol || "all";
@@ -6173,7 +6103,6 @@ async function loadCollectionScope(newCol) {
       var mainData = await loadCatalogFirst();
       if (!stillCurrent()) return;
       galleryData = mainData;
-      // Archive rows are always dacommunity (never stamp activeCollection when it is "all")
       stampMissingCollectionId(
         galleryData.items,
         (galleryData.collection &&

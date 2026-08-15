@@ -757,7 +757,7 @@
     els.empty.hidden = anyVisible;
     if (els.rows) els.rows.hidden = !els.rows.children.length;
 
-    // Catalog height changes after paint — re-show PC scroll-nudge if room allows
+    // Re-sync PC scroll nudge after async catalog layout
     if (typeof window.syncSiteScrollNudge === "function") {
       window.syncSiteScrollNudge();
       requestAnimationFrame(function () {

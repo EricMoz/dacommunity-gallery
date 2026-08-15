@@ -201,20 +201,10 @@ class OpenSeaClient:
         cache_days: int = 14,
         previous_ens: str | None = None,
     ) -> str | None:
-        """Reverse-ENS only for wallet_index / badge owners.
+        """Reverse-primary ENS only (ensdata ens_primary, not bare owned-name ens).
 
-        Strategy:
-        1. ensdata.net/{address} — use **ens_primary** only (not bare ``ens``).
-           Bare ``ens`` can be an owned name NFT (e.g. someone holds dacatworld.eth
-           without setting reverse), which must never become their display identity.
-           Optionally confirm wallets.eth matches the address.
-        2. Fallback: OpenSea account resolve ``ens_name`` (also reverse-oriented).
-        3. Cache: skip network if last_resolved is < cache_days old (default 14).
-        4. Always store lowercase (DAFOREMAN.ETH → daforeman.eth).
-        5. On skip/failure: keep previous_ens (never wipe good data on flaky days).
-
-        Base names (.base.eth) and OpenSea usernames are separate fields elsewhere.
-        Display priority on site: ENS → Base → OpenSea username → short 0x.
+        Fallback: OpenSea account ens_name. Cache last_resolved (~14d). Lowercase always.
+        On failure keep previous_ens. Base/OpenSea username are separate fields.
         """
         addr = (address or "").lower().strip()
         if not addr:
@@ -222,10 +212,8 @@ class OpenSeaClient:
 
         now = time.time()
         if last_resolved is not None and (now - last_resolved) < (cache_days * 86400):
-            # Fast path: recently resolved, reuse previous value. No API calls.
             return previous_ens.lower() if previous_ens else None
 
-        # Reverse-primary only (do not use data["ens"] — that can be an owned name NFT)
         try:
             r = requests.get(f"https://ensdata.net/{addr}", timeout=6)
             if r.status_code == 200:
@@ -233,16 +221,13 @@ class OpenSeaClient:
                 ens = data.get("ens_primary")
                 if ens:
                     ens = str(ens).lower().strip()
-                    # Prefer records where ensdata already points wallets.eth at this address
                     wallets = data.get("wallets") if isinstance(data.get("wallets"), dict) else {}
                     eth_wallet = (wallets.get("eth") or data.get("address") or "").lower()
                     if not eth_wallet or eth_wallet == addr:
                         return ens
-                    # ens_primary present but wallet mismatch — treat as untrusted
         except Exception:
             pass
 
-        # Fallback: OpenSea account reverse name
         try:
             resolved = self.resolve_account(addr)
             ens = resolved.get("ens_name") if isinstance(resolved, dict) else None

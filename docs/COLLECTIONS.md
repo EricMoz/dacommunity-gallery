@@ -111,20 +111,24 @@ python fetch_dagato_agency.py --volume 2   # single volume only (still full rewr
 | Pieces stat | Count of rarity series rows (not raw case-file count) |
 | Rarity tags | Common / Uncommon / Epic / Legendary / 1:1 on grid, holdings, detail |
 | Detail | Aggregated holders + copies; transfer/sale history merged from case files |
-| Collector wallet | Real case-file token #s (editions). Keys are `dagato-agency-v{N}-{token_id}` (volume required — never invent Vol 1). Portfolio filter trusts `owners.holders` only for agency editions (same # exists on Vol 1 + Vol 2 contracts). Holdings rows must carry `volume` + `contract`. |
-| Data | `web/data/dagato_agency_data.json` + `dagato_agency_catalog.json` |
+| Collector wallet | Edition token #s. Keys: `dagato-agency-v{N}-{token_id}` (require volume on holdings). Portfolio: `owners.holders` only (token #s collide across vols). |
+| Data | `web/data/dagato_agency_data.json` + `dagato_agency_catalog.json` (catalog includes `contract`) |
 | Fetch | `backend/fetch_dagato_agency.py` (also in `refresh-data.yml`) |
 
 Hub cards remain manual (home + `collections/index.html`) until the hub is fully registry-driven.
 
 ### Collector names (daily + weekly)
 
-| Job | Frequency | What |
-|-----|-----------|------|
-| `refresh-data.yml` | Daily | ENS + OpenSea username → `wallet_index.json` |
-| `enrich-base-names.yml` | Weekly (Sunday) | Base names (`.base.eth`) → `name_index.json` + patch wallet |
+| Job | Workflow name | What |
+|-----|---------------|------|
+| Daily | Refresh gallery data | Reverse ENS (+ username probe) → `wallet_index.json` for **daCommunity** holders |
+| Weekly | **Enrich wallet names (weekly)** | Base names → `name_index.json`; OpenSea usernames patch `wallet_index` |
 
-Display: **ENS → Base name → OpenSea username → short 0x**.
+Display priority: **ENS → Base → OpenSea username → short 0x** (`resolveCollectorIdentity` in `app.js`).
+
+`wallet_index` does **not** list pure secondary-collection holders. UI may live-reverse those via ensdata.
+
+Stewards: BIG KIX + badges exclude issuer inventory from holder stats; Agency does not use that exclusion for `0xa6d5…` when they hold case files.
 
 Do **not** duplicate gallery logic for preview pages — use `preview_only` + themed static HTML until data exists.
 

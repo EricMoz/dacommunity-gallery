@@ -1,7 +1,6 @@
 /**
- * PC glass scroll-nudge — Universe, Film hub, Gallery archive.
- * Click smooth-scrolls ~14% of the viewport.
- * Hidden when NFT detail / film modal / share sheet is open, or near page end.
+ * PC scroll nudge (bottom-right, >=900px). Scrolls ~14% viewport.
+ * Hidden near page end or when detail / film / share modal is open.
  */
 (function () {
   function isDetailOpen() {
@@ -11,7 +10,6 @@
 
   function isFilmModalOpen() {
     var m = document.getElementById("film-modal");
-    // Closed when HTML hidden attribute is present (film.js sets m.hidden = true)
     if (!m || m.hidden) return false;
     return true;
   }
@@ -19,7 +17,6 @@
   function isShareOpen() {
     var s = document.getElementById("share-modal");
     if (s && !s.hidden && s.getAttribute("aria-hidden") !== "true") return true;
-    // Dynamic film/gallery sheet only exists while open (removed on close)
     var social = document.getElementById("social-share-modal");
     if (social && !social.hidden) return true;
     return false;
@@ -39,7 +36,6 @@
     if (!btn) return;
     var wide = window.innerWidth >= 900;
     var blocked = isDetailOpen() || isFilmModalOpen() || isShareOpen();
-    // Film catalog paints late — use a low threshold so the chip appears once content exceeds the viewport
     var room = remainingScroll();
     var show = wide && !blocked && room > 48;
     btn.classList.toggle("is-away", !show);
@@ -83,7 +79,6 @@
       });
     }
 
-    // Film grid / home sections paint async — recheck after layout settles
     var main =
       document.querySelector(".film-hub-main") ||
       document.querySelector(".site-home") ||
