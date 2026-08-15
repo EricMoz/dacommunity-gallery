@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-15T15:50:56.233099+00:00",
+  "generated_at": "2026-08-15T19:03:00.671181+00:00",
   "source": "dagato_agency_catalog",
   "collection": {
     "id": "dagato-agency",
@@ -13,7 +13,7 @@
     "creator_ens": "dagato.eth",
     "creator_wallet": {
       "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-      "username": null,
+      "username": "dagato_offical",
       "ens_name": "dagato.eth"
     },
     "creator_excluded_from_stats": false,
@@ -683,7 +683,7 @@
             "username": null
           },
           {
-            "address": "0xa5dcf683b5092cd9df2f6c15ecb8d7fc355b8dea",
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1,
             "ens_name": null,
             "username": null
@@ -733,7 +733,7 @@
             "username": null
           },
           {
-            "address": "0xa5dcf683b5092cd9df2f6c15ecb8d7fc355b8dea",
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1,
             "ens_name": null,
             "username": null
@@ -747,10 +747,10 @@
         ],
         "creator_excluded": false,
         "latest_change": {
-          "type": "transfer",
-          "at": "2026-07-25T17:11:35+00:00",
-          "from": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
-          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "type": "sale",
+          "at": "2026-08-15T17:50:11+00:00",
+          "from": "0xa5dcf683b5092cd9df2f6c15ecb8d7fc355b8dea",
+          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
           "quantity": 1
         }
       },
@@ -868,6 +868,21 @@
       ],
       "description": "daGATO Detective Agency: Volume 1.\n\n9 case files at Uncommon rarity. Open holders and recent transfers below.\n\nCase files: #02, #04, #05, #06, #09, #13, #19, #20, #31.",
       "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-08-15T17:50:11+00:00",
+          "from": "0xa5dcf683b5092cd9df2f6c15ecb8d7fc355b8dea",
+          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-15T17:50:11+00:00",
+          "from": "0xa5dcf683b5092cd9df2f6c15ecb8d7fc355b8dea",
+          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-07-25T17:11:35+00:00",
@@ -4143,22 +4158,22 @@
         "circulating_copies": 1,
         "top_holders": [
           {
-            "address": "0xa5dcf683b5092cd9df2f6c15ecb8d7fc355b8dea",
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1
           }
         ],
         "holders": [
           {
-            "address": "0xa5dcf683b5092cd9df2f6c15ecb8d7fc355b8dea",
+            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1
           }
         ],
         "creator_excluded": false,
         "latest_change": {
-          "type": "mint",
-          "at": "2026-07-25T03:00:47+00:00",
-          "from": null,
-          "to": "0xa5dcf683b5092cd9df2f6c15ecb8d7fc355b8dea",
+          "type": "sale",
+          "at": "2026-08-15T17:50:11+00:00",
+          "from": "0xa5dcf683b5092cd9df2f6c15ecb8d7fc355b8dea",
+          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
           "quantity": 1
         }
       },
@@ -4182,6 +4197,21 @@
       "agency_rarity_series": false,
       "is_edition_token": true,
       "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-08-15T17:50:11+00:00",
+          "from": "0xa5dcf683b5092cd9df2f6c15ecb8d7fc355b8dea",
+          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+          "quantity": 1,
+          "price_eth": null
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-15T17:50:11+00:00",
+          "from": "0xa5dcf683b5092cd9df2f6c15ecb8d7fc355b8dea",
+          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+          "quantity": 1
+        },
         {
           "type": "mint",
           "at": "2026-07-25T03:00:47+00:00",
