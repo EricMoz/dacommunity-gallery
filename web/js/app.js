@@ -1468,16 +1468,25 @@ function mergeCollectorRows(lists) {
   });
 }
 
+/**
+ * Badge collectors for top pills / modal.
+ * Must match buildHoldingsFromCurrentItems: multi-1:1 club series_rep is browse-only
+ * (generic card nobody "owns" as a personal piece). Only personal 1:1s + edition_club
+ * rows count — otherwise pills double-count rep + personal (e.g. 9·14 vs wallet 9).
+ */
 function buildCollectorsFromBadgeItems(items) {
   var byAddr = {};
   (items || []).forEach(function (item) {
     if (!item.source_created_collection) return; // badges only
+    // Same skip as collector wallet holdings
+    if (isBadgeMultiSeriesRep(item)) return;
     var slug = item.source_created_collection;
+    var itemKey = getItemKey(item);
     var os = item.owners || {};
     var list = os.holders || os.top_holders || [];
     // ENS only from reverse-resolved holder.ens_name (never from NFT title text)
     list.forEach(function (h) {
-      var a = (h.address || '').toLowerCase();
+      var a = (h.address || "").toLowerCase();
       if (!a) return;
       if (!byAddr[a]) {
         byAddr[a] = {
@@ -1486,15 +1495,17 @@ function buildCollectorsFromBadgeItems(items) {
           username: h.username || null,
           unique_pieces: 0,
           collection_quantity: 0,
-          _slugs: {}
+          _slugs: {},
+          _keys: {},
         };
-      } else if (h.ens_name && !byAddr[a].ens_name) {
-        byAddr[a].ens_name = h.ens_name;
-      } else if (h.username && !byAddr[a].username) {
-        byAddr[a].username = h.username;
+      } else {
+        if (h.ens_name && !byAddr[a].ens_name) byAddr[a].ens_name = h.ens_name;
+        if (h.username && !byAddr[a].username) byAddr[a].username = h.username;
       }
-      byAddr[a].collection_quantity += (h.quantity || 1);
+      var q = Number(h.quantity);
+      byAddr[a].collection_quantity += !isNaN(q) && q > 0 ? q : 1;
       if (slug) byAddr[a]._slugs[slug] = true;
+      if (itemKey) byAddr[a]._keys[itemKey] = true;
     });
   });
   // Full identity: ENS → Base → OpenSea from indexes
@@ -1503,14 +1514,19 @@ function buildCollectorsFromBadgeItems(items) {
   });
   return Object.values(byAddr)
     .map(function (e) {
-      // for badges, unique_pieces = distinct series/slugs owned (ignore double count from series_rep + personal)
+      var keyCount = e._keys ? Object.keys(e._keys).length : 0;
       var slugCount = e._slugs ? Object.keys(e._slugs).length : 0;
-      e.unique_pieces = slugCount || e.collection_quantity;
+      // Prefer distinct held pieces (matches wallet summarizeHoldingsStats)
+      e.unique_pieces = keyCount || slugCount || e.collection_quantity;
       delete e._slugs;
+      delete e._keys;
       return e;
     })
     .sort(function (a, b) {
-      return (b.unique_pieces || b.collection_quantity || 0) - (a.unique_pieces || a.collection_quantity || 0);
+      var ua = Number(a.unique_pieces) || 0;
+      var ub = Number(b.unique_pieces) || 0;
+      if (ub !== ua) return ub - ua;
+      return (Number(b.collection_quantity) || 0) - (Number(a.collection_quantity) || 0);
     });
 }
 
