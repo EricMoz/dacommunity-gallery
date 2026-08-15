@@ -5177,8 +5177,9 @@ function getFilteredItems() {
       if ((i.collection_id || "") === "dagato-agency" || i.is_edition_token) {
         return false;
       }
+      // daCommunity keys are bare token ids; holdings may use getItemKey or raw token_id
       var key = getItemKey(i);
-      if (tidSet[key]) return true;
+      if (tidSet[key] || tidSet[String(i.token_id)]) return true;
       return false;
     });
   }
@@ -6033,6 +6034,50 @@ function populateCollectionSelect() {
   sel.value = activeCollection || "all";
 }
 
+/** True if loaded galleryData already includes pieces for this collection id. */
+function galleryHasCollectionItems(colId) {
+  var items = (galleryData && galleryData.items) || [];
+  if (!items.length) return false;
+  if (!colId || colId === "all") {
+    // "all" needs archive + at least one secondary, or pure archive is ok for filter-all
+    var hasDacom = false;
+    var hasSecondary = false;
+    items.forEach(function (i) {
+      var c = i.collection_id || "dacommunity";
+      if (c === "dacommunity") hasDacom = true;
+      else hasSecondary = true;
+    });
+    return hasDacom;
+  }
+  if (colId === "dacommunity") {
+    return items.some(function (i) {
+      return (i.collection_id || "dacommunity") === "dacommunity" && !i.source_created_collection;
+    });
+  }
+  return items.some(function (i) {
+    return (i.collection_id || "") === colId;
+  });
+}
+
+/**
+ * In collector portfolio: change collection chip without full reload when data is already loaded.
+ * Avoids empty grid from reloading before tokenIds are rebuilt.
+ */
+function applyCollectorCollectionFilter(newCol) {
+  newCol = newCol || "all";
+  activeCollection = newCol;
+  var colSel = $("#collection-select");
+  if (colSel) colSel.value = newCol;
+  syncBrowseParamsToUrl();
+  expandCollectorHoldingsFromLoadedData();
+  renderCollectorFocusUi();
+  paintCollectorsUi();
+  renderStats((galleryData && galleryData.collection) || null);
+  refreshView();
+  adaptHeaderForCollection();
+  applyCollectionUI();
+}
+
 /** Load gallery data for a collection id. Gen counter ignores stale async completions. */
 var collectionScopeGen = 0;
 async function loadCollectionScope(newCol) {
@@ -6055,17 +6100,17 @@ async function loadCollectionScope(newCol) {
 
   function finishUi() {
     if (!stillCurrent()) return;
-    paintCollectorsUi();
-    renderStats((galleryData && galleryData.collection) || null);
-    renderDataFreshness();
-    refreshView();
-    syncCollectorViewToCurrentItems();
-    adaptHeaderForCollection();
-    applyCollectionUI();
+    // Portfolio: rebuild tokenIds from loaded items + wallet_index BEFORE painting the grid
     if (galleryCollectorView) {
       expandCollectorHoldingsFromLoadedData();
       renderCollectorFocusUi();
     }
+    paintCollectorsUi();
+    renderStats((galleryData && galleryData.collection) || null);
+    renderDataFreshness();
+    refreshView();
+    adaptHeaderForCollection();
+    applyCollectionUI();
     if (activeDetailTokenId) {
       var openItem = itemsById.get(activeDetailTokenId);
       if (openItem) refreshDetailPanel(openItem);
@@ -6232,8 +6277,25 @@ function bindUi() {
   var collectionSelect = $("#collection-select");
   if (collectionSelect) {
     collectionSelect.addEventListener("change", function (e) {
-      var newCol = e.target.value;
+      var newCol = e.target.value || "all";
       if (newCol === activeCollection) return;
+      // Collector wallet: filter in place when pieces for that collection are already loaded
+      // (full reload used to paint an empty grid before holdings/tokenIds rebuilt).
+      if (galleryCollectorView) {
+        var canFilterInPlace =
+          newCol === "all"
+            ? galleryHasCollectionItems("dacommunity")
+            : galleryHasCollectionItems(newCol);
+        // Prefer multi-collection data when selecting "all" so other collections still show
+        if (newCol === "all" && canFilterInPlace) {
+          applyCollectorCollectionFilter("all");
+          return;
+        }
+        if (newCol !== "all" && canFilterInPlace) {
+          applyCollectorCollectionFilter(newCol);
+          return;
+        }
+      }
       loadCollectionScope(newCol);
     });
   }
