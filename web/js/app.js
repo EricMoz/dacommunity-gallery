@@ -238,13 +238,26 @@ function getCollectionDataUrls(colId) {
   if (!colId || colId === "all" || colId === "dacommunity") return null;
   var list = (collectionsRegistry && collectionsRegistry.collections) || [];
   var col = list.find(function (c) { return c.id === colId; });
-  if (!col || !col.data) return null;
+  // Hard fallbacks so a stale registry never drops secondary listings/activity files
+  var FALLBACK_DATA = {
+    "hats-n-dacats": { catalog: "hats_n_dacats_catalog.json", gallery: "hats_n_dacats_data.json" },
+    bigkix: { catalog: "bigkix_catalog.json", gallery: "bigkix_data.json" },
+    "dagato-agency": { catalog: "dagato_agency_catalog.json", gallery: "dagato_agency_data.json" },
+    badges: { catalog: "badges_catalog.json", gallery: "badges_data.json" },
+  };
+  var catalog =
+    (col && col.data && col.data.catalog) ||
+    (FALLBACK_DATA[colId] && FALLBACK_DATA[colId].catalog);
+  var gallery =
+    (col && col.data && col.data.gallery) ||
+    (FALLBACK_DATA[colId] && FALLBACK_DATA[colId].gallery);
+  if (!catalog || !gallery) return null;
   var prefix = getDataPrefix();
   var stamp = getBuildStamp();
   var q = "?v=" + stamp;
   return {
-    catalog: prefix + "data/" + (col.data.catalog || "gallery_catalog.json") + q,
-    full: prefix + "data/" + (col.data.gallery || "gallery_data.json") + q
+    catalog: prefix + "data/" + catalog + q,
+    full: prefix + "data/" + gallery + q,
   };
 }
 
@@ -3860,9 +3873,11 @@ function createHoldingCard(item, holding) {
   btn.type = "button";
   var title = item ? itemTitle(item) : holding.display_name || holding.name || "#" + holding.token_id;
   var listedBadge =
-    item && item.listed
+    item && isItemListed(item)
       ? '<span class="badge-listed">' +
-        (item.listing ? formatEth(item.listing.amount_eth) + " ETH" : "Listed") +
+        (item.listing && item.listing.amount_eth != null
+          ? formatEth(item.listing.amount_eth) + " ETH"
+          : "Listed") +
         "</span>"
       : "";
   var rarityBadge = item ? formatRarityBadgeHtml(item) : "";
@@ -4973,7 +4988,7 @@ function renderStats(collection) {
     var listed = 0;
     var minFloor = null;
     allItems.forEach(function (it) {
-      if (it.listed) {
+      if (isItemListed(it)) {
         listed++;
         if (it.listing && it.listing.amount_eth != null) {
           var p = Number(it.listing.amount_eth);
@@ -5033,7 +5048,7 @@ function renderStats(collection) {
           })
         : kItems;
     listedScan.forEach(function (it) {
-      if (it.listed) {
+      if (isItemListed(it)) {
         listedK++;
         if (it.listing && it.listing.amount_eth != null) {
           var pk = Number(it.listing.amount_eth);
@@ -5100,17 +5115,72 @@ function renderStats(collection) {
   }
 }
 
+/** True when an NFT has an active sale listing (for sale filter + badge). */
+function isItemListed(item) {
+  if (!item) return false;
+  if (item.listed === true || item.listed === 1 || item.listed === "true") return true;
+  var L = item.listing;
+  if (!L || typeof L !== "object") return false;
+  if (L.amount_eth != null && !isNaN(Number(L.amount_eth))) return true;
+  if (L.price_eth != null && !isNaN(Number(L.price_eth))) return true;
+  if (String(L.status || "").toUpperCase() === "ACTIVE") return true;
+  return false;
+}
+
+/** Sort activity newest-first; prefer sale over transfer over mint at the same timestamp. */
+function sortActivityRows(rows) {
+  var rank = { sale: 0, transfer: 1, mint: 2 };
+  return (rows || []).slice().sort(function (a, b) {
+    var ca = String((b && b.at) || "").localeCompare(String((a && a.at) || ""));
+    if (ca !== 0) return ca;
+    var ra = rank[(a && a.type) || ""] != null ? rank[a.type] : 9;
+    var rb = rank[(b && b.type) || ""] != null ? rank[b.type] : 9;
+    return ra - rb;
+  });
+}
+
+/**
+ * Latest sale/transfer timestamp (real movement). Mints alone do not count as a
+ * "recent transfer" — that made listed inventory look transferred when it was not.
+ */
+function itemLatestMovementAt(item) {
+  if (!item) return null;
+  var rows = sortActivityRows(dedupeActivityRows(item.recent_activity || []));
+  for (var i = 0; i < rows.length; i++) {
+    var t = (rows[i] && rows[i].type) || "";
+    if ((t === "sale" || t === "transfer") && rows[i].at) return rows[i].at;
+  }
+  var lc = item.owners && item.owners.latest_change;
+  if (lc && lc.at && (lc.type === "sale" || lc.type === "transfer")) return lc.at;
+  return null;
+}
+
+/** Any activity timestamp including mint (fallback for newest-mint sorting). */
 function itemLatestTransferAt(item) {
+  var move = itemLatestMovementAt(item);
+  if (move) return move;
   var owners = item.owners || {};
   if (owners.latest_change && owners.latest_change.at) return owners.latest_change.at;
-  var rows = item.recent_activity || [];
+  var rows = sortActivityRows(dedupeActivityRows(item.recent_activity || []));
   if (rows.length && rows[0].at) return rows[0].at;
   return null;
 }
 
 function hasRecentActivity(item, withinDays) {
   withinDays = withinDays || 90;
-  var at = itemLatestTransferAt(item);
+  // Prefer sale/transfer so "Recent Transfers" matches purchases & sends
+  var at = itemLatestMovementAt(item);
+  if (!at) {
+    // Brand-new mints still surface briefly (new wave drops)
+    var rows = sortActivityRows(dedupeActivityRows((item && item.recent_activity) || []));
+    for (var i = 0; i < rows.length; i++) {
+      if (rows[i] && rows[i].type === "mint" && rows[i].at) {
+        at = rows[i].at;
+        withinDays = Math.min(withinDays, 21);
+        break;
+      }
+    }
+  }
   if (!at) return false;
   var ageH = hoursSince(at);
   return ageH !== null && ageH <= withinDays * 24;
@@ -5402,8 +5472,8 @@ function compareItems(a, b) {
     return itemTitle(a).localeCompare(itemTitle(b), undefined, { sensitivity: "base" });
   }
   if (key === "price_asc" || key === "price_desc") {
-    var pa = a.listed && a.listing ? Number(a.listing.amount_eth) : null;
-    var pb = b.listed && b.listing ? Number(b.listing.amount_eth) : null;
+    var pa = isItemListed(a) && a.listing ? Number(a.listing.amount_eth) : null;
+    var pb = isItemListed(b) && b.listing ? Number(b.listing.amount_eth) : null;
     if (pa == null && pb == null) return Number(b.token_id) - Number(a.token_id);
     if (pa == null) return 1;
     if (pb == null) return -1;
@@ -5411,8 +5481,9 @@ function compareItems(a, b) {
     return Number(b.token_id) - Number(a.token_id);
   }
   if (key === "transfer_desc") {
-    var ta = Date.parse(itemLatestTransferAt(a) || 0) || 0;
-    var tb = Date.parse(itemLatestTransferAt(b) || 0) || 0;
+    // Prefer real sales/transfers over mint-only timestamps
+    var ta = Date.parse(itemLatestMovementAt(a) || itemLatestTransferAt(a) || 0) || 0;
+    var tb = Date.parse(itemLatestMovementAt(b) || itemLatestTransferAt(b) || 0) || 0;
     if (tb !== ta) return tb - ta;
     return Number(b.token_id) - Number(a.token_id);
   }
@@ -5490,22 +5561,17 @@ function getFilteredItems() {
     });
   }
   // Collection dropdown + free-text search:
-  // - Archive (no portfolio): search spans all loaded collections while typing so
-  //   "kix" / "agency" / "badge" still finds pieces across the merge.
-  // - Collector wallet: ALWAYS honor the collection chip even when a search term is
-  //   also set. NFT → "View collector" must keep archive filters (collection AND q
-  //   AND listed/sort). Do not skip collection scope here — that looked like
-  //   "filters don't carry over" when opening a wallet from a filtered NFT.
+  // Always honor the collection chip (All vs HATS / BIG KIX / …). Skipping scope when
+  // a search term was present made "For sale" + "HATS n' daCATs" look empty / wrong
+  // vs the same listed pieces under All collections.
   var qSearch = (searchQuery || "").trim();
   if (activeCollection && activeCollection !== "all") {
-    if (galleryCollectorView || !qSearch) {
-      items = items.filter(function (i) {
-        return (i.collection_id || "dacommunity") === activeCollection;
-      });
-    }
+    items = items.filter(function (i) {
+      return (i.collection_id || "dacommunity") === activeCollection;
+    });
   }
-  if (activeFilter === "listed") items = items.filter(function (i) { return i.listed; });
-  if (activeFilter === "not_listed") items = items.filter(function (i) { return !i.listed; });
+  if (activeFilter === "listed") items = items.filter(function (i) { return isItemListed(i); });
+  if (activeFilter === "not_listed") items = items.filter(function (i) { return !isItemListed(i); });
   if (activeFilter === "activity") items = items.filter(function (i) { return hasRecentActivity(i); });
   if (qSearch) {
     var q = qSearch.toLowerCase();
@@ -5769,8 +5835,12 @@ function renderGallery(items) {
     row.type = "button";
     row.style.animationDelay = Math.min(idx * 0.025, 0.75) + "s";
     var title = itemTitle(item);
-    var listedBadge = item.listed
-      ? '<span class="badge-listed">' + (item.listing ? formatEth(item.listing.amount_eth) + " ETH" : "Listed") + "</span>"
+    var listedBadge = isItemListed(item)
+      ? '<span class="badge-listed">' +
+        (item.listing && item.listing.amount_eth != null
+          ? formatEth(item.listing.amount_eth) + " ETH"
+          : "Listed") +
+        "</span>"
       : "";
     var rarityBadge = formatRarityBadgeHtml(item);
     var traitStrip =
@@ -5818,6 +5888,11 @@ function activityTypeLabel(type) {
   return type || "Activity";
 }
 
+function formatSalePriceBit(row) {
+  if (!row || row.price_eth == null || isNaN(Number(row.price_eth))) return "";
+  return " · " + formatEth(row.price_eth) + " ETH";
+}
+
 /** Drop duplicate ERC-1155 activity rows (same as backend dedupe_activity_rows). */
 function dedupeActivityRows(rows) {
   if (!rows || !rows.length) return [];
@@ -5843,16 +5918,34 @@ function dedupeActivityRows(rows) {
 
 /** Most recent mint/transfer/sale — from owners.latest_change or recent_activity. */
 function getLatestChange(item) {
-  if (item.owners && item.owners.latest_change) return item.owners.latest_change;
-  var rows = dedupeActivityRows(item.recent_activity || []);
-  return rows.length ? rows[0] : null;
+  var rows = sortActivityRows(dedupeActivityRows((item && item.recent_activity) || []));
+  if (rows.length) {
+    var top = rows[0];
+    // Prefer sale/transfer over mint when timestamps are close
+    for (var i = 0; i < rows.length; i++) {
+      if (rows[i].type === "sale" || rows[i].type === "transfer") {
+        top = rows[i];
+        break;
+      }
+    }
+    return {
+      type: top.type,
+      at: top.at,
+      from: top.from,
+      to: top.to,
+      quantity: top.quantity,
+      price_eth: top.price_eth,
+    };
+  }
+  if (item && item.owners && item.owners.latest_change) return item.owners.latest_change;
+  return null;
 }
 
-/** Wallet that received the latest mint or transfer (same treatment for both). */
+/** Wallet that received the latest mint, transfer, or sale. */
 function currentOwnerAddress(item) {
   var change = getLatestChange(item);
   if (!change || !change.to) return null;
-  if (change.type === "mint" || change.type === "transfer") {
+  if (change.type === "mint" || change.type === "transfer" || change.type === "sale") {
     return String(change.to).toLowerCase();
   }
   return null;
@@ -5862,6 +5955,7 @@ function formatLatestChangePreview(change) {
   if (!change) return "";
   var qty = change.quantity > 1 ? " ×" + change.quantity : "";
   var when = formatMintDate(change.at);
+  var priceBit = formatSalePriceBit(change);
   var label =
     change.type === "transfer"
       ? "Latest transfer"
@@ -5877,6 +5971,18 @@ function formatLatestChangePreview(change) {
       label +
       (when ? " · " + when : "") +
       " · to " +
+      (toName || shortenAddress(change.to || "")) +
+      qty
+    );
+  }
+  if (change.type === "sale") {
+    return (
+      label +
+      priceBit +
+      (when ? " · " + when : "") +
+      " · " +
+      (fromName || shortenAddress(change.from || "")) +
+      " → " +
       (toName || shortenAddress(change.to || "")) +
       qty
     );
@@ -5910,7 +6016,17 @@ function formatActivityLine(row) {
     return addressActionHtml(row.from || "") + " → " + addressActionHtml(row.to || "") + qty;
   }
   if (row.type === "sale") {
-    return "Sale · " + addressActionHtml(row.from || "") + " → " + addressActionHtml(row.to || "") + qty;
+    // Show purchase price when OpenSea provided it (HATS + other collections)
+    var priceBit = formatSalePriceBit(row);
+    return (
+      "Sold" +
+      priceBit +
+      " · " +
+      addressActionHtml(row.from || "") +
+      " → " +
+      addressActionHtml(row.to || "") +
+      qty
+    );
   }
   return activityTypeLabel(row.type) + qty;
 }
@@ -5958,14 +6074,18 @@ function renderDetailActivity(item) {
   var countEl = $("#detail-activity-count");
   var previewEl = $("#detail-activity-preview");
   if (item) ensureAgencySeriesActivity(item);
-  var rows = dedupeActivityRows(item.recent_activity || []);
+  var rows = sortActivityRows(dedupeActivityRows(item.recent_activity || []));
   if (!rows.length) {
     block.hidden = true;
     setActivityDisclosureOpen(false);
     return;
   }
   block.hidden = false;
-  setActivityDisclosureOpen(false);
+  // Open when there is a sale/transfer so purchases are visible without an extra click
+  var hasMove = rows.some(function (r) {
+    return r && (r.type === "sale" || r.type === "transfer");
+  });
+  setActivityDisclosureOpen(hasMove);
   if (countEl) countEl.textContent = "(" + rows.length + ")";
   var preview = formatLatestChangePreview(getLatestChange(item));
   if (previewEl) {
@@ -5985,6 +6105,9 @@ function renderDetailActivity(item) {
         '">' +
         '<span class="activity-type">' +
         escapeHtml(activityTypeLabel(row.type)) +
+        (row.type === "sale" && row.price_eth != null
+          ? " · " + formatEth(row.price_eth) + " ETH"
+          : "") +
         "</span>" +
         '<span class="activity-when">' +
         escapeHtml(formatMintDate(row.at)) +
@@ -6169,9 +6292,12 @@ function openDetail(item, opts) {
   }
 
   var badge = $("#detail-badge");
-  if (item.listed) {
+  if (isItemListed(item)) {
     badge.hidden = false;
-    badge.textContent = item.listing ? "For sale · " + formatEth(item.listing.amount_eth) + " ETH" : "For sale";
+    badge.textContent =
+      item.listing && item.listing.amount_eth != null
+        ? "For sale · " + formatEth(item.listing.amount_eth) + " ETH"
+        : "For sale";
   } else {
     badge.hidden = true;
   }
@@ -6221,7 +6347,7 @@ function openDetail(item, opts) {
       chips.push('<span class="chip"><strong>' + circ + "</strong> copies</span>");
     }
   }
-  if (item.listed && item.listing) {
+  if (isItemListed(item) && item.listing && item.listing.amount_eth != null) {
     chips.push('<span class="chip">List <strong>' + formatEth(item.listing.amount_eth) + " ETH</strong></span>");
   }
   stats.innerHTML = chips.length ? chips.join("") : '<span class="chip">Community piece</span>';
@@ -6442,6 +6568,12 @@ async function loadCollectionScope(newCol) {
             (galleryData.collection.id || galleryData.collection.slug)) ||
           "dacommunity"
       );
+      // Keep filter tabs in sync when switching into a secondary collection
+      document.querySelectorAll(".filter").forEach(function (btn) {
+        var on = btn.dataset.filter === activeFilter;
+        btn.classList.toggle("active", on);
+        btn.setAttribute("aria-selected", on ? "true" : "false");
+      });
       dataSource =
         (galleryData.source || "").indexOf("catalog") >= 0 ? "catalog" : "full";
       indexItems(galleryData);
