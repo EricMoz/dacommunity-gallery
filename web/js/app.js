@@ -1953,12 +1953,14 @@ function formatPieceTitleHtml(title) {
     }
   }
   // HATS n' daCATs: "#020 - Cosmic Commander Helmet" → accent number + name
+  // Separator is its own span with preserved spaces — trailing " · " inside
+  // .piece-prefix collapses when flex-wrap puts the name on the next line.
   var hatM = t.match(/^#\s*(\d+)\s*[-–—]\s*(.+)$/);
   if (hatM) {
     return (
       '<span class="piece-title piece-title-hat"><span class="piece-prefix">#' +
       escapeHtml(String(parseInt(hatM[1], 10))) +
-      ' · </span><span class="piece-name">' +
+      '</span><span class="piece-sep" aria-hidden="true"> · </span><span class="piece-name">' +
       escapeHtml(hatM[2].trim()) +
       "</span></span>"
     );
@@ -1969,7 +1971,7 @@ function formatPieceTitleHtml(title) {
     return (
       '<span class="piece-title piece-title-hat"><span class="piece-prefix">#' +
       escapeHtml(String(parseInt(hatTrail[2], 10))) +
-      ' · </span><span class="piece-name">' +
+      '</span><span class="piece-sep" aria-hidden="true"> · </span><span class="piece-name">' +
       escapeHtml(hatTrail[1].trim()) +
       "</span></span>"
     );

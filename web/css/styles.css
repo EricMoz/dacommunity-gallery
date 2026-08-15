@@ -7945,14 +7945,30 @@ body.has-collector-view .collector-theater-vignette {
 }
 
 /* HATS n' daCATs series # — deep violet for contrast on yellow / light archive */
+.piece-title-hat {
+  /* column gap = space after number / middot; avoid collapsed flex trailing spaces */
+  gap: 0.12rem 0.28rem;
+  align-items: baseline;
+}
+
 .piece-title-hat .piece-prefix {
   color: #6b21a8;
   font-weight: 800;
+  flex-shrink: 0;
+}
+
+/* Explicit " · " separator — white-space:pre keeps space after the middot */
+.piece-title-hat .piece-sep {
+  white-space: pre;
+  flex-shrink: 0;
+  color: inherit;
+  font-weight: 700;
 }
 
 /* Keep OpenSea title casing (do not force lowercase like dacat.* pieces) */
 .piece-title-hat .piece-name {
   text-transform: none;
+  min-width: 0;
 }
 
 #detail-title .piece-title-hat .piece-prefix {
