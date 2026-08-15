@@ -1507,11 +1507,8 @@ function bindNameSuggestInputs() {
         });
       }
     });
-    walletInput.addEventListener("blur", function () {
-      setTimeout(function () {
-        hideNameSuggest("wallet-name-suggest");
-      }, 180);
-    });
+    // Do not hide on blur — scrollbar/item clicks blur the input and were
+    // killing the list. Outside pointerdown (bindSuggestBoxKeepOpen) handles dismiss.
     walletInput.addEventListener("keydown", function (e) {
       if (e.key === "Escape") hideNameSuggest("wallet-name-suggest");
     });
@@ -1534,10 +1531,8 @@ function bindNameSuggestInputs() {
         }
       });
     });
-    cs.addEventListener("blur", function () {
-      setTimeout(function () {
-        hideNameSuggest("collectors-name-suggest");
-      }, 180);
+    cs.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") hideNameSuggest("collectors-name-suggest");
     });
   }
 }
