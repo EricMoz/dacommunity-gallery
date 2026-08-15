@@ -9,7 +9,7 @@
  *
  * CACHE name is bumped by scripts/bump_deploy_version.py each deploy.
  */
-const CACHE = "dacat-gallery-v20260815-7";
+const CACHE = "dacat-gallery-v20260815-9";
 const SHELL = [
   "./manifest.webmanifest",
   "./assets/brand/dacat-icon-64.png",
