@@ -1,6 +1,6 @@
 # daCAT Universe Hub
 
-This is a static site that serves as the interactive hub for the daCAT community. You can browse the full NFT archive, look up any collector's pieces by wallet or ENS, watch films in an immersive player, and follow live market cap races â€” all without connecting a wallet or talking to a server from your browser.
+This is a static site that serves as the interactive hub for the daCAT community. You can browse the full NFT archive, look up any collector's pieces by wallet or ENS, watch films in an immersive player, and follow live market cap races — all without connecting a wallet or talking to a server from your browser.
 
 **Live production:** [universe.dacat.fun](https://universe.dacat.fun)  
 Source of truth + GitHub Pages: [ericmoz.github.io/dacommunity-gallery](https://ericmoz.github.io/dacommunity-gallery)
@@ -18,7 +18,8 @@ Everything runs on GitHub Pages. The site pulls data once a day through automate
 ## Key features
 
 - Full archive of the main daCommunity collection with search, filters, sorting, and price info.
-- Collector lookup: type an ENS or address and instantly see their portfolio (with shareable links).
+- Secondary collections in the same gallery: badges, BIG KIX, daGATO Detective Agency (multi-volume case files).
+- Collector lookup: ENS, Base name, OpenSea username, or 0x — portfolio view with shareable `?wallet=` links.
 - Theatre Mode for desktop: lights-down immersive video player with up-next.
 - Film hub with series filters, in-page modal player, and a dedicated Shorts rail.
 - Live market cap race chart.
@@ -55,7 +56,7 @@ All fetching happens in GitHub Actions. The published site is static HTML/CSS/JS
 
 ## Local development
 
-Serve from the web directory (file:// won't work for fetches):
+Serve from the web directory (`file://` won't work for fetches):
 
 ```bash
 cd web
@@ -81,13 +82,11 @@ Keep the focus on static-first, low ongoing cost, and nice details. Run the bump
 
 ## Credits
 
-Made for the daCAT community.
+Made for the daCAT community — art, stories, films, and collectibles from everyone building the universe.
 
-Art, stories, and films by Randy Chavez, DaKingsi, and everyone who's contributed to the universe.
+The real home is at [dacat.fun](https://www.dacat.fun/), along with the films and the community itself.
 
-The real home is at dacat.fun, along with the films and the community itself.
-
-**dacat.fun Â· dacatworld Â· dacat.store Â· universe.dacat.fun**
+**dacat.fun · dacatworld · dacat.store · universe.dacat.fun**
 
 ## Deploy & cache busting
 
@@ -99,7 +98,7 @@ GitHub Pages and browsers can cache assets. Each push to `main` runs **Deploy ga
 | `web/BUILD.json` | Build id + UTC timestamp |
 | `?v=` on CSS/JS in HTML | Browser cache bust |
 | `sw.js` `CACHE` constant | Service worker invalidation |
-| `Site build â€¦` + `<meta name="site-build">` | Visible version on all pages |
+| `Site build …` + `<meta name="site-build">` | Visible version on all pages |
 
 **Manual bump before push:**
 
@@ -110,7 +109,7 @@ git commit -m "chore: bump deploy build"
 git push origin main
 ```
 
-**If the site looks stale:** Compare footer build id to [latest commit](https://github.com/EricMoz/dacommunity-gallery). Hard-refresh, or DevTools â†’ Application â†’ clear site data once. CI may bump the id again on deploy (e.g. local `20260605-8` â†’ live `20260605-9`); any id higher than yours is current.
+**If the site looks stale:** Compare footer build id to [latest commit](https://github.com/EricMoz/dacommunity-gallery). Hard-refresh, or DevTools → Application → clear site data once. CI may bump the id again on deploy (e.g. local `20260605-8` → live `20260605-9`); any id higher than yours is current.
 
 ## Security & API Keys
 
@@ -140,6 +139,6 @@ web/data/videos.json                 Film catalog (shorts stay external)
 | Workflow | Trigger | Purpose |
 |----------|---------|---------|
 | `deploy-pages.yml` | Push to `main`, manual | Bump build, cache LFS assets, publish `web/` |
-| `refresh-data.yml` | Daily cron, manual | Fetch OpenSea â†’ commit JSON (`lfs: false`) |
+| `refresh-data.yml` | Daily cron, manual | Fetch OpenSea → commit JSON (`lfs: false`) |
 
-NFT images live in Git LFS under `web/assets/`. **Refresh** never downloads LFS. **Deploy** restores a cached copy and only runs `git lfs pull` on cache miss or when `web/assets/` changes â€” daily JSON updates should not re-download the full image set.
+NFT images live in Git LFS under `web/assets/`. **Refresh** never downloads LFS. **Deploy** restores a cached copy and only runs `git lfs pull` on cache miss or when `web/assets/` changes — daily JSON updates should not re-download the full image set.
