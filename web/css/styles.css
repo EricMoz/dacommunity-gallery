@@ -7937,12 +7937,36 @@ body.has-collector-view .collector-theater-vignette {
   border: 1px solid rgba(232, 180, 255, 0.35);
 }
 
-body.is-hats-n-dacats-view .gallery-row .piece-title-hat .piece-prefix {
+/* HATS n' daCATs series # — deep violet for contrast on yellow / light archive */
+.piece-title-hat .piece-prefix {
+  color: #6b21a8;
+  font-weight: 800;
+}
+
+/* Keep OpenSea title casing (do not force lowercase like dacat.* pieces) */
+.piece-title-hat .piece-name {
+  text-transform: none;
+}
+
+#detail-title .piece-title-hat .piece-prefix {
+  color: #6b21a8;
+}
+
+/* Collector dark theater: slightly brighter so it still reads on near-black */
+body.has-collector-view #detail-title .piece-title-hat .piece-prefix,
+body.has-collector-view .gallery-row .piece-title-hat .piece-prefix {
   color: #c084fc;
 }
 
+/* Trait chips on light gallery (not only dark cards) */
+.gallery-trait-row .trait-chip {
+  color: #4c1d95;
+  background: rgba(109, 40, 217, 0.1);
+  border-color: rgba(109, 40, 217, 0.28);
+}
+
 .trait-detail-chip {
-  border-color: rgba(192, 132, 252, 0.35) !important;
+  border-color: rgba(109, 40, 217, 0.3) !important;
 }
 
 .gallery-side .rarity-badge {

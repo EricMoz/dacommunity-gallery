@@ -874,14 +874,14 @@
     },
     {
       "token_id": "21",
-      "name": "#21",
-      "display_name": "#21",
-      "local_slug": "hat-021-21",
-      "excerpt": "#21",
-      "image_url": "",
+      "name": "#018 - Bubblegum Dinosaur Hood",
+      "display_name": "#018 - Bubblegum Dinosaur Hood",
+      "local_slug": "hat-018-bubblegum-dinosaur-hood",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://nft2-cdn.alchemy.com/eth-mainnet/f3653519e2bac953e79a3c0a2027c0e1_3fc64f16",
       "media_type": "image",
       "opensea_url": "https://opensea.io/item/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/21",
-      "opensea_image_url": null,
+      "opensea_image_url": "https://nft2-cdn.alchemy.com/eth-mainnet/f3653519e2bac953e79a3c0a2027c0e1_3fc64f16",
       "listed": false,
       "listing": null,
       "owners": {
@@ -904,7 +904,32 @@
       "minted_at": null,
       "collection_id": "hats-n-dacats",
       "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
-      "traits": [],
+      "traits": [
+        {
+          "trait_type": "Gear",
+          "value": "Tail"
+        },
+        {
+          "trait_type": "Theme",
+          "value": "Costume"
+        },
+        {
+          "trait_type": "Gear Name",
+          "value": "Dinosaur Tail"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 01"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Hood"
+        }
+      ],
       "is_1_of_1": true,
       "edition_size": 1
     },
@@ -971,14 +996,14 @@
     },
     {
       "token_id": "19",
-      "name": "#19",
-      "display_name": "#19",
-      "local_slug": "hat-019-19",
-      "excerpt": "#19",
-      "image_url": "",
+      "name": "#016 - Nine-Tailed Kitsune Mask",
+      "display_name": "#016 - Nine-Tailed Kitsune Mask",
+      "local_slug": "hat-016-nine-tailed-kitsune-mask",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://nft2-cdn.alchemy.com/eth-mainnet/cac6765d6a616e8ecf596a8bfcef85d3_82ac6fb7",
       "media_type": "image",
       "opensea_url": "https://opensea.io/item/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/19",
-      "opensea_image_url": null,
+      "opensea_image_url": "https://nft2-cdn.alchemy.com/eth-mainnet/cac6765d6a616e8ecf596a8bfcef85d3_82ac6fb7",
       "listed": false,
       "listing": null,
       "owners": {
@@ -1001,7 +1026,32 @@
       "minted_at": null,
       "collection_id": "hats-n-dacats",
       "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
-      "traits": [],
+      "traits": [
+        {
+          "trait_type": "Gear",
+          "value": "Tails"
+        },
+        {
+          "trait_type": "Theme",
+          "value": "Mythology"
+        },
+        {
+          "trait_type": "Gear Name",
+          "value": "Nine-Tailed Kitsune Tails"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 01"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Mask"
+        }
+      ],
       "is_1_of_1": true,
       "edition_size": 1
     },
