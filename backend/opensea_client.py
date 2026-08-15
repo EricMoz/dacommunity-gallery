@@ -201,20 +201,20 @@ class OpenSeaClient:
         cache_days: int = 14,
         previous_ens: str | None = None,
     ) -> str | None:
-        """Primary ENS resolver for wallet_index / badge owners.
+        """Reverse-ENS only for wallet_index / badge owners.
 
         Strategy:
-        1. Primary: ensdata.net/{address} (free, no key, fast). Uses "ens_primary" or "ens".
-           (Typically L1 .eth primary; Base .base.eth reverse is not reliably returned here.)
-        2. Fallback: self.resolve_account(address) from OpenSea (may also yield username elsewhere).
-        3. Cache: Skip network if last_resolved (unix timestamp seconds) is < cache_days old (default 14).
-           Keeps the daily pipeline light — only addresses new or older than the window re-resolve.
-        4. Always normalize to .lower() on any new resolution (e.g. DAFOREMAN.ETH → daforeman.eth).
-        5. On skip or transient failure: return previous_ens (never wipe good data on flaky days).
-        6. Used by gallery holders (build_holders_index) and badge owner addresses.
+        1. ensdata.net/{address} — use **ens_primary** only (not bare ``ens``).
+           Bare ``ens`` can be an owned name NFT (e.g. someone holds dacatworld.eth
+           without setting reverse), which must never become their display identity.
+           Optionally confirm wallets.eth matches the address.
+        2. Fallback: OpenSea account resolve ``ens_name`` (also reverse-oriented).
+        3. Cache: skip network if last_resolved is < cache_days old (default 14).
+        4. Always store lowercase (DAFOREMAN.ETH → daforeman.eth).
+        5. On skip/failure: keep previous_ens (never wipe good data on flaky days).
 
-        last_resolved and previous_ens are passed from prior wallet_index.json entries.
-        OpenSea profile username is handled in build_holders_index (separate field), not here.
+        Base names (.base.eth) and OpenSea usernames are separate fields elsewhere.
+        Display priority on site: ENS → Base → OpenSea username → short 0x.
         """
         addr = (address or "").lower().strip()
         if not addr:
@@ -223,22 +223,26 @@ class OpenSeaClient:
         now = time.time()
         if last_resolved is not None and (now - last_resolved) < (cache_days * 86400):
             # Fast path: recently resolved, reuse previous value. No API calls.
-            # Always lower to guarantee no caps ever make it to wallet (even if legacy data had caps).
             return previous_ens.lower() if previous_ens else None
 
-        # Primary resolver: ensdata.net (public, no auth, returns ens_primary or ens)
+        # Reverse-primary only (do not use data["ens"] — that can be an owned name NFT)
         try:
             r = requests.get(f"https://ensdata.net/{addr}", timeout=6)
             if r.status_code == 200:
                 data = r.json() or {}
-                ens = data.get("ens_primary") or data.get("ens")
+                ens = data.get("ens_primary")
                 if ens:
-                    return str(ens).lower().strip()
+                    ens = str(ens).lower().strip()
+                    # Prefer records where ensdata already points wallets.eth at this address
+                    wallets = data.get("wallets") if isinstance(data.get("wallets"), dict) else {}
+                    eth_wallet = (wallets.get("eth") or data.get("address") or "").lower()
+                    if not eth_wallet or eth_wallet == addr:
+                        return ens
+                    # ens_primary present but wallet mismatch — treat as untrusted
         except Exception:
-            # Network/JSON error etc. -> fall through to OpenSea fallback
             pass
 
-        # Fallback to existing OpenSea account resolver
+        # Fallback: OpenSea account reverse name
         try:
             resolved = self.resolve_account(addr)
             ens = resolved.get("ens_name") if isinstance(resolved, dict) else None
@@ -247,8 +251,6 @@ class OpenSeaClient:
         except Exception:
             pass
 
-        # Transient failure this run: preserve previous ENS (if any) so we don't lose it
-        # (and normalize lower for safety)
         return previous_ens.lower() if previous_ens else None
 
     def get_nft_events(

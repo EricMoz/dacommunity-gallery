@@ -236,17 +236,19 @@ After deploy (~1–2 min):
 
 Registry-driven collections (`web/data/collections_registry.json`) — see **`docs/COLLECTIONS.md`** for adding live drops, per-community themes, and feature flags. Hub cards are still manual until a registry-driven hub ships.
 
-### Collector display names (ENS / OpenSea)
+### Collector display names (ENS / Base / OpenSea)
 
-Built in the **daily** `refresh-data.yml` job during `fetch_gallery_data.py` → `wallet_index.json`.
+**Frontend priority (every surface):** ENS → Base name → OpenSea username → short `0x…`  
+Implemented once in `app.js` → `resolveCollectorIdentity()` (top collectors, collectors modal, owner chips, activity lines, collector wallet, escape bar).
 
-| Priority (frontend) | Source |
-|---------------------|--------|
-| 1. ENS | `ensdata.net` then OpenSea account (`ens_name`) |
-| 2. OpenSea profile | OpenSea `username` / `display_name` on account resolve |
-| 3. Wallet | Shortened `0x…` |
+| Priority | Source | Notes |
+|----------|--------|--------|
+| 1. Reverse ENS | Daily `wallet_index.json` via `ensdata.net` **`ens_primary` only** (not bare `ens`) + OpenSea account fallback | Bare `ens` can be an owned name NFT without reverse (e.g. holding `dacatworld.eth`) — never used as display identity |
+| 2. Base name | Weekly `name_index.json` / `base_name` on wallet | `.base.eth` |
+| 3. OpenSea username | OpenSea account `username` / `display_name` | Never raw `0x…` dumps |
+| 4. Wallet | Shortened `0x…` | Fallback |
 
-**Speed:** addresses re-resolve at most every **~14 days** (`last_ens_resolved`). Cache hits reuse prior ENS **and** username (no extra API). Fresh resolves only when new or expired.
+**Speed:** reverse ENS re-resolves at most every **~14 days** (`last_ens_resolved`). Cache hits reuse prior ENS **and** username.
 
 **Weekly identity job** (`enrich-base-names.yml`, Sundays + manual):
 
@@ -255,8 +257,7 @@ Built in the **daily** `refresh-data.yml` job during `fetch_gallery_data.py` →
 | Base names | `enrich_base_names.py` | web3.bio → `name_index.json` + `base_name` on wallet |
 | OpenSea usernames | `enrich_opensea_profiles.py` | OpenSea accounts API → `username` on wallet |
 
-Does **not** run on the daily gallery refresh (keeps that path fast).  
-Display priority: **ENS → Base name → OpenSea username → short 0x**.
+Does **not** run on the daily gallery refresh (keeps that path fast).
 
 One-time backfill: `cd backend && python enrich_opensea_profiles.py --force`
 

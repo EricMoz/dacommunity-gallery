@@ -868,34 +868,127 @@ function formatCollectorHoldMeta(c) {
   return uq + "·" + cq;
 }
 
+/**
+ * Canonical collector identity for every UI surface.
+ * Priority: reverse ENS → Base name → OpenSea username → short 0x
+ *
+ * wallet_index is source of truth for reverse ENS (ensdata ens_primary / OpenSea).
+ * Owner-row fields are fallbacks for addresses not yet in the index — never title text.
+ * If ens_aliases maps a name to a *different* address, drop it (stale/wrong stamp).
+ */
+function resolveCollectorIdentity(addressOrRow) {
+  var key = "";
+  var row = null;
+  if (addressOrRow && typeof addressOrRow === "object") {
+    row = addressOrRow;
+    key = String(row.address || "").toLowerCase().trim();
+  } else {
+    key = String(addressOrRow || "").toLowerCase().trim();
+  }
+  if (!key) {
+    return {
+      address: "",
+      ens_name: null,
+      base_name: null,
+      username: null,
+      display: "",
+      lookupValue: "",
+      full: "",
+      showFullHex: false,
+    };
+  }
+
+  var entry =
+    walletIndex && walletIndex.by_address && walletIndex.by_address[key]
+      ? walletIndex.by_address[key]
+      : null;
+  var ni = nameIndexEntry(key);
+
+  function cleanName(v) {
+    if (v == null || v === "") return null;
+    var s = String(v).trim();
+    return s || null;
+  }
+
+  // Reverse ENS: index first, then row/owner stamp, then name_index hint
+  var ens =
+    cleanName(entry && entry.ens_name) ||
+    cleanName(row && row.ens_name) ||
+    cleanName(ni && ni.ens_name) ||
+    null;
+  if (ens) ens = ens.toLowerCase();
+
+  // Reject ENS claimed by another wallet (alias map from reverse history)
+  if (ens && walletIndex && walletIndex.ens_aliases) {
+    var mapped = walletIndex.ens_aliases[ens];
+    if (mapped && String(mapped).toLowerCase() !== key) {
+      ens = null;
+    }
+  }
+
+  var base =
+    cleanName(entry && entry.base_name) ||
+    cleanName(ni && ni.base_name) ||
+    cleanName(row && row.base_name) ||
+    null;
+
+  var username =
+    cleanName(entry && entry.username) ||
+    cleanName(row && row.username) ||
+    cleanName(ni && ni.username) ||
+    null;
+  // OpenSea sometimes dumps the raw 0x as "username"
+  if (username && /^0x[a-fA-F0-9]{10,}$/i.test(username)) username = null;
+
+  var display = ens || base || username || shortenAddress(key);
+  var lookupValue = ens || base || username || key;
+
+  return {
+    address: key,
+    ens_name: ens,
+    base_name: base,
+    username: username,
+    display: display,
+    lookupValue: lookupValue,
+    full: key,
+    showFullHex: display !== key,
+  };
+}
+
 /** Display name: ENS → Base name → OpenSea username → short 0x */
 function formatCollectorDisplayName(c) {
   if (!c) return "";
-  var ni = nameIndexEntry(c.address);
-  return (
-    c.ens_name ||
-    c.base_name ||
-    (ni && ni.base_name) ||
-    c.username ||
-    shortenAddress(c.address || "")
-  );
+  return resolveCollectorIdentity(c).display;
 }
 
-/** Attach ENS / Base / OpenSea names from wallet + name indexes onto a collectors row. */
+/** Attach resolved identity fields onto a collectors / entry row. */
 function enrichCollectorRowNames(c) {
   if (!c || !c.address) return c;
-  var key = String(c.address).toLowerCase();
-  var e = walletIndex && walletIndex.by_address && walletIndex.by_address[key];
-  var ni = nameIndexEntry(key);
-  if (e) {
-    if (!c.ens_name && e.ens_name) c.ens_name = e.ens_name;
-    if (!c.base_name && e.base_name) c.base_name = e.base_name;
-    if (!c.username && e.username) c.username = e.username;
-  }
-  if (!c.base_name && ni && ni.base_name) c.base_name = ni.base_name;
-  if (!c.ens_name && ni && ni.ens_name) c.ens_name = ni.ens_name;
-  if (!c.username && ni && ni.username) c.username = ni.username;
+  var id = resolveCollectorIdentity(c);
+  c.ens_name = id.ens_name;
+  c.base_name = id.base_name;
+  c.username = id.username;
   return c;
+}
+
+/** Stamp owner chip rows from wallet_index + name_index (full identity, not ENS-only). */
+function stampOwnerIdentity(o) {
+  if (!o || !o.address) return o;
+  var id = resolveCollectorIdentity(o);
+  o.ens_name = id.ens_name;
+  o.base_name = id.base_name;
+  o.username = id.username;
+  return o;
+}
+
+function stampAllOwnerIdentities(items) {
+  (items || []).forEach(function (item) {
+    var os = item && item.owners;
+    if (!os) return;
+    ["holders", "top_holders"].forEach(function (k) {
+      (os[k] || []).forEach(stampOwnerIdentity);
+    });
+  });
 }
 
 function enrichCollectorsListNames() {
@@ -990,8 +1083,9 @@ function collectNameSuggestions(query, limit) {
     var row = byAddr[a];
     enrichCollectorRowNames(row);
     if (!collectorMatchesQuery(row, q) && a.indexOf(q) < 0) return;
-    var label = formatCollectorDisplayName(row);
-    var lookup = row.ens_name || row.base_name || row.username || row.address || a;
+    var id = resolveCollectorIdentity(row);
+    var label = id.display;
+    var lookup = id.lookupValue || a;
     var lk = String(lookup).toLowerCase();
     if (seenLookup[lk] || seenLookup[a]) return;
     seenLookup[lk] = true;
@@ -1232,13 +1326,9 @@ function buildCollectorsFromBadgeItems(items) {
       if (slug) byAddr[a]._slugs[slug] = true;
     });
   });
-  // enrich ENS from walletIndex if available (many overlap) -- reverse-resolved only
+  // Full identity: ENS → Base → OpenSea from indexes
   Object.keys(byAddr).forEach(function (a) {
-    var e = walletIndex && walletIndex.by_address && walletIndex.by_address[a];
-    if (e) {
-      if (!byAddr[a].ens_name && e.ens_name) byAddr[a].ens_name = e.ens_name;
-      if (!byAddr[a].username && e.username) byAddr[a].username = e.username;
-    }
+    enrichCollectorRowNames(byAddr[a]);
   });
   return Object.values(byAddr)
     .map(function (e) {
@@ -1253,16 +1343,13 @@ function buildCollectorsFromBadgeItems(items) {
     });
 }
 
-/** Attach reverse-resolved ENS from wallet_index onto collectors (never from NFT titles). */
+/** Attach reverse-resolved ENS / Base / OpenSea onto collectors (never from NFT titles). */
 function enrichHoldersAndCollectorsWithENS() {
   if (!collectorsList || !collectorsList.length) return;
-  if (!walletIndex || !walletIndex.by_address) return;
-  collectorsList.forEach(function (c) {
-    var a = (c.address || "").toLowerCase();
-    if (!a || c.ens_name) return;
-    var e = walletIndex.by_address[a];
-    if (e && e.ens_name) c.ens_name = e.ens_name;
-  });
+  collectorsList.forEach(enrichCollectorRowNames);
+  if (galleryData && Array.isArray(galleryData.items)) {
+    stampAllOwnerIdentities(galleryData.items);
+  }
 }
 
 /** Creator / steward addresses excluded from collector rankings (BIG KIX etc.). */
@@ -1710,69 +1797,12 @@ function shortenAddress(addr) {
 }
 
 function holderLabel(address) {
-  var entry = walletIndex && walletIndex.by_address && walletIndex.by_address[address.toLowerCase()];
-  var ni = nameIndexEntry(address);
-  if (!entry && !ni) return shortenAddress(address);
-  return (
-    (entry && entry.ens_name) ||
-    (ni && ni.base_name) ||
-    (entry && entry.base_name) ||
-    (entry && entry.username) ||
-    shortenAddress(address)
-  );
+  return resolveCollectorIdentity(address).display;
 }
 
-function addressDisplayMeta(address) {
-  if (!address) return { address: "", display: "", lookupValue: "", full: "" };
-  var key = address.toLowerCase();
-  var full = address;
-  var entry = walletIndex && walletIndex.by_address && walletIndex.by_address[key];
-  var ni = nameIndexEntry(key);
-  // Also check attached ens_name from badge owners data (for pure badge holders or after fetch with ENS)
-  var fromDataEns = null;
-  if (galleryData && Array.isArray(galleryData.items)) {
-    for (var it of galleryData.items) {
-      var os = it.owners || {};
-      for (var kk of ["holders", "top_holders"]) {
-        for (var o of (os[kk] || [])) {
-          if ((o.address || "").toLowerCase() === key && o.ens_name) {
-            fromDataEns = o.ens_name;
-            break;
-          }
-        }
-      }
-    }
-  }
-  // Prefer ens_name from the collectorsList (Heavy collectors) for consistency between the list
-  // and any portfolio / wallet view / chips for the same address. This ensures e.g. daforeman.eth
-  // (current) shows everywhere instead of old names like inshirowetrust.eth from stale owner records.
-  var fromList = null;
-  var fromListBase = null;
-  (collectorsList || []).forEach(function (c) {
-    if ((c.address || "").toLowerCase() === key) {
-      if (c.ens_name) fromList = c.ens_name;
-      if (c.base_name) fromListBase = c.base_name;
-    }
-  });
-  // Priority: ENS → Base name → OpenSea username → short 0x
-  var ens = fromList || (entry && entry.ens_name) || fromDataEns || null;
-  var base =
-    fromListBase ||
-    (entry && entry.base_name) ||
-    (ni && ni.base_name) ||
-    null;
-  var username = (entry && entry.username) || (ni && ni.username) || null;
-  // Prefer a re-typable display name so Look up works for OpenSea handles too
-  var lookupValue = ens || base || username || full;
-  var display = ens || base || username || shortenAddress(full);
-  return {
-    address: key,
-    display: display,
-    lookupValue: lookupValue,
-    full: full,
-    /** Show full 0x under chip when label is ENS/username or shortened hex. */
-    showFullHex: display !== full,
-  };
+/** Alias for resolveCollectorIdentity (owner chips, activity, collector nav). */
+function addressDisplayMeta(addressOrRow) {
+  return resolveCollectorIdentity(addressOrRow);
 }
 
 function holderChipLabelHtml(meta) {
@@ -2347,11 +2377,8 @@ function setGalleryCollectorView(entry, opts) {
     applyBrowseFilterState(opts.preserveFilters);
   }
   enrichCollectorRowNames(entry);
-  var label =
-    entry.ens_name ||
-    entry.base_name ||
-    entry.username ||
-    shortenAddress(entry.address);
+  var idLabel = resolveCollectorIdentity(entry);
+  var label = idLabel.display;
   var addr = entry.address.toLowerCase();
   // Ensure collectorsList matches active collection so primary rank is meaningful
   rebuildCollectorsForCurrentView();
@@ -2914,34 +2941,17 @@ function applyCollectorView(address) {
   rebuildCollectorsForCurrentView();
   var synthHoldings = buildHoldingsFromCurrentItems(key);
   if (synthHoldings.length > 0) {
-    var m = (walletIndex && walletIndex.by_address && walletIndex.by_address[key]) || {};
-    var fEns = null, fUser = null;
-    (galleryData && galleryData.items || []).forEach(function (item) {
-      var list = (item.owners || {}).holders || (item.owners || {}).top_holders || [];
-      list.forEach(function (o) {
-        if ((o.address || "").toLowerCase() === key && o.ens_name) {
-          fEns = o.ens_name;
-          if (o.username) fUser = o.username;
-        }
-      });
-    });
-    // Mirror the fromList preference from lookupWallet synth so that applyCollectorView
-    // (used e.g. from holder chips in badges grid, some collector clicks) also gets the
-    // consistent current ENS (daforeman.eth) instead of stale from item owners.
-    var fromList = null;
-    (collectorsList || []).forEach(function (c) {
-      if ((c.address || '').toLowerCase() === key && c.ens_name) {
-        fromList = c.ens_name;
-      }
-    });
+    // Identity only via resolveCollectorIdentity (ENS → Base → OpenSea → 0x)
+    var id = resolveCollectorIdentity(key);
     var synthStats = summarizeHoldingsStats(synthHoldings);
     var entry = {
       address: key,
       holdings: synthHoldings,
       unique_pieces: synthStats.unique_pieces,
       collection_quantity: synthStats.collection_quantity,
-      ens_name: fromList || fEns || m.ens_name || null,
-      username: fUser || m.username || null
+      ens_name: id.ens_name,
+      base_name: id.base_name,
+      username: id.username,
     };
     // Pushes history: archive/collection search → wallet (Back restores prior step)
     renderWalletSuccess(entry, {
@@ -3450,8 +3460,9 @@ function renderTopCollectors() {
   track.innerHTML = top
     .map(function (c) {
       enrichCollectorRowNames(c);
-      var label = formatCollectorDisplayName(c);
-      var lookup = c.ens_name || c.base_name || c.username || c.address;
+      var id = resolveCollectorIdentity(c);
+      var label = id.display;
+      var lookup = id.lookupValue;
       return (
         '<button type="button" class="top-collector-pill" data-address="' +
         escapeHtml(c.address) +
@@ -3868,11 +3879,11 @@ function renderWalletSuccess(entry, opts) {
   var resultEl = $("#wallet-result");
   if (!resultEl) return;
   enrichCollectorRowNames(entry);
-  var label =
-    entry.ens_name ||
-    entry.base_name ||
-    entry.username ||
-    shortenAddress(entry.address);
+  var id = resolveCollectorIdentity(entry);
+  var label = id.display;
+  entry.ens_name = id.ens_name;
+  entry.base_name = id.base_name;
+  entry.username = id.username;
   var holdings = entry.holdings || [];
   var holdStats = holdings.length ? summarizeHoldingsStats(holdings) : null;
   var uq = holdStats ? holdStats.unique_pieces : nvl(entry.unique_pieces, holdings.length);
@@ -3890,9 +3901,9 @@ function renderWalletSuccess(entry, opts) {
     : "";
   // Secondary line: show other known handles under the primary display name
   var secondaryBits = [];
-  if (entry.ens_name && entry.ens_name !== label) secondaryBits.push(entry.ens_name);
-  if (entry.base_name && entry.base_name !== label) secondaryBits.push(entry.base_name);
-  if (entry.username && entry.username !== label) secondaryBits.push(entry.username);
+  if (id.ens_name && id.ens_name !== label) secondaryBits.push(id.ens_name);
+  if (id.base_name && id.base_name !== label) secondaryBits.push(id.base_name);
+  if (id.username && id.username !== label) secondaryBits.push(id.username);
   var secondaryHtml = secondaryBits.length
     ? '<p class="collector-profile-ens">' +
       escapeHtml(secondaryBits.join(" · ")) +
@@ -4181,31 +4192,18 @@ function lookupWallet(identifier) {
   // This works even if walletIndex is not loaded for this view. Always use resolved 0x here.
   var synth = buildHoldingsFromCurrentItems(address);
   if (synth.length > 0) {
-    var meta = (walletIndex && walletIndex.by_address && walletIndex.by_address[address]) || {};
-    // Also pick ens directly from the badge item owners (populated by fetch or enrich)
-    var foundEns = null;
-    var foundUser = null;
+    // Merge any owner-row stamps (badge reverse ENS) into identity resolve
+    var seed = { address: address };
     (galleryData && galleryData.items || []).forEach(function (item) {
       var list = (item.owners || {}).holders || (item.owners || {}).top_holders || [];
       list.forEach(function (o) {
-        if ((o.address || "").toLowerCase() === address && o.ens_name) {
-          foundEns = o.ens_name;
-          if (o.username) foundUser = o.username;
-        }
+        if ((o.address || "").toLowerCase() !== address) return;
+        if (o.ens_name && !seed.ens_name) seed.ens_name = o.ens_name;
+        if (o.base_name && !seed.base_name) seed.base_name = o.base_name;
+        if (o.username && !seed.username) seed.username = o.username;
       });
     });
-    // Prefer the ens_name used in the Heavy collectors list (collectorsList) so that
-    // clicking a name there (e.g. daforeman.eth) shows the same current ENS in the portfolio view,
-    // instead of an older name that may be stuck in badge owners data for some items.
-    var fromList = null;
-    var fromListBase = null;
-    (collectorsList || []).forEach(function (c) {
-      if ((c.address || "").toLowerCase() === address) {
-        if (c.ens_name) fromList = c.ens_name;
-        if (c.base_name) fromListBase = c.base_name;
-      }
-    });
-    var ni = nameIndexEntry(address);
+    var id = resolveCollectorIdentity(seed);
     var synthStats = summarizeHoldingsStats(synth);
     return {
       entry: {
@@ -4213,10 +4211,9 @@ function lookupWallet(identifier) {
         holdings: synth,
         unique_pieces: synthStats.unique_pieces,
         collection_quantity: synthStats.collection_quantity,
-        ens_name: fromList || foundEns || meta.ens_name || null,
-        base_name:
-          fromListBase || meta.base_name || (ni && ni.base_name) || null,
-        username: foundUser || meta.username || null,
+        ens_name: id.ens_name,
+        base_name: id.base_name,
+        username: id.username,
       },
     };
   }
@@ -4441,9 +4438,10 @@ function renderCollectors(filter) {
   list.innerHTML = rows
     .map(function (c) {
       enrichCollectorRowNames(c);
-      var label = formatCollectorDisplayName(c);
-      var sub = c.ens_name || c.base_name || c.username || c.address;
-      var lookup = c.ens_name || c.base_name || c.username || c.address;
+      var id = resolveCollectorIdentity(c);
+      var label = id.display;
+      var sub = id.lookupValue;
+      var lookup = id.lookupValue;
       return (
         '<button type="button" class="collector-row" data-address="' +
         escapeHtml(c.address) +
@@ -5440,12 +5438,14 @@ function formatLatestChangePreview(change) {
         : change.type === "mint"
           ? "Latest mint"
           : activityTypeLabel(change.type);
+  var toName = change.to ? resolveCollectorIdentity(change.to).display : "";
+  var fromName = change.from ? resolveCollectorIdentity(change.from).display : "";
   if (change.type === "mint") {
     return (
       label +
       (when ? " · " + when : "") +
       " · to " +
-      shortenAddress(change.to || "") +
+      (toName || shortenAddress(change.to || "")) +
       qty
     );
   }
@@ -5453,9 +5453,9 @@ function formatLatestChangePreview(change) {
     label +
     (when ? " · " + when : "") +
     " · " +
-    shortenAddress(change.from || "") +
+    (fromName || shortenAddress(change.from || "")) +
     " → " +
-    shortenAddress(change.to || "") +
+    (toName || shortenAddress(change.to || "")) +
     qty
   );
 }
@@ -5605,7 +5605,8 @@ function renderDetailOwners(item) {
   var highlightAddr = holderHighlightAddress(item);
   chipsEl.innerHTML = holders
     .map(function (h) {
-      var meta = addressDisplayMeta(h.address);
+      // Pass full holder row so badge reverse-ENS stamps participate in identity resolve
+      var meta = addressDisplayMeta(h);
       var isHighlighted = highlightAddr && meta.address === highlightAddr;
       var label = holderChipLabelHtml(meta) + " · " + h.quantity;
       if (isHighlighted) {
@@ -6014,21 +6015,14 @@ function bindUi() {
           adaptHeaderForCollection();
           applyCollectionUI();
 
-          // Load wallet index for ENS on owner chips (do not clobber collectors for bigkix/badges)
+          // Load wallet index for ENS / Base / OpenSea on owner chips
           loadWalletIndex().then(function () {
             if (galleryData && Array.isArray(galleryData.items)) {
-              var byAddr = (walletIndex && walletIndex.by_address) || {};
-              galleryData.items.forEach(function (item) {
-                var os = item.owners || {};
-                ["holders", "top_holders"].forEach(function (k) {
-                  (os[k] || []).forEach(function (o) {
-                    var e = byAddr[(o.address || "").toLowerCase()];
-                    if (e && e.ens_name) o.ens_name = e.ens_name;
-                  });
-                });
-              });
+              stampAllOwnerIdentities(galleryData.items);
             }
             rebuildCollectorsForCurrentView();
+            enrichCollectorsListNames();
+            renderTopCollectors();
             if (galleryCollectorView) {
               expandCollectorHoldingsFromLoadedData();
               renderCollectorFocusUi();
@@ -6341,23 +6335,9 @@ async function init() {
     var hasWalletInit = !initCol || (initCol.features || []).indexOf("wallet_lookup") !== -1;
     if (hasWalletInit) {
       loadWalletIndex().then(function () {
-        // Enrich owners with ENS / Base names from walletIndex + name_index
+        // Enrich owners with full identity: ENS → Base → OpenSea
         if (galleryData && Array.isArray(galleryData.items)) {
-          var byAddr = (walletIndex && walletIndex.by_address) || {};
-          galleryData.items.forEach(function (item) {
-            var os = item.owners || {};
-            ["holders", "top_holders"].forEach(function (k) {
-              (os[k] || []).forEach(function (o) {
-                var key = (o.address || "").toLowerCase();
-                var e = byAddr[key];
-                var ni = nameIndexEntry(key);
-                if (e && e.ens_name) o.ens_name = e.ens_name;
-                if (e && e.base_name) o.base_name = e.base_name;
-                if (ni && ni.base_name && !o.base_name) o.base_name = ni.base_name;
-                if (e && e.username) o.username = e.username;
-              });
-            });
-          });
+          stampAllOwnerIdentities(galleryData.items);
         }
         // Force collectors for active collection (esp. ?collection=bigkix cold load)
         rebuildCollectorsForCurrentView();

@@ -338,17 +338,15 @@ def build_holders_index(
     after changes. Historical names are kept in ens_aliases and ens_history per address.
     If holdings_by_addr provided, use it to avoid per-holder get_account_collection_nfts calls.
 
-    ENS resolution (new):
-    - Uses client.resolve_ens_name() which prefers the free ensdata.net API first
-      (https://ensdata.net/{addr} -> ens_primary or ens), then falls back to
-      the existing client.resolve_account().
+    ENS resolution (reverse-primary only):
+    - Uses client.resolve_ens_name() → ensdata.net **ens_primary** only
+      (never bare ``ens``, which can be an owned name NFT without reverse),
+      then OpenSea account ``ens_name`` fallback.
     - Caches via last_ens_resolved (unix seconds) stored per wallet entry.
       Only resolves addresses that are new OR last resolved > ~14 days ago.
-      This keeps the daily pipeline fast/lightweight (target: minimal added time).
-    - ALWAYS stores/returns ENS in lowercase. This permanently fixes the
-      daforeman.eth / DAFOREMAN.ETH (and similar) issue. Normalization happens
-      on every actual resolution; a one-time pass also lowercases prior entries.
-    - History/aliases logic below is kept EXACTLY as before.
+    - ALWAYS stores/returns ENS in lowercase.
+    - History/aliases logic below is kept as before.
+    - Site display: ENS → Base → OpenSea username → short 0x (app.js).
     """
     print("Building wallet lookup index from collection holders...")
     holders = client.iter_collection_holders()
