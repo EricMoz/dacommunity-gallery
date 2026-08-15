@@ -1348,7 +1348,11 @@ function collectNameSuggestions(query, limit) {
 function ensureSuggestBox(inputEl, boxId) {
   if (!inputEl || !inputEl.parentNode) return null;
   var box = document.getElementById(boxId);
-  if (box) return box;
+  if (box) {
+    // Re-bind scroll-safe handlers if box was recreated without them
+    bindSuggestBoxKeepOpen(box, inputEl, boxId);
+    return box;
+  }
   var wrap =
     inputEl.closest(".lookup-field") ||
     inputEl.closest(".wallet-input-wrap") ||
@@ -1363,7 +1367,48 @@ function ensureSuggestBox(inputEl, boxId) {
   box.setAttribute("role", "listbox");
   if (wrap) wrap.appendChild(box);
   else inputEl.insertAdjacentElement("afterend", box);
+  bindSuggestBoxKeepOpen(box, inputEl, boxId);
   return box;
+}
+
+/**
+ * Keep the typeahead open while the user interacts with it (items + scrollbar).
+ * Default input blur closes the list before a scrollbar mousedown can scroll.
+ */
+function bindSuggestBoxKeepOpen(box, inputEl, boxId) {
+  if (!box || box.dataset.keepOpenBound === "1") return;
+  box.dataset.keepOpenBound = "1";
+  // preventDefault on pointer/mouse down stops the input from blurring when
+  // clicking scrollbar, padding, or items — so the list stays usable.
+  function keepFocus(e) {
+    e.preventDefault();
+  }
+  box.addEventListener("mousedown", keepFocus);
+  box.addEventListener("pointerdown", keepFocus);
+  // Outside click (capture) closes — not blur — so in-box scroll never dismisses
+  if (!document.documentElement.dataset["suggestOutside_" + boxId]) {
+    document.documentElement.dataset["suggestOutside_" + boxId] = "1";
+    document.addEventListener(
+      "pointerdown",
+      function (e) {
+        var b = document.getElementById(boxId);
+        if (!b || b.hidden) return;
+        var t = e.target;
+        if (b.contains(t)) return;
+        if (inputEl && (t === inputEl || (inputEl.contains && inputEl.contains(t)))) {
+          return;
+        }
+        // Also keep open if click is inside the lookup field wrapper
+        var wrap =
+          inputEl &&
+          (inputEl.closest(".lookup-field") ||
+            inputEl.closest(".wallet-input-wrap"));
+        if (wrap && wrap.contains(t)) return;
+        hideNameSuggest(boxId);
+      },
+      true
+    );
+  }
 }
 
 function hideNameSuggest(boxId) {
@@ -1408,7 +1453,8 @@ function renderNameSuggest(inputEl, boxId, onPick) {
     .join("");
   box.querySelectorAll(".name-suggest-item").forEach(function (btn) {
     btn.addEventListener("mousedown", function (e) {
-      e.preventDefault(); // keep focus flow stable
+      e.preventDefault(); // keep focus; parent box also preventDefaults
+      e.stopPropagation();
       var lookup = btn.getAttribute("data-lookup");
       var addr = btn.getAttribute("data-address");
       hideNameSuggest(boxId);

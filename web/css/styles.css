@@ -1850,6 +1850,9 @@ button.stat:focus-visible {
   gap: 2px;
   max-height: 240px;
   overflow-y: auto;
+  /* Keep scrollbar interaction from feeling "dead" on some browsers */
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   padding: 0.35rem;
   background: #111;
   border: 2px solid var(--yellow);
