@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-15T18:56:21.895572+00:00",
+  "generated_at": "2026-08-16T08:25:38.380623+00:00",
   "source": "bigkix_catalog",
   "collection": {
     "id": "bigkix",
@@ -3171,9 +3171,11 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/a65f891bd0035d18dab6b44c62209b/a0a65f891bd0035d18dab6b44c62209b.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.0009,
+        "amount_eth": 1.7857142857142859e-06,
         "currency": "ETH",
-        "status": "ACTIVE"
+        "status": "ACTIVE",
+        "quantity": 14,
+        "total_eth": 2.5e-05
       },
       "owners": {
         "holder_count": 14,
