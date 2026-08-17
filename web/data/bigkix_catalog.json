@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T08:25:38.380623+00:00",
+  "generated_at": "2026-08-17T08:40:41.715119+00:00",
   "source": "bigkix_catalog",
   "collection": {
     "id": "bigkix",
@@ -20,7 +20,7 @@
     "contract_name": "BIG KIX",
     "floor_eth": 1e-08,
     "floor_symbol": "ETH",
-    "num_owners": 24,
+    "num_owners": 25,
     "total_sales": 31,
     "total_volume": 0.006017630000000031,
     "piece_count": 24,
@@ -46,8 +46,8 @@
         "total_eth": 2.5e-05
       },
       "owners": {
-        "holder_count": 18,
-        "circulating_copies": 20,
+        "holder_count": 19,
+        "circulating_copies": 21,
         "top_holders": [
           {
             "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
@@ -120,6 +120,10 @@
             "quantity": 1
           },
           {
+            "address": "0x7d3a38475fa782aad7840f777e780383801d6de4",
+            "quantity": 1
+          },
+          {
             "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
             "quantity": 1
           },
@@ -146,10 +150,10 @@
         ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "sale",
-          "at": "2026-08-08T21:42:35+00:00",
+          "type": "transfer",
+          "at": "2026-08-16T19:36:11+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "to": "0x7d3a38475fa782aad7840f777e780383801d6de4",
           "quantity": 1
         }
       },
@@ -157,6 +161,13 @@
       "collection_id": "bigkix",
       "opensea_name": "BIG KIX #024 - DACAT  MEME - Season 1 - First Edition",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-16T19:36:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7d3a38475fa782aad7840f777e780383801d6de4",
+          "quantity": 1
+        },
         {
           "type": "sale",
           "at": "2026-08-08T21:42:35+00:00",
@@ -235,13 +246,6 @@
           "at": "2026-07-20T13:47:23+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T13:44:47+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
           "quantity": 1
         }
       ]
@@ -4371,8 +4375,8 @@
         "total_eth": 2.5e-07
       },
       "owners": {
-        "holder_count": 20,
-        "circulating_copies": 23,
+        "holder_count": 21,
+        "circulating_copies": 24,
         "top_holders": [
           {
             "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
@@ -4445,6 +4449,10 @@
             "quantity": 1
           },
           {
+            "address": "0x7d3a38475fa782aad7840f777e780383801d6de4",
+            "quantity": 1
+          },
+          {
             "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
             "quantity": 1
           },
@@ -4479,10 +4487,10 @@
         ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "sale",
-          "at": "2026-08-08T21:42:35+00:00",
+          "type": "transfer",
+          "at": "2026-08-16T19:35:11+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "to": "0x7d3a38475fa782aad7840f777e780383801d6de4",
           "quantity": 1
         }
       },
@@ -4490,6 +4498,13 @@
       "collection_id": "bigkix",
       "opensea_name": "BIG KIX #002 - PAPERHANDS - Season 1 - First Edition",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-16T19:35:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7d3a38475fa782aad7840f777e780383801d6de4",
+          "quantity": 1
+        },
         {
           "type": "sale",
           "at": "2026-08-08T21:42:35+00:00",
@@ -4570,13 +4585,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T13:56:23+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
-          "quantity": 1
         }
       ]
     },
@@ -4599,8 +4607,8 @@
         "total_eth": 2.5e-07
       },
       "owners": {
-        "holder_count": 22,
-        "circulating_copies": 24,
+        "holder_count": 23,
+        "circulating_copies": 25,
         "top_holders": [
           {
             "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
@@ -4681,6 +4689,10 @@
             "quantity": 1
           },
           {
+            "address": "0x7d3a38475fa782aad7840f777e780383801d6de4",
+            "quantity": 1
+          },
+          {
             "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
             "quantity": 1
           },
@@ -4716,9 +4728,9 @@
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-08-08T23:44:23+00:00",
+          "at": "2026-08-16T19:34:23+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xe662dab1b7f3b743e6e28a2e8462185639c8c4ef",
+          "to": "0x7d3a38475fa782aad7840f777e780383801d6de4",
           "quantity": 1
         }
       },
@@ -4726,6 +4738,13 @@
       "collection_id": "bigkix",
       "opensea_name": "BIG KIX #001 - DACAT - Season 1 - First Edition",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-16T19:34:23+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7d3a38475fa782aad7840f777e780383801d6de4",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-08-08T23:44:23+00:00",
@@ -4806,13 +4825,6 @@
           "to": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
           "quantity": 1,
           "price_eth": null
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-20T23:25:35+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
-          "quantity": 1
         }
       ]
     }

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T08:28:00.589757+00:00",
+  "generated_at": "2026-08-17T08:43:03.938898+00:00",
   "source": "hats_n_dacats_catalog",
   "collection": {
     "id": "hats-n-dacats",
@@ -23,9 +23,9 @@
     "contract_name": "HATS n' daCATs",
     "floor_eth": 0.0,
     "floor_symbol": "",
-    "num_owners": 17,
+    "num_owners": 18,
     "total_sales": 17,
-    "total_volume": 0.3060000000000002,
+    "total_volume": 0.30604528014712895,
     "piece_count": 33,
     "listed_count": 0,
     "one_of_ones": 33
@@ -2445,22 +2445,22 @@
         "circulating_copies": 1,
         "top_holders": [
           {
-            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "address": "0xd5ba08c965a9c3a13313aa206ebbd990375a5303",
             "quantity": 1
           }
         ],
         "holders": [
           {
-            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "address": "0xd5ba08c965a9c3a13313aa206ebbd990375a5303",
             "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-08-15T23:53:35+00:00",
-          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
-          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "at": "2026-08-16T14:33:35+00:00",
+          "from": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "to": "0xd5ba08c965a9c3a13313aa206ebbd990375a5303",
           "quantity": 1
         }
       },
@@ -2488,6 +2488,13 @@
       "is_1_of_1": true,
       "edition_size": 1,
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-16T14:33:35+00:00",
+          "from": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "to": "0xd5ba08c965a9c3a13313aa206ebbd990375a5303",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-08-15T23:53:35+00:00",
