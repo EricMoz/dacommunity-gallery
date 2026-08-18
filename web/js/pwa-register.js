@@ -83,7 +83,23 @@
         if (!text) return;
         var remote = String(text).trim().split(/\s+/)[0];
         if (!remote || !pageBuild) return;
-        if (remote === pageBuild) return;
+        if (remote === pageBuild) {
+          // Same stamp as VERSION — still heal if this HTML loads an older app.js?v=
+          // (seen on /dacommunity/ stuck at 20260817-1 while home was 20260818-2)
+          var scripts = document.querySelectorAll("script[src*='app.js']");
+          for (var i = 0; i < scripts.length; i++) {
+            var src = scripts[i].getAttribute("src") || "";
+            var m = src.match(/[?&]v=([^&]+)/);
+            if (m && m[1] && m[1] !== remote) {
+              return unregisterAllWorkers()
+                .then(clearOriginCaches)
+                .then(function () {
+                  forceReloadTo(remote + "-app");
+                });
+            }
+          }
+          return;
+        }
         // Stale HTML shell vs fresh deploy — safe cleanup + reload
         return unregisterAllWorkers()
           .then(clearOriginCaches)
