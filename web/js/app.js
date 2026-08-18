@@ -5548,16 +5548,25 @@ function hatsSeriesNumber(item) {
 }
 
 /**
- * Sort timestamp for Newest/Oldest. Real minted_at wins; undated HATS use a
- * recent batch anchor so cleared "All collections" doesn't bury Batch 01
- * under years of daCommunity mint dates.
+ * Sort timestamp for Newest/Oldest.
+ * Prefer last sale/transfer (piece moved), then latest_change, then minted_at.
+ * Undated HATS get a batch anchor only as a last resort.
  */
 function itemSortTimeMs(item) {
   if (!item) return 0;
-  var t = Date.parse(item.minted_at || 0) || 0;
-  if (t) return t;
+  var move = itemLatestMovementAt(item);
+  if (move) {
+    var tm = Date.parse(move) || 0;
+    if (tm) return tm;
+  }
+  var lc = item.owners && item.owners.latest_change && item.owners.latest_change.at;
+  if (lc) {
+    var tl = Date.parse(lc) || 0;
+    if (tl) return tl;
+  }
+  var mint = Date.parse(item.minted_at || 0) || 0;
+  if (mint) return mint;
   if ((item.collection_id || "") === "hats-n-dacats") {
-    // Collection created ~2026-08-02; series # nudges later hats slightly newer
     var base = Date.parse("2026-08-12T12:00:00.000Z") || 0;
     var series = hatsSeriesNumber(item) || 0;
     return base + series * 60000;
@@ -5565,8 +5574,52 @@ function itemSortTimeMs(item) {
   return 0;
 }
 
+/**
+ * When viewing a wallet: time this address acquired the piece (sale/transfer/mint to them).
+ * Falls back to general activity/mint time so Newest in portfolio reflects ownership, not
+ * only original mint (Agency Vol 2 mint vs later HATS purchase).
+ */
+function itemAcquiredAtMs(item, viewerAddr) {
+  if (!item) return 0;
+  var viewer = (viewerAddr || "").toLowerCase();
+  if (viewer) {
+    var rows = sortActivityRows(dedupeActivityRows(item.recent_activity || []));
+    for (var i = 0; i < rows.length; i++) {
+      var r = rows[i];
+      if (!r || !r.at || !r.to) continue;
+      if (String(r.to).toLowerCase() !== viewer) continue;
+      if (r.type === "sale" || r.type === "transfer" || r.type === "mint") {
+        var ta = Date.parse(r.at) || 0;
+        if (ta) return ta;
+      }
+    }
+  }
+  return itemSortTimeMs(item);
+}
+
+/** Tie-break after equal timestamps. */
+function compareItemsTieBreak(a, b, newestFirst) {
+  var cidA = a.collection_id || "dacommunity";
+  var cidB = b.collection_id || "dacommunity";
+  if (cidA === "hats-n-dacats" && cidB === "hats-n-dacats") {
+    var sa = hatsSeriesNumber(a);
+    var sb = hatsSeriesNumber(b);
+    if (sa != null && sb != null && sa !== sb) {
+      return newestFirst ? sb - sa : sa - sb;
+    }
+  }
+  var idA = Number(a.token_id);
+  var idB = Number(b.token_id);
+  if (!isNaN(idA) && !isNaN(idB) && idA !== idB) {
+    return newestFirst ? idB - idA : idA - idB;
+  }
+  return String(itemTitle(a) || "").localeCompare(String(itemTitle(b) || ""), undefined, {
+    sensitivity: "base",
+  });
+}
+
 function compareItems(a, b) {
-  // Agency rarity series: Vol 1…N, then rank (1:1 first … Common last) within each volume
+  // Agency rarity series (browse grid only): Vol then rank — only when BOTH are series rows
   if (isAgencyRaritySeries(a) && isAgencyRaritySeries(b)) {
     var va = Number(a.volume) || 1;
     var vb = Number(b.volume) || 1;
@@ -5577,23 +5630,18 @@ function compareItems(a, b) {
     }
   }
   var key = sortKey || "token_desc";
-  if (key === "token_desc") {
-    var da = itemSortTimeMs(a);
-    var db = itemSortTimeMs(b);
-    if (da !== db) return db - da; // newest first
-    // Within same time: HATS higher series # first; else token id
-    if ((a.collection_id || "") === "hats-n-dacats" && (b.collection_id || "") === "hats-n-dacats") {
-      var sa = hatsSeriesNumber(a);
-      var sb = hatsSeriesNumber(b);
-      if (sa != null && sb != null && sa !== sb) return sb - sa;
-    }
-    return Number(b.token_id) - Number(a.token_id);
-  }
-  if (key === "token_asc") {
-    var da2 = itemSortTimeMs(a);
-    var db2 = itemSortTimeMs(b);
-    if (da2 !== db2) return da2 - db2;
-    return Number(a.token_id) - Number(b.token_id);
+  var viewer =
+    galleryCollectorView && galleryCollectorView.address
+      ? galleryCollectorView.address
+      : "";
+
+  if (key === "token_desc" || key === "token_asc") {
+    var newestFirst = key === "token_desc";
+    // Wallet: acquisition by this address; archive: last move / mint
+    var da = viewer ? itemAcquiredAtMs(a, viewer) : itemSortTimeMs(a);
+    var db = viewer ? itemAcquiredAtMs(b, viewer) : itemSortTimeMs(b);
+    if (da !== db) return newestFirst ? db - da : da - db;
+    return compareItemsTieBreak(a, b, newestFirst);
   }
   if (key === "name_asc") {
     return itemTitle(a).localeCompare(itemTitle(b), undefined, { sensitivity: "base" });
@@ -5601,20 +5649,28 @@ function compareItems(a, b) {
   if (key === "price_asc" || key === "price_desc") {
     var pa = isItemListed(a) && a.listing ? Number(a.listing.amount_eth) : null;
     var pb = isItemListed(b) && b.listing ? Number(b.listing.amount_eth) : null;
-    if (pa == null && pb == null) return Number(b.token_id) - Number(a.token_id);
+    if (pa == null && pb == null) return compareItemsTieBreak(a, b, true);
     if (pa == null) return 1;
     if (pb == null) return -1;
     if (pa !== pb) return key === "price_asc" ? pa - pb : pb - pa;
-    return Number(b.token_id) - Number(a.token_id);
+    return compareItemsTieBreak(a, b, true);
   }
   if (key === "transfer_desc") {
-    // Prefer real sales/transfers over mint-only timestamps
-    var ta = Date.parse(itemLatestMovementAt(a) || itemLatestTransferAt(a) || 0) || 0;
-    var tb = Date.parse(itemLatestMovementAt(b) || itemLatestTransferAt(b) || 0) || 0;
+    // Real sales/transfers only — mint-only pieces sink (use Newest for mint age)
+    var ta = Date.parse(itemLatestMovementAt(a) || 0) || 0;
+    var tb = Date.parse(itemLatestMovementAt(b) || 0) || 0;
+    if (viewer) {
+      // Prefer when this wallet was involved in the move
+      var aa = itemAcquiredAtMs(a, viewer);
+      var ab = itemAcquiredAtMs(b, viewer);
+      // If acquisition came from a sale/transfer (not mint-only fallback), prefer it
+      if (aa && itemLatestMovementAt(a)) ta = Math.max(ta, aa);
+      if (ab && itemLatestMovementAt(b)) tb = Math.max(tb, ab);
+    }
     if (tb !== ta) return tb - ta;
-    return Number(b.token_id) - Number(a.token_id);
+    return compareItemsTieBreak(a, b, true);
   }
-  return Number(b.token_id) - Number(a.token_id);
+  return compareItemsTieBreak(a, b, true);
 }
 
 /* === Core Browse Logic (filter + sort + collection scoping) === */
