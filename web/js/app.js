@@ -2362,7 +2362,9 @@ function resolveHoldersList(item) {
 function holderHighlightAddress(item) {
   if (galleryCollectorView && galleryCollectorView.address) {
     var viewing = galleryCollectorView.address.toLowerCase();
-    if (galleryCollectorView.tokenIds[String(item.token_id)]) {
+    var ids = galleryCollectorView.tokenIds || {};
+    // Composite key only — bare token_id collides across collections (HATS vs archive)
+    if (ids[getItemKey(item)]) {
       return viewing;
     }
     return null;
@@ -5652,13 +5654,21 @@ function getFilteredItems() {
         // badges: only trust owner match (token_ids collide across series, rep tokens not unique)
         return false;
       }
-      // Agency: owner match only (token #s collide across volumes)
-      if ((i.collection_id || "") === "dagato-agency" || i.is_edition_token) {
+      // Agency / HATS / BIG KIX: owner match only — never bare token_id
+      // (archive #5 ≠ hats-n-dacats #5; bare id matching showed full HATS sets in wallets)
+      var cid = i.collection_id || "dacommunity";
+      if (
+        cid === "dagato-agency" ||
+        cid === "hats-n-dacats" ||
+        cid === "bigkix" ||
+        i.is_edition_token
+      ) {
         return false;
       }
-      // daCommunity keys are bare token ids; holdings may use getItemKey or raw token_id
+      // daCommunity only: composite key, with bare token_id fallback for legacy wallet_index rows
       var key = getItemKey(i);
-      if (tidSet[key] || tidSet[String(i.token_id)]) return true;
+      if (tidSet[key]) return true;
+      if (cid === "dacommunity" && tidSet[String(i.token_id)]) return true;
       return false;
     });
   }
