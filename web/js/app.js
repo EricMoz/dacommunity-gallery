@@ -6216,11 +6216,9 @@ function renderDetailActivity(item) {
     return;
   }
   block.hidden = false;
-  // Open when there is a sale/transfer so purchases are visible without an extra click
-  var hasMove = rows.some(function (r) {
-    return r && (r.type === "sale" || r.type === "transfer");
-  });
-  setActivityDisclosureOpen(hasMove);
+  // Always start collapsed (same as other collections) — preview line still
+  // shows latest sale/transfer; tap to expand the full list.
+  setActivityDisclosureOpen(false);
   if (countEl) countEl.textContent = "(" + rows.length + ")";
   var preview = formatLatestChangePreview(getLatestChange(item));
   if (previewEl) {
