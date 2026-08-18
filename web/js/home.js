@@ -3,6 +3,7 @@
  * Same pool as film hub Featured (videos.json featuredIds), randomized each visit.
  */
 (function () {
+  /* highlights-shuffle build 20260818-8 */
   "use strict";
 
   var MAX_HIGHLIGHTS = 6;
