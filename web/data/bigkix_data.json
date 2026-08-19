@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-18T08:34:05.315719+00:00",
+  "generated_at": "2026-08-19T08:33:42.780121+00:00",
   "source": "opensea_api_v2",
   "collection": {
     "id": "bigkix",
@@ -20,7 +20,7 @@
     "contract_name": "BIG KIX",
     "floor_eth": 1e-08,
     "floor_symbol": "ETH",
-    "num_owners": 25,
+    "num_owners": 26,
     "total_sales": 31,
     "total_volume": 0.006017630000000031,
     "piece_count": 24,
@@ -38,7 +38,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/24",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/24",
-      "updated_at": "2026-08-18T08:33:05.398020",
+      "updated_at": "2026-08-19T08:32:44.840665",
       "traits": [
         {
           "trait_type": "Role",
@@ -307,7 +307,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/23",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/23",
-      "updated_at": "2026-08-18T08:33:05.398037",
+      "updated_at": "2026-08-19T08:32:44.840685",
       "traits": [
         {
           "trait_type": "Set",
@@ -565,7 +565,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/22",
       "metadata_url": "ipfs://Qmdkw9oKwcQqLhpJFBCbQ85jv1ceUdjA1UWqc9ShESVbVs/22",
-      "updated_at": "2026-08-18T08:33:05.398049",
+      "updated_at": "2026-08-19T08:32:44.840697",
       "traits": [
         {
           "trait_type": "Set",
@@ -818,7 +818,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/21",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/21",
-      "updated_at": "2026-08-18T08:33:05.398060",
+      "updated_at": "2026-08-19T08:32:44.840711",
       "traits": [
         {
           "trait_type": "Set",
@@ -1075,7 +1075,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/20",
       "metadata_url": "ipfs://QmXRGA9mMSNJfQCLa9v8NqAz8X6EoDqBhDePugjJE7XKV3/20",
-      "updated_at": "2026-08-18T08:33:05.398071",
+      "updated_at": "2026-08-19T08:32:44.840724",
       "traits": [
         {
           "trait_type": "Set",
@@ -1332,7 +1332,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/19",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/19",
-      "updated_at": "2026-08-18T08:33:05.398083",
+      "updated_at": "2026-08-19T08:32:44.840737",
       "traits": [
         {
           "trait_type": "Role",
@@ -1583,7 +1583,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/18",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/18",
-      "updated_at": "2026-08-18T08:33:05.398093",
+      "updated_at": "2026-08-19T08:32:44.840749",
       "traits": [
         {
           "trait_type": "Role",
@@ -1838,7 +1838,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/17",
       "metadata_url": "ipfs://QmUZoy2QY5fxvsbWoBb9cg5qBeoXLoSr42NkgirbnVeRHp/17",
-      "updated_at": "2026-08-18T08:33:05.398103",
+      "updated_at": "2026-08-19T08:32:44.840760",
       "traits": [
         {
           "trait_type": "Type",
@@ -2090,7 +2090,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/16",
       "metadata_url": "ipfs://QmWg4CchemsxQjfdWGAqZWa98db3FS6PbLNPNKtTsMk8sx/16",
-      "updated_at": "2026-08-18T08:33:05.398114",
+      "updated_at": "2026-08-19T08:32:44.840770",
       "traits": [
         {
           "trait_type": "Role",
@@ -2337,7 +2337,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/15",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/15",
-      "updated_at": "2026-08-18T08:33:05.398124",
+      "updated_at": "2026-08-19T08:32:44.840780",
       "traits": [
         {
           "trait_type": "Role",
@@ -2590,7 +2590,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/14",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/14",
-      "updated_at": "2026-08-18T08:33:05.398135",
+      "updated_at": "2026-08-19T08:32:44.840792",
       "traits": [
         {
           "trait_type": "Type",
@@ -2838,7 +2838,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/13",
       "metadata_url": "ipfs://Qmdf5SD5cic5SkcU5HpPxTNUbbwQYXvgq6YRfaC1rFuaa4/13",
-      "updated_at": "2026-08-18T08:33:05.398146",
+      "updated_at": "2026-08-19T08:32:44.840804",
       "traits": [
         {
           "trait_type": "Year",
@@ -3084,7 +3084,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/12",
       "metadata_url": "ipfs://Qmd5P27njQDcHhyTwaGqbxFRSAEgp5obvugRz9hiSXnW3y/12",
-      "updated_at": "2026-08-18T08:33:05.398155",
+      "updated_at": "2026-08-19T08:32:44.840815",
       "traits": [
         {
           "trait_type": "Season",
@@ -3315,7 +3315,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/11",
       "metadata_url": "ipfs://QmUZoy2QY5fxvsbWoBb9cg5qBeoXLoSr42NkgirbnVeRHp/11",
-      "updated_at": "2026-08-18T08:33:05.398165",
+      "updated_at": "2026-08-19T08:32:44.840826",
       "traits": [
         {
           "trait_type": "Role",
@@ -3568,7 +3568,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/10",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/10",
-      "updated_at": "2026-08-18T08:33:05.398175",
+      "updated_at": "2026-08-19T08:32:44.840838",
       "traits": [
         {
           "trait_type": "Role",
@@ -3823,7 +3823,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/9",
       "metadata_url": "ipfs://Qmdkw9oKwcQqLhpJFBCbQ85jv1ceUdjA1UWqc9ShESVbVs/9",
-      "updated_at": "2026-08-18T08:33:05.398186",
+      "updated_at": "2026-08-19T08:32:44.840847",
       "traits": [
         {
           "trait_type": "Role",
@@ -4078,7 +4078,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/8",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/8",
-      "updated_at": "2026-08-18T08:33:05.398196",
+      "updated_at": "2026-08-19T08:32:44.840857",
       "traits": [
         {
           "trait_type": "Role",
@@ -4338,7 +4338,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/7",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/7",
-      "updated_at": "2026-08-18T08:33:05.398206",
+      "updated_at": "2026-08-19T08:32:44.840868",
       "traits": [
         {
           "trait_type": "Role",
@@ -4587,7 +4587,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/6",
       "metadata_url": "ipfs://Qmdf5SD5cic5SkcU5HpPxTNUbbwQYXvgq6YRfaC1rFuaa4/6",
-      "updated_at": "2026-08-18T08:33:05.398216",
+      "updated_at": "2026-08-19T08:32:44.840880",
       "traits": [
         {
           "trait_type": "Role",
@@ -4842,7 +4842,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/5",
       "metadata_url": "ipfs://QmUMTrcNYnNMsNeuKFc9bmn5ZbUnm85UwyHrRT9bvoo69m/5",
-      "updated_at": "2026-08-18T08:33:05.398226",
+      "updated_at": "2026-08-19T08:32:44.840892",
       "traits": [
         {
           "trait_type": "Date",
@@ -5113,7 +5113,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/4",
       "metadata_url": "ipfs://QmWbio5gpWd9XjmGQB4DtD3WGqyQcqfXDHcsa4yDDWFtre/4",
-      "updated_at": "2026-08-18T08:33:05.398237",
+      "updated_at": "2026-08-19T08:32:44.840901",
       "traits": [
         {
           "trait_type": "Date",
@@ -5378,7 +5378,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/3",
       "metadata_url": "ipfs://QmQHmpqgHNp23HBUhsWufY4YBSeF4j7C1ZyPpNB2aAcXP6/3",
-      "updated_at": "2026-08-18T08:33:05.398247",
+      "updated_at": "2026-08-19T08:32:44.840910",
       "traits": [
         {
           "trait_type": "Date",
@@ -5450,8 +5450,8 @@
         "total_eth": 2.5e-05
       },
       "owners": {
-        "holder_count": 14,
-        "circulating_copies": 14,
+        "holder_count": 15,
+        "circulating_copies": 15,
         "top_holders": [
           {
             "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
@@ -5530,20 +5530,31 @@
           {
             "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
             "quantity": 1
+          },
+          {
+            "address": "0x07011c665d3c27eee72c8459c4f87c8221a6fcdd",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-08-08T21:42:35+00:00",
+          "at": "2026-08-18T09:21:59+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "to": "0x07011c665d3c27eee72c8459c4f87c8221a6fcdd",
           "quantity": 1
         }
       },
       "collection_id": "bigkix",
       "minted_at": "2026-07-12T11:43:23+00:00",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-18T09:21:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x07011c665d3c27eee72c8459c4f87c8221a6fcdd",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-08-08T21:42:35+00:00",
@@ -5621,13 +5632,6 @@
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
           "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T07:08:35+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-          "quantity": 1
         }
       ],
       "opensea_name": "BIG KIX #003 - SCAMURAI - Season 1 - First Edition"
@@ -5643,7 +5647,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/2",
       "metadata_url": "ipfs://QmXRGA9mMSNJfQCLa9v8NqAz8X6EoDqBhDePugjJE7XKV3/2",
-      "updated_at": "2026-08-18T08:33:05.398256",
+      "updated_at": "2026-08-19T08:32:44.840919",
       "traits": [
         {
           "trait_type": "Date",
@@ -5939,7 +5943,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/1",
       "metadata_url": "ipfs://QmQsxujbYWaRSAHUbXtrxzRMk5JHXdnLNwoPAn5EouqEbR/1",
-      "updated_at": "2026-08-18T08:33:05.398266",
+      "updated_at": "2026-08-19T08:32:44.840927",
       "traits": [
         {
           "trait_type": "Set",

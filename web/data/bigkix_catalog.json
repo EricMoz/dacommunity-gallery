@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-18T08:34:05.315719+00:00",
+  "generated_at": "2026-08-19T08:33:42.780121+00:00",
   "source": "bigkix_catalog",
   "collection": {
     "id": "bigkix",
@@ -20,7 +20,7 @@
     "contract_name": "BIG KIX",
     "floor_eth": 1e-08,
     "floor_symbol": "ETH",
-    "num_owners": 25,
+    "num_owners": 26,
     "total_sales": 31,
     "total_volume": 0.006017630000000031,
     "piece_count": 24,
@@ -4174,8 +4174,8 @@
         "total_eth": 2.5e-05
       },
       "owners": {
-        "holder_count": 14,
-        "circulating_copies": 14,
+        "holder_count": 15,
+        "circulating_copies": 15,
         "top_holders": [
           {
             "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
@@ -4254,14 +4254,18 @@
           {
             "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
             "quantity": 1
+          },
+          {
+            "address": "0x07011c665d3c27eee72c8459c4f87c8221a6fcdd",
+            "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-08-08T21:42:35+00:00",
+          "at": "2026-08-18T09:21:59+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
+          "to": "0x07011c665d3c27eee72c8459c4f87c8221a6fcdd",
           "quantity": 1
         }
       },
@@ -4269,6 +4273,13 @@
       "collection_id": "bigkix",
       "opensea_name": "BIG KIX #003 - SCAMURAI - Season 1 - First Edition",
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-18T09:21:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x07011c665d3c27eee72c8459c4f87c8221a6fcdd",
+          "quantity": 1
+        },
         {
           "type": "transfer",
           "at": "2026-08-08T21:42:35+00:00",
@@ -4345,13 +4356,6 @@
           "at": "2026-07-21T07:29:35+00:00",
           "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-          "quantity": 1
-        },
-        {
-          "type": "transfer",
-          "at": "2026-07-21T07:08:35+00:00",
-          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
           "quantity": 1
         }
       ]
