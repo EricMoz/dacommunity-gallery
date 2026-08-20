@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T08:36:02.966591+00:00",
+  "generated_at": "2026-08-20T08:37:49.282408+00:00",
   "source": "hats_n_dacats_catalog",
   "collection": {
     "id": "hats-n-dacats",
@@ -23,7 +23,7 @@
     "contract_name": "HATS n' daCATs",
     "floor_eth": 0.05,
     "floor_symbol": "ETH",
-    "num_owners": 18,
+    "num_owners": 19,
     "total_sales": 17,
     "total_volume": 0.3060000000000002,
     "piece_count": 33,
@@ -1762,22 +1762,22 @@
         "circulating_copies": 1,
         "top_holders": [
           {
-            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "address": "0xe12eb704664f8e852359d36d77b90178e5540bd6",
             "quantity": 1
           }
         ],
         "holders": [
           {
-            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "address": "0xe12eb704664f8e852359d36d77b90178e5540bd6",
             "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "sale",
-          "at": "2026-08-15T17:58:35+00:00",
-          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
-          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "type": "transfer",
+          "at": "2026-08-19T23:40:47+00:00",
+          "from": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "to": "0xe12eb704664f8e852359d36d77b90178e5540bd6",
           "quantity": 1
         }
       },
@@ -1805,6 +1805,27 @@
       "is_1_of_1": true,
       "edition_size": 1,
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-08-19T23:40:47+00:00",
+          "from": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "to": "0xe12eb704664f8e852359d36d77b90178e5540bd6",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-19T23:17:11+00:00",
+          "from": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "to": "0xe12eb704664f8e852359d36d77b90178e5540bd6",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-19T23:13:59+00:00",
+          "from": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "to": "0xe12eb704664f8e852359d36d77b90178e5540bd6",
+          "quantity": 1
+        },
         {
           "type": "sale",
           "at": "2026-08-15T17:58:35+00:00",
