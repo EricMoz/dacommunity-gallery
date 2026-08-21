@@ -5709,7 +5709,8 @@ function itemAcquiredAtMs(item, viewerAddr) {
 
 /**
  * Numeric rarity weight for sort (higher = rarer).
- * Aligns Agency traits + supply tiers (1:1 / Ultra Rare / Rare).
+ * Agency trait ladder sits above matching supply tiers where it carries perks:
+ *   1:1 → Legendary → Ultra Rare → Epic → Rare → Uncommon → Common
  */
 function itemRaritySortRank(item) {
   var label = itemRarityLabel(item);
@@ -5718,10 +5719,10 @@ function itemRaritySortRank(item) {
     .toLowerCase()
     .replace(/\s+/g, "");
   if (k === "1:1" || k === "1of1" || k === "1/1") return 100;
-  if (k === "ultrarare") return 90;
-  if (k === "legendary") return 80;
-  if (k === "rare") return 70;
-  if (k === "epic") return 60;
+  if (k === "legendary") return 90;
+  if (k === "ultrarare") return 80;
+  if (k === "epic") return 70;
+  if (k === "rare") return 60;
   if (k === "uncommon") return 40;
   if (k === "common") return 20;
   return 10;
