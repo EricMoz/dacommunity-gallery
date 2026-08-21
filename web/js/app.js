@@ -5814,8 +5814,24 @@ function compareItemsTieBreak(a, b, newestFirst) {
 }
 
 /**
+ * Badges + Agency: token_id / token_rank are poor rarity tie-breaks
+ * (Agency ranks are rarity slots, not true ids; badge clubs keep minting new #s).
+ * Sink both collections to the end of whatever rarity tier they're in.
+ */
+function rarityCollectionSinkPriority(item) {
+  var cid = normalizeCollectionId((item && item.collection_id) || "dacommunity");
+  if (cid === "badges" || cid === "dagato-agency") return 1;
+  return 0;
+}
+
+function rarityUsesUnstableTokenIds(item) {
+  return rarityCollectionSinkPriority(item) === 1;
+}
+
+/**
  * Rarity sort tie-break: same tag → fewer copies first (when high→low),
- * then token rank (#0 last).
+ * then stable collections before badges/Agency, then mint/title
+ * (token id only when it's meaningful: archive / HATS).
  */
 function compareRarityTieBreak(a, b, highFirst) {
   var ca = itemSortCopyCount(a);
@@ -5828,8 +5844,37 @@ function compareRarityTieBreak(a, b, highFirst) {
   if (ca != null && cb == null) return highFirst ? -1 : 1;
   if (cb != null && ca == null) return highFirst ? 1 : -1;
 
+  // Within the same rarity tier: badges + Agency always last (All collections view)
+  var sinkA = rarityCollectionSinkPriority(a);
+  var sinkB = rarityCollectionSinkPriority(b);
+  if (sinkA !== sinkB) return sinkA - sinkB;
+
   var cidA = normalizeCollectionId(a.collection_id || "dacommunity");
   var cidB = normalizeCollectionId(b.collection_id || "dacommunity");
+
+  // Agency: volume, then mint (skip token_rank — not a true token id)
+  if (cidA === "dagato-agency" && cidB === "dagato-agency") {
+    var va = Number(a.volume) || 1;
+    var vb = Number(b.volume) || 1;
+    if (va !== vb) return va - vb;
+    var maA = itemMintTimeMs(a);
+    var mbA = itemMintTimeMs(b);
+    if (maA !== mbA) return highFirst ? mbA - maA : maA - mbA;
+    return String(itemTitle(a) || "").localeCompare(String(itemTitle(b) || ""), undefined, {
+      sensitivity: "base",
+    });
+  }
+
+  // Badges: mint then title (token #s shift as clubs grow — e.g. 100B)
+  if (cidA === "badges" && cidB === "badges") {
+    var maB = itemMintTimeMs(a);
+    var mbB = itemMintTimeMs(b);
+    if (maB !== mbB) return highFirst ? mbB - maB : maB - mbB;
+    return String(itemTitle(a) || "").localeCompare(String(itemTitle(b) || ""), undefined, {
+      sensitivity: "base",
+    });
+  }
+
   if (cidA === "hats-n-dacats" && cidB === "hats-n-dacats") {
     var sa = hatsSeriesNumber(a);
     var sb = hatsSeriesNumber(b);
@@ -5838,9 +5883,15 @@ function compareRarityTieBreak(a, b, highFirst) {
     }
   }
 
-  // Token rank takes precedence on ties — #0 last
-  var tok = compareTokenOrdinal(a, b, true);
-  if (tok !== 0) return tok;
+  // Archive / other: token id is meaningful — #0 last
+  if (!rarityUsesUnstableTokenIds(a) && !rarityUsesUnstableTokenIds(b)) {
+    var tok = compareTokenOrdinal(a, b, true);
+    if (tok !== 0) return tok;
+  }
+
+  var ma = itemMintTimeMs(a);
+  var mb = itemMintTimeMs(b);
+  if (ma !== mb) return highFirst ? mb - ma : ma - mb;
   return String(itemTitle(a) || "").localeCompare(String(itemTitle(b) || ""), undefined, {
     sensitivity: "base",
   });
