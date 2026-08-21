@@ -191,7 +191,7 @@ let collectionsRegistry = null;
 
 function getLiveCollections() {
   if (!collectionsRegistry || !collectionsRegistry.collections) {
-    return [{ id: "dacommunity", name: "daCommunity NFT Archive", status: "live" }];
+    return [{ id: "dacommunity", name: "daCommunity NFTs", status: "live" }];
   }
   return collectionsRegistry.collections.filter(function (c) {
     return c.status === "live";
@@ -209,9 +209,12 @@ function getCollectionName(id) {
 function collectionSelectLabel(col) {
   if (!col) return "";
   if (col.id === "dagato-agency") return "daGATO Detective Agency";
+  if (col.id === "dacommunity") return "daCommunity NFTs";
   var n = col.name || col.id || "";
   // Strip trailing ": Volume N" / "Volume N" if present on future registry names
   n = String(n).replace(/\s*[:·-]?\s*Volume\s*\d+\s*$/i, "").trim();
+  // Legacy registry/catalog wording
+  if (/^daCommunity NFT Archive$/i.test(n)) return "daCommunity NFTs";
   return n || col.id;
 }
 
@@ -228,7 +231,7 @@ function itemCollectionLabel(item) {
   if (cid === "badges") return "daCAT Badges";
   if (cid === "dagato-agency") return "daGATO Detective Agency";
   if (cid === "hats-n-dacats") return "HATS n' daCATs";
-  if (cid === "dacommunity") return "daCommunity";
+  if (cid === "dacommunity") return "daCommunity NFTs";
   return cid;
 }
 
@@ -331,10 +334,13 @@ function adaptHeaderForCollection() {
   var isBigKix = activeCollection === "bigkix";
   var isAgency = activeCollection === "dagato-agency";
   var isHats = activeCollection === "hats-n-dacats";
+  var isDacommunity = activeCollection === "dacommunity";
+  var isAll = !activeCollection || activeCollection === "all";
   document.body.classList.toggle("is-badges-view", isBadges);
   document.body.classList.toggle("is-bigkix-view", isBigKix);
   document.body.classList.toggle("is-dagato-agency-view", isAgency);
   document.body.classList.toggle("is-hats-n-dacats-view", isHats);
+  document.body.classList.toggle("is-dacommunity-view", isDacommunity);
   try {
     var h1 = document.querySelector(".hero-band h1");
     var lead = document.querySelector(".hero-lead");
@@ -345,7 +351,8 @@ function adaptHeaderForCollection() {
     }
     if (isBadges) {
       h1.innerHTML = 'daCAT <span class="accent">Badges</span>';
-      lead.textContent = "Personal 1:1 awards. Series images shown in the grid (generic photos to keep discovery clean, no 1:1 dupes). Your specific named copy appears in the collector wallet lookup when you hold it.";
+      lead.textContent =
+        "Personal 1:1 awards. Series images shown in the grid (generic photos to keep discovery clean, no 1:1 dupes). Your specific named copy appears in the collector wallet lookup when you hold it.";
     } else if (isBigKix) {
       h1.innerHTML = 'BIG <span class="accent">KIX</span>';
       lead.textContent =
@@ -357,7 +364,17 @@ function adaptHeaderForCollection() {
     } else if (isHats) {
       h1.innerHTML = "HATS n' <span class=\"accent\">daCATs</span>";
       lead.textContent =
-        "333 unique daCATs, each defined by a legendary hat. True 1:1s with no rarity tiers — every hat stands on its own. Released in waves; Batch 01 is live. Every hat has a story. Legends Wear Hats.";
+        "333 unique daCATs, each defined by a legendary hat. True 1:1s with no rarity tiers. Every hat stands on its own. Released in waves; Batch 01 is live. Every hat has a story. Legends Wear Hats.";
+    } else if (isDacommunity) {
+      // Scoped Base archive (hub cards + dropdown: daCommunity NFTs)
+      h1.innerHTML = 'daCommunity <span class="accent">NFTs</span>';
+      lead.textContent =
+        "Telegram-born dacat.* stories on Base. Browse the archive, find your pieces, and share a collector link.";
+    } else if (isAll) {
+      // Find your daCATs / bare /dacommunity/ → all collections
+      h1.innerHTML = 'Find your <span class="accent">daCATs</span>';
+      lead.textContent =
+        "Browse every live daCAT collection in one place. Search the archive, look up a wallet, and find the pieces you hold.";
     } else {
       h1.innerHTML = originalHeroTitle || h1.innerHTML;
       lead.textContent = originalHeroLead || lead.textContent;
@@ -878,14 +895,14 @@ async function loadWalletIndex() {
  */
 async function loadCollectionsRegistry() {
   if (!REGISTRY_URL) {
-    collectionsRegistry = { collections: [{ id: "dacommunity", name: "daCommunity NFT Archive", status: "live" }] };
+    collectionsRegistry = { collections: [{ id: "dacommunity", name: "daCommunity NFTs", status: "live" }] };
     return;
   }
   try {
     collectionsRegistry = await fetchJson(REGISTRY_URL, 10000);
   } catch (e) {
     console.warn("Collections registry load failed, using fallback:", e);
-    collectionsRegistry = { collections: [{ id: "dacommunity", name: "daCommunity NFT Archive", status: "live" }] };
+    collectionsRegistry = { collections: [{ id: "dacommunity", name: "daCommunity NFTs", status: "live" }] };
   }
 }
 
