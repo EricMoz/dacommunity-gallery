@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T08:48:39.218770+00:00",
+  "generated_at": "2026-08-21T08:50:14.005948+00:00",
   "source": "badges_catalog",
   "collection": {
     "slug": "badges",
@@ -105,7 +105,7 @@
         ]
       },
       "minted_at": "2026-06-13T22:52:23+00:00",
-      "is_1_of_1": false,
+      "is_1_of_1": true,
       "award_category": "rookie_card_2026",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
@@ -114,7 +114,9 @@
       "is_series_rep": false,
       "edition_club": false,
       "sub_category": "Rookie Card 2026",
-      "tags": []
+      "tags": [
+        "1_of_1"
+      ]
     },
     {
       "token_id": "0",
@@ -1789,7 +1791,7 @@
         ]
       },
       "minted_at": "2026-05-29T03:11:35+00:00",
-      "is_1_of_1": true,
+      "is_1_of_1": false,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
@@ -1799,8 +1801,7 @@
       "edition_club": false,
       "sub_category": "Trillion Club",
       "tags": [
-        "trillion_club",
-        "1_of_1"
+        "trillion_club"
       ]
     },
     {
@@ -2273,7 +2274,7 @@
         ]
       },
       "minted_at": "2026-05-29T13:42:35+00:00",
-      "is_1_of_1": true,
+      "is_1_of_1": false,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
@@ -2283,8 +2284,7 @@
       "edition_club": false,
       "sub_category": "Trillion Club",
       "tags": [
-        "trillion_club",
-        "1_of_1"
+        "trillion_club"
       ]
     },
     {
@@ -3267,7 +3267,7 @@
         ]
       },
       "minted_at": "2026-06-04T22:02:11+00:00",
-      "is_1_of_1": true,
+      "is_1_of_1": false,
       "award_category": "500_billion_club",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
@@ -3276,9 +3276,7 @@
       "is_series_rep": true,
       "edition_club": false,
       "sub_category": "500 Billion Club",
-      "tags": [
-        "1_of_1"
-      ]
+      "tags": []
     },
     {
       "token_id": "1",
@@ -3351,7 +3349,7 @@
         ]
       },
       "minted_at": "2026-07-07T10:23:23+00:00",
-      "is_1_of_1": true,
+      "is_1_of_1": false,
       "award_category": "100_billion_club",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
@@ -3360,9 +3358,7 @@
       "is_series_rep": true,
       "edition_club": true,
       "sub_category": "100 Billion Club",
-      "tags": [
-        "1_of_1"
-      ]
+      "tags": []
     },
     {
       "token_id": "1",
@@ -3481,7 +3477,7 @@
         ]
       },
       "minted_at": "2026-05-31T12:03:35+00:00",
-      "is_1_of_1": false,
+      "is_1_of_1": true,
       "award_category": "collector_cat",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
@@ -3490,7 +3486,9 @@
       "is_series_rep": false,
       "edition_club": false,
       "sub_category": "Collector Cat",
-      "tags": []
+      "tags": [
+        "1_of_1"
+      ]
     },
     {
       "token_id": "1",
@@ -3586,7 +3584,7 @@
         ]
       },
       "minted_at": "2026-06-11T02:07:35+00:00",
-      "is_1_of_1": false,
+      "is_1_of_1": true,
       "award_category": "gem_nova_green",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
@@ -3595,7 +3593,9 @@
       "is_series_rep": false,
       "edition_club": false,
       "sub_category": "Gem Nova Green",
-      "tags": []
+      "tags": [
+        "1_of_1"
+      ]
     },
     {
       "token_id": "1",
@@ -3703,7 +3703,7 @@
         ]
       },
       "minted_at": "2026-06-21T05:35:47+00:00",
-      "is_1_of_1": false,
+      "is_1_of_1": true,
       "award_category": "dalegend_line",
       "unclaimed_or_available": false,
       "mystery_status": "approved",
@@ -3712,7 +3712,9 @@
       "is_series_rep": false,
       "edition_club": false,
       "sub_category": "DaLegend Line",
-      "tags": []
+      "tags": [
+        "1_of_1"
+      ]
     },
     {
       "token_id": "4",
