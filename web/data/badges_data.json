@@ -107,7 +107,7 @@
         ]
       },
       "minted_at": "2026-06-13T22:52:23+00:00",
-      "is_1_of_1": true,
+      "is_1_of_1": false,
       "edition_size": 1,
       "award_category": "rookie_card_2026",
       "unclaimed_or_available": false,
@@ -115,9 +115,7 @@
       "source_created_collection": "dacatrookie2026",
       "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
       "sub_category": "Rookie Card 2026",
-      "tags": [
-        "1_of_1"
-      ],
+      "tags": [],
       "is_series_rep": false,
       "edition_club": false
     },
@@ -1829,7 +1827,7 @@
         ]
       },
       "minted_at": "2026-05-29T03:11:35+00:00",
-      "is_1_of_1": false,
+      "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -1838,7 +1836,8 @@
       "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
       "sub_category": "Trillion Club",
       "tags": [
-        "trillion_club"
+        "trillion_club",
+        "1_of_1"
       ],
       "is_series_rep": true
     },
@@ -2322,7 +2321,7 @@
         ]
       },
       "minted_at": "2026-05-29T13:42:35+00:00",
-      "is_1_of_1": false,
+      "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -2331,7 +2330,8 @@
       "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
       "sub_category": "Trillion Club",
       "tags": [
-        "trillion_club"
+        "trillion_club",
+        "1_of_1"
       ],
       "is_series_rep": true
     },
@@ -3335,7 +3335,7 @@
         ]
       },
       "minted_at": "2026-06-04T22:02:11+00:00",
-      "is_1_of_1": false,
+      "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "500_billion_club",
       "unclaimed_or_available": false,
@@ -3343,7 +3343,9 @@
       "source_created_collection": "dacat500billion",
       "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
       "sub_category": "500 Billion Club",
-      "tags": [],
+      "tags": [
+        "1_of_1"
+      ],
       "is_series_rep": true
     },
     {
@@ -3419,7 +3421,7 @@
         ]
       },
       "minted_at": "2026-07-07T10:23:23+00:00",
-      "is_1_of_1": false,
+      "is_1_of_1": true,
       "edition_size": 333,
       "award_category": "100_billion_club",
       "unclaimed_or_available": false,
@@ -3427,7 +3429,9 @@
       "source_created_collection": "dacat100billion",
       "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
       "sub_category": "100 Billion Club",
-      "tags": [],
+      "tags": [
+        "1_of_1"
+      ],
       "is_series_rep": true,
       "edition_club": true
     },
@@ -3549,7 +3553,7 @@
         ]
       },
       "minted_at": "2026-05-31T12:03:35+00:00",
-      "is_1_of_1": true,
+      "is_1_of_1": false,
       "edition_size": 1,
       "award_category": "collector_cat",
       "unclaimed_or_available": false,
@@ -3557,9 +3561,7 @@
       "source_created_collection": "dacat-world-collector-cat",
       "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
       "sub_category": "Collector Cat",
-      "tags": [
-        "1_of_1"
-      ],
+      "tags": [],
       "is_series_rep": false,
       "edition_club": false
     },
@@ -3658,7 +3660,7 @@
         ]
       },
       "minted_at": "2026-06-11T02:07:35+00:00",
-      "is_1_of_1": true,
+      "is_1_of_1": false,
       "edition_size": 1,
       "award_category": "gem_nova_green",
       "unclaimed_or_available": false,
@@ -3666,9 +3668,7 @@
       "source_created_collection": "dacat-gem-nova-green",
       "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
       "sub_category": "Gem Nova Green",
-      "tags": [
-        "1_of_1"
-      ],
+      "tags": [],
       "is_series_rep": false,
       "edition_club": false
     },
@@ -3779,7 +3779,7 @@
         ]
       },
       "minted_at": "2026-06-21T05:35:47+00:00",
-      "is_1_of_1": true,
+      "is_1_of_1": false,
       "edition_size": 1,
       "award_category": "dalegend_line",
       "unclaimed_or_available": false,
@@ -3787,9 +3787,7 @@
       "source_created_collection": "dacat-dalegend-line",
       "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
       "sub_category": "DaLegend Line",
-      "tags": [
-        "1_of_1"
-      ],
+      "tags": [],
       "is_series_rep": false,
       "edition_club": false
     },

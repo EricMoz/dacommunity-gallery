@@ -696,13 +696,20 @@ def main():
                     h["ens_name"] = ens
 
         supply = len(nfts) or 1
-        is_1of1 = supply <= 5 or any("1/1" in str(t).lower() or "one of one" in str(t).lower() for t in nft.get("traits", []))
+        # True 1:1 only — never treat ≤5 editions as 1:1 (UI uses Ultra Rare / Rare tiers)
+        trait_says_1of1 = any(
+            "1/1" in str(t).lower() or "one of one" in str(t).lower() or "1 of 1" in str(t).lower()
+            for t in (nft.get("traits") or [])
+        )
+        is_1of1 = supply == 1 or trait_says_1of1
         if slug == "dagatoawards":
             supply = 1
             is_1of1 = True
         elif slug in EDITION_CLUB_SLUGS and total_minted and total_minted > 0:
             # e.g. DACAT 100 BILLION CLUB: 333 identical copies; holders exclude creator inventory
             supply = total_minted
+            is_1of1 = False
+        if supply > 1:
             is_1of1 = False
 
         category = get_sub_category("", name).lower().replace(" ", "_")

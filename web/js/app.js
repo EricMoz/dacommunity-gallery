@@ -183,6 +183,8 @@ var SORT_LABELS = {
   price_asc: "Price: Low to High",
   price_desc: "Price: High to Low",
   transfer_desc: "Recently Transferred",
+  rarity_desc: "Rarity: High to Low",
+  rarity_asc: "Rarity: Low to High",
 };
 
 let collectionsRegistry = null;
@@ -235,7 +237,8 @@ function itemCollectionLabel(item) {
  *  Returns null for the primary daCommunity / "all" so the default gallery_* URLs are used.
  */
 function getCollectionDataUrls(colId) {
-  if (!colId || colId === "all" || colId === "dacommunity") return null;
+  var id = colId === "all" ? "all" : normalizeCollectionId(colId || "");
+  if (!colId || colId === "all" || id === "dacommunity") return null;
   var list = (collectionsRegistry && collectionsRegistry.collections) || [];
   var col = list.find(function (c) { return c.id === colId; });
   // Hard fallbacks so a stale registry never drops secondary listings/activity files
@@ -920,12 +923,29 @@ function buildCollectorsFromIndex(idx) {
     });
 }
 
+/**
+ * Canonical collection ids used by the dropdown / ?collection= URLs.
+ * OpenSea / catalog meta still use slug "dacommunity-archive" — map that back so
+ * hub links (?collection=dacommunity) don't filter to an empty grid.
+ */
+function normalizeCollectionId(cid) {
+  if (cid == null || cid === "") return "dacommunity";
+  var id = String(cid).trim();
+  if (!id || id === "all") return "dacommunity";
+  if (id === "dacommunity-archive" || id === "dacommunity_archive") return "dacommunity";
+  return id;
+}
+
 /** Stamp missing collection_id. Never use "all" (breaks secondary vs archive splits). */
 function stampMissingCollectionId(items, preferredId) {
-  var cid = preferredId || "dacommunity";
-  if (!cid || cid === "all") cid = "dacommunity";
+  var cid = normalizeCollectionId(preferredId || "dacommunity");
   (items || []).forEach(function (item) {
-    if (!item.collection_id) item.collection_id = cid;
+    if (!item.collection_id) {
+      item.collection_id = cid;
+    } else {
+      // Repair legacy / catalog-slug stamps so archive filter matches hub links
+      item.collection_id = normalizeCollectionId(item.collection_id);
+    }
   });
 }
 
@@ -1817,10 +1837,10 @@ function rebuildCollectorsForCurrentView() {
     // collection from item owners (badges / BIG KIX / Agency). Sum uniques + copies.
     var allItems = (galleryData && galleryData.items) || [];
     var secondaryItems = allItems.filter(function (i) {
-      return (i.collection_id || "dacommunity") !== "dacommunity";
+      return normalizeCollectionId(i.collection_id || "dacommunity") !== "dacommunity";
     });
     var dacomItems = allItems.filter(function (i) {
-      return (i.collection_id || "dacommunity") === "dacommunity";
+      return normalizeCollectionId(i.collection_id || "dacommunity") === "dacommunity";
     });
     var dacomCols = [];
     if (walletIndex && (walletIndex.by_address || walletIndex.collectors)) {
@@ -1979,30 +1999,92 @@ function formatPieceTitleHtml(title) {
   return escapeHtml(t);
 }
 
-/** Normalize rarity label from item.rarity or traits (Detective Agency).
- *  HATS n' daCATs are true 1:1s with no rarity tiers — show "1:1" only. */
+/**
+ * Circulating supply from live owner stats (same numbers shown on detail chips).
+ * Prefer owners.circulating_copies; fall back to holder qty sum / edition_size.
+ */
+function effectiveCirculatingCopies(item) {
+  if (!item) return null;
+  var owners = item.owners || {};
+  if (owners.circulating_copies != null && owners.circulating_copies !== "") {
+    var n = Number(owners.circulating_copies);
+    if (!isNaN(n) && n >= 0) return n;
+  }
+  var holders = resolveHoldersList(item);
+  if (holders.length) {
+    var sum = 0;
+    holders.forEach(function (h) {
+      var q = parseInt(h.quantity, 10);
+      sum += isNaN(q) ? 1 : q;
+    });
+    if (sum > 0) return sum;
+  }
+  if (item.edition_size != null && item.edition_size !== "") {
+    var e = Number(item.edition_size);
+    if (!isNaN(e) && e > 0) return e;
+  }
+  if (owners.holder_count != null && owners.holder_count !== "") {
+    var h = Number(owners.holder_count);
+    if (!isNaN(h) && h >= 0) return h;
+  }
+  return null;
+}
+
+/** Normalize Agency rarity trait / field strings. */
+function normalizeAgencyRarityLabel(raw) {
+  if (raw == null || raw === "") return null;
+  var s = String(raw).trim();
+  var key = s.toLowerCase().replace(/\s+/g, "");
+  if (key === "1:1" || key === "1of1" || key === "1/1" || key === "oneofone") return "1:1";
+  if (key === "common") return "Common";
+  if (key === "uncommon") return "Uncommon";
+  if (key === "epic") return "Epic";
+  if (key === "legendary") return "Legendary";
+  return s;
+}
+
+/**
+ * Rarity label for badges / gallery cards / detail.
+ * - HATS n' daCATs: always true 1:1 (owner or steward).
+ * - Detective Agency: authored trait rarity (Common → Legendary → 1:1).
+ * - BIG KIX: no supply rarity tags (large steward inventories / ~333 editions).
+ * - Badges + daCommunity archive: live supply tiers from website stats —
+ *     1 copy → 1:1 · ≤5 → Ultra Rare · ≤10 → Rare.
+ * Stale is_1_of_1 flags are ignored when circulating supply contradicts them.
+ */
 function itemRarityLabel(item) {
   if (!item) return null;
-  // Explicit 1:1 flag (HATS n' daCATs and similar) — never invent tier names
-  if (item.is_1_of_1 && (item.collection_id || "") === "hats-n-dacats") {
-    return "1:1";
-  }
-  if (item.rarity) return String(item.rarity);
-  var traits = item.traits || [];
-  for (var i = 0; i < traits.length; i++) {
-    var tt = (traits[i].trait_type || "").toLowerCase();
-    if (tt === "rarity" && traits[i].value) {
-      var raw = String(traits[i].value).trim();
-      var key = raw.toLowerCase();
-      if (key === "1 of 1" || key === "1of1" || key === "one of one") return "1:1";
-      if (key === "common") return "Common";
-      if (key === "uncommon") return "Uncommon";
-      if (key === "epic") return "Epic";
-      if (key === "legendary") return "Legendary";
-      return raw;
+  var cid = item.collection_id || "";
+
+  // HATS: every piece is a unique 1:1 by design
+  if (cid === "hats-n-dacats") return "1:1";
+
+  // BIG KIX: skip supply tiers — creator still holds large stacks of most editions
+  if (cid === "bigkix") return null;
+
+  // Agency: keep trait / rarity field (supply tiers would mislabel Legendary editions)
+  if (cid === "dagato-agency" || isAgencyRaritySeries(item)) {
+    if (item.rarity) return normalizeAgencyRarityLabel(item.rarity);
+    var traits = item.traits || [];
+    for (var i = 0; i < traits.length; i++) {
+      var tt = (traits[i].trait_type || "").toLowerCase();
+      if (tt === "rarity" && traits[i].value) {
+        return normalizeAgencyRarityLabel(traits[i].value);
+      }
     }
+    return null;
   }
-  if (item.is_1_of_1) return "1:1";
+
+  // Supply-based tiers (badges, daCommunity, etc.) from holder/copy stats on the piece
+  var copies = effectiveCirculatingCopies(item);
+  if (copies != null) {
+    if (copies <= 1) return "1:1";
+    if (copies <= 5) return "Ultra Rare";
+    if (copies <= 10) return "Rare";
+    return null;
+  }
+
+  // No owner stats yet — never invent 1:1 from a stale catalog flag
   return null;
 }
 
@@ -2095,7 +2177,9 @@ function formatTraitChipsHtml(item, maxN) {
 function rarityBadgeClass(label) {
   if (!label) return "";
   var k = String(label).toLowerCase().replace(/\s+/g, "");
-  if (k === "1:1" || k === "1of1") return "rarity-badge-1of1";
+  if (k === "1:1" || k === "1of1" || k === "1/1") return "rarity-badge-1of1";
+  if (k === "ultrarare") return "rarity-badge-ultra-rare";
+  if (k === "rare") return "rarity-badge-rare";
   if (k === "common") return "rarity-badge-common";
   if (k === "uncommon") return "rarity-badge-uncommon";
   if (k === "epic") return "rarity-badge-epic";
@@ -2461,7 +2545,11 @@ function parseBrowseParamsFromUrl() {
   var params = new URLSearchParams(window.location.search);
   var col = params.get("collection") || params.get("col");
   // Keep "dacommunity" (not only badges/bigkix) so hub cards land on a real scoped archive
-  if (col) activeCollection = col;
+  if (col) {
+    // "all" stays all; archive slug aliases → dacommunity
+    activeCollection =
+      col === "all" ? "all" : normalizeCollectionId(col) || col;
+  }
   var f = params.get("filter");
   if (f && FILTER_LABELS[f]) activeFilter = f;
   var s = params.get("sort");
@@ -2516,21 +2604,34 @@ function currentNavSnapshot(view) {
     hints.wallet ||
     null;
   var piece = activeDetailTokenId || hints.piece || null;
-  // activeCollection defaults to "all" — if still default and URL has collection, keep URL
-  var collection =
-    activeCollection && (navUrlParsed || activeCollection !== "all")
-      ? activeCollection
-      : hints.collection || activeCollection || "all";
+  // After URL parse, trust live UI — including cleared search / All collections.
+  // Falling back to hints.q when searchQuery=="" re-stuck ?q= after Clear filters.
+  var collection;
+  var q;
+  var filter;
+  var sort;
+  if (navUrlParsed) {
+    collection = activeCollection || "all";
+    q = searchQuery || "";
+    filter = activeFilter || "all";
+    sort = sortKey || "token_desc";
+  } else {
+    collection =
+      activeCollection && activeCollection !== "all"
+        ? activeCollection
+        : hints.collection || activeCollection || "all";
+    q = searchQuery || hints.q || "";
+    filter =
+      activeFilter && activeFilter !== "all"
+        ? activeFilter
+        : hints.filter || activeFilter || "all";
+    sort =
+      sortKey && sortKey !== "token_desc"
+        ? sortKey
+        : hints.sort || sortKey || "token_desc";
+  }
   if (!collection) collection = "all";
-  var q = searchQuery || hints.q || "";
-  var filter =
-    activeFilter && (navUrlParsed || activeFilter !== "all")
-      ? activeFilter
-      : hints.filter || activeFilter || "all";
-  var sort =
-    sortKey && (navUrlParsed || sortKey !== "token_desc")
-      ? sortKey
-      : hints.sort || sortKey || "token_desc";
+  if (collection !== "all") collection = normalizeCollectionId(collection);
 
   var v = view;
   if (!v) {
@@ -3813,8 +3914,9 @@ function getCollectorsRankingList(colId) {
   }
   var items = (galleryData && galleryData.items) || [];
   if (colId && colId !== "all") {
+    var wantCol = normalizeCollectionId(colId);
     items = items.filter(function (i) {
-      return (i.collection_id || "dacommunity") === colId;
+      return normalizeCollectionId(i.collection_id || "dacommunity") === wantCol;
     });
   }
   if (colId === "badges") return buildCollectorsFromBadgeItems(items);
@@ -5282,7 +5384,10 @@ function itemLatestMovementAt(item) {
   return null;
 }
 
-/** Any activity timestamp including mint (fallback for newest-mint sorting). */
+/**
+ * Latest activity timestamp including mint (detail “latest change” fallback).
+ * Not used for Newest sort — that uses itemMintTimeMs (first mint / release).
+ */
 function itemLatestTransferAt(item) {
   var move = itemLatestMovementAt(item);
   if (move) return move;
@@ -5548,36 +5653,41 @@ function hatsSeriesNumber(item) {
 }
 
 /**
- * Sort timestamp for Newest/Oldest.
- * Prefer last sale/transfer (piece moved), then latest_change, then minted_at.
- * Undated HATS get a batch anchor only as a last resort.
+ * First-mint / release timestamp for Newest + Oldest.
+ * Uses minted_at only (not last sale/transfer) so release order stays distinct
+ * from "Recently Transferred".
  */
-function itemSortTimeMs(item) {
+function itemMintTimeMs(item) {
   if (!item) return 0;
-  var move = itemLatestMovementAt(item);
-  if (move) {
-    var tm = Date.parse(move) || 0;
-    if (tm) return tm;
-  }
-  var lc = item.owners && item.owners.latest_change && item.owners.latest_change.at;
-  if (lc) {
-    var tl = Date.parse(lc) || 0;
-    if (tl) return tl;
-  }
   var mint = Date.parse(item.minted_at || 0) || 0;
   if (mint) return mint;
-  if ((item.collection_id || "") === "hats-n-dacats") {
-    var base = Date.parse("2026-08-12T12:00:00.000Z") || 0;
+  // Earliest on-chain mint event if catalog mint stamp is missing
+  var rows = (item.recent_activity || []).slice();
+  var earliest = 0;
+  for (var i = 0; i < rows.length; i++) {
+    var r = rows[i];
+    if (!r || r.type !== "mint" || !r.at) continue;
+    var t = Date.parse(r.at) || 0;
+    if (t && (!earliest || t < earliest)) earliest = t;
+  }
+  if (earliest) return earliest;
+  // Undated HATS: stable series-order anchor (release wave), not transfer time
+  if (normalizeCollectionId(item.collection_id || "") === "hats-n-dacats") {
+    var base = Date.parse("2026-08-02T00:00:00.000Z") || 0;
     var series = hatsSeriesNumber(item) || 0;
     return base + series * 60000;
   }
   return 0;
 }
 
+/** @deprecated Use itemMintTimeMs — kept as alias for any lingering callers. */
+function itemSortTimeMs(item) {
+  return itemMintTimeMs(item);
+}
+
 /**
  * When viewing a wallet: time this address acquired the piece (sale/transfer/mint to them).
- * Falls back to general activity/mint time so Newest in portfolio reflects ownership, not
- * only original mint (Agency Vol 2 mint vs later HATS purchase).
+ * Falls back to first-mint so undated rows still sort stably.
  */
 function itemAcquiredAtMs(item, viewerAddr) {
   if (!item) return 0;
@@ -5594,13 +5704,33 @@ function itemAcquiredAtMs(item, viewerAddr) {
       }
     }
   }
-  return itemSortTimeMs(item);
+  return itemMintTimeMs(item);
 }
 
-/** Tie-break after equal timestamps. */
+/**
+ * Numeric rarity weight for sort (higher = rarer).
+ * Aligns Agency traits + supply tiers (1:1 / Ultra Rare / Rare).
+ */
+function itemRaritySortRank(item) {
+  var label = itemRarityLabel(item);
+  if (!label) return 0;
+  var k = String(label)
+    .toLowerCase()
+    .replace(/\s+/g, "");
+  if (k === "1:1" || k === "1of1" || k === "1/1") return 100;
+  if (k === "ultrarare") return 90;
+  if (k === "legendary") return 80;
+  if (k === "rare") return 70;
+  if (k === "epic") return 60;
+  if (k === "uncommon") return 40;
+  if (k === "common") return 20;
+  return 10;
+}
+
+/** Tie-break after equal primary sort keys. */
 function compareItemsTieBreak(a, b, newestFirst) {
-  var cidA = a.collection_id || "dacommunity";
-  var cidB = b.collection_id || "dacommunity";
+  var cidA = normalizeCollectionId(a.collection_id || "dacommunity");
+  var cidB = normalizeCollectionId(b.collection_id || "dacommunity");
   if (cidA === "hats-n-dacats" && cidB === "hats-n-dacats") {
     var sa = hatsSeriesNumber(a);
     var sb = hatsSeriesNumber(b);
@@ -5608,6 +5738,10 @@ function compareItemsTieBreak(a, b, newestFirst) {
       return newestFirst ? sb - sa : sa - sb;
     }
   }
+  // Prefer mint time as secondary so equal-price / equal-rarity still feels release-ordered
+  var ma = itemMintTimeMs(a);
+  var mb = itemMintTimeMs(b);
+  if (ma !== mb) return newestFirst ? mb - ma : ma - mb;
   var idA = Number(a.token_id);
   var idB = Number(b.token_id);
   if (!isNaN(idA) && !isNaN(idB) && idA !== idB) {
@@ -5619,8 +5753,19 @@ function compareItemsTieBreak(a, b, newestFirst) {
 }
 
 function compareItems(a, b) {
-  // Agency rarity series (browse grid only): Vol then rank — only when BOTH are series rows
-  if (isAgencyRaritySeries(a) && isAgencyRaritySeries(b)) {
+  var key = sortKey || "token_desc";
+  var viewer =
+    galleryCollectorView && galleryCollectorView.address
+      ? galleryCollectorView.address
+      : "";
+
+  // Agency rarity series (browse grid): keep Vol → rank card order for mint sorts only.
+  // Other sorts (rarity / price / transfers) should honor the selected key.
+  if (
+    (key === "token_desc" || key === "token_asc") &&
+    isAgencyRaritySeries(a) &&
+    isAgencyRaritySeries(b)
+  ) {
     var va = Number(a.volume) || 1;
     var vb = Number(b.volume) || 1;
     if (va !== vb) return va - vb;
@@ -5629,17 +5774,12 @@ function compareItems(a, b) {
       if (ra !== 0) return ra;
     }
   }
-  var key = sortKey || "token_desc";
-  var viewer =
-    galleryCollectorView && galleryCollectorView.address
-      ? galleryCollectorView.address
-      : "";
 
   if (key === "token_desc" || key === "token_asc") {
     var newestFirst = key === "token_desc";
-    // Wallet: acquisition by this address; archive: last move / mint
-    var da = viewer ? itemAcquiredAtMs(a, viewer) : itemSortTimeMs(a);
-    var db = viewer ? itemAcquiredAtMs(b, viewer) : itemSortTimeMs(b);
+    // Archive: first-mint / release date. Wallet: when this address acquired it.
+    var da = viewer ? itemAcquiredAtMs(a, viewer) : itemMintTimeMs(a);
+    var db = viewer ? itemAcquiredAtMs(b, viewer) : itemMintTimeMs(b);
     if (da !== db) return newestFirst ? db - da : da - db;
     return compareItemsTieBreak(a, b, newestFirst);
   }
@@ -5656,18 +5796,24 @@ function compareItems(a, b) {
     return compareItemsTieBreak(a, b, true);
   }
   if (key === "transfer_desc") {
-    // Real sales/transfers only — mint-only pieces sink (use Newest for mint age)
+    // Real sales/transfers only — mint-only pieces sink (use Newest for release date)
     var ta = Date.parse(itemLatestMovementAt(a) || 0) || 0;
     var tb = Date.parse(itemLatestMovementAt(b) || 0) || 0;
     if (viewer) {
-      // Prefer when this wallet was involved in the move
       var aa = itemAcquiredAtMs(a, viewer);
       var ab = itemAcquiredAtMs(b, viewer);
-      // If acquisition came from a sale/transfer (not mint-only fallback), prefer it
       if (aa && itemLatestMovementAt(a)) ta = Math.max(ta, aa);
       if (ab && itemLatestMovementAt(b)) tb = Math.max(tb, ab);
     }
     if (tb !== ta) return tb - ta;
+    // No movement: stable mint-order sink (older mints first among never-moved)
+    if (!ta && !tb) return compareItemsTieBreak(a, b, false);
+    return compareItemsTieBreak(a, b, true);
+  }
+  if (key === "rarity_desc" || key === "rarity_asc") {
+    var raR = itemRaritySortRank(a);
+    var rbR = itemRaritySortRank(b);
+    if (raR !== rbR) return key === "rarity_desc" ? rbR - raR : raR - rbR;
     return compareItemsTieBreak(a, b, true);
   }
   return compareItemsTieBreak(a, b, true);
@@ -5757,8 +5903,9 @@ function getFilteredItems() {
   // vs the same listed pieces under All collections.
   var qSearch = (searchQuery || "").trim();
   if (activeCollection && activeCollection !== "all") {
+    var wantCol = normalizeCollectionId(activeCollection);
     items = items.filter(function (i) {
-      return (i.collection_id || "dacommunity") === activeCollection;
+      return normalizeCollectionId(i.collection_id || "dacommunity") === wantCol;
     });
   }
   if (activeFilter === "listed") items = items.filter(function (i) { return isItemListed(i); });
@@ -5836,24 +5983,20 @@ function resetBrowseView() {
   activeFilter = "all";
   searchQuery = "";
   sortKey = "token_desc";
+  activeCollection = "all";
   var search = $("#search");
   var sort = $("#sort-select");
+  var colSel = $("#collection-select");
   if (search) search.value = "";
   if (sort) sort.value = "token_desc";
+  if (colSel) colSel.value = "all";
   document.querySelectorAll(".filter").forEach(function (btn) {
     var on = btn.dataset.filter === "all";
     btn.classList.toggle("active", on);
     btn.setAttribute("aria-selected", on ? "true" : "false");
   });
-  // Always reload multi-collection data (no temp activeCollection race)
+  // Reload multi-collection data; loadCollectionScope → syncBrowseParamsToUrl drops q/collection
   loadCollectionScope("all");
-  try {
-    var params = new URLSearchParams(window.location.search);
-    params.delete("collection");
-    var qs = params.toString();
-    var newUrl = window.location.pathname + (qs ? "?" + qs : "");
-    history.replaceState(null, "", newUrl);
-  } catch (e) {}
 }
 
 function renderBrowseMeta(filtered, total) {
@@ -6526,13 +6669,12 @@ function openDetail(item, opts) {
     });
   }
   if (item.owners) {
-    var oc = item.owners;
     chips.push('<span class="chip"><strong>' + effectiveHolderCount(item) + "</strong> holders</span>");
-    var circ = (oc.circulating_copies != null ? oc.circulating_copies : (oc.holder_count || 0));
-    // True 1:1s: avoid redundant "1 copies" noise; still show when multi
-    if (item.is_1_of_1 && circ <= 1) {
+    var circ = effectiveCirculatingCopies(item);
+    // True 1:1s (1 circulating copy): avoid redundant "1 copies" noise
+    if (circ != null && circ <= 1) {
       chips.push('<span class="chip">Unique 1:1</span>');
-    } else {
+    } else if (circ != null) {
       chips.push('<span class="chip"><strong>' + circ + "</strong> copies</span>");
     }
   }
@@ -6669,19 +6811,23 @@ function galleryHasCollectionItems(colId) {
     var hasDacom = false;
     var hasSecondary = false;
     items.forEach(function (i) {
-      var c = i.collection_id || "dacommunity";
+      var c = normalizeCollectionId(i.collection_id || "dacommunity");
       if (c === "dacommunity") hasDacom = true;
       else hasSecondary = true;
     });
     return hasDacom;
   }
-  if (colId === "dacommunity") {
+  var want = normalizeCollectionId(colId);
+  if (want === "dacommunity") {
     return items.some(function (i) {
-      return (i.collection_id || "dacommunity") === "dacommunity" && !i.source_created_collection;
+      return (
+        normalizeCollectionId(i.collection_id || "dacommunity") === "dacommunity" &&
+        !i.source_created_collection
+      );
     });
   }
   return items.some(function (i) {
-    return (i.collection_id || "") === colId;
+    return normalizeCollectionId(i.collection_id || "") === want;
   });
 }
 
@@ -6780,12 +6926,8 @@ async function loadCollectionScope(newCol) {
       var mainData = await loadCatalogFirst();
       if (!stillCurrent()) return;
       galleryData = mainData;
-      stampMissingCollectionId(
-        galleryData.items,
-        (galleryData.collection &&
-          (galleryData.collection.id || galleryData.collection.slug)) ||
-          "dacommunity"
-      );
+      // Always stamp archive as "dacommunity" (catalog meta slug is dacommunity-archive)
+      stampMissingCollectionId(galleryData.items, "dacommunity");
       dataSource =
         galleryData.source === "gallery_catalog" ? "catalog" : "full";
       indexItems(galleryData);
@@ -7026,10 +7168,13 @@ function bootGallery(data) {
   // Tag items with collection_id for multi-collection filtering (never "all")
   if (galleryData && Array.isArray(galleryData.items)) {
     var cid =
-      activeCollection ||
-      (galleryData.collection && galleryData.collection.id) ||
-      (galleryData.collection && galleryData.collection.slug) ||
-      "dacommunity";
+      activeCollection && activeCollection !== "all"
+        ? activeCollection
+        : "dacommunity";
+    // Primary archive catalog meta slug is "dacommunity-archive" — never stamp that
+    if (!cid || cid === "dacommunity" || normalizeCollectionId(cid) === "dacommunity") {
+      cid = "dacommunity";
+    }
     stampMissingCollectionId(galleryData.items, cid);
   }
   indexItems(galleryData);

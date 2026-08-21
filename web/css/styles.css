@@ -1027,10 +1027,12 @@ button.stat:focus-visible {
 .holding-card-meta {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.35rem;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 0.28rem 0.35rem;
   font-size: 0.72rem;
   font-weight: 700;
+  min-width: 0;
 }
 
 .holding-card .thumb-video-badge {
@@ -7883,10 +7885,15 @@ body.has-collector-view .collector-theater-vignette {
   box-shadow: 2px 2px 0 rgba(20, 83, 45, 0.85);
 }
 
-/* Rarity tags — Detective Agency case files */
+/* Rarity tags — Agency traits + supply tiers (1:1 / Ultra Rare / Rare) */
 .rarity-badge {
   display: inline-flex;
   align-items: center;
+  flex-shrink: 1;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   padding: 0.14rem 0.48rem;
   border-radius: 4px;
   font-size: 0.62rem;
@@ -7923,6 +7930,23 @@ body.has-collector-view .collector-theater-vignette {
   box-shadow: 0 0 10px rgba(251, 191, 36, 0.35);
 }
 
+/* Supply tier: ≤10 copies — cobalt, quieter than Ultra Rare */
+.rarity-badge-rare {
+  color: #eff6ff;
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
+  border-color: #1e40af;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.3);
+}
+
+/* Supply tier: ≤5 copies — ice cyan, sits above Rare / below 1:1 */
+.rarity-badge-ultra-rare {
+  color: #ecfeff;
+  background: linear-gradient(135deg, #155e75 0%, #0891b2 45%, #22d3ee 100%);
+  border-color: #0e7490;
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.38);
+}
+
+/* True unique — rose, strongest exclusivity cue */
 .rarity-badge-1of1 {
   color: #fff7ed;
   background: linear-gradient(135deg, #9f1239 0%, #e11d48 45%, #f43f5e 100%);
@@ -8016,7 +8040,30 @@ body.has-collector-view .gallery-row .piece-title-hat .piece-prefix {
 }
 
 .holding-card-meta .rarity-badge {
-  margin-left: 0.15rem;
+  margin-left: 0;
+}
+
+/* Longer labels (Ultra Rare) — shrink on dense portfolio / mobile grids like badge-listed */
+@media (max-width: 900px) {
+  .rarity-badge {
+    font-size: clamp(0.5rem, 1.8vw, 0.62rem);
+    padding: 0.1rem 0.36rem;
+    letter-spacing: 0.04em;
+  }
+
+  body.has-collector-view .holding-card--cinema .rarity-badge {
+    font-size: clamp(0.46rem, 2vw, 0.56rem);
+    padding: 0.08rem 0.28rem;
+    max-width: 7.5em;
+  }
+}
+
+@media (max-width: 600px) {
+  .gallery-side .rarity-badge {
+    font-size: clamp(0.5rem, 2.4vw, 0.58rem);
+    padding: 0.1rem 0.32rem;
+    margin-top: 0.18rem;
+  }
 }
 
 .collector-profile-ranks {
