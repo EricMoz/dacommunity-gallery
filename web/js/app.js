@@ -5727,6 +5727,51 @@ function itemRaritySortRank(item) {
   return 10;
 }
 
+/** Circulating copies for rarity secondary sort (null if unknown / incomplete). */
+function itemSortCopyCount(item) {
+  var c = effectiveCirculatingCopies(item);
+  if (c == null || c === "") return null;
+  var n = Number(c);
+  // 0 often means steward-only / laggy stats — don't let it beat real supply counts
+  if (isNaN(n) || n <= 0) return null;
+  return n;
+}
+
+/**
+ * Token ordinal for stable sorts.
+ * Prefers Agency token_rank; otherwise numeric token_id.
+ * Token 0 (common badge series-rep id) always sorts last so it doesn't leapfrog real #1s.
+ */
+function itemTokenSortOrdinal(item) {
+  if (!item) return Number.MAX_SAFE_INTEGER - 1;
+  if (item.token_rank != null && item.token_rank !== "") {
+    var tr = Number(item.token_rank);
+    if (!isNaN(tr)) return tr === 0 ? Number.MAX_SAFE_INTEGER : tr;
+  }
+  var raw = item.token_id;
+  if (raw === "" || raw == null) return Number.MAX_SAFE_INTEGER - 1;
+  var id = Number(raw);
+  if (isNaN(id)) return Number.MAX_SAFE_INTEGER - 1;
+  if (id === 0) return Number.MAX_SAFE_INTEGER;
+  return id;
+}
+
+/**
+ * Compare by token rank / id. lowFirst=true → #1 before #2, with #0 last.
+ * lowFirst=false → higher ids first, still keeping #0 last.
+ */
+function compareTokenOrdinal(a, b, lowFirst) {
+  var oa = itemTokenSortOrdinal(a);
+  var ob = itemTokenSortOrdinal(b);
+  if (oa === ob) return 0;
+  // Both non-sentinel: normal order
+  var aLast = oa === Number.MAX_SAFE_INTEGER;
+  var bLast = ob === Number.MAX_SAFE_INTEGER;
+  if (aLast && !bLast) return 1;
+  if (bLast && !aLast) return -1;
+  return lowFirst ? oa - ob : ob - oa;
+}
+
 /** Tie-break after equal primary sort keys. */
 function compareItemsTieBreak(a, b, newestFirst) {
   var cidA = normalizeCollectionId(a.collection_id || "dacommunity");
@@ -5738,15 +5783,46 @@ function compareItemsTieBreak(a, b, newestFirst) {
       return newestFirst ? sb - sa : sa - sb;
     }
   }
-  // Prefer mint time as secondary so equal-price / equal-rarity still feels release-ordered
+  // Prefer mint time as secondary so equal-price still feels release-ordered
   var ma = itemMintTimeMs(a);
   var mb = itemMintTimeMs(b);
   if (ma !== mb) return newestFirst ? mb - ma : ma - mb;
-  var idA = Number(a.token_id);
-  var idB = Number(b.token_id);
-  if (!isNaN(idA) && !isNaN(idB) && idA !== idB) {
-    return newestFirst ? idB - idA : idA - idB;
+  // Token rank / id — #0 always last (badge series reps)
+  var tok = compareTokenOrdinal(a, b, !newestFirst);
+  if (tok !== 0) return tok;
+  return String(itemTitle(a) || "").localeCompare(String(itemTitle(b) || ""), undefined, {
+    sensitivity: "base",
+  });
+}
+
+/**
+ * Rarity sort tie-break: same tag → fewer copies first (when high→low),
+ * then token rank (#0 last).
+ */
+function compareRarityTieBreak(a, b, highFirst) {
+  var ca = itemSortCopyCount(a);
+  var cb = itemSortCopyCount(b);
+  if (ca != null && cb != null && ca !== cb) {
+    // High rarity first → lower supply first; low→high flips
+    return highFirst ? ca - cb : cb - ca;
   }
+  // Known supply before unknown when sorting rarest-first
+  if (ca != null && cb == null) return highFirst ? -1 : 1;
+  if (cb != null && ca == null) return highFirst ? 1 : -1;
+
+  var cidA = normalizeCollectionId(a.collection_id || "dacommunity");
+  var cidB = normalizeCollectionId(b.collection_id || "dacommunity");
+  if (cidA === "hats-n-dacats" && cidB === "hats-n-dacats") {
+    var sa = hatsSeriesNumber(a);
+    var sb = hatsSeriesNumber(b);
+    if (sa != null && sb != null && sa !== sb) {
+      return highFirst ? sa - sb : sb - sa;
+    }
+  }
+
+  // Token rank takes precedence on ties — #0 last
+  var tok = compareTokenOrdinal(a, b, true);
+  if (tok !== 0) return tok;
   return String(itemTitle(a) || "").localeCompare(String(itemTitle(b) || ""), undefined, {
     sensitivity: "base",
   });
@@ -5811,10 +5887,12 @@ function compareItems(a, b) {
     return compareItemsTieBreak(a, b, true);
   }
   if (key === "rarity_desc" || key === "rarity_asc") {
+    var highFirst = key === "rarity_desc";
     var raR = itemRaritySortRank(a);
     var rbR = itemRaritySortRank(b);
-    if (raR !== rbR) return key === "rarity_desc" ? rbR - raR : raR - rbR;
-    return compareItemsTieBreak(a, b, true);
+    if (raR !== rbR) return highFirst ? rbR - raR : raR - rbR;
+    // Same rarity tag (or both untagged): copy count, then token rank (#0 last)
+    return compareRarityTieBreak(a, b, highFirst);
   }
   return compareItemsTieBreak(a, b, true);
 }
