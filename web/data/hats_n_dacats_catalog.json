@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-21T08:39:34.514766+00:00",
+  "generated_at": "2026-08-22T08:28:11.143719+00:00",
   "source": "hats_n_dacats_catalog",
   "collection": {
     "id": "hats-n-dacats",
@@ -9,10 +9,10 @@
     "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
     "chain": "ethereum",
     "opensea_url": "https://opensea.io/collection/hats-n-dacats",
-    "note": "True 1:1 hats on Ethereum. Max supply 333; released in waves (currently 33 minted). No rarity tiers — every hat stands on its own. Stewarded by hatsndacats.eth. Project mint wallet excluded from holder counts until a collector receives the piece.",
+    "note": "True 1:1 hats on Ethereum. Max supply 333; released in waves (currently 34 minted). No rarity tiers — every hat stands on its own. Stewarded by hatsndacats.eth. Project mint wallet excluded from holder counts until a collector receives the piece.",
     "description": "HATS n' daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and numbered, allowing collectors to choose the legend they connect with most. There are no rarity tiers—every hat stands on its own. Every hat has a story. Legends Wear Hats.",
     "max_supply": 333,
-    "batch_label": "Batch 01",
+    "batch_label": null,
     "creator_ens": "hatsndacats.eth",
     "creator_wallet": {
       "address": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
@@ -25,12 +25,79 @@
     "floor_symbol": "ETH",
     "num_owners": 19,
     "total_sales": 17,
-    "total_volume": 0.3060000000000002,
-    "piece_count": 33,
+    "total_volume": 0.30603645281344755,
+    "piece_count": 34,
     "listed_count": 1,
-    "one_of_ones": 33
+    "one_of_ones": 34
   },
   "items": [
+    {
+      "token_id": "39",
+      "name": "#039 - PS#001 - Bat daCAT",
+      "display_name": "#039 - PS#001 - Bat daCAT",
+      "local_slug": "hat-039-ps-001-bat-dacat",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/57975f122d3f0ab8a5eff57db8895b/4b57975f122d3f0ab8a5eff57db8895b.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/39",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/57975f122d3f0ab8a5eff57db8895b/4b57975f122d3f0ab8a5eff57db8895b.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-08-21T23:39:11+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-08-21T23:39:11+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Gear",
+          "value": "Wings"
+        },
+        {
+          "trait_type": "Theme",
+          "value": "Costume"
+        },
+        {
+          "trait_type": "Gear Name",
+          "value": "Bat Wings"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Pre-Production Batch 01"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Bat Cowl"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-08-21T23:39:11+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
     {
       "token_id": "38",
       "name": "#033 - daCAT World Cap",
