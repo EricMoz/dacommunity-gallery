@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-22T08:28:11.143719+00:00",
+  "generated_at": "2026-08-23T08:29:08.359740+00:00",
   "source": "hats_n_dacats_catalog",
   "collection": {
     "id": "hats-n-dacats",
@@ -23,9 +23,9 @@
     "contract_name": "HATS n' daCATs",
     "floor_eth": 0.05,
     "floor_symbol": "ETH",
-    "num_owners": 19,
+    "num_owners": 20,
     "total_sales": 17,
-    "total_volume": 0.30603645281344755,
+    "total_volume": 0.3060000000000002,
     "piece_count": 34,
     "listed_count": 1,
     "one_of_ones": 34
@@ -44,16 +44,26 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": [],
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x8007b7bf39189e8e67cc2d72d37b9827849ed70c",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x8007b7bf39189e8e67cc2d72d37b9827849ed70c",
+            "quantity": 1
+          }
+        ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "mint",
-          "at": "2026-08-21T23:39:11+00:00",
-          "from": null,
-          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "type": "sale",
+          "at": "2026-08-22T10:55:59+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0x8007b7bf39189e8e67cc2d72d37b9827849ed70c",
           "quantity": 1
         }
       },
@@ -89,6 +99,21 @@
       "is_1_of_1": true,
       "edition_size": 1,
       "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-08-22T10:55:59+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0x8007b7bf39189e8e67cc2d72d37b9827849ed70c",
+          "quantity": 1,
+          "price_eth": 0.014
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-22T10:55:59+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0x8007b7bf39189e8e67cc2d72d37b9827849ed70c",
+          "quantity": 1
+        },
         {
           "type": "mint",
           "at": "2026-08-21T23:39:11+00:00",

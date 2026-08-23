@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-22T08:28:11.143719+00:00",
+  "generated_at": "2026-08-23T08:29:08.359740+00:00",
   "source": "opensea_api_v2",
   "collection": {
     "id": "hats-n-dacats",
@@ -23,9 +23,9 @@
     "contract_name": "HATS n' daCATs",
     "floor_eth": 0.05,
     "floor_symbol": "ETH",
-    "num_owners": 19,
+    "num_owners": 20,
     "total_sales": 17,
-    "total_volume": 0.30603645281344755,
+    "total_volume": 0.3060000000000002,
     "piece_count": 34,
     "listed_count": 1,
     "one_of_ones": 34
@@ -43,7 +43,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/39",
       "metadata_url": "ipfs://bafybeib3pk3yeg3u76x7keo3hnqm56tvo25srrrhlq6ldmfqzwisqojzee/39",
-      "updated_at": "2026-08-22T08:25:53.167634",
+      "updated_at": "2026-08-23T08:26:50.385531",
       "traits": [
         {
           "trait_type": "Gear",
@@ -73,16 +73,26 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": [],
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x8007b7bf39189e8e67cc2d72d37b9827849ed70c",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x8007b7bf39189e8e67cc2d72d37b9827849ed70c",
+            "quantity": 1
+          }
+        ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "mint",
-          "at": "2026-08-21T23:39:11+00:00",
-          "from": null,
-          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "type": "sale",
+          "at": "2026-08-22T10:55:59+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0x8007b7bf39189e8e67cc2d72d37b9827849ed70c",
           "quantity": 1
         }
       },
@@ -95,6 +105,21 @@
       "opensea_name": "PS#001 - Bat daCAT",
       "minted_at": "2026-08-21T23:39:11+00:00",
       "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-08-22T10:55:59+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0x8007b7bf39189e8e67cc2d72d37b9827849ed70c",
+          "quantity": 1,
+          "price_eth": 0.014
+        },
+        {
+          "type": "transfer",
+          "at": "2026-08-22T10:55:59+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0x8007b7bf39189e8e67cc2d72d37b9827849ed70c",
+          "quantity": 1
+        },
         {
           "type": "mint",
           "at": "2026-08-21T23:39:11+00:00",
@@ -116,7 +141,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/38",
       "metadata_url": "ipfs://bafybeib3pk3yeg3u76x7keo3hnqm56tvo25srrrhlq6ldmfqzwisqojzee/38",
-      "updated_at": "2026-08-22T08:25:53.167645",
+      "updated_at": "2026-08-23T08:26:50.385541",
       "traits": [
         {
           "trait_type": "Theme",
@@ -205,7 +230,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/37",
       "metadata_url": "ipfs://bafybeig2zcymfskeks443gukkxc24gkxuev5kam3agr262iqezjtzhcrrq/37",
-      "updated_at": "2026-08-22T08:25:53.167652",
+      "updated_at": "2026-08-23T08:26:50.385548",
       "traits": [
         {
           "trait_type": "Theme",
@@ -294,7 +319,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/35",
       "metadata_url": "ipfs://bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/35",
-      "updated_at": "2026-08-22T08:25:53.167657",
+      "updated_at": "2026-08-23T08:26:50.385555",
       "traits": [
         {
           "trait_type": "Theme",
@@ -383,7 +408,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/33",
       "metadata_url": "ipfs://bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/33",
-      "updated_at": "2026-08-22T08:25:53.167663",
+      "updated_at": "2026-08-23T08:26:50.385561",
       "traits": [
         {
           "trait_type": "Theme",
@@ -479,7 +504,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/32",
       "metadata_url": "ipfs://bafybeig2zcymfskeks443gukkxc24gkxuev5kam3agr262iqezjtzhcrrq/32",
-      "updated_at": "2026-08-22T08:25:53.167669",
+      "updated_at": "2026-08-23T08:26:50.385568",
       "traits": [
         {
           "trait_type": "Theme",
@@ -568,7 +593,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/31",
       "metadata_url": "ipfs://bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/31",
-      "updated_at": "2026-08-22T08:25:53.167674",
+      "updated_at": "2026-08-23T08:26:50.385574",
       "traits": [
         {
           "trait_type": "Theme",
@@ -657,7 +682,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/30",
       "metadata_url": "ipfs://bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/30",
-      "updated_at": "2026-08-22T08:25:53.167680",
+      "updated_at": "2026-08-23T08:26:50.385581",
       "traits": [
         {
           "trait_type": "Theme",
@@ -746,7 +771,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/29",
       "metadata_url": "ipfs://bafybeib3pk3yeg3u76x7keo3hnqm56tvo25srrrhlq6ldmfqzwisqojzee/29",
-      "updated_at": "2026-08-22T08:25:53.167686",
+      "updated_at": "2026-08-23T08:26:50.385587",
       "traits": [
         {
           "trait_type": "Theme",
@@ -835,7 +860,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/28",
       "metadata_url": "ipfs://bafybeib3pk3yeg3u76x7keo3hnqm56tvo25srrrhlq6ldmfqzwisqojzee/28",
-      "updated_at": "2026-08-22T08:25:53.167692",
+      "updated_at": "2026-08-23T08:26:50.385594",
       "traits": [
         {
           "trait_type": "Theme",
@@ -924,7 +949,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/27",
       "metadata_url": "ipfs://bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/27",
-      "updated_at": "2026-08-22T08:25:53.167699",
+      "updated_at": "2026-08-23T08:26:50.385601",
       "traits": [
         {
           "trait_type": "Theme",
@@ -1013,7 +1038,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/26",
       "metadata_url": "ipfs://bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/26",
-      "updated_at": "2026-08-22T08:25:53.167705",
+      "updated_at": "2026-08-23T08:26:50.385607",
       "traits": [
         {
           "trait_type": "Theme",
@@ -1102,7 +1127,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/25",
       "metadata_url": "ipfs://bafybeib3pk3yeg3u76x7keo3hnqm56tvo25srrrhlq6ldmfqzwisqojzee/25",
-      "updated_at": "2026-08-22T08:25:53.167710",
+      "updated_at": "2026-08-23T08:26:50.385614",
       "traits": [
         {
           "trait_type": "Theme",
@@ -1191,7 +1216,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/24",
       "metadata_url": "ipfs://bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/24",
-      "updated_at": "2026-08-22T08:25:53.167716",
+      "updated_at": "2026-08-23T08:26:50.385620",
       "traits": [
         {
           "trait_type": "Theme",
@@ -1280,7 +1305,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/23",
       "metadata_url": "ipfs://bafybeib3pk3yeg3u76x7keo3hnqm56tvo25srrrhlq6ldmfqzwisqojzee/23",
-      "updated_at": "2026-08-22T08:25:53.167722",
+      "updated_at": "2026-08-23T08:26:50.385626",
       "traits": [
         {
           "trait_type": "Theme",
@@ -1369,7 +1394,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/22",
       "metadata_url": "ipfs://bafybeib3pk3yeg3u76x7keo3hnqm56tvo25srrrhlq6ldmfqzwisqojzee/22",
-      "updated_at": "2026-08-22T08:25:53.167727",
+      "updated_at": "2026-08-23T08:26:50.385634",
       "traits": [
         {
           "trait_type": "Theme",
@@ -1462,7 +1487,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/21",
       "metadata_url": "ipfs://bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/21",
-      "updated_at": "2026-08-22T08:25:53.167733",
+      "updated_at": "2026-08-23T08:26:50.385642",
       "traits": [
         {
           "trait_type": "Gear",
@@ -1566,7 +1591,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/20",
       "metadata_url": "ipfs://bafybeib3pk3yeg3u76x7keo3hnqm56tvo25srrrhlq6ldmfqzwisqojzee/20",
-      "updated_at": "2026-08-22T08:25:53.167739",
+      "updated_at": "2026-08-23T08:26:50.385653",
       "traits": [
         {
           "trait_type": "Theme",
@@ -1655,7 +1680,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/19",
       "metadata_url": "ipfs://bafybeib3pk3yeg3u76x7keo3hnqm56tvo25srrrhlq6ldmfqzwisqojzee/19",
-      "updated_at": "2026-08-22T08:25:53.167745",
+      "updated_at": "2026-08-23T08:26:50.385659",
       "traits": [
         {
           "trait_type": "Gear",
@@ -1752,7 +1777,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/18",
       "metadata_url": "ipfs://bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/18",
-      "updated_at": "2026-08-22T08:25:53.167750",
+      "updated_at": "2026-08-23T08:26:50.385665",
       "traits": [
         {
           "trait_type": "Theme",
@@ -1841,7 +1866,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/17",
       "metadata_url": "ipfs://bafybeib3pk3yeg3u76x7keo3hnqm56tvo25srrrhlq6ldmfqzwisqojzee/17",
-      "updated_at": "2026-08-22T08:25:53.167756",
+      "updated_at": "2026-08-23T08:26:50.385671",
       "traits": [
         {
           "trait_type": "Theme",
@@ -1930,7 +1955,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/16",
       "metadata_url": "ipfs://bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/16",
-      "updated_at": "2026-08-22T08:25:53.167761",
+      "updated_at": "2026-08-23T08:26:50.385678",
       "traits": [
         {
           "trait_type": "Theme",
@@ -2040,7 +2065,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/15",
       "metadata_url": "ipfs://bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/15",
-      "updated_at": "2026-08-22T08:25:53.167767",
+      "updated_at": "2026-08-23T08:26:50.385683",
       "traits": [
         {
           "trait_type": "Theme",
@@ -2129,7 +2154,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/13",
       "metadata_url": "ipfs://bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/13",
-      "updated_at": "2026-08-22T08:25:53.167772",
+      "updated_at": "2026-08-23T08:26:50.385689",
       "traits": [
         {
           "trait_type": "Theme",
@@ -2218,7 +2243,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/12",
       "metadata_url": "ipfs://bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/12",
-      "updated_at": "2026-08-22T08:25:53.167782",
+      "updated_at": "2026-08-23T08:26:50.385696",
       "traits": [
         {
           "trait_type": "Theme",
@@ -2307,7 +2332,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/11",
       "metadata_url": "ipfs://bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/11",
-      "updated_at": "2026-08-22T08:25:53.167788",
+      "updated_at": "2026-08-23T08:26:50.385703",
       "traits": [
         {
           "trait_type": "Theme",
@@ -2411,7 +2436,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/8",
       "metadata_url": "ipfs://bafybeib3pk3yeg3u76x7keo3hnqm56tvo25srrrhlq6ldmfqzwisqojzee/8",
-      "updated_at": "2026-08-22T08:25:53.167793",
+      "updated_at": "2026-08-23T08:26:50.385711",
       "traits": [
         {
           "trait_type": "Theme",
@@ -2500,7 +2525,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/7",
       "metadata_url": "ipfs://bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/7",
-      "updated_at": "2026-08-22T08:25:53.167798",
+      "updated_at": "2026-08-23T08:26:50.385719",
       "traits": [
         {
           "trait_type": "Theme",
@@ -2589,7 +2614,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/6",
       "metadata_url": "ipfs://bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/6",
-      "updated_at": "2026-08-22T08:25:53.167804",
+      "updated_at": "2026-08-23T08:26:50.385727",
       "traits": [
         {
           "trait_type": "Theme",
@@ -2678,7 +2703,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/5",
       "metadata_url": "ipfs://bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/5",
-      "updated_at": "2026-08-22T08:25:53.167810",
+      "updated_at": "2026-08-23T08:26:50.385735",
       "traits": [
         {
           "trait_type": "Theme",
@@ -2774,7 +2799,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/4",
       "metadata_url": "ipfs://bafybeig2zcymfskeks443gukkxc24gkxuev5kam3agr262iqezjtzhcrrq/4",
-      "updated_at": "2026-08-22T08:25:53.167816",
+      "updated_at": "2026-08-23T08:26:50.385743",
       "traits": [
         {
           "trait_type": "Theme",
@@ -2863,7 +2888,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/3",
       "metadata_url": "ipfs://bafybeig2zcymfskeks443gukkxc24gkxuev5kam3agr262iqezjtzhcrrq/3",
-      "updated_at": "2026-08-22T08:25:53.167822",
+      "updated_at": "2026-08-23T08:26:50.385750",
       "traits": [
         {
           "trait_type": "Gear",
@@ -2960,7 +2985,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/2",
       "metadata_url": "ipfs://bafybeig2zcymfskeks443gukkxc24gkxuev5kam3agr262iqezjtzhcrrq/2",
-      "updated_at": "2026-08-22T08:25:53.167827",
+      "updated_at": "2026-08-23T08:26:50.385756",
       "traits": [
         {
           "trait_type": "Theme",
@@ -3049,7 +3074,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/1",
       "metadata_url": "ipfs://bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/1",
-      "updated_at": "2026-08-22T08:25:53.167833",
+      "updated_at": "2026-08-23T08:26:50.385762",
       "traits": [
         {
           "trait_type": "Theme",
