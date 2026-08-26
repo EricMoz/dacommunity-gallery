@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-25T08:38:21.255841+00:00",
+  "generated_at": "2026-08-26T08:42:40.545095+00:00",
   "source": "opensea_api_v2",
   "collection": {
     "slug": "dacommunity-archive",
@@ -10,7 +10,11 @@
     "opensea_url": "https://opensea.io/collection/dacommunity-archive",
     "note": "Originally minted on Rodeo. Contract unchanged on Base; collection stewarded via dacatdreams.base.eth.",
     "creator_ens": "dacatdreams.base.eth",
-    "creator_wallet": null,
+    "creator_wallet": {
+      "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+      "username": null,
+      "ens_name": "dacatdreams.base.eth"
+    },
     "contract_name": "daCommunity Archive",
     "floor_eth": 0.0005,
     "floor_symbol": "ETH",
@@ -32,7 +36,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/65",
       "metadata_url": "ipfs://QmRRSQxYbJr6m7pfuu5f7Jo9gQ2zRvtZoAw9i6hFs7gFTu/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142528",
+      "updated_at": "2026-08-26T08:34:56.496884",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -154,7 +158,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/64",
       "metadata_url": "ipfs://QmYqd2qfHWenNHEHqgFnMoXM1hSnoKAaAVoE2U581RrwWX/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142540",
+      "updated_at": "2026-08-26T08:34:56.496895",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -217,7 +221,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/63",
       "metadata_url": "ipfs://QmVYMY5QdJYrb9aApvc2eVyRzNXHUsBHbuPii2Z9yATeAg/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142549",
+      "updated_at": "2026-08-26T08:34:56.496902",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -354,7 +358,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/62",
       "metadata_url": "ipfs://QmNNnA66RKZxiJRruhmrJXnk8fh3cHG94xH4YYEbZN9K2q/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142587",
+      "updated_at": "2026-08-26T08:34:56.496908",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -526,7 +530,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/61",
       "metadata_url": "ipfs://QmPmpjytDgg2jnuFb7shBsKSsgRsiLxDnq1VW5X5fb2V7Z/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142595",
+      "updated_at": "2026-08-26T08:34:56.496914",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -718,7 +722,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/60",
       "metadata_url": "ipfs://QmWhv3ddmxjQNq2d5fEEKGNgrNrpKnbNsypqVM27UEhwBz/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142603",
+      "updated_at": "2026-08-26T08:34:56.496919",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -876,7 +880,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/59",
       "metadata_url": "ipfs://QmTTrvxM8ZPPJXcyicueZer5dYoCyPD1BA4ySEfP5pymW2/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142611",
+      "updated_at": "2026-08-26T08:34:56.496925",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1028,7 +1032,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/58",
       "metadata_url": "ipfs://QmSEAvEDnLjsUNmr1D5Wt2CAzc2ht6Mu5HGP7HJGsG166K/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142617",
+      "updated_at": "2026-08-26T08:34:56.496931",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1198,7 +1202,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/57",
       "metadata_url": "ipfs://QmQJ3T6Po3vs4raNz4nqK2f9HbUzKf8Tnb2Gg6UTYft6p3/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142624",
+      "updated_at": "2026-08-26T08:34:56.496937",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1335,7 +1339,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/56",
       "metadata_url": "ipfs://QmUekPR1JT6jZvm41e7mCALXALnQQQ66FpKEPko3xVYseN/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142630",
+      "updated_at": "2026-08-26T08:34:56.496942",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1516,7 +1520,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/55",
       "metadata_url": "ipfs://QmdE3Fkr5tjvMkoYAXGTWuQGqyjwevjAvvGDzKSaMgTipn/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142651",
+      "updated_at": "2026-08-26T08:34:56.496948",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1675,7 +1679,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/54",
       "metadata_url": "ipfs://QmZMG94JF5czpv2BAhYTq2Z9v8tpmG9f2x5ayW2oRdhw9u/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142657",
+      "updated_at": "2026-08-26T08:34:56.496954",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -1875,7 +1879,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/53",
       "metadata_url": "ipfs://QmVhgcjPwNkuZ2nH6daHCdYXogDvXSWgRfXnoJmZEypzcs/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142664",
+      "updated_at": "2026-08-26T08:34:56.496959",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -2005,7 +2009,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/52",
       "metadata_url": "ipfs://QmY3jEkrBkoL5xSawfT5E8wb1jnJbVKfeuZ4GejYyvpLVy/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142671",
+      "updated_at": "2026-08-26T08:34:56.496965",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -2153,7 +2157,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/51",
       "metadata_url": "ipfs://QmedBb1dN97vjt1VN9Qxo3ToJZMAqhYzkHpSsB3ovMuWZ8/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142677",
+      "updated_at": "2026-08-26T08:34:56.496970",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -2312,7 +2316,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/50",
       "metadata_url": "ipfs://QmaNJmQkhoNFh1zijJgxRTZoEvpJPeHdgdyJhU5FAiSC9d/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142683",
+      "updated_at": "2026-08-26T08:34:56.496976",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -2512,7 +2516,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/49",
       "metadata_url": "ipfs://QmXqiN7oZxt796j5fZJmvLfh98cB6iDfg7DSY7uHkL8ekc/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142689",
+      "updated_at": "2026-08-26T08:34:56.496982",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -2708,7 +2712,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/48",
       "metadata_url": "ipfs://QmXUyEMGrHeQp31iPBFbVA3jTd3pJPZ2s6E5AGVbtUy3ng/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142695",
+      "updated_at": "2026-08-26T08:34:56.496987",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -2888,7 +2892,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/47",
       "metadata_url": "ipfs://QmfFQkQ9v12ov5CriyycTkgdZ51RyQpPtHyfgG485yMJcP/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142701",
+      "updated_at": "2026-08-26T08:34:56.496992",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -3112,7 +3116,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/46",
       "metadata_url": "ipfs://QmcJhVqCdntMbn7wZELgdcbeWzDdzRng2XCZDE3azkrCRF/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142707",
+      "updated_at": "2026-08-26T08:34:56.496997",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -3300,7 +3304,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/45",
       "metadata_url": "ipfs://QmasE8v9tHfkAXgzVXD6PSXNnVjkJZ7qZschSxfL6ZUfQd/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142713",
+      "updated_at": "2026-08-26T08:34:56.497003",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -3508,7 +3512,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/44",
       "metadata_url": "ipfs://QmQFXxKZZAXuJQp18yJkrAcpepBCDWJ5Z399gFoYKx164u/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142719",
+      "updated_at": "2026-08-26T08:34:56.497011",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -3724,7 +3728,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/43",
       "metadata_url": "ipfs://QmWLdcnupJ1R14JWzVDNNSw4McMhqv129um36NmaawxALw/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142725",
+      "updated_at": "2026-08-26T08:34:56.497019",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -3924,7 +3928,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/42",
       "metadata_url": "ipfs://QmSHU7QV7a6eohwHBMekVsreVYVirNnKXEpkrhBCnaQS9U/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142731",
+      "updated_at": "2026-08-26T08:34:56.497027",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -4116,7 +4120,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/41",
       "metadata_url": "ipfs://QmSgrJPmBcj2GsnicvZt9cVLyeTewjHuG4Ze5kucfBuYpy/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142737",
+      "updated_at": "2026-08-26T08:34:56.497042",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -4286,7 +4290,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/40",
       "metadata_url": "ipfs://QmQ6PPewZGU3a94rz4F87FDGWprXeNoXzBymqW2BWnUkFM/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142743",
+      "updated_at": "2026-08-26T08:34:56.497051",
       "traits": [
         {
           "trait_type": "category",
@@ -4450,7 +4454,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/39",
       "metadata_url": "ipfs://QmYT9WzwA3yugoYkALr1LemGdJzLyeyza6XqS56p2PoC3v/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142750",
+      "updated_at": "2026-08-26T08:34:56.497057",
       "traits": [
         {
           "trait_type": "category",
@@ -4614,7 +4618,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/38",
       "metadata_url": "ipfs://QmS5oWm1E7dvn6zj8Us7SpamGp3aB9trjyVbkPZy2LvA5k/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142756",
+      "updated_at": "2026-08-26T08:34:56.497062",
       "traits": [
         {
           "trait_type": "tool",
@@ -4784,7 +4788,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/37",
       "metadata_url": "ipfs://QmfBHa5jqzNEivjYseajMxdK9QCPh3aAHwLRd3DcmJN25Z/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142762",
+      "updated_at": "2026-08-26T08:34:56.497068",
       "traits": [
         {
           "trait_type": "category",
@@ -4941,7 +4945,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/36",
       "metadata_url": "ipfs://QmUvbte92wsUitDsPg98W1uxifhiq59zrp8fmi5vFizfbY/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142768",
+      "updated_at": "2026-08-26T08:34:56.497077",
       "traits": [
         {
           "trait_type": "tool",
@@ -5122,7 +5126,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/35",
       "metadata_url": "ipfs://QmUfRHXL646qC3snLNunLPiYfaYXcL6KY5rQkSW5CAZBS4/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142775",
+      "updated_at": "2026-08-26T08:34:56.497084",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -5273,7 +5277,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/34",
       "metadata_url": "ipfs://QmdscJboNcv6zNe7cuPwPrDNWdcJP9z2VxuCrxBqjj6d5b/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142781",
+      "updated_at": "2026-08-26T08:34:56.497090",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -5432,7 +5436,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/33",
       "metadata_url": "ipfs://QmbZYJncvPUGcHjfZHuCBt5E9kLzmNP6HVwebkhzpwjrDn/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142787",
+      "updated_at": "2026-08-26T08:34:56.497096",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -5609,7 +5613,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/32",
       "metadata_url": "ipfs://QmYLQAU5W2mMmwDrpurE5r1Q22kCgdzdqcF7pYnSvF6AXg/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142793",
+      "updated_at": "2026-08-26T08:34:56.497102",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -5797,7 +5801,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/31",
       "metadata_url": "ipfs://QmXUSxL2mwkySZbMX54zZaag2SAcq8ihkUPeVoPm8RuZnA/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142798",
+      "updated_at": "2026-08-26T08:34:56.497108",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -5989,7 +5993,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/30",
       "metadata_url": "ipfs://QmTe2S68UPYyNpfgNHteQ1tYqWUSUfQxfa4wBCtSBf7p9W/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142804",
+      "updated_at": "2026-08-26T08:34:56.497113",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -6177,7 +6181,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/29",
       "metadata_url": "ipfs://QmUTtPZhQXCyMvRS7tDdWnNQ8GSD4gjVuUWDM2aQf4nPpj/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142810",
+      "updated_at": "2026-08-26T08:34:56.497119",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -6361,7 +6365,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/28",
       "metadata_url": "ipfs://QmVYiS79tE12FNLWDVsw1JTAJZLzH5j8SmkW25u5Ft98Sy/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142816",
+      "updated_at": "2026-08-26T08:34:56.497124",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -6537,7 +6541,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/27",
       "metadata_url": "ipfs://QmZEwE2dxEUaaBLbgAnoThgXoqZCjvbm4mo7YUu6f3jKCe/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142822",
+      "updated_at": "2026-08-26T08:34:56.497130",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -6696,7 +6700,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/26",
       "metadata_url": "ipfs://QmWfXnqtaykHwedisyhwLjHZdEruDwSPTQTZCkjbTQdRRd/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142828",
+      "updated_at": "2026-08-26T08:34:56.497136",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -6825,7 +6829,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/25",
       "metadata_url": "ipfs://Qmccrw7jbxAT7oF2LFrQH2inXVwHwLsqPAnvB5EW8ope6Z/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142835",
+      "updated_at": "2026-08-26T08:34:56.497141",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -6991,7 +6995,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/24",
       "metadata_url": "ipfs://QmVV17F1RWwattCYzsoZk52f6MZkM6ecVUyNZqfSvEkZdJ/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142840",
+      "updated_at": "2026-08-26T08:34:56.497147",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -7128,7 +7132,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/23",
       "metadata_url": "ipfs://QmUDjLPUbZK2PRrCSMwCxWTnDWMd9BdexZHkyDKkdrdLHZ/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142847",
+      "updated_at": "2026-08-26T08:34:56.497152",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -7283,7 +7287,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/22",
       "metadata_url": "ipfs://Qmce5v1jT7uiWSPXQUMk2L1kJg23A8aJfo8pb5WcSioehk/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142853",
+      "updated_at": "2026-08-26T08:34:56.497158",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -7479,7 +7483,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/21",
       "metadata_url": "ipfs://QmbsKJMFGKaASBSkjNCCMhX8YPEaajukWLUMPQxgpJBAtP/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142859",
+      "updated_at": "2026-08-26T08:34:56.497164",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -7572,7 +7576,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/20",
       "metadata_url": "ipfs://QmRuNepgeLJWEUnorMErFQTG5MEG1AvqzWTFdEjPw8n15V/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142866",
+      "updated_at": "2026-08-26T08:34:56.497169",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -7687,7 +7691,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/19",
       "metadata_url": "ipfs://QmTCTMPGEXMLqAcuBRAuDgix851a1WRUCXch6Qs7JYusee/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142875",
+      "updated_at": "2026-08-26T08:34:56.497175",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -7788,7 +7792,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/18",
       "metadata_url": "ipfs://QmQik9HJ1MKbv3SNKWfYqhDZhRNibsrihDYe8sjzXaHPHE/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142882",
+      "updated_at": "2026-08-26T08:34:56.497180",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -7881,7 +7885,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/17",
       "metadata_url": "ipfs://QmRxxxLKBaxo1VktshfeKVSXbSrGC2v9B6GJA2xTSLMsj7/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142922",
+      "updated_at": "2026-08-26T08:34:56.497186",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -7988,7 +7992,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/16",
       "metadata_url": "ipfs://QmPVA3F9GtzzvrByuZKvxTaaQEVbDWDbNgdfxa734Ubx4F/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142931",
+      "updated_at": "2026-08-26T08:34:56.497191",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -8095,7 +8099,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/15",
       "metadata_url": "ipfs://QmQ22LvopgXUucY5TtugEDUwFdcSrYzGVyKQHeKnEB1fRb/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142940",
+      "updated_at": "2026-08-26T08:34:56.497197",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -8195,7 +8199,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/14",
       "metadata_url": "ipfs://QmWN2LAL1eNKPQ6KuvipBDU7TFeQQ2KGAHsXqzCVbvGKG2/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142949",
+      "updated_at": "2026-08-26T08:34:56.497203",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -8280,7 +8284,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/13",
       "metadata_url": "ipfs://QmcTz7bksVrkek7zsGHE5Zx9SYP2gWCpmXDVoNkZTay5Dq/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142958",
+      "updated_at": "2026-08-26T08:34:56.497208",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -8365,7 +8369,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/12",
       "metadata_url": "ipfs://QmYNrGWPSLaVWFm2dzYwLfVVpGqK1vSWxCt3QutA1fqK7i/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142966",
+      "updated_at": "2026-08-26T08:34:56.497213",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -8450,7 +8454,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/11",
       "metadata_url": "ipfs://Qma45UubpZSMq2mxw9YBzbg4sm5goX2iJTPtXhhu7YyikZ/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142980",
+      "updated_at": "2026-08-26T08:34:56.497219",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -8550,7 +8554,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/10",
       "metadata_url": "ipfs://QmSBErnZD5eGW3f7RfzbnjDPv1oqNkrwNSvqeU6iXrjX2z/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142988",
+      "updated_at": "2026-08-26T08:34:56.497224",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -8650,7 +8654,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/9",
       "metadata_url": "ipfs://Qme1uts6Cx4J36yG5x8GW3vbiSpM1mpxpaRw6AbP9BMWF4/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.142994",
+      "updated_at": "2026-08-26T08:34:56.497229",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -8750,7 +8754,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/8",
       "metadata_url": "ipfs://QmZUogiUSUG7US5hubT8T8NMQ8VL7ibJL7Hmq2nXXEa2KS/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.143001",
+      "updated_at": "2026-08-26T08:34:56.497234",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -8821,7 +8825,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/7",
       "metadata_url": "ipfs://Qmd2epV4ft3tGm98cJsJnNampawbQ5jKiAfZQ7UYfyUePP/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.143007",
+      "updated_at": "2026-08-26T08:34:56.497240",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -8928,7 +8932,7 @@
       "media_type": "video",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/6",
       "metadata_url": "ipfs://Qmb6feYrsRFcgTVyw6VCF8kPsmhbSzqW51jwtvwKLaynUP/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.143019",
+      "updated_at": "2026-08-26T08:34:56.497253",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -8999,7 +9003,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/5",
       "metadata_url": "ipfs://QmNv4DJzmz1rys96zqCEsgK6UWWhDeKvgaGiT19zwv1GmQ/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.143025",
+      "updated_at": "2026-08-26T08:34:56.497258",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -9129,7 +9133,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/4",
       "metadata_url": "ipfs://QmRnp1ZioSxSWB86XGUJSdonjJvXHULSJE539S9arMbnyz/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.143038",
+      "updated_at": "2026-08-26T08:34:56.497263",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -9211,7 +9215,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/3",
       "metadata_url": "ipfs://QmaoezqDJgyEhxLv99ESCYLjkqGf8h5o96MvHzDxKqw7Nx/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.143045",
+      "updated_at": "2026-08-26T08:34:56.497269",
       "traits": [
         {
           "trait_type": "rodeo_post_id",
@@ -9337,7 +9341,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/2",
       "metadata_url": "ipfs://QmNPxZpX93esGmaSQA1gjQz8cZjqGcXVro8uLCpLVuZjHi/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.143051",
+      "updated_at": "2026-08-26T08:34:56.497274",
       "traits": [
         {
           "trait_type": "Sensitive Content",
@@ -9445,7 +9449,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/1",
       "metadata_url": "ipfs://QmUKis6srrQ7dHa5WaWtSwQ2qTXjadtEogEgDxpM3sbaBB/metadata.json",
-      "updated_at": "2026-08-25T08:33:57.143057",
+      "updated_at": "2026-08-26T08:34:56.497280",
       "traits": [
         {
           "trait_type": "rodeo_post_id",

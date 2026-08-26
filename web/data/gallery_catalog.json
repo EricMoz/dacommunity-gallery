@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-25T08:38:21.255841+00:00",
+  "generated_at": "2026-08-26T08:42:40.545095+00:00",
   "source": "gallery_catalog",
   "collection": {
     "slug": "dacommunity-archive",
@@ -10,7 +10,11 @@
     "opensea_url": "https://opensea.io/collection/dacommunity-archive",
     "note": "Originally minted on Rodeo. Contract unchanged on Base; collection stewarded via dacatdreams.base.eth.",
     "creator_ens": "dacatdreams.base.eth",
-    "creator_wallet": null,
+    "creator_wallet": {
+      "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+      "username": null,
+      "ens_name": "dacatdreams.base.eth"
+    },
     "contract_name": "daCommunity Archive",
     "floor_eth": 0.0005,
     "floor_symbol": "ETH",
