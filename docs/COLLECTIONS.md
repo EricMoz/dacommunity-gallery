@@ -152,12 +152,3 @@ Display priority: **ENS → Base → OpenSea username → short 0x** (`resolveCo
 Stewards: BIG KIX + badges exclude issuer inventory from holder stats; HATS n' daCATs excludes `hatsndacats.eth` mint inventory until a collector receives the piece; Agency does not exclude its project wallet.
 
 Do **not** duplicate gallery logic for preview pages — use `preview_only` + themed static HTML until data exists.
-
----
-
-## QA — Badges coming soon
-
-- [ ] Mobile: starfield visible (gold twinkle, not empty yellow).
-- [ ] Desktop: card layout unchanged in spirit; cosmos behind panel.
-- [ ] `prefers-reduced-motion`: stars static, no orbit animation.
-- [ ] Footer build id current after deploy.
