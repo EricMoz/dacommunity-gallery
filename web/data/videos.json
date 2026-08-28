@@ -1,12 +1,12 @@
 {
   "schemaVersion": 2,
-  "updated": "2026-08-15",
+  "updated": "2026-08-28",
   "featuredStrategy": "Streaming-style row: one entry point per series (ep 1 or lead trailer). Characters (Mozvane + daBeezy) share one series for Series up-next. Shorts are a separate bottom rail and never enter the modal pool. Featured row max 6 — swap titles rather than grow the rail. Characters + Crossovers sort newest-first (releasedAt, then sortOrder).",
   "featuredIds": [
+    "mozvane-ep2-the-cost",
     "dabeezy-contractor-callsign",
     "dagato-blessless",
     "chronicles-trailer-1",
-    "dacatworld-scamurai-paperhands",
     "podcast-ep1",
     "defectors-awakening"
   ],
@@ -61,9 +61,7 @@
       "thumbnail": "https://i.ytimg.com/vi/3AMRcY-E7X4/hqdefault.jpg",
       "duration": "3:43",
       "filterCategory": "dacatworld",
-      "sortOrder": 1,
-      "featuredPick": true,
-      "featuredOrder": 3
+      "sortOrder": 1
     },
     {
       "id": "dacatworld-scamurai-paperhands",
@@ -80,9 +78,7 @@
       "thumbnail": "https://i.ytimg.com/vi/fCybybHqd3o/hqdefault.jpg",
       "duration": "4:04",
       "filterCategory": "dacatworld",
-      "sortOrder": 2,
-      "featuredPick": true,
-      "featuredOrder": 4
+      "sortOrder": 2
     },
     {
       "id": "dacatworld-collector-cat",
@@ -172,6 +168,29 @@
       "sortOrder": 4
     },
     {
+      "id": "mozvane-ep2-the-cost",
+      "title": "Mozvane Episode 2: The Cost",
+      "youtubeId": "PYlHJcK1cF0",
+      "series": "Characters",
+      "type": "Episode",
+      "creator": "MozvaneTV",
+      "creatorChannel": "MozvaneTV",
+      "description": "The Shard is incomplete. The city is burning. Power always takes something.\n\nVoices & sound: daBeezy\nVisuals: Mozvane\n\nA daCAT community film\n\nuniverse.dacat.fun\nX: @ericmoz_eth",
+      "whatItIs": "Mozvane anime episode 2 — The Cost.",
+      "releaseDate": "August 2026",
+      "releasedAt": "2026-08-28",
+      "thumbnail": "https://i.ytimg.com/vi/PYlHJcK1cF0/hqdefault.jpg",
+      "duration": "6:49",
+      "filterCategory": "characters",
+      "sortOrder": 1,
+      "featuredPick": true,
+      "featuredOrder": 1,
+      "theatre": {
+        "slug": "mozvane",
+        "enabled": true
+      }
+    },
+    {
       "id": "mozvane-quick-stop",
       "title": "Mozvane Episode 1: A Quick Stop",
       "youtubeId": "bHcbwUs2_ds",
@@ -185,7 +204,7 @@
       "thumbnail": "https://i.ytimg.com/vi/bHcbwUs2_ds/hqdefault.jpg",
       "duration": "5:18",
       "filterCategory": "characters",
-      "sortOrder": 2,
+      "sortOrder": 3,
       "theatre": {
         "slug": "mozvane",
         "enabled": true
@@ -205,7 +224,7 @@
       "thumbnail": "https://i.ytimg.com/vi/roepEUbqn6U/hqdefault.jpg",
       "duration": "4:15",
       "filterCategory": "characters",
-      "sortOrder": 3
+      "sortOrder": 4
     },
     {
       "id": "dabeezy-contractor-callsign",
@@ -223,9 +242,9 @@
       "thumbnail": "https://i.ytimg.com/vi/brswFIaDQ5A/hqdefault.jpg",
       "duration": "9:16",
       "filterCategory": "characters",
-      "sortOrder": 1,
+      "sortOrder": 2,
       "featuredPick": true,
-      "featuredOrder": 1
+      "featuredOrder": 2
     },
     {
       "id": "shiro-fishing",
