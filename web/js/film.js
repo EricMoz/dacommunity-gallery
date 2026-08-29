@@ -662,20 +662,11 @@
 
   function updateStats() {
     if (!els.stats) return;
-    // Live from catalog: non-short titles + distinct series (Shorts have their own rail)
-    const main = mainVideos();
-    if (!main.length) {
-      els.stats.textContent = "";
-      return;
-    }
-    const seriesCount = new Set(
-      main.map((v) => v.series).filter(Boolean)
-    ).size;
-    const titleBit =
-      main.length + (main.length === 1 ? " title" : " titles");
-    const seriesBit =
-      seriesCount + (seriesCount === 1 ? " series" : " series");
-    els.stats.textContent = titleBit + " · " + seriesBit;
+    // Same total as Universe cinema badge: every entry in videos.json
+    const n = (videos && videos.length) || 0;
+    els.stats.textContent = n
+      ? n + (n === 1 ? " video on-site" : " videos on-site")
+      : "";
   }
 
   function setLoading(on) {
