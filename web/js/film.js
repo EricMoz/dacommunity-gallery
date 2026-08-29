@@ -648,10 +648,10 @@
     els.featured.hidden = !show || !featuredVideos.length;
     els.featuredGrid.innerHTML = "";
     if (els.featuredCount) {
-      // Count only — no "one per series" claim (featuredIds can mix series)
-      els.featuredCount.textContent = featuredVideos.length
-        ? featuredVideos.length +
-          (featuredVideos.length === 1 ? " pick" : " picks")
+      // Same meta style as series rows: "N videos"
+      const n = featuredVideos.length;
+      els.featuredCount.textContent = n
+        ? n + (n === 1 ? " video" : " videos")
         : "";
     }
     if (!show || !featuredVideos.length) return;
