@@ -47,13 +47,29 @@
     return shuffle(ids).slice(0, MAX_HIGHLIGHTS);
   }
 
+  function getBuildStamp() {
+    try {
+      var meta = document.querySelector('meta[name="site-build"]');
+      if (meta && meta.getAttribute("content")) {
+        return meta.getAttribute("content");
+      }
+    } catch (e) {}
+    return "dev-" + Math.floor(Date.now() / 1000).toString(36);
+  }
+
   async function init() {
     var rail = document.getElementById("home-highlights-rail");
     var track = document.getElementById("home-highlights-track");
     if (!rail || !track) return;
 
     try {
-      var url = new URL("data/videos.json", window.location.href).href;
+      // Match film hub: stamp + no-store so CDN/SW cannot keep a pre-Ep2 videos.json
+      var url =
+        new URL("data/videos.json", window.location.href).href +
+        "?v=" +
+        encodeURIComponent(getBuildStamp()) +
+        "&m=" +
+        Date.now().toString(36);
       var res = await fetch(url, { cache: "no-store" });
       if (!res.ok) throw new Error(String(res.status));
       var catalog = await res.json();

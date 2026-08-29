@@ -24,10 +24,14 @@
   }
 
   function videosDataUrl() {
+    // Stamp + per-boot bust: GitHub Pages / edge can keep a stale videos.json
+    // under an old ?v= even after a successful deploy (Ep2 briefly appeared then vanished).
     return (
       new URL("../data/videos.json", window.location.href).href +
       "?v=" +
-      encodeURIComponent(getBuildStamp())
+      encodeURIComponent(getBuildStamp()) +
+      "&m=" +
+      Date.now().toString(36)
     );
   }
 
