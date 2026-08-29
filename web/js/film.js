@@ -633,7 +633,7 @@
         .sort((a, b) => (a.featuredOrder || 99) - (b.featuredOrder || 99))
         .map((v) => v.id);
     }
-    // Randomize order so not always the same (but still one per series via the list)
+    // Randomize Featured order each visit (same pool as Universe highlights)
     ids = ids.slice().sort(() => Math.random() - 0.5);
     return ids;
   }
@@ -647,10 +647,12 @@
       .filter(Boolean);
     els.featured.hidden = !show || !featuredVideos.length;
     els.featuredGrid.innerHTML = "";
-    if (els.featuredCount && featuredVideos.length) {
-      els.featuredCount.textContent =
-        featuredVideos.length +
-        (featuredVideos.length === 1 ? " starter" : " starters · one per series");
+    if (els.featuredCount) {
+      // Count only — no "one per series" claim (featuredIds can mix series)
+      els.featuredCount.textContent = featuredVideos.length
+        ? featuredVideos.length +
+          (featuredVideos.length === 1 ? " pick" : " picks")
+        : "";
     }
     if (!show || !featuredVideos.length) return;
     featuredVideos.forEach((v) => {
@@ -660,17 +662,20 @@
 
   function updateStats() {
     if (!els.stats) return;
+    // Live from catalog: non-short titles + distinct series (Shorts have their own rail)
     const main = mainVideos();
     if (!main.length) {
       els.stats.textContent = "";
       return;
     }
-    const seriesCount = new Set(main.map((v) => v.series)).size;
-    els.stats.textContent =
-      main.length +
-      " titles · " +
-      seriesCount +
-      " series · tap a poster to watch";
+    const seriesCount = new Set(
+      main.map((v) => v.series).filter(Boolean)
+    ).size;
+    const titleBit =
+      main.length + (main.length === 1 ? " title" : " titles");
+    const seriesBit =
+      seriesCount + (seriesCount === 1 ? " series" : " series");
+    els.stats.textContent = titleBit + " · " + seriesBit;
   }
 
   function setLoading(on) {
