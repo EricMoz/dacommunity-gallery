@@ -1443,7 +1443,12 @@
       }
       if (i === 0) btn.id = "film-filter-all";
       btn.addEventListener("click", () => {
-        activeFilter = f.id;
+        // Clicking the active non-All chip again clears back to All
+        if (f.id === activeFilter && f.id !== "all") {
+          activeFilter = "all";
+        } else {
+          activeFilter = f.id;
+        }
         els.filters.querySelectorAll(".film-filter-chip").forEach((chip) => {
           const on = chip.dataset.filter === activeFilter;
           chip.classList.toggle("is-active", on);
