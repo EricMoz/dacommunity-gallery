@@ -35,7 +35,24 @@
       "kingsi.eth": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
       "dabeezy.eth": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
       "mrcryptonist.eth": "0xe597a25c77317b361636270251dc53d36491a11d",
-      "jeffadams.eth": "0xf6c9b6b8b700906d43281ec485bee2139026cb27"
+      "jeffadams.eth": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
+      "hodlstar.base.eth": "0x011dddd5b5470d2818bffb400b4e38949fe21ac3",
+      "inshirowetrust.base.eth": "0x3e43287a26acf9e5206f4551ccda29c7d9bea93e",
+      "visualarchive.base.eth": "0x445a6fc0bf61535e7d2ef96258124fdb9a855fdc",
+      "dacatdreams.base.eth": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+      "wmdsj19880725.base.eth": "0x5469f22fc52ad7a5e1f430a75b1cbd542393dfb0",
+      "aerospace.base.eth": "0x58e5c387c541ba7c4b04f126adb778fb02715afa",
+      "jhonnyfolies.base.eth": "0x5b8b03f255a2acf815e59dc55847096c43335385",
+      "jupiterphii.base.eth": "0x63795d3b68d42d8a169975e1536e1416aac71856",
+      "henia.base.eth": "0x67f3c18339ac0da29be9573d559a1291100b7c7b",
+      "shortcut.base.eth": "0x68bca5a8bdebe05fb8a6648c7316b4eb7e19a064",
+      "pieface.base.eth": "0x68cd16cacbaaca45dfd0f0e7e2609d273a0d4083",
+      "pa3gba.base.eth": "0x7f23f1c4be15fa3adabc821de9ef70efa5503f24",
+      "gottothird.base.eth": "0x7f284d2167b3bb8d8f6669593f4c24e752b54812",
+      "slowfreeze.base.eth": "0x93b34003169bd7cdb3e0710fedff4cb6795a32ef",
+      "mozcat.base.eth": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+      "lostthegame.base.eth": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+      "nanozki.base.eth": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f"
     },
     "by_address": {
       "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684": {
@@ -43,7 +60,7 @@
         "ens_name": "lostthegame.eth",
         "ens_history": [],
         "username": "Saphoroth",
-        "base_name": null,
+        "base_name": "lostthegame.base.eth",
         "collection_quantity": 391,
         "unique_pieces": 64,
         "last_ens_resolved": 1787647956.3667967,
@@ -376,7 +393,7 @@
         "ens_name": "mozvane.eth",
         "ens_history": [],
         "username": "mozvane.eth",
-        "base_name": null,
+        "base_name": "mozcat.base.eth",
         "collection_quantity": 280,
         "unique_pieces": 60,
         "last_ens_resolved": 1787647955.763323,
@@ -689,7 +706,7 @@
         "ens_name": null,
         "ens_history": [],
         "username": null,
-        "base_name": null,
+        "base_name": "dacatdreams.base.eth",
         "collection_quantity": 94,
         "unique_pieces": 48,
         "last_ens_resolved": 1787733564.4444106,
@@ -1669,7 +1686,7 @@
         "ens_name": "doublelion.eth",
         "ens_history": [],
         "username": "LenaMAU",
-        "base_name": null,
+        "base_name": "henia.base.eth",
         "collection_quantity": 19,
         "unique_pieces": 11,
         "last_ens_resolved": 1787733580.5736895,
@@ -1888,7 +1905,7 @@
         "ens_name": null,
         "ens_history": [],
         "username": "HodLStaR",
-        "base_name": null,
+        "base_name": "hodlstar.base.eth",
         "collection_quantity": 9,
         "unique_pieces": 5,
         "last_ens_resolved": 1787733590.4458995,
@@ -2117,7 +2134,7 @@
         "ens_name": "dao100.eth",
         "ens_history": [],
         "username": "flysuperman",
-        "base_name": null,
+        "base_name": "wmdsj19880725.base.eth",
         "collection_quantity": 2,
         "unique_pieces": 1,
         "last_ens_resolved": 1787733612.6573014,
@@ -2402,7 +2419,7 @@
         "ens_name": "slowfreeze.eth",
         "ens_history": [],
         "username": "Slowfreeze",
-        "base_name": null,
+        "base_name": "slowfreeze.base.eth",
         "collection_quantity": 1,
         "unique_pieces": 1,
         "last_ens_resolved": 1787733668.6581223,
@@ -2474,7 +2491,7 @@
         "ens_name": null,
         "ens_history": [],
         "username": "yola_yo",
-        "base_name": null,
+        "base_name": "gottothird.base.eth",
         "collection_quantity": 1,
         "unique_pieces": 1,
         "last_ens_resolved": 1787733684.5360632,
@@ -2492,7 +2509,7 @@
         "ens_name": "tibob.eth",
         "ens_history": [],
         "username": "pa3gBa",
-        "base_name": null,
+        "base_name": "pa3gba.base.eth",
         "collection_quantity": 1,
         "unique_pieces": 1,
         "last_ens_resolved": 1787733686.652948,
@@ -2564,7 +2581,7 @@
         "ens_name": null,
         "ens_history": [],
         "username": null,
-        "base_name": null,
+        "base_name": "pieface.base.eth",
         "collection_quantity": 1,
         "unique_pieces": 1,
         "last_ens_resolved": 1787733702.53849,
@@ -2582,7 +2599,7 @@
         "ens_name": "ahotwallet.eth",
         "ens_history": [],
         "username": null,
-        "base_name": null,
+        "base_name": "shortcut.base.eth",
         "collection_quantity": 1,
         "unique_pieces": 1,
         "last_ens_resolved": 1787733704.6502943,
@@ -2636,7 +2653,7 @@
         "ens_name": null,
         "ens_history": [],
         "username": "Jhonny88",
-        "base_name": null,
+        "base_name": "jhonnyfolies.base.eth",
         "collection_quantity": 1,
         "unique_pieces": 1,
         "last_ens_resolved": 1787733716.5386477,
@@ -2654,7 +2671,7 @@
         "ens_name": null,
         "ens_history": [],
         "username": null,
-        "base_name": null,
+        "base_name": "aerospace.base.eth",
         "collection_quantity": 1,
         "unique_pieces": 1,
         "last_ens_resolved": 1787733720.5391004,
@@ -2708,7 +2725,7 @@
         "ens_name": null,
         "ens_history": [],
         "username": "0x445a",
-        "base_name": null,
+        "base_name": "visualarchive.base.eth",
         "collection_quantity": 1,
         "unique_pieces": 1,
         "last_ens_resolved": 1787733730.539865,
@@ -2726,7 +2743,7 @@
         "ens_name": null,
         "ens_history": [],
         "username": null,
-        "base_name": null,
+        "base_name": "inshirowetrust.base.eth",
         "collection_quantity": 1,
         "unique_pieces": 1,
         "last_ens_resolved": 1787733734.5402434,
@@ -3113,7 +3130,8 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1788097556.2499256
+        "last_ens_resolved": 1788097556.2499256,
+        "base_name": "nanozki.base.eth"
       },
       "0xf6c9b6b8b700906d43281ec485bee2139026cb27": {
         "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
@@ -3132,21 +3150,24 @@
         "ens_name": "lostthegame.eth",
         "username": "Saphoroth",
         "unique_pieces": 64,
-        "collection_quantity": 391
+        "collection_quantity": 391,
+        "base_name": "lostthegame.base.eth"
       },
       {
         "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
         "ens_name": "mozvane.eth",
         "username": "mozvane.eth",
         "unique_pieces": 60,
-        "collection_quantity": 280
+        "collection_quantity": 280,
+        "base_name": "mozcat.base.eth"
       },
       {
         "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
         "ens_name": null,
         "username": null,
         "unique_pieces": 48,
-        "collection_quantity": 94
+        "collection_quantity": 94,
+        "base_name": "dacatdreams.base.eth"
       },
       {
         "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
@@ -3188,7 +3209,8 @@
         "ens_name": "doublelion.eth",
         "username": "LenaMAU",
         "unique_pieces": 11,
-        "collection_quantity": 19
+        "collection_quantity": 19,
+        "base_name": "henia.base.eth"
       },
       {
         "address": "0x06eca6ce5f135ed9917b00630c26167de7e6a673",
@@ -3209,7 +3231,8 @@
         "ens_name": null,
         "username": "HodLStaR",
         "unique_pieces": 5,
-        "collection_quantity": 9
+        "collection_quantity": 9,
+        "base_name": "hodlstar.base.eth"
       },
       {
         "address": "0x6372d911ad7329509d683828be1bf5d4eb45bb42",
@@ -3279,7 +3302,8 @@
         "ens_name": "dao100.eth",
         "username": "flysuperman",
         "unique_pieces": 1,
-        "collection_quantity": 2
+        "collection_quantity": 2,
+        "base_name": "wmdsj19880725.base.eth"
       },
       {
         "address": "0xffcd46f8267ea602a9a05b17027a53cae1364298",
@@ -3363,7 +3387,8 @@
         "ens_name": "slowfreeze.eth",
         "username": "Slowfreeze",
         "unique_pieces": 1,
-        "collection_quantity": 1
+        "collection_quantity": 1,
+        "base_name": "slowfreeze.base.eth"
       },
       {
         "address": "0x8f15253e0775e1df0561a875ddf00dae70cf72a7",
@@ -3391,14 +3416,16 @@
         "ens_name": null,
         "username": "yola_yo",
         "unique_pieces": 1,
-        "collection_quantity": 1
+        "collection_quantity": 1,
+        "base_name": "gottothird.base.eth"
       },
       {
         "address": "0x7f23f1c4be15fa3adabc821de9ef70efa5503f24",
         "ens_name": "tibob.eth",
         "username": "pa3gBa",
         "unique_pieces": 1,
-        "collection_quantity": 1
+        "collection_quantity": 1,
+        "base_name": "pa3gba.base.eth"
       },
       {
         "address": "0x77142c2ccc81d0b3dc8569b7d9f460e8b9696232",
@@ -3426,14 +3453,16 @@
         "ens_name": null,
         "username": null,
         "unique_pieces": 1,
-        "collection_quantity": 1
+        "collection_quantity": 1,
+        "base_name": "pieface.base.eth"
       },
       {
         "address": "0x68bca5a8bdebe05fb8a6648c7316b4eb7e19a064",
         "ens_name": "ahotwallet.eth",
         "username": null,
         "unique_pieces": 1,
-        "collection_quantity": 1
+        "collection_quantity": 1,
+        "base_name": "shortcut.base.eth"
       },
       {
         "address": "0x6395aeb764163d8179e946feafb8338752437623",
@@ -3454,14 +3483,16 @@
         "ens_name": null,
         "username": "Jhonny88",
         "unique_pieces": 1,
-        "collection_quantity": 1
+        "collection_quantity": 1,
+        "base_name": "jhonnyfolies.base.eth"
       },
       {
         "address": "0x58e5c387c541ba7c4b04f126adb778fb02715afa",
         "ens_name": null,
         "username": null,
         "unique_pieces": 1,
-        "collection_quantity": 1
+        "collection_quantity": 1,
+        "base_name": "aerospace.base.eth"
       },
       {
         "address": "0x55d5c0aa6486ccd91775f4f2e3258f5d7ceac5ce",
@@ -3482,14 +3513,16 @@
         "ens_name": null,
         "username": "0x445a",
         "unique_pieces": 1,
-        "collection_quantity": 1
+        "collection_quantity": 1,
+        "base_name": "visualarchive.base.eth"
       },
       {
         "address": "0x3e43287a26acf9e5206f4551ccda29c7d9bea93e",
         "ens_name": null,
         "username": null,
         "unique_pieces": 1,
-        "collection_quantity": 1
+        "collection_quantity": 1,
+        "base_name": "inshirowetrust.base.eth"
       },
       {
         "address": "0x356d8dac5f0da039dcc3e22c8b42fde00e79f7e6",
@@ -3713,7 +3746,8 @@
         "ens_name": null,
         "username": null,
         "unique_pieces": 0,
-        "collection_quantity": 0
+        "collection_quantity": 0,
+        "base_name": "nanozki.base.eth"
       },
       {
         "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
