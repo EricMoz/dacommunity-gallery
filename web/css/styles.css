@@ -6362,24 +6362,16 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.15);
 }
 
-.film-filters-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.45rem 0.65rem;
-}
-
 .film-filters {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
-  flex: 1 1 auto;
-  min-width: 0;
 }
 
+/* Quiet Share pill — sits after Universe in the foot links (not gold-border quick-links) */
 .film-share-view-btn {
   flex: 0 0 auto;
-  margin-left: auto;
+  align-self: center;
   padding: 0.32rem 0.7rem;
   font: inherit;
   font-size: 0.72rem;
@@ -6403,6 +6395,10 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   background: var(--yellow);
   border-color: var(--yellow);
   outline: none;
+}
+
+.film-hub-foot-links .film-share-view-btn {
+  margin-left: 0.15rem;
 }
 
 .film-filter-chip {
