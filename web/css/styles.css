@@ -6362,10 +6362,47 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.15);
 }
 
+.film-filters-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.65rem;
+}
+
 .film-filters {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.film-share-view-btn {
+  flex: 0 0 auto;
+  margin-left: auto;
+  padding: 0.32rem 0.7rem;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #c8c8c8;
+  background: transparent;
+  border: 2px solid #444;
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.film-share-view-btn:hover,
+.film-share-view-btn:focus-visible {
+  color: var(--black);
+  background: var(--yellow);
+  border-color: var(--yellow);
+  outline: none;
 }
 
 .film-filter-chip {
@@ -6468,29 +6505,57 @@ body.film-theatre-lights-down.film-theatre-chrome-idle .film-theatre-upnext {
   width: 100%;
 }
 
+/* Netflix-style horizontal rails (same language as Shorts) */
 .film-vgrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  display: flex;
+  flex-wrap: nowrap;
   gap: 1rem;
   width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding: 0 0 0.35rem;
+}
+
+.film-vgrid--single {
+  overflow-x: hidden;
+  scroll-snap-type: none;
+}
+
+.film-vgrid--scroll {
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 204, 0, 0.35) transparent;
+}
+
+.film-vgrid--scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.film-vgrid--scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 204, 0, 0.35);
+  border-radius: 4px;
+}
+
+.film-vgrid--scroll::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .film-vgrid .film-vcard {
-  width: 100%;
+  flex: 0 0 min(42vw, 220px);
+  width: min(42vw, 220px);
+  max-width: 280px;
   min-width: 0;
+  scroll-snap-align: start;
+  box-sizing: border-box;
 }
 
 .film-vgrid-featured {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* Featured uses the same rail; keep class for accent hooks */
   gap: 1rem;
-  width: 100%;
-}
-
-@media (min-width: 1024px) {
-  .film-vgrid-featured {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
 }
 
 .film-vcard--featured {
@@ -10459,45 +10524,13 @@ body.has-collector-view .collector-hub.is-collector-active .field-clear {
   }
 
   .film-vgrid {
-    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
-    gap: 0.75rem;
-  }
-
-  /* Featured: same yellow horizontal scroll rail as Shorts */
-  .film-vgrid-featured {
-    display: flex;
-    flex-wrap: nowrap;
-    grid-template-columns: unset;
-    overflow-x: auto;
-    overflow-y: hidden;
     gap: 0.75rem;
     padding-bottom: 0.5rem;
-    scroll-snap-type: x proximity;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-x: contain;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 204, 0, 0.35) transparent;
   }
 
-  .film-vgrid-featured::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  .film-vgrid-featured::-webkit-scrollbar-thumb {
-    background: rgba(255, 204, 0, 0.35);
-    border-radius: 4px;
-  }
-
-  .film-vgrid-featured::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .film-vgrid-featured .film-vcard {
+  .film-vgrid .film-vcard {
     flex: 0 0 min(70vw, 220px);
     width: min(70vw, 220px);
-    max-width: 280px;
-    scroll-snap-align: start;
-    box-sizing: border-box;
   }
 
   .film-shorts-track {

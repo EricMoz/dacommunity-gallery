@@ -238,6 +238,7 @@
     shortsCount: document.getElementById("film-shorts-count"),
     search: document.getElementById("film-search"),
     filters: document.getElementById("film-filters"),
+    shareView: document.getElementById("film-share-view"),
     stats: document.getElementById("film-stats"),
     loading: document.getElementById("film-loading"),
     empty: document.getElementById("film-empty"),
@@ -605,6 +606,13 @@
     return a;
   }
 
+  function applyRailClass(track, count) {
+    if (!track) return;
+    const scroll = count >= 2;
+    track.classList.toggle("film-vgrid--scroll", scroll);
+    track.classList.toggle("film-vgrid--single", !scroll);
+  }
+
   function renderSection(seriesName, list, target) {
     if (!list.length) return;
     const section = document.createElement("section");
@@ -620,6 +628,7 @@
     `;
     const grid = section.querySelector(".film-vgrid");
     sortVideos(list).forEach((v) => grid.appendChild(createCard(v)));
+    applyRailClass(grid, count);
     target.appendChild(section);
   }
 
@@ -654,10 +663,14 @@
         ? n + (n === 1 ? " video" : " videos")
         : "";
     }
-    if (!show || !featuredVideos.length) return;
+    if (!show || !featuredVideos.length) {
+      applyRailClass(els.featuredGrid, 0);
+      return;
+    }
     featuredVideos.forEach((v) => {
       els.featuredGrid.appendChild(createCard(v, { featured: true }));
     });
+    applyRailClass(els.featuredGrid, featuredVideos.length);
   }
 
   function updateStats() {
@@ -1399,6 +1412,55 @@
     }
   }
 
+  /** Current hub URL with filter (omit when All). Keeps ?v= for open player. */
+  function buildFilmViewUrl() {
+    const url = new URL(window.location.href);
+    if (activeFilter && activeFilter !== "all") {
+      url.searchParams.set("filter", activeFilter);
+    } else {
+      url.searchParams.delete("filter");
+    }
+    return url.toString();
+  }
+
+  function syncFilterToUrl() {
+    try {
+      const url = new URL(window.location.href);
+      if (activeFilter && activeFilter !== "all") {
+        url.searchParams.set("filter", activeFilter);
+      } else {
+        url.searchParams.delete("filter");
+      }
+      history.replaceState(null, "", url.pathname + url.search + url.hash);
+    } catch (e) {
+      /* ignore */
+    }
+  }
+
+  function readFilterFromUrl() {
+    try {
+      const raw = (new URLSearchParams(window.location.search).get("filter") || "")
+        .trim();
+      return raw || "all";
+    } catch (e) {
+      return "all";
+    }
+  }
+
+  function setActiveFilter(nextId, opts) {
+    opts = opts || {};
+    activeFilter = nextId || "all";
+    if (els.filters) {
+      els.filters.querySelectorAll(".film-filter-chip").forEach((chip) => {
+        const on = chip.dataset.filter === activeFilter;
+        chip.classList.toggle("is-active", on);
+        chip.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    }
+    if (opts.syncUrl !== false) syncFilterToUrl();
+    if (opts.render !== false) render();
+  }
+
   function renderFilters() {
     if (!els.filters) return;
     const filters = buildCatalogFilters(
@@ -1414,6 +1476,7 @@
       })
     ) {
       activeFilter = "all";
+      syncFilterToUrl();
     }
     els.filters.innerHTML = "";
     filters.forEach((f, i) => {
@@ -1441,16 +1504,10 @@
       btn.addEventListener("click", () => {
         // Clicking the active non-All chip again clears back to All
         if (f.id === activeFilter && f.id !== "all") {
-          activeFilter = "all";
+          setActiveFilter("all");
         } else {
-          activeFilter = f.id;
+          setActiveFilter(f.id);
         }
-        els.filters.querySelectorAll(".film-filter-chip").forEach((chip) => {
-          const on = chip.dataset.filter === activeFilter;
-          chip.classList.toggle("is-active", on);
-          chip.setAttribute("aria-pressed", on ? "true" : "false");
-        });
-        render();
       });
       els.filters.appendChild(btn);
     });
@@ -1461,6 +1518,17 @@
       els.search.addEventListener("input", () => {
         searchQuery = normalize(els.search.value);
         render();
+      });
+    }
+    if (els.shareView && !els.shareView.dataset.bound) {
+      els.shareView.dataset.bound = "1";
+      els.shareView.addEventListener("click", function () {
+        const url = buildFilmViewUrl();
+        const label =
+          activeFilter && activeFilter !== "all"
+            ? "daCAT Films — " + activeFilter.replace(/^type-/, "")
+            : "daCAT Films";
+        showSocialShareModal(url, label);
       });
     }
     if (els.modalClose) els.modalClose.addEventListener("click", closeModal);
@@ -1582,9 +1650,22 @@
         catalog.filters || REQUIRED_FILTERS,
         videos
       );
+      // Restore shareable ?filter= before painting chips
+      const fromUrl = readFilterFromUrl();
+      if (
+        fromUrl !== "all" &&
+        catalog.filters.some(function (f) {
+          return f.id === fromUrl;
+        })
+      ) {
+        activeFilter = fromUrl;
+      } else {
+        activeFilter = "all";
+      }
       updateStats();
       // Paint filter chips: series + distinct types (Music Video, Trailer, …)
       renderFilters();
+      syncFilterToUrl();
       setLoading(false);
       render();
       removeLegacyFullScreenTheatrePill();
