@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-12T12:00:17.771048+00:00",
+  "generated_at": "2026-09-13T13:10:14.075047+00:00",
   "source": "opensea_api_v2",
   "collection": {
     "id": "hats-n-dacats",
@@ -9,7 +9,7 @@
     "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
     "chain": "ethereum",
     "opensea_url": "https://opensea.io/collection/hats-n-dacats",
-    "note": "True 1:1 hats on Ethereum. Max supply 333; released in waves (currently 34 minted). No rarity tiers — every hat stands on its own. Stewarded by hatsndacats.eth. Project mint wallet excluded from holder counts until a collector receives the piece.",
+    "note": "True 1:1 hats on Ethereum. Max supply 333; released in waves (currently 39 minted). No rarity tiers — every hat stands on its own. Stewarded by hatsndacats.eth. Project mint wallet excluded from holder counts until a collector receives the piece.",
     "description": "HATS n' daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and numbered, allowing collectors to choose the legend they connect with most. There are no rarity tiers—every hat stands on its own. Every hat has a story. Legends Wear Hats.",
     "max_supply": 333,
     "batch_label": null,
@@ -26,11 +26,339 @@
     "num_owners": 20,
     "total_sales": 17,
     "total_volume": 0.3060000000000002,
-    "piece_count": 34,
+    "piece_count": 39,
     "listed_count": 1,
-    "one_of_ones": 34
+    "one_of_ones": 39
   },
   "items": [
+    {
+      "token_id": "52",
+      "name": "#038 - Emerald Sovereign Crown",
+      "display_name": "#038 - Emerald Sovereign Crown",
+      "local_slug": "hat-038-emerald-sovereign-crown",
+      "description": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and numbered, allowing collectors to choose the legend they connect with most. There are no rarity tiers—every hat stands on its own. Every hat has a story. Legends Wear Hats.\n\nTraits — Production: Batch 02 · Headwear Type: Crown · Theme: Royal · Gear: Cape · Gear Name: Emerald Sovereign Cape · daCAT Model: Male",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/98c35da053e23dd407c84041b21d0f/4b98c35da053e23dd407c84041b21d0f.png",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/98c35da053e23dd407c84041b21d0f/4b98c35da053e23dd407c84041b21d0f.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/52",
+      "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeibwypl6fr4tkzgctwadh6b34m6z52c5enedmmodigils56kxhuoqq/52",
+      "updated_at": "2026-09-13T13:07:34.889087",
+      "traits": [
+        {
+          "trait_type": "Gear",
+          "value": "Cape"
+        },
+        {
+          "trait_type": "Theme",
+          "value": "Royal"
+        },
+        {
+          "trait_type": "Gear Name",
+          "value": "Emerald Sovereign Cape"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 02"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Crown"
+        }
+      ],
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-09-13T13:05:47+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "chain": "ethereum",
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "max_supply": 333,
+      "minted_at": "2026-09-13T13:05:47+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-09-13T13:05:47+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "51",
+      "name": "#037 - Rasta Frog Hood",
+      "display_name": "#037 - Rasta Frog Hood",
+      "local_slug": "hat-037-rasta-frog-hood",
+      "description": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and numbered, allowing collectors to choose the legend they connect with most. There are no rarity tiers—every hat stands on its own. Every hat has a story. Legends Wear Hats.\n\nTraits — Production: Batch 02 · Headwear Type: Hood · Theme: Costume · daCAT Model: Male",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/e94ece749c61c082cc2780da72988d/2fe94ece749c61c082cc2780da72988d.png",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/e94ece749c61c082cc2780da72988d/2fe94ece749c61c082cc2780da72988d.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/51",
+      "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeidbjkykndnj73m53jsmunqft6afdbvod2rg3ksugsinxhxvkjzvwa/51",
+      "updated_at": "2026-09-13T13:07:34.889102",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Costume"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 02"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Hood"
+        }
+      ],
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-09-13T13:02:59+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "chain": "ethereum",
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "max_supply": 333,
+      "minted_at": "2026-09-13T13:02:59+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-09-13T13:02:59+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "50",
+      "name": "#036 - Kaiju Rampage Hood",
+      "display_name": "#036 - Kaiju Rampage Hood",
+      "local_slug": "hat-036-kaiju-rampage-hood",
+      "description": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and numbered, allowing collectors to choose the legend they connect with most. There are no rarity tiers—every hat stands on its own. Every hat has a story. Legends Wear Hats.\n\nTraits — Production: Batch 02 · Headwear Type: Kaiju Hood · Theme: Fantasy · daCAT Model: Male",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/8a019be0a348aa434ae219cb272885/2f8a019be0a348aa434ae219cb272885.png",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/8a019be0a348aa434ae219cb272885/2f8a019be0a348aa434ae219cb272885.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/50",
+      "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeic6fnkd7zd57rwsxrterbtmghg4y4mfa5hsdwkmh6imyms455ac44/50",
+      "updated_at": "2026-09-13T13:07:34.889112",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Fantasy"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 02"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Kaiju Hood"
+        }
+      ],
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-09-13T02:04:47+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "chain": "ethereum",
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "max_supply": 333,
+      "minted_at": "2026-09-13T02:04:47+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-09-13T02:04:47+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "48",
+      "name": "#035 - Apex Titan Hood",
+      "display_name": "#035 - Apex Titan Hood",
+      "local_slug": "hat-035-apex-titan-hood",
+      "description": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and numbered, allowing collectors to choose the legend they connect with most. There are no rarity tiers—every hat stands on its own. Every hat has a story. Legends Wear Hats.\n\nTraits — Production: Batch 02 · Headwear Type: Gorilla Hood · Theme: Fantasy · daCAT Model: Male",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/62d8c71d1900b3d4b9d66d3b475a76/4b62d8c71d1900b3d4b9d66d3b475a76.png",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/62d8c71d1900b3d4b9d66d3b475a76/4b62d8c71d1900b3d4b9d66d3b475a76.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/48",
+      "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeieub3qyzym7coa3urwb2j2ty4mfddo52sk5natiq7qmtt25yvsbxm/48",
+      "updated_at": "2026-09-13T13:07:34.889120",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Fantasy"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 02"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Gorilla Hood"
+        }
+      ],
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-09-13T01:57:35+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "chain": "ethereum",
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "max_supply": 333,
+      "minted_at": "2026-09-13T01:57:35+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-09-13T01:57:35+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "47",
+      "name": "#034 - Sherwood Ranger Hat",
+      "display_name": "#034 - Sherwood Ranger Hat",
+      "local_slug": "hat-034-sherwood-ranger-hat",
+      "description": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and numbered, allowing collectors to choose the legend they connect with most. There are no rarity tiers—every hat stands on its own. Every hat has a story. Legends Wear Hats.\n\nTraits — Production: Batch 02 · Headwear Type: Ranger Hat · Theme: Historical · daCAT Model: Male",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/31dd210df418ec5c4934f5c683af9f/8531dd210df418ec5c4934f5c683af9f.png",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/31dd210df418ec5c4934f5c683af9f/8531dd210df418ec5c4934f5c683af9f.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/47",
+      "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeieac3z5aajqt6qs722s22qhypxgrs7k35ycyec2vlyhmlrq2xt5ci/47",
+      "updated_at": "2026-09-13T13:07:34.889127",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Historical"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 02"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Ranger Hat"
+        }
+      ],
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-09-13T01:54:47+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "chain": "ethereum",
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "max_supply": 333,
+      "minted_at": "2026-09-13T01:54:47+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-09-13T01:54:47+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
     {
       "token_id": "39",
       "name": "#039 - PS#001 - Bat daCAT",
@@ -43,7 +371,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/39",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeib3pk3yeg3u76x7keo3hnqm56tvo25srrrhlq6ldmfqzwisqojzee/39",
-      "updated_at": "2026-09-12T11:57:59.751473",
+      "updated_at": "2026-09-13T13:07:34.889134",
       "traits": [
         {
           "trait_type": "Gear",
@@ -141,7 +469,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/38",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeib3pk3yeg3u76x7keo3hnqm56tvo25srrrhlq6ldmfqzwisqojzee/38",
-      "updated_at": "2026-09-12T11:57:59.751487",
+      "updated_at": "2026-09-13T13:07:34.889141",
       "traits": [
         {
           "trait_type": "Theme",
@@ -230,7 +558,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/37",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeig2zcymfskeks443gukkxc24gkxuev5kam3agr262iqezjtzhcrrq/37",
-      "updated_at": "2026-09-12T11:57:59.751498",
+      "updated_at": "2026-09-13T13:07:34.889148",
       "traits": [
         {
           "trait_type": "Theme",
@@ -319,7 +647,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/35",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/35",
-      "updated_at": "2026-09-12T11:57:59.751509",
+      "updated_at": "2026-09-13T13:07:34.889155",
       "traits": [
         {
           "trait_type": "Theme",
@@ -408,7 +736,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/33",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/33",
-      "updated_at": "2026-09-12T11:57:59.751519",
+      "updated_at": "2026-09-13T13:07:34.889162",
       "traits": [
         {
           "trait_type": "Theme",
@@ -504,7 +832,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/32",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeig2zcymfskeks443gukkxc24gkxuev5kam3agr262iqezjtzhcrrq/32",
-      "updated_at": "2026-09-12T11:57:59.751530",
+      "updated_at": "2026-09-13T13:07:34.889168",
       "traits": [
         {
           "trait_type": "Theme",
@@ -593,7 +921,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/31",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/31",
-      "updated_at": "2026-09-12T11:57:59.751540",
+      "updated_at": "2026-09-13T13:07:34.889175",
       "traits": [
         {
           "trait_type": "Theme",
@@ -682,7 +1010,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/30",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/30",
-      "updated_at": "2026-09-12T11:57:59.751550",
+      "updated_at": "2026-09-13T13:07:34.889182",
       "traits": [
         {
           "trait_type": "Theme",
@@ -771,7 +1099,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/29",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeib3pk3yeg3u76x7keo3hnqm56tvo25srrrhlq6ldmfqzwisqojzee/29",
-      "updated_at": "2026-09-12T11:57:59.751560",
+      "updated_at": "2026-09-13T13:07:34.889188",
       "traits": [
         {
           "trait_type": "Theme",
@@ -860,7 +1188,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/28",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeib3pk3yeg3u76x7keo3hnqm56tvo25srrrhlq6ldmfqzwisqojzee/28",
-      "updated_at": "2026-09-12T11:57:59.751571",
+      "updated_at": "2026-09-13T13:07:34.889195",
       "traits": [
         {
           "trait_type": "Theme",
@@ -949,7 +1277,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/27",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/27",
-      "updated_at": "2026-09-12T11:57:59.751581",
+      "updated_at": "2026-09-13T13:07:34.889202",
       "traits": [
         {
           "trait_type": "Theme",
@@ -1038,7 +1366,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/26",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/26",
-      "updated_at": "2026-09-12T11:57:59.751591",
+      "updated_at": "2026-09-13T13:07:34.889208",
       "traits": [
         {
           "trait_type": "Theme",
@@ -1127,7 +1455,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/25",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeib3pk3yeg3u76x7keo3hnqm56tvo25srrrhlq6ldmfqzwisqojzee/25",
-      "updated_at": "2026-09-12T11:57:59.751601",
+      "updated_at": "2026-09-13T13:07:34.889215",
       "traits": [
         {
           "trait_type": "Theme",
@@ -1216,7 +1544,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/24",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/24",
-      "updated_at": "2026-09-12T11:57:59.751611",
+      "updated_at": "2026-09-13T13:07:34.889222",
       "traits": [
         {
           "trait_type": "Theme",
@@ -1305,7 +1633,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/23",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeib3pk3yeg3u76x7keo3hnqm56tvo25srrrhlq6ldmfqzwisqojzee/23",
-      "updated_at": "2026-09-12T11:57:59.751622",
+      "updated_at": "2026-09-13T13:07:34.889229",
       "traits": [
         {
           "trait_type": "Theme",
@@ -1394,7 +1722,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/22",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeib3pk3yeg3u76x7keo3hnqm56tvo25srrrhlq6ldmfqzwisqojzee/22",
-      "updated_at": "2026-09-12T11:57:59.751632",
+      "updated_at": "2026-09-13T13:07:34.889235",
       "traits": [
         {
           "trait_type": "Theme",
@@ -1487,7 +1815,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/21",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/21",
-      "updated_at": "2026-09-12T11:57:59.751643",
+      "updated_at": "2026-09-13T13:07:34.889242",
       "traits": [
         {
           "trait_type": "Gear",
@@ -1591,7 +1919,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/20",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeib3pk3yeg3u76x7keo3hnqm56tvo25srrrhlq6ldmfqzwisqojzee/20",
-      "updated_at": "2026-09-12T11:57:59.751652",
+      "updated_at": "2026-09-13T13:07:34.889248",
       "traits": [
         {
           "trait_type": "Theme",
@@ -1680,7 +2008,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/19",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeib3pk3yeg3u76x7keo3hnqm56tvo25srrrhlq6ldmfqzwisqojzee/19",
-      "updated_at": "2026-09-12T11:57:59.751662",
+      "updated_at": "2026-09-13T13:07:34.889255",
       "traits": [
         {
           "trait_type": "Gear",
@@ -1777,7 +2105,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/18",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/18",
-      "updated_at": "2026-09-12T11:57:59.751672",
+      "updated_at": "2026-09-13T13:07:34.889261",
       "traits": [
         {
           "trait_type": "Theme",
@@ -1866,7 +2194,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/17",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeib3pk3yeg3u76x7keo3hnqm56tvo25srrrhlq6ldmfqzwisqojzee/17",
-      "updated_at": "2026-09-12T11:57:59.751682",
+      "updated_at": "2026-09-13T13:07:34.889268",
       "traits": [
         {
           "trait_type": "Theme",
@@ -1955,7 +2283,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/16",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/16",
-      "updated_at": "2026-09-12T11:57:59.751692",
+      "updated_at": "2026-09-13T13:07:34.889274",
       "traits": [
         {
           "trait_type": "Theme",
@@ -2065,7 +2393,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/15",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/15",
-      "updated_at": "2026-09-12T11:57:59.751702",
+      "updated_at": "2026-09-13T13:07:34.889280",
       "traits": [
         {
           "trait_type": "Theme",
@@ -2154,7 +2482,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/13",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/13",
-      "updated_at": "2026-09-12T11:57:59.751712",
+      "updated_at": "2026-09-13T13:07:34.889286",
       "traits": [
         {
           "trait_type": "Theme",
@@ -2243,7 +2571,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/12",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/12",
-      "updated_at": "2026-09-12T11:57:59.751722",
+      "updated_at": "2026-09-13T13:07:34.889292",
       "traits": [
         {
           "trait_type": "Theme",
@@ -2332,7 +2660,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/11",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/11",
-      "updated_at": "2026-09-12T11:57:59.751732",
+      "updated_at": "2026-09-13T13:07:34.889298",
       "traits": [
         {
           "trait_type": "Theme",
@@ -2436,7 +2764,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/8",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeib3pk3yeg3u76x7keo3hnqm56tvo25srrrhlq6ldmfqzwisqojzee/8",
-      "updated_at": "2026-09-12T11:57:59.751741",
+      "updated_at": "2026-09-13T13:07:34.889304",
       "traits": [
         {
           "trait_type": "Theme",
@@ -2525,7 +2853,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/7",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/7",
-      "updated_at": "2026-09-12T11:57:59.751750",
+      "updated_at": "2026-09-13T13:07:34.889311",
       "traits": [
         {
           "trait_type": "Theme",
@@ -2614,7 +2942,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/6",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/6",
-      "updated_at": "2026-09-12T11:57:59.751761",
+      "updated_at": "2026-09-13T13:07:34.889317",
       "traits": [
         {
           "trait_type": "Theme",
@@ -2703,7 +3031,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/5",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/5",
-      "updated_at": "2026-09-12T11:57:59.751771",
+      "updated_at": "2026-09-13T13:07:34.889324",
       "traits": [
         {
           "trait_type": "Theme",
@@ -2799,7 +3127,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/4",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeig2zcymfskeks443gukkxc24gkxuev5kam3agr262iqezjtzhcrrq/4",
-      "updated_at": "2026-09-12T11:57:59.751780",
+      "updated_at": "2026-09-13T13:07:34.889332",
       "traits": [
         {
           "trait_type": "Theme",
@@ -2888,7 +3216,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/3",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeig2zcymfskeks443gukkxc24gkxuev5kam3agr262iqezjtzhcrrq/3",
-      "updated_at": "2026-09-12T11:57:59.751790",
+      "updated_at": "2026-09-13T13:07:34.889340",
       "traits": [
         {
           "trait_type": "Gear",
@@ -2985,7 +3313,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/2",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeig2zcymfskeks443gukkxc24gkxuev5kam3agr262iqezjtzhcrrq/2",
-      "updated_at": "2026-09-12T11:57:59.751800",
+      "updated_at": "2026-09-13T13:07:34.889346",
       "traits": [
         {
           "trait_type": "Theme",
@@ -3074,7 +3402,7 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/1",
       "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeifwjfgdgcpejfyejcvonv23k3vypbnx3d7pjaah67yemu2el2dqya/1",
-      "updated_at": "2026-09-12T11:57:59.751810",
+      "updated_at": "2026-09-13T13:07:34.889352",
       "traits": [
         {
           "trait_type": "Theme",
