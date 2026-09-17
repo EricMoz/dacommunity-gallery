@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-16T13:28:54.152335+00:00",
+  "generated_at": "2026-09-17T13:17:48.190308+00:00",
   "source": "badges_catalog",
   "collection": {
     "slug": "badges",
@@ -91,7 +91,8 @@
           },
           {
             "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "msgato.eth"
           },
           {
             "address": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
@@ -210,7 +211,8 @@
           },
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "datrailcat.eth"
           },
           {
             "address": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
@@ -239,7 +241,8 @@
           },
           {
             "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "msgato.eth"
           },
           {
             "address": "0x4ff3ba0c7b39f57fc934c014e8c796f1efb44043",
@@ -258,7 +261,8 @@
           },
           {
             "address": "0x1fc100b151a1ffa55d41a134a1a826a242d9c7c9",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dachromeclaw.eth"
           },
           {
             "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
@@ -304,13 +308,15 @@
         "top_holders": [
           {
             "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "msgato.eth"
           }
         ],
         "holders": [
           {
             "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "msgato.eth"
           }
         ]
       },
@@ -390,13 +396,15 @@
         "top_holders": [
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "datrailcat.eth"
           }
         ],
         "holders": [
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "datrailcat.eth"
           }
         ]
       },
@@ -478,13 +486,15 @@
         "top_holders": [
           {
             "address": "0x1fc100b151a1ffa55d41a134a1a826a242d9c7c9",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dachromeclaw.eth"
           }
         ],
         "holders": [
           {
             "address": "0x1fc100b151a1ffa55d41a134a1a826a242d9c7c9",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "dachromeclaw.eth"
           }
         ]
       },
@@ -1768,13 +1778,15 @@
         "top_holders": [
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "datrailcat.eth"
           }
         ],
         "holders": [
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "datrailcat.eth"
           }
         ]
       },
@@ -1810,13 +1822,15 @@
         "top_holders": [
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "datrailcat.eth"
           }
         ],
         "holders": [
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "datrailcat.eth"
           }
         ]
       },
@@ -2053,7 +2067,8 @@
           },
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
           },
           {
             "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
@@ -2069,7 +2084,8 @@
           },
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
           },
           {
             "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
@@ -2110,13 +2126,15 @@
         "top_holders": [
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
           }
         ],
         "holders": [
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
           }
         ]
       },
@@ -2342,7 +2360,8 @@
           },
           {
             "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "msgato.eth"
           }
         ],
         "holders": [
@@ -2358,7 +2377,8 @@
           },
           {
             "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "msgato.eth"
           }
         ]
       },
@@ -2394,13 +2414,15 @@
         "top_holders": [
           {
             "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "msgato.eth"
           }
         ],
         "holders": [
           {
             "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "msgato.eth"
           }
         ]
       },
@@ -3675,7 +3697,8 @@
           },
           {
             "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
-            "quantity": 1
+            "quantity": 1,
+            "ens_name": "msgato.eth"
           }
         ]
       },

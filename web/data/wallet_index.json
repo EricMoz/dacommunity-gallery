@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-16T13:29:46.151279+00:00",
+  "generated_at": "2026-09-17T13:18:01.993987+00:00",
   "holders_index": {
     "ens_aliases": {
       "lostthegame.eth": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
@@ -18,14 +18,18 @@
       "jiujitsu🍄.eth": "0x4a35cee6c17fcb6bc9235521bd3b7feef6680232",
       "dacatchronicles.eth": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
       "dasheesh.eth": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+      "dachromeclaw.eth": "0x1fc100b151a1ffa55d41a134a1a826a242d9c7c9",
       "elons-cat.eth": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
       "dabronk.eth": "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46",
       "chadalac666.eth": "0x4ff3ba0c7b39f57fc934c014e8c796f1efb44043",
+      "msgato.eth": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
       "grumpyx.eth": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
       "south-florida.eth": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
       "cryptlos.eth": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
       "warriorpr.eth": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
+      "datrailcat.eth": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
       "dabaker.eth": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
+      "daforeman.eth": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
       "dbcrypto.eth": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
       "dacatstudios.eth": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
       "kingsi.eth": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
@@ -2869,7 +2873,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565336.3033662
+        "last_ens_resolved": 1789651069.6937156
       },
       "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4": {
         "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
@@ -2879,17 +2883,17 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565338.3301682
+        "last_ens_resolved": 1789651069.8804293
       },
       "0x1fc100b151a1ffa55d41a134a1a826a242d9c7c9": {
         "address": "0x1fc100b151a1ffa55d41a134a1a826a242d9c7c9",
-        "ens_name": null,
+        "ens_name": "dachromeclaw.eth",
         "username": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565340.3304515
+        "last_ens_resolved": 1789651070.078659
       },
       "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e": {
         "address": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
@@ -2899,7 +2903,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565343.1888475
+        "last_ens_resolved": 1789651070.321277
       },
       "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46": {
         "address": "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46",
@@ -2909,7 +2913,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565344.1484077
+        "last_ens_resolved": 1789651070.489983
       },
       "0x4e822f0773a16e862d185853e8b4131a9a922deb": {
         "address": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
@@ -2919,7 +2923,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565346.3520272
+        "last_ens_resolved": 1789651071.6998813
       },
       "0x4ff3ba0c7b39f57fc934c014e8c796f1efb44043": {
         "address": "0x4ff3ba0c7b39f57fc934c014e8c796f1efb44043",
@@ -2929,17 +2933,17 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565348.1487172
+        "last_ens_resolved": 1789651071.9129512
       },
       "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c": {
         "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
-        "ens_name": null,
+        "ens_name": "msgato.eth",
         "username": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565350.1488826
+        "last_ens_resolved": 1789651072.154026
       },
       "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa": {
         "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
@@ -2949,7 +2953,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565352.1499357
+        "last_ens_resolved": 1789651072.3587198
       },
       "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da": {
         "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
@@ -2959,7 +2963,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565354.1485407
+        "last_ens_resolved": 1789651072.5329108
       },
       "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91": {
         "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
@@ -2969,7 +2973,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565356.1502118
+        "last_ens_resolved": 1789651073.5706265
       },
       "0x7d3a38475fa782aad7840f777e780383801d6de4": {
         "address": "0x7d3a38475fa782aad7840f777e780383801d6de4",
@@ -2979,7 +2983,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565358.3360293
+        "last_ens_resolved": 1789651073.7795095
       },
       "0x82c1e9798451e9cf1ea6ba5e7c1983e80a7e1ba5": {
         "address": "0x82c1e9798451e9cf1ea6ba5e7c1983e80a7e1ba5",
@@ -2989,7 +2993,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565360.1505508
+        "last_ens_resolved": 1789651075.781728
       },
       "0xa3b61e2076ca08a8021e2f48906be8123bd536b2": {
         "address": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
@@ -2999,17 +3003,17 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565362.3350074
+        "last_ens_resolved": 1789651075.958463
       },
       "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92": {
         "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-        "ens_name": null,
+        "ens_name": "datrailcat.eth",
         "username": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565364.3300216
+        "last_ens_resolved": 1789651076.160344
       },
       "0xb7150ba28ddf3680975fae75ac493559d05f784a": {
         "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
@@ -3019,7 +3023,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565366.1511395
+        "last_ens_resolved": 1789651076.3374412
       },
       "0xbd0c0b2943eae1b97e4d0e6b18df3faa5fb14a10": {
         "address": "0xbd0c0b2943eae1b97e4d0e6b18df3faa5fb14a10",
@@ -3029,17 +3033,17 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565368.331108
+        "last_ens_resolved": 1789651077.7791898
       },
       "0xc553593cd4bfd114ffe80cf8a628cc12b841b327": {
         "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-        "ens_name": null,
+        "ens_name": "daforeman.eth",
         "username": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565370.3127294
+        "last_ens_resolved": 1789651077.9733057
       },
       "0xd0c8c2761882b314b1d552747167189f8f0a5b38": {
         "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
@@ -3049,7 +3053,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565372.1521811
+        "last_ens_resolved": 1789651078.1463368
       },
       "0xd307f028d96ab495c41440ca20730feb8ab8b0f9": {
         "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
@@ -3059,7 +3063,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565374.151246
+        "last_ens_resolved": 1789651078.3755994
       },
       "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3": {
         "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
@@ -3069,7 +3073,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565376.1513152
+        "last_ens_resolved": 1789651078.5596457
       },
       "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1": {
         "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
@@ -3079,7 +3083,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565378.1524506
+        "last_ens_resolved": 1789651079.7818298
       },
       "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868": {
         "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -3089,7 +3093,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565380.3237174
+        "last_ens_resolved": 1789651079.9531462
       },
       "0xe597a25c77317b361636270251dc53d36491a11d": {
         "address": "0xe597a25c77317b361636270251dc53d36491a11d",
@@ -3099,7 +3103,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565382.1511946
+        "last_ens_resolved": 1789651080.1827128
       },
       "0xee2301b51d369b30031fa06b0367b0e8a8ba759f": {
         "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
@@ -3109,7 +3113,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565384.1509533
+        "last_ens_resolved": 1789651081.7823005
       },
       "0xf6c9b6b8b700906d43281ec485bee2139026cb27": {
         "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
@@ -3119,7 +3123,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1789565386.151212
+        "last_ens_resolved": 1789651081.993898
       }
     },
     "collectors": [
@@ -3552,7 +3556,7 @@
       },
       {
         "address": "0x1fc100b151a1ffa55d41a134a1a826a242d9c7c9",
-        "ens_name": null,
+        "ens_name": "dachromeclaw.eth",
         "username": null,
         "unique_pieces": 0,
         "collection_quantity": 0
@@ -3587,7 +3591,7 @@
       },
       {
         "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
-        "ens_name": null,
+        "ens_name": "msgato.eth",
         "username": null,
         "unique_pieces": 0,
         "collection_quantity": 0
@@ -3636,7 +3640,7 @@
       },
       {
         "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
-        "ens_name": null,
+        "ens_name": "datrailcat.eth",
         "username": null,
         "unique_pieces": 0,
         "collection_quantity": 0
@@ -3657,7 +3661,7 @@
       },
       {
         "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-        "ens_name": null,
+        "ens_name": "daforeman.eth",
         "username": null,
         "unique_pieces": 0,
         "collection_quantity": 0
