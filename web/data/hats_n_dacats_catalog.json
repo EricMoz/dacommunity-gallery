@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-17T13:06:34.258926+00:00",
+  "generated_at": "2026-09-18T12:45:00.620811+00:00",
   "source": "hats_n_dacats_catalog",
   "collection": {
     "id": "hats-n-dacats",
@@ -24,10 +24,10 @@
     "floor_eth": 0.014,
     "floor_symbol": "ETH",
     "num_owners": 21,
-    "total_sales": 22,
-    "total_volume": 0.3760000000000003,
+    "total_sales": 25,
+    "total_volume": 0.4180000000000003,
     "piece_count": 87,
-    "listed_count": 33,
+    "listed_count": 30,
     "one_of_ones": 87
   },
   "items": [
@@ -367,16 +367,26 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": [],
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          }
+        ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "mint",
-          "at": "2026-09-13T14:47:23+00:00",
-          "from": null,
-          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "type": "transfer",
+          "at": "2026-09-18T06:51:11+00:00",
+          "from": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
           "quantity": 1
         }
       },
@@ -404,6 +414,28 @@
       "is_1_of_1": true,
       "edition_size": 1,
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-09-18T06:51:11+00:00",
+          "from": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-09-17T19:52:11+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-09-17T19:52:11+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+          "quantity": 1,
+          "price_eth": 0.014
+        },
         {
           "type": "mint",
           "at": "2026-09-13T14:47:23+00:00",
@@ -696,23 +728,29 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/94",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/076b34615f9cc43edc78a154a2a2ab/1c076b34615f9cc43edc78a154a2a2ab.png",
-      "listed": true,
-      "listing": {
-        "amount_eth": 0.014,
-        "currency": "ETH",
-        "status": "ACTIVE"
-      },
+      "listed": false,
+      "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": [],
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          }
+        ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "mint",
-          "at": "2026-09-13T14:37:35+00:00",
-          "from": null,
-          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "type": "sale",
+          "at": "2026-09-18T03:46:59+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
           "quantity": 1
         }
       },
@@ -740,6 +778,21 @@
       "is_1_of_1": true,
       "edition_size": 1,
       "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-09-18T03:46:59+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1,
+          "price_eth": 0.014
+        },
+        {
+          "type": "transfer",
+          "at": "2026-09-18T03:46:59+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        },
         {
           "type": "mint",
           "at": "2026-09-13T14:37:35+00:00",
@@ -948,23 +1001,29 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/90",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/0beb4bb550f0bcebc5722bb95d211f/7e0beb4bb550f0bcebc5722bb95d211f.png",
-      "listed": true,
-      "listing": {
-        "amount_eth": 0.014,
-        "currency": "ETH",
-        "status": "ACTIVE"
-      },
+      "listed": false,
+      "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": [],
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+            "quantity": 1
+          }
+        ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "mint",
-          "at": "2026-09-13T14:29:47+00:00",
-          "from": null,
-          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "type": "transfer",
+          "at": "2026-09-18T06:50:11+00:00",
+          "from": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
           "quantity": 1
         }
       },
@@ -992,6 +1051,28 @@
       "is_1_of_1": true,
       "edition_size": 1,
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-09-18T06:50:11+00:00",
+          "from": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-09-17T19:56:35+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+          "quantity": 1,
+          "price_eth": 0.014
+        },
+        {
+          "type": "transfer",
+          "at": "2026-09-17T19:56:35+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+          "quantity": 1
+        },
         {
           "type": "mint",
           "at": "2026-09-13T14:29:47+00:00",
@@ -1284,23 +1365,29 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/85",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/f02002f291dc2217407c459131d8fc/aef02002f291dc2217407c459131d8fc.png",
-      "listed": true,
-      "listing": {
-        "amount_eth": 0.014,
-        "currency": "ETH",
-        "status": "ACTIVE"
-      },
+      "listed": false,
+      "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": [],
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          }
+        ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "mint",
-          "at": "2026-09-13T14:21:47+00:00",
-          "from": null,
-          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "type": "transfer",
+          "at": "2026-09-18T03:45:47+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
           "quantity": 1
         }
       },
@@ -1336,6 +1423,21 @@
       "is_1_of_1": true,
       "edition_size": 1,
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-09-18T03:45:47+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-09-18T03:45:47+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1,
+          "price_eth": 0.014
+        },
         {
           "type": "mint",
           "at": "2026-09-13T14:21:47+00:00",
