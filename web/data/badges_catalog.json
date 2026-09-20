@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T12:33:06.542746+00:00",
+  "generated_at": "2026-09-20T13:08:16.533166+00:00",
   "source": "badges_catalog",
   "collection": {
     "slug": "badges",
@@ -9,7 +9,7 @@
     "creator_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
     "note": "Personal 1/1 and limited awards/badges created by the wallet. Issuer wallet excluded from all holder stats. Mystery items pending approval.",
     "total_created": 17,
-    "one_of_ones": 60,
+    "one_of_ones": 61,
     "unclaimed": 0,
     "mysteries": 3
   },
@@ -1773,13 +1773,18 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 1,
-        "circulating_copies": 1,
+        "holder_count": 2,
+        "circulating_copies": 2,
         "top_holders": [
           {
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
             "quantity": 1,
             "ens_name": "datrailcat.eth"
+          },
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1,
+            "ens_name": "dasheesh.eth"
           }
         ],
         "holders": [
@@ -1787,6 +1792,11 @@
             "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
             "quantity": 1,
             "ens_name": "datrailcat.eth"
+          },
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1,
+            "ens_name": "dasheesh.eth"
           }
         ]
       },
@@ -1801,6 +1811,51 @@
       "edition_club": false,
       "sub_category": "Trillion Club",
       "tags": [
+        "trillion_club"
+      ]
+    },
+    {
+      "token_id": "2",
+      "name": "DASHEESH - DACAT 3 TRILLION CLUB MEMBERSHIP",
+      "display_name": "DACAT 3 TRILLION CLUB",
+      "local_slug": "dacat-3-trillion-club",
+      "excerpt": "The DACAT 3 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "image_url": "assets/badges/dacat-3-trillion-club.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dacat3trillion",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xf67a808939d7df84b85271118bf99763ca010009/31d53278e33dc3631ab2b74bcdd003/1e31d53278e33dc3631ab2b74bcdd003.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1,
+            "ens_name": "dasheesh.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
+            "quantity": 1,
+            "ens_name": "dasheesh.eth"
+          }
+        ]
+      },
+      "minted_at": "2026-09-19T19:00:35+00:00",
+      "is_1_of_1": true,
+      "award_category": "trillion_club",
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "ens_match_detected": false,
+      "source_created_collection": "dacat3trillion",
+      "is_series_rep": false,
+      "edition_club": false,
+      "sub_category": "Trillion Club",
+      "tags": [
+        "1_of_1",
         "trillion_club"
       ]
     },
