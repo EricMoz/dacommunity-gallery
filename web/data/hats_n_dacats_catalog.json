@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-03T13:06:24.108714+00:00",
+  "generated_at": "2026-10-04T13:46:52.832758+00:00",
   "source": "hats_n_dacats_catalog",
   "collection": {
     "id": "hats-n-dacats",
@@ -9,7 +9,7 @@
     "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
     "chain": "ethereum",
     "opensea_url": "https://opensea.io/collection/hats-n-dacats",
-    "note": "True 1:1 hats on Ethereum. Max supply 333; released in waves (currently 87 minted). No rarity tiers — every hat stands on its own. Stewarded by hatsndacats.eth. Project mint wallet excluded from holder counts until a collector receives the piece.",
+    "note": "True 1:1 hats on Ethereum. Max supply 333; released in waves (currently 90 minted). No rarity tiers — every hat stands on its own. Stewarded by hatsndacats.eth. Project mint wallet excluded from holder counts until a collector receives the piece.",
     "description": "HATS n' daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and numbered, allowing collectors to choose the legend they connect with most. There are no rarity tiers—every hat stands on its own. Every hat has a story. Legends Wear Hats.",
     "max_supply": 333,
     "batch_label": null,
@@ -21,16 +21,259 @@
     },
     "creator_excluded_from_stats": true,
     "contract_name": "HATS n' daCATs",
-    "floor_eth": 0.014,
+    "floor_eth": 0.0125,
     "floor_symbol": "ETH",
     "num_owners": 21,
-    "total_sales": 26,
-    "total_volume": 0.43200000000000033,
-    "piece_count": 87,
-    "listed_count": 29,
-    "one_of_ones": 87
+    "total_sales": 29,
+    "total_volume": 0.47100000000000025,
+    "piece_count": 90,
+    "listed_count": 31,
+    "one_of_ones": 90
   },
   "items": [
+    {
+      "token_id": "107",
+      "name": "#086 - Hollow Harvest Hood",
+      "display_name": "#086 - Hollow Harvest Hood",
+      "local_slug": "hat-086-hollow-harvest-hood",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/dc6ac7eda86231b7bc2ea7adc1a66e/f0dc6ac7eda86231b7bc2ea7adc1a66e.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/107",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/dc6ac7eda86231b7bc2ea7adc1a66e/f0dc6ac7eda86231b7bc2ea7adc1a66e.png",
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.04,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "sale",
+          "at": "2026-10-04T00:33:59+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-03T17:54:35+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Horror"
+        },
+        {
+          "trait_type": "Production",
+          "value": "The Cursed 31"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Hood"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-10-04T00:33:59+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1,
+          "price_eth": 0.0125
+        },
+        {
+          "type": "transfer",
+          "at": "2026-10-04T00:33:59+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-03T17:54:35+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "106",
+      "name": "#085 - Dread Captain Pirate Hat",
+      "display_name": "#085 - Dread Captain Pirate Hat",
+      "local_slug": "hat-085-dread-captain-pirate-hat",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/c3b58d353f6f4f36d2df25ef3c992c/e9c3b58d353f6f4f36d2df25ef3c992c.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/106",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/c3b58d353f6f4f36d2df25ef3c992c/e9c3b58d353f6f4f36d2df25ef3c992c.png",
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.0125,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-03T17:51:23+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-03T17:51:23+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Horror"
+        },
+        {
+          "trait_type": "Production",
+          "value": "The Cursed 31"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Pirate Hat"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-03T17:51:23+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "105",
+      "name": "#084 - Grave Sovereign Crown",
+      "display_name": "#084 - Grave Sovereign Crown",
+      "local_slug": "hat-084-grave-sovereign-crown",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/d9d9a01ab7432c5a687553dfacb098/41d9d9a01ab7432c5a687553dfacb098.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/105",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/d9d9a01ab7432c5a687553dfacb098/41d9d9a01ab7432c5a687553dfacb098.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-10-03T23:01:35+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-03T17:42:23+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Gear",
+          "value": "Cape"
+        },
+        {
+          "trait_type": "Theme",
+          "value": "Horror"
+        },
+        {
+          "trait_type": "Gear Name",
+          "value": "Grave Sovereign Cape"
+        },
+        {
+          "trait_type": "Production",
+          "value": "The Cursed 31"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Crown"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-10-03T23:01:35+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-10-03T23:01:35+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1,
+          "price_eth": 0.0125
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-03T17:42:23+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
     {
       "token_id": "104",
       "name": "#104 - PS#004 - Mycelium Glow Cap",
@@ -1824,21 +2067,31 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/538acd7f517c2e8442b8724da8db45/55538acd7f517c2e8442b8724da8db45.png",
       "listed": true,
       "listing": {
-        "amount_eth": 0.014,
+        "amount_eth": 0.055,
         "currency": "ETH",
         "status": "ACTIVE"
       },
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": [],
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "mint",
-          "at": "2026-09-13T14:09:35+00:00",
-          "from": null,
-          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "type": "transfer",
+          "at": "2026-10-04T05:10:11+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
           "quantity": 1
         }
       },
@@ -1866,6 +2119,21 @@
       "is_1_of_1": true,
       "edition_size": 1,
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-10-04T05:10:11+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-10-04T05:10:11+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1,
+          "price_eth": 0.014
+        },
         {
           "type": "mint",
           "at": "2026-09-13T14:09:35+00:00",
@@ -4496,7 +4764,7 @@
       "name": "#028 - Miami Vice Shades",
       "display_name": "#028 - Miami Vice Shades",
       "local_slug": "hat-028-miami-vice-shades",
-      "excerpt": "HATS n’ daCATs is a collection of 333 unique pixel-art daCATs, each defined by a legendary hat. Every NFT is individually named and numbered, allowing collecto…",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
       "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/940e5cc4ecb3003f8893c884cefa5e/ea940e5cc4ecb3003f8893c884cefa5e.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/31",
@@ -4580,7 +4848,7 @@
       "name": "#027 - Deep-Sea Manta Hood",
       "display_name": "#027 - Deep-Sea Manta Hood",
       "local_slug": "hat-027-deep-sea-manta-hood",
-      "excerpt": "HATS n’ daCATs is a collection of 333 unique pixel-art daCATs, each defined by a legendary hat. Every NFT is individually named and numbered, allowing collecto…",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
       "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/8351c35028680b6bea19aead4e9d38/588351c35028680b6bea19aead4e9d38.jpeg",
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/30",
