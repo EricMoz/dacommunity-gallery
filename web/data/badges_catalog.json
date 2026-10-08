@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-07T15:23:37.842660+00:00",
+  "generated_at": "2026-10-08T15:30:23.484349+00:00",
   "source": "badges_catalog",
   "collection": {
     "slug": "badges",
@@ -27,8 +27,8 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 11,
-        "circulating_copies": 11,
+        "holder_count": 12,
+        "circulating_copies": 12,
         "top_holders": [
           {
             "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
@@ -80,6 +80,10 @@
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1,
             "ens_name": "dagato.eth"
+          },
+          {
+            "address": "0x91bebf482b1186d05263a98c68c5ab3f5ff8287f",
+            "quantity": 1
           },
           {
             "address": "0x82c1e9798451e9cf1ea6ba5e7c1983e80a7e1ba5",
@@ -3388,15 +3392,23 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 1,
-        "circulating_copies": 1,
+        "holder_count": 2,
+        "circulating_copies": 2,
         "top_holders": [
+          {
+            "address": "0x91bebf482b1186d05263a98c68c5ab3f5ff8287f",
+            "quantity": 1
+          },
           {
             "address": "0x82c1e9798451e9cf1ea6ba5e7c1983e80a7e1ba5",
             "quantity": 1
           }
         ],
         "holders": [
+          {
+            "address": "0x91bebf482b1186d05263a98c68c5ab3f5ff8287f",
+            "quantity": 1
+          },
           {
             "address": "0x82c1e9798451e9cf1ea6ba5e7c1983e80a7e1ba5",
             "quantity": 1
