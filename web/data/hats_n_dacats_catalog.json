@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-08T15:18:33.922616+00:00",
+  "generated_at": "2026-10-09T15:03:24.194813+00:00",
   "source": "hats_n_dacats_catalog",
   "collection": {
     "id": "hats-n-dacats",
@@ -9,7 +9,7 @@
     "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
     "chain": "ethereum",
     "opensea_url": "https://opensea.io/collection/hats-n-dacats",
-    "note": "True 1:1 hats on Ethereum. Max supply 333; released in waves (currently 96 minted). No rarity tiers — every hat stands on its own. Stewarded by hatsndacats.eth. Project mint wallet excluded from holder counts until a collector receives the piece.",
+    "note": "True 1:1 hats on Ethereum. Max supply 333; released in waves (currently 102 minted). No rarity tiers — every hat stands on its own. Stewarded by hatsndacats.eth. Project mint wallet excluded from holder counts until a collector receives the piece.",
     "description": "HATS n' daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and numbered, allowing collectors to choose the legend they connect with most. There are no rarity tiers—every hat stands on its own. Every hat has a story. Legends Wear Hats.",
     "max_supply": 333,
     "batch_label": null,
@@ -26,11 +26,365 @@
     "num_owners": 21,
     "total_sales": 35,
     "total_volume": 0.5490000000000002,
-    "piece_count": 96,
+    "piece_count": 102,
     "listed_count": 28,
-    "one_of_ones": 96
+    "one_of_ones": 102
   },
   "items": [
+    {
+      "token_id": "119",
+      "name": "#098 - Slimebound Kraken Hood",
+      "display_name": "#098 - Slimebound Kraken Hood",
+      "local_slug": "hat-098-slimebound-kraken-hood",
+      "excerpt": "HATS n' daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/7849338e70602de8ae6d6a64ffe367/037849338e70602de8ae6d6a64ffe367.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/119",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/7849338e70602de8ae6d6a64ffe367/037849338e70602de8ae6d6a64ffe367.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-09T12:41:47+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-09T12:41:47+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Horror"
+        },
+        {
+          "trait_type": "Production",
+          "value": "The Cursed 31"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Hood"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-09T12:41:47+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "118",
+      "name": "#097 - Infernal Ram Headdress",
+      "display_name": "#097 - Infernal Ram Headdress",
+      "local_slug": "hat-097-infernal-ram-headdress",
+      "excerpt": "HATS n' daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/7324aaed0216fa063d28cf48e9d4ec/2f7324aaed0216fa063d28cf48e9d4ec.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/118",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/7324aaed0216fa063d28cf48e9d4ec/2f7324aaed0216fa063d28cf48e9d4ec.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-09T12:38:47+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-09T12:38:47+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Horror"
+        },
+        {
+          "trait_type": "Production",
+          "value": "The Cursed 31"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Headdress"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-09T12:38:47+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "117",
+      "name": "#096 - Possessed Porcelain Bonnet",
+      "display_name": "#096 - Possessed Porcelain Bonnet",
+      "local_slug": "hat-096-possessed-porcelain-bonnet",
+      "excerpt": "HATS n' daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/182420bfc55521a4600613297a133e/38182420bfc55521a4600613297a133e.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/117",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/182420bfc55521a4600613297a133e/38182420bfc55521a4600613297a133e.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-09T12:35:11+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-09T12:35:11+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Horror"
+        },
+        {
+          "trait_type": "Production",
+          "value": "The Cursed 31"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Bonnet"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-09T12:35:11+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "116",
+      "name": "#095 - Voidborn Hatchling Helm",
+      "display_name": "#095 - Voidborn Hatchling Helm",
+      "local_slug": "hat-095-voidborn-hatchling-helm",
+      "excerpt": "HATS n' daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/a3a0020bc2e713ddf27ab94297e437/88a3a0020bc2e713ddf27ab94297e437.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/116",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/a3a0020bc2e713ddf27ab94297e437/88a3a0020bc2e713ddf27ab94297e437.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-09T12:32:35+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-09T12:32:35+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Horror"
+        },
+        {
+          "trait_type": "Production",
+          "value": "The Cursed 31"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Helmet"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-09T12:32:35+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "115",
+      "name": "#094 - Shatterface Mask",
+      "display_name": "#094 - Shatterface Mask",
+      "local_slug": "hat-094-shatterface-mask",
+      "excerpt": "HATS n' daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/dc8ea31d33b56ced460690aba7dbf5/52dc8ea31d33b56ced460690aba7dbf5.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/115",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/dc8ea31d33b56ced460690aba7dbf5/52dc8ea31d33b56ced460690aba7dbf5.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-09T12:28:47+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-09T12:28:47+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Horror"
+        },
+        {
+          "trait_type": "Production",
+          "value": "The Cursed 31"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Mask"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-09T12:28:47+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "114",
+      "name": "#093 - Dreadlight Pumpkin Helm",
+      "display_name": "#093 - Dreadlight Pumpkin Helm",
+      "local_slug": "hat-093-dreadlight-pumpkin-helm",
+      "excerpt": "HATS n' daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/41dc589647a2d2db78a4c93ebe8d97/e041dc589647a2d2db78a4c93ebe8d97.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/114",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/41dc589647a2d2db78a4c93ebe8d97/e041dc589647a2d2db78a4c93ebe8d97.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-09T12:25:23+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-09T12:25:23+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Horror"
+        },
+        {
+          "trait_type": "Production",
+          "value": "The Cursed 31"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Helmet"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-09T12:25:23+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
     {
       "token_id": "113",
       "name": "#092 - Tombbound Mummy Headdress",
