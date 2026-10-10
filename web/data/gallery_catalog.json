@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T14:56:15.676453+00:00",
+  "generated_at": "2026-10-10T14:12:59.713477+00:00",
   "source": "gallery_catalog",
   "collection": {
     "slug": "dacommunity-archive",
@@ -22,7 +22,7 @@
     "total_sales": 0,
     "total_volume": 0.0,
     "piece_count": 65,
-    "listed_count": 6
+    "listed_count": 5
   },
   "wallet_index_file": "wallet_index.json",
   "items": [
@@ -3122,12 +3122,8 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/base/0x64c30f84ed17e45e349b25c9dc02d7d2fd8081b1/27",
       "opensea_image_url": null,
-      "listed": true,
-      "listing": {
-        "amount_eth": 5.0,
-        "currency": "ETH",
-        "status": "ACTIVE"
-      },
+      "listed": false,
+      "listing": null,
       "owners": {
         "holder_count": 6,
         "circulating_copies": 17,
