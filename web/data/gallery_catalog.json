@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-10T14:12:59.713477+00:00",
+  "generated_at": "2026-10-11T14:37:01.891203+00:00",
   "source": "gallery_catalog",
   "collection": {
     "slug": "dacommunity-archive",
@@ -659,7 +659,7 @@
       "opensea_image_url": null,
       "listed": true,
       "listing": {
-        "amount_eth": 0.0005,
+        "amount_eth": 0.004,
         "currency": "ETH",
         "status": "ACTIVE"
       },

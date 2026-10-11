@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-10T14:20:08.384514+00:00",
+  "generated_at": "2026-10-11T14:44:12.838469+00:00",
   "source": "hats_n_dacats_catalog",
   "collection": {
     "id": "hats-n-dacats",
@@ -23,11 +23,11 @@
     "contract_name": "HATS n' daCATs",
     "floor_eth": 0.014,
     "floor_symbol": "ETH",
-    "num_owners": 21,
-    "total_sales": 38,
-    "total_volume": 0.5894999999999999,
+    "num_owners": 22,
+    "total_sales": 39,
+    "total_volume": 0.6034999999999999,
     "piece_count": 102,
-    "listed_count": 28,
+    "listed_count": 27,
     "one_of_ones": 102
   },
   "items": [
@@ -1423,23 +1423,29 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/100",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/932ec8e95141d3f6a4bbe147ec9e21/d9932ec8e95141d3f6a4bbe147ec9e21.png",
-      "listed": true,
-      "listing": {
-        "amount_eth": 0.014,
-        "currency": "ETH",
-        "status": "ACTIVE"
-      },
+      "listed": false,
+      "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": [],
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
+            "quantity": 1
+          }
+        ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "mint",
-          "at": "2026-09-13T14:48:59+00:00",
-          "from": null,
-          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "type": "sale",
+          "at": "2026-10-10T21:46:11+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
           "quantity": 1
         }
       },
@@ -1467,6 +1473,21 @@
       "is_1_of_1": true,
       "edition_size": 1,
       "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-10-10T21:46:11+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
+          "quantity": 1,
+          "price_eth": 0.014
+        },
+        {
+          "type": "transfer",
+          "at": "2026-10-10T21:46:11+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
+          "quantity": 1
+        },
         {
           "type": "mint",
           "at": "2026-09-13T14:48:59+00:00",
