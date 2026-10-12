@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-11T14:44:12.838469+00:00",
+  "generated_at": "2026-10-12T17:24:58.616762+00:00",
   "source": "hats_n_dacats_catalog",
   "collection": {
     "id": "hats-n-dacats",
@@ -9,7 +9,7 @@
     "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
     "chain": "ethereum",
     "opensea_url": "https://opensea.io/collection/hats-n-dacats",
-    "note": "True 1:1 hats on Ethereum. Max supply 333; released in waves (currently 102 minted). No rarity tiers — every hat stands on its own. Stewarded by hatsndacats.eth. Project mint wallet excluded from holder counts until a collector receives the piece.",
+    "note": "True 1:1 hats on Ethereum. Max supply 333; released in waves (currently 104 minted). No rarity tiers — every hat stands on its own. Stewarded by hatsndacats.eth. Project mint wallet excluded from holder counts until a collector receives the piece.",
     "description": "HATS n' daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and numbered, allowing collectors to choose the legend they connect with most. There are no rarity tiers—every hat stands on its own. Every hat has a story. Legends Wear Hats.",
     "max_supply": 333,
     "batch_label": null,
@@ -23,14 +23,140 @@
     "contract_name": "HATS n' daCATs",
     "floor_eth": 0.014,
     "floor_symbol": "ETH",
-    "num_owners": 22,
-    "total_sales": 39,
-    "total_volume": 0.6034999999999999,
-    "piece_count": 102,
-    "listed_count": 27,
-    "one_of_ones": 102
+    "num_owners": 23,
+    "total_sales": 40,
+    "total_volume": 0.6174999999999999,
+    "piece_count": 104,
+    "listed_count": 28,
+    "one_of_ones": 104
   },
   "items": [
+    {
+      "token_id": "121",
+      "name": "#100 - Hexweaver Witch Hat",
+      "display_name": "#100 - Hexweaver Witch Hat",
+      "local_slug": "hat-100-hexweaver-witch-hat",
+      "excerpt": "HATS n' daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/fdf688b0efe2c31b113b2eb26469bc/c5fdf688b0efe2c31b113b2eb26469bc.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/121",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/fdf688b0efe2c31b113b2eb26469bc/c5fdf688b0efe2c31b113b2eb26469bc.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-11T18:38:47+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-11T18:38:47+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Gear",
+          "value": "Cape"
+        },
+        {
+          "trait_type": "Theme",
+          "value": "Horror"
+        },
+        {
+          "trait_type": "Gear Name",
+          "value": "Hexweaver Cape"
+        },
+        {
+          "trait_type": "Production",
+          "value": "The Cursed 31"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Hat"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-11T18:38:47+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "120",
+      "name": "#099 - Nightmare Ember Fedora",
+      "display_name": "#099 - Nightmare Ember Fedora",
+      "local_slug": "hat-099-nightmare-ember-fedora",
+      "excerpt": "HATS n' daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/1707511f3f754f81e12ad185c13eea/191707511f3f754f81e12ad185c13eea.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/120",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/1707511f3f754f81e12ad185c13eea/191707511f3f754f81e12ad185c13eea.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-11T18:32:47+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-11T18:32:47+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Horror"
+        },
+        {
+          "trait_type": "Production",
+          "value": "The Cursed 31"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Hat"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-11T18:32:47+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
     {
       "token_id": "119",
       "name": "#098 - Slimebound Kraken Hood",
@@ -395,8 +521,12 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/113",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/f1650c78e0790124a13e04221ffdbc/acf1650c78e0790124a13e04221ffdbc.png",
-      "listed": false,
-      "listing": null,
+      "listed": true,
+      "listing": {
+        "amount_eth": 2.0,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
       "owners": {
         "holder_count": 1,
         "circulating_copies": 1,
@@ -563,8 +693,12 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/111",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/8426c7dc05770f9af00f8c60ef9265/bc8426c7dc05770f9af00f8c60ef9265.png",
-      "listed": false,
-      "listing": null,
+      "listed": true,
+      "listing": {
+        "amount_eth": 2.0,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
       "owners": {
         "holder_count": 1,
         "circulating_copies": 1,
@@ -2967,7 +3101,7 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/538acd7f517c2e8442b8724da8db45/55538acd7f517c2e8442b8724da8db45.png",
       "listed": true,
       "listing": {
-        "amount_eth": 0.055,
+        "amount_eth": 1.0,
         "currency": "ETH",
         "status": "ACTIVE"
       },
@@ -3116,23 +3250,29 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/77",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/7b37d2bbb6856ed021cf8cbcd099d0/be7b37d2bbb6856ed021cf8cbcd099d0.png",
-      "listed": true,
-      "listing": {
-        "amount_eth": 0.014,
-        "currency": "ETH",
-        "status": "ACTIVE"
-      },
+      "listed": false,
+      "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": [],
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
+            "quantity": 1
+          }
+        ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "mint",
-          "at": "2026-09-13T14:05:47+00:00",
-          "from": null,
-          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "type": "transfer",
+          "at": "2026-10-12T16:40:11+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
           "quantity": 1
         }
       },
@@ -3168,6 +3308,21 @@
       "is_1_of_1": true,
       "edition_size": 1,
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-10-12T16:40:11+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-10-12T16:40:11+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
+          "quantity": 1,
+          "price_eth": 0.014
+        },
         {
           "type": "mint",
           "at": "2026-09-13T14:05:47+00:00",
