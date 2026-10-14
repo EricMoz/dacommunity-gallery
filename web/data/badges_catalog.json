@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-13T15:54:21.821029+00:00",
+  "generated_at": "2026-10-14T13:36:11.851468+00:00",
   "source": "badges_catalog",
   "collection": {
     "slug": "badges",
@@ -3677,8 +3677,8 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 12,
-        "circulating_copies": 12,
+        "holder_count": 13,
+        "circulating_copies": 13,
         "top_holders": [
           {
             "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
@@ -3741,6 +3741,11 @@
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1,
             "ens_name": "mozvane.eth"
+          },
+          {
+            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+            "quantity": 1,
+            "ens_name": "daforeman.eth"
           },
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
