@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-14T13:25:10.267273+00:00",
+  "generated_at": "2026-10-15T13:14:31.604288+00:00",
   "source": "hats_n_dacats_catalog",
   "collection": {
     "id": "hats-n-dacats",
@@ -27,7 +27,7 @@
     "total_sales": 40,
     "total_volume": 0.6174999999999999,
     "piece_count": 104,
-    "listed_count": 35,
+    "listed_count": 34,
     "one_of_ones": 104
   },
   "items": [
@@ -1033,12 +1033,8 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/107",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/dc6ac7eda86231b7bc2ea7adc1a66e/f0dc6ac7eda86231b7bc2ea7adc1a66e.png",
-      "listed": true,
-      "listing": {
-        "amount_eth": 0.04,
-        "currency": "ETH",
-        "status": "ACTIVE"
-      },
+      "listed": false,
+      "listing": null,
       "owners": {
         "holder_count": 1,
         "circulating_copies": 1,
@@ -6640,7 +6636,7 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/6bea55ed6e5d70b67f8ed031755e6b/7c6bea55ed6e5d70b67f8ed031755e6b.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 0.05,
+        "amount_eth": 1.0,
         "currency": "ETH",
         "status": "ACTIVE"
       },
