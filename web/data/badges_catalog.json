@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-14T13:36:11.851468+00:00",
+  "generated_at": "2026-10-15T01:49:42.466151+00:00",
   "source": "badges_catalog",
   "collection": {
     "slug": "badges",
@@ -8,8 +8,8 @@
     "chain": "ethereum",
     "creator_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
     "note": "Personal 1/1 and limited awards/badges created by the wallet. Issuer wallet excluded from all holder stats. Mystery items pending approval.",
-    "total_created": 17,
-    "one_of_ones": 61,
+    "total_created": 18,
+    "one_of_ones": 63,
     "unclaimed": 0,
     "mysteries": 3
   },
@@ -27,8 +27,8 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 12,
-        "circulating_copies": 12,
+        "holder_count": 13,
+        "circulating_copies": 13,
         "top_holders": [
           {
             "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
@@ -103,6 +103,10 @@
             "quantity": 1
           },
           {
+            "address": "0x45ba95c35b4c43b27258cd69b5743d202f543284",
+            "quantity": 1
+          },
+          {
             "address": "0x07011c665d3c27eee72c8459c4f87c8221a6fcdd",
             "quantity": 1
           }
@@ -117,6 +121,7 @@
       "source_created_collection": "dacatrookie2026",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Rookie Card 2026",
       "tags": [
         "1_of_1"
@@ -289,6 +294,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": true,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "trillion_club"
@@ -333,6 +339,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -376,6 +383,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -421,6 +429,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -466,6 +475,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -511,6 +521,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -556,6 +567,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -601,6 +613,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -646,6 +659,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -691,6 +705,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -736,6 +751,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -781,6 +797,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -826,6 +843,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -871,6 +889,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -916,6 +935,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -961,6 +981,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1006,6 +1027,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1051,6 +1073,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1096,6 +1119,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1141,6 +1165,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1186,6 +1211,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1219,6 +1245,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1252,6 +1279,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1285,6 +1313,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1318,6 +1347,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1363,6 +1393,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1408,6 +1439,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1453,6 +1485,7 @@
       "source_created_collection": "dacat1trillionclub",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1536,6 +1569,7 @@
       "source_created_collection": "dacat2trillion",
       "is_series_rep": true,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "trillion_club"
@@ -1578,6 +1612,7 @@
       "source_created_collection": "dacat2trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1623,6 +1658,7 @@
       "source_created_collection": "dacat2trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1668,6 +1704,7 @@
       "source_created_collection": "dacat2trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1713,6 +1750,7 @@
       "source_created_collection": "dacat2trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1758,6 +1796,7 @@
       "source_created_collection": "dacat2trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1813,6 +1852,7 @@
       "source_created_collection": "dacat3trillion",
       "is_series_rep": true,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "trillion_club"
@@ -1857,6 +1897,7 @@
       "source_created_collection": "dacat3trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1902,6 +1943,7 @@
       "source_created_collection": "dacat3trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -1965,6 +2007,7 @@
       "source_created_collection": "dacat4trillion",
       "is_series_rep": true,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "trillion_club"
@@ -2007,6 +2050,7 @@
       "source_created_collection": "dacat4trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -2052,6 +2096,7 @@
       "source_created_collection": "dacat4trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -2097,6 +2142,7 @@
       "source_created_collection": "dacat4trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -2162,6 +2208,7 @@
       "source_created_collection": "dacat5trillion",
       "is_series_rep": true,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "trillion_club"
@@ -2206,6 +2253,7 @@
       "source_created_collection": "dacat5trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Daforeman - 5 Trillion Dacat Club Membership",
       "tags": [
         "1_of_1",
@@ -2251,6 +2299,7 @@
       "source_created_collection": "dacat5trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Mozvane - 5 Trillion Dacat Club Membership",
       "tags": [
         "1_of_1",
@@ -2296,6 +2345,7 @@
       "source_created_collection": "dacat5trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -2341,6 +2391,7 @@
       "source_created_collection": "dacat6trillion",
       "is_series_rep": true,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "trillion_club"
@@ -2385,6 +2436,7 @@
       "source_created_collection": "dacat6trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -2450,6 +2502,7 @@
       "source_created_collection": "dacat7trillion",
       "is_series_rep": true,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "trillion_club"
@@ -2494,6 +2547,7 @@
       "source_created_collection": "dacat7trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -2539,6 +2593,7 @@
       "source_created_collection": "dacat7trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -2584,6 +2639,7 @@
       "source_created_collection": "dacat7trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -2659,6 +2715,7 @@
       "source_created_collection": "dacat8trillion",
       "is_series_rep": true,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "trillion_club"
@@ -2703,6 +2760,7 @@
       "source_created_collection": "dacat8trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -2748,6 +2806,7 @@
       "source_created_collection": "dacat8trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -2793,6 +2852,7 @@
       "source_created_collection": "dacat8trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -2838,6 +2898,7 @@
       "source_created_collection": "dacat8trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -2903,6 +2964,7 @@
       "source_created_collection": "dacat9trillion",
       "is_series_rep": true,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "trillion_club"
@@ -2947,6 +3009,7 @@
       "source_created_collection": "dacat9trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -2992,6 +3055,7 @@
       "source_created_collection": "dacat9trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -3037,6 +3101,7 @@
       "source_created_collection": "dacat9trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -3112,6 +3177,7 @@
       "source_created_collection": "dacat10trillion",
       "is_series_rep": true,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "trillion_club"
@@ -3156,6 +3222,7 @@
       "source_created_collection": "dacat10trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -3201,6 +3268,7 @@
       "source_created_collection": "dacat10trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -3246,6 +3314,7 @@
       "source_created_collection": "dacat10trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -3291,6 +3360,98 @@
       "source_created_collection": "dacat10trillion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
+      "sub_category": "Trillion Club",
+      "tags": [
+        "1_of_1",
+        "trillion_club"
+      ]
+    },
+    {
+      "token_id": "0",
+      "name": "DACAT 16 TRILLION CLUB",
+      "display_name": "DACAT 16 TRILLION CLUB",
+      "local_slug": "dacat-16-trillion-club",
+      "excerpt": "The DACAT 16 TRILLION CLUB is an ultra-elite recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "image_url": "https://i2c.seadn.io/ethereum/0x685f65b761fc321120799b3051c6856220e0722b/a3036442ac8a72c897298f33b752a4/23a3036442ac8a72c897298f33b752a4.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dacat-16-trillion-club",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x685f65b761fc321120799b3051c6856220e0722b/a3036442ac8a72c897298f33b752a4/23a3036442ac8a72c897298f33b752a4.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1,
+            "ens_name": "grumpyx.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1,
+            "ens_name": "grumpyx.eth"
+          }
+        ]
+      },
+      "minted_at": "2026-10-08T05:39:35+00:00",
+      "is_1_of_1": false,
+      "award_category": "trillion_club",
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "ens_match_detected": false,
+      "source_created_collection": "dacat-16-trillion-club",
+      "is_series_rep": true,
+      "edition_club": false,
+      "shared_series_image": true,
+      "sub_category": "Trillion Club",
+      "tags": [
+        "trillion_club"
+      ]
+    },
+    {
+      "token_id": "1",
+      "name": "DACAT 16 TRILLION CLUB - GRUMPY X",
+      "display_name": "DACAT 16 TRILLION CLUB",
+      "local_slug": "dacat-16-trillion-club",
+      "excerpt": "The DACAT 16 TRILLION CLUB is an ultra-elite recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "image_url": "https://i2c.seadn.io/ethereum/0x685f65b761fc321120799b3051c6856220e0722b/a3036442ac8a72c897298f33b752a4/23a3036442ac8a72c897298f33b752a4.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dacat-16-trillion-club",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x685f65b761fc321120799b3051c6856220e0722b/a3036442ac8a72c897298f33b752a4/23a3036442ac8a72c897298f33b752a4.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1,
+            "ens_name": "grumpyx.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1,
+            "ens_name": "grumpyx.eth"
+          }
+        ]
+      },
+      "minted_at": "2026-10-08T05:39:35+00:00",
+      "is_1_of_1": true,
+      "award_category": "trillion_club",
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "ens_match_detected": false,
+      "source_created_collection": "dacat-16-trillion-club",
+      "is_series_rep": false,
+      "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",
@@ -3310,17 +3471,25 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 1,
-        "circulating_copies": 1,
+        "holder_count": 2,
+        "circulating_copies": 2,
         "top_holders": [
           {
             "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
+            "address": "0x45ba95c35b4c43b27258cd69b5743d202f543284",
             "quantity": 1
           }
         ],
         "holders": [
           {
             "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
+            "address": "0x45ba95c35b4c43b27258cd69b5743d202f543284",
             "quantity": 1
           }
         ]
@@ -3334,8 +3503,52 @@
       "source_created_collection": "dacat500billion",
       "is_series_rep": true,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "500 Billion Club",
       "tags": []
+    },
+    {
+      "token_id": "2",
+      "name": "DACAT 500 BILLION CLUB",
+      "display_name": "DACAT 500 BILLION CLUB",
+      "local_slug": "dacat-500-billion-club",
+      "excerpt": "The DACAT 500 BILLION CLUB recognizes community members who have accumulated and held at least 500 BILLION DACAT tokens in a single wallet. This NFT badge hono…",
+      "image_url": "assets/badges/dacat-500-billion-club.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dacat500billion",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x549d37c3ab6ea21c35df61a16f404f1aafc454d2/26f4dc1ea09b861719804a84c3553a/ae26f4dc1ea09b861719804a84c3553a.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x45ba95c35b4c43b27258cd69b5743d202f543284",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x45ba95c35b4c43b27258cd69b5743d202f543284",
+            "quantity": 1
+          }
+        ]
+      },
+      "minted_at": "2026-10-14T19:57:11+00:00",
+      "is_1_of_1": true,
+      "award_category": "500_billion_club",
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "ens_match_detected": false,
+      "source_created_collection": "dacat500billion",
+      "is_series_rep": false,
+      "edition_club": false,
+      "shared_series_image": false,
+      "sub_category": "500 Billion Club",
+      "tags": [
+        "1_of_1"
+      ]
     },
     {
       "token_id": "1",
@@ -3374,6 +3587,7 @@
       "source_created_collection": "dacat500billion",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "500 Billion Club",
       "tags": [
         "1_of_1"
@@ -3424,6 +3638,7 @@
       "source_created_collection": "dacat100billion",
       "is_series_rep": true,
       "edition_club": true,
+      "shared_series_image": false,
       "sub_category": "100 Billion Club",
       "tags": []
     },
@@ -3552,6 +3767,7 @@
       "source_created_collection": "dacat-world-collector-cat",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Collector Cat",
       "tags": [
         "1_of_1"
@@ -3659,6 +3875,7 @@
       "source_created_collection": "dacat-gem-nova-green",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Gem Nova Green",
       "tags": [
         "1_of_1"
@@ -3783,6 +4000,7 @@
       "source_created_collection": "dacat-dalegend-line",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "DaLegend Line",
       "tags": [
         "1_of_1"
@@ -3827,6 +4045,7 @@
       "source_created_collection": "dagatoawards",
       "is_series_rep": false,
       "edition_club": false,
+      "shared_series_image": false,
       "sub_category": "Trillion Club",
       "tags": [
         "1_of_1",

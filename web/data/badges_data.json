@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-14T13:36:11.851468+00:00",
+  "generated_at": "2026-10-15T01:49:42.466151+00:00",
   "source": "mints_created_by_wallet_on_ethereum_after_cutoff",
   "cutoff_date": "2026-05-20",
   "collection": {
@@ -9,8 +9,8 @@
     "chain": "ethereum",
     "creator_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
     "note": "Personal 1/1 and limited awards/badges created by the wallet. Issuer wallet excluded from all holder stats. Mystery items pending approval.",
-    "total_created": 17,
-    "one_of_ones": 61,
+    "total_created": 18,
+    "one_of_ones": 63,
     "unclaimed": 0,
     "mysteries": 3
   },
@@ -29,8 +29,8 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 12,
-        "circulating_copies": 12,
+        "holder_count": 13,
+        "circulating_copies": 13,
         "top_holders": [
           {
             "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
@@ -105,6 +105,10 @@
             "quantity": 1
           },
           {
+            "address": "0x45ba95c35b4c43b27258cd69b5743d202f543284",
+            "quantity": 1
+          },
+          {
             "address": "0x07011c665d3c27eee72c8459c4f87c8221a6fcdd",
             "quantity": 1
           }
@@ -134,6 +138,7 @@
       "excerpt": "The DACAT 1 TRILLION CLUB is an elite NFT membership collection created to recognize the legendary diamond handed holders of at least 1,000,000,000,000 DaCAT t…",
       "image_url": "assets/badges/dacat-1-trillion-club.png",
       "media_type": "image",
+      "opensea_image_url": null,
       "opensea_url": "https://opensea.io/collection/dacat1trillionclub",
       "traits": [],
       "listed": false,
@@ -296,7 +301,8 @@
       "tags": [
         "trillion_club"
       ],
-      "is_series_rep": true
+      "is_series_rep": true,
+      "shared_series_image": false
     },
     {
       "token_id": "28",
@@ -1499,6 +1505,7 @@
       "excerpt": "The DACAT 2 TRILLION CLUB is a community recognition NFT collection created to acknowledge legendary diamond-handed holders of at least 2,000,000,000,000 DaCAT…",
       "image_url": "assets/badges/dacat-2-trillion-club.png",
       "media_type": "image",
+      "opensea_image_url": null,
       "opensea_url": "https://opensea.io/collection/dacat2trillion",
       "traits": [],
       "listed": false,
@@ -1571,7 +1578,8 @@
       "tags": [
         "trillion_club"
       ],
-      "is_series_rep": true
+      "is_series_rep": true,
+      "shared_series_image": false
     },
     {
       "token_id": "6",
@@ -1810,6 +1818,7 @@
       "excerpt": "The DACAT 3 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
       "image_url": "assets/badges/dacat-3-trillion-club.png",
       "media_type": "image",
+      "opensea_image_url": null,
       "opensea_url": "https://opensea.io/collection/dacat3trillion",
       "traits": [],
       "listed": false,
@@ -1854,7 +1863,8 @@
       "tags": [
         "trillion_club"
       ],
-      "is_series_rep": true
+      "is_series_rep": true,
+      "shared_series_image": false
     },
     {
       "token_id": "2",
@@ -1957,6 +1967,7 @@
       "excerpt": "The DACAT 4 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
       "image_url": "assets/badges/dacat-4-trillion-club.png",
       "media_type": "image",
+      "opensea_image_url": null,
       "opensea_url": "https://opensea.io/collection/dacat4trillion",
       "traits": [],
       "listed": false,
@@ -2009,7 +2020,8 @@
       "tags": [
         "trillion_club"
       ],
-      "is_series_rep": true
+      "is_series_rep": true,
+      "shared_series_image": false
     },
     {
       "token_id": "3",
@@ -2156,6 +2168,7 @@
       "excerpt": "The DACAT 5 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
       "image_url": "assets/badges/dacat-5-trillion-club.png",
       "media_type": "image",
+      "opensea_image_url": null,
       "opensea_url": "https://opensea.io/collection/dacat5trillion",
       "traits": [],
       "listed": false,
@@ -2210,7 +2223,8 @@
       "tags": [
         "trillion_club"
       ],
-      "is_series_rep": true
+      "is_series_rep": true,
+      "shared_series_image": false
     },
     {
       "token_id": "3",
@@ -2359,6 +2373,7 @@
       "excerpt": "The DACAT 6 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
       "image_url": "assets/badges/dacat-6-trillion-club.png",
       "media_type": "image",
+      "opensea_image_url": null,
       "opensea_url": "https://opensea.io/collection/dacat6trillion",
       "traits": [],
       "listed": false,
@@ -2393,7 +2408,8 @@
       "tags": [
         "trillion_club"
       ],
-      "is_series_rep": true
+      "is_series_rep": true,
+      "shared_series_image": false
     },
     {
       "token_id": "1",
@@ -2450,6 +2466,7 @@
       "excerpt": "The DACAT 7 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
       "image_url": "assets/badges/dacat-7-trillion-club.png",
       "media_type": "image",
+      "opensea_image_url": null,
       "opensea_url": "https://opensea.io/collection/dacat7trillion",
       "traits": [],
       "listed": false,
@@ -2504,7 +2521,8 @@
       "tags": [
         "trillion_club"
       ],
-      "is_series_rep": true
+      "is_series_rep": true,
+      "shared_series_image": false
     },
     {
       "token_id": "4",
@@ -2653,6 +2671,7 @@
       "excerpt": "The DACAT 8 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
       "image_url": "assets/badges/dacat-8-trillion-club.png",
       "media_type": "image",
+      "opensea_image_url": null,
       "opensea_url": "https://opensea.io/collection/dacat8trillion",
       "traits": [],
       "listed": false,
@@ -2717,7 +2736,8 @@
       "tags": [
         "trillion_club"
       ],
-      "is_series_rep": true
+      "is_series_rep": true,
+      "shared_series_image": false
     },
     {
       "token_id": "4",
@@ -2912,6 +2932,7 @@
       "excerpt": "The DACAT 9 TRILLION CLUB is a recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
       "image_url": "assets/badges/dacat-9-trillion-club.png",
       "media_type": "image",
+      "opensea_image_url": null,
       "opensea_url": "https://opensea.io/collection/dacat9trillion",
       "traits": [],
       "listed": false,
@@ -2966,7 +2987,8 @@
       "tags": [
         "trillion_club"
       ],
-      "is_series_rep": true
+      "is_series_rep": true,
+      "shared_series_image": false
     },
     {
       "token_id": "4",
@@ -3115,6 +3137,7 @@
       "excerpt": "The DACAT 10 TRILLION CLUB is an ultra-elite recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
       "image_url": "assets/badges/dacat-10-trillion-club.png",
       "media_type": "image",
+      "opensea_image_url": null,
       "opensea_url": "https://opensea.io/collection/dacat10trillion",
       "traits": [],
       "listed": false,
@@ -3179,7 +3202,8 @@
       "tags": [
         "trillion_club"
       ],
-      "is_series_rep": true
+      "is_series_rep": true,
+      "shared_series_image": false
     },
     {
       "token_id": "4",
@@ -3367,12 +3391,156 @@
     },
     {
       "token_id": "0",
+      "name": "DACAT 16 TRILLION CLUB",
+      "display_name": "DACAT 16 TRILLION CLUB",
+      "local_slug": "dacat-16-trillion-club",
+      "description": "The DACAT 16 TRILLION CLUB is an ultra-elite recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "excerpt": "The DACAT 16 TRILLION CLUB is an ultra-elite recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "image_url": "https://i2c.seadn.io/ethereum/0x685f65b761fc321120799b3051c6856220e0722b/a3036442ac8a72c897298f33b752a4/23a3036442ac8a72c897298f33b752a4.png",
+      "media_type": "image",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x685f65b761fc321120799b3051c6856220e0722b/a3036442ac8a72c897298f33b752a4/23a3036442ac8a72c897298f33b752a4.png",
+      "opensea_url": "https://opensea.io/collection/dacat-16-trillion-club",
+      "traits": [],
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1,
+            "ens_name": "grumpyx.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1,
+            "ens_name": "grumpyx.eth"
+          }
+        ]
+      },
+      "minted_at": "2026-10-08T05:39:35+00:00",
+      "is_1_of_1": false,
+      "edition_size": 1,
+      "award_category": "trillion_club",
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "source_created_collection": "dacat-16-trillion-club",
+      "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "trillion_club"
+      ],
+      "is_series_rep": true,
+      "shared_series_image": true
+    },
+    {
+      "token_id": "1",
+      "name": "DACAT 16 TRILLION CLUB - GRUMPY X",
+      "display_name": "DACAT 16 TRILLION CLUB",
+      "local_slug": "dacat-16-trillion-club",
+      "description": "The DACAT 16 TRILLION CLUB is an ultra-elite recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "excerpt": "The DACAT 16 TRILLION CLUB is an ultra-elite recognition program created to honor the most dedicated and conviction-driven holders in the DACAT community.",
+      "image_url": "https://i2c.seadn.io/ethereum/0x685f65b761fc321120799b3051c6856220e0722b/a3036442ac8a72c897298f33b752a4/23a3036442ac8a72c897298f33b752a4.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dacat-16-trillion-club",
+      "traits": [],
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1,
+            "ens_name": "grumpyx.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
+            "quantity": 1,
+            "ens_name": "grumpyx.eth"
+          }
+        ]
+      },
+      "minted_at": "2026-10-08T05:39:35+00:00",
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "award_category": "trillion_club",
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "source_created_collection": "dacat-16-trillion-club",
+      "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+      "sub_category": "Trillion Club",
+      "tags": [
+        "1_of_1",
+        "trillion_club"
+      ],
+      "is_series_rep": false
+    },
+    {
+      "token_id": "0",
       "name": "DACAT 500 BILLION CLUB",
       "display_name": "DACAT 500 BILLION CLUB",
       "local_slug": "dacat-500-billion-club",
-      "description": "The DACAT 500 BILLION CLUB recognizes community members who have accumulated and held at least 500 BILLION DACAT tokens in a single wallet. This  NFT badge honors conviction, participation, and belief in the long-term vision of DACAT and the decentralized creator movement. As a member of the 500 BILLION CLUB, this holder  represents a group of supporters who have chosen to help build the foundation of the DACAT ecosystem through their commitment to the project and its future. This badge serves as a permanent digital collectible recognizing that achievement and preserving a moment in DACAT history.\n\n If this NFT badge is held in the same wallet as the accompanying 500,000,000,000 DACAT tokens, future community recognition opportunities may be possible at the discretion of the DACAT community. This NFT is issued for commemorative and recognition purposes only and does not represent ownership, equity, profit sharing, or a promise of future compensation \n\nhttps://www.dacatworld.com\n\nThe DACAT 500 BILLION CLUB recognizes community members who have accumulated and held at least 500 BILLION DACAT tokens in a single wallet. This  NFT badge honors conviction, participation, and belief in the long-term vision of DACAT and the decentralized creator movement. As a member of the 500 BILLION CLUB, this holder  represents a group of supporters who have chosen to help build the foundation of the DACAT ecosystem through their commitment to the project and its future. This badge serves as a permanent digital collectible recognizing that achievement and preserving a moment in DACAT history. If this NFT badge is held in the same wallet as the accompanying 500,000,000,000 DACAT tokens, future community recognition opportunities may be possible at the discretion of the DACAT community. This NFT is issued for commemorative and recognition purposes only and does not represent ownership, equity, profit sharing, or a promise of future compensation \n\nhttps://www.dacatworld.com",
+      "description": "The DACAT 500 BILLION CLUB recognizes community members who have accumulated and held at least 500 BILLION DACAT tokens in a single wallet. This  NFT badge honors conviction, participation, and belief in the long-term vision of DACAT and the decentralized creator movement.\n\nAs a member of the 500 BILLION CLUB, this holder  represents a group of supporters who have chosen to help build the foundation of the DACAT ecosystem through their commitment to the project and its future. This badge serves as a permanent digital collectible recognizing that achievement and preserving a moment in DACAT history.\n\nIf this NFT badge is held in the same wallet as the accompanying 500,000,000,000 DACAT tokens, future community recognition opportunities may be possible at the discretion of the DACAT community.\n\nThis NFT is issued for commemorative and recognition purposes only and does not represent ownership, equity, profit sharing, or a promise of future compensation\n\nhttps://www.dacatworld.com\nhttps://www.dacat.fun",
       "excerpt": "The DACAT 500 BILLION CLUB recognizes community members who have accumulated and held at least 500 BILLION DACAT tokens in a single wallet. This NFT badge hono…",
       "image_url": "assets/badges/dacat-500-billion-club.png",
+      "media_type": "image",
+      "opensea_image_url": null,
+      "opensea_url": "https://opensea.io/collection/dacat500billion",
+      "traits": [],
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 2,
+        "top_holders": [
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
+            "address": "0x45ba95c35b4c43b27258cd69b5743d202f543284",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          },
+          {
+            "address": "0x45ba95c35b4c43b27258cd69b5743d202f543284",
+            "quantity": 1
+          }
+        ]
+      },
+      "minted_at": "2026-06-04T22:02:11+00:00",
+      "is_1_of_1": false,
+      "edition_size": 2,
+      "award_category": "500_billion_club",
+      "unclaimed_or_available": false,
+      "mystery_status": "approved",
+      "source_created_collection": "dacat500billion",
+      "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+      "sub_category": "500 Billion Club",
+      "tags": [],
+      "is_series_rep": true,
+      "shared_series_image": false
+    },
+    {
+      "token_id": "2",
+      "name": "DACAT 500 BILLION CLUB",
+      "display_name": "DACAT 500 BILLION CLUB",
+      "local_slug": "dacat-500-billion-club",
+      "description": "The DACAT 500 BILLION CLUB recognizes community members who have accumulated and held at least 500 BILLION DACAT tokens in a single wallet. This  NFT badge honors conviction, participation, and belief in the long-term vision of DACAT and the decentralized creator movement.\n\nAs a member of the 500 BILLION CLUB, this holder  represents a group of supporters who have chosen to help build the foundation of the DACAT ecosystem through their commitment to the project and its future. This badge serves as a permanent digital collectible recognizing that achievement and preserving a moment in DACAT history.\n\nIf this NFT badge is held in the same wallet as the accompanying 500,000,000,000 DACAT tokens, future community recognition opportunities may be possible at the discretion of the DACAT community.\n\nThis NFT is issued for commemorative and recognition purposes only and does not represent ownership, equity, profit sharing, or a promise of future compensation\n\nhttps://www.dacatworld.com\nhttps://www.dacat.fun",
+      "excerpt": "The DACAT 500 BILLION CLUB recognizes community members who have accumulated and held at least 500 BILLION DACAT tokens in a single wallet. This NFT badge hono…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x549d37c3ab6ea21c35df61a16f404f1aafc454d2/26f4dc1ea09b861719804a84c3553a/ae26f4dc1ea09b861719804a84c3553a.png",
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dacat500billion",
       "traits": [],
@@ -3383,19 +3551,19 @@
         "circulating_copies": 1,
         "top_holders": [
           {
-            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "address": "0x45ba95c35b4c43b27258cd69b5743d202f543284",
             "quantity": 1
           }
         ],
         "holders": [
           {
-            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "address": "0x45ba95c35b4c43b27258cd69b5743d202f543284",
             "quantity": 1
           }
         ]
       },
-      "minted_at": "2026-06-04T22:02:11+00:00",
-      "is_1_of_1": false,
+      "minted_at": "2026-10-14T19:57:11+00:00",
+      "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "500_billion_club",
       "unclaimed_or_available": false,
@@ -3403,8 +3571,10 @@
       "source_created_collection": "dacat500billion",
       "created_by_wallet": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
       "sub_category": "500 Billion Club",
-      "tags": [],
-      "is_series_rep": true
+      "tags": [
+        "1_of_1"
+      ],
+      "is_series_rep": false
     },
     {
       "token_id": "1",

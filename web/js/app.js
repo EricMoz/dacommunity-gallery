@@ -728,9 +728,26 @@ function isBadgeMultiSeriesRep(item) {
   );
 }
 
-/** Force generic local PNG for club series cards; keep personal art only on non-rep rows. */
+/** Force generic local PNG for club series cards; keep personal art only on non-rep rows.
+ *  Clubs without a dedicated generic asset (shared_series_image) keep the same remote art
+ *  for browse + wallet — do not invent a missing assets/badges/*.png path.
+ */
 function normalizeBadgeSeriesImages(item) {
   if (!isBadgeMultiSeriesRep(item)) return;
+  if (item.shared_series_image) {
+    var remote =
+      (item.image_url && String(item.image_url).indexOf("http") === 0
+        ? item.image_url
+        : null) ||
+      (item.opensea_image_url && String(item.opensea_image_url).indexOf("http") === 0
+        ? item.opensea_image_url
+        : null);
+    if (remote) {
+      item.image_url = remote;
+      item.opensea_image_url = remote;
+    }
+    return;
+  }
   var slug = (item.local_slug || "").trim();
   if (slug) {
     item.image_url = "assets/badges/" + slug + ".png";
@@ -2383,7 +2400,7 @@ function resolveMediaUrl(url) {
 }
 
 function imgSrc(item) {
-  if (isBadgeMultiSeriesRep(item)) {
+  if (isBadgeMultiSeriesRep(item) && !item.shared_series_image) {
     var local =
       item.image_url && String(item.image_url).indexOf("assets/badges/") === 0
         ? item.image_url

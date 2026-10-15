@@ -71,6 +71,7 @@ KNOWN_BADGE_COLLECTION_SLUGS = [
     "dacat8trillion",
     "dacat9trillion",
     "dacat10trillion",
+    "dacat-16-trillion-club",
     "dacat500billion",
     "dacat100billion",
     "dacat-world-collector-cat",  # verify slug if needed
@@ -92,6 +93,8 @@ SLUG_TO_LOCAL_ASSET = {
     "dacat8trillion": "dacat-8-trillion-club",
     "dacat9trillion": "dacat-9-trillion-club",
     "dacat10trillion": "dacat-10-trillion-club",
+    # No dedicated generic PNG — browse + wallet share the same OpenSea art
+    "dacat-16-trillion-club": "dacat-16-trillion-club",
     "dacat500billion": "dacat-500-billion-club",
     "dacat100billion": "dacat-100-billion-club",
     "dacat-world-collector-cat": "dacat-world-collector-cat",
@@ -386,6 +389,7 @@ def main():
         "dacat8trillion": "DACAT 8 TRILLION CLUB",
         "dacat9trillion": "DACAT 9 TRILLION CLUB",
         "dacat10trillion": "DACAT 10 TRILLION CLUB",
+        "dacat-16-trillion-club": "DACAT 16 TRILLION CLUB",
         "dacat500billion": "DACAT 500 BILLION CLUB",
         "dacat100billion": "DACAT 100 BILLION CLUB",
         "dacat-world-collector-cat": "DACAT WORLD - COLLECTOR CAT",
@@ -506,14 +510,19 @@ def main():
             local_slug = SLUG_TO_LOCAL_ASSET.get(slug, slug + "-" + token_id)
             # Series card must use generic club art — never the first holder's personalized 1:1.
             # Personal images live only on non-rep edition rows (portfolio / wallet view).
+            # Exception: clubs with no dedicated generic PNG (e.g. 16T) share the same OpenSea
+            # art on browse + wallet — mark shared_series_image so the UI does not invent a path.
             local_asset = ROOT / "web" / "assets" / "badges" / f"{local_slug}.png"
+            shared_series_image = False
             if local_asset.is_file():
                 series_image = f"assets/badges/{local_slug}.png"
                 series_media = "image"
+                series_opensea_img = None
             else:
-                # Fallback: keep OpenSea image only if no local asset (should be rare)
                 series_image = image
                 series_media = media_type
+                series_opensea_img = image if (image or "").startswith("http") else None
+                shared_series_image = True
             series_item = {
                 "token_id": token_id,
                 "name": name,
@@ -523,7 +532,7 @@ def main():
                 "excerpt": excerpt(desc),
                 "image_url": series_image,
                 "media_type": series_media,
-                # Do not set opensea_image_url to a personal NFT — that leaks into light/search UI
+                "opensea_image_url": series_opensea_img,
                 "opensea_url": f"https://opensea.io/collection/{slug}",
                 "traits": rep_nft.get("traits", []),
                 "listed": False,
@@ -540,6 +549,7 @@ def main():
                 "sub_category": get_sub_category(category, name),
                 "tags": get_tags({"is_1_of_1": is_1of1, "award_category": category, "unclaimed_or_available": unclaimed, "name": name, "description": desc}),
                 "is_series_rep": True,
+                "shared_series_image": shared_series_image,
             }
             items.append(series_item)
 

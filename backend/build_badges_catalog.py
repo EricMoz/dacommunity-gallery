@@ -42,21 +42,25 @@ def is_multi_custom_series_rep(item: dict) -> bool:
 
 def slim_item(item: dict, root: Path) -> dict:
     # Mirror main slim + keep unique badge fields + subcats/tags for light filters/grouping
+    shared = bool(item.get("shared_series_image"))
     img = resolve_local_badge_image(item, root)
     multi_rep = is_multi_custom_series_rep(item)
     # Series cards: generic local art only. Personalized OpenSea art stays on edition rows.
-    if multi_rep and img.startswith("assets/badges/"):
+    # shared_series_image (e.g. 16T): no generic PNG — same remote art for browse + wallet.
+    if multi_rep and img.startswith("assets/badges/") and not shared:
         opensea_img = None
         media_type = "image"
     else:
         orig_img = item.get("image_url") or item.get("opensea_image_url") or ""
-        # Personal 1:1 rows: keep remote art. If image_url was already local, keep remote separately.
+        # Personal 1:1 rows (or shared series art): keep remote art.
         if orig_img.startswith("http"):
             opensea_img = orig_img
         elif (item.get("opensea_image_url") or "").startswith("http"):
             opensea_img = item.get("opensea_image_url")
         else:
             opensea_img = None
+        if shared and opensea_img:
+            img = opensea_img
         # Force image for local PNG assets (generic view). Video badges keep remote via opensea_image_url.
         media_type = (
             "image" if img.startswith("assets/badges/") else item.get("media_type", "image")
@@ -84,6 +88,7 @@ def slim_item(item: dict, root: Path) -> dict:
         "source_created_collection": item.get("source_created_collection"),
         "is_series_rep": item.get("is_series_rep", False),
         "edition_club": item.get("edition_club", False),
+        "shared_series_image": shared,
         # For sub-category grouping (Trillion Club etc) and tags in light search / badges page
         "sub_category": item.get("sub_category"),
         "tags": item.get("tags", []),
