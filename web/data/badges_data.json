@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-16T13:20:14.866064+00:00",
+  "generated_at": "2026-10-17T12:18:27.854177+00:00",
   "source": "mints_created_by_wallet_on_ethereum_after_cutoff",
   "cutoff_date": "2026-05-20",
   "collection": {
@@ -29,8 +29,8 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 13,
-        "circulating_copies": 13,
+        "holder_count": 14,
+        "circulating_copies": 14,
         "top_holders": [
           {
             "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
@@ -89,6 +89,10 @@
           },
           {
             "address": "0x82c1e9798451e9cf1ea6ba5e7c1983e80a7e1ba5",
+            "quantity": 1
+          },
+          {
+            "address": "0x7fce629cff113dd9993d1d35755720c542c694e6",
             "quantity": 1
           },
           {
@@ -3633,8 +3637,8 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 2,
-        "circulating_copies": 2,
+        "holder_count": 3,
+        "circulating_copies": 3,
         "top_holders": [
           {
             "address": "0x91bebf482b1186d05263a98c68c5ab3f5ff8287f",
@@ -3642,6 +3646,10 @@
           },
           {
             "address": "0x82c1e9798451e9cf1ea6ba5e7c1983e80a7e1ba5",
+            "quantity": 1
+          },
+          {
+            "address": "0x7fce629cff113dd9993d1d35755720c542c694e6",
             "quantity": 1
           }
         ],
@@ -3652,6 +3660,10 @@
           },
           {
             "address": "0x82c1e9798451e9cf1ea6ba5e7c1983e80a7e1ba5",
+            "quantity": 1
+          },
+          {
+            "address": "0x7fce629cff113dd9993d1d35755720c542c694e6",
             "quantity": 1
           }
         ]

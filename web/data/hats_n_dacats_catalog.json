@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-16T13:08:24.301276+00:00",
+  "generated_at": "2026-10-17T12:06:29.847195+00:00",
   "source": "hats_n_dacats_catalog",
   "collection": {
     "id": "hats-n-dacats",
@@ -23,7 +23,7 @@
     "contract_name": "HATS n' daCATs",
     "floor_eth": 0.014,
     "floor_symbol": "ETH",
-    "num_owners": 24,
+    "num_owners": 25,
     "total_sales": 45,
     "total_volume": 0.6875,
     "piece_count": 105,
@@ -464,22 +464,22 @@
         "circulating_copies": 1,
         "top_holders": [
           {
-            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "address": "0x91bebf482b1186d05263a98c68c5ab3f5ff8287f",
             "quantity": 1
           }
         ],
         "holders": [
           {
-            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+            "address": "0x91bebf482b1186d05263a98c68c5ab3f5ff8287f",
             "quantity": 1
           }
         ],
         "creator_excluded": true,
         "latest_change": {
           "type": "transfer",
-          "at": "2026-10-15T17:56:47+00:00",
-          "from": "0xa5dcf683b5092cd9df2f6c15ecb8d7fc355b8dea",
-          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+          "at": "2026-10-16T23:08:59+00:00",
+          "from": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+          "to": "0x91bebf482b1186d05263a98c68c5ab3f5ff8287f",
           "quantity": 1
         }
       },
@@ -507,6 +507,21 @@
       "is_1_of_1": true,
       "edition_size": 1,
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-10-16T23:08:59+00:00",
+          "from": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+          "to": "0x91bebf482b1186d05263a98c68c5ab3f5ff8287f",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-10-16T23:08:59+00:00",
+          "from": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+          "to": "0x91bebf482b1186d05263a98c68c5ab3f5ff8287f",
+          "quantity": 1,
+          "price_eth": 0.014
+        },
         {
           "type": "transfer",
           "at": "2026-10-15T17:56:47+00:00",
