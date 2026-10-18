@@ -50,6 +50,22 @@
     });
   }
 
+  /** Parse YYYYMMDD-N → [day, seq] for ordering. Invalid → null. */
+  function parseBuildStamp(s) {
+    var m = String(s || "").trim().match(/^(\d{8})-(\d+)$/);
+    if (!m) return null;
+    return { day: parseInt(m[1], 10), seq: parseInt(m[2], 10) };
+  }
+
+  /** >0 if a newer than b; <0 if older; 0 if equal/unknown. */
+  function compareBuildStamps(a, b) {
+    var pa = parseBuildStamp(a);
+    var pb = parseBuildStamp(b);
+    if (!pa || !pb) return 0;
+    if (pa.day !== pb.day) return pa.day - pb.day;
+    return pa.seq - pb.seq;
+  }
+
   /**
    * Hard reload with cache-bypass query.
    * Keyed by *remote* build so a new deploy can heal even if an earlier
@@ -68,9 +84,18 @@
     window.location.replace(u.href);
   }
 
+  function healTo(remoteBuild) {
+    return unregisterAllWorkers()
+      .then(clearOriginCaches)
+      .then(function () {
+        forceReloadTo(remoteBuild);
+      });
+  }
+
   /**
    * Compare live VERSION.txt to this document's meta stamp.
-   * If HTML is stale (common on mobile SW / partial CDN), wipe SW/caches and reload.
+   * Heal ONLY when remote is newer than this HTML — never downgrade.
+   * (Stale edge VERSION.txt used to yank users from e.g. 13 → 10 on nav.)
    */
   function checkRemoteBuildAndHeal() {
     var url = root + "VERSION.txt?_=" + Date.now();
@@ -83,29 +108,32 @@
         if (!text) return;
         var remote = String(text).trim().split(/\s+/)[0];
         if (!remote || !pageBuild) return;
-        if (remote === pageBuild) {
-          // Same stamp as VERSION — still heal if this HTML loads an older app.js?v=
-          // (seen on /dacommunity/ stuck at 20260817-1 while home was 20260818-2)
-          var scripts = document.querySelectorAll("script[src*='app.js']");
-          for (var i = 0; i < scripts.length; i++) {
-            var src = scripts[i].getAttribute("src") || "";
-            var m = src.match(/[?&]v=([^&]+)/);
-            if (m && m[1] && m[1] !== remote) {
-              return unregisterAllWorkers()
-                .then(clearOriginCaches)
-                .then(function () {
-                  forceReloadTo(remote + "-app");
-                });
-            }
-          }
+
+        var cmp = compareBuildStamps(remote, pageBuild);
+        if (cmp < 0) {
+          // VERSION.txt behind this HTML (CDN lag) — keep the newer page
           return;
         }
-        // Stale HTML shell vs fresh deploy — safe cleanup + reload
-        return unregisterAllWorkers()
-          .then(clearOriginCaches)
-          .then(function () {
-            forceReloadTo(remote);
-          });
+        if (cmp > 0) {
+          // This HTML is stale vs a newer deploy — wipe + reload forward
+          return healTo(remote);
+        }
+
+        // Same stamp as VERSION — still heal if this HTML loads an older app.js?v=
+        // (seen on /dacommunity/ stuck at 20260817-1 while home was 20260818-2)
+        var scripts = document.querySelectorAll(
+          "script[src*='app.js'], script[src*='home.js'], script[src*='film.js'], link[href*='styles.css']"
+        );
+        for (var i = 0; i < scripts.length; i++) {
+          var src =
+            scripts[i].getAttribute("src") ||
+            scripts[i].getAttribute("href") ||
+            "";
+          var m = src.match(/[?&]v=([^&]+)/);
+          if (m && m[1] && compareBuildStamps(pageBuild, m[1]) > 0) {
+            return healTo(pageBuild + "-asset");
+          }
+        }
       })
       .catch(function () {
         /* offline or blocked — leave user alone */
