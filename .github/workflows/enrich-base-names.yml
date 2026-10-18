@@ -109,6 +109,7 @@ jobs:
           python enrich_opensea_profiles.py --prefer-bare
 
       - name: Commit name updates
+        id: commit_names
         run: |
           set -e
           git config user.name "github-actions[bot]"
@@ -116,8 +117,20 @@ jobs:
           git add web/data/name_index.json web/data/wallet_index.json
           if git diff --staged --quiet; then
             echo "No name changes."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           git commit -m "chore: weekly wallet name enrich ($(date -u +%Y-%m-%d))"
           git pull --rebase --autostash origin main || git pull --autostash origin main || true
           git push origin main || git push origin main --force-with-lease || echo "::warning::Push may have raced; next weekly run will retry."
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      # GITHUB_TOKEN pushes do not trigger other workflows — same as daily refresh.
+      - name: Trigger Deploy gallery to GitHub Pages
+        if: success() && steps.commit_names.outputs.changed == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Triggering deploy so wallet name enrich reaches live Pages"
+          gh workflow run "Deploy gallery to GitHub Pages" --repo ${{ github.repository }} --ref main || echo "gh dispatch failed"
