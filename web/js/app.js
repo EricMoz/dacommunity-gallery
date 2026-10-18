@@ -360,7 +360,7 @@ function adaptHeaderForCollection() {
     } else if (isAgency) {
       h1.innerHTML = 'daGATO <span class="accent">Detective Agency</span>';
       lead.textContent =
-        "Enter the shadows of Cyber City. Volumes 1 and 2 case files span distinctive detective identities, cyber-noir environments, and rarity tiers from Common operatives to legendary 1:1 creations. Browse shows five rarity tiers per volume; your wallet shows every case file you hold. The city hides the truth. daGATO finds it. Stealth. Style. Supremacy.";
+        "Enter the shadows of Cyber City. Volumes 1 and 2 case files span distinctive detective identities, cyber-noir environments, and rarity tiers from Standard operatives to legendary 1:1 creations. Browse shows five rarity tiers per volume; your wallet shows every case file you hold. The city hides the truth. daGATO finds it. Stealth. Style. Supremacy.";
     } else if (isHats) {
       h1.innerHTML = "HATS n' <span class=\"accent\">daCATs</span>";
       lead.textContent =
@@ -1988,7 +1988,14 @@ function itemTitle(item) {
     var normalized = normalizeHatsDisplayTitle(raw, item.token_id, item.traits);
     if (normalized) return normalized;
   }
-  return item.display_name || item.local_slug || item.name || "Token #" + item.token_id;
+  var title = item.display_name || item.local_slug || item.name || "Token #" + item.token_id;
+  // Agency: surface Standard / Select in titles (data still stores Common / Uncommon)
+  if ((item.collection_id || "") === "dagato-agency" || isAgencyRaritySeries(item)) {
+    title = String(title)
+      .replace(/^Uncommon\b/i, "Select")
+      .replace(/^Common\b/i, "Standard");
+  }
+  return title;
 }
 
 /* === Utility Formatters === */
@@ -2064,14 +2071,15 @@ function effectiveCirculatingCopies(item) {
   return null;
 }
 
-/** Normalize Agency rarity trait / field strings. */
+/** Normalize Agency rarity trait / field strings (display labels). */
 function normalizeAgencyRarityLabel(raw) {
   if (raw == null || raw === "") return null;
   var s = String(raw).trim();
   var key = s.toLowerCase().replace(/\s+/g, "");
   if (key === "1:1" || key === "1of1" || key === "1/1" || key === "oneofone") return "1:1";
-  if (key === "common") return "Common";
-  if (key === "uncommon") return "Uncommon";
+  // Floor tiers renamed so they don't collide with supply Uncommon / inherent common
+  if (key === "common" || key === "standard") return "Standard";
+  if (key === "uncommon" || key === "select") return "Select";
   if (key === "epic") return "Epic";
   if (key === "legendary") return "Legendary";
   return s;
@@ -2080,10 +2088,11 @@ function normalizeAgencyRarityLabel(raw) {
 /**
  * Rarity label for badges / gallery cards / detail.
  * - HATS n' daCATs: always true 1:1 (owner or steward).
- * - Detective Agency: authored trait rarity (Common → Legendary → 1:1).
+ * - Detective Agency: authored trait rarity (Standard → Select → Epic → Legendary → 1:1).
  * - BIG KIX: no supply rarity tags (large steward inventories / ~333 editions).
  * - Badges + daCommunity archive: live supply tiers from website stats —
- *     1 copy → 1:1 · ≤5 → Ultra Rare · ≤10 → Rare.
+ *     1 copy → 1:1 · ≤5 → Ultra Rare · ≤10 → Rare · ≤25 → Uncommon.
+ *     26+ copies → no tag (inherent common).
  * Stale is_1_of_1 flags are ignored when circulating supply contradicts them.
  */
 function itemRarityLabel(item) {
@@ -2115,6 +2124,7 @@ function itemRarityLabel(item) {
     if (copies <= 1) return "1:1";
     if (copies <= 5) return "Ultra Rare";
     if (copies <= 10) return "Rare";
+    if (copies <= 25) return "Uncommon";
     return null;
   }
 
@@ -2214,11 +2224,13 @@ function rarityBadgeClass(label) {
   if (k === "1:1" || k === "1of1" || k === "1/1") return "rarity-badge-1of1";
   if (k === "ultrarare") return "rarity-badge-ultra-rare";
   if (k === "rare") return "rarity-badge-rare";
-  if (k === "common") return "rarity-badge-common";
+  if (k === "select") return "rarity-badge-select";
+  if (k === "standard") return "rarity-badge-standard";
   if (k === "uncommon") return "rarity-badge-uncommon";
   if (k === "epic") return "rarity-badge-epic";
   if (k === "legendary") return "rarity-badge-legendary";
-  return "rarity-badge-common";
+  if (k === "common" || k === "limited") return "rarity-badge-uncommon";
+  return "rarity-badge-uncommon";
 }
 
 function formatRarityBadgeHtml(item) {
@@ -5743,8 +5755,9 @@ function itemAcquiredAtMs(item, viewerAddr) {
 
 /**
  * Numeric rarity weight for sort (higher = rarer).
- * Agency trait ladder sits above matching supply tiers where it carries perks:
- *   1:1 → Legendary → Ultra Rare → Epic → Rare → Uncommon → Common
+ * Agency specialty grades sit above same-class supply tags; Uncommon is last tag:
+ *   1:1 → Legendary → Ultra Rare → Epic → Rare → Select → Standard → Uncommon
+ * No supply tag (26+) sorts as 0 — inherent common.
  */
 function itemRaritySortRank(item) {
   var label = itemRarityLabel(item);
@@ -5757,8 +5770,9 @@ function itemRaritySortRank(item) {
   if (k === "ultrarare") return 80;
   if (k === "epic") return 70;
   if (k === "rare") return 60;
-  if (k === "uncommon") return 40;
-  if (k === "common") return 20;
+  if (k === "select") return 52;
+  if (k === "standard") return 40;
+  if (k === "uncommon") return 25;
   return 10;
 }
 

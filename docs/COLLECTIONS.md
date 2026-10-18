@@ -130,7 +130,7 @@ python fetch_dagato_agency.py --volume 2   # single volume only (still full rewr
 | Wallet titles | **`{Rarity} Case File #NN · Vol N`** e.g. `Common Case File #33 · Vol 1` |
 | Browse grid | **5 rarity series per volume** (10 cards for Vol 1+2); pills **#1–#5**; sort Vol then rank |
 | Pieces stat | Count of rarity series rows (not raw case-file count) |
-| Rarity tags | Common / Uncommon / Epic / Legendary / 1:1 on grid, holdings, detail |
+| Rarity tags | Standard / Select / Epic / Legendary / 1:1 on grid, holdings, detail (data may still store Common / Uncommon) |
 | Detail | Aggregated holders + copies; transfer/sale history merged from case files |
 | Collector wallet | Edition token #s. Keys: `dagato-agency-v{N}-{token_id}` (require volume on holdings). Portfolio: `owners.holders` only (token #s collide across vols). |
 | Data | `web/data/dagato_agency_data.json` + `dagato_agency_catalog.json` (catalog includes `contract`) |

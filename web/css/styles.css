@@ -7946,7 +7946,13 @@ body.has-collector-view .collector-theater-vignette {
   box-shadow: 2px 2px 0 rgba(20, 83, 45, 0.85);
 }
 
-/* Rarity tags — Agency traits + supply tiers (1:1 / Ultra Rare / Rare) */
+/*
+ * Rarity tags
+ * Rare and above → gradient + soft glow (premium).
+ * Below Rare → flat solids (Select / Standard / Uncommon).
+ * Agency: Epic/Legendary/1:1 keep classic hues; Select = steel-blue; Standard = Agency green.
+ * Supply Uncommon (11–25) = warm pewter — last tag before inherent common (no pill).
+ */
 .rarity-badge {
   display: inline-flex;
   align-items: center;
@@ -7966,24 +7972,43 @@ body.has-collector-view .collector-theater-vignette {
   white-space: nowrap;
 }
 
-.rarity-badge-common {
-  color: #e2e8f0;
-  background: #475569;
-  border-color: #334155;
+/* Agency floor — olive/moss green (Agency language); flat; hue kept away from --listed sale teal #1a8f5a */
+.rarity-badge-standard {
+  color: #f7fee7;
+  background: #3f6212;
+  border-color: #2d4a0e;
+  box-shadow: none;
+  font-weight: 700;
 }
 
+/* Agency mid — muted steel / periwinkle blue (not sky); flat */
+.rarity-badge-select {
+  color: #e8eef8;
+  background: #3d4f6f;
+  border-color: #2c3b55;
+  box-shadow: none;
+  font-weight: 700;
+}
+
+/* Supply 11–25 — warm pewter; last exclusivity tag; flat */
 .rarity-badge-uncommon {
-  color: #052e16;
-  background: linear-gradient(135deg, #86efac 0%, #4ade80 100%);
-  border-color: #166534;
+  color: #d6d3d1;
+  background: #44403c;
+  border-color: #57534e;
+  box-shadow: none;
+  font-weight: 700;
+  letter-spacing: 0.05em;
 }
 
+/* Agency Epic — violet gradient */
 .rarity-badge-epic {
   color: #faf5ff;
-  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
-  border-color: #6b21a8;
+  background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 45%, #a855f7 100%);
+  border-color: #5b21b6;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.32);
 }
 
+/* Agency Legendary — gold gradient */
 .rarity-badge-legendary {
   color: #422006;
   background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 55%, #fcd34d 100%);
@@ -7991,7 +8016,7 @@ body.has-collector-view .collector-theater-vignette {
   box-shadow: 0 0 10px rgba(251, 191, 36, 0.35);
 }
 
-/* Supply tier: ≤10 copies — cobalt, quieter than Ultra Rare */
+/* Supply ≤10 — cobalt gradient */
 .rarity-badge-rare {
   color: #eff6ff;
   background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
@@ -7999,7 +8024,7 @@ body.has-collector-view .collector-theater-vignette {
   box-shadow: 0 0 8px rgba(37, 99, 235, 0.3);
 }
 
-/* Supply tier: ≤5 copies — ice cyan, sits above Rare / below 1:1 */
+/* Supply ≤5 — ice cyan gradient */
 .rarity-badge-ultra-rare {
   color: #ecfeff;
   background: linear-gradient(135deg, #155e75 0%, #0891b2 45%, #22d3ee 100%);
@@ -8007,7 +8032,7 @@ body.has-collector-view .collector-theater-vignette {
   box-shadow: 0 0 10px rgba(34, 211, 238, 0.38);
 }
 
-/* True unique — rose, strongest exclusivity cue */
+/* True unique — rose gradient, strongest exclusivity cue */
 .rarity-badge-1of1 {
   color: #fff7ed;
   background: linear-gradient(135deg, #9f1239 0%, #e11d48 45%, #f43f5e 100%);
