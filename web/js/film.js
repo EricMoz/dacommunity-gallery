@@ -1281,7 +1281,7 @@
 
     // Modal promo line (below Watch on YT / Theatre / Share):
     // - relatedNft / relatedCta: bordered premium pill (NFT badge, poster product, …)
-    // - shopLink override, else daCAT World / podcast → dacat.store merch line
+    // - shopLink override, else daCAT World / podcast → DACAT WORLD Store (dacat.store)
     const isWorld =
       video.creator === "DACAT WORLD" ||
       video.filterCategory === "dacatworld" ||

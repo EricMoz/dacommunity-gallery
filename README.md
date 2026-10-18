@@ -86,7 +86,7 @@ Made for the daCAT community. Art, stories, films, and collectibles from everyon
 
 The real home is at [dacat.fun](https://www.dacat.fun/), along with the films and the community itself.
 
-**dacat.fun · dacatworld · dacat.store · universe.dacat.fun**
+**dacat.fun · dacatworld · store.dacat.fun · dacat.store · universe.dacat.fun**
 
 ## Deploy & cache busting
 

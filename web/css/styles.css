@@ -3889,7 +3889,7 @@ button.stat.stat-collectors:disabled {
   color: var(--black);
 }
 
-/* dagato.store — cinema-dark contrast tile (same structure as dacat.store) */
+/* daCAT Store (store.dacat.fun) — cinema-dark contrast tile for the official store */
 .hub-more-card-shop-dark {
   background: linear-gradient(155deg, #121212 0%, #2a2a2a 100%);
   color: var(--white);
