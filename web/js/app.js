@@ -705,7 +705,11 @@ async function fetchJson(url, timeoutMs) {
     // the browser always gets the absolute latest bytes from the server (bypassing any
     // HTTP/browser cache). The ?v=BUILD stamp (from meta) still provides build-coherent
     // long-term caching keys per release, and the SW network-first layer provides offline.
-    const isOurData = /\/data\/(gallery_(data|meta|catalog|wallet_index)|name_index|videos|badges_(data|catalog)|bigkix_(data|catalog)|dagato_agency_(data|catalog)|hats_n_dacats_(data|catalog)|collections_registry)\.json(\?|$)/i.test(url);
+    // NOTE: wallet_index.json is its own file — do NOT nest it under gallery_(…).
+    // The old gallery_(…|wallet_index) group only matched gallery_wallet_index.json,
+    // so wallet_index used cache:"default" and CF max-age=14400 could stick bare names
+    // for hours after weekly OpenSea username enrich (DaForeman / CatManDew).
+    const isOurData = /\/data\/(gallery_(data|meta|catalog)|wallet_index|name_index|videos|badges_(data|catalog)|bigkix_(data|catalog)|dagato_agency_(data|catalog)|hats_n_dacats_(data|catalog)|collections_registry)\.json(\?|$)/i.test(url);
     const res = await fetch(url, {
       signal: ctrl.signal,
       cache: isOurData ? "no-store" : "default"

@@ -31,10 +31,112 @@ ROOT = Path(__file__).resolve().parent.parent
 ENV_PATH = Path(__file__).resolve().parent / ".env"
 WALLET_PATH = ROOT / "web" / "data" / "wallet_index.json"
 NAME_INDEX_PATH = ROOT / "web" / "data" / "name_index.json"
+DATA_DIR = ROOT / "web" / "data"
+
+# Secondary collection snapshots whose holders must land in wallet_index so
+# weekly OpenSea username enrich (and the UI) can name them. Badges already
+# merge during fetch_badges; hats / agency / bigkix historically did not —
+# that left CatManDew (hats-only) missing from the index entirely.
+SECONDARY_DATA_FILES = (
+    "badges_data.json",
+    "bigkix_data.json",
+    "dagato_agency_data.json",
+    "hats_n_dacats_data.json",
+)
+
+# Steward / issuer wallets — never treat as collectors for identity enrich
+EXCLUDE_STEWARD_ADDRESSES = {
+    "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",  # badges + BIG KIX issuer
+    "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",  # HATS n' daCATs mint
+    "0xa5dcf683b5092cd9df2f6c15ecb8d7fc355b8dea",  # dagato Agency creator
+}
 
 # Weekly re-probe window (also used when force=False and profile already checked)
 CACHE_DAYS = 21
 REQUEST_DELAY_SEC = 0.35
+
+
+def merge_secondary_holders(wallet: dict) -> int:
+    """Add missing secondary-collection holders into wallet_index.by_address.
+
+    Does not overwrite existing entries (preserves ENS / username / holdings).
+    Returns count of newly inserted bare shells.
+    """
+    hi = wallet.get("holders_index") or wallet
+    ba = hi.get("by_address") or {}
+    added = 0
+    seen: set[str] = set()
+
+    for fname in SECONDARY_DATA_FILES:
+        path = DATA_DIR / fname
+        if not path.is_file():
+            continue
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except Exception as exc:
+            print(f"  skip {fname}: {exc}")
+            continue
+        for item in data.get("items") or []:
+            owners = item.get("owners") or {}
+            holders = list(owners.get("holders") or []) + list(
+                owners.get("top_holders") or []
+            )
+            for h in holders + list(item.get("current_holders") or []):
+                if not isinstance(h, dict):
+                    continue
+                addr = str(h.get("address") or "").lower().strip()
+                if not addr or not addr.startswith("0x") or len(addr) != 42:
+                    continue
+                if addr in EXCLUDE_STEWARD_ADDRESSES or addr in seen:
+                    continue
+                seen.add(addr)
+                if addr in ba:
+                    continue
+                ba[addr] = {
+                    "address": addr,
+                    "ens_name": None,
+                    "username": None,
+                    "base_name": None,
+                    "collection_quantity": 0,
+                    "unique_pieces": 0,
+                    "holdings": [],
+                    "ens_history": [],
+                    "profile_checked": False,
+                }
+                added += 1
+
+    if added:
+        # Keep collectors[] in sync for any UI that reads the list directly
+        collectors = sorted(
+            [
+                {
+                    "address": e.get("address") or k,
+                    "ens_name": e.get("ens_name"),
+                    "username": e.get("username"),
+                    "base_name": e.get("base_name"),
+                    "unique_pieces": e.get("unique_pieces") or 0,
+                    "collection_quantity": e.get("collection_quantity") or 0,
+                }
+                for k, e in ba.items()
+                if isinstance(e, dict)
+            ],
+            key=lambda c: (
+                -(c.get("unique_pieces") or 0),
+                -(c.get("collection_quantity") or 0),
+            ),
+        )
+        hi["by_address"] = ba
+        hi["collectors"] = collectors
+        if "holders_index" in wallet:
+            wallet["holders_index"] = hi
+        else:
+            wallet.clear()
+            wallet.update({"holders_index": hi})
+    print(
+        f"Secondary holder merge: scanned {len(seen)} unique addrs, "
+        f"added {added} new wallet_index shells"
+    )
+    return added
 
 
 def load_api_key() -> str:
@@ -131,6 +233,9 @@ def main() -> int:
     session.headers["Accept"] = "application/json"
 
     wallet = load_wallet()
+    # Pull hats / agency / bigkix / badges holders into the index before probing
+    # so OpenSea usernames (e.g. CatManDew) are not skipped for secondary-only wallets.
+    merge_secondary_holders(wallet)
     hi = wallet.get("holders_index") or wallet
     ba = hi.get("by_address") or {}
     if not ba:
