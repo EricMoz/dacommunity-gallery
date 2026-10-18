@@ -30,7 +30,7 @@ from config import (
     CREATOR_ENS,
     OPENSEA_COLLECTION_URL,
 )
-from opensea_client import OpenSeaClient
+from opensea_client import ENS_CACHE_DAYS, OpenSeaClient
 from title_utils import apply_item_titles, display_title, extract_slug
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -339,13 +339,11 @@ def build_holders_index(
     If holdings_by_addr provided, use it to avoid per-holder get_account_collection_nfts calls.
 
     ENS resolution (reverse-primary only):
-    - Uses client.resolve_ens_name() → ensdata.net **ens_primary** only
-      (never bare ``ens``, which can be an owned name NFT without reverse),
-      then OpenSea account ``ens_name`` fallback.
-    - Caches via last_ens_resolved (unix seconds) stored per wallet entry.
-      Only resolves addresses that are new OR last resolved > ~14 days ago.
-    - ALWAYS stores/returns ENS in lowercase.
-    - History/aliases logic below is kept as before.
+    - Uses client.resolve_ens_name() → ensideas / web3.bio / ensdata / OpenSea
+      (primary reverse only; never bare owned-name without reverse).
+    - Caches via last_ens_resolved (~3 days) but still probes ensideas inside
+      the window so primary renames apply for every wallet quickly.
+    - ALWAYS stores/returns ENS in lowercase; old names kept in ens_history/aliases.
     - Site display: ENS → Base → OpenSea username → short 0x (app.js).
     """
     print("Building wallet lookup index from collection holders...")
@@ -390,19 +388,26 @@ def build_holders_index(
             prev_username = p.get("username")
             profile_checked = bool(p.get("profile_checked"))
 
-            # Shared resolver: ensdata.net primary + OpenSea ENS fallback + 14d cache + lowercase.
-            # Skip network if recently resolved; returns prev_ens on skip/failure.
+            # Multi-source primary reverse (ensideas → web3.bio → ensdata → OpenSea).
+            # Soft cache still probes ensideas so renames land for every wallet.
             ens_name = client.resolve_ens_name(
                 holder.get("address"),
                 last_resolved=last_res_ts,
-                cache_days=14,
+                cache_days=ENS_CACHE_DAYS,
                 previous_ens=prev_ens,
             )
+            if ens_name and prev_ens and ens_name != str(prev_ens).lower():
+                # Rename detected inside soft cache — stamp a fresh resolve time
+                last_res_ts = None
 
             # OpenSea profile (username): refresh when ENS cache expires OR we have never
             # probed profile for this wallet. One-time fill recovers names skipped while
             # only ENS was cached. Display priority on site: ENS → Base → OpenSea → 0x.
-            do_fresh_resolve = not last_res_ts or (time.time() - last_res_ts) >= (14 * 86400)
+            do_fresh_resolve = (
+                not last_res_ts
+                or (time.time() - last_res_ts) >= (ENS_CACHE_DAYS * 86400)
+                or (ens_name and prev_ens and ens_name != str(prev_ens).lower())
+            )
             need_profile = do_fresh_resolve or not profile_checked
             if need_profile:
                 try:

@@ -145,6 +145,8 @@ Hub cards remain manual (home + `collections/index.html`) until the hub is fully
 | Daily | Refresh gallery data | Reverse ENS (+ username probe) → `wallet_index.json` for **daCommunity** holders |
 | Weekly | **Enrich wallet names (weekly)** | Base names → `name_index.json`; OpenSea usernames patch `wallet_index` |
 
+Reverse ENS uses **ensideas → web3.bio → ensdata → OpenSea** (primary reverse only). Soft cache ~3 days still probes ensideas so a new primary name applies for every wallet without waiting out the full window; prior names stay in `ens_history` / `ens_aliases`.
+
 Display priority: **ENS → Base → OpenSea username → short 0x** (`resolveCollectorIdentity` in `app.js`).
 
 `wallet_index` does **not** list pure secondary-collection holders. UI may live-reverse those via ensdata.

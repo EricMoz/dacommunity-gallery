@@ -25,6 +25,10 @@ from config import (
     REQUEST_DELAY_SEC,
 )
 
+# How long a reverse-primary ENS is trusted before a full multi-source refresh.
+# Keep short so renames (new primary reverse) land within a few daily runs.
+ENS_CACHE_DAYS = 3
+
 
 class OpenSeaClient:
     def __init__(
@@ -193,50 +197,141 @@ class OpenSeaClient:
         encoded = quote(identifier, safe="")
         return self._get(f"/accounts/resolve/{encoded}")
 
+    @staticmethod
+    def _normalize_ens_label(ens: str | None) -> str | None:
+        if ens is None:
+            return None
+        ens = str(ens).lower().strip()
+        if not ens or ens.startswith("0x"):
+            return None
+        return ens
+
+    def _ens_from_ensideas(self, addr: str) -> str | None:
+        """Primary reverse via ensideas (tracks Etherscan-style primary closely)."""
+        try:
+            r = requests.get(
+                f"https://api.ensideas.com/ens/resolve/{addr}",
+                timeout=6,
+            )
+            if r.status_code != 200:
+                return None
+            data = r.json() or {}
+            got = (data.get("address") or "").lower().strip()
+            if got and got != addr:
+                return None
+            return self._normalize_ens_label(data.get("name") or data.get("displayName"))
+        except Exception:
+            return None
+
+    def _ens_from_web3bio(self, addr: str) -> str | None:
+        """Primary ENS identity from web3.bio profile list."""
+        try:
+            r = requests.get(
+                f"https://api.web3.bio/profile/{addr}",
+                timeout=8,
+                headers={"Accept": "application/json"},
+            )
+            if r.status_code != 200:
+                return None
+            profiles = r.json() or []
+            if not isinstance(profiles, list):
+                return None
+            for p in profiles:
+                if not isinstance(p, dict):
+                    continue
+                if (p.get("platform") or "").lower() != "ens":
+                    continue
+                got = (p.get("address") or "").lower().strip()
+                if got and got != addr:
+                    continue
+                ens = self._normalize_ens_label(
+                    p.get("identity") or p.get("displayName")
+                )
+                if ens:
+                    return ens
+        except Exception:
+            return None
+        return None
+
+    def _ens_from_ensdata(self, addr: str) -> str | None:
+        """ensdata.net ens_primary only (never bare owned-name ``ens``)."""
+        try:
+            r = requests.get(f"https://ensdata.net/{addr}", timeout=6)
+            if r.status_code != 200:
+                return None
+            data = r.json() or {}
+            ens = self._normalize_ens_label(data.get("ens_primary"))
+            if not ens:
+                return None
+            wallets = data.get("wallets") if isinstance(data.get("wallets"), dict) else {}
+            eth_wallet = (wallets.get("eth") or data.get("address") or "").lower()
+            if eth_wallet and eth_wallet != addr:
+                return None
+            return ens
+        except Exception:
+            return None
+
     def resolve_ens_name(
         self,
         address: str,
         *,
         last_resolved: float | None = None,
-        cache_days: int = 14,
+        cache_days: int = ENS_CACHE_DAYS,
         previous_ens: str | None = None,
     ) -> str | None:
-        """Reverse-primary ENS only (ensdata ens_primary, not bare owned-name ens).
+        """Reverse-primary ENS for a wallet (all collectors, not ad-hoc).
 
-        Fallback: OpenSea account ens_name. Cache last_resolved (~14d). Lowercase always.
-        On failure keep previous_ens. Base/OpenSea username are separate fields.
+        Sources (first hit wins, freshest APIs first):
+          1) ensideas.com — matches Etherscan primary reverse
+          2) web3.bio ENS profile
+          3) ensdata.net ens_primary
+          4) OpenSea account ens_name
+
+        Cache: skip full refresh for ``cache_days`` (default 3), but still probe
+        ensideas inside the window so a new primary reverse (rename) is applied
+        immediately for every wallet. Lowercase always. On total failure keep
+        previous_ens. Base / OpenSea username stay separate fields.
         """
         addr = (address or "").lower().strip()
         if not addr:
             return None
 
+        prev = self._normalize_ens_label(previous_ens)
         now = time.time()
-        if last_resolved is not None and (now - last_resolved) < (cache_days * 86400):
-            return previous_ens.lower() if previous_ens else None
+        in_cache = (
+            last_resolved is not None
+            and (now - float(last_resolved)) < (cache_days * 86400)
+        )
 
-        try:
-            r = requests.get(f"https://ensdata.net/{addr}", timeout=6)
-            if r.status_code == 200:
-                data = r.json() or {}
-                ens = data.get("ens_primary")
-                if ens:
-                    ens = str(ens).lower().strip()
-                    wallets = data.get("wallets") if isinstance(data.get("wallets"), dict) else {}
-                    eth_wallet = (wallets.get("eth") or data.get("address") or "").lower()
-                    if not eth_wallet or eth_wallet == addr:
-                        return ens
-        except Exception:
-            pass
+        # Soft cache: still check ensideas so renames land without waiting days.
+        if in_cache:
+            fresh = self._ens_from_ensideas(addr)
+            if fresh:
+                return fresh
+            return prev
+
+        for getter in (
+            self._ens_from_ensideas,
+            self._ens_from_web3bio,
+            self._ens_from_ensdata,
+        ):
+            ens = getter(addr)
+            if ens:
+                return ens
 
         try:
             resolved = self.resolve_account(addr)
-            ens = resolved.get("ens_name") if isinstance(resolved, dict) else None
+            ens = (
+                self._normalize_ens_label(resolved.get("ens_name"))
+                if isinstance(resolved, dict)
+                else None
+            )
             if ens:
-                return str(ens).lower().strip()
+                return ens
         except Exception:
             pass
 
-        return previous_ens.lower() if previous_ens else None
+        return prev
 
     def get_nft_events(
         self,

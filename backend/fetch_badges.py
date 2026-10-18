@@ -30,7 +30,7 @@ from typing import Any
 import requests
 from dotenv import load_dotenv
 
-from opensea_client import OpenSeaClient
+from opensea_client import ENS_CACHE_DAYS, OpenSeaClient
 
 # Caches for speed (mint dates and ENS resolves are idempotent per run)
 mint_cache = {}
@@ -906,7 +906,7 @@ def main():
                     new_ens = client.resolve_ens_name(
                         addr,
                         last_resolved=None if force else last_res,
-                        cache_days=14,
+                        cache_days=ENS_CACHE_DAYS,
                         previous_ens=None if force else prev_ens,
                     )
                     old_ens = updated_by[addr].get("ens_name")
@@ -929,7 +929,13 @@ def main():
                         updated_by[addr]["ens_name"] = None
                     # Record/refresh timestamp only on actual fresh resolve attempt
                     now_ts = time.time()
-                    if force or not last_res or (now_ts - last_res) >= (14 * 86400):
+                    renamed = bool(new_ens and old_ens and new_ens != old_ens)
+                    if (
+                        force
+                        or renamed
+                        or not last_res
+                        or (now_ts - last_res) >= (ENS_CACHE_DAYS * 86400)
+                    ):
                         updated_by[addr]["last_ens_resolved"] = now_ts
                     elif last_res:
                         updated_by[addr].setdefault("last_ens_resolved", last_res)
@@ -940,7 +946,10 @@ def main():
             # new address from badges: reverse-resolve only (never title-inferred ENS)
             username = None
             ens_name = client.resolve_ens_name(
-                addr, last_resolved=last_res, cache_days=14, previous_ens=prev_ens
+                addr,
+                last_resolved=last_res,
+                cache_days=ENS_CACHE_DAYS,
+                previous_ens=prev_ens,
             )
             # If still no ENS, keep previous if we had one (for flaky resolves / badge-only that resolve later)
             if not ens_name and prev_ens:
