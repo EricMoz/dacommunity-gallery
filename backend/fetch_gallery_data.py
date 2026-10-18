@@ -479,9 +479,32 @@ def build_holders_index(
             if p_ens and p_ens != ens_name:
                 ens_aliases[p_ens.lower()] = address
 
+        # Keep Base name from prior enrich when daily does not re-resolve it
+        if address in previous_by and previous_by[address].get("base_name") and not entry.get("base_name"):
+            entry["base_name"] = previous_by[address]["base_name"]
+
         index[address] = entry
         if ens_name:
             ens_aliases[ens_name.lower()] = address
+
+    # Preserve wallets that are not daCommunity holders (badge-only / secondary).
+    # Gallery rewrite used to drop them and wipe weekly OpenSea usernames (e.g. DaForeman).
+    for addr, prev in previous_by.items():
+        if addr in index or not isinstance(prev, dict):
+            continue
+        kept = dict(prev)
+        kept.setdefault("address", prev.get("address") or addr)
+        kept.setdefault("holdings", [])
+        kept.setdefault("unique_pieces", 0)
+        kept.setdefault("collection_quantity", 0)
+        index[addr] = kept
+        for old in kept.get("ens_history") or []:
+            if old:
+                ens_aliases[str(old).lower()] = addr
+        if kept.get("ens_name"):
+            ens_aliases[str(kept["ens_name"]).lower()] = addr
+        if kept.get("base_name"):
+            ens_aliases[str(kept["base_name"]).lower()] = addr
 
     return {"by_address": index, "ens_aliases": ens_aliases}
 
@@ -611,6 +634,7 @@ def main() -> int:
                 # Persist the last resolution timestamp so future runs can skip re-resolving this address
                 # for the configured cache window (see resolve_ens_name + build_holders_index).
                 "last_ens_resolved": entry.get("last_ens_resolved"),
+                "last_profile_resolved": entry.get("last_profile_resolved"),
                 "profile_checked": entry.get("profile_checked"),
                 "holdings": [
                     {

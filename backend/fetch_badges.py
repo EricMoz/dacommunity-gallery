@@ -944,7 +944,10 @@ def main():
                 continue
 
             # new address from badges: reverse-resolve only (never title-inferred ENS)
-            username = None
+            # Preserve weekly OpenSea username / Base / profile flags from prior index
+            username = p_entry.get("username")
+            base_name = p_entry.get("base_name")
+            profile_checked = bool(p_entry.get("profile_checked"))
             ens_name = client.resolve_ens_name(
                 addr,
                 last_resolved=last_res,
@@ -959,11 +962,15 @@ def main():
                 "address": addr,
                 "ens_name": ens_name,
                 "username": username,
+                "base_name": base_name,
                 "collection_quantity": 0,
                 "unique_pieces": 0,
                 "holdings": [],
                 "ens_history": [],
+                "profile_checked": profile_checked,
             }
+            if p_entry.get("last_profile_resolved") is not None:
+                entry["last_profile_resolved"] = p_entry.get("last_profile_resolved")
             # preserve if somehow in prev (history/aliases unchanged logic)
             if addr in prev_by:
                 p = prev_by[addr]
@@ -977,6 +984,8 @@ def main():
                         updated_aliases[old.lower()] = addr
             if ens_name:
                 updated_aliases[ens_name.lower()] = addr
+            if base_name:
+                updated_aliases[str(base_name).lower()] = addr
 
             # Mark resolution time for this address (name parse counts as authoritative this run;
             # API calls inside helper already decided whether network happened).
