@@ -1344,6 +1344,8 @@ button.stat:focus-visible {
 
 .highlight-card.is-pending .highlight-card-body {
   background: #f2f2ee;
+  /* Hide the black thumb/title rule until the card is filled — quieter loading state */
+  border-top-color: transparent;
 }
 
 .highlight-card.is-pending .highlight-card-category,
