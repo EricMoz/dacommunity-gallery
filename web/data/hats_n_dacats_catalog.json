@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-17T12:06:29.847195+00:00",
+  "generated_at": "2026-10-18T12:33:46.253950+00:00",
   "source": "hats_n_dacats_catalog",
   "collection": {
     "id": "hats-n-dacats",
@@ -23,9 +23,9 @@
     "contract_name": "HATS n' daCATs",
     "floor_eth": 0.014,
     "floor_symbol": "ETH",
-    "num_owners": 25,
-    "total_sales": 45,
-    "total_volume": 0.6875,
+    "num_owners": 26,
+    "total_sales": 47,
+    "total_volume": 0.7155,
     "piece_count": 105,
     "listed_count": 22,
     "one_of_ones": 105
@@ -103,16 +103,26 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": [],
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xb70701bb877dbf0e07a1576eb49b3311d5c96c6b",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xb70701bb877dbf0e07a1576eb49b3311d5c96c6b",
+            "quantity": 1
+          }
+        ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "mint",
-          "at": "2026-10-11T18:38:47+00:00",
-          "from": null,
-          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "type": "transfer",
+          "at": "2026-10-18T01:00:23+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0xb70701bb877dbf0e07a1576eb49b3311d5c96c6b",
           "quantity": 1
         }
       },
@@ -149,6 +159,21 @@
       "edition_size": 1,
       "recent_activity": [
         {
+          "type": "transfer",
+          "at": "2026-10-18T01:00:23+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0xb70701bb877dbf0e07a1576eb49b3311d5c96c6b",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-10-18T01:00:23+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0xb70701bb877dbf0e07a1576eb49b3311d5c96c6b",
+          "quantity": 1,
+          "price_eth": 0.014
+        },
+        {
           "type": "mint",
           "at": "2026-10-11T18:38:47+00:00",
           "from": null,
@@ -170,16 +195,26 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": [],
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "mint",
-          "at": "2026-10-11T18:32:47+00:00",
-          "from": null,
-          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "type": "sale",
+          "at": "2026-10-18T01:04:35+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
           "quantity": 1
         }
       },
@@ -207,6 +242,21 @@
       "is_1_of_1": true,
       "edition_size": 1,
       "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-10-18T01:04:35+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1,
+          "price_eth": 0.014
+        },
+        {
+          "type": "transfer",
+          "at": "2026-10-18T01:04:35+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        },
         {
           "type": "mint",
           "at": "2026-10-11T18:32:47+00:00",
