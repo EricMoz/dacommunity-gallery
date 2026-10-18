@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-18T12:46:34.028334+00:00",
+  "generated_at": "2026-10-18T21:11:54.093159+00:00",
   "holders_index": {
     "ens_aliases": {
       "lostthegame.eth": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
@@ -35,23 +35,7 @@
       "kingsi.eth": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
       "dabeezy.eth": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
       "mrcryptonist.eth": "0xe597a25c77317b361636270251dc53d36491a11d",
-      "jeffadams.eth": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
-      "hodlstar.base.eth": "0x011dddd5b5470d2818bffb400b4e38949fe21ac3",
-      "inshirowetrust.base.eth": "0x3e43287a26acf9e5206f4551ccda29c7d9bea93e",
-      "visualarchive.base.eth": "0x445a6fc0bf61535e7d2ef96258124fdb9a855fdc",
-      "dacatdreams.base.eth": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
-      "wmdsj19880725.base.eth": "0x5469f22fc52ad7a5e1f430a75b1cbd542393dfb0",
-      "aerospace.base.eth": "0x58e5c387c541ba7c4b04f126adb778fb02715afa",
-      "jhonnyfolies.base.eth": "0x5b8b03f255a2acf815e59dc55847096c43335385",
-      "jupiterphii.base.eth": "0x63795d3b68d42d8a169975e1536e1416aac71856",
-      "henia.base.eth": "0x67f3c18339ac0da29be9573d559a1291100b7c7b",
-      "shortcut.base.eth": "0x68bca5a8bdebe05fb8a6648c7316b4eb7e19a064",
-      "pieface.base.eth": "0x68cd16cacbaaca45dfd0f0e7e2609d273a0d4083",
-      "pa3gba.base.eth": "0x7f23f1c4be15fa3adabc821de9ef70efa5503f24",
-      "gottothird.base.eth": "0x7f284d2167b3bb8d8f6669593f4c24e752b54812",
-      "slowfreeze.base.eth": "0x93b34003169bd7cdb3e0710fedff4cb6795a32ef",
-      "mozcat.base.eth": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-      "lostthegame.base.eth": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684"
+      "jeffadams.eth": "0xf6c9b6b8b700906d43281ec485bee2139026cb27"
     },
     "by_address": {
       "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684": {
@@ -59,7 +43,7 @@
         "ens_name": "lostthegame.eth",
         "ens_history": [],
         "username": "Saphoroth",
-        "base_name": "lostthegame.base.eth",
+        "base_name": null,
         "collection_quantity": 391,
         "unique_pieces": 64,
         "last_ens_resolved": 1792028998.0144093,
@@ -392,7 +376,7 @@
         "ens_name": "mozvane.eth",
         "ens_history": [],
         "username": "mozvane.eth",
-        "base_name": "mozcat.base.eth",
+        "base_name": null,
         "collection_quantity": 280,
         "unique_pieces": 60,
         "last_ens_resolved": 1792028996.581618,
@@ -705,7 +689,7 @@
         "ens_name": null,
         "ens_history": [],
         "username": null,
-        "base_name": "dacatdreams.base.eth",
+        "base_name": null,
         "collection_quantity": 94,
         "unique_pieces": 48,
         "last_ens_resolved": 1792069452.9636445,
@@ -1685,7 +1669,7 @@
         "ens_name": "doublelion.eth",
         "ens_history": [],
         "username": "LenaMAU",
-        "base_name": "henia.base.eth",
+        "base_name": null,
         "collection_quantity": 19,
         "unique_pieces": 11,
         "last_ens_resolved": 1792069469.0737023,
@@ -1904,7 +1888,7 @@
         "ens_name": null,
         "ens_history": [],
         "username": "HodLStaR",
-        "base_name": "hodlstar.base.eth",
+        "base_name": null,
         "collection_quantity": 9,
         "unique_pieces": 5,
         "last_ens_resolved": 1792069478.9660058,
@@ -2133,7 +2117,7 @@
         "ens_name": "dao100.eth",
         "ens_history": [],
         "username": "flysuperman",
-        "base_name": "wmdsj19880725.base.eth",
+        "base_name": null,
         "collection_quantity": 2,
         "unique_pieces": 1,
         "last_ens_resolved": 1792069501.0474043,
@@ -2418,7 +2402,7 @@
         "ens_name": "slowfreeze.eth",
         "ens_history": [],
         "username": "Slowfreeze",
-        "base_name": "slowfreeze.base.eth",
+        "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
         "last_ens_resolved": 1792069557.0540612,
@@ -2490,7 +2474,7 @@
         "ens_name": null,
         "ens_history": [],
         "username": "yola_yo",
-        "base_name": "gottothird.base.eth",
+        "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
         "last_ens_resolved": 1792069572.9643664,
@@ -2508,7 +2492,7 @@
         "ens_name": "tibob.eth",
         "ens_history": [],
         "username": "pa3gBa",
-        "base_name": "pa3gba.base.eth",
+        "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
         "last_ens_resolved": 1792069575.0959086,
@@ -2580,7 +2564,7 @@
         "ens_name": null,
         "ens_history": [],
         "username": null,
-        "base_name": "pieface.base.eth",
+        "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
         "last_ens_resolved": 1792069590.9695303,
@@ -2598,7 +2582,7 @@
         "ens_name": "ahotwallet.eth",
         "ens_history": [],
         "username": "A_Hot_Wallet",
-        "base_name": "shortcut.base.eth",
+        "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
         "last_ens_resolved": 1792069593.0586016,
@@ -2652,7 +2636,7 @@
         "ens_name": null,
         "ens_history": [],
         "username": "Jhonny88",
-        "base_name": "jhonnyfolies.base.eth",
+        "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
         "last_ens_resolved": 1792069604.9690602,
@@ -2670,7 +2654,7 @@
         "ens_name": null,
         "ens_history": [],
         "username": null,
-        "base_name": "aerospace.base.eth",
+        "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
         "last_ens_resolved": 1792069608.983352,
@@ -2724,7 +2708,7 @@
         "ens_name": null,
         "ens_history": [],
         "username": "0x445a",
-        "base_name": "visualarchive.base.eth",
+        "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
         "last_ens_resolved": 1792069618.9722092,
@@ -2742,7 +2726,7 @@
         "ens_name": null,
         "ens_history": [],
         "username": null,
-        "base_name": "inshirowetrust.base.eth",
+        "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
         "last_ens_resolved": 1792069622.9746,
@@ -2889,7 +2873,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327573.8478446
+        "last_ens_resolved": 1792357889.9836848
       },
       "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4": {
         "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
@@ -2899,7 +2883,17 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327574.0372906
+        "last_ens_resolved": 1792357890.1203709
+      },
+      "0x0de17a00b0a7918c63b81dc950127d8de950df37": {
+        "address": "0x0de17a00b0a7918c63b81dc950127d8de950df37",
+        "ens_name": null,
+        "username": null,
+        "collection_quantity": 0,
+        "unique_pieces": 0,
+        "holdings": [],
+        "ens_history": [],
+        "last_ens_resolved": 1792357891.9714255
       },
       "0x1fc100b151a1ffa55d41a134a1a826a242d9c7c9": {
         "address": "0x1fc100b151a1ffa55d41a134a1a826a242d9c7c9",
@@ -2909,7 +2903,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327574.2117932
+        "last_ens_resolved": 1792357892.1051946
       },
       "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e": {
         "address": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
@@ -2919,7 +2913,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327574.3869374
+        "last_ens_resolved": 1792357892.2533247
       },
       "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46": {
         "address": "0x3b2c662b13d30b7b54bd9070e345b99b0903ed46",
@@ -2929,7 +2923,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327574.5946157
+        "last_ens_resolved": 1792357892.3891587
       },
       "0x45ba95c35b4c43b27258cd69b5743d202f543284": {
         "address": "0x45ba95c35b4c43b27258cd69b5743d202f543284",
@@ -2939,7 +2933,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327575.9219415
+        "last_ens_resolved": 1792357893.9741237
       },
       "0x4e822f0773a16e862d185853e8b4131a9a922deb": {
         "address": "0x4e822f0773a16e862d185853e8b4131a9a922deb",
@@ -2949,7 +2943,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327577.9534125
+        "last_ens_resolved": 1792357896.0067255
       },
       "0x4ff3ba0c7b39f57fc934c014e8c796f1efb44043": {
         "address": "0x4ff3ba0c7b39f57fc934c014e8c796f1efb44043",
@@ -2959,7 +2953,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327578.1439872
+        "last_ens_resolved": 1792357896.1581364
       },
       "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c": {
         "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
@@ -2969,7 +2963,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327578.3226986
+        "last_ens_resolved": 1792357896.313718
       },
       "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa": {
         "address": "0x6376c6dbb1ce863f39ba3fa9530b3308104887aa",
@@ -2979,7 +2973,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327578.4973335
+        "last_ens_resolved": 1792357896.4590566
       },
       "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da": {
         "address": "0x72e48f0ac64a61d62ba7b7aa8fdf1a767009b0da",
@@ -2989,7 +2983,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327578.6798542
+        "last_ens_resolved": 1792357896.6061246
       },
       "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91": {
         "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
@@ -2999,7 +2993,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327578.8620899
+        "last_ens_resolved": 1792357896.7089267
       },
       "0x7d3a38475fa782aad7840f777e780383801d6de4": {
         "address": "0x7d3a38475fa782aad7840f777e780383801d6de4",
@@ -3009,7 +3003,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327579.9288719
+        "last_ens_resolved": 1792357897.9806812
       },
       "0x7fce629cff113dd9993d1d35755720c542c694e6": {
         "address": "0x7fce629cff113dd9993d1d35755720c542c694e6",
@@ -3019,7 +3013,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327581.8405585
+        "last_ens_resolved": 1792357899.9271157
       },
       "0x82c1e9798451e9cf1ea6ba5e7c1983e80a7e1ba5": {
         "address": "0x82c1e9798451e9cf1ea6ba5e7c1983e80a7e1ba5",
@@ -3029,7 +3023,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327583.8421824
+        "last_ens_resolved": 1792357901.9304793
       },
       "0x91bebf482b1186d05263a98c68c5ab3f5ff8287f": {
         "address": "0x91bebf482b1186d05263a98c68c5ab3f5ff8287f",
@@ -3039,7 +3033,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327585.8441887
+        "last_ens_resolved": 1792357903.9226332
       },
       "0xa3b61e2076ca08a8021e2f48906be8123bd536b2": {
         "address": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
@@ -3049,7 +3043,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327586.017689
+        "last_ens_resolved": 1792357904.0806127
       },
       "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92": {
         "address": "0xaeee99d7f45dcf84e54f51c54b04e23a6d1c4b92",
@@ -3059,7 +3053,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327586.21269
+        "last_ens_resolved": 1792357904.2252412
       },
       "0xb7150ba28ddf3680975fae75ac493559d05f784a": {
         "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
@@ -3069,7 +3063,17 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327586.3890207
+        "last_ens_resolved": 1792357904.3407323
+      },
+      "0xbb6dbb8b9bbe1f6a5ad601d83df7698cb3cf64a1": {
+        "address": "0xbb6dbb8b9bbe1f6a5ad601d83df7698cb3cf64a1",
+        "ens_name": null,
+        "username": null,
+        "collection_quantity": 0,
+        "unique_pieces": 0,
+        "holdings": [],
+        "ens_history": [],
+        "last_ens_resolved": 1792357905.9287207
       },
       "0xbd0c0b2943eae1b97e4d0e6b18df3faa5fb14a10": {
         "address": "0xbd0c0b2943eae1b97e4d0e6b18df3faa5fb14a10",
@@ -3079,7 +3083,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327587.9481828
+        "last_ens_resolved": 1792357908.0035286
       },
       "0xc553593cd4bfd114ffe80cf8a628cc12b841b327": {
         "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
@@ -3089,7 +3093,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327588.1378512
+        "last_ens_resolved": 1792357908.108806
       },
       "0xd0c8c2761882b314b1d552747167189f8f0a5b38": {
         "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
@@ -3099,7 +3103,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327588.3183537
+        "last_ens_resolved": 1792357908.2359166
       },
       "0xd307f028d96ab495c41440ca20730feb8ab8b0f9": {
         "address": "0xd307f028d96ab495c41440ca20730feb8ab8b0f9",
@@ -3109,7 +3113,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327588.4983542
+        "last_ens_resolved": 1792357908.4022086
       },
       "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3": {
         "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
@@ -3119,7 +3123,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327588.6709514
+        "last_ens_resolved": 1792357908.5737736
       },
       "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1": {
         "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
@@ -3129,7 +3133,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327589.8414927
+        "last_ens_resolved": 1792357909.922075
       },
       "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868": {
         "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
@@ -3139,7 +3143,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327590.0138357
+        "last_ens_resolved": 1792357910.0829346
       },
       "0xe597a25c77317b361636270251dc53d36491a11d": {
         "address": "0xe597a25c77317b361636270251dc53d36491a11d",
@@ -3149,7 +3153,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327590.1834364
+        "last_ens_resolved": 1792357910.2212856
       },
       "0xebe1ac4c1134b8f46766890ae9e4f2063f7719af": {
         "address": "0xebe1ac4c1134b8f46766890ae9e4f2063f7719af",
@@ -3159,7 +3163,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327591.8448749
+        "last_ens_resolved": 1792357911.9319935
       },
       "0xee2301b51d369b30031fa06b0367b0e8a8ba759f": {
         "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
@@ -3169,7 +3173,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327593.8455706
+        "last_ens_resolved": 1792357913.9316328
       },
       "0xf6c9b6b8b700906d43281ec485bee2139026cb27": {
         "address": "0xf6c9b6b8b700906d43281ec485bee2139026cb27",
@@ -3179,7 +3183,7 @@
         "unique_pieces": 0,
         "holdings": [],
         "ens_history": [],
-        "last_ens_resolved": 1792327594.0282087
+        "last_ens_resolved": 1792357914.0930247
       }
     },
     "collectors": [
@@ -3188,24 +3192,21 @@
         "ens_name": "lostthegame.eth",
         "username": "Saphoroth",
         "unique_pieces": 64,
-        "collection_quantity": 391,
-        "base_name": "lostthegame.base.eth"
+        "collection_quantity": 391
       },
       {
         "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
         "ens_name": "mozvane.eth",
         "username": "mozvane.eth",
         "unique_pieces": 60,
-        "collection_quantity": 280,
-        "base_name": "mozcat.base.eth"
+        "collection_quantity": 280
       },
       {
         "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
         "ens_name": null,
         "username": null,
         "unique_pieces": 48,
-        "collection_quantity": 94,
-        "base_name": "dacatdreams.base.eth"
+        "collection_quantity": 94
       },
       {
         "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
@@ -3247,8 +3248,7 @@
         "ens_name": "doublelion.eth",
         "username": "LenaMAU",
         "unique_pieces": 11,
-        "collection_quantity": 19,
-        "base_name": "henia.base.eth"
+        "collection_quantity": 19
       },
       {
         "address": "0x06eca6ce5f135ed9917b00630c26167de7e6a673",
@@ -3269,8 +3269,7 @@
         "ens_name": null,
         "username": "HodLStaR",
         "unique_pieces": 5,
-        "collection_quantity": 9,
-        "base_name": "hodlstar.base.eth"
+        "collection_quantity": 9
       },
       {
         "address": "0x6372d911ad7329509d683828be1bf5d4eb45bb42",
@@ -3340,8 +3339,7 @@
         "ens_name": "dao100.eth",
         "username": "flysuperman",
         "unique_pieces": 1,
-        "collection_quantity": 2,
-        "base_name": "wmdsj19880725.base.eth"
+        "collection_quantity": 2
       },
       {
         "address": "0xffcd46f8267ea602a9a05b17027a53cae1364298",
@@ -3425,8 +3423,7 @@
         "ens_name": "slowfreeze.eth",
         "username": "Slowfreeze",
         "unique_pieces": 1,
-        "collection_quantity": 1,
-        "base_name": "slowfreeze.base.eth"
+        "collection_quantity": 1
       },
       {
         "address": "0x8f15253e0775e1df0561a875ddf00dae70cf72a7",
@@ -3454,16 +3451,14 @@
         "ens_name": null,
         "username": "yola_yo",
         "unique_pieces": 1,
-        "collection_quantity": 1,
-        "base_name": "gottothird.base.eth"
+        "collection_quantity": 1
       },
       {
         "address": "0x7f23f1c4be15fa3adabc821de9ef70efa5503f24",
         "ens_name": "tibob.eth",
         "username": "pa3gBa",
         "unique_pieces": 1,
-        "collection_quantity": 1,
-        "base_name": "pa3gba.base.eth"
+        "collection_quantity": 1
       },
       {
         "address": "0x77142c2ccc81d0b3dc8569b7d9f460e8b9696232",
@@ -3491,16 +3486,14 @@
         "ens_name": null,
         "username": null,
         "unique_pieces": 1,
-        "collection_quantity": 1,
-        "base_name": "pieface.base.eth"
+        "collection_quantity": 1
       },
       {
         "address": "0x68bca5a8bdebe05fb8a6648c7316b4eb7e19a064",
         "ens_name": "ahotwallet.eth",
         "username": "A_Hot_Wallet",
         "unique_pieces": 1,
-        "collection_quantity": 1,
-        "base_name": "shortcut.base.eth"
+        "collection_quantity": 1
       },
       {
         "address": "0x6395aeb764163d8179e946feafb8338752437623",
@@ -3521,16 +3514,14 @@
         "ens_name": null,
         "username": "Jhonny88",
         "unique_pieces": 1,
-        "collection_quantity": 1,
-        "base_name": "jhonnyfolies.base.eth"
+        "collection_quantity": 1
       },
       {
         "address": "0x58e5c387c541ba7c4b04f126adb778fb02715afa",
         "ens_name": null,
         "username": null,
         "unique_pieces": 1,
-        "collection_quantity": 1,
-        "base_name": "aerospace.base.eth"
+        "collection_quantity": 1
       },
       {
         "address": "0x55d5c0aa6486ccd91775f4f2e3258f5d7ceac5ce",
@@ -3551,16 +3542,14 @@
         "ens_name": null,
         "username": "0x445a",
         "unique_pieces": 1,
-        "collection_quantity": 1,
-        "base_name": "visualarchive.base.eth"
+        "collection_quantity": 1
       },
       {
         "address": "0x3e43287a26acf9e5206f4551ccda29c7d9bea93e",
         "ens_name": null,
         "username": null,
         "unique_pieces": 1,
-        "collection_quantity": 1,
-        "base_name": "inshirowetrust.base.eth"
+        "collection_quantity": 1
       },
       {
         "address": "0x356d8dac5f0da039dcc3e22c8b42fde00e79f7e6",
@@ -3621,6 +3610,13 @@
       {
         "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
         "ens_name": "dasheesh.eth",
+        "username": null,
+        "unique_pieces": 0,
+        "collection_quantity": 0
+      },
+      {
+        "address": "0x0de17a00b0a7918c63b81dc950127d8de950df37",
+        "ens_name": null,
         "username": null,
         "unique_pieces": 0,
         "collection_quantity": 0
@@ -3740,6 +3736,13 @@
       {
         "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
         "ens_name": "dabaker.eth",
+        "username": null,
+        "unique_pieces": 0,
+        "collection_quantity": 0
+      },
+      {
+        "address": "0xbb6dbb8b9bbe1f6a5ad601d83df7698cb3cf64a1",
+        "ens_name": null,
         "username": null,
         "unique_pieces": 0,
         "collection_quantity": 0

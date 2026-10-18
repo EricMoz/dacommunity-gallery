@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-18T12:46:12.341617+00:00",
+  "generated_at": "2026-10-18T21:11:28.337722+00:00",
   "source": "mints_created_by_wallet_on_ethereum_after_cutoff",
   "cutoff_date": "2026-05-20",
   "collection": {
@@ -29,8 +29,8 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 15,
-        "circulating_copies": 15,
+        "holder_count": 17,
+        "circulating_copies": 17,
         "top_holders": [
           {
             "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
@@ -83,6 +83,10 @@
             "quantity": 1
           },
           {
+            "address": "0xbb6dbb8b9bbe1f6a5ad601d83df7698cb3cf64a1",
+            "quantity": 1
+          },
+          {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1,
             "ens_name": "dagato.eth"
@@ -114,6 +118,10 @@
           },
           {
             "address": "0x45ba95c35b4c43b27258cd69b5743d202f543284",
+            "quantity": 1
+          },
+          {
+            "address": "0x0de17a00b0a7918c63b81dc950127d8de950df37",
             "quantity": 1
           },
           {
@@ -3641,11 +3649,15 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 4,
-        "circulating_copies": 4,
+        "holder_count": 6,
+        "circulating_copies": 6,
         "top_holders": [
           {
             "address": "0xebe1ac4c1134b8f46766890ae9e4f2063f7719af",
+            "quantity": 1
+          },
+          {
+            "address": "0xbb6dbb8b9bbe1f6a5ad601d83df7698cb3cf64a1",
             "quantity": 1
           },
           {
@@ -3667,6 +3679,10 @@
             "quantity": 1
           },
           {
+            "address": "0xbb6dbb8b9bbe1f6a5ad601d83df7698cb3cf64a1",
+            "quantity": 1
+          },
+          {
             "address": "0x91bebf482b1186d05263a98c68c5ab3f5ff8287f",
             "quantity": 1
           },
@@ -3676,6 +3692,10 @@
           },
           {
             "address": "0x7fce629cff113dd9993d1d35755720c542c694e6",
+            "quantity": 1
+          },
+          {
+            "address": "0x0de17a00b0a7918c63b81dc950127d8de950df37",
             "quantity": 1
           }
         ]
