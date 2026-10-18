@@ -5,7 +5,7 @@
      Vanilla static + minimal home.js. See app.js for the heavy gallery logic. -->
 <html lang="en">
 <head>
-  <meta name="site-build" content="20261018-8" />
+  <meta name="site-build" content="20261018-9" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>daCAT · Universe</title>
@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20261018-8" />
+  <link rel="stylesheet" href="css/styles.css?v=20261018-9" />
 </head>
 <body class="home-page">
   <header class="site-header">
@@ -53,7 +53,7 @@
       </div>
     </section>
 
-    <!-- Shell + skeletons visible on first paint so Collections never flash above this rail -->
+    <!-- Static 6-card shell (same DOM forever). home.js only fills href/img/text — Collections never jumps. -->
     <section class="home-section home-highlights" id="home-highlights-rail" aria-labelledby="home-highlights-heading" aria-busy="true">
       <div class="highlights-rail panel">
         <header class="highlights-rail-head">
@@ -64,12 +64,12 @@
           <a class="highlights-rail-link" href="film/">Browse all films</a>
         </header>
         <div class="highlights-track" id="home-highlights-track" role="list">
-          <div class="highlight-card highlight-card-skeleton" role="presentation" aria-hidden="true"></div>
-          <div class="highlight-card highlight-card-skeleton" role="presentation" aria-hidden="true"></div>
-          <div class="highlight-card highlight-card-skeleton" role="presentation" aria-hidden="true"></div>
-          <div class="highlight-card highlight-card-skeleton" role="presentation" aria-hidden="true"></div>
-          <div class="highlight-card highlight-card-skeleton" role="presentation" aria-hidden="true"></div>
-          <div class="highlight-card highlight-card-skeleton" role="presentation" aria-hidden="true"></div>
+          <a class="highlight-card is-pending" href="film/" role="listitem" aria-hidden="true" tabindex="-1"><span class="highlight-card-thumb"><img alt="" width="320" height="180" decoding="async" /></span><span class="highlight-card-body"><span class="highlight-card-category">&nbsp;</span><span class="highlight-card-title">&nbsp;</span></span></a>
+          <a class="highlight-card is-pending" href="film/" role="listitem" aria-hidden="true" tabindex="-1"><span class="highlight-card-thumb"><img alt="" width="320" height="180" decoding="async" /></span><span class="highlight-card-body"><span class="highlight-card-category">&nbsp;</span><span class="highlight-card-title">&nbsp;</span></span></a>
+          <a class="highlight-card is-pending" href="film/" role="listitem" aria-hidden="true" tabindex="-1"><span class="highlight-card-thumb"><img alt="" width="320" height="180" decoding="async" /></span><span class="highlight-card-body"><span class="highlight-card-category">&nbsp;</span><span class="highlight-card-title">&nbsp;</span></span></a>
+          <a class="highlight-card is-pending" href="film/" role="listitem" aria-hidden="true" tabindex="-1"><span class="highlight-card-thumb"><img alt="" width="320" height="180" decoding="async" /></span><span class="highlight-card-body"><span class="highlight-card-category">&nbsp;</span><span class="highlight-card-title">&nbsp;</span></span></a>
+          <a class="highlight-card is-pending" href="film/" role="listitem" aria-hidden="true" tabindex="-1"><span class="highlight-card-thumb"><img alt="" width="320" height="180" decoding="async" /></span><span class="highlight-card-body"><span class="highlight-card-category">&nbsp;</span><span class="highlight-card-title">&nbsp;</span></span></a>
+          <a class="highlight-card is-pending" href="film/" role="listitem" aria-hidden="true" tabindex="-1"><span class="highlight-card-thumb"><img alt="" width="320" height="180" decoding="async" /></span><span class="highlight-card-body"><span class="highlight-card-category">&nbsp;</span><span class="highlight-card-title">&nbsp;</span></span></a>
         </div>
       </div>
     </section>
@@ -259,11 +259,11 @@
 
   <footer class="site-footer">
     <p><a href="https://www.dacat.fun/" target="_blank" rel="noopener noreferrer">dacat.fun</a> · <a href="https://www.dacatworld.com/" target="_blank" rel="noopener noreferrer">dacatworld</a> · <a href="https://store.dacat.fun/" target="_blank" rel="noopener noreferrer">store.dacat.fun</a> · <a href="https://dacat.store/" target="_blank" rel="noopener noreferrer">dacat.store</a></p>
-    <p class="site-version">Site build 20261018-8</p>
+    <p class="site-version">Site build 20261018-9</p>
   </footer>
-  <script src="js/pwa-register.js?v=20261018-8" defer></script>
-  <script src="js/scroll-nudge.js?v=20261018-8" defer></script>
-  <script src="js/home.js?v=20261018-8" defer></script>
+  <script src="js/pwa-register.js?v=20261018-9" defer></script>
+  <script src="js/scroll-nudge.js?v=20261018-9" defer></script>
+  <script src="js/home.js?v=20261018-9" defer></script>
   <script src="js/universe-nav.js" defer></script>
 </body>
 </html>

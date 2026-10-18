@@ -1,20 +1,12 @@
 /**
  * Home page — Community Highlights rail (film catalog snippets).
  * Same pool as film hub Featured (videos.json featuredIds), randomized each visit.
+ * Card shells are static in index.html; this file only fills them (no layout jump).
  */
 (function () {
-  /* highlights-shuffle build 20260818-8 */
   "use strict";
 
   var MAX_HIGHLIGHTS = 6;
-
-  function escapeHtml(s) {
-    return String(s)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;");
-  }
 
   /** Fisher–Yates — same idea as film hub Featured random order. */
   function shuffle(list) {
@@ -57,13 +49,87 @@
     return "dev-" + Math.floor(Date.now() / 1000).toString(36);
   }
 
+  function fillHighlightCard(card, video) {
+    var category = video.series || "Film";
+    var title = video.title || video.id;
+    var duration = video.duration || "";
+    card.href = "film/?v=" + encodeURIComponent(video.id);
+    card.classList.remove("is-pending");
+    card.removeAttribute("aria-hidden");
+    card.removeAttribute("tabindex");
+    card.setAttribute(
+      "aria-label",
+      category + ": " + title + ". Watch on film hub."
+    );
+    card.setAttribute("role", "listitem");
+
+    var img = card.querySelector(".highlight-card-thumb img");
+    if (img) {
+      img.src = video.thumbnail || "";
+      img.alt = "";
+      img.loading = "lazy";
+      img.width = 320;
+      img.height = 180;
+    }
+
+    var thumb = card.querySelector(".highlight-card-thumb");
+    if (thumb) {
+      var play = thumb.querySelector(".highlight-card-play");
+      if (!play) {
+        play = document.createElement("span");
+        play.className = "highlight-card-play";
+        play.setAttribute("aria-hidden", "true");
+        thumb.appendChild(play);
+      }
+      var durEl = thumb.querySelector(".highlight-card-duration");
+      if (duration) {
+        if (!durEl) {
+          durEl = document.createElement("span");
+          durEl.className = "highlight-card-duration";
+          thumb.appendChild(durEl);
+        }
+        durEl.textContent = duration;
+      } else if (durEl) {
+        durEl.remove();
+      }
+    }
+
+    var catEl = card.querySelector(".highlight-card-category");
+    if (catEl) catEl.textContent = category;
+    var titleEl = card.querySelector(".highlight-card-title");
+    if (titleEl) titleEl.textContent = title;
+  }
+
+  function resetHighlightCard(card) {
+    card.href = "film/";
+    card.classList.add("is-pending");
+    card.setAttribute("aria-hidden", "true");
+    card.setAttribute("tabindex", "-1");
+    card.removeAttribute("aria-label");
+    var img = card.querySelector(".highlight-card-thumb img");
+    if (img) {
+      img.removeAttribute("src");
+      img.alt = "";
+    }
+    var durEl = card.querySelector(".highlight-card-duration");
+    if (durEl) durEl.remove();
+    var catEl = card.querySelector(".highlight-card-category");
+    if (catEl) catEl.innerHTML = "&nbsp;";
+    var titleEl = card.querySelector(".highlight-card-title");
+    if (titleEl) titleEl.innerHTML = "&nbsp;";
+  }
+
   async function init() {
     var rail = document.getElementById("home-highlights-rail");
     var track = document.getElementById("home-highlights-track");
     if (!rail || !track) return;
 
+    var shells = Array.prototype.slice.call(
+      track.querySelectorAll(".highlight-card")
+    );
+    if (!shells.length) return;
+
     try {
-      // Match film hub: stamp + no-store so CDN/SW cannot keep a pre-Ep2 videos.json
       var url =
         new URL("data/videos.json", window.location.href).href +
         "?v=" +
@@ -96,41 +162,14 @@
         countEl.textContent = catalog.videos.length + " videos on-site";
       }
 
-      // Rail is visible from first paint (skeletons). Replace placeholders in place —
-      // do not toggle hidden here or Collections flashes above Highlights.
       rail.hidden = false;
-      track.innerHTML = "";
-      cards.forEach(function (video) {
-        var category = video.series || "Film";
-        var title = video.title || video.id;
-        var link = document.createElement("a");
-        link.className = "highlight-card";
-        link.href = "film/?v=" + encodeURIComponent(video.id);
-        link.setAttribute("role", "listitem");
-        link.setAttribute(
-          "aria-label",
-          category + ": " + title + ". Watch on film hub."
-        );
-        var duration = video.duration || "";
-        link.innerHTML =
-          '<span class="highlight-card-thumb">' +
-          '<img src="' +
-          escapeHtml(video.thumbnail) +
-          '" alt="" loading="lazy" width="320" height="180" />' +
-          '<span class="highlight-card-play" aria-hidden="true"></span>' +
-          (duration
-            ? '<span class="highlight-card-duration">' + escapeHtml(duration) + "</span>"
-            : "") +
-          "</span>" +
-          '<span class="highlight-card-body">' +
-          '<span class="highlight-card-category">' +
-          escapeHtml(category) +
-          "</span>" +
-          '<span class="highlight-card-title">' +
-          escapeHtml(title) +
-          "</span>" +
-          "</span>";
-        track.appendChild(link);
+      // Fill existing shells only — never wipe the track (keeps Collections pinned).
+      shells.forEach(function (shell, i) {
+        if (i < cards.length) fillHighlightCard(shell, cards[i]);
+        else {
+          resetHighlightCard(shell);
+          shell.hidden = true;
+        }
       });
       rail.setAttribute("aria-busy", "false");
     } catch (err) {

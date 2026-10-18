@@ -1327,13 +1327,28 @@ button.stat:focus-visible {
     box-shadow 0.2s ease;
 }
 
-/* Home first-paint placeholders — reserve card height so Collections does not jump */
-.highlight-card-skeleton {
+/* Pending shells — same thumb+body geometry as live cards; filled in place by home.js */
+.highlight-card.is-pending {
   pointer-events: none;
-  min-height: 10.5rem;
   border-color: #cfcfc8;
-  background: linear-gradient(180deg, #f2f2ee 0%, #e8e8e2 42%, #f2f2ee 42%, #f2f2ee 100%);
   box-shadow: 5px 5px 0 #d8d8d0;
+}
+
+.highlight-card.is-pending .highlight-card-thumb {
+  background: #e8e8e2;
+}
+
+.highlight-card.is-pending .highlight-card-thumb img {
+  opacity: 0;
+}
+
+.highlight-card.is-pending .highlight-card-body {
+  background: #f2f2ee;
+}
+
+.highlight-card.is-pending .highlight-card-category,
+.highlight-card.is-pending .highlight-card-title {
+  color: transparent;
 }
 
 .highlight-card:hover {

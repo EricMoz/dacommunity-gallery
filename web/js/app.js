@@ -2819,6 +2819,7 @@ async function applyNavState(st) {
   applyBrowseControlsFromState();
 
   if (st.view === "browse") {
+    var leavingCollector = !!galleryCollectorView;
     closeDetail({ fromPopstate: true });
     if (galleryCollectorView) {
       exitCollectorView({
@@ -2827,7 +2828,9 @@ async function applyNavState(st) {
         keepLookup: false,
       });
     }
-    refreshView();
+    // Closing NFT detail must not wipe the grid (yellow flash). Keep DOM when
+    // filters/collection scope are unchanged; rebuild only when leaving collector.
+    refreshView({ preserveDom: !leavingCollector });
     replaceNavState("browse");
     return;
   }
@@ -6296,7 +6299,33 @@ function renderGallerySkeletons(count) {
   }
 }
 
-function renderGallery(items) {
+/** Signature of the browse grid — used to skip wipe/rebuild on detail close. */
+function galleryRenderSignature(items) {
+  var mode = galleryCollectorView ? "c" : "b";
+  var keys = (items || [])
+    .map(function (it) {
+      return getItemKey(it);
+    })
+    .join("\0");
+  return (
+    mode +
+    "|" +
+    (activeCollection || "all") +
+    "|" +
+    (activeFilter || "all") +
+    "|" +
+    (sortKey || "token_desc") +
+    "|" +
+    (searchQuery || "") +
+    "|" +
+    keys
+  );
+}
+
+var lastGalleryRenderSig = "";
+
+function renderGallery(items, opts) {
+  opts = opts || {};
   var list = $("#gallery-list");
   var empty = $("#gallery-empty");
   if (!list) return;
@@ -6305,6 +6334,20 @@ function renderGallery(items) {
   } else {
     list.classList.remove("holdings-grid", "collector-collection-grid", "gallery-list--collector");
   }
+
+  // Detail close → browse: keep existing rows when the filtered set is unchanged.
+  // Avoids blank yellow body flash + fadeIn rebuild of every card.
+  var sig = galleryRenderSignature(items);
+  if (
+    opts.preserveDom &&
+    items.length &&
+    sig === lastGalleryRenderSig &&
+    list.childElementCount === items.length
+  ) {
+    return;
+  }
+  lastGalleryRenderSig = sig;
+
   list.innerHTML = "";
   if (!items.length) {
     if (empty) {
@@ -6935,14 +6978,15 @@ function bindGalleryScrollNudge() {
   syncGalleryScrollNudge();
 }
 
-function refreshView() {
+function refreshView(opts) {
+  opts = opts || {};
   if (!galleryData) return;
   // Use deduped count so "Pieces" / "X of Y" matches exactly what's shown in the grid
   // (dacommunity items + deduped badges = 64 + 15 when All)
   var total = getDedupedPiecesCount(galleryData.items);
   var filtered = getFilteredItems();
   renderBrowseMeta(filtered.length, total);
-  renderGallery(filtered);
+  renderGallery(filtered, opts);
   // Grid height changes when filters/collection switch — re-evaluate nudge
   syncGalleryScrollNudge();
 }
