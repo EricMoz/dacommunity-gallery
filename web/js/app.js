@@ -5860,23 +5860,11 @@ function rarityUsesUnstableTokenIds(item) {
 }
 
 /**
- * Rarity sort tie-break (same rarity tag / both untagged):
- * 1) circulating copies — fewer first when rarest-first (tier then supply)
- * 2) badges + Agency after archive/HATS when copy counts match (All collections)
- * 3) mint / title / token ordinal
+ * Rarity sort tertiary tie-break (copies + tier already compared):
+ * 1) badges + Agency after archive/HATS when supply + tier match
+ * 2) mint / title / token ordinal
  */
 function compareRarityTieBreak(a, b, highFirst) {
-  var ca = itemSortCopyCount(a);
-  var cb = itemSortCopyCount(b);
-  if (ca != null && cb != null && ca !== cb) {
-    // High rarity first → lower supply first; low→high flips
-    return highFirst ? ca - cb : cb - ca;
-  }
-  // Known supply before unknown when sorting rarest-first
-  if (ca != null && cb == null) return highFirst ? -1 : 1;
-  if (cb != null && ca == null) return highFirst ? 1 : -1;
-
-  // Same (or unknown) supply: badges + Agency last within the tier
   var sinkA = rarityCollectionSinkPriority(a);
   var sinkB = rarityCollectionSinkPriority(b);
   if (sinkA !== sinkB) return sinkA - sinkB;
@@ -5989,10 +5977,19 @@ function compareItems(a, b) {
   }
   if (key === "rarity_desc" || key === "rarity_asc") {
     var highFirst = key === "rarity_desc";
+    // 1) Circulating copies first (fewer = rarer when high→low)
+    var caR = itemSortCopyCount(a);
+    var cbR = itemSortCopyCount(b);
+    if (caR != null && cbR != null && caR !== cbR) {
+      return highFirst ? caR - cbR : cbR - caR;
+    }
+    if (caR != null && cbR == null) return highFirst ? -1 : 1;
+    if (cbR != null && caR == null) return highFirst ? 1 : -1;
+    // 2) Same supply → rarity tier label (Select above Standard, etc.)
     var raR = itemRaritySortRank(a);
     var rbR = itemRaritySortRank(b);
     if (raR !== rbR) return highFirst ? rbR - raR : raR - rbR;
-    // Same rarity tag (or both untagged): copy count, then token rank (#0 last)
+    // 3) Collection sink / mint / title
     return compareRarityTieBreak(a, b, highFirst);
   }
   return compareItemsTieBreak(a, b, true);
