@@ -197,6 +197,34 @@ class OpenSeaClient:
         encoded = quote(identifier, safe="")
         return self._get(f"/accounts/resolve/{encoded}")
 
+    def fetch_account_profile(self, address: str) -> dict[str, Any]:
+        """Best-effort OpenSea profile for a wallet (username + optional ens_name).
+
+        Tries ``/accounts/{addr}`` then ``/accounts/resolve/{addr}`` — resolve alone
+        sometimes omits username while the accounts endpoint has it.
+        """
+        addr = (address or "").strip()
+        if not addr:
+            return {}
+        out: dict[str, Any] = {}
+        encoded = quote(addr, safe="")
+        for path in (f"/accounts/{encoded}", f"/accounts/resolve/{encoded}"):
+            try:
+                data = self._get(path)
+            except Exception:
+                continue
+            if not isinstance(data, dict):
+                continue
+            if not out.get("username"):
+                u = data.get("username") or data.get("display_name")
+                if u and not (str(u).lower().startswith("0x") and len(str(u)) >= 10):
+                    out["username"] = str(u).strip()
+            if not out.get("ens_name") and data.get("ens_name"):
+                out["ens_name"] = str(data.get("ens_name")).lower().strip()
+            if out.get("username"):
+                break
+        return out
+
     @staticmethod
     def _normalize_ens_label(ens: str | None) -> str | None:
         if ens is None:

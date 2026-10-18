@@ -143,7 +143,7 @@ Hub cards remain manual (home + `collections/index.html`) until the hub is fully
 | Job | Workflow name | What |
 |-----|---------------|------|
 | Daily | Refresh gallery data | Reverse ENS (+ username probe) → `wallet_index.json` for **daCommunity** holders |
-| Weekly | **Enrich wallet names (weekly)** | Base names → `name_index.json`; OpenSea usernames patch `wallet_index` |
+| Weekly | **Enrich wallet names (weekly)** | Base names → `name_index.json`; OpenSea usernames patch `wallet_index` (same key store as daily; prefers bare 0x wallets) |
 
 Reverse ENS uses **ensideas → web3.bio → ensdata → OpenSea** (primary reverse only). Soft cache ~3 days still probes ensideas so a new primary name applies for every wallet without waiting out the full window; prior names stay in `ens_history` / `ens_aliases`.
 

@@ -408,18 +408,22 @@ def build_holders_index(
                 or (time.time() - last_res_ts) >= (ENS_CACHE_DAYS * 86400)
                 or (ens_name and prev_ens and ens_name != str(prev_ens).lower())
             )
-            need_profile = do_fresh_resolve or not profile_checked
+            # Probe OpenSea username when cache expired, never checked, or still bare 0x
+            need_profile = (
+                do_fresh_resolve
+                or not profile_checked
+                or (not ens_name and not prev_username and not (p.get("base_name") or ""))
+            )
             if need_profile:
                 try:
-                    resolved = client.resolve_account(holder["address"])
+                    resolved = client.fetch_account_profile(holder["address"])
                     if not ens_name:
                         ens_name = resolved.get("ens_name")
                         if ens_name:
                             ens_name = str(ens_name).lower()
-                    u = resolved.get("username") or resolved.get("display_name")
+                    u = resolved.get("username")
                     if u:
                         username = str(u).strip()
-                        # Prefer real profile handles over raw 0x dumps
                         if username.lower().startswith("0x") and len(username) >= 10:
                             username = None
                 except requests.HTTPError:
@@ -429,7 +433,7 @@ def build_holders_index(
                 profile_checked = True
                 if not username and prev_username:
                     username = prev_username
-                if do_fresh_resolve:
+                if do_fresh_resolve or (username and username != prev_username):
                     resolved_at = time.time()
                 else:
                     resolved_at = last_res_ts or time.time()

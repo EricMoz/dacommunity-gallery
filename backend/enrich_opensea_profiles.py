@@ -117,6 +117,11 @@ def main() -> int:
         action="store_true",
         help="Only wallets with no ENS and no Base name (where OS name would display)",
     )
+    parser.add_argument(
+        "--prefer-bare",
+        action="store_true",
+        help="Check wallets with no ENS/Base/username first (short-0x display candidates)",
+    )
     parser.add_argument("--delay", type=float, default=REQUEST_DELAY_SEC)
     args = parser.parse_args()
 
@@ -132,7 +137,7 @@ def main() -> int:
         print("No holders in wallet_index.")
         return 0
 
-    # Optional base names for --only-missing-names
+    # Optional base names for --only-missing-names / prefer-bare
     name_index = {}
     if NAME_INDEX_PATH.is_file():
         try:
@@ -145,9 +150,35 @@ def main() -> int:
         except Exception:
             name_index = {}
 
+    def resolved_base(addr: str, entry: dict) -> str:
+        base = str(entry.get("base_name") or "").strip()
+        if base:
+            return base
+        return str((name_index.get(addr) or {}).get("base_name") or "").strip()
+
+    def is_bare_display(addr: str, entry: dict) -> bool:
+        """True when UI would fall through to short 0x."""
+        if (entry.get("ens_name") or "").strip():
+            return False
+        if resolved_base(addr, entry):
+            return False
+        if clean_username(entry.get("username")):
+            return False
+        return True
+
     now = time.time()
     cache_sec = CACHE_DAYS * 86400
-    addrs = sorted(ba.keys(), key=lambda a: str(a).lower())
+    addrs = list(ba.keys())
+    if args.prefer_bare:
+        # Bare (0x-only) first, then everyone else — still alphabetical within band
+        addrs.sort(
+            key=lambda a: (
+                0 if is_bare_display(str(a).lower(), ba[a] or {}) else 1,
+                str(a).lower(),
+            )
+        )
+    else:
+        addrs.sort(key=lambda a: str(a).lower())
     if args.max > 0:
         addrs = addrs[: args.max]
 
@@ -160,9 +191,7 @@ def main() -> int:
         entry = ba[addr_key]
         addr = (entry.get("address") or addr_key).lower()
         ens = (entry.get("ens_name") or "").strip()
-        base = (entry.get("base_name") or "").strip()
-        if not base:
-            base = str((name_index.get(addr) or {}).get("base_name") or "").strip()
+        base = resolved_base(addr, entry)
 
         if args.only_missing_names and (ens or base):
             skipped += 1
@@ -170,8 +199,12 @@ def main() -> int:
 
         last = entry.get("last_profile_resolved") or entry.get("last_ens_resolved")
         already = bool(entry.get("profile_checked"))
+        bare = is_bare_display(addr, entry)
+        # Always re-probe wallets that still display as short 0x (missing username),
+        # even if an older run marked profile_checked without getting a handle.
         if (
             not args.force
+            and not bare
             and already
             and last is not None
             and (now - float(last)) < cache_sec
