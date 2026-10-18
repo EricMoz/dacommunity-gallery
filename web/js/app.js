@@ -5860,11 +5860,20 @@ function rarityUsesUnstableTokenIds(item) {
 }
 
 /**
- * Rarity sort tertiary tie-break (copies + tier already compared):
- * 1) badges + Agency after archive/HATS when supply + tier match
- * 2) mint / title / token ordinal
+ * Rarity sort tie-break after tier match:
+ * 1) circulating copies — fewer first when rarest-first (ASC within tier)
+ * 2) badges + Agency after archive/HATS when supply matches
+ * 3) mint / title / token ordinal
  */
 function compareRarityTieBreak(a, b, highFirst) {
+  var ca = itemSortCopyCount(a);
+  var cb = itemSortCopyCount(b);
+  if (ca != null && cb != null && ca !== cb) {
+    return highFirst ? ca - cb : cb - ca;
+  }
+  if (ca != null && cb == null) return highFirst ? -1 : 1;
+  if (cb != null && ca == null) return highFirst ? 1 : -1;
+
   var sinkA = rarityCollectionSinkPriority(a);
   var sinkB = rarityCollectionSinkPriority(b);
   if (sinkA !== sinkB) return sinkA - sinkB;
@@ -5977,19 +5986,11 @@ function compareItems(a, b) {
   }
   if (key === "rarity_desc" || key === "rarity_asc") {
     var highFirst = key === "rarity_desc";
-    // 1) Circulating copies first (fewer = rarer when high→low)
-    var caR = itemSortCopyCount(a);
-    var cbR = itemSortCopyCount(b);
-    if (caR != null && cbR != null && caR !== cbR) {
-      return highFirst ? caR - cbR : cbR - caR;
-    }
-    if (caR != null && cbR == null) return highFirst ? -1 : 1;
-    if (cbR != null && caR == null) return highFirst ? 1 : -1;
-    // 2) Same supply → rarity tier label (Select above Standard, etc.)
+    // 1) Rarity tier first (1:1 → … → Uncommon → untagged)
     var raR = itemRaritySortRank(a);
     var rbR = itemRaritySortRank(b);
     if (raR !== rbR) return highFirst ? rbR - raR : raR - rbR;
-    // 3) Collection sink / mint / title
+    // 2) Same tier → copies ASC when rarest-first (fewer first), then sink/mint
     return compareRarityTieBreak(a, b, highFirst);
   }
   return compareItemsTieBreak(a, b, true);
