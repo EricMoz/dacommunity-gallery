@@ -1327,6 +1327,15 @@ button.stat:focus-visible {
     box-shadow 0.2s ease;
 }
 
+/* Home first-paint placeholders — reserve card height so Collections does not jump */
+.highlight-card-skeleton {
+  pointer-events: none;
+  min-height: 10.5rem;
+  border-color: #cfcfc8;
+  background: linear-gradient(180deg, #f2f2ee 0%, #e8e8e2 42%, #f2f2ee 42%, #f2f2ee 100%);
+  box-shadow: 5px 5px 0 #d8d8d0;
+}
+
 .highlight-card:hover {
   transform: translate(-3px, -3px);
   box-shadow: 8px 8px 0 var(--black);

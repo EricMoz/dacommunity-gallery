@@ -87,6 +87,7 @@
 
       if (!cards.length) {
         rail.hidden = true;
+        rail.setAttribute("aria-busy", "false");
         return;
       }
 
@@ -95,6 +96,8 @@
         countEl.textContent = catalog.videos.length + " videos on-site";
       }
 
+      // Rail is visible from first paint (skeletons). Replace placeholders in place —
+      // do not toggle hidden here or Collections flashes above Highlights.
       rail.hidden = false;
       track.innerHTML = "";
       cards.forEach(function (video) {
@@ -129,9 +132,11 @@
           "</span>";
         track.appendChild(link);
       });
+      rail.setAttribute("aria-busy", "false");
     } catch (err) {
       console.warn("Home highlights:", err);
       rail.hidden = true;
+      rail.setAttribute("aria-busy", "false");
     }
   }
 
