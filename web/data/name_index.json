@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-10-18T20:34:09.901979+00:00",
+  "generated_at": "2026-10-18T21:17:53.100356+00:00",
   "source": "web3.bio_profile",
   "cache_days": 21,
-  "address_count": 102,
+  "address_count": 104,
   "base_name_count": 16,
   "by_address": {
     "0x011dddd5b5470d2818bffb400b4e38949fe21ac3": {
@@ -514,6 +514,16 @@
       "address": "0xebe1ac4c1134b8f46766890ae9e4f2063f7719af",
       "base_name": null,
       "last_base_resolved": 1792331296.4487827
+    },
+    "0x0de17a00b0a7918c63b81dc950127d8de950df37": {
+      "address": "0x0de17a00b0a7918c63b81dc950127d8de950df37",
+      "base_name": null,
+      "last_base_resolved": 1792358271.0610535
+    },
+    "0xbb6dbb8b9bbe1f6a5ad601d83df7698cb3cf64a1": {
+      "address": "0xbb6dbb8b9bbe1f6a5ad601d83df7698cb3cf64a1",
+      "base_name": null,
+      "last_base_resolved": 1792358271.0610535
     }
   },
   "name_aliases": {
