@@ -5860,18 +5860,12 @@ function rarityUsesUnstableTokenIds(item) {
 }
 
 /**
- * Rarity sort tie-break (same rarity tag):
- * 1) badges + Agency always last in the tier (All collections) — before copy count,
- *    otherwise a 3-copy badge Ultra Rare jumps ahead of a 4-copy archive piece
- * 2) fewer copies first when high→low
- * 3) mint/title (token id only for archive / HATS)
+ * Rarity sort tie-break (same rarity tag / both untagged):
+ * 1) circulating copies — fewer first when rarest-first (tier then supply)
+ * 2) badges + Agency after archive/HATS when copy counts match (All collections)
+ * 3) mint / title / token ordinal
  */
 function compareRarityTieBreak(a, b, highFirst) {
-  // Within the same rarity tier: badges + Agency always last (All collections view)
-  var sinkA = rarityCollectionSinkPriority(a);
-  var sinkB = rarityCollectionSinkPriority(b);
-  if (sinkA !== sinkB) return sinkA - sinkB;
-
   var ca = itemSortCopyCount(a);
   var cb = itemSortCopyCount(b);
   if (ca != null && cb != null && ca !== cb) {
@@ -5881,6 +5875,11 @@ function compareRarityTieBreak(a, b, highFirst) {
   // Known supply before unknown when sorting rarest-first
   if (ca != null && cb == null) return highFirst ? -1 : 1;
   if (cb != null && ca == null) return highFirst ? 1 : -1;
+
+  // Same (or unknown) supply: badges + Agency last within the tier
+  var sinkA = rarityCollectionSinkPriority(a);
+  var sinkB = rarityCollectionSinkPriority(b);
+  if (sinkA !== sinkB) return sinkA - sinkB;
 
   var cidA = normalizeCollectionId(a.collection_id || "dacommunity");
   var cidB = normalizeCollectionId(b.collection_id || "dacommunity");
