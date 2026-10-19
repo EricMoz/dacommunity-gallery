@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-18T21:51:50.659962+00:00",
+  "generated_at": "2026-10-19T15:38:48.585922+00:00",
   "source": "badges_catalog",
   "collection": {
     "slug": "badges",
@@ -27,9 +27,13 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 17,
-        "circulating_copies": 17,
+        "holder_count": 19,
+        "circulating_copies": 19,
         "top_holders": [
+          {
+            "address": "0xf36e2a766350ee489068cec87b62520a752b9243",
+            "quantity": 1
+          },
           {
             "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
             "quantity": 1
@@ -46,14 +50,13 @@
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1,
             "ens_name": "saphoroth.eth"
-          },
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1,
-            "ens_name": "mozvane.eth"
           }
         ],
         "holders": [
+          {
+            "address": "0xf36e2a766350ee489068cec87b62520a752b9243",
+            "quantity": 1
+          },
           {
             "address": "0xee2301b51d369b30031fa06b0367b0e8a8ba759f",
             "quantity": 1
@@ -82,6 +85,10 @@
           },
           {
             "address": "0xbb6dbb8b9bbe1f6a5ad601d83df7698cb3cf64a1",
+            "quantity": 1
+          },
+          {
+            "address": "0xb54a3aee16719320d3939f4ddb630d7438143ef3",
             "quantity": 1
           },
           {
@@ -3487,9 +3494,13 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 2,
-        "circulating_copies": 2,
+        "holder_count": 3,
+        "circulating_copies": 3,
         "top_holders": [
+          {
+            "address": "0xf36e2a766350ee489068cec87b62520a752b9243",
+            "quantity": 1
+          },
           {
             "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
             "quantity": 1
@@ -3500,6 +3511,10 @@
           }
         ],
         "holders": [
+          {
+            "address": "0xf36e2a766350ee489068cec87b62520a752b9243",
+            "quantity": 1
+          },
           {
             "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
             "quantity": 1
@@ -3536,15 +3551,23 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 1,
-        "circulating_copies": 1,
+        "holder_count": 2,
+        "circulating_copies": 2,
         "top_holders": [
+          {
+            "address": "0xf36e2a766350ee489068cec87b62520a752b9243",
+            "quantity": 1
+          },
           {
             "address": "0x45ba95c35b4c43b27258cd69b5743d202f543284",
             "quantity": 1
           }
         ],
         "holders": [
+          {
+            "address": "0xf36e2a766350ee489068cec87b62520a752b9243",
+            "quantity": 1
+          },
           {
             "address": "0x45ba95c35b4c43b27258cd69b5743d202f543284",
             "quantity": 1
