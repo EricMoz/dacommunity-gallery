@@ -60,16 +60,15 @@ TITLE_RE = re.compile(
 
 SERIES_DESCRIPTION = (
     "DACAT WORLD Founders Edition — 3D Printed Collectible Figures.\n\n"
-    "The first physical + NFT pair under daCAT World Physical Companions. "
+    "Step into DACAT WORLD with the Founders Edition physical + NFT pair. "
     "Created by Russell Corey, each NFT is the digital companion to a numbered "
     "physical figure (1 of 20 through 20 of 20). Artwork shows the carded figure "
-    "and packaging with Founders Edition branding.\n\n"
-    "More physical companion series can join this umbrella later."
+    "and packaging with Founders Edition branding."
 )
 
 SERIES_EXCERPT = (
     "Physical companion · Founders Edition 1–20 · "
-    "3D printed figure + NFT pair. First series under Physical Companions."
+    "3D printed collectible figure with matching NFT."
 )
 
 

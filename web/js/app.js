@@ -423,7 +423,7 @@ function adaptHeaderForCollection() {
     } else if (isPhysical) {
       h1.innerHTML = 'Physical <span class="accent">Companions</span>';
       lead.textContent =
-        "daCAT World physical + NFT pairs. Founders Edition is the first series — 3D printed collectible figures with matching numbered NFTs (1–20). Browse shows one card per series; your wallet shows every numbered edition you hold. More physical companions can join later.";
+        "daCAT World physical + NFT pairs. Founders Edition brings 3D printed collectible figures with matching numbered NFTs (1–20). Browse shows the series; your wallet shows every numbered edition you hold.";
     } else if (isDacommunity) {
       // Scoped Base archive (hub cards + dropdown: daCommunity NFTs)
       h1.innerHTML = 'daCommunity <span class="accent">NFTs</span>';
