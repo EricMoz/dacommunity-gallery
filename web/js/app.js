@@ -360,11 +360,11 @@ function adaptHeaderForCollection() {
     } else if (isAgency) {
       h1.innerHTML = 'daGATO <span class="accent">Detective Agency</span>';
       lead.textContent =
-        "Enter the shadows of Cyber City. Volumes 1 and 2 case files span distinctive detective identities, cyber-noir environments, and rarity tiers from Standard operatives to legendary 1:1 creations. Browse shows five rarity tiers per volume; your wallet shows every case file you hold. The city hides the truth. daGATO finds it. Stealth. Style. Supremacy.";
+        "Enter the shadows of Cyber City. Volumes 1–3 case files span distinctive detective identities, cyber-noir environments, and rarity tiers from Standard operatives to legendary 1:1 creations. Browse shows five rarity tiers per volume; your wallet shows every case file you hold. The city hides the truth. daGATO finds it. Stealth. Style. Supremacy.";
     } else if (isHats) {
       h1.innerHTML = "HATS n' <span class=\"accent\">daCATs</span>";
       lead.textContent =
-        "333 unique daCATs, each defined by a legendary hat. True 1:1s with no rarity tiers. Every hat stands on its own. Released in waves; Batch 01 is live. Every hat has a story. Legends Wear Hats.";
+        "HATS n' daCATs · Live Collection. 333 unique daCATs, each defined by a legendary hat. True 1:1s with no rarity tiers. Every hat stands on its own. Every hat has a story. Legends Wear Hats.";
     } else if (isDacommunity) {
       // Scoped Base archive (hub cards + dropdown: daCommunity NFTs)
       h1.innerHTML = 'daCommunity <span class="accent">NFTs</span>';
@@ -5235,11 +5235,11 @@ function renderHeroNote(collection) {
       '<strong class="steward-name">dacatworld.eth</strong>.';
   } else if (collId === "dagato-agency") {
     html =
-      "Detective Agency case files on Ethereum (Volumes 1–2). Stewarded by " +
+      "Detective Agency case files on Ethereum (Volumes 1–3). Stewarded by " +
       '<strong class="steward-name">dagato.eth</strong>. All holders counted — five rarity tiers per volume in browse; real case-file #s in wallets.';
   } else if (collId === "hats-n-dacats") {
     html =
-      "Legendary hats on Ethereum — true 1:1s, no rarity tiers (max 333). Released in waves. Stewarded by " +
+      "HATS n' daCATs · Live Collection on Ethereum — true 1:1s, no rarity tiers (max 333). Stewarded by " +
       '<strong class="steward-name">hatsndacats.eth</strong>. Project mint wallet hidden from collectors until a piece is bought or transferred out.';
   } else {
     note.hidden = true;

@@ -89,7 +89,7 @@ python fetch_hats_n_dacats.py          # writes web/data/hats_n_dacats_data.json
 
 | Surface | Detail |
 |---------|--------|
-| Hub / home tile | Eyebrow **1:1 · Batch 01**; violet premium dark card |
+| Hub / home tile | Eyebrow **HATS n' daCATs · Live Collection**; violet premium dark card (no batch # in site copy — NFT traits keep Production/Batch tags) |
 | Route | `/dacommunity/?collection=hats-n-dacats` |
 | Steward | `hatsndacats.eth` · project mint wallet **excluded** from holder stats (NFTs still browseable) |
 | OpenSea | Single slug `hats-n-dacats` · contract `0xb28bf43b…` |
@@ -122,7 +122,7 @@ python fetch_dagato_agency.py --volume 2   # single volume only (still full rewr
 
 | Surface | Detail |
 |---------|--------|
-| Hub / home tile | Eyebrow **`Agency · Vol 1–2`**; cool ice-blue premium dark card |
+| Hub / home tile | Eyebrow **`Agency · Vol 1–3`**; cool ice-blue premium dark card (Vol 3 label live; NFT ingest waits on reveal) |
 | Route | `/dacommunity/?collection=dagato-agency` (one site collection for all volumes) |
 | Steward | `dagato.eth` · no creator-wallet exclusion |
 | OpenSea | Separate collection per volume (`…-volume-1`, `…-volume-2`); listed in registry `volumes[]` |

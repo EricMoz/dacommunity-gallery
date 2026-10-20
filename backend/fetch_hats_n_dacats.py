@@ -740,7 +740,9 @@ def main() -> int:
             ),
             "description": OFFICIAL_SUMMARY,
             "max_supply": MAX_SUPPLY,
-            "batch_label": "Batch 01" if len(items) <= 33 else None,
+            # Site marketing copy stays batch-agnostic ("Live Collection").
+            # Per-NFT Production/Batch traits still come from OpenSea attributes.
+            "batch_label": None,
             "creator_ens": CREATOR_ENS,
             "creator_wallet": creator_wallet
             or {"address": CREATOR_ADDRESS, "ens_name": CREATOR_ENS},
