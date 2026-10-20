@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-19T15:38:52.936138+00:00",
+  "generated_at": "2026-10-20T13:39:50.230879+00:00",
   "holders_index": {
     "ens_aliases": {
       "lostthegame.eth": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
@@ -3529,26 +3529,28 @@
       "0xb54a3aee16719320d3939f4ddb630d7438143ef3": {
         "address": "0xb54a3aee16719320d3939f4ddb630d7438143ef3",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "holdings": [],
-        "ens_history": [],
+        "last_ens_resolved": 1792424330.8232944,
+        "last_profile_resolved": null,
         "profile_checked": false,
-        "last_ens_resolved": 1792424330.8232944
+        "holdings": []
       },
       "0xf36e2a766350ee489068cec87b62520a752b9243": {
         "address": "0xf36e2a766350ee489068cec87b62520a752b9243",
         "ens_name": null,
+        "ens_history": [],
         "username": null,
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "holdings": [],
-        "ens_history": [],
+        "last_ens_resolved": 1792424332.7920897,
+        "last_profile_resolved": null,
         "profile_checked": false,
-        "last_ens_resolved": 1792424332.7920897
+        "holdings": []
       }
     },
     "collectors": [
