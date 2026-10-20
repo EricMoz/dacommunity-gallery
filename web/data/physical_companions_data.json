@@ -15,11 +15,11 @@
       "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
       "ens_name": "dacatworld.eth"
     },
-    "creator_excluded_from_stats": true,
+    "creator_excluded_from_stats": false,
     "contract_name": "DACAT WORLD Founders Edition",
     "floor_eth": null,
     "floor_symbol": "ETH",
-    "num_owners": 8,
+    "num_owners": 9,
     "total_sales": null,
     "total_volume": null,
     "piece_count": 10,

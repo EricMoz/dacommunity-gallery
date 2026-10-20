@@ -112,7 +112,7 @@ python fetch_physical_companions.py --from-scrape path.json   # bootstrap withou
 |---------|--------|
 | Hub / home tile | Eyebrow **Physical + NFT**; warm gold premium dark card (former BIG KIX treatment) |
 | Route | `/dacommunity/?collection=physical-companions` |
-| Steward | `dacatworld.eth` · excluded from collector rankings (still shown on edition overview) |
+| Steward | `dacatworld.eth` · counts as a collector (holds numbered editions; ranks with everyone else) |
 | OpenSea | Primary series slug `dacatworldfoundersedition` · contract `0xd3650014…` · max **20** |
 | Browse | One **series_rep** card with generic local art; title **DACAT WORLD Founders Edition** |
 | Wallet / detail | Numbered editions with real OpenSea images; rarity pill **Physical** (sort rank 95) |

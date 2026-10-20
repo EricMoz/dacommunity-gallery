@@ -1807,14 +1807,11 @@ function excludedCollectorAddresses(items) {
     var cw = col.creator_wallet || {};
     if (cw.address) out[String(cw.address).toLowerCase()] = true;
   }
-  // BIG KIX / Physical Companions steward (dacatworld.eth)
+  // BIG KIX steward (dacatworld.eth) — still excluded there.
+  // Physical Companions: steward counts as a collector (holds numbered editions).
   if (
-    (col &&
-      (col.id === "bigkix" ||
-        col.slug === "bigkix" ||
-        col.id === "physical-companions")) ||
-    activeCollection === "bigkix" ||
-    activeCollection === "physical-companions"
+    (col && (col.id === "bigkix" || col.slug === "bigkix")) ||
+    activeCollection === "bigkix"
   ) {
     out["0xa6d5c9602a49afddff9873cf51db2991dec2c9ee"] = true;
   }

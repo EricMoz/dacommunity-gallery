@@ -45,7 +45,7 @@ SERIES_ID = "founders-edition"
 SERIES_LABEL = "Founders Edition"
 MAX_TOKEN_ID = 20
 
-# Same steward as BIG KIX / badges — excluded from community holder rankings
+# Steward wallet (also BIG KIX). Counts as a collector for Physical Companions.
 CREATOR_ADDRESS = "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee"
 CREATOR_ENS = "dacatworld.eth"
 
@@ -340,16 +340,13 @@ def build_item(
     *,
     minted_at: str | None = None,
     recent_activity: list[dict] | None = None,
-    exclude_creator: set[str],
 ) -> dict:
     token_id = str(nft.get("identifier", ""))
     description = clean_description(nft.get("description"))
     listing_info = parse_listing_price(listing) if listing else None
-    # Keep steward in per-token owners so the series overview can show #8/#9
+    # Include steward in owners — they rank as a real Physical Companions collector
     owner_stats_full = summarize_owners(owners, exclude_addresses=None)
     owner_stats = enrich_owner_stats(owner_stats_full, recent_activity)
-    # Community ranking copy (creator excluded) stored separately when useful
-    community_stats = summarize_owners(owners, exclude_addresses=exclude_creator)
 
     raw_name = nft.get("name") or f"DACAT WORLD #{token_id} of 20 FOUNDERS EDITION"
     display, slug, opensea_name = parse_founders_title(raw_name, token_id)
@@ -386,8 +383,6 @@ def build_item(
         "physical_series_rep": False,
         "max_supply": MAX_TOKEN_ID,
     }
-    if community_stats is not None:
-        item["community_owners"] = community_stats
     if minted_at:
         item["minted_at"] = minted_at
     if recent_activity:
@@ -609,7 +604,6 @@ def build_from_scrape(scrape_path: Path) -> dict:
     raw = json.loads(scrape_path.read_text(encoding="utf-8"))
     scraped_at = raw.get("scraped_at")
     contract = (raw.get("contract") or "").lower()
-    exclude = {CREATOR_ADDRESS.lower()}
     items: list[dict] = []
 
     for row in raw.get("items") or []:
@@ -653,7 +647,6 @@ def build_from_scrape(scrape_path: Path) -> dict:
             owners_list,
             minted_at=minted_at,
             recent_activity=None,
-            exclude_creator=exclude,
         )
         items.append(item)
 
@@ -674,11 +667,10 @@ def assemble_payload(
 ) -> dict:
     listed_count = sum(1 for it in edition_items if it.get("listed"))
     community_holders: set[str] = set()
-    exclude = {CREATOR_ADDRESS.lower()}
     for it in edition_items:
         for h in (it.get("owners") or {}).get("holders") or []:
             a = (h.get("address") or "").lower()
-            if a and a not in exclude:
+            if a:
                 community_holders.add(a)
 
     total = stats_total or {}
@@ -703,7 +695,7 @@ def assemble_payload(
             "creator_ens": CREATOR_ENS,
             "creator_wallet": creator_wallet
             or {"address": CREATOR_ADDRESS, "ens_name": CREATOR_ENS},
-            "creator_excluded_from_stats": True,
+            "creator_excluded_from_stats": False,
             "contract_name": contract_name or "DACAT WORLD Founders Edition",
             "floor_eth": total.get("floor_price"),
             "floor_symbol": total.get("floor_price_symbol", "ETH"),
@@ -806,10 +798,6 @@ def main() -> int:
     except requests.HTTPError:
         creator_wallet = {"address": CREATOR_ADDRESS, "ens_name": CREATOR_ENS}
 
-    exclude = {CREATOR_ADDRESS.lower()}
-    if creator_wallet and creator_wallet.get("address"):
-        exclude.add(str(creator_wallet["address"]).lower())
-
     print("Fetching NFT metadata...")
     nfts = client.iter_collection_nfts()
     # Cap at tokens 1..MAX_TOKEN_ID so future mints auto-include up to 20
@@ -867,7 +855,6 @@ def main() -> int:
             owners,
             minted_at=mint_dates.get(token_id),
             recent_activity=activity_by_token.get(token_id),
-            exclude_creator=exclude,
         )
         items.append(item)
         print(" ✓")
