@@ -90,6 +90,9 @@ let originalHeroLead = null;
 /** Open detail key (getItemKey), not bare token id. */
 let activeDetailTokenId = null;
 let activeCollection = "all";
+/** When set, edition detail was opened from a Physical series overview — show ← All editions;
+ *  close/backdrop exits to browse (overview was replaced, not stacked). */
+let physicalDetailReturnSeriesKey = null;
 
 /** Stable id for share links + indexes. Agency keys require volume (or contract). */
 function getItemKey(item) {
@@ -4104,6 +4107,7 @@ function rankBadgeClass(colId) {
   if (colId === "bigkix") return "rank-badge-bigkix";
   if (colId === "dagato-agency") return "rank-badge-dagato-agency";
   if (colId === "hats-n-dacats") return "rank-badge-hats-n-dacats";
+  if (colId === "physical-companions") return "rank-badge-physical-companions";
   if (colId === "badges") return "rank-badge-badges";
   if (colId === "dacommunity") return "rank-badge-dacommunity";
   return "rank-badge-archive";
@@ -6868,7 +6872,10 @@ function renderPhysicalSeriesEditions(item) {
     btn.addEventListener("click", function (e) {
       e.stopPropagation();
       var edItem = findPhysicalEditionByTokenId(btn.dataset.editionToken);
-      if (edItem) openDetail(edItem);
+      if (!edItem) return;
+      // Replace overview in history so X/backdrop exits to browse; ← All editions returns here
+      physicalDetailReturnSeriesKey = getItemKey(item);
+      openDetail(edItem, { replaceDetail: true });
     });
   });
 }
@@ -6959,12 +6966,51 @@ function refreshDetailPanel(item) {
   renderDetailOwners(item);
 }
 
+function syncPhysicalSeriesBackButton(item) {
+  var backBtn = $("#detail-back-series");
+  if (!backBtn) return;
+  var show =
+    !!(
+      physicalDetailReturnSeriesKey &&
+      item &&
+      isPhysicalEditionToken(item)
+    );
+  backBtn.hidden = !show;
+  if (isPhysicalSeriesRep(item)) {
+    physicalDetailReturnSeriesKey = null;
+    backBtn.hidden = true;
+  }
+}
+
+function openPhysicalSeriesOverviewFromEdition() {
+  var key = physicalDetailReturnSeriesKey;
+  if (!key) return;
+  var series =
+    itemsById.get(key) ||
+    ((galleryData && galleryData.items) || []).find(function (it) {
+      return getItemKey(it) === key;
+    });
+  if (!series) return;
+  physicalDetailReturnSeriesKey = null;
+  openDetail(series, { replaceDetail: true });
+}
+
 function openDetail(item, opts) {
   opts = opts || {};
   if (!item) return;
   closeCollectorsModal();
   activeDetailTokenId = getItemKey(item);
-  if (!opts.noPush) {
+  // Leaving physical edition context (e.g. another card) clears the return target
+  if (
+    physicalDetailReturnSeriesKey &&
+    !isPhysicalEditionToken(item) &&
+    !opts.replaceDetail
+  ) {
+    physicalDetailReturnSeriesKey = null;
+  }
+  if (opts.replaceDetail || opts.noPush) {
+    replaceNavState("detail", { piece: activeDetailTokenId });
+  } else {
     var curD = history.state;
     // Same piece already on stack → replace; otherwise push so Back returns here
     if (
@@ -6977,13 +7023,12 @@ function openDetail(item, opts) {
     } else {
       pushNavState("detail", { piece: activeDetailTokenId });
     }
-  } else {
-    replaceNavState("detail", { piece: activeDetailTokenId });
   }
   var panel = $("#detail-panel");
   if (!panel) return;
   fillMediaSlot($("#detail-media-slot"), item, { autoplay: true, controls: true });
   $("#detail-title").innerHTML = formatPieceTitleHtml(itemTitle(item));
+  syncPhysicalSeriesBackButton(item);
   if (isPhysicalSeriesRep(item)) {
     var seriesLabel = item.physical_series_label || "Founders Edition";
     var mintedN = item.edition_count || (item.editions && item.editions.length) || 0;
@@ -7139,6 +7184,10 @@ function closeDetail(opts) {
   var panel = $("#detail-panel");
   if (!panel) return;
   var wasOpen = panel.classList.contains("open") || !!activeDetailTokenId;
+  // X / backdrop from an edition opened via overview → exit to browse (not back to overview)
+  physicalDetailReturnSeriesKey = null;
+  var backBtn = $("#detail-back-series");
+  if (backBtn) backBtn.hidden = true;
   panel.classList.remove("open");
   panel.setAttribute("aria-hidden", "true");
   activeDetailTokenId = null;
@@ -7578,6 +7627,14 @@ function bindUi() {
   });
   $("#detail-close").addEventListener("click", closeDetail);
   $("#detail-backdrop").addEventListener("click", closeDetail);
+  var detailBackSeries = $("#detail-back-series");
+  if (detailBackSeries) {
+    detailBackSeries.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      openPhysicalSeriesOverviewFromEdition();
+    });
+  }
   // Every NFT detail: Share beside OpenSea
   var detailShareBtn = $("#detail-share");
   if (detailShareBtn && !detailShareBtn.dataset.bound) {

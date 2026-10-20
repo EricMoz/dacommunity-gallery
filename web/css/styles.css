@@ -2371,6 +2371,31 @@ button.stat:focus-visible {
   }
 }
 
+.detail-back-series {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 0.55rem;
+  padding: 0.28rem 0.55rem;
+  border: 1px solid rgba(15, 118, 110, 0.35);
+  border-radius: 6px;
+  background: rgba(15, 118, 110, 0.08);
+  color: #0f766e;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  font-family: inherit;
+}
+.detail-back-series:hover,
+.detail-back-series:focus-visible {
+  background: rgba(15, 118, 110, 0.16);
+  border-color: rgba(15, 118, 110, 0.55);
+  outline: none;
+}
+.detail-back-series[hidden] {
+  display: none !important;
+}
+
 .detail-token {
   font-size: 0.75rem;
   color: var(--text-muted);
@@ -7972,6 +7997,14 @@ body.has-collector-view .collector-theater-vignette {
   box-shadow: 2px 2px 0 rgba(20, 83, 45, 0.85);
 }
 
+/* Physical Companions — rich teal (distinct from daCommunity yellow) */
+.rank-badge-physical-companions {
+  color: #042f2e;
+  background: linear-gradient(135deg, #5eead4 0%, #14b8a6 45%, #0d9488 100%);
+  border-color: #0f766e;
+  box-shadow: 2px 2px 0 rgba(19, 78, 74, 0.85);
+}
+
 /*
  * Rarity tags
  * Rare and above → gradient + soft glow (premium).
@@ -8066,12 +8099,20 @@ body.has-collector-view .collector-theater-vignette {
   box-shadow: 0 0 12px rgba(244, 63, 94, 0.4);
 }
 
-/* Physical Companions — rich teal (between 1:1 rose and Legendary gold) */
+/* Physical Companions — rich teal (distinct from daCommunity yellow / Legendary gold) */
 .rarity-badge-physical {
-  color: #ecfeff;
-  background: linear-gradient(135deg, #0f766e 0%, #14b8a6 45%, #2dd4bf 100%);
+  color: #042f2e;
+  background: linear-gradient(135deg, #5eead4 0%, #14b8a6 45%, #0d9488 100%);
   border-color: #0f766e;
-  box-shadow: 0 0 10px rgba(45, 212, 191, 0.38);
+  box-shadow: 0 0 10px rgba(20, 184, 166, 0.4);
+}
+
+/* Keep Physical teal readable on dark collector cinema cards */
+body.has-collector-view .holding-card--cinema .rarity-badge-physical {
+  color: #042f2e;
+  background: linear-gradient(135deg, #5eead4 0%, #14b8a6 45%, #0d9488 100%);
+  border-color: #0f766e;
+  box-shadow: 0 0 8px rgba(20, 184, 166, 0.35);
 }
 
 /* Physical series overview — numbered edition rows in detail panel */
