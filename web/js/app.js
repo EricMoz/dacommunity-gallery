@@ -4187,6 +4187,8 @@ function renderTopCollectors() {
       labelEl.textContent = "Heavy collectors in Detective Agency";
     } else if (activeCollection === "hats-n-dacats") {
       labelEl.textContent = "Heavy collectors in HATS n' daCATs";
+    } else if (activeCollection === "physical-companions") {
+      labelEl.textContent = "Heavy collectors in Physical Companions";
     } else if (activeCollection === "badges") {
       labelEl.textContent = "Heavy collectors in Badges";
     } else if (activeCollection === "dacommunity") {
