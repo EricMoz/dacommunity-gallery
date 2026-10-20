@@ -3194,50 +3194,50 @@ button.stat.stat-collectors:disabled {
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(192, 132, 252, 0.28);
 }
 
-/* BIG KIX — warm street premium (gold / amber, not ice-blue) */
-.collection-card-bigkix {
+/* Physical Companions — warm street premium (gold / amber; formerly BIG KIX treatment) */
+.collection-card-physical-companions {
   border-top: 4px solid var(--yellow);
   background: linear-gradient(165deg, #0c0a06 0%, #1a1610 48%, #100e0a 100%);
   color: #f5f0e6;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
 }
 
-.collection-card-bigkix .collection-card-media {
+.collection-card-physical-companions .collection-card-media {
   background: linear-gradient(155deg, #080706 0%, #2a2214 55%, #12100c 100%);
 }
 
-.collection-card-bigkix .collection-card-media img {
+.collection-card-physical-companions .collection-card-media img {
   border-radius: 12px;
   border: 1px solid rgba(255, 204, 0, 0.42);
   background: rgba(255, 255, 255, 0.04);
   box-shadow: 0 0 24px rgba(255, 204, 0, 0.14);
 }
 
-.collection-card-bigkix .collection-card-title {
+.collection-card-physical-companions .collection-card-title {
   color: #fff9eb;
 }
 
-.collection-card-bigkix .collection-card-body p {
+.collection-card-physical-companions .collection-card-body p {
   color: rgba(245, 240, 230, 0.88);
 }
 
-.collection-card-bigkix .collection-card-cta {
+.collection-card-physical-companions .collection-card-cta {
   color: var(--yellow);
 }
 
-.collection-card-bigkix .collection-card-eyebrow {
+.collection-card-physical-companions .collection-card-eyebrow {
   color: #111;
   background: linear-gradient(135deg, #ffe566 0%, #ffcc00 55%, #e6b800 100%);
   border-color: rgba(0, 0, 0, 0.2);
 }
 
-.collection-card-bigkix .collection-card-status {
+.collection-card-physical-companions .collection-card-status {
   background: var(--yellow);
   color: #111;
 }
 
-.collection-card-bigkix:hover,
-.collection-card-bigkix:focus-visible {
+.collection-card-physical-companions:hover,
+.collection-card-physical-companions:focus-visible {
   border-color: rgba(255, 204, 0, 0.5);
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 204, 0, 0.22);
 }
@@ -8064,6 +8064,55 @@ body.has-collector-view .collector-theater-vignette {
   background: linear-gradient(135deg, #9f1239 0%, #e11d48 45%, #f43f5e 100%);
   border-color: #9f1239;
   box-shadow: 0 0 12px rgba(244, 63, 94, 0.4);
+}
+
+/* Physical Companions — rich teal (between 1:1 rose and Legendary gold) */
+.rarity-badge-physical {
+  color: #ecfeff;
+  background: linear-gradient(135deg, #0f766e 0%, #14b8a6 45%, #2dd4bf 100%);
+  border-color: #0f766e;
+  box-shadow: 0 0 10px rgba(45, 212, 191, 0.38);
+}
+
+/* Physical series overview — numbered edition rows in detail panel */
+.physical-edition-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+  padding: 0.55rem 0.65rem;
+  margin-bottom: 0.4rem;
+  border-radius: 8px;
+  background: rgba(15, 118, 110, 0.08);
+  border: 1px solid rgba(20, 184, 166, 0.28);
+}
+.physical-edition-num {
+  flex: 0 0 auto;
+  min-width: 2.4rem;
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: #0f766e;
+}
+.physical-edition-owner {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.physical-edition-unminted,
+.physical-edition-pending {
+  color: #78716c;
+  font-weight: 500;
+  font-style: italic;
+}
+.physical-edition-open {
+  flex: 0 0 auto;
+  padding: 0.28rem 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 700;
 }
 
 /* Trait chips — HATS n' daCATs grid + detail */

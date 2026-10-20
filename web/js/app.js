@@ -127,10 +127,33 @@ function isAgencyEditionToken(item) {
   return !!(item.is_edition_token || item.rarity);
 }
 
+/** Physical Companions series card (Founders Edition etc.) — one browse row, generic art. */
+function isPhysicalSeriesRep(item) {
+  return !!(
+    item &&
+    (item.physical_series_rep ||
+      ((item.collection_id || "") === "physical-companions" && item.is_series_rep))
+  );
+}
+
+/** Numbered physical edition (wallet / overview detail) — hide from light browse. */
+function isPhysicalEditionToken(item) {
+  if (!item || (item.collection_id || "") !== "physical-companions") return false;
+  if (isPhysicalSeriesRep(item)) return false;
+  return !!(item.is_edition_token || item.physical_series);
+}
+
 /** Pill label: rank 1–5 for agency series; hat series # from OpenSea title when present. */
 function itemTokenPillLabel(item) {
   if (!item) return "";
   if (item.token_rank != null && isAgencyRaritySeries(item)) return String(item.token_rank);
+  // Physical series_rep: show max supply range (1–20) instead of synthetic series id
+  if (isPhysicalSeriesRep(item)) {
+    var maxN = item.max_supply || 20;
+    var minted = item.edition_count || (item.editions && item.editions.length) || 0;
+    if (minted > 0 && minted < maxN) return "1–" + minted;
+    return "1–" + maxN;
+  }
   // HATS n' daCATs: prefer #NNN from exact OpenSea title (token_id can differ from series #)
   if ((item.collection_id || "") === "hats-n-dacats") {
     var title = item.display_name || item.name || "";
@@ -189,13 +212,36 @@ var SORT_LABELS = {
 
 let collectionsRegistry = null;
 
+/** Preferred dropdown / marketing order (hub HTML mirrors this). */
+var COLLECTION_DISPLAY_ORDER = [
+  "hats-n-dacats",
+  "physical-companions",
+  "dagato-agency",
+  "bigkix",
+  "badges",
+  "dacommunity",
+];
+
 function getLiveCollections() {
   if (!collectionsRegistry || !collectionsRegistry.collections) {
     return [{ id: "dacommunity", name: "daCommunity NFTs", status: "live" }];
   }
-  return collectionsRegistry.collections.filter(function (c) {
+  var live = collectionsRegistry.collections.filter(function (c) {
     return c.status === "live";
   });
+  var order = {};
+  COLLECTION_DISPLAY_ORDER.forEach(function (id, i) {
+    order[id] = i;
+  });
+  live.sort(function (a, b) {
+    var ia = order[a.id];
+    var ib = order[b.id];
+    if (ia == null) ia = 999;
+    if (ib == null) ib = 999;
+    if (ia !== ib) return ia - ib;
+    return String(a.name || a.id).localeCompare(String(b.name || b.id));
+  });
+  return live;
 }
 
 function getCollectionName(id) {
@@ -210,11 +256,13 @@ function collectionSelectLabel(col) {
   if (!col) return "";
   if (col.id === "dagato-agency") return "daGATO Detective Agency";
   if (col.id === "dacommunity") return "daCommunity NFTs";
+  if (col.id === "physical-companions") return "Physical Companions";
   var n = col.name || col.id || "";
   // Strip trailing ": Volume N" / "Volume N" if present on future registry names
   n = String(n).replace(/\s*[:·-]?\s*Volume\s*\d+\s*$/i, "").trim();
   // Legacy registry/catalog wording
   if (/^daCommunity NFT Archive$/i.test(n)) return "daCommunity NFTs";
+  if (/^daCAT World Physical Companions$/i.test(n)) return "Physical Companions";
   return n || col.id;
 }
 
@@ -231,6 +279,7 @@ function itemCollectionLabel(item) {
   if (cid === "badges") return "daCAT Badges";
   if (cid === "dagato-agency") return "daGATO Detective Agency";
   if (cid === "hats-n-dacats") return "HATS n' daCATs";
+  if (cid === "physical-companions") return "Physical Companions";
   if (cid === "dacommunity") return "daCommunity NFTs";
   return cid;
 }
@@ -249,6 +298,10 @@ function getCollectionDataUrls(colId) {
     "hats-n-dacats": { catalog: "hats_n_dacats_catalog.json", gallery: "hats_n_dacats_data.json" },
     bigkix: { catalog: "bigkix_catalog.json", gallery: "bigkix_data.json" },
     "dagato-agency": { catalog: "dagato_agency_catalog.json", gallery: "dagato_agency_data.json" },
+    "physical-companions": {
+      catalog: "physical_companions_catalog.json",
+      gallery: "physical_companions_data.json",
+    },
     badges: { catalog: "badges_catalog.json", gallery: "badges_data.json" },
   };
   var catalog =
@@ -334,12 +387,14 @@ function adaptHeaderForCollection() {
   var isBigKix = activeCollection === "bigkix";
   var isAgency = activeCollection === "dagato-agency";
   var isHats = activeCollection === "hats-n-dacats";
+  var isPhysical = activeCollection === "physical-companions";
   var isDacommunity = activeCollection === "dacommunity";
   var isAll = !activeCollection || activeCollection === "all";
   document.body.classList.toggle("is-badges-view", isBadges);
   document.body.classList.toggle("is-bigkix-view", isBigKix);
   document.body.classList.toggle("is-dagato-agency-view", isAgency);
   document.body.classList.toggle("is-hats-n-dacats-view", isHats);
+  document.body.classList.toggle("is-physical-companions-view", isPhysical);
   document.body.classList.toggle("is-dacommunity-view", isDacommunity);
   try {
     var h1 = document.querySelector(".hero-band h1");
@@ -365,6 +420,10 @@ function adaptHeaderForCollection() {
       h1.innerHTML = "HATS n' <span class=\"accent\">daCATs</span>";
       lead.textContent =
         "HATS n' daCATs · Live Collection. 333 unique daCATs, each defined by a legendary hat. True 1:1s with no rarity tiers. Every hat stands on its own. Every hat has a story. Legends Wear Hats.";
+    } else if (isPhysical) {
+      h1.innerHTML = 'Physical <span class="accent">Companions</span>';
+      lead.textContent =
+        "daCAT World physical + NFT pairs. Founders Edition is the first series — 3D printed collectible figures with matching numbered NFTs (1–20). Browse shows one card per series; your wallet shows every numbered edition you hold. More physical companions can join later.";
     } else if (isDacommunity) {
       // Scoped Base archive (hub cards + dropdown: daCommunity NFTs)
       h1.innerHTML = 'daCommunity <span class="accent">NFTs</span>';
@@ -709,7 +768,7 @@ async function fetchJson(url, timeoutMs) {
     // The old gallery_(…|wallet_index) group only matched gallery_wallet_index.json,
     // so wallet_index used cache:"default" and CF max-age=14400 could stick bare names
     // for hours after weekly OpenSea username enrich (DaForeman / CatManDew).
-    const isOurData = /\/data\/(gallery_(data|meta|catalog)|wallet_index|name_index|videos|badges_(data|catalog)|bigkix_(data|catalog)|dagato_agency_(data|catalog)|hats_n_dacats_(data|catalog)|collections_registry)\.json(\?|$)/i.test(url);
+    const isOurData = /\/data\/(gallery_(data|meta|catalog)|wallet_index|name_index|videos|badges_(data|catalog)|bigkix_(data|catalog)|dagato_agency_(data|catalog)|hats_n_dacats_(data|catalog)|physical_companions_(data|catalog)|collections_registry)\.json(\?|$)/i.test(url);
     const res = await fetch(url, {
       signal: ctrl.signal,
       cache: isOurData ? "no-store" : "default"
@@ -1745,10 +1804,14 @@ function excludedCollectorAddresses(items) {
     var cw = col.creator_wallet || {};
     if (cw.address) out[String(cw.address).toLowerCase()] = true;
   }
-  // BIG KIX steward (fetch_bigkix CREATOR_ADDRESS)
+  // BIG KIX / Physical Companions steward (dacatworld.eth)
   if (
-    (col && (col.id === "bigkix" || col.slug === "bigkix")) ||
-    activeCollection === "bigkix"
+    (col &&
+      (col.id === "bigkix" ||
+        col.slug === "bigkix" ||
+        col.id === "physical-companions")) ||
+    activeCollection === "bigkix" ||
+    activeCollection === "physical-companions"
   ) {
     out["0xa6d5c9602a49afddff9873cf51db2991dec2c9ee"] = true;
   }
@@ -1787,6 +1850,8 @@ function buildCollectorsFromLoadedItems(items, opts) {
     }
     // Agency: count real case files only (not aggregated rarity rows)
     if (isAgencyRaritySeries(item)) return;
+    // Physical: count numbered editions only (not series overview card)
+    if (isPhysicalSeriesRep(item)) return;
     var os = item.owners || {};
     var list = os.holders || os.top_holders || [];
     var itemKey = getItemKey(item);
@@ -2106,6 +2171,14 @@ function itemRarityLabel(item) {
   // HATS: every piece is a unique 1:1 by design
   if (cid === "hats-n-dacats") return "1:1";
 
+  // Physical Companions: authored Physical tier (below 1:1, above Legendary)
+  if (cid === "physical-companions" || isPhysicalSeriesRep(item) || isPhysicalEditionToken(item)) {
+    return "Physical";
+  }
+  if (item.rarity && String(item.rarity).toLowerCase() === "physical") {
+    return "Physical";
+  }
+
   // BIG KIX: skip supply tiers — creator still holds large stacks of most editions
   if (cid === "bigkix") return null;
 
@@ -2226,6 +2299,7 @@ function rarityBadgeClass(label) {
   if (!label) return "";
   var k = String(label).toLowerCase().replace(/\s+/g, "");
   if (k === "1:1" || k === "1of1" || k === "1/1") return "rarity-badge-1of1";
+  if (k === "physical") return "rarity-badge-physical";
   if (k === "ultrarare") return "rarity-badge-ultra-rare";
   if (k === "rare") return "rarity-badge-rare";
   if (k === "select") return "rarity-badge-select";
@@ -2416,6 +2490,13 @@ function resolveMediaUrl(url) {
 }
 
 function imgSrc(item) {
+  if (isPhysicalSeriesRep(item)) {
+    return resolveMediaUrl(
+      item.shared_series_image ||
+        item.image_url ||
+        "assets/physical-companions/dacat-world-founders-edition-collectible-figure.png"
+    );
+  }
   if (isBadgeMultiSeriesRep(item) && !item.shared_series_image) {
     var local =
       item.image_url && String(item.image_url).indexOf("assets/badges/") === 0
@@ -3838,6 +3919,7 @@ function collectionRankShortName(colId, fallbackName) {
   if (colId === "bigkix") return "BIG KIX";
   if (colId === "dagato-agency") return "Agency";
   if (colId === "hats-n-dacats") return "HATS";
+  if (colId === "physical-companions") return "Physical";
   if (colId === "badges") return "Badges";
   if (colId === "dacommunity") return "daCommunity";
   return fallbackName || colId || "Archive";
@@ -4793,6 +4875,7 @@ function buildHoldingsFromCurrentItems(address) {
       // Multi-1:1 series_rep is browse-only; edition_club series_rep is the real card
       if (item.is_series_rep && item.source_created_collection && /trillion|billion/i.test(item.source_created_collection) && !item.edition_club) return;
       if (isAgencyRaritySeries(item)) return;
+      if (isPhysicalSeriesRep(item)) return;
       seen[key] = true;
       // volume + contract required for agency getItemKey
       holdings.push({
@@ -5151,9 +5234,9 @@ function fillMediaSlot(slot, item, opts) {
   opts = opts || {};
   slot.innerHTML = "";
   var src = imgSrc(item);
-  var seriesGeneric = isBadgeMultiSeriesRep(item);
+  var seriesGeneric = isBadgeMultiSeriesRep(item) || isPhysicalSeriesRep(item);
   // Prefer opensea video source for video items (e.g. gem nova green in generic search/detail)
-  // or personalized art in portfolio for real editions. Never for multi-1:1 series cards.
+  // or personalized art in portfolio for real editions. Never for multi-1:1 / physical series cards.
   if (
     !seriesGeneric &&
     item &&
@@ -5773,6 +5856,7 @@ function itemRaritySortRank(item) {
     .toLowerCase()
     .replace(/\s+/g, "");
   if (k === "1:1" || k === "1of1" || k === "1/1") return 100;
+  if (k === "physical") return 95;
   if (k === "legendary") return 90;
   if (k === "ultrarare") return 80;
   if (k === "epic") return 70;
@@ -6034,6 +6118,8 @@ function getFilteredItems() {
         }
         // Agency: portfolio shows case files with real token #s, not rarity aggregates
         if (isAgencyRaritySeries(i)) return false;
+        // Physical: portfolio shows numbered editions, not series overview card
+        if (isPhysicalSeriesRep(i)) return false;
         return true;
       }
       if (i.source_created_collection) {
@@ -6064,6 +6150,7 @@ function getFilteredItems() {
   // generic image, and aggregate holder_count (e.g. 3 for 9T).
   // Personalized 1:1s (with custom names/art) appear ONLY in the owner's portfolio view.
   // daGATO Agency: browse shows 5 rarity tiers only; case files appear in collector wallet.
+  // Physical Companions: browse shows one series_rep per series; numbered editions in wallet.
   if (!galleryCollectorView) {
     items = items.filter(function (i) {
       if (i.source_created_collection && /trillion|billion/i.test(i.source_created_collection)) {
@@ -6073,12 +6160,17 @@ function getFilteredItems() {
       if ((i.collection_id || "") === "dagato-agency") {
         return isAgencyRaritySeries(i);
       }
+      if ((i.collection_id || "") === "physical-companions") {
+        return isPhysicalSeriesRep(i);
+      }
       return true;
     });
   } else {
-    // Portfolio: never show agency rarity aggregates (show real case file token #s)
+    // Portfolio: never show agency/physical series aggregates (show real edition token #s)
     items = items.filter(function (i) {
-      return !isAgencyRaritySeries(i);
+      if (isAgencyRaritySeries(i)) return false;
+      if (isPhysicalSeriesRep(i)) return false;
+      return true;
     });
   }
   // Collection dropdown + free-text search:
@@ -6143,11 +6235,16 @@ function getDedupedPiecesCount(allItems) {
       if ((i.collection_id || "") === "dagato-agency") {
         return isAgencyRaritySeries(i);
       }
+      if ((i.collection_id || "") === "physical-companions") {
+        return isPhysicalSeriesRep(i);
+      }
       return true;
     });
   } else {
     items = items.filter(function (i) {
-      return !isAgencyRaritySeries(i);
+      if (isAgencyRaritySeries(i)) return false;
+      if (isPhysicalSeriesRep(i)) return false;
+      return true;
     });
   }
   return items.length;
@@ -6406,10 +6503,15 @@ function renderGallery(items, opts) {
         ? formatTraitChipsHtml(item, 3)
         : "";
     var videoBadge = isVideoItem(item) ? '<span class="thumb-video-badge">▶</span>' : "";
-    // Agency series: #1–#5 (token_rank); case files / other cols: real token id
-    var tokenPill =
-      '<span class="token-pill">#' + escapeHtml(itemTokenPillLabel(item)) + "</span>";
+    // Agency series: #1–#5 (token_rank); Physical series: 1–20 range; else real token id
+    var pillText = itemTokenPillLabel(item);
+    var tokenPill = isPhysicalSeriesRep(item)
+      ? '<span class="token-pill">' + escapeHtml(pillText) + "</span>"
+      : '<span class="token-pill">#' + escapeHtml(pillText) + "</span>";
     var excerpt = displayExcerpt(item);
+    if (isPhysicalSeriesRep(item) && !excerpt) {
+      excerpt = "Physical companion · Founders Edition (1–20)";
+    }
     if (!excerpt && fullDataStatus === "loading_full") {
       excerpt = "Story loading from snapshot…";
     }
@@ -6685,6 +6787,92 @@ function renderDetailActivity(item) {
   }
 }
 
+/** Resolve a Physical Companions edition item by token id (for overview → detail). */
+function findPhysicalEditionByTokenId(tokenId) {
+  var tid = String(tokenId || "");
+  if (!tid || !galleryData || !galleryData.items) return null;
+  for (var i = 0; i < galleryData.items.length; i++) {
+    var it = galleryData.items[i];
+    if (
+      (it.collection_id || "") === "physical-companions" &&
+      isPhysicalEditionToken(it) &&
+      String(it.token_id) === tid
+    ) {
+      return it;
+    }
+  }
+  return itemsById.get("physical-companions-" + tid) || null;
+}
+
+/** Series overview: numbered editions 1–N with owner + open-detail action. */
+function renderPhysicalSeriesEditions(item) {
+  var ownersBlock = $("#detail-owners");
+  var chipsEl = $("#detail-owner-chips");
+  var leadEl = $("#detail-owners-lead");
+  var explore = $("#collector-explore");
+  if (explore) explore.hidden = true;
+  activeCollectorAddress = null;
+  var editions = item.editions || [];
+  if (!editions.length) {
+    ownersBlock.hidden = true;
+    return;
+  }
+  ownersBlock.hidden = false;
+  var subhead = ownersBlock.querySelector(".detail-subhead");
+  if (subhead) subhead.textContent = "Editions";
+  var maxN = item.max_supply || 20;
+  if (leadEl) {
+    leadEl.hidden = false;
+    leadEl.textContent =
+      editions.length +
+      " of " +
+      maxN +
+      " minted · tap a row for full token details";
+  }
+  chipsEl.innerHTML = editions
+    .map(function (ed) {
+      var tid = String(ed.token_id || "");
+      var ownerRow = {
+        address: ed.owner_address || "",
+        ens_name: ed.owner_ens || null,
+        username: ed.owner_username || null,
+      };
+      var meta = ed.owner_address
+        ? addressDisplayMeta(ownerRow)
+        : { address: "", display: "Not yet minted" };
+      var ownerLabel = ed.owner_address
+        ? escapeHtml(meta.display)
+        : '<span class="physical-edition-unminted">Not yet minted</span>';
+      return (
+        '<div class="physical-edition-row" data-edition-token="' +
+        escapeHtml(tid) +
+        '">' +
+        '<span class="physical-edition-num">#' +
+        escapeHtml(tid) +
+        "</span>" +
+        '<span class="physical-edition-owner" title="' +
+        escapeHtml(meta.address || "") +
+        '">' +
+        ownerLabel +
+        "</span>" +
+        (ed.owner_address
+          ? '<button type="button" class="btn btn-outline physical-edition-open" data-edition-token="' +
+            escapeHtml(tid) +
+            '">View details</button>'
+          : '<span class="physical-edition-pending">—</span>') +
+        "</div>"
+      );
+    })
+    .join("");
+  chipsEl.querySelectorAll(".physical-edition-open").forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var edItem = findPhysicalEditionByTokenId(btn.dataset.editionToken);
+      if (edItem) openDetail(edItem);
+    });
+  });
+}
+
 function renderDetailOwners(item) {
   var ownersBlock = $("#detail-owners");
   var chipsEl = $("#detail-owner-chips");
@@ -6692,6 +6880,15 @@ function renderDetailOwners(item) {
   var explore = $("#collector-explore");
   explore.hidden = true;
   activeCollectorAddress = null;
+
+  if (isPhysicalSeriesRep(item)) {
+    renderPhysicalSeriesEditions(item);
+    return;
+  }
+
+  var subhead = ownersBlock && ownersBlock.querySelector(".detail-subhead");
+  if (subhead) subhead.textContent = "Current holders";
+
   var owners = item.owners || {};
   var holders = resolveHoldersList(item);
   if (!holders.length) {
@@ -6787,7 +6984,19 @@ function openDetail(item, opts) {
   if (!panel) return;
   fillMediaSlot($("#detail-media-slot"), item, { autoplay: true, controls: true });
   $("#detail-title").innerHTML = formatPieceTitleHtml(itemTitle(item));
-  if (isAgencyRaritySeries(item)) {
+  if (isPhysicalSeriesRep(item)) {
+    var seriesLabel = item.physical_series_label || "Founders Edition";
+    var mintedN = item.edition_count || (item.editions && item.editions.length) || 0;
+    var maxSupply = item.max_supply || 20;
+    $("#detail-token").textContent =
+      "Physical companion · " +
+      seriesLabel +
+      " · " +
+      mintedN +
+      " of " +
+      maxSupply +
+      " minted";
+  } else if (isAgencyRaritySeries(item)) {
     // Attach transfer/sale history from case files when series row lacks activity
     ensureAgencySeriesActivity(item);
     var nFiles = item.case_file_count || (item.case_files && item.case_files.length) || 0;
@@ -6877,6 +7086,17 @@ function openDetail(item, opts) {
         "</strong> case file" +
         (item.case_file_count === 1 ? "" : "s") +
         "</span>"
+    );
+  }
+  if (isPhysicalSeriesRep(item)) {
+    var edN = item.edition_count || (item.editions && item.editions.length) || 0;
+    var maxS = item.max_supply || 20;
+    chips.push(
+      '<span class="chip"><strong>' +
+        edN +
+        "</strong> of " +
+        maxS +
+        " minted</span>"
     );
   }
   // HATS n' daCATs: all real traits in detail (never "None"); cards show top 3 only

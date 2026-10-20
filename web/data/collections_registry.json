@@ -101,6 +101,38 @@
       }
     },
     {
+      "id": "physical-companions",
+      "name": "daCAT World Physical Companions",
+      "status": "live",
+      "chain": "ethereum",
+      "contract": "0xd365001490df433ac04fe9b9d9cff49a24885a52",
+      "opensea_slug": "dacatworldfoundersedition",
+      "route": "/dacommunity/?collection=physical-companions",
+      "data": {
+        "gallery": "physical_companions_data.json",
+        "catalog": "physical_companions_catalog.json"
+      },
+      "features": ["gallery", "collector_view", "wallet_lookup", "opensea_sync"],
+      "creator_ens": "dacatworld.eth",
+      "max_supply": 20,
+      "series": [
+        {
+          "id": "founders-edition",
+          "label": "Founders Edition",
+          "opensea_slug": "dacatworldfoundersedition",
+          "contract": "0xd365001490df433ac04fe9b9d9cff49a24885a52",
+          "chain": "ethereum",
+          "max_supply": 20,
+          "generic_image": "assets/physical-companions/dacat-world-founders-edition-collectible-figure.png"
+        }
+      ],
+      "theme": {
+        "accent": "#ffcc00",
+        "surface": "light_archive",
+        "collector_surface": "dark_cinema"
+      }
+    },
+    {
       "id": "badges",
       "name": "daCAT Badges",
       "status": "live",

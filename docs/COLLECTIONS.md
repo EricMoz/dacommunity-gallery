@@ -99,6 +99,28 @@ python fetch_hats_n_dacats.py          # writes web/data/hats_n_dacats_data.json
 | Data | `web/data/hats_n_dacats_data.json` + `hats_n_dacats_catalog.json` |
 | Fetch | `backend/fetch_hats_n_dacats.py` (also in `refresh-data.yml`) |
 
+### Physical Companions pipeline
+
+```bash
+cd backend
+python fetch_physical_companions.py          # writes physical_companions_*.json (tokens 1–20)
+python fetch_physical_companions.py --from-scrape path.json   # bootstrap without API key
+# Daily: refresh-data.yml runs after Agency fetch
+```
+
+| Surface | Detail |
+|---------|--------|
+| Hub / home tile | Eyebrow **Physical + NFT**; warm gold premium dark card (former BIG KIX treatment) |
+| Route | `/dacommunity/?collection=physical-companions` |
+| Steward | `dacatworld.eth` · excluded from collector rankings (still shown on edition overview) |
+| OpenSea | Primary series slug `dacatworldfoundersedition` · contract `0xd3650014…` · max **20** |
+| Browse | One **series_rep** card with generic local art; title **DACAT WORLD Founders Edition** |
+| Wallet / detail | Numbered editions with real OpenSea images; rarity pill **Physical** (sort rank 95) |
+| Series overview | Click series card → editions list (#, owner, View details) + First minted |
+| Future series | Append under same `collection_id` with a new `physical_series` id |
+| Data | `web/data/physical_companions_data.json` + `physical_companions_catalog.json` |
+| Fetch | `backend/fetch_physical_companions.py` (also in `refresh-data.yml`) |
+
 ### BIG KIX pipeline
 
 ```bash
@@ -110,6 +132,7 @@ python fetch_bigkix.py          # writes web/data/bigkix_data.json + catalog
 - Creator `dacatworld.eth` / `0xa6d5…` excluded from holder counts
 - Titles normalized to `BIG KIX #014 · EAGLE 250` (`opensea_name` keeps full OpenSea title)
 - Activity + listings via same collection-events + best-listings pattern as daCommunity
+- Hub card uses the simpler badges-style live card (premium warm style moved to Physical Companions)
 
 ### daGATO Detective Agency (multi-volume) pipeline
 

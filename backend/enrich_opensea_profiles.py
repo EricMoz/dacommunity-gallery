@@ -42,6 +42,7 @@ SECONDARY_DATA_FILES = (
     "bigkix_data.json",
     "dagato_agency_data.json",
     "hats_n_dacats_data.json",
+    "physical_companions_data.json",
 )
 
 # Steward / issuer wallets — never treat as collectors for identity enrich

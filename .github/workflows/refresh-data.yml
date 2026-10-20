@@ -153,6 +153,16 @@ jobs:
           # Fetches every registry volume (Vol 1, Vol 2, …) into one site collection
           python fetch_dagato_agency.py
 
+      - name: Fetch Physical Companions (Founders Edition, max 20)
+        if: success()
+        env:
+          OPENSEA_API_KEY: ${{ steps.generate_key.outputs.key }}
+        run: |
+          set -e
+          cd backend
+          # Tokens 1–20; future mints auto-included up to max supply
+          python fetch_physical_companions.py
+
       - name: Fetch badges (for owners/dates)
         if: success()
         env:
