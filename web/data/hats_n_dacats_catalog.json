@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-20T21:51:10.898137+00:00",
+  "generated_at": "2026-10-21T13:34:21.533135+00:00",
   "source": "hats_n_dacats_catalog",
   "collection": {
     "id": "hats-n-dacats",
@@ -23,11 +23,11 @@
     "contract_name": "HATS n' daCATs",
     "floor_eth": 0.014,
     "floor_symbol": "ETH",
-    "num_owners": 26,
-    "total_sales": 47,
-    "total_volume": 0.7155,
+    "num_owners": 27,
+    "total_sales": 48,
+    "total_volume": 0.7295,
     "piece_count": 111,
-    "listed_count": 23,
+    "listed_count": 35,
     "one_of_ones": 111
   },
   "items": [
@@ -2854,8 +2854,12 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/91",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/7bb1358df38584b2fc294fdc71cfa3/d57bb1358df38584b2fc294fdc71cfa3.png",
-      "listed": false,
-      "listing": null,
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.014,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
       "owners": {
         "holder_count": 0,
         "circulating_copies": 0,
@@ -3004,8 +3008,12 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/89",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/0671074ebd01d81a5006fe394584cd/de0671074ebd01d81a5006fe394584cd.png",
-      "listed": false,
-      "listing": null,
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.014,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
       "owners": {
         "holder_count": 0,
         "circulating_copies": 0,
@@ -3213,16 +3221,26 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": [],
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+            "quantity": 1
+          }
+        ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "mint",
-          "at": "2026-09-13T14:23:23+00:00",
-          "from": null,
-          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "type": "sale",
+          "at": "2026-10-20T23:39:35+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
           "quantity": 1
         }
       },
@@ -3250,6 +3268,21 @@
       "is_1_of_1": true,
       "edition_size": 1,
       "recent_activity": [
+        {
+          "type": "sale",
+          "at": "2026-10-20T23:39:35+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+          "quantity": 1,
+          "price_eth": 0.014
+        },
+        {
+          "type": "transfer",
+          "at": "2026-10-20T23:39:35+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+          "quantity": 1
+        },
         {
           "type": "mint",
           "at": "2026-09-13T14:23:23+00:00",
@@ -3361,8 +3394,12 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/84",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/6b061de94f48a8706acf7a73edbc33/876b061de94f48a8706acf7a73edbc33.png",
-      "listed": false,
-      "listing": null,
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.014,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
       "owners": {
         "holder_count": 0,
         "circulating_copies": 0,
@@ -3420,8 +3457,12 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/83",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/f040609093a6e5adb812fe7f408b6d/1ff040609093a6e5adb812fe7f408b6d.png",
-      "listed": false,
-      "listing": null,
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.014,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
       "owners": {
         "holder_count": 0,
         "circulating_copies": 0,
@@ -3479,8 +3520,12 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/82",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/56968da9eb9868214fc6fd4594b99f/eb56968da9eb9868214fc6fd4594b99f.png",
-      "listed": false,
-      "listing": null,
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.014,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
       "owners": {
         "holder_count": 0,
         "circulating_copies": 0,
@@ -3781,8 +3826,12 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/78",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/daee9f2244041a1c24928c3495a91f/90daee9f2244041a1c24928c3495a91f.png",
-      "listed": false,
-      "listing": null,
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.014,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
       "owners": {
         "holder_count": 0,
         "circulating_copies": 0,
@@ -3932,8 +3981,12 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/76",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/c161ef3463214497975fa48a641b8d/0dc161ef3463214497975fa48a641b8d.png",
-      "listed": false,
-      "listing": null,
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.014,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
       "owners": {
         "holder_count": 0,
         "circulating_copies": 0,
@@ -4054,8 +4107,12 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/74",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/0c0cd25136acd61d08551fd61a8860/d00c0cd25136acd61d08551fd61a8860.png",
-      "listed": false,
-      "listing": null,
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.014,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
       "owners": {
         "holder_count": 0,
         "circulating_copies": 0,
@@ -4113,8 +4170,12 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/73",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/2a04fdc9bbb5e5a31e581c86044a94/b72a04fdc9bbb5e5a31e581c86044a94.png",
-      "listed": false,
-      "listing": null,
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.014,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
       "owners": {
         "holder_count": 0,
         "circulating_copies": 0,
@@ -4268,8 +4329,12 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/70",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/177c024d30b86df3d6f8820af9085b/37177c024d30b86df3d6f8820af9085b.png",
-      "listed": false,
-      "listing": null,
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.014,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
       "owners": {
         "holder_count": 0,
         "circulating_copies": 0,
@@ -4822,8 +4887,12 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/63",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/0ad0610671af9bc299e3608c525d52/cc0ad0610671af9bc299e3608c525d52.png",
-      "listed": false,
-      "listing": null,
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.014,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
       "owners": {
         "holder_count": 0,
         "circulating_copies": 0,
@@ -4944,8 +5013,12 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/61",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/44e30b391610ab6be85d2e8cba0122/3644e30b391610ab6be85d2e8cba0122.png",
-      "listed": false,
-      "listing": null,
+      "listed": true,
+      "listing": {
+        "amount_eth": 0.014,
+        "currency": "ETH",
+        "status": "ACTIVE"
+      },
       "owners": {
         "holder_count": 0,
         "circulating_copies": 0,
