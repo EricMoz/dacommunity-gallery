@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-23T13:17:50.427670+00:00",
+  "generated_at": "2026-10-24T12:41:32.168576+00:00",
   "source": "dagato_agency_catalog",
   "collection": {
     "id": "dagato-agency",
@@ -183,7 +183,7 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 10.0,
+        "amount_eth": 99.999,
         "currency": "ETH",
         "status": "ACTIVE"
       },
@@ -4493,7 +4493,7 @@
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/7d24bdca185c1a7adf54259b4cf38e/b57d24bdca185c1a7adf54259b4cf38e.jpeg",
       "listed": true,
       "listing": {
-        "amount_eth": 10.0,
+        "amount_eth": 99.999,
         "currency": "ETH",
         "status": "ACTIVE"
       },
