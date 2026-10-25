@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-18T21:54:32.783145+00:00",
+  "generated_at": "2026-10-25T14:08:25.138995+00:00",
   "source": "web3.bio_profile",
   "cache_days": 21,
-  "address_count": 104,
-  "base_name_count": 16,
+  "address_count": 109,
+  "base_name_count": 17,
   "by_address": {
     "0x011dddd5b5470d2818bffb400b4e38949fe21ac3": {
       "address": "0x011dddd5b5470d2818bffb400b4e38949fe21ac3",
@@ -524,6 +524,31 @@
       "address": "0xbb6dbb8b9bbe1f6a5ad601d83df7698cb3cf64a1",
       "base_name": null,
       "last_base_resolved": 1792358271.0610535
+    },
+    "0xb54a3aee16719320d3939f4ddb630d7438143ef3": {
+      "address": "0xb54a3aee16719320d3939f4ddb630d7438143ef3",
+      "base_name": null,
+      "last_base_resolved": 1792937302.5529368
+    },
+    "0xb70701bb877dbf0e07a1576eb49b3311d5c96c6b": {
+      "address": "0xb70701bb877dbf0e07a1576eb49b3311d5c96c6b",
+      "base_name": "billyboop.base.eth",
+      "last_base_resolved": 1792937302.5529368
+    },
+    "0xb9c31d099da862879e45d7ba6ec3c2ecc8563cec": {
+      "address": "0xb9c31d099da862879e45d7ba6ec3c2ecc8563cec",
+      "base_name": null,
+      "last_base_resolved": 1792937302.5529368
+    },
+    "0xd5ba08c965a9c3a13313aa206ebbd990375a5303": {
+      "address": "0xd5ba08c965a9c3a13313aa206ebbd990375a5303",
+      "base_name": null,
+      "last_base_resolved": 1792937302.5529368
+    },
+    "0xf36e2a766350ee489068cec87b62520a752b9243": {
+      "address": "0xf36e2a766350ee489068cec87b62520a752b9243",
+      "base_name": null,
+      "last_base_resolved": 1792937302.5529368
     }
   },
   "name_aliases": {
@@ -542,6 +567,7 @@
     "gottothird.base.eth": "0x7f284d2167b3bb8d8f6669593f4c24e752b54812",
     "slowfreeze.base.eth": "0x93b34003169bd7cdb3e0710fedff4cb6795a32ef",
     "mozcat.base.eth": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-    "lostthegame.base.eth": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684"
+    "lostthegame.base.eth": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+    "billyboop.base.eth": "0xb70701bb877dbf0e07a1576eb49b3311d5c96c6b"
   }
 }
