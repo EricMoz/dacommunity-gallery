@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-24T12:41:32.168576+00:00",
+  "generated_at": "2026-10-25T13:11:48.961789+00:00",
   "source": "dagato_agency_catalog",
   "collection": {
     "id": "dagato-agency",
@@ -26,7 +26,7 @@
     "piece_count": 10,
     "edition_count": 66,
     "case_file_count": 66,
-    "listed_count": 2,
+    "listed_count": 1,
     "rarity_counts": {
       "Common": 22,
       "Legendary": 10,
@@ -43,13 +43,13 @@
         "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
         "chain": "ethereum",
         "contract_name": "daGATO Detective Agency: Volume 1",
-        "floor_eth": 0.5,
+        "floor_eth": 99.999,
         "floor_symbol": "ETH",
         "total_sales": 32,
         "total_volume": 0.16000000000000006,
         "case_file_count": 33,
         "piece_count": 5,
-        "listed_count": 2,
+        "listed_count": 1,
         "rarity_counts": {
           "Common": 11,
           "Legendary": 5,
@@ -391,12 +391,8 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-1?search[stringTraits][0][name]=Rarity&search[stringTraits][0][values][0]=Epic",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
-      "listed": true,
-      "listing": {
-        "amount_eth": 0.5,
-        "currency": "ETH",
-        "status": "ACTIVE"
-      },
+      "listed": false,
+      "listing": null,
       "owners": {
         "holder_count": 6,
         "circulating_copies": 7,
@@ -563,7 +559,7 @@
           "name": "Epic Case File #30 · Vol 1",
           "image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
           "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/30",
-          "listed": true,
+          "listed": false,
           "volume": 1,
           "volume_label": "Vol 1"
         }
@@ -2580,12 +2576,8 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/30",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x716d87b0d348b715c423599c080ab426747bcf6e/b1351587eaded5a41cf4dfcde26d3a/0ab1351587eaded5a41cf4dfcde26d3a.jpeg",
-      "listed": true,
-      "listing": {
-        "amount_eth": 0.5,
-        "currency": "ETH",
-        "status": "ACTIVE"
-      },
+      "listed": false,
+      "listing": null,
       "owners": {
         "holder_count": 1,
         "circulating_copies": 1,
