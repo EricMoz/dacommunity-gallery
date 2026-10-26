@@ -1,9 +1,9 @@
 {
   "schemaVersion": 2,
-  "updated": "2026-09-07",
+  "updated": "2026-10-25",
   "featuredStrategy": "Streaming-style row: one entry point per series (ep 1 or lead trailer). Characters (Mozvane + daBeezy) share one series for Series up-next. Shorts are a separate bottom rail and never enter the modal pool. Featured row max 6 — swap titles rather than grow the rail. Characters + Crossovers sort newest-first (releasedAt, then sortOrder).",
   "featuredIds": [
-    "mozvane-ep2-the-cost",
+    "mozvane-ep3-the-impound",
     "dabeezy-contractor-callsign",
     "dagato-blessless",
     "chronicles-trailer-1",
@@ -168,6 +168,35 @@
       "sortOrder": 4
     },
     {
+      "id": "mozvane-ep3-the-impound",
+      "title": "Mozvane Episode 3: The Impound",
+      "youtubeId": "eFnwdgoTQgQ",
+      "series": "Characters",
+      "type": "Episode",
+      "creator": "MozvaneTV",
+      "creatorChannel": "MozvaneTV",
+      "description": "The ship is gone. The notice is on the ground. They go looking for it anyway.\n\nWritten and directed by Eric Moz\nMusic and Visuals by Mozvane\nSound director: daBeezy\n\nA daCAT community production\n\nWalk the same streets: dacat.fun/games/mozvane-kafkaesk-streets",
+      "descriptionHtml": "The ship is gone. The notice is on the ground. They go looking for it anyway.<br><br>Written and directed by Eric Moz<br>Music and Visuals by Mozvane<br>Sound director: daBeezy<br><br>A daCAT community production",
+      "whatItIs": "Mozvane anime episode 3 — The Impound.",
+      "releaseDate": "October 2026",
+      "releasedAt": "2026-10-25",
+      "thumbnail": "https://i.ytimg.com/vi/eFnwdgoTQgQ/hqdefault.jpg",
+      "duration": "7:35",
+      "filterCategory": "characters",
+      "sortOrder": 1,
+      "featuredPick": true,
+      "featuredOrder": 1,
+      "theatre": {
+        "slug": "mozvane",
+        "enabled": true
+      },
+      "relatedCta": {
+        "href": "https://dacat.fun/games/mozvane-kafkaesk-streets/",
+        "kicker": "Game",
+        "label": "Play Mozvane: Kafkaesk Streets"
+      }
+    },
+    {
       "id": "mozvane-ep2-the-cost",
       "title": "Mozvane Episode 2: The Cost",
       "youtubeId": "PYlHJcK1cF0",
@@ -183,9 +212,7 @@
       "thumbnail": "https://i.ytimg.com/vi/PYlHJcK1cF0/hqdefault.jpg",
       "duration": "6:49",
       "filterCategory": "characters",
-      "sortOrder": 1,
-      "featuredPick": true,
-      "featuredOrder": 1,
+      "sortOrder": 2,
       "theatre": {
         "slug": "mozvane",
         "enabled": true
@@ -205,7 +232,7 @@
       "thumbnail": "https://i.ytimg.com/vi/bHcbwUs2_ds/hqdefault.jpg",
       "duration": "5:18",
       "filterCategory": "characters",
-      "sortOrder": 3,
+      "sortOrder": 4,
       "theatre": {
         "slug": "mozvane",
         "enabled": true
