@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-01T14:58:38.512228+00:00",
+  "generated_at": "2026-11-01T23:09:09.847059+00:00",
   "source": "dagato_agency_catalog",
   "collection": {
     "id": "dagato-agency",
@@ -9,7 +9,7 @@
     "contract": "0x716d87b0d348b715c423599c080ab426747bcf6e",
     "chain": "ethereum",
     "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-1",
-    "note": "Limited cyber-noir detective case files on Ethereum (Volumes 1, 2). Stewarded by dagato.eth. All holders counted. Browse shows 5 rarity tiers per volume; collector wallets show each case file.",
+    "note": "Limited cyber-noir detective case files on Ethereum (Volumes 1, 2, 3). Stewarded by dagato.eth. All holders counted. Browse shows 5 rarity tiers per volume; collector wallets show each case file.",
     "creator_ens": "dagato.eth",
     "creator_wallet": {
       "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
@@ -20,21 +20,21 @@
     "contract_name": "daGATO Detective Agency: Volume 1",
     "floor_eth": 0.0,
     "floor_symbol": "ETH",
-    "num_owners": 20,
-    "total_sales": 63,
-    "total_volume": 0.3150000000000001,
-    "piece_count": 10,
-    "edition_count": 66,
-    "case_file_count": 66,
+    "num_owners": 22,
+    "total_sales": 81,
+    "total_volume": 0.40500000000000014,
+    "piece_count": 15,
+    "edition_count": 86,
+    "case_file_count": 86,
     "listed_count": 1,
     "rarity_counts": {
-      "Common": 22,
-      "Legendary": 10,
-      "Uncommon": 18,
-      "Epic": 14,
-      "1:1": 2
+      "Common": 30,
+      "Legendary": 13,
+      "Uncommon": 22,
+      "Epic": 18,
+      "1:1": 3
     },
-    "volume_count": 2,
+    "volume_count": 3,
     "volumes": [
       {
         "volume": 1,
@@ -83,6 +83,30 @@
         },
         "image_url": "https://i2c.seadn.io/ethereum/0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f/d3bb501b16efc2efa8646a84222850/f0d3bb501b16efc2efa8646a84222850.png",
         "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-2"
+      },
+      {
+        "volume": 3,
+        "volume_label": "Vol 3",
+        "slug": "dagato-detective-agency-volume-3",
+        "contract": "0x1dc4774536ad44eed3e327b67c103815c54a8734",
+        "chain": "ethereum",
+        "contract_name": "daGATO Detective Agency: Volume 3",
+        "floor_eth": 0.0,
+        "floor_symbol": "",
+        "total_sales": 18,
+        "total_volume": 0.09000000000000001,
+        "case_file_count": 20,
+        "piece_count": 5,
+        "listed_count": 0,
+        "rarity_counts": {
+          "Epic": 4,
+          "Common": 8,
+          "Legendary": 3,
+          "Uncommon": 4,
+          "1:1": 1
+        },
+        "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/ed6df4dd3316597dc54dd3989438af/26ed6df4dd3316597dc54dd3989438af.jpeg",
+        "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-3"
       }
     ],
     "image_url": "https://i2c.seadn.io/collection/dagato-detective-agency-volume-1/image_type_logo/6dcbf6a0f830a10ef45731c2e11f2b/e96dcbf6a0f830a10ef45731c2e11f2b.png"
@@ -2353,6 +2377,799 @@
           "at": "2026-08-01T23:20:23+00:00",
           "from": null,
           "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "rank-v3-1",
+      "name": "1:1 Case File · Vol 3",
+      "display_name": "1:1 Case File · Vol 3",
+      "local_slug": "agency-v3-rarity-1of1",
+      "excerpt": "Detective Agency Vol 3 · 1 case file · 1 holder · 1 copy",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/81a1b35547ff190ac00db2fbddfda1/1081a1b35547ff190ac00db2fbddfda1.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-3?search[stringTraits][0][name]=Rarity&search[stringTraits][0][values][0]=1%20of%201",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/81a1b35547ff190ac00db2fbddfda1/1081a1b35547ff190ac00db2fbddfda1.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-01T23:12:35+00:00",
+          "from": null,
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-01T23:12:35+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": null,
+      "rarity": "1:1",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "value": "1:1"
+        }
+      ],
+      "token_rank": 1,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": true,
+      "agency_rarity_series": true,
+      "is_edition_token": false,
+      "case_file_count": 1,
+      "case_files": [
+        {
+          "token_id": "7",
+          "name": "1:1 Case File #07 · Vol 3",
+          "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/81a1b35547ff190ac00db2fbddfda1/1081a1b35547ff190ac00db2fbddfda1.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/7",
+          "listed": false,
+          "volume": 3,
+          "volume_label": "Vol 3"
+        }
+      ],
+      "member_token_ids": [
+        "7"
+      ],
+      "description": "daGATO Detective Agency: Volume 3.\n\n1 case file at 1:1 rarity. Open holders and recent transfers below.\n\nCase files: #07.",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-01T23:12:35+00:00",
+          "from": null,
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "rank-v3-2",
+      "name": "Legendary Case File · Vol 3",
+      "display_name": "Legendary Case File · Vol 3",
+      "local_slug": "agency-v3-rarity-legendary",
+      "excerpt": "Detective Agency Vol 3 · 3 case files · 3 holders · 3 copies",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/cc5bb80314610b079873736e9d44eb/f7cc5bb80314610b079873736e9d44eb.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-3?search[stringTraits][0][name]=Rarity&search[stringTraits][0][values][0]=Legendary",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/cc5bb80314610b079873736e9d44eb/f7cc5bb80314610b079873736e9d44eb.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 3,
+        "circulating_copies": 3,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-13T02:23:35+00:00",
+          "from": null,
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-01T23:12:35+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": null,
+      "rarity": "Legendary",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "value": "Legendary"
+        }
+      ],
+      "token_rank": 2,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": true,
+      "agency_rarity_series": true,
+      "is_edition_token": false,
+      "case_file_count": 3,
+      "case_files": [
+        {
+          "token_id": "5",
+          "name": "Legendary Case File #05 · Vol 3",
+          "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/cc5bb80314610b079873736e9d44eb/f7cc5bb80314610b079873736e9d44eb.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/5",
+          "listed": false,
+          "volume": 3,
+          "volume_label": "Vol 3"
+        },
+        {
+          "token_id": "8",
+          "name": "Legendary Case File #08 · Vol 3",
+          "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/cc5bb80314610b079873736e9d44eb/f7cc5bb80314610b079873736e9d44eb.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/8",
+          "listed": false,
+          "volume": 3,
+          "volume_label": "Vol 3"
+        },
+        {
+          "token_id": "17",
+          "name": "Legendary Case File #17 · Vol 3",
+          "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/cc5bb80314610b079873736e9d44eb/f7cc5bb80314610b079873736e9d44eb.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/17",
+          "listed": false,
+          "volume": 3,
+          "volume_label": "Vol 3"
+        }
+      ],
+      "member_token_ids": [
+        "5",
+        "8",
+        "17"
+      ],
+      "description": "daGATO Detective Agency: Volume 3.\n\n3 case files at Legendary rarity. Open holders and recent transfers below.\n\nCase files: #05, #08, #17.",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-13T02:23:35+00:00",
+          "from": null,
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-03T14:23:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-01T23:12:35+00:00",
+          "from": null,
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "rank-v3-3",
+      "name": "Epic Case File · Vol 3",
+      "display_name": "Epic Case File · Vol 3",
+      "local_slug": "agency-v3-rarity-epic",
+      "excerpt": "Detective Agency Vol 3 · 4 case files · 4 holders · 4 copies",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/ed6df4dd3316597dc54dd3989438af/26ed6df4dd3316597dc54dd3989438af.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-3?search[stringTraits][0][name]=Rarity&search[stringTraits][0][values][0]=Epic",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/ed6df4dd3316597dc54dd3989438af/26ed6df4dd3316597dc54dd3989438af.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 4,
+        "circulating_copies": 4,
+        "top_holders": [
+          {
+            "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-11-01T00:30:11+00:00",
+          "from": null,
+          "to": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-01T23:00:59+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": null,
+      "rarity": "Epic",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "value": "Epic"
+        }
+      ],
+      "token_rank": 3,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": true,
+      "agency_rarity_series": true,
+      "is_edition_token": false,
+      "case_file_count": 4,
+      "case_files": [
+        {
+          "token_id": "2",
+          "name": "Epic Case File #02 · Vol 3",
+          "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/ed6df4dd3316597dc54dd3989438af/26ed6df4dd3316597dc54dd3989438af.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/2",
+          "listed": false,
+          "volume": 3,
+          "volume_label": "Vol 3"
+        },
+        {
+          "token_id": "10",
+          "name": "Epic Case File #10 · Vol 3",
+          "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/ed6df4dd3316597dc54dd3989438af/26ed6df4dd3316597dc54dd3989438af.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/10",
+          "listed": false,
+          "volume": 3,
+          "volume_label": "Vol 3"
+        },
+        {
+          "token_id": "12",
+          "name": "Epic Case File #12 · Vol 3",
+          "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/ed6df4dd3316597dc54dd3989438af/26ed6df4dd3316597dc54dd3989438af.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/12",
+          "listed": false,
+          "volume": 3,
+          "volume_label": "Vol 3"
+        },
+        {
+          "token_id": "20",
+          "name": "Epic Case File #20 · Vol 3",
+          "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/ed6df4dd3316597dc54dd3989438af/26ed6df4dd3316597dc54dd3989438af.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/20",
+          "listed": false,
+          "volume": 3,
+          "volume_label": "Vol 3"
+        }
+      ],
+      "member_token_ids": [
+        "2",
+        "10",
+        "12",
+        "20"
+      ],
+      "description": "daGATO Detective Agency: Volume 3.\n\n4 case files at Epic rarity. Open holders and recent transfers below.\n\nCase files: #02, #10, #12, #20.",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-11-01T00:30:11+00:00",
+          "from": null,
+          "to": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-03T15:38:59+00:00",
+          "from": null,
+          "to": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-03T14:23:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-01T23:00:59+00:00",
+          "from": null,
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "rank-v3-4",
+      "name": "Uncommon Case File · Vol 3",
+      "display_name": "Uncommon Case File · Vol 3",
+      "local_slug": "agency-v3-rarity-uncommon",
+      "excerpt": "Detective Agency Vol 3 · 4 case files · 2 holders · 4 copies",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/5a1890f596d475c9f811ecb7c1f956/ce5a1890f596d475c9f811ecb7c1f956.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-3?search[stringTraits][0][name]=Rarity&search[stringTraits][0][values][0]=Uncommon",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/5a1890f596d475c9f811ecb7c1f956/ce5a1890f596d475c9f811ecb7c1f956.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 2,
+        "circulating_copies": 4,
+        "top_holders": [
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 3,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 3,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-10T03:40:47+00:00",
+          "from": null,
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-03T15:17:59+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": null,
+      "rarity": "Uncommon",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "value": "Uncommon"
+        }
+      ],
+      "token_rank": 4,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": true,
+      "agency_rarity_series": true,
+      "is_edition_token": false,
+      "case_file_count": 4,
+      "case_files": [
+        {
+          "token_id": "11",
+          "name": "Uncommon Case File #11 · Vol 3",
+          "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/5a1890f596d475c9f811ecb7c1f956/ce5a1890f596d475c9f811ecb7c1f956.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/11",
+          "listed": false,
+          "volume": 3,
+          "volume_label": "Vol 3"
+        },
+        {
+          "token_id": "14",
+          "name": "Uncommon Case File #14 · Vol 3",
+          "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/5a1890f596d475c9f811ecb7c1f956/ce5a1890f596d475c9f811ecb7c1f956.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/14",
+          "listed": false,
+          "volume": 3,
+          "volume_label": "Vol 3"
+        },
+        {
+          "token_id": "15",
+          "name": "Uncommon Case File #15 · Vol 3",
+          "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/5a1890f596d475c9f811ecb7c1f956/ce5a1890f596d475c9f811ecb7c1f956.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/15",
+          "listed": false,
+          "volume": 3,
+          "volume_label": "Vol 3"
+        },
+        {
+          "token_id": "16",
+          "name": "Uncommon Case File #16 · Vol 3",
+          "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/5a1890f596d475c9f811ecb7c1f956/ce5a1890f596d475c9f811ecb7c1f956.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/16",
+          "listed": false,
+          "volume": 3,
+          "volume_label": "Vol 3"
+        }
+      ],
+      "member_token_ids": [
+        "11",
+        "14",
+        "15",
+        "16"
+      ],
+      "description": "daGATO Detective Agency: Volume 3.\n\n4 case files at Uncommon rarity. Open holders and recent transfers below.\n\nCase files: #11, #14, #15, #16.",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-10T03:40:47+00:00",
+          "from": null,
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-03T15:17:59+00:00",
+          "from": null,
+          "to": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "rank-v3-5",
+      "name": "Common Case File · Vol 3",
+      "display_name": "Common Case File · Vol 3",
+      "local_slug": "agency-v3-rarity-common",
+      "excerpt": "Detective Agency Vol 3 · 8 case files · 7 holders · 8 copies",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/collection/dagato-detective-agency-volume-3?search[stringTraits][0][name]=Rarity&search[stringTraits][0][values][0]=Common",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 7,
+        "circulating_copies": 8,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 2,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xb9c31d099da862879e45d7ba6ec3c2ecc8563cec",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 2,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          },
+          {
+            "address": "0xb9c31d099da862879e45d7ba6ec3c2ecc8563cec",
+            "quantity": 1,
+            "ens_name": null,
+            "username": null
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-11-01T00:28:35+00:00",
+          "from": null,
+          "to": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-01T23:00:59+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": null,
+      "rarity": "Common",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "value": "Common"
+        }
+      ],
+      "token_rank": 5,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": true,
+      "agency_rarity_series": true,
+      "is_edition_token": false,
+      "case_file_count": 8,
+      "case_files": [
+        {
+          "token_id": "1",
+          "name": "Common Case File #01 · Vol 3",
+          "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/1",
+          "listed": false,
+          "volume": 3,
+          "volume_label": "Vol 3"
+        },
+        {
+          "token_id": "3",
+          "name": "Common Case File #03 · Vol 3",
+          "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/3",
+          "listed": false,
+          "volume": 3,
+          "volume_label": "Vol 3"
+        },
+        {
+          "token_id": "4",
+          "name": "Common Case File #04 · Vol 3",
+          "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/4",
+          "listed": false,
+          "volume": 3,
+          "volume_label": "Vol 3"
+        },
+        {
+          "token_id": "6",
+          "name": "Common Case File #06 · Vol 3",
+          "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/6",
+          "listed": false,
+          "volume": 3,
+          "volume_label": "Vol 3"
+        },
+        {
+          "token_id": "9",
+          "name": "Common Case File #09 · Vol 3",
+          "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/9",
+          "listed": false,
+          "volume": 3,
+          "volume_label": "Vol 3"
+        },
+        {
+          "token_id": "13",
+          "name": "Common Case File #13 · Vol 3",
+          "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/13",
+          "listed": false,
+          "volume": 3,
+          "volume_label": "Vol 3"
+        },
+        {
+          "token_id": "18",
+          "name": "Common Case File #18 · Vol 3",
+          "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/18",
+          "listed": false,
+          "volume": 3,
+          "volume_label": "Vol 3"
+        },
+        {
+          "token_id": "19",
+          "name": "Common Case File #19 · Vol 3",
+          "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+          "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/19",
+          "listed": false,
+          "volume": 3,
+          "volume_label": "Vol 3"
+        }
+      ],
+      "member_token_ids": [
+        "1",
+        "3",
+        "4",
+        "6",
+        "9",
+        "13",
+        "18",
+        "19"
+      ],
+      "description": "daGATO Detective Agency: Volume 3.\n\n8 case files at Common rarity. Open holders and recent transfers below.\n\nCase files: #01, #03, #04, #06, #09, #13, #18, #19.",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-11-01T00:28:35+00:00",
+          "from": null,
+          "to": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-13T02:23:35+00:00",
+          "from": null,
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-03T15:40:23+00:00",
+          "from": null,
+          "to": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-03T14:23:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-01T23:12:35+00:00",
+          "from": null,
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-01T23:10:35+00:00",
+          "from": null,
+          "to": "0xb9c31d099da862879e45d7ba6ec3c2ecc8563cec",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-01T23:00:59+00:00",
+          "from": null,
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
           "quantity": 1
         }
       ]
@@ -6881,6 +7698,1426 @@
           "at": "2026-08-01T23:20:23+00:00",
           "from": null,
           "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "20",
+      "name": "Epic Case File #20 · Vol 3",
+      "display_name": "Epic Case File #20 · Vol 3",
+      "local_slug": "case-file-v3-020",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 3. Each case file contains one of five artifacts recovered after the detective vanished. Every ar…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/ed6df4dd3316597dc54dd3989438af/26ed6df4dd3316597dc54dd3989438af.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/20",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/ed6df4dd3316597dc54dd3989438af/26ed6df4dd3316597dc54dd3989438af.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-11-01T00:30:11+00:00",
+          "from": null,
+          "to": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-11-01T00:30:11+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": "daGATO Case File #020",
+      "rarity": "Epic",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Epic"
+        },
+        {
+          "trait_type": "Artifact",
+          "display_type": null,
+          "max_value": null,
+          "value": "Briefcase"
+        }
+      ],
+      "token_rank": 3,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": false,
+      "agency_rarity_series": false,
+      "is_edition_token": true,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-11-01T00:30:11+00:00",
+          "from": null,
+          "to": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "19",
+      "name": "Common Case File #19 · Vol 3",
+      "display_name": "Common Case File #19 · Vol 3",
+      "local_slug": "case-file-v3-019",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 3. Each case file contains one of five artifacts recovered after the detective vanished. Every ar…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/19",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-11-01T00:28:35+00:00",
+          "from": null,
+          "to": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-11-01T00:28:35+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": "daGATO Case File #019",
+      "rarity": "Common",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Common"
+        },
+        {
+          "trait_type": "Artifact",
+          "display_type": null,
+          "max_value": null,
+          "value": "Magnifying Glass"
+        }
+      ],
+      "token_rank": 5,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": false,
+      "agency_rarity_series": false,
+      "is_edition_token": true,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-11-01T00:28:35+00:00",
+          "from": null,
+          "to": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "18",
+      "name": "Common Case File #18 · Vol 3",
+      "display_name": "Common Case File #18 · Vol 3",
+      "local_slug": "case-file-v3-018",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 3. Each case file contains one of five artifacts recovered after the detective vanished. Every ar…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/18",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-13T02:23:35+00:00",
+          "from": null,
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-13T02:23:35+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": "daGATO Case File #018",
+      "rarity": "Common",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Common"
+        },
+        {
+          "trait_type": "Artifact",
+          "display_type": null,
+          "max_value": null,
+          "value": "Magnifying Glass"
+        }
+      ],
+      "token_rank": 5,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": false,
+      "agency_rarity_series": false,
+      "is_edition_token": true,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-13T02:23:35+00:00",
+          "from": null,
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "17",
+      "name": "Legendary Case File #17 · Vol 3",
+      "display_name": "Legendary Case File #17 · Vol 3",
+      "local_slug": "case-file-v3-017",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 3. Each case file contains one of five artifacts recovered after the detective vanished. Every ar…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/cc5bb80314610b079873736e9d44eb/f7cc5bb80314610b079873736e9d44eb.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/17",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/cc5bb80314610b079873736e9d44eb/f7cc5bb80314610b079873736e9d44eb.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-13T02:23:35+00:00",
+          "from": null,
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-13T02:23:35+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": "daGATO Case File #017",
+      "rarity": "Legendary",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Legendary"
+        },
+        {
+          "trait_type": "Artifact",
+          "display_type": null,
+          "max_value": null,
+          "value": "Chrono Goggles"
+        }
+      ],
+      "token_rank": 2,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": false,
+      "agency_rarity_series": false,
+      "is_edition_token": true,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-13T02:23:35+00:00",
+          "from": null,
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "16",
+      "name": "Uncommon Case File #16 · Vol 3",
+      "display_name": "Uncommon Case File #16 · Vol 3",
+      "local_slug": "case-file-v3-016",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 3. Each case file contains one of five artifacts recovered after the detective vanished. Every ar…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/5a1890f596d475c9f811ecb7c1f956/ce5a1890f596d475c9f811ecb7c1f956.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/16",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/5a1890f596d475c9f811ecb7c1f956/ce5a1890f596d475c9f811ecb7c1f956.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-10T03:40:47+00:00",
+          "from": null,
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-10T03:40:47+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": "daGATO Case File #016",
+      "rarity": "Uncommon",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Uncommon"
+        },
+        {
+          "trait_type": "Artifact",
+          "display_type": null,
+          "max_value": null,
+          "value": "Detective Hat"
+        }
+      ],
+      "token_rank": 4,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": false,
+      "agency_rarity_series": false,
+      "is_edition_token": true,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-10T03:40:47+00:00",
+          "from": null,
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "15",
+      "name": "Uncommon Case File #15 · Vol 3",
+      "display_name": "Uncommon Case File #15 · Vol 3",
+      "local_slug": "case-file-v3-015",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 3. Each case file contains one of five artifacts recovered after the detective vanished. Every ar…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/5a1890f596d475c9f811ecb7c1f956/ce5a1890f596d475c9f811ecb7c1f956.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/15",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/5a1890f596d475c9f811ecb7c1f956/ce5a1890f596d475c9f811ecb7c1f956.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-10T03:40:47+00:00",
+          "from": null,
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-10T03:40:47+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": "daGATO Case File #015",
+      "rarity": "Uncommon",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Uncommon"
+        },
+        {
+          "trait_type": "Artifact",
+          "display_type": null,
+          "max_value": null,
+          "value": "Detective Hat"
+        }
+      ],
+      "token_rank": 4,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": false,
+      "agency_rarity_series": false,
+      "is_edition_token": true,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-10T03:40:47+00:00",
+          "from": null,
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "14",
+      "name": "Uncommon Case File #14 · Vol 3",
+      "display_name": "Uncommon Case File #14 · Vol 3",
+      "local_slug": "case-file-v3-014",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 3. Each case file contains one of five artifacts recovered after the detective vanished. Every ar…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/5a1890f596d475c9f811ecb7c1f956/ce5a1890f596d475c9f811ecb7c1f956.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/14",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/5a1890f596d475c9f811ecb7c1f956/ce5a1890f596d475c9f811ecb7c1f956.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-10T03:40:47+00:00",
+          "from": null,
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-10T03:40:47+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": "daGATO Case File #014",
+      "rarity": "Uncommon",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Uncommon"
+        },
+        {
+          "trait_type": "Artifact",
+          "display_type": null,
+          "max_value": null,
+          "value": "Detective Hat"
+        }
+      ],
+      "token_rank": 4,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": false,
+      "agency_rarity_series": false,
+      "is_edition_token": true,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-10T03:40:47+00:00",
+          "from": null,
+          "to": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "13",
+      "name": "Common Case File #13 · Vol 3",
+      "display_name": "Common Case File #13 · Vol 3",
+      "local_slug": "case-file-v3-013",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 3. Each case file contains one of five artifacts recovered after the detective vanished. Every ar…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/13",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-03T15:40:23+00:00",
+          "from": null,
+          "to": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-03T15:40:23+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": "daGATO Case File #013",
+      "rarity": "Common",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Common"
+        },
+        {
+          "trait_type": "Artifact",
+          "display_type": null,
+          "max_value": null,
+          "value": "Magnifying Glass"
+        }
+      ],
+      "token_rank": 5,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": false,
+      "agency_rarity_series": false,
+      "is_edition_token": true,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-03T15:40:23+00:00",
+          "from": null,
+          "to": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "12",
+      "name": "Epic Case File #12 · Vol 3",
+      "display_name": "Epic Case File #12 · Vol 3",
+      "local_slug": "case-file-v3-012",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 3. Each case file contains one of five artifacts recovered after the detective vanished. Every ar…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/ed6df4dd3316597dc54dd3989438af/26ed6df4dd3316597dc54dd3989438af.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/12",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/ed6df4dd3316597dc54dd3989438af/26ed6df4dd3316597dc54dd3989438af.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-03T15:38:59+00:00",
+          "from": null,
+          "to": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-03T15:38:59+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": "daGATO Case File #012",
+      "rarity": "Epic",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Epic"
+        },
+        {
+          "trait_type": "Artifact",
+          "display_type": null,
+          "max_value": null,
+          "value": "Briefcase"
+        }
+      ],
+      "token_rank": 3,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": false,
+      "agency_rarity_series": false,
+      "is_edition_token": true,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-03T15:38:59+00:00",
+          "from": null,
+          "to": "0x418940f4675ceb18f49b9f182b62473872ee0bd1",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "11",
+      "name": "Uncommon Case File #11 · Vol 3",
+      "display_name": "Uncommon Case File #11 · Vol 3",
+      "local_slug": "case-file-v3-011",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 3. Each case file contains one of five artifacts recovered after the detective vanished. Every ar…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/5a1890f596d475c9f811ecb7c1f956/ce5a1890f596d475c9f811ecb7c1f956.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/11",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/5a1890f596d475c9f811ecb7c1f956/ce5a1890f596d475c9f811ecb7c1f956.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-03T15:17:59+00:00",
+          "from": null,
+          "to": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-03T15:17:59+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": "daGATO Case File #011",
+      "rarity": "Uncommon",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Uncommon"
+        },
+        {
+          "trait_type": "Artifact",
+          "display_type": null,
+          "max_value": null,
+          "value": "Detective Hat"
+        }
+      ],
+      "token_rank": 4,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": false,
+      "agency_rarity_series": false,
+      "is_edition_token": true,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-03T15:17:59+00:00",
+          "from": null,
+          "to": "0xd0c8c2761882b314b1d552747167189f8f0a5b38",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "10",
+      "name": "Epic Case File #10 · Vol 3",
+      "display_name": "Epic Case File #10 · Vol 3",
+      "local_slug": "case-file-v3-010",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 3. Each case file contains one of five artifacts recovered after the detective vanished. Every ar…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/ed6df4dd3316597dc54dd3989438af/26ed6df4dd3316597dc54dd3989438af.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/10",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/ed6df4dd3316597dc54dd3989438af/26ed6df4dd3316597dc54dd3989438af.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-03T14:23:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-03T14:23:59+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": "daGATO Case File #010",
+      "rarity": "Epic",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Epic"
+        },
+        {
+          "trait_type": "Artifact",
+          "display_type": null,
+          "max_value": null,
+          "value": "Briefcase"
+        }
+      ],
+      "token_rank": 3,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": false,
+      "agency_rarity_series": false,
+      "is_edition_token": true,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-03T14:23:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "9",
+      "name": "Common Case File #09 · Vol 3",
+      "display_name": "Common Case File #09 · Vol 3",
+      "local_slug": "case-file-v3-009",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 3. Each case file contains one of five artifacts recovered after the detective vanished. Every ar…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/9",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-03T14:23:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-03T14:23:59+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": "daGATO Case File #009",
+      "rarity": "Common",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Common"
+        },
+        {
+          "trait_type": "Artifact",
+          "display_type": null,
+          "max_value": null,
+          "value": "Magnifying Glass"
+        }
+      ],
+      "token_rank": 5,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": false,
+      "agency_rarity_series": false,
+      "is_edition_token": true,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-03T14:23:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "8",
+      "name": "Legendary Case File #08 · Vol 3",
+      "display_name": "Legendary Case File #08 · Vol 3",
+      "local_slug": "case-file-v3-008",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 3. Each case file contains one of five artifacts recovered after the detective vanished. Every ar…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/cc5bb80314610b079873736e9d44eb/f7cc5bb80314610b079873736e9d44eb.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/8",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/cc5bb80314610b079873736e9d44eb/f7cc5bb80314610b079873736e9d44eb.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-03T14:23:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-03T14:23:59+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": "daGATO Case File #008",
+      "rarity": "Legendary",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Legendary"
+        },
+        {
+          "trait_type": "Artifact",
+          "display_type": null,
+          "max_value": null,
+          "value": "Chrono Goggles"
+        }
+      ],
+      "token_rank": 2,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": false,
+      "agency_rarity_series": false,
+      "is_edition_token": true,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-03T14:23:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "7",
+      "name": "1:1 Case File #07 · Vol 3",
+      "display_name": "1:1 Case File #07 · Vol 3",
+      "local_slug": "case-file-v3-007",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 3. Each case file contains one of five artifacts recovered after the detective vanished. Every ar…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/81a1b35547ff190ac00db2fbddfda1/1081a1b35547ff190ac00db2fbddfda1.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/7",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/81a1b35547ff190ac00db2fbddfda1/1081a1b35547ff190ac00db2fbddfda1.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-01T23:12:35+00:00",
+          "from": null,
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-01T23:12:35+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": "daGATO Case File #007",
+      "rarity": "1:1",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "1 of 1"
+        },
+        {
+          "trait_type": "Artifact",
+          "display_type": null,
+          "max_value": null,
+          "value": "Pocket Watch"
+        }
+      ],
+      "token_rank": 1,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": false,
+      "agency_rarity_series": false,
+      "is_edition_token": true,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-01T23:12:35+00:00",
+          "from": null,
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "6",
+      "name": "Common Case File #06 · Vol 3",
+      "display_name": "Common Case File #06 · Vol 3",
+      "local_slug": "case-file-v3-006",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 3. Each case file contains one of five artifacts recovered after the detective vanished. Every ar…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/6",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-01T23:12:35+00:00",
+          "from": null,
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-01T23:12:35+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": "daGATO Case File #006",
+      "rarity": "Common",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Common"
+        },
+        {
+          "trait_type": "Artifact",
+          "display_type": null,
+          "max_value": null,
+          "value": "Magnifying Glass"
+        }
+      ],
+      "token_rank": 5,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": false,
+      "agency_rarity_series": false,
+      "is_edition_token": true,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-01T23:12:35+00:00",
+          "from": null,
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "5",
+      "name": "Legendary Case File #05 · Vol 3",
+      "display_name": "Legendary Case File #05 · Vol 3",
+      "local_slug": "case-file-v3-005",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 3. Each case file contains one of five artifacts recovered after the detective vanished. Every ar…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/cc5bb80314610b079873736e9d44eb/f7cc5bb80314610b079873736e9d44eb.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/5",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/cc5bb80314610b079873736e9d44eb/f7cc5bb80314610b079873736e9d44eb.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-01T23:12:35+00:00",
+          "from": null,
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-01T23:12:35+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": "daGATO Case File #005",
+      "rarity": "Legendary",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Legendary"
+        },
+        {
+          "trait_type": "Artifact",
+          "display_type": null,
+          "max_value": null,
+          "value": "Chrono Goggles"
+        }
+      ],
+      "token_rank": 2,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": false,
+      "agency_rarity_series": false,
+      "is_edition_token": true,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-01T23:12:35+00:00",
+          "from": null,
+          "to": "0x27758e900989bbcb4e2a6c59cc90756d7afe01fc",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "4",
+      "name": "Common Case File #04 · Vol 3",
+      "display_name": "Common Case File #04 · Vol 3",
+      "local_slug": "case-file-v3-004",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 3. Each case file contains one of five artifacts recovered after the detective vanished. Every ar…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/4",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xb9c31d099da862879e45d7ba6ec3c2ecc8563cec",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xb9c31d099da862879e45d7ba6ec3c2ecc8563cec",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-01T23:10:35+00:00",
+          "from": null,
+          "to": "0xb9c31d099da862879e45d7ba6ec3c2ecc8563cec",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-01T23:10:35+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": "daGATO Case File #004",
+      "rarity": "Common",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Common"
+        },
+        {
+          "trait_type": "Artifact",
+          "display_type": null,
+          "max_value": null,
+          "value": "Magnifying Glass"
+        }
+      ],
+      "token_rank": 5,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": false,
+      "agency_rarity_series": false,
+      "is_edition_token": true,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-01T23:10:35+00:00",
+          "from": null,
+          "to": "0xb9c31d099da862879e45d7ba6ec3c2ecc8563cec",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "3",
+      "name": "Common Case File #03 · Vol 3",
+      "display_name": "Common Case File #03 · Vol 3",
+      "local_slug": "case-file-v3-003",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 3. Each case file contains one of five artifacts recovered after the detective vanished. Every ar…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/3",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-01T23:00:59+00:00",
+          "from": null,
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-01T23:00:59+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": "daGATO Case File #003",
+      "rarity": "Common",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Common"
+        },
+        {
+          "trait_type": "Artifact",
+          "display_type": null,
+          "max_value": null,
+          "value": "Magnifying Glass"
+        }
+      ],
+      "token_rank": 5,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": false,
+      "agency_rarity_series": false,
+      "is_edition_token": true,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-01T23:00:59+00:00",
+          "from": null,
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "2",
+      "name": "Epic Case File #02 · Vol 3",
+      "display_name": "Epic Case File #02 · Vol 3",
+      "local_slug": "case-file-v3-002",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 3. Each case file contains one of five artifacts recovered after the detective vanished. Every ar…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/ed6df4dd3316597dc54dd3989438af/26ed6df4dd3316597dc54dd3989438af.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/2",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/ed6df4dd3316597dc54dd3989438af/26ed6df4dd3316597dc54dd3989438af.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-01T23:00:59+00:00",
+          "from": null,
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-01T23:00:59+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": "daGATO Case File #002",
+      "rarity": "Epic",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Epic"
+        },
+        {
+          "trait_type": "Artifact",
+          "display_type": null,
+          "max_value": null,
+          "value": "Briefcase"
+        }
+      ],
+      "token_rank": 3,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": false,
+      "agency_rarity_series": false,
+      "is_edition_token": true,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-01T23:00:59+00:00",
+          "from": null,
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "1",
+      "name": "Common Case File #01 · Vol 3",
+      "display_name": "Common Case File #01 · Vol 3",
+      "local_slug": "case-file-v3-001",
+      "excerpt": "A classified collectible from daGATO Detective Agency: Volume 3. Each case file contains one of five artifacts recovered after the detective vanished. Every ar…",
+      "image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/1",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0x1dc4774536ad44eed3e327b67c103815c54a8734/b46881b3087063bdd3ffd9bde10e74/7cb46881b3087063bdd3ffd9bde10e74.jpeg",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1
+          }
+        ],
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-01T23:00:59+00:00",
+          "from": null,
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-10-01T23:00:59+00:00",
+      "collection_id": "dagato-agency",
+      "opensea_name": "daGATO Case File #001",
+      "rarity": "Common",
+      "traits": [
+        {
+          "trait_type": "Rarity",
+          "display_type": null,
+          "max_value": null,
+          "value": "Common"
+        },
+        {
+          "trait_type": "Artifact",
+          "display_type": null,
+          "max_value": null,
+          "value": "Magnifying Glass"
+        }
+      ],
+      "token_rank": 5,
+      "volume": 3,
+      "volume_label": "Vol 3",
+      "opensea_slug": "dagato-detective-agency-volume-3",
+      "is_series_rep": false,
+      "agency_rarity_series": false,
+      "is_edition_token": true,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-01T23:00:59+00:00",
+          "from": null,
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
           "quantity": 1
         }
       ]
