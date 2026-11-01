@@ -145,15 +145,16 @@ python fetch_dagato_agency.py --volume 2   # single volume only (still full rewr
 
 | Surface | Detail |
 |---------|--------|
-| Hub / home tile | Eyebrow **`Agency · Vol 1–3`**; cool ice-blue premium dark card (Vol 3 label live; NFT ingest waits on reveal) |
+| Hub / home tile | Eyebrow **`Agency · Vol 1–3`**; cool ice-blue premium dark card |
 | Route | `/dacommunity/?collection=dagato-agency` (one site collection for all volumes) |
 | Steward | `dagato.eth` · no creator-wallet exclusion |
-| OpenSea | Separate collection per volume (`…-volume-1`, `…-volume-2`); listed in registry `volumes[]` |
+| OpenSea | Separate collection per volume (`…-volume-1` … `…-volume-3`); listed in registry `volumes[]` |
 | Browse titles | **`{Rarity} Case File · Vol N`** e.g. `Legendary Case File · Vol 2` |
 | Wallet titles | **`{Rarity} Case File #NN · Vol N`** e.g. `Common Case File #33 · Vol 1` |
-| Browse grid | **5 rarity series per volume** (10 cards for Vol 1+2); pills **#1–#5**; sort Vol then rank |
+| Browse grid | **5 rarity series per volume** (15 cards for Vol 1–3); pills **#1–#5**; sort Vol then rank |
 | Pieces stat | Count of rarity series rows (not raw case-file count) |
 | Rarity tags | Standard / Select / Epic / Legendary / 1:1 on grid, holdings, detail (data may still store Common / Uncommon) |
+| Vol 3 | Slug `dagato-detective-agency-volume-3` · contract `0x1dc47745…` · ~20 revealed case files |
 | Detail | Aggregated holders + copies; transfer/sale history merged from case files |
 | Collector wallet | Edition token #s. Keys: `dagato-agency-v{N}-{token_id}` (require volume on holdings). Portfolio: `owners.holders` only (token #s collide across vols). |
 | Data | `web/data/dagato_agency_data.json` + `dagato_agency_catalog.json` (catalog includes `contract`) |

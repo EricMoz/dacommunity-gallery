@@ -70,6 +70,12 @@
           "opensea_slug": "dagato-detective-agency-volume-2",
           "contract": "0xeac8fc9a9f4825a9bb7b4ee4b7e90e9c6c27542f",
           "chain": "ethereum"
+        },
+        {
+          "volume": 3,
+          "opensea_slug": "dagato-detective-agency-volume-3",
+          "contract": "0x1dc4774536ad44eed3e327b67c103815c54a8734",
+          "chain": "ethereum"
         }
       ],
       "theme": {

@@ -64,6 +64,13 @@ DEFAULT_VOLUMES: list[dict] = [
         "chain": "ethereum",
         "image_url": None,
     },
+    {
+        "volume": 3,
+        "opensea_slug": "dagato-detective-agency-volume-3",
+        "contract": "0x1dc4774536ad44eed3e327b67c103815c54a8734",
+        "chain": "ethereum",
+        "image_url": None,
+    },
 ]
 
 # Mutated per-volume during fetch (build_item / series helpers).
