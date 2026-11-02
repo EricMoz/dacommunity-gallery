@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-02T00:33:46.739448+00:00",
+  "generated_at": "2026-11-02T17:40:53.354606+00:00",
   "source": "gallery_catalog",
   "collection": {
     "slug": "dacommunity-archive",
@@ -15,8 +15,8 @@
     "floor_eth": 0.0005,
     "floor_symbol": "ETH",
     "num_owners": 59,
-    "total_sales": 0,
-    "total_volume": 0.0,
+    "total_sales": 2,
+    "total_volume": 0.005,
     "piece_count": 65,
     "listed_count": 6
   },
@@ -96,26 +96,34 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 1,
+        "holder_count": 2,
         "circulating_copies": 4,
         "top_holders": [
           {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 2
+          },
+          {
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
-            "quantity": 4
+            "quantity": 2
           }
         ],
         "holders": [
           {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 2
+          },
+          {
             "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
-            "quantity": 4
+            "quantity": 2
           }
         ],
         "latest_change": {
-          "type": "mint",
-          "at": "2026-01-23T22:47:11+00:00",
-          "from": null,
-          "to": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
-          "quantity": 4
+          "type": "sale",
+          "at": "2026-11-02T02:23:45+00:00",
+          "from": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
         }
       },
       "minted_at": "2026-01-23T22:47:11+00:00"

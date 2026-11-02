@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-02T00:38:26.101337+00:00",
+  "generated_at": "2026-11-02T17:45:31.167738+00:00",
   "holders_index": {
     "ens_aliases": {
       "lostthegame.eth": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
@@ -51,14 +51,19 @@
         ],
         "username": "Saphoroth",
         "base_name": "lostthegame.base.eth",
-        "collection_quantity": 391,
-        "unique_pieces": 64,
+        "collection_quantity": 393,
+        "unique_pieces": 65,
         "last_ens_resolved": 1793546006.609792,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
           {
             "token_id": "65",
+            "name": "dacat.2years",
+            "display_name": "dacat.2years"
+          },
+          {
+            "token_id": "64",
             "name": "dacat.2years",
             "display_name": "dacat.2years"
           },
@@ -699,7 +704,7 @@
         "ens_history": [],
         "username": "daCAT_Dreams",
         "base_name": "dacatdreams.base.eth",
-        "collection_quantity": 94,
+        "collection_quantity": 92,
         "unique_pieces": 48,
         "last_ens_resolved": 1793573399.2672615,
         "last_profile_resolved": null,
@@ -3600,8 +3605,8 @@
         "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
         "ens_name": "saphoroth.eth",
         "username": "Saphoroth",
-        "unique_pieces": 64,
-        "collection_quantity": 391
+        "unique_pieces": 65,
+        "collection_quantity": 393
       },
       {
         "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
@@ -3615,7 +3620,7 @@
         "ens_name": null,
         "username": "daCAT_Dreams",
         "unique_pieces": 48,
-        "collection_quantity": 94
+        "collection_quantity": 92
       },
       {
         "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
