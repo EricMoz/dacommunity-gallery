@@ -30,4 +30,6 @@ COLLECTION_NOTE = (
 CREATOR_ENS = "dacatdreams.base.eth"
 
 # Rate limit: free tier ~60 reads/min. Use 2s for headroom on long runs (holders + per-token owners/events).
+# CI with repo secret OPENSEA_API_KEY uses REQUEST_DELAY_FAST_SEC via resolve_request_delay().
 REQUEST_DELAY_SEC = 2.0
+REQUEST_DELAY_FAST_SEC = 0.35

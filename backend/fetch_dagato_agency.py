@@ -32,6 +32,7 @@ from dotenv import load_dotenv
 from collections_registry import get_collection
 from owner_stats import dedupe_activity_rows, enrich_owner_stats
 from opensea_client import OpenSeaClient
+from opensea_throttle import resolve_request_delay
 
 ROOT = Path(__file__).resolve().parent.parent
 ENV_PATH = Path(__file__).resolve().parent / ".env"
@@ -792,6 +793,7 @@ def fetch_one_volume(
         chain=chain,
         contract=contract,
         collection_slug=slug,
+        delay=resolve_request_delay(),
     )
 
     print(f"\n=== Volume {volume} — {chain} / {slug} / {contract[:12]}… ===")
@@ -935,6 +937,7 @@ def main() -> int:
             chain=volumes[0].get("chain") or "ethereum",
             contract=volumes[0]["contract"],
             collection_slug=volumes[0]["opensea_slug"],
+            delay=resolve_request_delay(),
         )
         resolved = probe.resolve_account(CREATOR_ENS)
         if resolved.get("address"):

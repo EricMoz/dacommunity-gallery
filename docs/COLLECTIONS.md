@@ -166,12 +166,21 @@ Hub cards remain manual (home + `collections/index.html`) until the hub is fully
 
 | Job | Workflow name | What |
 |-----|---------------|------|
-| Daily | Refresh gallery data | Reverse ENS (+ username probe) → `wallet_index.json` for **daCommunity** holders |
+| Daily | Refresh gallery data | Reverse ENS (+ username probe) → `wallet_index.json` for **daCommunity** holders; badges stamp known ENS from index and live-resolve **bare** holders only |
 | Weekly | **Enrich wallet names (weekly)** | Base names → `name_index.json`; OpenSea usernames patch `wallet_index` (same key store as daily; prefers bare 0x wallets) |
 
 Reverse ENS uses **ensideas → web3.bio → ensdata → OpenSea** (primary reverse only). Soft cache ~3 days still probes ensideas so a new primary name applies for every wallet without waiting out the full window; prior names stay in `ens_history` / `ens_aliases`.
 
 Display priority: **ENS → Base → OpenSea username → short 0x** (`resolveCollectorIdentity` in `app.js`).
+
+### OpenSea request delay (daily)
+
+Daily fetch scripts use `backend/opensea_throttle.resolve_request_delay()`:
+- **`repo_secret` key** (or `OPENSEA_FAST=1`) → `0.35s` (same as enrich)
+- **Instant / minted / unknown** → `2.0s` safe default
+- Override anytime: `OPENSEA_REQUEST_DELAY=<seconds>` (rollback without code change)
+
+Full daily re-check of every collection stays; delay only changes throttle, not what is fetched.
 
 `wallet_index` does **not** list pure secondary-collection holders. UI may live-reverse those via ensdata.
 

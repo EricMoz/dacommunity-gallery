@@ -29,6 +29,7 @@ from dotenv import load_dotenv
 from collections_registry import get_collection
 from owner_stats import dedupe_activity_rows, enrich_owner_stats
 from opensea_client import OpenSeaClient
+from opensea_throttle import resolve_request_delay
 
 ROOT = Path(__file__).resolve().parent.parent
 ENV_PATH = Path(__file__).resolve().parent / ".env"
@@ -439,6 +440,7 @@ def main() -> int:
         chain=chain,
         contract=contract,
         collection_slug=slug,
+        delay=resolve_request_delay(),
     )
 
     print(f"BIG KIX — {chain} / {slug} / {contract[:10]}…")

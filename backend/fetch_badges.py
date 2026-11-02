@@ -31,14 +31,20 @@ import requests
 from dotenv import load_dotenv
 
 from opensea_client import ENS_CACHE_DAYS, OpenSeaClient
+from opensea_throttle import resolve_request_delay
 
 # Caches for speed (mint dates and ENS resolves are idempotent per run)
 mint_cache = {}
 ens_cache = {}
+# Per-run identity lookup from wallet_index (ens_name / username / base_name)
+_identity_by_addr: dict[str, dict] = {}
+_raw_request_delay: float | None = None
 
 ROOT = Path(__file__).resolve().parent.parent
 REVIEW_DIR = ROOT / "backend" / "review"
 REVIEW_DIR.mkdir(parents=True, exist_ok=True)
+WALLET_INDEX_PATH = ROOT / "web" / "data" / "wallet_index.json"
+NAME_INDEX_PATH = ROOT / "web" / "data" / "name_index.json"
 
 ISSUER_WALLET = "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee".lower()
 
@@ -114,6 +120,129 @@ def load_api_key() -> str:
     if not key:
         raise ValueError("OPENSEA_API_KEY not set (put in backend/.env or set as environment variable)")
     return key
+
+
+def _throttle_raw_opensea() -> None:
+    """Align badges raw requests.get calls with OpenSeaClient delay."""
+    global _raw_request_delay
+    if _raw_request_delay is None:
+        _raw_request_delay = resolve_request_delay()
+    if _raw_request_delay > 0:
+        time.sleep(_raw_request_delay)
+
+
+def load_identity_lookup() -> dict[str, dict]:
+    """Load wallet_index (+ name_index Base) for index-first ENS stamping."""
+    by_addr: dict[str, dict] = {}
+    try:
+        if WALLET_INDEX_PATH.exists():
+            prev = json.loads(WALLET_INDEX_PATH.read_text(encoding="utf-8"))
+            raw = (prev.get("holders_index") or {}).get("by_address") or {}
+            for k, v in raw.items():
+                if isinstance(v, dict):
+                    by_addr[k.lower()] = dict(v)
+    except Exception as ex:
+        print(f"  Note: wallet_index identity load skipped ({ex})")
+    try:
+        if NAME_INDEX_PATH.exists():
+            ni = json.loads(NAME_INDEX_PATH.read_text(encoding="utf-8"))
+            # name_index shapes vary; accept by_address or flat address keys
+            candidates = ni.get("by_address") or ni.get("names") or ni
+            if isinstance(candidates, dict):
+                for k, v in candidates.items():
+                    if not isinstance(v, dict):
+                        continue
+                    addr = k.lower()
+                    entry = by_addr.setdefault(addr, {"address": addr})
+                    base = v.get("base_name") or v.get("basename") or v.get("name")
+                    if base and not entry.get("base_name"):
+                        entry["base_name"] = base
+    except Exception as ex:
+        print(f"  Note: name_index identity load skipped ({ex})")
+    return by_addr
+
+
+def _has_usable_identity(entry: dict | None) -> bool:
+    if not entry:
+        return False
+    if entry.get("ens_name"):
+        return True
+    if entry.get("base_name"):
+        return True
+    username = (entry.get("username") or "").strip()
+    if username and not username.lower().startswith("0x"):
+        return True
+    return False
+
+
+def resolve_holder_ens(
+    address: str,
+    client: OpenSeaClient,
+    *,
+    identity_by_addr: dict[str, dict] | None = None,
+) -> str | None:
+    """Index-first ENS for badge holders; live-resolve bare wallets once (no 3× hammer)."""
+    addr = (address or "").lower().strip()
+    if not addr:
+        return None
+    if addr in ens_cache:
+        return ens_cache[addr]
+
+    lookup = identity_by_addr if identity_by_addr is not None else _identity_by_addr
+    prior = lookup.get(addr) or {}
+    prior_ens = prior.get("ens_name")
+    if prior_ens:
+        ens = str(prior_ens).lower()
+        ens_cache[addr] = ens
+        return ens
+
+    # Named via Base / OpenSea username — skip live ENS probe on daily badges path.
+    # Weekly enrich + gallery wallet_index merge remain the rename / username systems of record.
+    if _has_usable_identity(prior):
+        ens_cache[addr] = None
+        return None
+
+    try:
+        ens = client.resolve_ens_name(
+            addr,
+            last_resolved=prior.get("last_ens_resolved"),
+            cache_days=ENS_CACHE_DAYS,
+            previous_ens=prior_ens,
+        )
+    except Exception:
+        ens = None
+    if not ens and prior_ens:
+        ens = str(prior_ens).lower()
+    ens_cache[addr] = ens
+    return ens
+
+
+def attach_ens_to_holders(
+    holder_lists: list,
+    client: OpenSeaClient,
+    *,
+    identity_by_addr: dict[str, dict] | None = None,
+) -> None:
+    """Stamp ens_name onto holder dicts using index-first + bare-only resolve."""
+    for holder_list in holder_lists:
+        if not holder_list:
+            continue
+        for h in holder_list:
+            if not isinstance(h, dict):
+                continue
+            addr = h.get("address") or ""
+            ens = resolve_holder_ens(addr, client, identity_by_addr=identity_by_addr)
+            if ens:
+                h["ens_name"] = ens
+
+
+def nft_minted_at(nft: dict, chain: str, contract: str, token_id: str, api_key: str) -> str | None:
+    """Prefer NFT created_at/minted_at; mint-event GET only when missing."""
+    created = nft.get("created_at") or nft.get("minted_at")
+    if created:
+        return created
+    return get_first_mint_timestamp(chain, contract, token_id, api_key)
+
 
 def fetch_mint_events_by_wallet(api_key: str, wallet: str, after: str, chain: str = "ethereum", limit: int = 200, collection_slug: str = None) -> list[dict]:
     """Fetch mint events created by the wallet after the cutoff date.
@@ -215,6 +344,7 @@ def get_collection_holders(slug: str, api_key: str) -> list[dict]:
             # Try both common keys; OpenSea varies by endpoint/collection
             params["next"] = cursor
             params["cursor"] = cursor
+        _throttle_raw_opensea()
         resp = requests.get(f"https://api.opensea.io/api/v2/collections/{slug}/holders", headers=headers, params=params, timeout=30)
         if resp.status_code != 200:
             print(f"  Note: holders fetch for {slug} returned {resp.status_code}")
@@ -276,6 +406,7 @@ def get_first_mint_timestamp(chain: str, contract: str, token_id: str, api_key: 
     url = f"https://api.opensea.io/api/v2/events/chain/{chain}/contract/{contract}/nfts/{token_id}"
     params = {"event_type": "mint", "limit": 1}
     try:
+        _throttle_raw_opensea()
         resp = requests.get(url, headers=headers, params=params, timeout=30)
         if resp.status_code == 200:
             events = resp.json().get("asset_events", [])
@@ -362,7 +493,12 @@ def main():
     print(f"Targeting only known badge collections (using same nfts list as main dacommunity pipeline): {KNOWN_BADGE_COLLECTION_SLUGS}")
     print("Fetching NFTs list for known badge collections (no broad mint events scan)...")
 
-    client = OpenSeaClient(api_key)
+    global _identity_by_addr, _raw_request_delay
+    delay = resolve_request_delay()
+    _raw_request_delay = delay
+    client = OpenSeaClient(api_key, delay=delay)
+    _identity_by_addr = load_identity_lookup()
+    print(f"  Identity index: {len(_identity_by_addr)} wallets (index-first ENS; bare-only live resolve)")
     items = []
     first_mint_validated = False
     from collections import defaultdict
@@ -423,47 +559,11 @@ def main():
             non_issuer_holders = [h for h in all_holders if (h.get("address") or "").lower() != ISSUER_WALLET]
             series_stats = summarize_owners(non_issuer_holders)
 
-            # Attach ENS to series holders (for general search collectors list)
-            # Route badge owner addresses through the improved resolve_ens_name helper
-            # (ensdata.net primary, lowercase). Keep per-run ens_cache + simple retry wrapper
-            # for reliability inside the badges run (same as before).
-            for holder_list in (series_stats.get("holders", []), series_stats.get("top_holders", [])):
-                for h in holder_list:
-                    addr = h["address"]
-                    if addr in ens_cache:
-                        ens = ens_cache[addr]
-                    else:
-                        ens = None
-                        for attempt in range(3):
-                            try:
-                                ens = client.resolve_ens_name(addr)  # primary ensdata + fallback; always lower
-                                if ens:
-                                    break
-                                time.sleep(1 + attempt)
-                            except Exception:
-                                time.sleep(2 ** attempt)
-                        ens_cache[addr] = ens
-                    if ens:
-                        h["ens_name"] = ens
-
-            # also attach to raw current_holders for the series item (via improved resolver)
-            for h in non_issuer_holders:
-                addr = h["address"]
-                if addr in ens_cache:
-                    ens = ens_cache[addr]
-                else:
-                    ens = None
-                    for attempt in range(3):
-                        try:
-                            ens = client.resolve_ens_name(addr)
-                            if ens:
-                                break
-                            time.sleep(1 + attempt)
-                        except Exception:
-                            time.sleep(2 ** attempt)
-                    ens_cache[addr] = ens
-                if ens:
-                    h["ens_name"] = ens
+            # Attach ENS once per unique holder (index-first; bare-only live resolve; no 3× sleep hammer).
+            attach_ens_to_holders(
+                [series_stats.get("holders", []), series_stats.get("top_holders", []), non_issuer_holders],
+                client,
+            )
 
             # series rep (use first nft for other fields; image overridden to generic PNG in catalog)
             rep_nft = nfts[0]
@@ -493,7 +593,7 @@ def main():
             min_mint = None
             for n in nfts:
                 tid = str(n.get("identifier") or n.get("token_id") or "")
-                ca = get_first_mint_timestamp("ethereum", contract, tid, api_key) or n.get("created_at") or n.get("minted_at")
+                ca = nft_minted_at(n, "ethereum", contract, tid, api_key)
                 if ca and (min_mint is None or ca < min_mint):
                     min_mint = ca
             created_at = min_mint or rep_nft.get("created_at") or rep_nft.get("minted_at")
@@ -580,26 +680,16 @@ def main():
                             desc += '.'
                 image = nft.get("image_url") or nft.get("animation_url") or ""
                 media_type = "video" if (image or "").lower().endswith((".mp4", ".mov", ".webm")) else "image"
-                created_at = get_first_mint_timestamp("ethereum", contract, token_id, api_key) or nft.get("created_at") or nft.get("minted_at")
+                created_at = nft_minted_at(nft, "ethereum", contract, token_id, api_key)
 
                 # Per-token owners - use client for throttle
                 owners_list = client.get_nft_owners(token_id, "ethereum", contract)
                 non_issuer_holders = [o for o in owners_list if (o.get("address") or "").lower() != ISSUER_WALLET]
                 owner_stats = summarize_owners(non_issuer_holders)
-
-                for holder_list in (owner_stats.get("holders", []), owner_stats.get("top_holders", [])):
-                    for h in holder_list:
-                        ens = None
-                        for attempt in range(3):
-                            try:
-                                ens = client.resolve_ens_name(h["address"])
-                                if ens:
-                                    break
-                                time.sleep(1 + attempt)
-                            except Exception:
-                                time.sleep(2 ** attempt)
-                        if ens:
-                            h["ens_name"] = ens
+                attach_ens_to_holders(
+                    [owner_stats.get("holders", []), owner_stats.get("top_holders", [])],
+                    client,
+                )
 
                 supply = 1
                 is_1of1 = True
@@ -677,7 +767,7 @@ def main():
                     desc += '.'
         image = nft.get("image_url") or nft.get("animation_url") or ""
         media_type = "video" if (image or "").lower().endswith((".mp4", ".mov", ".webm")) else "image"
-        created_at = get_first_mint_timestamp("ethereum", contract, token_id, api_key) or nft.get("created_at") or nft.get("minted_at")
+        created_at = nft_minted_at(nft, "ethereum", contract, token_id, api_key)
 
         if slug == "dagatoawards":
             owners_list = client.get_nft_owners(token_id, "ethereum", contract)
@@ -691,19 +781,10 @@ def main():
             owner_stats = summarize_owners(non_issuer_holders)
             total_minted = sum(int(h.get("quantity", 0) or 0) for h in all_holders) if all_holders else None
 
-        for holder_list in (owner_stats.get("holders", []), owner_stats.get("top_holders", [])):
-            for h in holder_list:
-                ens = None
-                for attempt in range(3):
-                    try:
-                        ens = client.resolve_ens_name(h["address"])
-                        if ens:
-                            break
-                        time.sleep(1 + attempt)
-                    except Exception:
-                        time.sleep(2 ** attempt)
-                if ens:
-                    h["ens_name"] = ens
+        attach_ens_to_holders(
+            [owner_stats.get("holders", []), owner_stats.get("top_holders", [])],
+            client,
+        )
 
         supply = len(nfts) or 1
         # True 1:1 only — never treat ≤5 editions as 1:1 (UI uses Ultra Rare / Rare tiers)

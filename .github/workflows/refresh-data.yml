@@ -118,6 +118,8 @@ jobs:
         id: fetch
         env:
           OPENSEA_API_KEY: ${{ steps.generate_key.outputs.key }}
+          OPENSEA_KEY_SOURCE: ${{ steps.generate_key.outputs.source }}
+          OPENSEA_FAST: ${{ steps.generate_key.outputs.source == 'repo_secret' && '1' || '0' }}
         run: |
           set -e
           pip install -r backend/requirements.txt
@@ -128,6 +130,8 @@ jobs:
         if: success()
         env:
           OPENSEA_API_KEY: ${{ steps.generate_key.outputs.key }}
+          OPENSEA_KEY_SOURCE: ${{ steps.generate_key.outputs.source }}
+          OPENSEA_FAST: ${{ steps.generate_key.outputs.source == 'repo_secret' && '1' || '0' }}
         run: |
           set -e
           cd backend
@@ -137,6 +141,8 @@ jobs:
         if: success()
         env:
           OPENSEA_API_KEY: ${{ steps.generate_key.outputs.key }}
+          OPENSEA_KEY_SOURCE: ${{ steps.generate_key.outputs.source }}
+          OPENSEA_FAST: ${{ steps.generate_key.outputs.source == 'repo_secret' && '1' || '0' }}
         run: |
           set -e
           cd backend
@@ -147,6 +153,8 @@ jobs:
         if: success()
         env:
           OPENSEA_API_KEY: ${{ steps.generate_key.outputs.key }}
+          OPENSEA_KEY_SOURCE: ${{ steps.generate_key.outputs.source }}
+          OPENSEA_FAST: ${{ steps.generate_key.outputs.source == 'repo_secret' && '1' || '0' }}
         run: |
           set -e
           cd backend
@@ -157,6 +165,8 @@ jobs:
         if: success()
         env:
           OPENSEA_API_KEY: ${{ steps.generate_key.outputs.key }}
+          OPENSEA_KEY_SOURCE: ${{ steps.generate_key.outputs.source }}
+          OPENSEA_FAST: ${{ steps.generate_key.outputs.source == 'repo_secret' && '1' || '0' }}
         run: |
           set -e
           cd backend
@@ -167,6 +177,8 @@ jobs:
         if: success()
         env:
           OPENSEA_API_KEY: ${{ steps.generate_key.outputs.key }}
+          OPENSEA_KEY_SOURCE: ${{ steps.generate_key.outputs.source }}
+          OPENSEA_FAST: ${{ steps.generate_key.outputs.source == 'repo_secret' && '1' || '0' }}
         run: |
           set -e
           cd backend
@@ -240,7 +252,7 @@ jobs:
           set -e
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add web/data/gallery_data.json web/data/gallery_catalog.json web/data/wallet_index.json web/data/gallery_meta.json web/data/badges_data.json web/data/badges_catalog.json web/data/bigkix_data.json web/data/bigkix_catalog.json web/data/dagato_agency_data.json web/data/dagato_agency_catalog.json web/data/hats_n_dacats_data.json web/data/hats_n_dacats_catalog.json
+          git add web/data/gallery_data.json web/data/gallery_catalog.json web/data/wallet_index.json web/data/gallery_meta.json web/data/badges_data.json web/data/badges_catalog.json web/data/bigkix_data.json web/data/bigkix_catalog.json web/data/dagato_agency_data.json web/data/dagato_agency_catalog.json web/data/hats_n_dacats_data.json web/data/hats_n_dacats_catalog.json web/data/physical_companions_data.json web/data/physical_companions_catalog.json
           if git diff --staged --quiet; then
             echo "No JSON changes — OpenSea data already up to date."
             echo "changed=false" >> $GITHUB_OUTPUT

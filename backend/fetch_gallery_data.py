@@ -31,6 +31,7 @@ from config import (
     OPENSEA_COLLECTION_URL,
 )
 from opensea_client import ENS_CACHE_DAYS, OpenSeaClient
+from opensea_throttle import resolve_request_delay
 from title_utils import apply_item_titles, display_title, extract_slug
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -522,7 +523,7 @@ def main() -> int:
     args = parser.parse_args()
 
     api_key = load_api_key(create_if_missing=args.create_key)
-    client = OpenSeaClient(api_key)
+    client = OpenSeaClient(api_key, delay=resolve_request_delay())
 
     print("Verifying contract on Base...")
     contract_meta = client.get_contract()
