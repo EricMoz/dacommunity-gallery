@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-20T21:22:03.627106+00:00",
-  "source": "opensea_page_scrape",
+  "generated_at": "2026-11-02T00:36:59.583919+00:00",
+  "source": "opensea_api_v2",
   "collection": {
     "id": "physical-companions",
     "slug": "dacatworldfoundersedition",
@@ -13,19 +13,20 @@
     "creator_ens": "dacatworld.eth",
     "creator_wallet": {
       "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+      "username": "dacatworld",
       "ens_name": "dacatworld.eth"
     },
     "creator_excluded_from_stats": false,
-    "contract_name": "DACAT WORLD Founders Edition",
-    "floor_eth": null,
-    "floor_symbol": "ETH",
+    "contract_name": "DACAT WORLD FOUNDERS EDITION 3D PRINTED COLLECTIBLE FIGURES",
+    "floor_eth": 0.0,
+    "floor_symbol": "",
     "num_owners": 9,
-    "total_sales": null,
-    "total_volume": null,
+    "total_sales": 0,
+    "total_volume": 0.0,
     "piece_count": 10,
     "listed_count": 0,
     "max_supply": 20,
-    "first_minted_at": "2026-10-17T21:18:22.252000+00:00",
+    "first_minted_at": "2026-10-18T06:35:23+00:00",
     "series": [
       {
         "id": "founders-edition",
@@ -35,7 +36,7 @@
         "max_supply": 20,
         "minted_count": 10,
         "generic_image": "assets/physical-companions/dacat-world-founders-edition-collectible-figure.png",
-        "first_minted_at": "2026-10-17T21:18:22.252000+00:00"
+        "first_minted_at": "2026-10-18T06:35:23+00:00"
       }
     ],
     "generic_image": "assets/physical-companions/dacat-world-founders-edition-collectible-figure.png"
@@ -79,13 +80,13 @@
             "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
             "quantity": 2,
             "ens_name": null,
-            "username": "dacatworld"
+            "username": null
           },
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
             "quantity": 1,
             "ens_name": null,
-            "username": "daKINGSI"
+            "username": null
           },
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
@@ -97,13 +98,13 @@
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1,
             "ens_name": null,
-            "username": "daBeezy1"
+            "username": null
           },
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1,
             "ens_name": null,
-            "username": "Saphoroth"
+            "username": null
           },
           {
             "address": "0x45c40c45acae24900ccf6629b0b107aaeef31b88",
@@ -115,13 +116,13 @@
             "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
             "quantity": 1,
             "ens_name": null,
-            "username": "Kryptlos"
+            "username": null
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1,
             "ens_name": null,
-            "username": "mozvane.eth"
+            "username": null
           }
         ],
         "holders": [
@@ -129,13 +130,13 @@
             "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
             "quantity": 2,
             "ens_name": null,
-            "username": "dacatworld"
+            "username": null
           },
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
             "quantity": 1,
             "ens_name": null,
-            "username": "daKINGSI"
+            "username": null
           },
           {
             "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
@@ -147,13 +148,13 @@
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
             "quantity": 1,
             "ens_name": null,
-            "username": "daBeezy1"
+            "username": null
           },
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
             "quantity": 1,
             "ens_name": null,
-            "username": "Saphoroth"
+            "username": null
           },
           {
             "address": "0x45c40c45acae24900ccf6629b0b107aaeef31b88",
@@ -165,22 +166,29 @@
             "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
             "quantity": 1,
             "ens_name": null,
-            "username": "Kryptlos"
+            "username": null
           },
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
             "quantity": 1,
             "ens_name": null,
-            "username": "mozvane.eth"
+            "username": null
           },
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
             "quantity": 1,
             "ens_name": null,
-            "username": "dagato_offical"
+            "username": null
           }
         ],
-        "creator_excluded": false
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-10-18T17:38:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+          "quantity": 1
+        }
       },
       "collection_id": "physical-companions",
       "is_series_rep": true,
@@ -192,22 +200,22 @@
         {
           "token_id": "1",
           "name": "DACAT WORLD Founders Edition #1",
-          "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/d20b759f52bd9eb1334984d2640943/ced20b759f52bd9eb1334984d2640943.png?w=1000",
-          "opensea_url": "https://opensea.io/item/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/1",
+          "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/d20b759f52bd9eb1334984d2640943/ced20b759f52bd9eb1334984d2640943.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/1",
           "listed": false,
-          "minted_at": "2026-10-17T21:18:22.252000+00:00",
+          "minted_at": "2026-10-18T06:35:23+00:00",
           "owner_address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
           "owner_ens": null,
-          "owner_username": "daKINGSI",
+          "owner_username": null,
           "physical_series": "founders-edition"
         },
         {
           "token_id": "2",
           "name": "DACAT WORLD Founders Edition #2",
-          "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/d8d098a25c108eaf3cf008b25d9a35/5ad8d098a25c108eaf3cf008b25d9a35.png?w=1000",
-          "opensea_url": "https://opensea.io/item/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/2",
+          "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/d8d098a25c108eaf3cf008b25d9a35/5ad8d098a25c108eaf3cf008b25d9a35.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/2",
           "listed": false,
-          "minted_at": "2026-10-17T21:18:22.252000+00:00",
+          "minted_at": "2026-10-18T06:38:59+00:00",
           "owner_address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
           "owner_ens": null,
           "owner_username": null,
@@ -216,34 +224,34 @@
         {
           "token_id": "3",
           "name": "DACAT WORLD Founders Edition #3",
-          "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/199755a13cb1c9d462a272995e42d2/e8199755a13cb1c9d462a272995e42d2.png?w=1000",
-          "opensea_url": "https://opensea.io/item/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/3",
+          "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/199755a13cb1c9d462a272995e42d2/e8199755a13cb1c9d462a272995e42d2.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/3",
           "listed": false,
-          "minted_at": "2026-10-17T21:18:22.252000+00:00",
+          "minted_at": "2026-10-18T06:45:47+00:00",
           "owner_address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
           "owner_ens": null,
-          "owner_username": "daBeezy1",
+          "owner_username": null,
           "physical_series": "founders-edition"
         },
         {
           "token_id": "4",
           "name": "DACAT WORLD Founders Edition #4",
-          "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/a9521f792298ba1a992a82fbd08acb/67a9521f792298ba1a992a82fbd08acb.png?w=1000",
-          "opensea_url": "https://opensea.io/item/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/4",
+          "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/a9521f792298ba1a992a82fbd08acb/67a9521f792298ba1a992a82fbd08acb.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/4",
           "listed": false,
-          "minted_at": "2026-10-17T21:18:22.252000+00:00",
+          "minted_at": "2026-10-18T06:49:23+00:00",
           "owner_address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
           "owner_ens": null,
-          "owner_username": "Saphoroth",
+          "owner_username": null,
           "physical_series": "founders-edition"
         },
         {
           "token_id": "5",
           "name": "DACAT WORLD Founders Edition #5",
-          "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/ac92fc1a1a8f91e71b44b9d5b40c4e/57ac92fc1a1a8f91e71b44b9d5b40c4e.png?w=1000",
-          "opensea_url": "https://opensea.io/item/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/5",
+          "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/ac92fc1a1a8f91e71b44b9d5b40c4e/57ac92fc1a1a8f91e71b44b9d5b40c4e.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/5",
           "listed": false,
-          "minted_at": "2026-10-17T21:18:22.252000+00:00",
+          "minted_at": "2026-10-18T06:54:47+00:00",
           "owner_address": "0x45c40c45acae24900ccf6629b0b107aaeef31b88",
           "owner_ens": null,
           "owner_username": null,
@@ -252,61 +260,61 @@
         {
           "token_id": "6",
           "name": "DACAT WORLD Founders Edition #6",
-          "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/c455e3b0dbebc96de2a43597f232d2/22c455e3b0dbebc96de2a43597f232d2.png?w=1000",
-          "opensea_url": "https://opensea.io/item/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/6",
+          "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/c455e3b0dbebc96de2a43597f232d2/22c455e3b0dbebc96de2a43597f232d2.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/6",
           "listed": false,
-          "minted_at": "2026-10-18T21:18:22.252000+00:00",
+          "minted_at": "2026-10-18T15:57:47+00:00",
           "owner_address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
           "owner_ens": null,
-          "owner_username": "Kryptlos",
+          "owner_username": null,
           "physical_series": "founders-edition"
         },
         {
           "token_id": "7",
           "name": "DACAT WORLD Founders Edition #7",
-          "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/653dc0c983b4078808df03ad03f3fd/97653dc0c983b4078808df03ad03f3fd.png?w=1000",
-          "opensea_url": "https://opensea.io/item/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/7",
+          "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/653dc0c983b4078808df03ad03f3fd/97653dc0c983b4078808df03ad03f3fd.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/7",
           "listed": false,
-          "minted_at": "2026-10-18T21:18:22.252000+00:00",
+          "minted_at": "2026-10-18T16:07:11+00:00",
           "owner_address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
           "owner_ens": null,
-          "owner_username": "mozvane.eth",
+          "owner_username": null,
           "physical_series": "founders-edition"
         },
         {
           "token_id": "8",
           "name": "DACAT WORLD Founders Edition #8",
-          "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/e020f12738ad35a908bddd762ee9ae/7ee020f12738ad35a908bddd762ee9ae.png?w=1000",
-          "opensea_url": "https://opensea.io/item/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/8",
+          "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/e020f12738ad35a908bddd762ee9ae/7ee020f12738ad35a908bddd762ee9ae.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/8",
           "listed": false,
-          "minted_at": "2026-10-18T21:18:22.252000+00:00",
+          "minted_at": "2026-10-18T16:11:35+00:00",
           "owner_address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "owner_ens": null,
-          "owner_username": "dacatworld",
+          "owner_username": null,
           "physical_series": "founders-edition"
         },
         {
           "token_id": "9",
           "name": "DACAT WORLD Founders Edition #9",
-          "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/33d81a572fca23458647ec01507914/2c33d81a572fca23458647ec01507914.png?w=1000",
-          "opensea_url": "https://opensea.io/item/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/9",
+          "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/33d81a572fca23458647ec01507914/2c33d81a572fca23458647ec01507914.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/9",
           "listed": false,
-          "minted_at": "2026-10-18T21:18:22.252000+00:00",
+          "minted_at": "2026-10-18T17:15:59+00:00",
           "owner_address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
           "owner_ens": null,
-          "owner_username": "dacatworld",
+          "owner_username": null,
           "physical_series": "founders-edition"
         },
         {
           "token_id": "10",
           "name": "DACAT WORLD Founders Edition #10",
-          "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/b95511b8cc25a4a7e6bedbc43c9b10/e7b95511b8cc25a4a7e6bedbc43c9b10.png?w=1000",
-          "opensea_url": "https://opensea.io/item/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/10",
+          "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/b95511b8cc25a4a7e6bedbc43c9b10/e7b95511b8cc25a4a7e6bedbc43c9b10.png",
+          "opensea_url": "https://opensea.io/assets/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/10",
           "listed": false,
-          "minted_at": "2026-10-18T21:18:22.252000+00:00",
+          "minted_at": "2026-10-18T17:20:47+00:00",
           "owner_address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
           "owner_ens": null,
-          "owner_username": "dagato_offical",
+          "owner_username": null,
           "physical_series": "founders-edition"
         }
       ],
@@ -322,20 +330,106 @@
         "9",
         "10"
       ],
-      "minted_at": "2026-10-17T21:18:22.252000+00:00"
+      "minted_at": "2026-10-18T06:35:23+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-10-18T17:38:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-10-18T17:36:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-10-18T17:34:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-10-18T17:32:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x45c40c45acae24900ccf6629b0b107aaeef31b88",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-10-18T17:29:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-10-18T17:27:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-10-18T17:26:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "quantity": 1
+        },
+        {
+          "type": "transfer",
+          "at": "2026-10-18T17:24:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-18T17:20:47+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-18T17:15:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-18T16:11:35+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-18T16:07:11+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ]
     },
     {
       "token_id": "1",
       "name": "DACAT WORLD Founders Edition #1",
       "display_name": "DACAT WORLD Founders Edition #1",
       "local_slug": "founders-edition-1",
-      "description": "DACAT WORLD #1 of 20 FOUNDERS EDITION Step into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collection of the first 20 numbered physical figures. Each artwork features the carded figure and its packaging, with Founders Edition branding and an edition number from 1 of 20 through 20 of 20. Together, the figure and artwork bring a piece of the DACAT WORLD entertainment universe into collectible form. E",
+      "description": "DACAT WORLD #1 of 20 FOUNDERS EDITION \n\nStep into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collection of the first 20 numbered physical figures. Each artwork features the carded figure and its packaging, with Founders Edition branding and an edition number from 1 of 20 through 20 of 20. Together, the figure and artwork bring a piece of the DACAT WORLD entertainment universe into collectible form. Explore a world of comics, characters, games, and 3D printed collectibles, where stories take shape on the page, on screens, and on your shelf. The Founders Edition celebrates that creative spirit through a small physical run and its accompanying digital artwork. Whether you connect with the character, the packaging, or the world behind it, this collection offers a glimpse into Russell Corey's expanding creative universe. Welcome to DACAT WORLD.",
       "excerpt": "Step into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collect…",
-      "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/d20b759f52bd9eb1334984d2640943/ced20b759f52bd9eb1334984d2640943.png?w=1000",
+      "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/d20b759f52bd9eb1334984d2640943/ced20b759f52bd9eb1334984d2640943.png",
       "media_type": "image",
-      "opensea_url": "https://opensea.io/item/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/1",
-      "metadata_url": null,
-      "updated_at": null,
+      "opensea_url": "https://opensea.io/assets/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/1",
+      "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeicp4qr6puloz2r6ujz45al7lom7zjnlc2n5akvqm2ovwikcztoobu/1",
+      "updated_at": "2026-11-02T00:36:47.650715",
       "traits": [
         {
           "trait_type": "Edition",
@@ -357,59 +451,61 @@
         "top_holders": [
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1,
-            "username": "daKINGSI"
+            "quantity": 1
           }
         ],
         "holders": [
           {
             "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1,
-            "username": "daKINGSI"
+            "quantity": 1
           }
         ],
-        "creator_excluded": false
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-10-18T17:24:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        }
       },
       "collection_id": "physical-companions",
       "is_edition_token": true,
       "is_series_rep": false,
       "physical_series_rep": false,
       "max_supply": 20,
-      "community_owners": {
-        "holder_count": 1,
-        "circulating_copies": 1,
-        "top_holders": [
-          {
-            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1,
-            "username": "daKINGSI"
-          }
-        ],
-        "holders": [
-          {
-            "address": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
-            "quantity": 1,
-            "username": "daKINGSI"
-          }
-        ],
-        "creator_excluded": true
-      },
-      "minted_at": "2026-10-17T21:18:22.252000+00:00",
+      "minted_at": "2026-10-18T06:35:23+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-10-18T17:24:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xd5a9b59822c9f0144df9d6bd7050b69982d8bca3",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-18T06:35:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ],
       "opensea_name": "DACAT WORLD #1 of 20 FOUNDERS EDITION",
-      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/d20b759f52bd9eb1334984d2640943/ced20b759f52bd9eb1334984d2640943.png?w=1000"
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/d20b759f52bd9eb1334984d2640943/ced20b759f52bd9eb1334984d2640943.png"
     },
     {
       "token_id": "2",
       "name": "DACAT WORLD Founders Edition #2",
       "display_name": "DACAT WORLD Founders Edition #2",
       "local_slug": "founders-edition-2",
-      "description": "DACAT WORLD #2 of 20 FOUNDERS EDITION Step into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collection of the first 20 numbered physical figures. Each artwork features the carded figure and its packaging, with Founders Edition branding and an edition number from 1 of 20 through 20 of 20. Together, the figure and artwork bring a piece of the DACAT WORLD entertainment universe into collectible form. E",
+      "description": "DACAT WORLD #2 of 20 FOUNDERS EDITION \n\nStep into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collection of the first 20 numbered physical figures. Each artwork features the carded figure and its packaging, with Founders Edition branding and an edition number from 1 of 20 through 20 of 20. Together, the figure and artwork bring a piece of the DACAT WORLD entertainment universe into collectible form. Explore a world of comics, characters, games, and 3D printed collectibles, where stories take shape on the page, on screens, and on your shelf. The Founders Edition celebrates that creative spirit through a small physical run and its accompanying digital artwork. Whether you connect with the character, the packaging, or the world behind it, this collection offers a glimpse into Russell Corey's expanding creative universe. Welcome to DACAT WORLD.",
       "excerpt": "Step into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collect…",
-      "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/d8d098a25c108eaf3cf008b25d9a35/5ad8d098a25c108eaf3cf008b25d9a35.png?w=1000",
+      "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/d8d098a25c108eaf3cf008b25d9a35/5ad8d098a25c108eaf3cf008b25d9a35.png",
       "media_type": "image",
-      "opensea_url": "https://opensea.io/item/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/2",
-      "metadata_url": null,
-      "updated_at": null,
+      "opensea_url": "https://opensea.io/assets/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/2",
+      "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeicp4qr6puloz2r6ujz45al7lom7zjnlc2n5akvqm2ovwikcztoobu/2",
+      "updated_at": "2026-11-02T00:36:47.650713",
       "traits": [
         {
           "trait_type": "Edition",
@@ -440,46 +536,52 @@
             "quantity": 1
           }
         ],
-        "creator_excluded": false
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-10-18T17:26:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "quantity": 1
+        }
       },
       "collection_id": "physical-companions",
       "is_edition_token": true,
       "is_series_rep": false,
       "physical_series_rep": false,
       "max_supply": 20,
-      "community_owners": {
-        "holder_count": 1,
-        "circulating_copies": 1,
-        "top_holders": [
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1
-          }
-        ],
-        "holders": [
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1
-          }
-        ],
-        "creator_excluded": true
-      },
-      "minted_at": "2026-10-17T21:18:22.252000+00:00",
+      "minted_at": "2026-10-18T06:38:59+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-10-18T17:26:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-18T06:38:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ],
       "opensea_name": "DACAT WORLD #2 of 20 FOUNDERS EDITION",
-      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/d8d098a25c108eaf3cf008b25d9a35/5ad8d098a25c108eaf3cf008b25d9a35.png?w=1000"
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/d8d098a25c108eaf3cf008b25d9a35/5ad8d098a25c108eaf3cf008b25d9a35.png"
     },
     {
       "token_id": "3",
       "name": "DACAT WORLD Founders Edition #3",
       "display_name": "DACAT WORLD Founders Edition #3",
       "local_slug": "founders-edition-3",
-      "description": "DACAT WORLD #3 of 20 FOUNDERS EDITION Step into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collection of the first 20 numbered physical figures. Each artwork features the carded figure and its packaging, with Founders Edition branding and an edition number from 1 of 20 through 20 of 20. Together, the figure and artwork bring a piece of the DACAT WORLD entertainment universe into collectible form. E",
+      "description": "DACAT WORLD #3 of 20 FOUNDERS EDITION\n\nStep into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collection of the first 20 numbered physical figures. Each artwork features the carded figure and its packaging, with Founders Edition branding and an edition number from 1 of 20 through 20 of 20. Together, the figure and artwork bring a piece of the DACAT WORLD entertainment universe into collectible form. Explore a world of comics, characters, games, and 3D printed collectibles, where stories take shape on the page, on screens, and on your shelf. The Founders Edition celebrates that creative spirit through a small physical run and its accompanying digital artwork. Whether you connect with the character, the packaging, or the world behind it, this collection offers a glimpse into Russell Corey's expanding creative universe. Welcome to DACAT WORLD.",
       "excerpt": "Step into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collect…",
-      "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/199755a13cb1c9d462a272995e42d2/e8199755a13cb1c9d462a272995e42d2.png?w=1000",
+      "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/199755a13cb1c9d462a272995e42d2/e8199755a13cb1c9d462a272995e42d2.png",
       "media_type": "image",
-      "opensea_url": "https://opensea.io/item/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/3",
-      "metadata_url": null,
-      "updated_at": null,
+      "opensea_url": "https://opensea.io/assets/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/3",
+      "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeicp4qr6puloz2r6ujz45al7lom7zjnlc2n5akvqm2ovwikcztoobu/3",
+      "updated_at": "2026-11-02T00:36:47.650710",
       "traits": [
         {
           "trait_type": "Edition",
@@ -501,59 +603,61 @@
         "top_holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-            "quantity": 1,
-            "username": "daBeezy1"
+            "quantity": 1
           }
         ],
         "holders": [
           {
             "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-            "quantity": 1,
-            "username": "daBeezy1"
+            "quantity": 1
           }
         ],
-        "creator_excluded": false
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-10-18T17:27:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+          "quantity": 1
+        }
       },
       "collection_id": "physical-companions",
       "is_edition_token": true,
       "is_series_rep": false,
       "physical_series_rep": false,
       "max_supply": 20,
-      "community_owners": {
-        "holder_count": 1,
-        "circulating_copies": 1,
-        "top_holders": [
-          {
-            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-            "quantity": 1,
-            "username": "daBeezy1"
-          }
-        ],
-        "holders": [
-          {
-            "address": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
-            "quantity": 1,
-            "username": "daBeezy1"
-          }
-        ],
-        "creator_excluded": true
-      },
-      "minted_at": "2026-10-17T21:18:22.252000+00:00",
+      "minted_at": "2026-10-18T06:45:47+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-10-18T17:27:59+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdf7c2ea52e52d6662e2c9e05c43b2b74b60a6868",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-18T06:45:47+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ],
       "opensea_name": "DACAT WORLD #3 of 20 FOUNDERS EDITION",
-      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/199755a13cb1c9d462a272995e42d2/e8199755a13cb1c9d462a272995e42d2.png?w=1000"
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/199755a13cb1c9d462a272995e42d2/e8199755a13cb1c9d462a272995e42d2.png"
     },
     {
       "token_id": "4",
       "name": "DACAT WORLD Founders Edition #4",
       "display_name": "DACAT WORLD Founders Edition #4",
       "local_slug": "founders-edition-4",
-      "description": "DACAT WORLD #4 of 20 FOUNDERS EDITION Step into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collection of the first 20 numbered physical figures. Each artwork features the carded figure and its packaging, with Founders Edition branding and an edition number from 1 of 20 through 20 of 20. Together, the figure and artwork bring a piece of the DACAT WORLD entertainment universe into collectible form. E",
+      "description": "DACAT WORLD #4 of 20 FOUNDERS EDITION\n\nStep into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collection of the first 20 numbered physical figures. Each artwork features the carded figure and its packaging, with Founders Edition branding and an edition number from 1 of 20 through 20 of 20. Together, the figure and artwork bring a piece of the DACAT WORLD entertainment universe into collectible form. Explore a world of comics, characters, games, and 3D printed collectibles, where stories take shape on the page, on screens, and on your shelf. The Founders Edition celebrates that creative spirit through a small physical run and its accompanying digital artwork. Whether you connect with the character, the packaging, or the world behind it, this collection offers a glimpse into Russell Corey's expanding creative universe. Welcome to DACAT WORLD.",
       "excerpt": "Step into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collect…",
-      "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/a9521f792298ba1a992a82fbd08acb/67a9521f792298ba1a992a82fbd08acb.png?w=1000",
+      "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/a9521f792298ba1a992a82fbd08acb/67a9521f792298ba1a992a82fbd08acb.png",
       "media_type": "image",
-      "opensea_url": "https://opensea.io/item/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/4",
-      "metadata_url": null,
-      "updated_at": null,
+      "opensea_url": "https://opensea.io/assets/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/4",
+      "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeicp4qr6puloz2r6ujz45al7lom7zjnlc2n5akvqm2ovwikcztoobu/4",
+      "updated_at": "2026-11-02T00:36:47.650708",
       "traits": [
         {
           "trait_type": "Edition",
@@ -575,59 +679,61 @@
         "top_holders": [
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1,
-            "username": "Saphoroth"
+            "quantity": 1
           }
         ],
         "holders": [
           {
             "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1,
-            "username": "Saphoroth"
+            "quantity": 1
           }
         ],
-        "creator_excluded": false
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-10-18T17:29:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        }
       },
       "collection_id": "physical-companions",
       "is_edition_token": true,
       "is_series_rep": false,
       "physical_series_rep": false,
       "max_supply": 20,
-      "community_owners": {
-        "holder_count": 1,
-        "circulating_copies": 1,
-        "top_holders": [
-          {
-            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1,
-            "username": "Saphoroth"
-          }
-        ],
-        "holders": [
-          {
-            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1,
-            "username": "Saphoroth"
-          }
-        ],
-        "creator_excluded": true
-      },
-      "minted_at": "2026-10-17T21:18:22.252000+00:00",
+      "minted_at": "2026-10-18T06:49:23+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-10-18T17:29:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-18T06:49:23+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ],
       "opensea_name": "DACAT WORLD #4 of 20 FOUNDERS EDITION",
-      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/a9521f792298ba1a992a82fbd08acb/67a9521f792298ba1a992a82fbd08acb.png?w=1000"
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/a9521f792298ba1a992a82fbd08acb/67a9521f792298ba1a992a82fbd08acb.png"
     },
     {
       "token_id": "5",
       "name": "DACAT WORLD Founders Edition #5",
       "display_name": "DACAT WORLD Founders Edition #5",
       "local_slug": "founders-edition-5",
-      "description": "DACAT WORLD #5 of 20 FOUNDERS EDITION Step into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collection of the first 20 numbered physical figures. Each artwork features the carded figure and its packaging, with Founders Edition branding and an edition number from 1 of 20 through 20 of 20. Together, the figure and artwork bring a piece of the DACAT WORLD entertainment universe into collectible form. E",
+      "description": "DACAT WORLD #5 of 20 FOUNDERS EDITION\n\nStep into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collection of the first 20 numbered physical figures. Each artwork features the carded figure and its packaging, with Founders Edition branding and an edition number from 1 of 20 through 20 of 20. Together, the figure and artwork bring a piece of the DACAT WORLD entertainment universe into collectible form. Explore a world of comics, characters, games, and 3D printed collectibles, where stories take shape on the page, on screens, and on your shelf. The Founders Edition celebrates that creative spirit through a small physical run and its accompanying digital artwork. Whether you connect with the character, the packaging, or the world behind it, this collection offers a glimpse into Russell Corey's expanding creative universe. Welcome to DACAT WORLD.",
       "excerpt": "Step into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collect…",
-      "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/ac92fc1a1a8f91e71b44b9d5b40c4e/57ac92fc1a1a8f91e71b44b9d5b40c4e.png?w=1000",
+      "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/ac92fc1a1a8f91e71b44b9d5b40c4e/57ac92fc1a1a8f91e71b44b9d5b40c4e.png",
       "media_type": "image",
-      "opensea_url": "https://opensea.io/item/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/5",
-      "metadata_url": null,
-      "updated_at": null,
+      "opensea_url": "https://opensea.io/assets/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/5",
+      "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeicp4qr6puloz2r6ujz45al7lom7zjnlc2n5akvqm2ovwikcztoobu/5",
+      "updated_at": "2026-11-02T00:36:47.650706",
       "traits": [
         {
           "trait_type": "Edition",
@@ -658,46 +764,52 @@
             "quantity": 1
           }
         ],
-        "creator_excluded": false
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-10-18T17:32:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x45c40c45acae24900ccf6629b0b107aaeef31b88",
+          "quantity": 1
+        }
       },
       "collection_id": "physical-companions",
       "is_edition_token": true,
       "is_series_rep": false,
       "physical_series_rep": false,
       "max_supply": 20,
-      "community_owners": {
-        "holder_count": 1,
-        "circulating_copies": 1,
-        "top_holders": [
-          {
-            "address": "0x45c40c45acae24900ccf6629b0b107aaeef31b88",
-            "quantity": 1
-          }
-        ],
-        "holders": [
-          {
-            "address": "0x45c40c45acae24900ccf6629b0b107aaeef31b88",
-            "quantity": 1
-          }
-        ],
-        "creator_excluded": true
-      },
-      "minted_at": "2026-10-17T21:18:22.252000+00:00",
+      "minted_at": "2026-10-18T06:54:47+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-10-18T17:32:35+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x45c40c45acae24900ccf6629b0b107aaeef31b88",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-18T06:54:47+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ],
       "opensea_name": "DACAT WORLD #5 of 20 FOUNDERS EDITION",
-      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/ac92fc1a1a8f91e71b44b9d5b40c4e/57ac92fc1a1a8f91e71b44b9d5b40c4e.png?w=1000"
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/ac92fc1a1a8f91e71b44b9d5b40c4e/57ac92fc1a1a8f91e71b44b9d5b40c4e.png"
     },
     {
       "token_id": "6",
       "name": "DACAT WORLD Founders Edition #6",
       "display_name": "DACAT WORLD Founders Edition #6",
       "local_slug": "founders-edition-6",
-      "description": "DACAT WORLD #6 of 20 FOUNDERS EDITION Step into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collection of the first 20 numbered physical figures. Each artwork features the carded figure and its packaging, with Founders Edition branding and an edition number from 1 of 20 through 20 of 20. Together, the figure and artwork bring a piece of the DACAT WORLD entertainment universe into collectible form. E",
+      "description": "DACAT WORLD #6 of 20 FOUNDERS EDITION\n\nStep into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collection of the first 20 numbered physical figures. Each artwork features the carded figure and its packaging, with Founders Edition branding and an edition number from 1 of 20 through 20 of 20. Together, the figure and artwork bring a piece of the DACAT WORLD entertainment universe into collectible form. Explore a world of comics, characters, games, and 3D printed collectibles, where stories take shape on the page, on screens, and on your shelf. The Founders Edition celebrates that creative spirit through a small physical run and its accompanying digital artwork. Whether you connect with the character, the packaging, or the world behind it, this collection offers a glimpse into Russell Corey's expanding creative universe. Welcome to DACAT WORLD.",
       "excerpt": "Step into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collect…",
-      "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/c455e3b0dbebc96de2a43597f232d2/22c455e3b0dbebc96de2a43597f232d2.png?w=1000",
+      "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/c455e3b0dbebc96de2a43597f232d2/22c455e3b0dbebc96de2a43597f232d2.png",
       "media_type": "image",
-      "opensea_url": "https://opensea.io/item/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/6",
-      "metadata_url": null,
-      "updated_at": null,
+      "opensea_url": "https://opensea.io/assets/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/6",
+      "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeicp4qr6puloz2r6ujz45al7lom7zjnlc2n5akvqm2ovwikcztoobu/6",
+      "updated_at": "2026-11-02T00:36:47.650703",
       "traits": [
         {
           "trait_type": "Edition",
@@ -719,59 +831,61 @@
         "top_holders": [
           {
             "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
-            "quantity": 1,
-            "username": "Kryptlos"
+            "quantity": 1
           }
         ],
         "holders": [
           {
             "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
-            "quantity": 1,
-            "username": "Kryptlos"
+            "quantity": 1
           }
         ],
-        "creator_excluded": false
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-10-18T17:34:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        }
       },
       "collection_id": "physical-companions",
       "is_edition_token": true,
       "is_series_rep": false,
       "physical_series_rep": false,
       "max_supply": 20,
-      "community_owners": {
-        "holder_count": 1,
-        "circulating_copies": 1,
-        "top_holders": [
-          {
-            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
-            "quantity": 1,
-            "username": "Kryptlos"
-          }
-        ],
-        "holders": [
-          {
-            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
-            "quantity": 1,
-            "username": "Kryptlos"
-          }
-        ],
-        "creator_excluded": true
-      },
-      "minted_at": "2026-10-18T21:18:22.252000+00:00",
+      "minted_at": "2026-10-18T15:57:47+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-10-18T17:34:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-18T15:57:47+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ],
       "opensea_name": "DACAT WORLD #6 of 20 FOUNDERS EDITION",
-      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/c455e3b0dbebc96de2a43597f232d2/22c455e3b0dbebc96de2a43597f232d2.png?w=1000"
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/c455e3b0dbebc96de2a43597f232d2/22c455e3b0dbebc96de2a43597f232d2.png"
     },
     {
       "token_id": "7",
       "name": "DACAT WORLD Founders Edition #7",
       "display_name": "DACAT WORLD Founders Edition #7",
       "local_slug": "founders-edition-7",
-      "description": "DACAT WORLD #7 of 20 FOUNDERS EDITION Step into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collection of the first 20 numbered physical figures. Each artwork features the carded figure and its packaging, with Founders Edition branding and an edition number from 1 of 20 through 20 of 20. Together, the figure and artwork bring a piece of the DACAT WORLD entertainment universe into collectible form. E",
+      "description": "DACAT WORLD #7 of 20 FOUNDERS EDITION\n\nStep into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collection of the first 20 numbered physical figures. Each artwork features the carded figure and its packaging, with Founders Edition branding and an edition number from 1 of 20 through 20 of 20. Together, the figure and artwork bring a piece of the DACAT WORLD entertainment universe into collectible form. Explore a world of comics, characters, games, and 3D printed collectibles, where stories take shape on the page, on screens, and on your shelf. The Founders Edition celebrates that creative spirit through a small physical run and its accompanying digital artwork. Whether you connect with the character, the packaging, or the world behind it, this collection offers a glimpse into Russell Corey's expanding creative universe. Welcome to DACAT WORLD.",
       "excerpt": "Step into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collect…",
-      "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/653dc0c983b4078808df03ad03f3fd/97653dc0c983b4078808df03ad03f3fd.png?w=1000",
+      "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/653dc0c983b4078808df03ad03f3fd/97653dc0c983b4078808df03ad03f3fd.png",
       "media_type": "image",
-      "opensea_url": "https://opensea.io/item/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/7",
-      "metadata_url": null,
-      "updated_at": null,
+      "opensea_url": "https://opensea.io/assets/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/7",
+      "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeicp4qr6puloz2r6ujz45al7lom7zjnlc2n5akvqm2ovwikcztoobu/7",
+      "updated_at": "2026-11-02T00:36:47.650701",
       "traits": [
         {
           "trait_type": "Edition",
@@ -793,59 +907,61 @@
         "top_holders": [
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1,
-            "username": "mozvane.eth"
+            "quantity": 1
           }
         ],
         "holders": [
           {
             "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1,
-            "username": "mozvane.eth"
+            "quantity": 1
           }
         ],
-        "creator_excluded": false
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-10-18T17:36:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        }
       },
       "collection_id": "physical-companions",
       "is_edition_token": true,
       "is_series_rep": false,
       "physical_series_rep": false,
       "max_supply": 20,
-      "community_owners": {
-        "holder_count": 1,
-        "circulating_copies": 1,
-        "top_holders": [
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1,
-            "username": "mozvane.eth"
-          }
-        ],
-        "holders": [
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1,
-            "username": "mozvane.eth"
-          }
-        ],
-        "creator_excluded": true
-      },
-      "minted_at": "2026-10-18T21:18:22.252000+00:00",
+      "minted_at": "2026-10-18T16:07:11+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-10-18T17:36:11+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-18T16:07:11+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ],
       "opensea_name": "DACAT WORLD #7 of 20 FOUNDERS EDITION",
-      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/653dc0c983b4078808df03ad03f3fd/97653dc0c983b4078808df03ad03f3fd.png?w=1000"
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/653dc0c983b4078808df03ad03f3fd/97653dc0c983b4078808df03ad03f3fd.png"
     },
     {
       "token_id": "8",
       "name": "DACAT WORLD Founders Edition #8",
       "display_name": "DACAT WORLD Founders Edition #8",
       "local_slug": "founders-edition-8",
-      "description": "DACAT WORLD #8 of 20 FOUNDERS EDITION Step into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collection of the first 20 numbered physical figures. Each artwork features the carded figure and its packaging, with Founders Edition branding and an edition number from 1 of 20 through 20 of 20. Together, the figure and artwork bring a piece of the DACAT WORLD entertainment universe into collectible form. E",
+      "description": "DACAT WORLD #8 of 20 FOUNDERS EDITION\n\nStep into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collection of the first 20 numbered physical figures. Each artwork features the carded figure and its packaging, with Founders Edition branding and an edition number from 1 of 20 through 20 of 20. Together, the figure and artwork bring a piece of the DACAT WORLD entertainment universe into collectible form. Explore a world of comics, characters, games, and 3D printed collectibles, where stories take shape on the page, on screens, and on your shelf. The Founders Edition celebrates that creative spirit through a small physical run and its accompanying digital artwork. Whether you connect with the character, the packaging, or the world behind it, this collection offers a glimpse into Russell Corey's expanding creative universe. Welcome to DACAT WORLD.",
       "excerpt": "Step into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collect…",
-      "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/e020f12738ad35a908bddd762ee9ae/7ee020f12738ad35a908bddd762ee9ae.png?w=1000",
+      "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/e020f12738ad35a908bddd762ee9ae/7ee020f12738ad35a908bddd762ee9ae.png",
       "media_type": "image",
-      "opensea_url": "https://opensea.io/item/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/8",
-      "metadata_url": null,
-      "updated_at": null,
+      "opensea_url": "https://opensea.io/assets/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/8",
+      "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeicp4qr6puloz2r6ujz45al7lom7zjnlc2n5akvqm2ovwikcztoobu/8",
+      "updated_at": "2026-11-02T00:36:47.650698",
       "traits": [
         {
           "trait_type": "Edition",
@@ -867,47 +983,54 @@
         "top_holders": [
           {
             "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-            "quantity": 1,
-            "username": "dacatworld"
+            "quantity": 1
           }
         ],
         "holders": [
           {
             "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-            "quantity": 1,
-            "username": "dacatworld"
+            "quantity": 1
           }
         ],
-        "creator_excluded": false
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-18T16:11:35+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
       },
       "collection_id": "physical-companions",
       "is_edition_token": true,
       "is_series_rep": false,
       "physical_series_rep": false,
       "max_supply": 20,
-      "community_owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": [],
-        "creator_excluded": true
-      },
-      "minted_at": "2026-10-18T21:18:22.252000+00:00",
+      "minted_at": "2026-10-18T16:11:35+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-18T16:11:35+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ],
       "opensea_name": "DACAT WORLD #8 of 20 FOUNDERS EDITION",
-      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/e020f12738ad35a908bddd762ee9ae/7ee020f12738ad35a908bddd762ee9ae.png?w=1000"
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/e020f12738ad35a908bddd762ee9ae/7ee020f12738ad35a908bddd762ee9ae.png"
     },
     {
       "token_id": "9",
       "name": "DACAT WORLD Founders Edition #9",
       "display_name": "DACAT WORLD Founders Edition #9",
       "local_slug": "founders-edition-9",
-      "description": "DACAT WORLD #9 of 20 FOUNDERS EDITION Step into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collection of the first 20 numbered physical figures. Each artwork features the carded figure and its packaging, with Founders Edition branding and an edition number from 1 of 20 through 20 of 20. Together, the figure and artwork bring a piece of the DACAT WORLD entertainment universe into collectible form. E",
+      "description": "DACAT WORLD #9 of 20 FOUNDERS EDITION\n\nStep into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collection of the first 20 numbered physical figures. Each artwork features the carded figure and its packaging, with Founders Edition branding and an edition number from 1 of 20 through 20 of 20. Together, the figure and artwork bring a piece of the DACAT WORLD entertainment universe into collectible form. Explore a world of comics, characters, games, and 3D printed collectibles, where stories take shape on the page, on screens, and on your shelf. The Founders Edition celebrates that creative spirit through a small physical run and its accompanying digital artwork. Whether you connect with the character, the packaging, or the world behind it, this collection offers a glimpse into Russell Corey's expanding creative universe. Welcome to DACAT WORLD.",
       "excerpt": "Step into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collect…",
-      "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/33d81a572fca23458647ec01507914/2c33d81a572fca23458647ec01507914.png?w=1000",
+      "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/33d81a572fca23458647ec01507914/2c33d81a572fca23458647ec01507914.png",
       "media_type": "image",
-      "opensea_url": "https://opensea.io/item/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/9",
-      "metadata_url": null,
-      "updated_at": null,
+      "opensea_url": "https://opensea.io/assets/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/9",
+      "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeicp4qr6puloz2r6ujz45al7lom7zjnlc2n5akvqm2ovwikcztoobu/9",
+      "updated_at": "2026-11-02T00:36:47.650695",
       "traits": [
         {
           "trait_type": "Edition",
@@ -929,47 +1052,54 @@
         "top_holders": [
           {
             "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-            "quantity": 1,
-            "username": "dacatworld"
+            "quantity": 1
           }
         ],
         "holders": [
           {
             "address": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
-            "quantity": 1,
-            "username": "dacatworld"
+            "quantity": 1
           }
         ],
-        "creator_excluded": false
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-10-18T17:15:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
       },
       "collection_id": "physical-companions",
       "is_edition_token": true,
       "is_series_rep": false,
       "physical_series_rep": false,
       "max_supply": 20,
-      "community_owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": [],
-        "creator_excluded": true
-      },
-      "minted_at": "2026-10-18T21:18:22.252000+00:00",
+      "minted_at": "2026-10-18T17:15:59+00:00",
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-10-18T17:15:59+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ],
       "opensea_name": "DACAT WORLD #9 of 20 FOUNDERS EDITION",
-      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/33d81a572fca23458647ec01507914/2c33d81a572fca23458647ec01507914.png?w=1000"
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/33d81a572fca23458647ec01507914/2c33d81a572fca23458647ec01507914.png"
     },
     {
       "token_id": "10",
       "name": "DACAT WORLD Founders Edition #10",
       "display_name": "DACAT WORLD Founders Edition #10",
       "local_slug": "founders-edition-10",
-      "description": "DACAT WORLD #10 of 20 FOUNDERS EDITION Step into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collection of the first 20 numbered physical figures. Each artwork features the carded figure and its packaging, with Founders Edition branding and an edition number from 1 of 20 through 20 of 20. Together, the figure and artwork bring a piece of the DACAT WORLD entertainment universe into collectible form.",
+      "description": "DACAT WORLD #10 of 20 FOUNDERS EDITION\n\nStep into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collection of the first 20 numbered physical figures. Each artwork features the carded figure and its packaging, with Founders Edition branding and an edition number from 1 of 20 through 20 of 20. Together, the figure and artwork bring a piece of the DACAT WORLD entertainment universe into collectible form. Explore a world of comics, characters, games, and 3D printed collectibles, where stories take shape on the page, on screens, and on your shelf. The Founders Edition celebrates that creative spirit through a small physical run and its accompanying digital artwork. Whether you connect with the character, the packaging, or the world behind it, this collection offers a glimpse into Russell Corey's expanding creative universe. Welcome to DACAT WORLD.",
       "excerpt": "Step into DACAT WORLD with the 3D Printed Collectible Figure Founders Edition. Created by Russell Corey, this NFT artwork is the digital companion to a collect…",
-      "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/b95511b8cc25a4a7e6bedbc43c9b10/e7b95511b8cc25a4a7e6bedbc43c9b10.png?w=1000",
+      "image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/b95511b8cc25a4a7e6bedbc43c9b10/e7b95511b8cc25a4a7e6bedbc43c9b10.png",
       "media_type": "image",
-      "opensea_url": "https://opensea.io/item/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/10",
-      "metadata_url": null,
-      "updated_at": null,
+      "opensea_url": "https://opensea.io/assets/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/10",
+      "metadata_url": "https://ipfs2.seadn.io/ipfs/bafybeicp4qr6puloz2r6ujz45al7lom7zjnlc2n5akvqm2ovwikcztoobu/10",
+      "updated_at": "2026-11-02T00:36:47.650688",
       "traits": [
         {
           "trait_type": "Edition",
@@ -991,46 +1121,48 @@
         "top_holders": [
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-            "quantity": 1,
-            "username": "dagato_offical"
+            "quantity": 1
           }
         ],
         "holders": [
           {
             "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-            "quantity": 1,
-            "username": "dagato_offical"
+            "quantity": 1
           }
         ],
-        "creator_excluded": false
+        "creator_excluded": false,
+        "latest_change": {
+          "type": "transfer",
+          "at": "2026-10-18T17:38:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+          "quantity": 1
+        }
       },
       "collection_id": "physical-companions",
       "is_edition_token": true,
       "is_series_rep": false,
       "physical_series_rep": false,
       "max_supply": 20,
-      "community_owners": {
-        "holder_count": 1,
-        "circulating_copies": 1,
-        "top_holders": [
-          {
-            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-            "quantity": 1,
-            "username": "dagato_offical"
-          }
-        ],
-        "holders": [
-          {
-            "address": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
-            "quantity": 1,
-            "username": "dagato_offical"
-          }
-        ],
-        "creator_excluded": true
-      },
-      "minted_at": "2026-10-18T21:18:22.252000+00:00",
+      "minted_at": "2026-10-18T17:20:47+00:00",
+      "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-10-18T17:38:47+00:00",
+          "from": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "to": "0x94ff0ec6ce56b65541f6a4763d35caf51db29821",
+          "quantity": 1
+        },
+        {
+          "type": "mint",
+          "at": "2026-10-18T17:20:47+00:00",
+          "from": null,
+          "to": "0xa6d5c9602a49afddff9873cf51db2991dec2c9ee",
+          "quantity": 1
+        }
+      ],
       "opensea_name": "DACAT WORLD #10 of 20 FOUNDERS EDITION",
-      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/b95511b8cc25a4a7e6bedbc43c9b10/e7b95511b8cc25a4a7e6bedbc43c9b10.png?w=1000"
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xd365001490df433ac04fe9b9d9cff49a24885a52/b95511b8cc25a4a7e6bedbc43c9b10/e7b95511b8cc25a4a7e6bedbc43c9b10.png"
     }
   ]
 }
