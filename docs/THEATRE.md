@@ -2,7 +2,7 @@
 
 Immersive full-screen watch experience for **every film on desktop** (769px+). Distinct from the in-hub modal player — minimal chrome, vignette, **Lights down** (near-black), and a niche flying-popcorn background when lights are up.
 
-**Live example:** [Mozvane in theatre](https://ericmoz.github.io/dacommunity-gallery/film/theatre/?v=mozvane-quick-stop) · generic route `/film/theatre/?v=<videoId>`
+**Live example:** [Mozvane in theatre](https://universe.dacat.fun/film/theatre/?v=mozvane-ep3-the-impound) · generic route `/film/theatre/?v=<videoId>`
 
 ---
 

@@ -2,7 +2,8 @@
 
 Engineering notes for the daCommunity Gallery static site (`web/`). Read this before changing layout, nav, or sticky behavior.
 
-**Live:** https://ericmoz.github.io/dacommunity-gallery/  
+**Live:** https://universe.dacat.fun/  
+**GitHub Pages mirror:** https://ericmoz.github.io/dacommunity-gallery/  
 **Build id:** footer `Site build YYYYMMDD-N` on every page (also `<meta name="site-build">`).
 
 ---
@@ -209,14 +210,14 @@ Do **not** paste keys into public issues, PR comments, or workflow_dispatch text
 
 | Workflow | LFS | Notes |
 |----------|-----|-------|
-| efresh-data.yml\ | \lfs: false\ | JSON-only. Store → reuse → mint/replace. |
-| \deploy-pages.yml\ | \lfs: false\ at checkout + smart cache + conditional \lfs pull\ | Reuses previous assets heavily. |
+| `refresh-data.yml` | `lfs: false` | JSON-only. Store → reuse → mint/replace OpenSea key. |
+| `deploy-pages.yml` | `lfs: false` at checkout + smart cache + conditional `lfs pull` | Reuses previous assets heavily. |
 
 **Manual QA after workflow or key-related changes:**
 - Trigger **Refresh gallery data (daily)** manually.
-- Confirm **Resolve OpenSea API key** logs \source=cache|minted|cache_stale_fallback\ (or epo_secret\) and the key is masked.
-- Confirm **Save stored OpenSea key** runs when \should_save=true\ after a green verify.
-- Check \gallery_meta.json\ shows recent \data_generated_at\ and \status: ok\.
+- Confirm **Resolve OpenSea API key** logs `source=cache|minted|cache_stale_fallback` (or `repo_secret`) and the key is masked.
+- Confirm **Save stored OpenSea key** runs when `should_save=true` after a green verify.
+- Check `gallery_meta.json` shows a recent `data_generated_at` and `status: ok`.
 
 ## Deploy & verification
 

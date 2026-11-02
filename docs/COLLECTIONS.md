@@ -1,8 +1,6 @@
 # Multi-collection architecture
 
-The daCAT site is moving from a single hard-coded gallery (daCommunity on Base) toward a **registry-driven** model: each community collection can have its own chain, route, data pipeline, theme, and feature set.
-
-Nothing on the public hub auto-lists every future collection yet — the registry is the contract engineers extend when a drop is ready.
+Live collections share one gallery SPA (`/dacommunity/`) with a **registry** (`collections_registry.json`) that records chain, contract, OpenSea slug, data paths, and feature flags. Hub cards on the home and collections pages are still authored by hand; the registry is what fetch scripts and the gallery read when a drop goes live.
 
 ---
 
@@ -73,11 +71,12 @@ CSS maps `surface` to body classes (e.g. `badges-page` ↔ `cosmic_soon`). Futur
 
 | Collection | Route | Experience |
 |------------|-------|------------|
-| daCommunity | `/dacommunity/` | `app.js` + `gallery_*.json` (OpenSea slug `dacommunity-archive`, contract on Base) |
-| HATS n' daCATs | `/dacommunity/?collection=hats-n-dacats` | `app.js` + `hats_n_dacats_*.json` (Ethereum, true 1:1 wave drops) |
-| BIG KIX | `/dacommunity/?collection=bigkix` | `app.js` + `bigkix_*.json` (Ethereum, single-slug fetch) |
-| daGATO Detective Agency | `/dacommunity/?collection=dagato-agency` | `app.js` + `dagato_agency_*.json` (Ethereum, rarity tags) |
-| Badges | `/dacommunity/?collection=badges` | `app.js` + `badges_*.json` |
+| daCommunity | `/dacommunity/` | `app.js` + `gallery_*.json` (OpenSea slug `dacommunity-archive`, Base) |
+| HATS n' daCATs | `/dacommunity/?collection=hats-n-dacats` | True 1:1 wave drops · `hats_n_dacats_*.json` |
+| Physical Companions | `/dacommunity/?collection=physical-companions` | Series browse + numbered editions · `physical_companions_*.json` |
+| daGATO Detective Agency | `/dacommunity/?collection=dagato-agency` | Multi-volume rarity series · `dagato_agency_*.json` |
+| BIG KIX | `/dacommunity/?collection=bigkix` | Single-slug Ethereum · `bigkix_*.json` |
+| Badges | `/dacommunity/?collection=badges` | Personal awards / clubs · `badges_*.json` |
 
 ### HATS n' daCATs pipeline
 
@@ -150,11 +149,11 @@ python fetch_dagato_agency.py --volume 2   # single volume only (still full rewr
 | Steward | `dagato.eth` · no creator-wallet exclusion |
 | OpenSea | Separate collection per volume (`…-volume-1` … `…-volume-3`); listed in registry `volumes[]` |
 | Browse titles | **`{Rarity} Case File · Vol N`** e.g. `Legendary Case File · Vol 2` |
-| Wallet titles | **`{Rarity} Case File #NN · Vol N`** e.g. `Common Case File #33 · Vol 1` |
+| Wallet titles | **`{Rarity} Case File #NN · Vol N`** e.g. `Standard Case File #33 · Vol 1` (UI maps stored Common→Standard, Uncommon→Select) |
 | Browse grid | **5 rarity series per volume** (15 cards for Vol 1–3); pills **#1–#5**; sort Vol then rank |
 | Pieces stat | Count of rarity series rows (not raw case-file count) |
-| Rarity tags | Standard / Select / Epic / Legendary / 1:1 on grid, holdings, detail (data may still store Common / Uncommon) |
-| Vol 3 | Slug `dagato-detective-agency-volume-3` · contract `0x1dc47745…` · ~20 revealed case files |
+| Rarity tags | Standard / Select / Epic / Legendary / 1:1 on grid, holdings, detail (JSON may still store Common / Uncommon) |
+| Vol 3 | Slug `dagato-detective-agency-volume-3` · contract `0x1dc47745…` · revealed case files live after OpenSea refresh |
 | Detail | Aggregated holders + copies; transfer/sale history merged from case files |
 | Collector wallet | Edition token #s. Keys: `dagato-agency-v{N}-{token_id}` (require volume on holdings). Portfolio: `owners.holders` only (token #s collide across vols). |
 | Data | `web/data/dagato_agency_data.json` + `dagato_agency_catalog.json` (catalog includes `contract`) |
@@ -166,23 +165,23 @@ Hub cards remain manual (home + `collections/index.html`) until the hub is fully
 
 | Job | Workflow name | What |
 |-----|---------------|------|
-| Daily | Refresh gallery data | Reverse ENS (+ username probe) → `wallet_index.json` for **daCommunity** holders; badges stamp known ENS from index and live-resolve **bare** holders only |
+| Daily | Refresh gallery data | Reverse ENS (+ username probe) → `wallet_index.json` for **daCommunity** holders. Badges stamp known names from the index, live-resolve bare wallets, then re-sync holder ENS from the updated index after merge. |
 | Weekly | **Enrich wallet names (weekly)** | Base names → `name_index.json`; OpenSea usernames patch `wallet_index` (same key store as daily; prefers bare 0x wallets) |
 
-Reverse ENS uses **ensideas → web3.bio → ensdata → OpenSea** (primary reverse only). Soft cache ~3 days still probes ensideas so a new primary name applies for every wallet without waiting out the full window; prior names stay in `ens_history` / `ens_aliases`.
+Reverse ENS uses **ensideas → web3.bio → ensdata → OpenSea** (primary reverse only). Soft cache ~3 days still probes ensideas so a new primary name applies without waiting out the full window; prior names stay in `ens_history` / `ens_aliases`.
 
-Display priority: **ENS → Base → OpenSea username → short 0x** (`resolveCollectorIdentity` in `app.js`).
+Display priority: **ENS → Base → OpenSea username → short 0x** (`resolveCollectorIdentity` in `app.js`). Collector UI prefers `wallet_index` over per-item holder fields.
 
 ### OpenSea request delay (daily)
 
-Daily fetch scripts use `backend/opensea_throttle.resolve_request_delay()`:
-- **`repo_secret` key** (or `OPENSEA_FAST=1`) → `0.35s` (same as enrich)
-- **Instant / minted / unknown** → `2.0s` safe default
-- Override anytime: `OPENSEA_REQUEST_DELAY=<seconds>` (rollback without code change)
+Fetch scripts call `backend/opensea_throttle.resolve_request_delay()`:
+- **`repo_secret`** (or `OPENSEA_FAST=1`) → `0.35s` (same as enrich)
+- **Instant / minted / unknown** → `2.0s`
+- Override: `OPENSEA_REQUEST_DELAY=<seconds>`
 
-Full daily re-check of every collection stays; delay only changes throttle, not what is fetched.
+Every collection still full-refreshes each day; only the throttle changes.
 
-`wallet_index` does **not** list pure secondary-collection holders. UI may live-reverse those via ensdata.
+`wallet_index` is built mainly from daCommunity + badge merge. Secondary-only holders may be added as shells before weekly enrich; the UI can also live-reverse via ensdata.
 
 Stewards: BIG KIX + badges exclude issuer inventory from holder stats; HATS n' daCATs excludes `hatsndacats.eth` mint inventory until a collector receives the piece; Agency does not exclude its project wallet.
 

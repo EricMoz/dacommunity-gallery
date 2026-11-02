@@ -146,8 +146,7 @@ def load_identity_lookup() -> dict[str, dict]:
     try:
         if NAME_INDEX_PATH.exists():
             ni = json.loads(NAME_INDEX_PATH.read_text(encoding="utf-8"))
-            # name_index shapes vary; accept by_address or flat address keys
-            candidates = ni.get("by_address") or ni.get("names") or ni
+            candidates = ni.get("by_address") if isinstance(ni, dict) else None
             if isinstance(candidates, dict):
                 for k, v in candidates.items():
                     if not isinstance(v, dict):
@@ -1106,6 +1105,33 @@ def main():
             encoding="utf-8",
         )
         print(f"  Merged {len(new_addresses)} badge holder addresses into wallet_index (ENS + history preserved)")
+
+        # Item holder ens_name was stamped index-first before this merge. Re-sync from the
+        # updated index so renames / newly resolved ENS land in badges_data the same day.
+        stamped = 0
+        for it in items:
+            for hlist in (
+                it.get("current_holders") or [],
+                (it.get("owners") or {}).get("holders") or [],
+                (it.get("owners") or {}).get("top_holders") or [],
+            ):
+                for h in hlist:
+                    a = (h.get("address") or "").lower()
+                    e = updated_by.get(a) or {}
+                    ens = e.get("ens_name")
+                    if ens and h.get("ens_name") != ens:
+                        h["ens_name"] = ens
+                        stamped += 1
+                    elif ens and not h.get("ens_name"):
+                        h["ens_name"] = ens
+                        stamped += 1
+        if stamped:
+            proposed["items"] = items
+            out_path.write_text(
+                json.dumps(proposed, indent=2, ensure_ascii=False),
+                encoding="utf-8",
+            )
+            print(f"  Re-stamped {stamped} badge holder ENS fields from wallet_index merge")
     except Exception as ex:
         print(f"  Note: could not merge badge holders to wallet_index ({ex})")
 

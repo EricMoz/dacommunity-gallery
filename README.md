@@ -2,10 +2,10 @@
 
 This is a static site that serves as the interactive hub for the daCAT community. You can browse the full NFT archive, look up any collector's pieces by wallet or ENS, watch films in an immersive player, and follow live market cap races, all without connecting a wallet or talking to a server from your browser.
 
-**Live production:** [universe.dacat.fun](https://universe.dacat.fun)  
-Source of truth + GitHub Pages: [ericmoz.github.io/dacommunity-gallery](https://ericmoz.github.io/dacommunity-gallery)
+**Live:** [universe.dacat.fun](https://universe.dacat.fun)  
+**Repo / Pages origin:** [EricMoz/dacommunity-gallery](https://github.com/EricMoz/dacommunity-gallery) · [ericmoz.github.io/dacommunity-gallery](https://ericmoz.github.io/dacommunity-gallery)
 
-Everything runs on GitHub Pages. The site pulls data once a day through automated scripts, turns it into small JSON files, and serves a polished experience that feels dynamic even though it's just files. It exists because the community has real stories, films, and collectibles spread across chains, and we wanted one reliable place to explore them that doesn't require setup or cost anything to keep running.
+Static site on GitHub Pages (Cloudflare in front of the custom domain). A daily Action pulls OpenSea into small JSON files; the browser never talks to OpenSea. One place for archive, collectors, film, and market-cap races — no wallet connect and no server bill after deploy.
 
 ## What makes this different
 
@@ -17,14 +17,11 @@ Everything runs on GitHub Pages. The site pulls data once a day through automate
 
 ## Key features
 
-- Full archive of the main daCommunity collection with search, filters, sorting, and price info.
-- Secondary collections in the same gallery: badges, BIG KIX, daGATO Detective Agency (multi-volume case files).
-- Collector lookup by ENS, Base name, OpenSea username, or 0x, with a portfolio view and shareable `?wallet=` links.
-- Theatre Mode for desktop: lights-down immersive video player with up-next.
-- Film hub with series filters, in-page modal player, and a dedicated Shorts rail.
-- Live market cap race chart.
-- PWA support for install and basic offline use.
-- Clean mobile experience with the important navigation always available.
+- **Gallery** — daCommunity archive plus HATS n' daCATs, Physical Companions, daGATO Detective Agency (Vol 1–3), BIG KIX, and Badges in one SPA (search, filters, sort, listings).
+- **Collectors** — lookup by ENS, Base name, OpenSea username, or 0x; portfolio view and shareable `?wallet=` links.
+- **Film** — hub with series filters, in-page modal player, Shorts rail, and desktop Theatre Mode (lights-down + up-next).
+- **Market cap race** chart and **PWA** install / basic offline shell.
+- Mobile-first nav that keeps the important hubs reachable.
 
 ## How it works (high level)
 
