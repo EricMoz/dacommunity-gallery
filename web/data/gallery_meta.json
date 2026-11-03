@@ -1,18 +1,18 @@
 {
-  "updated_at": "2026-11-02T17:45:32.203733+00:00",
-  "data_generated_at": "2026-11-02T17:40:53.354606+00:00",
+  "updated_at": "2026-11-03T15:47:25.058479+00:00",
+  "data_generated_at": "2026-11-03T15:42:46.026839+00:00",
   "listed_count": 6,
   "piece_count": 65,
   "refresh": {
     "status": "ok",
     "source": "github_actions",
-    "finished_at": "2026-11-02T17:45:32.203747+00:00",
+    "finished_at": "2026-11-03T15:47:25.058493+00:00",
     "error": null,
     "error_code": null
   },
   "opensea_key": {
     "status": "ok",
-    "checked_at": "2026-11-02T17:45:32.203750+00:00",
+    "checked_at": "2026-11-03T15:47:25.058497+00:00",
     "rotation_reminder_days": 30,
     "hint": "OpenSea API key auto-generated fresh each run via workflow (no manual secret rotation needed). Instant keys last ~30 days; fallback to repository secret if generation fails."
   }
