@@ -11,6 +11,7 @@ Immersive full-screen watch experience for **every film on desktop** (769px+). D
 ### `web/data/videos.json` — per video
 
 ```json
+"storyArc": "mozvane",
 "theatre": {
   "slug": "mozvane",
   "enabled": true
@@ -19,9 +20,12 @@ Immersive full-screen watch experience for **every film on desktop** (769px+). D
 
 | Field | Purpose |
 |-------|---------|
+| `storyArc` | Optional. Groups episodes for **Series** up-next (e.g. `mozvane`, `the-contractor`). When set, Series recycles that arc only. Random still uses the full main catalog. Hub row still uses `series` (Characters, Crossovers, …). |
 | `slug` | Key into `theatre_registry.json` (optional theme) |
 | `enabled` | Set `false` to opt a title out of theatre (default: all catalog videos on desktop) |
 | `route` | **Optional** dedicated path under `/film/` (rare). Omit to use `theatre/?v=<id>` |
+
+Lights-down Theatre always uses Random up-next (by design).
 
 ### `web/data/theatre_registry.json` — per theatre theme
 

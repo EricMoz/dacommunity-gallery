@@ -803,9 +803,15 @@
   }
 
   function seriesList(current) {
-    // Modal Series up-next: main catalog only (mainVideos already excludes Shorts)
+    // Modal Series up-next: main catalog only (mainVideos already excludes Shorts).
+    // Prefer storyArc when set (Mozvane 1–3, Contractor parts) so arcs recycle
+    // back-to-back; otherwise same hub series (Characters, Crossovers, …).
+    const arc = (current && current.storyArc) || "";
     return sortVideos(
-      mainVideos().filter((v) => v.series === current.series)
+      mainVideos().filter((v) => {
+        if (arc) return v.storyArc === arc;
+        return v.series === current.series;
+      })
     );
   }
 

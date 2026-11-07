@@ -166,6 +166,16 @@
    */
   function seriesList(current) {
     if (!current) return [];
+    // Prefer storyArc when set so Mozvane / Contractor / future arcs recycle
+    // among their own episodes. Lights-down still forces Random via resolveUpNext.
+    var arc = current.storyArc || "";
+    if (arc) {
+      return sortVideos(
+        videos.filter(function (v) {
+          return v.storyArc === arc;
+        })
+      );
+    }
     var fid = seriesFilterId(current.series);
     return sortVideos(
       videos.filter(function (v) {
