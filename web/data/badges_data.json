@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-06T15:37:05.332912+00:00",
+  "generated_at": "2026-11-07T14:40:30.884909+00:00",
   "source": "mints_created_by_wallet_on_ethereum_after_cutoff",
   "cutoff_date": "2026-05-20",
   "collection": {
@@ -2280,7 +2280,7 @@
           }
         ]
       },
-      "minted_at": "2026-08-02T04:10:35+00:00",
+      "minted_at": null,
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "daforeman_-_5_trillion_dacat_club_membership",
