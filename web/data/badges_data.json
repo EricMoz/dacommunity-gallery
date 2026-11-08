@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-07T14:40:30.884909+00:00",
+  "generated_at": "2026-11-08T14:46:43.389123+00:00",
   "source": "mints_created_by_wallet_on_ethereum_after_cutoff",
   "cutoff_date": "2026-05-20",
   "collection": {
@@ -2197,42 +2197,10 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 3,
-        "circulating_copies": 3,
-        "top_holders": [
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1,
-            "ens_name": "mozvane.eth"
-          },
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1,
-            "ens_name": "daforeman.eth"
-          },
-          {
-            "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
-            "quantity": 1,
-            "ens_name": "dabaker.eth"
-          }
-        ],
-        "holders": [
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1,
-            "ens_name": "mozvane.eth"
-          },
-          {
-            "address": "0xc553593cd4bfd114ffe80cf8a628cc12b841b327",
-            "quantity": 1,
-            "ens_name": "daforeman.eth"
-          },
-          {
-            "address": "0xb7150ba28ddf3680975fae75ac493559d05f784a",
-            "quantity": 1,
-            "ens_name": "dabaker.eth"
-          }
-        ]
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": []
       },
       "minted_at": "2026-05-30T08:45:59+00:00",
       "is_1_of_1": false,
@@ -2280,7 +2248,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-08-02T04:10:35+00:00",
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "daforeman_-_5_trillion_dacat_club_membership",
