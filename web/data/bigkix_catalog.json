@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-08T14:42:24.966652+00:00",
+  "generated_at": "2026-11-09T18:08:11.985906+00:00",
   "source": "bigkix_catalog",
   "collection": {
     "id": "bigkix",
@@ -24,7 +24,7 @@
     "total_sales": 31,
     "total_volume": 0.006017630000000031,
     "piece_count": 24,
-    "listed_count": 2
+    "listed_count": 1
   },
   "items": [
     {
@@ -3085,12 +3085,8 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/8",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0x2777184bde5371049f79c15ef6e557c676c53b3a/a65f891bd0035d18dab6b44c62209b/a0a65f891bd0035d18dab6b44c62209b.jpeg",
-      "listed": true,
-      "listing": {
-        "amount_eth": 0.005,
-        "currency": "ETH",
-        "status": "ACTIVE"
-      },
+      "listed": false,
+      "listing": null,
       "owners": {
         "holder_count": 14,
         "circulating_copies": 23,
