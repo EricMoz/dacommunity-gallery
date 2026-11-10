@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-09T18:12:18.627116+00:00",
+  "generated_at": "2026-11-10T16:05:04.110055+00:00",
   "source": "mints_created_by_wallet_on_ethereum_after_cutoff",
   "cutoff_date": "2026-05-20",
   "collection": {
@@ -137,7 +137,7 @@
           }
         ]
       },
-      "minted_at": "2026-06-13T22:52:23+00:00",
+      "minted_at": null,
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "rookie_card_2026",
@@ -312,7 +312,7 @@
           }
         ]
       },
-      "minted_at": "2026-05-25T06:20:23+00:00",
+      "minted_at": "2026-05-25T06:58:47+00:00",
       "is_1_of_1": false,
       "edition_size": 27,
       "award_category": "trillion_club",
@@ -1264,7 +1264,7 @@
         "top_holders": [],
         "holders": []
       },
-      "minted_at": "2026-05-25T12:40:47+00:00",
+      "minted_at": null,
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "trillion_club",
@@ -1504,7 +1504,7 @@
           }
         ]
       },
-      "minted_at": "2026-05-25T06:20:23+00:00",
+      "minted_at": null,
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "trillion_club",
@@ -1679,7 +1679,7 @@
           }
         ]
       },
-      "minted_at": "2026-05-29T00:27:23+00:00",
+      "minted_at": null,
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "trillion_club",
