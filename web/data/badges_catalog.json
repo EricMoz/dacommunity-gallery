@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-10T16:05:04.110055+00:00",
+  "generated_at": "2026-11-11T15:51:18.934170+00:00",
   "source": "badges_catalog",
   "collection": {
     "slug": "badges",
@@ -135,7 +135,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-06-13T22:52:23+00:00",
       "is_1_of_1": true,
       "award_category": "rookie_card_2026",
       "unclaimed_or_available": false,
@@ -308,7 +308,7 @@
           }
         ]
       },
-      "minted_at": "2026-05-25T06:58:47+00:00",
+      "minted_at": "2026-05-25T06:20:23+00:00",
       "is_1_of_1": false,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -1259,7 +1259,7 @@
         "top_holders": [],
         "holders": []
       },
-      "minted_at": null,
+      "minted_at": "2026-05-25T12:40:47+00:00",
       "is_1_of_1": true,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -1499,7 +1499,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-25T06:20:23+00:00",
       "is_1_of_1": true,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -1672,7 +1672,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-05-29T00:27:23+00:00",
       "is_1_of_1": true,
       "award_category": "trillion_club",
       "unclaimed_or_available": false,
@@ -2479,42 +2479,10 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 3,
-        "circulating_copies": 3,
-        "top_holders": [
-          {
-            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1,
-            "ens_name": "saphoroth.eth"
-          },
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1,
-            "ens_name": "mozvane.eth"
-          },
-          {
-            "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
-            "quantity": 1,
-            "ens_name": "msgato.eth"
-          }
-        ],
-        "holders": [
-          {
-            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
-            "quantity": 1,
-            "ens_name": "saphoroth.eth"
-          },
-          {
-            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-            "quantity": 1,
-            "ens_name": "mozvane.eth"
-          },
-          {
-            "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
-            "quantity": 1,
-            "ens_name": "msgato.eth"
-          }
-        ]
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": []
       },
       "minted_at": "2026-05-30T01:16:23+00:00",
       "is_1_of_1": false,
