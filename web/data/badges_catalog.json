@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-11T15:51:18.934170+00:00",
+  "generated_at": "2026-11-12T16:34:41.076478+00:00",
   "source": "badges_catalog",
   "collection": {
     "slug": "badges",
@@ -2267,7 +2267,7 @@
           }
         ]
       },
-      "minted_at": "2026-08-02T04:10:35+00:00",
+      "minted_at": null,
       "is_1_of_1": true,
       "award_category": "daforeman_-_5_trillion_dacat_club_membership",
       "unclaimed_or_available": false,
@@ -2479,10 +2479,42 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": []
+        "holder_count": 3,
+        "circulating_copies": 3,
+        "top_holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": "saphoroth.eth"
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": "mozvane.eth"
+          },
+          {
+            "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
+            "quantity": 1,
+            "ens_name": "msgato.eth"
+          }
+        ],
+        "holders": [
+          {
+            "address": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
+            "quantity": 1,
+            "ens_name": "saphoroth.eth"
+          },
+          {
+            "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
+            "quantity": 1,
+            "ens_name": "mozvane.eth"
+          },
+          {
+            "address": "0x5be0267ae655b8a2fc313ae2f5467a442a864f3c",
+            "quantity": 1,
+            "ens_name": "msgato.eth"
+          }
+        ]
       },
       "minted_at": "2026-05-30T01:16:23+00:00",
       "is_1_of_1": false,
