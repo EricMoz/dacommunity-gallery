@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12T16:34:41.076478+00:00",
+  "generated_at": "2026-11-13T15:56:29.483481+00:00",
   "source": "mints_created_by_wallet_on_ethereum_after_cutoff",
   "cutoff_date": "2026-05-20",
   "collection": {
@@ -678,7 +678,7 @@
           }
         ]
       },
-      "minted_at": "2026-05-25T15:44:47+00:00",
+      "minted_at": null,
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "trillion_club",
@@ -1046,7 +1046,7 @@
           }
         ]
       },
-      "minted_at": "2026-05-25T14:08:11+00:00",
+      "minted_at": null,
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "trillion_club",
@@ -1366,7 +1366,7 @@
         "top_holders": [],
         "holders": []
       },
-      "minted_at": "2026-05-25T12:02:59+00:00",
+      "minted_at": null,
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "trillion_club",
@@ -1534,60 +1534,10 @@
       "listed": false,
       "listing": null,
       "owners": {
-        "holder_count": 5,
-        "circulating_copies": 5,
-        "top_holders": [
-          {
-            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
-            "quantity": 1
-          },
-          {
-            "address": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
-            "quantity": 1,
-            "ens_name": "warriorpr.eth"
-          },
-          {
-            "address": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
-            "quantity": 1,
-            "ens_name": "elons-cat.eth"
-          },
-          {
-            "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
-            "quantity": 1,
-            "ens_name": "dacatchronicles.eth"
-          },
-          {
-            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
-            "quantity": 1,
-            "ens_name": "dasheesh.eth"
-          }
-        ],
-        "holders": [
-          {
-            "address": "0xde2b0abc3e2aa8100a2557f5142993c3aa18a2f1",
-            "quantity": 1
-          },
-          {
-            "address": "0xa3b61e2076ca08a8021e2f48906be8123bd536b2",
-            "quantity": 1,
-            "ens_name": "warriorpr.eth"
-          },
-          {
-            "address": "0x26ca5d717ea6edf8cb202274a75e08fb8dc0ac8e",
-            "quantity": 1,
-            "ens_name": "elons-cat.eth"
-          },
-          {
-            "address": "0x1bc5366afd535fcbfb2f7b054b3547167bdaf4d1",
-            "quantity": 1,
-            "ens_name": "dacatchronicles.eth"
-          },
-          {
-            "address": "0x0dd0c02cd48b1d1f6582c032e51cfd20f933cac4",
-            "quantity": 1,
-            "ens_name": "dasheesh.eth"
-          }
-        ]
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": []
       },
       "minted_at": "2026-05-28T19:58:23+00:00",
       "is_1_of_1": false,
@@ -2280,7 +2230,7 @@
           }
         ]
       },
-      "minted_at": null,
+      "minted_at": "2026-08-02T04:10:35+00:00",
       "is_1_of_1": true,
       "edition_size": 1,
       "award_category": "daforeman_-_5_trillion_dacat_club_membership",
