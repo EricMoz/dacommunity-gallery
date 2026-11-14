@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-13T15:53:23.832160+00:00",
+  "generated_at": "2026-11-14T14:44:02.323004+00:00",
   "source": "hats_n_dacats_catalog",
   "collection": {
     "id": "hats-n-dacats",
@@ -9,7 +9,7 @@
     "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
     "chain": "ethereum",
     "opensea_url": "https://opensea.io/collection/hats-n-dacats",
-    "note": "True 1:1 hats on Ethereum. Max supply 333; released in waves (currently 118 minted). No rarity tiers — every hat stands on its own. Stewarded by hatsndacats.eth. Project mint wallet excluded from holder counts until a collector receives the piece.",
+    "note": "True 1:1 hats on Ethereum. Max supply 333; released in waves (currently 137 minted). No rarity tiers — every hat stands on its own. Stewarded by hatsndacats.eth. Project mint wallet excluded from holder counts until a collector receives the piece.",
     "description": "HATS n' daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and numbered, allowing collectors to choose the legend they connect with most. There are no rarity tiers—every hat stands on its own. Every hat has a story. Legends Wear Hats.",
     "max_supply": 333,
     "batch_label": null,
@@ -26,11 +26,1132 @@
     "num_owners": 29,
     "total_sales": 55,
     "total_volume": 0.8275000000000001,
-    "piece_count": 118,
+    "piece_count": 137,
     "listed_count": 30,
-    "one_of_ones": 118
+    "one_of_ones": 137
   },
   "items": [
+    {
+      "token_id": "162",
+      "name": "#133 - Action Hero Cap",
+      "display_name": "#133 - Action Hero Cap",
+      "local_slug": "hat-133-action-hero-cap",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/68cb8714d2c5713e9c943790238fd6/7e68cb8714d2c5713e9c943790238fd6.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/162",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/68cb8714d2c5713e9c943790238fd6/7e68cb8714d2c5713e9c943790238fd6.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-11-13T23:26:59+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-11-13T23:26:59+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Community"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 03"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Cap"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-11-13T23:26:59+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "161",
+      "name": "#132 - Paper Hands Fedora",
+      "display_name": "#132 - Paper Hands Fedora",
+      "local_slug": "hat-132-paper-hands-fedora",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/5fa27ea96870503fc15b7ea4001ea3/ce5fa27ea96870503fc15b7ea4001ea3.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/161",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/5fa27ea96870503fc15b7ea4001ea3/ce5fa27ea96870503fc15b7ea4001ea3.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-11-13T23:23:35+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-11-13T23:23:35+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Crypto"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 03"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Hat"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-11-13T23:23:35+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "160",
+      "name": "#131 - Rug Pull Top Hat",
+      "display_name": "#131 - Rug Pull Top Hat",
+      "local_slug": "hat-131-rug-pull-top-hat",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/e9ef6532ede5e08d8267cece695360/31e9ef6532ede5e08d8267cece695360.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/160",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/e9ef6532ede5e08d8267cece695360/31e9ef6532ede5e08d8267cece695360.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-11-13T23:21:47+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-11-13T23:21:47+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Crypto"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 03"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Top Hat"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-11-13T23:21:47+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "159",
+      "name": "#130 - Scamarai Kabuto",
+      "display_name": "#130 - Scamarai Kabuto",
+      "local_slug": "hat-130-scamarai-kabuto",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/3e78f81309d6783351d2f1a839d156/5c3e78f81309d6783351d2f1a839d156.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/159",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/3e78f81309d6783351d2f1a839d156/5c3e78f81309d6783351d2f1a839d156.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-11-13T23:20:11+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-11-13T23:20:11+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Crypto"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 03"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Helmet"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-11-13T23:20:11+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "158",
+      "name": "#129 - Bogmire Battle Helmet",
+      "display_name": "#129 - Bogmire Battle Helmet",
+      "local_slug": "hat-129-bogmire-battle-helmet",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/f6fc50c3475028b0c16f72ec515273/86f6fc50c3475028b0c16f72ec515273.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/158",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/f6fc50c3475028b0c16f72ec515273/86f6fc50c3475028b0c16f72ec515273.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-11-13T23:18:47+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-11-13T23:18:47+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Fantasy"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 03"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Helmet"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-11-13T23:18:47+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "157",
+      "name": "#128 - Midnight Frequency Cap",
+      "display_name": "#128 - Midnight Frequency Cap",
+      "local_slug": "hat-128-midnight-frequency-cap",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/88a9716c21aeb31c14ea6239154821/0188a9716c21aeb31c14ea6239154821.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/157",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/88a9716c21aeb31c14ea6239154821/0188a9716c21aeb31c14ea6239154821.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-11-13T23:17:23+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-11-13T23:17:23+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Music"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 03"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Cap"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-11-13T23:17:23+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "156",
+      "name": "#127 - Indomitable Sentinel Helmet",
+      "display_name": "#127 - Indomitable Sentinel Helmet",
+      "local_slug": "hat-127-indomitable-sentinel-helmet",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/802d38c388e5ca377eb15e91055f79/2d802d38c388e5ca377eb15e91055f79.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/156",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/802d38c388e5ca377eb15e91055f79/2d802d38c388e5ca377eb15e91055f79.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-11-13T23:15:35+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-11-13T23:15:35+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Sci-Fi"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 03"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Helmet"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-11-13T23:15:35+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "155",
+      "name": "#126 - Veiled Sigil Hood",
+      "display_name": "#126 - Veiled Sigil Hood",
+      "local_slug": "hat-126-veiled-sigil-hood",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/25d7c228b77d3c5b33ce129bb157a2/6825d7c228b77d3c5b33ce129bb157a2.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/155",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/25d7c228b77d3c5b33ce129bb157a2/6825d7c228b77d3c5b33ce129bb157a2.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-11-13T23:13:59+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-11-13T23:13:59+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Fantasy"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 03"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Hood"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-11-13T23:13:59+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "154",
+      "name": "#125 - Gilded Guardian Hat",
+      "display_name": "#125 - Gilded Guardian Hat",
+      "local_slug": "hat-125-gilded-guardian-hat",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/8fd3cc39bd3c8476e5346519269d2e/368fd3cc39bd3c8476e5346519269d2e.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/154",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/8fd3cc39bd3c8476e5346519269d2e/368fd3cc39bd3c8476e5346519269d2e.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-11-13T23:12:35+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-11-13T23:12:35+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Fashion"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 03"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Hat"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-11-13T23:12:35+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "153",
+      "name": "#124 - Deadeye Gunslinger Hat",
+      "display_name": "#124 - Deadeye Gunslinger Hat",
+      "local_slug": "hat-124-deadeye-gunslinger-hat",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/d7507e87e4a1e3b3ccfb66f1fb67fe/e0d7507e87e4a1e3b3ccfb66f1fb67fe.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/153",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/d7507e87e4a1e3b3ccfb66f1fb67fe/e0d7507e87e4a1e3b3ccfb66f1fb67fe.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-11-13T23:11:11+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-11-13T23:11:11+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Historical"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 03"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Hat"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-11-13T23:11:11+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "152",
+      "name": "#123 - Brassbound Rider Cap",
+      "display_name": "#123 - Brassbound Rider Cap",
+      "local_slug": "hat-123-brassbound-rider-cap",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/660bfdb90fa8244f862ff2c93b8f93/41660bfdb90fa8244f862ff2c93b8f93.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/152",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/660bfdb90fa8244f862ff2c93b8f93/41660bfdb90fa8244f862ff2c93b8f93.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-11-13T23:06:23+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-11-13T23:06:23+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Retro"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 03"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Cap"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-11-13T23:06:23+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "151",
+      "name": "#122 - Jade Street Newsboy Cap",
+      "display_name": "#122 - Jade Street Newsboy Cap",
+      "local_slug": "hat-122-jade-street-newsboy-cap",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/e9f6346220f1641f8ccec44c319316/87e9f6346220f1641f8ccec44c319316.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/151",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/e9f6346220f1641f8ccec44c319316/87e9f6346220f1641f8ccec44c319316.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-11-13T23:04:23+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-11-13T23:04:23+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Retro"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 03"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Cap"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-11-13T23:04:23+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "150",
+      "name": "#121 - Azure Breaker Sun Hat",
+      "display_name": "#121 - Azure Breaker Sun Hat",
+      "local_slug": "hat-121-azure-breaker-sun-hat",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/e300afd640a45ebe57c23a6a890090/9ee300afd640a45ebe57c23a6a890090.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/150",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/e300afd640a45ebe57c23a6a890090/9ee300afd640a45ebe57c23a6a890090.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-11-13T23:02:11+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-11-13T23:02:11+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Aquatic"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 03"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Hat"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-11-13T23:02:11+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "149",
+      "name": "#120 - Dashbound Explorer Cap",
+      "display_name": "#120 - Dashbound Explorer Cap",
+      "local_slug": "hat-120-dashbound-explorer-cap",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/8a018ff1e53bad730160ace404f13f/9e8a018ff1e53bad730160ace404f13f.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/149",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/8a018ff1e53bad730160ace404f13f/9e8a018ff1e53bad730160ace404f13f.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-11-13T23:00:23+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-11-13T23:00:23+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Nature"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 03"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Cap"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-11-13T23:00:23+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "148",
+      "name": "#119 - Sheesh Snapback Cap",
+      "display_name": "#119 - Sheesh Snapback Cap",
+      "local_slug": "hat-119-sheesh-snapback-cap",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/f0088a0a81c7537ce4457b507b2675/73f0088a0a81c7537ce4457b507b2675.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/148",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/f0088a0a81c7537ce4457b507b2675/73f0088a0a81c7537ce4457b507b2675.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-11-13T22:51:23+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-11-13T22:51:23+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Community"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 03"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Cap"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-11-13T22:51:23+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "147",
+      "name": "#118 - X-Clusive Cap",
+      "display_name": "#118 - X-Clusive Cap",
+      "local_slug": "hat-118-x-clusive-cap",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/0c56a7cd85174c1d68cbb9a15c75b7/770c56a7cd85174c1d68cbb9a15c75b7.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/147",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/0c56a7cd85174c1d68cbb9a15c75b7/770c56a7cd85174c1d68cbb9a15c75b7.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-11-13T22:48:47+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-11-13T22:48:47+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Fashion"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 03"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Cap"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-11-13T22:48:47+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "146",
+      "name": "#117 - Topaz Glare Cap",
+      "display_name": "#117 - Topaz Glare Cap",
+      "local_slug": "hat-117-topaz-glare-cap",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/aebd800203b39165831767966132a0/61aebd800203b39165831767966132a0.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/146",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/aebd800203b39165831767966132a0/61aebd800203b39165831767966132a0.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-11-13T22:36:35+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-11-13T22:36:35+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Sci-Fi"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 03"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Cap"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-11-13T22:36:35+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "145",
+      "name": "#116 - HoloShift Cap",
+      "display_name": "#116 - HoloShift Cap",
+      "local_slug": "hat-116-holoshift-cap",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/5f78c9a9e216e208b719797b39b101/6f5f78c9a9e216e208b719797b39b101.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/145",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/5f78c9a9e216e208b719797b39b101/6f5f78c9a9e216e208b719797b39b101.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-11-13T22:32:59+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-11-13T22:32:59+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Luxury"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 03"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Cap"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-11-13T22:32:59+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "token_id": "144",
+      "name": "#115 - daCAT After Dark Cap",
+      "display_name": "#115 - daCAT After Dark Cap",
+      "local_slug": "hat-115-dacat-after-dark-cap",
+      "excerpt": "HATS n’ daCATs is a collection of 333 unique daCATs, each defined by a legendary hat from across the daCAT universe. Every NFT is individually named and number…",
+      "image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/ae35f0b598a420fe63c4e3bf2862fa/91ae35f0b598a420fe63c4e3bf2862fa.png",
+      "media_type": "image",
+      "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/144",
+      "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/ae35f0b598a420fe63c4e3bf2862fa/91ae35f0b598a420fe63c4e3bf2862fa.png",
+      "listed": false,
+      "listing": null,
+      "owners": {
+        "holder_count": 0,
+        "circulating_copies": 0,
+        "top_holders": [],
+        "holders": [],
+        "creator_excluded": true,
+        "latest_change": {
+          "type": "mint",
+          "at": "2026-11-13T22:28:59+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      },
+      "minted_at": "2026-11-13T22:28:59+00:00",
+      "collection_id": "hats-n-dacats",
+      "contract": "0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180",
+      "traits": [
+        {
+          "trait_type": "Theme",
+          "value": "Novelty"
+        },
+        {
+          "trait_type": "Production",
+          "value": "Batch 03"
+        },
+        {
+          "trait_type": "daCAT Model",
+          "value": "Male"
+        },
+        {
+          "trait_type": "Headwear Type",
+          "value": "Cap"
+        }
+      ],
+      "is_1_of_1": true,
+      "edition_size": 1,
+      "recent_activity": [
+        {
+          "type": "mint",
+          "at": "2026-11-13T22:28:59+00:00",
+          "from": null,
+          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "quantity": 1
+        }
+      ]
+    },
     {
       "token_id": "135",
       "name": "#114 - Burlap Terror Hat",
