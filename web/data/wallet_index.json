@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-22T15:56:02.608319+00:00",
+  "generated_at": "2026-11-23T19:50:37.843886+00:00",
   "holders_index": {
     "ens_aliases": {
       "lostthegame.eth": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684",
@@ -40,20 +40,7 @@
       "jupiterphii.eth": "0x63795d3b68d42d8a169975e1536e1416aac71856",
       "jupiterphii.base.eth": "0x63795d3b68d42d8a169975e1536e1416aac71856",
       "billyboop.base.eth": "0xb70701bb877dbf0e07a1576eb49b3311d5c96c6b",
-      "chavy.base.eth": "0x4ceb61f94d4e6d50d4c61de843b2945dc6a539ad",
-      "hodlstar.base.eth": "0x011dddd5b5470d2818bffb400b4e38949fe21ac3",
-      "inshirowetrust.base.eth": "0x3e43287a26acf9e5206f4551ccda29c7d9bea93e",
-      "visualarchive.base.eth": "0x445a6fc0bf61535e7d2ef96258124fdb9a855fdc",
-      "dacatdreams.base.eth": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
-      "wmdsj19880725.base.eth": "0x5469f22fc52ad7a5e1f430a75b1cbd542393dfb0",
-      "jhonnyfolies.base.eth": "0x5b8b03f255a2acf815e59dc55847096c43335385",
-      "henia.base.eth": "0x67f3c18339ac0da29be9573d559a1291100b7c7b",
-      "pieface.base.eth": "0x68cd16cacbaaca45dfd0f0e7e2609d273a0d4083",
-      "pa3gba.base.eth": "0x7f23f1c4be15fa3adabc821de9ef70efa5503f24",
-      "gottothird.base.eth": "0x7f284d2167b3bb8d8f6669593f4c24e752b54812",
-      "slowfreeze.base.eth": "0x93b34003169bd7cdb3e0710fedff4cb6795a32ef",
-      "mozcat.base.eth": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
-      "lostthegame.base.eth": "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684"
+      "chavy.base.eth": "0x4ceb61f94d4e6d50d4c61de843b2945dc6a539ad"
     },
     "by_address": {
       "0xdc6b8282de4b9d7840b4b9dbb35fcc5c3a97e684": {
@@ -719,7 +706,7 @@
         "base_name": "dacatdreams.base.eth",
         "collection_quantity": 92,
         "unique_pieces": 48,
-        "last_ens_resolved": 1795192503.6056716,
+        "last_ens_resolved": 1795463024.9638305,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -973,8 +960,8 @@
         "base_name": null,
         "collection_quantity": 55,
         "unique_pieces": 44,
-        "last_ens_resolved": 1795192505.492074,
-        "last_profile_resolved": 1795369222.6884065,
+        "last_ens_resolved": 1795463026.3245633,
+        "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
           {
@@ -1207,8 +1194,8 @@
         "base_name": null,
         "collection_quantity": 48,
         "unique_pieces": 34,
-        "last_ens_resolved": 1795192507.5795693,
-        "last_profile_resolved": 1795369222.6884065,
+        "last_ens_resolved": 1795463027.646344,
+        "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
           {
@@ -1391,7 +1378,7 @@
         "base_name": null,
         "collection_quantity": 35,
         "unique_pieces": 35,
-        "last_ens_resolved": 1795192509.2121637,
+        "last_ens_resolved": 1795463028.7784832,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -1580,8 +1567,8 @@
         "base_name": null,
         "collection_quantity": 22,
         "unique_pieces": 22,
-        "last_ens_resolved": 1795192510.78249,
-        "last_profile_resolved": 1795369222.6884065,
+        "last_ens_resolved": 1795463030.0852053,
+        "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
           {
@@ -1704,7 +1691,7 @@
         "base_name": "henia.base.eth",
         "collection_quantity": 19,
         "unique_pieces": 11,
-        "last_ens_resolved": 1795192512.6298122,
+        "last_ens_resolved": 1795463036.949788,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -1773,8 +1760,8 @@
         "base_name": null,
         "collection_quantity": 17,
         "unique_pieces": 17,
-        "last_ens_resolved": 1795192514.195334,
-        "last_profile_resolved": 1795369222.6884065,
+        "last_ens_resolved": 1795463038.1590374,
+        "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
           {
@@ -1872,7 +1859,7 @@
         "base_name": null,
         "collection_quantity": 9,
         "unique_pieces": 8,
-        "last_ens_resolved": 1795192514.7080135,
+        "last_ens_resolved": 1795463038.557428,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -1926,7 +1913,7 @@
         "base_name": "hodlstar.base.eth",
         "collection_quantity": 9,
         "unique_pieces": 5,
-        "last_ens_resolved": 1795192516.2584245,
+        "last_ens_resolved": 1795463039.7327118,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -1965,7 +1952,7 @@
         "base_name": null,
         "collection_quantity": 8,
         "unique_pieces": 8,
-        "last_ens_resolved": 1795192516.8112833,
+        "last_ens_resolved": 1795463040.081474,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2019,8 +2006,8 @@
         "base_name": null,
         "collection_quantity": 3,
         "unique_pieces": 2,
-        "last_ens_resolved": 1795192518.501777,
-        "last_profile_resolved": 1795369222.6884065,
+        "last_ens_resolved": 1795463041.1402183,
+        "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
           {
@@ -2043,8 +2030,8 @@
         "base_name": null,
         "collection_quantity": 3,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192520.0424507,
-        "last_profile_resolved": 1795369222.6884065,
+        "last_ens_resolved": 1795463042.5472434,
+        "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
           {
@@ -2062,7 +2049,7 @@
         "base_name": null,
         "collection_quantity": 3,
         "unique_pieces": 3,
-        "last_ens_resolved": 1795192520.5234852,
+        "last_ens_resolved": 1795463043.076658,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2091,8 +2078,8 @@
         "base_name": null,
         "collection_quantity": 2,
         "unique_pieces": 2,
-        "last_ens_resolved": 1795192522.6049695,
-        "last_profile_resolved": 1795369222.6884065,
+        "last_ens_resolved": 1795463044.4859874,
+        "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
           {
@@ -2115,8 +2102,8 @@
         "base_name": null,
         "collection_quantity": 2,
         "unique_pieces": 2,
-        "last_ens_resolved": 1795192524.290903,
-        "last_profile_resolved": 1795369222.6884065,
+        "last_ens_resolved": 1795463045.9213197,
+        "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
           {
@@ -2163,7 +2150,7 @@
         "base_name": "wmdsj19880725.base.eth",
         "collection_quantity": 2,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192526.1265008,
+        "last_ens_resolved": 1795463047.5421262,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2182,8 +2169,8 @@
         "base_name": null,
         "collection_quantity": 2,
         "unique_pieces": 2,
-        "last_ens_resolved": 1795192528.6205187,
-        "last_profile_resolved": 1795369222.6884065,
+        "last_ens_resolved": 1795463049.0849295,
+        "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
           {
@@ -2206,8 +2193,8 @@
         "base_name": null,
         "collection_quantity": 2,
         "unique_pieces": 2,
-        "last_ens_resolved": 1795192530.2342463,
-        "last_profile_resolved": 1795369222.6884065,
+        "last_ens_resolved": 1795463050.2127128,
+        "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
           {
@@ -2230,7 +2217,7 @@
         "base_name": null,
         "collection_quantity": 2,
         "unique_pieces": 2,
-        "last_ens_resolved": 1795192532.4278643,
+        "last_ens_resolved": 1795463051.1540167,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2254,7 +2241,7 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192533.9140973,
+        "last_ens_resolved": 1795463052.2823014,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2273,7 +2260,7 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192534.218887,
+        "last_ens_resolved": 1795463052.6641955,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2292,7 +2279,7 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192535.5924628,
+        "last_ens_resolved": 1795463053.6855414,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2311,8 +2298,8 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192537.337728,
-        "last_profile_resolved": 1795369222.6884065,
+        "last_ens_resolved": 1795463057.9599164,
+        "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
           {
@@ -2330,7 +2317,7 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192539.014359,
+        "last_ens_resolved": 1795463058.8986762,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2349,8 +2336,8 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192540.5679214,
-        "last_profile_resolved": 1795369222.6884065,
+        "last_ens_resolved": 1795463060.0311828,
+        "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
           {
@@ -2368,8 +2355,8 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192542.492796,
-        "last_profile_resolved": 1795369222.6884065,
+        "last_ens_resolved": 1795463061.3191237,
+        "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
           {
@@ -2387,8 +2374,8 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192544.1773112,
-        "last_profile_resolved": 1795369222.6884065,
+        "last_ens_resolved": 1795463062.654991,
+        "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
           {
@@ -2406,7 +2393,7 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192545.682964,
+        "last_ens_resolved": 1795463063.6637533,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2425,7 +2412,7 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192553.1716442,
+        "last_ens_resolved": 1795463064.5841327,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2444,8 +2431,8 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192554.861259,
-        "last_profile_resolved": 1795369222.6884065,
+        "last_ens_resolved": 1795463065.730272,
+        "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
           {
@@ -2463,7 +2450,7 @@
         "base_name": "slowfreeze.base.eth",
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192555.3272488,
+        "last_ens_resolved": 1795463066.081518,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2482,7 +2469,7 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192556.945243,
+        "last_ens_resolved": 1795463067.2411516,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2501,8 +2488,8 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192558.901713,
-        "last_profile_resolved": 1795369222.6884065,
+        "last_ens_resolved": 1795463075.1389883,
+        "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
           {
@@ -2520,7 +2507,7 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192560.4042807,
+        "last_ens_resolved": 1795463076.2968194,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2539,7 +2526,7 @@
         "base_name": "gottothird.base.eth",
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192563.395709,
+        "last_ens_resolved": 1795463077.2783217,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2558,7 +2545,7 @@
         "base_name": "pa3gba.base.eth",
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192564.035872,
+        "last_ens_resolved": 1795463077.6476102,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2577,8 +2564,8 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192566.251403,
-        "last_profile_resolved": 1795369222.6884065,
+        "last_ens_resolved": 1795463085.0775216,
+        "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
           {
@@ -2596,7 +2583,7 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192567.9468532,
+        "last_ens_resolved": 1795463085.9513807,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2615,8 +2602,8 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192570.3536527,
-        "last_profile_resolved": 1795369222.6884065,
+        "last_ens_resolved": 1795463087.2136307,
+        "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
           {
@@ -2634,7 +2621,7 @@
         "base_name": "pieface.base.eth",
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192571.743435,
+        "last_ens_resolved": 1795463089.3472426,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2653,7 +2640,7 @@
         "base_name": "shortcut.base.eth",
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192572.4012089,
+        "last_ens_resolved": 1795463089.7175865,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2672,8 +2659,8 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192574.6638107,
-        "last_profile_resolved": 1795369222.6884065,
+        "last_ens_resolved": 1795463096.9093156,
+        "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
           {
@@ -2691,7 +2678,7 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192578.412512,
+        "last_ens_resolved": 1795463097.8056617,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2710,7 +2697,7 @@
         "base_name": "jhonnyfolies.base.eth",
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192580.1857316,
+        "last_ens_resolved": 1795463098.8158572,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2729,7 +2716,7 @@
         "base_name": "aerospace.base.eth",
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192584.763992,
+        "last_ens_resolved": 1795463105.9144638,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2748,8 +2735,8 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192586.3521645,
-        "last_profile_resolved": 1795369222.6884065,
+        "last_ens_resolved": 1795463107.1276982,
+        "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
           {
@@ -2767,7 +2754,7 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192593.6493146,
+        "last_ens_resolved": 1795463108.3351886,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2786,7 +2773,7 @@
         "base_name": "visualarchive.base.eth",
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192601.0202587,
+        "last_ens_resolved": 1795463109.6248455,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2805,7 +2792,7 @@
         "base_name": "inshirowetrust.base.eth",
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192602.806629,
+        "last_ens_resolved": 1795463111.2559407,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2824,7 +2811,7 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192604.7860966,
+        "last_ens_resolved": 1795463112.1168568,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2843,7 +2830,7 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192606.2862256,
+        "last_ens_resolved": 1795463113.0494988,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2881,7 +2868,7 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192608.2748318,
+        "last_ens_resolved": 1795463114.399129,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2900,8 +2887,8 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192610.0844429,
-        "last_profile_resolved": 1795369222.6884065,
+        "last_ens_resolved": 1795463121.5206132,
+        "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
           {
@@ -2919,7 +2906,7 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192611.5934587,
+        "last_ens_resolved": 1795463122.6143985,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2938,7 +2925,7 @@
         "base_name": null,
         "collection_quantity": 1,
         "unique_pieces": 1,
-        "last_ens_resolved": 1795192618.867329,
+        "last_ens_resolved": 1795463124.0469396,
         "last_profile_resolved": null,
         "profile_checked": true,
         "holdings": [
@@ -2957,7 +2944,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192903.6805944,
+        "last_ens_resolved": 1795463419.3663433,
         "last_profile_resolved": 1795369222.6884065,
         "profile_checked": true,
         "holdings": []
@@ -2970,7 +2957,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192903.8723106,
+        "last_ens_resolved": 1795463419.5083039,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -2983,7 +2970,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192904.6379397,
+        "last_ens_resolved": 1795463420.0827403,
         "last_profile_resolved": 1795369222.6884065,
         "profile_checked": true,
         "holdings": []
@@ -2996,7 +2983,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192905.1005392,
+        "last_ens_resolved": 1795463420.2144866,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -3009,7 +2996,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192906.4220576,
+        "last_ens_resolved": 1795463421.7134867,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -3022,7 +3009,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192906.5846245,
+        "last_ens_resolved": 1795463421.8301015,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -3035,7 +3022,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192907.1325052,
+        "last_ens_resolved": 1795463422.3678672,
         "last_profile_resolved": 1795369222.6884065,
         "profile_checked": true,
         "holdings": []
@@ -3048,7 +3035,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192908.54433,
+        "last_ens_resolved": 1795463423.3296673,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -3061,7 +3048,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192909.5810905,
+        "last_ens_resolved": 1795463424.0681207,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -3074,7 +3061,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192909.7799096,
+        "last_ens_resolved": 1795463424.2136636,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -3087,7 +3074,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192910.5504131,
+        "last_ens_resolved": 1795463424.3338242,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -3100,7 +3087,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192910.6977127,
+        "last_ens_resolved": 1795463424.4641402,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -3113,7 +3100,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192917.9456594,
+        "last_ens_resolved": 1795463425.4924982,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -3126,7 +3113,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192918.447974,
+        "last_ens_resolved": 1795463426.1293776,
         "last_profile_resolved": 1795369222.6884065,
         "profile_checked": true,
         "holdings": []
@@ -3139,7 +3126,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192919.2362044,
+        "last_ens_resolved": 1795463426.6535554,
         "last_profile_resolved": 1795369222.6884065,
         "profile_checked": true,
         "holdings": []
@@ -3152,7 +3139,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192920.0338678,
+        "last_ens_resolved": 1795463427.1432362,
         "last_profile_resolved": 1795369222.6884065,
         "profile_checked": true,
         "holdings": []
@@ -3165,7 +3152,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192921.1174216,
+        "last_ens_resolved": 1795463427.8715165,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -3178,7 +3165,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192922.5206287,
+        "last_ens_resolved": 1795463429.2679706,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -3191,7 +3178,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192922.7579513,
+        "last_ens_resolved": 1795463429.3448288,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -3204,7 +3191,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192924.4526174,
+        "last_ens_resolved": 1795463430.636089,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -3217,7 +3204,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192925.1747284,
+        "last_ens_resolved": 1795463431.1614914,
         "last_profile_resolved": 1795369222.6884065,
         "profile_checked": true,
         "holdings": []
@@ -3230,7 +3217,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192926.3093624,
+        "last_ens_resolved": 1795463432.034966,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -3243,7 +3230,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192926.5090785,
+        "last_ens_resolved": 1795463432.5052235,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -3256,7 +3243,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192926.7634206,
+        "last_ens_resolved": 1795463432.7319071,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -3269,7 +3256,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192926.9591763,
+        "last_ens_resolved": 1795463432.8160558,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -3282,7 +3269,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192927.6981044,
+        "last_ens_resolved": 1795463432.8729737,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -3295,7 +3282,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192928.725497,
+        "last_ens_resolved": 1795463434.6500347,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -3308,7 +3295,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192929.005263,
+        "last_ens_resolved": 1795463435.2338083,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -3321,7 +3308,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192936.2169528,
+        "last_ens_resolved": 1795463435.9367988,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -3334,7 +3321,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192936.9771793,
+        "last_ens_resolved": 1795463436.4090166,
         "last_profile_resolved": 1795369222.6884065,
         "profile_checked": true,
         "holdings": []
@@ -3347,7 +3334,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192938.0200386,
+        "last_ens_resolved": 1795463437.2583065,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -3360,7 +3347,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192938.7766654,
+        "last_ens_resolved": 1795463437.8437386,
         "last_profile_resolved": 1794761477.863914,
         "profile_checked": true,
         "holdings": []
@@ -3555,7 +3542,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192923.5179994,
+        "last_ens_resolved": 1795463429.8755066,
         "last_profile_resolved": 1795369222.6884065,
         "profile_checked": true,
         "holdings": []
@@ -3568,7 +3555,7 @@
         "base_name": null,
         "collection_quantity": 0,
         "unique_pieces": 0,
-        "last_ens_resolved": 1795192938.4943285,
+        "last_ens_resolved": 1795463437.7674425,
         "last_profile_resolved": 1795369222.6884065,
         "profile_checked": true,
         "holdings": []
@@ -3619,24 +3606,21 @@
         "ens_name": "saphoroth.eth",
         "username": "Saphoroth",
         "unique_pieces": 65,
-        "collection_quantity": 393,
-        "base_name": "lostthegame.base.eth"
+        "collection_quantity": 393
       },
       {
         "address": "0xcba66b48a1c9e3b104b1fb0caa57c026926deafe",
         "ens_name": "mozvane.eth",
         "username": "mozvane.eth",
         "unique_pieces": 60,
-        "collection_quantity": 280,
-        "base_name": "mozcat.base.eth"
+        "collection_quantity": 280
       },
       {
         "address": "0x4a5eda0b4a56ae8c3c43c8c194abce4f936e08d5",
         "ens_name": null,
         "username": "daCAT_Dreams",
         "unique_pieces": 48,
-        "collection_quantity": 92,
-        "base_name": "dacatdreams.base.eth"
+        "collection_quantity": 92
       },
       {
         "address": "0xff003d893a2600dd8a773beaeed4097e2d5c3487",
@@ -3678,8 +3662,7 @@
         "ens_name": "doublelion.eth",
         "username": "LenaMAU",
         "unique_pieces": 11,
-        "collection_quantity": 19,
-        "base_name": "henia.base.eth"
+        "collection_quantity": 19
       },
       {
         "address": "0x06eca6ce5f135ed9917b00630c26167de7e6a673",
@@ -3700,8 +3683,7 @@
         "ens_name": null,
         "username": "HodLStaR",
         "unique_pieces": 5,
-        "collection_quantity": 9,
-        "base_name": "hodlstar.base.eth"
+        "collection_quantity": 9
       },
       {
         "address": "0x6372d911ad7329509d683828be1bf5d4eb45bb42",
@@ -3771,8 +3753,7 @@
         "ens_name": "dao100.eth",
         "username": "flysuperman",
         "unique_pieces": 1,
-        "collection_quantity": 2,
-        "base_name": "wmdsj19880725.base.eth"
+        "collection_quantity": 2
       },
       {
         "address": "0xffcd46f8267ea602a9a05b17027a53cae1364298",
@@ -3856,8 +3837,7 @@
         "ens_name": "slowfreeze.eth",
         "username": "Slowfreeze",
         "unique_pieces": 1,
-        "collection_quantity": 1,
-        "base_name": "slowfreeze.base.eth"
+        "collection_quantity": 1
       },
       {
         "address": "0x8f15253e0775e1df0561a875ddf00dae70cf72a7",
@@ -3885,16 +3865,14 @@
         "ens_name": null,
         "username": "yola_yo",
         "unique_pieces": 1,
-        "collection_quantity": 1,
-        "base_name": "gottothird.base.eth"
+        "collection_quantity": 1
       },
       {
         "address": "0x7f23f1c4be15fa3adabc821de9ef70efa5503f24",
         "ens_name": "tibob.eth",
         "username": "pa3gBa",
         "unique_pieces": 1,
-        "collection_quantity": 1,
-        "base_name": "pa3gba.base.eth"
+        "collection_quantity": 1
       },
       {
         "address": "0x77142c2ccc81d0b3dc8569b7d9f460e8b9696232",
@@ -3922,16 +3900,14 @@
         "ens_name": null,
         "username": "Fred12582",
         "unique_pieces": 1,
-        "collection_quantity": 1,
-        "base_name": "pieface.base.eth"
+        "collection_quantity": 1
       },
       {
         "address": "0x68bca5a8bdebe05fb8a6648c7316b4eb7e19a064",
         "ens_name": "ahotwallet.eth",
         "username": "A_Hot_Wallet",
         "unique_pieces": 1,
-        "collection_quantity": 1,
-        "base_name": "shortcut.base.eth"
+        "collection_quantity": 1
       },
       {
         "address": "0x6395aeb764163d8179e946feafb8338752437623",
@@ -3952,16 +3928,14 @@
         "ens_name": null,
         "username": "Jhonny88",
         "unique_pieces": 1,
-        "collection_quantity": 1,
-        "base_name": "jhonnyfolies.base.eth"
+        "collection_quantity": 1
       },
       {
         "address": "0x58e5c387c541ba7c4b04f126adb778fb02715afa",
         "ens_name": null,
         "username": null,
         "unique_pieces": 1,
-        "collection_quantity": 1,
-        "base_name": "aerospace.base.eth"
+        "collection_quantity": 1
       },
       {
         "address": "0x55d5c0aa6486ccd91775f4f2e3258f5d7ceac5ce",
@@ -3982,16 +3956,14 @@
         "ens_name": null,
         "username": "0x445a",
         "unique_pieces": 1,
-        "collection_quantity": 1,
-        "base_name": "visualarchive.base.eth"
+        "collection_quantity": 1
       },
       {
         "address": "0x3e43287a26acf9e5206f4551ccda29c7d9bea93e",
         "ens_name": null,
         "username": null,
         "unique_pieces": 1,
-        "collection_quantity": 1,
-        "base_name": "inshirowetrust.base.eth"
+        "collection_quantity": 1
       },
       {
         "address": "0x356d8dac5f0da039dcc3e22c8b42fde00e79f7e6",
@@ -4313,8 +4285,7 @@
         "ens_name": "jupiterphii.eth",
         "username": "JupiterPhii",
         "unique_pieces": 0,
-        "collection_quantity": 0,
-        "base_name": "jupiterphii.base.eth"
+        "collection_quantity": 0
       },
       {
         "address": "0x76a6a2bc4804f32562648f728afe1490e5a1d80c",
@@ -4349,8 +4320,7 @@
         "ens_name": null,
         "username": "TyBareCat",
         "unique_pieces": 0,
-        "collection_quantity": 0,
-        "base_name": "billyboop.base.eth"
+        "collection_quantity": 0
       },
       {
         "address": "0xb9c31d099da862879e45d7ba6ec3c2ecc8563cec",
@@ -4392,8 +4362,7 @@
         "ens_name": null,
         "username": null,
         "unique_pieces": 0,
-        "collection_quantity": 0,
-        "base_name": "chavy.base.eth"
+        "collection_quantity": 0
       },
       {
         "address": "0x45c40c45acae24900ccf6629b0b107aaeef31b88",
@@ -4403,6 +4372,5 @@
         "collection_quantity": 0
       }
     ]
-  },
-  "profiles_enriched_at": "2026-11-22T17:40:37.873157+00:00"
+  }
 }
