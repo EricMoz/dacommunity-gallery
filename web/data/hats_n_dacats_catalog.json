@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T19:18:39.358821+00:00",
+  "generated_at": "2026-11-25T18:22:57.883691+00:00",
   "source": "hats_n_dacats_catalog",
   "collection": {
     "id": "hats-n-dacats",
@@ -24,10 +24,10 @@
     "floor_eth": 0.014,
     "floor_symbol": "ETH",
     "num_owners": 30,
-    "total_sales": 61,
-    "total_volume": 0.9339999999999999,
+    "total_sales": 62,
+    "total_volume": 0.9524999999999999,
     "piece_count": 137,
-    "listed_count": 36,
+    "listed_count": 35,
     "one_of_ones": 137
   },
   "items": [
@@ -629,23 +629,29 @@
       "media_type": "image",
       "opensea_url": "https://opensea.io/assets/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/155",
       "opensea_image_url": "https://i2c.seadn.io/ethereum/0xb28bf43bfea91c15d36100b3f0d56b0a5eea2180/25d7c228b77d3c5b33ce129bb157a2/6825d7c228b77d3c5b33ce129bb157a2.png",
-      "listed": true,
-      "listing": {
-        "amount_eth": 0.0185,
-        "currency": "ETH",
-        "status": "ACTIVE"
-      },
+      "listed": false,
+      "listing": null,
       "owners": {
-        "holder_count": 0,
-        "circulating_copies": 0,
-        "top_holders": [],
-        "holders": [],
+        "holder_count": 1,
+        "circulating_copies": 1,
+        "top_holders": [
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          }
+        ],
+        "holders": [
+          {
+            "address": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+            "quantity": 1
+          }
+        ],
         "creator_excluded": true,
         "latest_change": {
-          "type": "mint",
-          "at": "2026-11-13T23:13:59+00:00",
-          "from": null,
-          "to": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "type": "transfer",
+          "at": "2026-11-25T16:56:23+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
           "quantity": 1
         }
       },
@@ -673,6 +679,21 @@
       "is_1_of_1": true,
       "edition_size": 1,
       "recent_activity": [
+        {
+          "type": "transfer",
+          "at": "2026-11-25T16:56:23+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1
+        },
+        {
+          "type": "sale",
+          "at": "2026-11-25T16:56:23+00:00",
+          "from": "0xd23ace74f9749eb5040311e5d8654bce88d0cfb8",
+          "to": "0x7614bc6c7439f2c9dab8993ad19abdee69bf6f91",
+          "quantity": 1,
+          "price_eth": 0.0185
+        },
         {
           "type": "mint",
           "at": "2026-11-13T23:13:59+00:00",
